@@ -1,0 +1,10 @@
+variable,value,type,definition,source,comments
+rate_EI,0.0188,float,,2016 Employment Insurance Premium Rate,
+rate_EI_qc,0.0152,float,,2016 Employment Insurance Premium Rate,
+max_earn_EI,50800,float,,2016 Employment Insurance Premium Rate,
+qualifying_threshold_QPIP,2000,float,,,
+rate_QPIP_earn,0.00548,float,,, 
+rate_QPIP_selfemp_earn,0.00973,float,,,
+max_QPIP_earn,71500,float,,,
+max_age_CPP,69,int,,,
+min_age_CPP,18,int,,,

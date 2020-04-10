@@ -1,0 +1,9 @@
+comments:
+
+parameters loading takes time: 
+* one file per province/territory and one federal 
+  (add a column with the name of the calculator using the parameter)
+* add a switch to avoid reloading parameters when doing comparative statics
+
+* create new class only when different methods are needed: loading different data
+is handled with argument in __init__
