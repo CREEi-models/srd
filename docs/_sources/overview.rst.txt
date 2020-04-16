@@ -1,0 +1,31 @@
+.. _overview:
+
+***********************
+Premier pas avec le SRD
+***********************
+
+.. _installing-docdir:
+
+Installation du SRD
+======================
+
+On peut installer facilement le SRD en utilisant pip ::
+
+  pip install creei-srd
+
+
+On importe le modèle de la manière suivante:
+
+.. code:: ipython3
+
+    import srd
+
+On peut aussi se servir directement du module et utilisant au haut de notre notebook ou programme:
+
+.. code:: ipython3
+
+    import sys
+    sys.path.append(path_to_module)
+
+Ou path_to_module est le nom du chemin au répertoire ou on peut voir srd. Par exemple sur
+dropbox, ce sera ~/cedia/srd/Model.

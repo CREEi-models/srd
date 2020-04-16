@@ -1,0 +1,40 @@
+
+Programme d'assurance emploi
+----------------------------
+
+Survol 
+^^^^^^
+
+Le programme d'assurance emploi est pris en charge par le module ei. Ce module contient un gabarit que nous documentons ici-bas ainsi que des classes dérivées spécifiques à chaque année.   
+
+.. currentmodule:: srd.ei
+
+La fonction program permet de choisir l'année du programme et ira tirer une instance du programme pour cette année. L'instance est retournée par la fonction.  
+
+.. autofunction:: program
+
+Pour le moment, le programme ne permet que de calculer les contributions.
+
+Gabarit du programme
+^^^^^^^^^^^^^^^^^^^^
+
+Nous utilisons un gabarit afin de créer les programmes à chaque année. Quand le programme change seulement au niveau des paramètres d'une année à l'autre, nous irons chercher seulement les nouveaux paramètres. Quand des fonctions changent, l'utilisateur n'a qu'à modifier les fonctions touchées (ou en rajouter). L'avantage des classes dérivées est de ne pas avoir à répeter toutes les fonctions d'une année à l'autre si celles-ci n'ont pas changer.
+
+Nous reproduisons ici la spécification du gabarit. Il est calibré sur le programme en vigueur en 2016.  
+
+.. autoclass:: template
+    :members: contrib
+
+
+Fonctions spécifiques ou modifiées par année
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: srd.ei.programs.program_2016
+
+.. autoclass:: srd.ei.programs.program_2017
+
+.. autoclass:: srd.ei.programs.program_2018
+
+.. autoclass:: srd.ei.programs.program_2019
+
+.. autoclass:: srd.ei.programs.program_2020

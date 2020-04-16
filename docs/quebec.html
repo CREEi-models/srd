@@ -1,0 +1,507 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="fr" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="fr" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Impôt du Québec &mdash; Documentation Simulateur de revenu disponible </title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="Pension de la sécurité de la vieillesse" href="oas.html" />
+    <link rel="prev" title="Impôt Fédéral" href="federal.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Simulateur de revenu disponible
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Menu:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Premier pas avec le SRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="actors.html">Les acteurs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="federal.html">Impôt Fédéral</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Impôt du Québec</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gabarit-du-rapport">Gabarit du rapport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="oas.html">Pension de la sécurité de la vieillesse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="payroll.html">Cotisations sociales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ei.html">Programme d’assurance emploi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qpip.html">Régime québécois d’assurance parentale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="assistance.html">Aide sociale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calculators.html">Calculateur de revenu disponible</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TutorialFed.html">Exemple de calcul de l’impôt fédéral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TutorialCalculator.html">Exemple de calcul du revenu disponible</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Simulateur de revenu disponible</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Impôt du Québec</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/quebec.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="impot-du-quebec">
+<h1>Impôt du Québec<a class="headerlink" href="#impot-du-quebec" title="Lien permanent vers ce titre">¶</a></h1>
+<div class="section" id="survol">
+<h2>Survol<a class="headerlink" href="#survol" title="Lien permanent vers ce titre">¶</a></h2>
+<p>L’impôt du Québec est pris en charge par le module quebec. Ce module contient un gabarit qui nous documentons ici-bas ainsi que des classes spécifiques à chaque année.</p>
+<p>La fonction form permet de choisir l’année du rapport d’impôt et ira tirer une instance du rapport pour cette année. L’instance est retournée par la fonction.</p>
+<dl class="function">
+<dt id="srd.quebec.form">
+<code class="sig-prename descclassname">srd.quebec.</code><code class="sig-name descname">form</code><span class="sig-paren">(</span><em class="sig-param">year</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui permet de sélectionner le formulaire d’impôt provincial par année.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>year</strong> (<em>int</em>) – année (présentement entre 2016 et 2020)</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Une instance du formulaire pour l’année sélectionnée.</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>class instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="gabarit-du-rapport">
+<h2>Gabarit du rapport<a class="headerlink" href="#gabarit-du-rapport" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Nous utilisons un gabarit afin de créer les rapports à chaque année. Quand le programme change seulement dans ces paramètres, le rapport ira seulement chercher les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou en rajouter).</p>
+<p>Nous reproduisons içi la spécification du gabarit. Il est calcqué sur le rapport de 2016.</p>
+<dl class="class">
+<dt id="srd.quebec.template">
+<em class="property">class </em><code class="sig-prename descclassname">srd.quebec.</code><code class="sig-name descname">template</code><a class="headerlink" href="#srd.quebec.template" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Gabarit pour impôt provincial Québec.</p>
+<dl class="method">
+<dt id="srd.quebec.template.calc_deductions">
+<code class="sig-name descname">calc_deductions</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.calc_deductions" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule les déductions.</p>
+<p>Cette fonction fait la somme des différentes déductions du contribuable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.quebec.template.calc_gross_income">
+<code class="sig-name descname">calc_gross_income</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.calc_gross_income" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule le revenu total (brutte).</p>
+<p>Cette fonction correspond au revenu total d’une personne au fin de l’impôt.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.quebec.template.calc_net_income">
+<code class="sig-name descname">calc_net_income</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.calc_net_income" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule le revenu net au sens de l’impôt.</p>
+<p>Cette fonction correspond au revenu net d’une personne au fin de l’impôt. On y soustrait les déductions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.quebec.template.calc_non_refundable_tax_credits">
+<code class="sig-name descname">calc_non_refundable_tax_credits</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.calc_non_refundable_tax_credits" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule les crédits d’impôt non-remboursable.</p>
+<p>Cette fonction fait la somme de tous les crédits d’impôt modélisés.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.quebec.template.calc_refundable_tax_credits">
+<code class="sig-name descname">calc_refundable_tax_credits</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.calc_refundable_tax_credits" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui fait la somme des crédits remboursables.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.quebec.template.calc_tax">
+<code class="sig-name descname">calc_tax</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.calc_tax" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule l’impôt à payer selon la table d’impôt.</p>
+<p>Cette fonction utilise la table d’impôt de l’année cours.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.quebec.template.calc_taxable_income">
+<code class="sig-name descname">calc_taxable_income</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.calc_taxable_income" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule le revenu imposable au sens de l’impôt.</p>
+<p>Cette fonction correspond au revenu imposable d’une personne au fin de l’impôt. On y soustrait une portion des gains en capitaux.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.quebec.template.ccap">
+<code class="sig-name descname">ccap</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.ccap" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Allocation familiale.</p>
+<p>Ce crédit remboursable n’est pas encore implémenté.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant de l’allocation familiale</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.quebec.template.cchcare">
+<code class="sig-name descname">cchcare</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.cchcare" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Crédit pour frais de garde.</p>
+<p>Ce crédit remboursable n’est pas encore implémenté.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant du crédit pour frais de garde</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.quebec.template.file">
+<code class="sig-name descname">file</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.file" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui permet de calculer les impôts.</p>
+<p>Cette fonction est celle qui éxécute le calcul des impôts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.quebec.template.get_age_cred">
+<code class="sig-name descname">get_age_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.get_age_cred" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Crédit d’impôt selon l’âge.</p>
+<p>Ce crédit est non-remboursable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.quebec.template.get_disabled_cred">
+<code class="sig-name descname">get_disabled_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.get_disabled_cred" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Crédit d’impôt pour invalidité.</p>
+<p>Ce crédit est non-remboursable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.quebec.template.get_pension_cred">
+<code class="sig-name descname">get_pension_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.get_pension_cred" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Crédit d’impôt pour revenu de retraite.</p>
+<p>Ce crédit est non-remboursable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.quebec.template.get_single_cred">
+<code class="sig-name descname">get_single_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.get_single_cred" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Crédit pour personne seule</p>
+<p>Ce crédit est non-remboursable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.quebec.template.witb">
+<code class="sig-name descname">witb</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.witb" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Prime au travail.</p>
+<p>Ce crédit n’est pas encore implémenté.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant de la Prime au travail</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<p>Le gabarit collecte les résultats sur un rapport d’impôt qui sera rattaché à la personne sous la forme d’une dictionnaire python. Ceci permet de différencier les attributs d’une personne qui font parti de son profil et les variables générées par l’impôt. C’est la fonction create_return() qui fait ce travail.</p>
+<dl class="function">
+<dt id="srd.quebec.create_return">
+<code class="sig-prename descclassname">srd.quebec.</code><code class="sig-name descname">create_return</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.create_return" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="fonctions-specifiques-ou-modifiees-par-annee">
+<h2>Fonctions spécifiques ou modifiées par année<a class="headerlink" href="#fonctions-specifiques-ou-modifiees-par-annee" title="Lien permanent vers ce titre">¶</a></h2>
+<dl class="class">
+<dt id="srd.quebec.form_2016">
+<em class="property">class </em><code class="sig-prename descclassname">srd.quebec.</code><code class="sig-name descname">form_2016</code><a class="headerlink" href="#srd.quebec.form_2016" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Rapport d’impôt de 2016.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="srd.quebec.form_2017">
+<em class="property">class </em><code class="sig-prename descclassname">srd.quebec.</code><code class="sig-name descname">form_2017</code><a class="headerlink" href="#srd.quebec.form_2017" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Rapport d’impôt de 2017.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="srd.quebec.form_2018">
+<em class="property">class </em><code class="sig-prename descclassname">srd.quebec.</code><code class="sig-name descname">form_2018</code><a class="headerlink" href="#srd.quebec.form_2018" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Rapport d’impôt de 2018.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="srd.quebec.form_2019">
+<em class="property">class </em><code class="sig-prename descclassname">srd.quebec.</code><code class="sig-name descname">form_2019</code><a class="headerlink" href="#srd.quebec.form_2019" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Rapport d’impôt de 2019.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="srd.quebec.form_2020">
+<em class="property">class </em><code class="sig-prename descclassname">srd.quebec.</code><code class="sig-name descname">form_2020</code><a class="headerlink" href="#srd.quebec.form_2020" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Rapport d’impôt de 2020.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="oas.html" class="btn btn-neutral float-right" title="Pension de la sécurité de la vieillesse" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="federal.html" class="btn btn-neutral float-left" title="Impôt Fédéral" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Équipe CREEi
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+
+Cotisations sociales
+--------------------
+
+Les cotisations sociales sont prises en charge par la classe payroll. Cette classe prend en charge les cotisations provenant du RQAP (Québec), l'assurance emploi ainsi que du RRQ et RPC. Pour ces dernières, le module cpp de la chaire est utilisé et une fonction de la classe payroll (get_cpp_contrib) ira chercher les contributions à l'intérieur de ce module. 
+
+La classe payroll attachera à chaque membre d'un couple un rapport de cotisations qui contiendra toutes ces contributions. Pour le RRQ et RPC, les cotisations à la prestations de base du régime ainsi que les suppléments provenant de l'expansion du programme en 2016 sont séparées puisque leur traitement fiscal est différent. 
+
+.. currentmodule:: srd
+
+.. autoclass:: payroll
+    :members: compute, get_cpp_contrib
+

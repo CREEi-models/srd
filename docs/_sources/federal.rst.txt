@@ -1,0 +1,41 @@
+
+Impôt Fédéral
+-------------
+
+Survol 
+^^^^^^
+
+L'impôt fédéral est pris en charge par le module federal. Ce module contient un gabarit qui nous documentons ici-bas ainsi que des classes spécifiques à chaque année.   
+
+.. currentmodule:: srd.federal
+
+La fonction form permet de choisir l'année du rapport d'impôt et ira tirer une instance du rapport pour cette année. L'instance est retournée par la fonction.  
+
+.. autofunction:: form
+
+Gabarit du rapport
+^^^^^^^^^^^^^^^^^^^^
+
+Nous utilisons un gabarit afin de créer les rapports à chaque année. Quand le programme change seulement dans ces paramètres, le rapport ira seulement chercher les nouveaux paramètres. Quand des fonctions changent, l'utilisateur n'a qu'à modifier les fonctions touchées (ou en rajouter). 
+
+Nous reproduisons içi la spécification du gabarit. Il est calcqué sur le rapport de 2016.  
+
+.. autoclass:: template
+    :members: file, calc_gross_income, calc_net_income, calc_taxable_income, calc_deductions, calc_tax, calc_non_refundable_tax_credits, get_age_cred, get_pension_cred, get_disabled_cred, calc_refundable_tax_credits, abatment, ccb, witb, witbds
+
+Le gabarit collecte les résultats sur un rapport d'impôt qui sera rattaché à la personne sous la forme d'une dictionnaire python. Ceci permet de différencier les attributs d'une personne qui font parti de son profil et les variables générées par l'impôt. C'est la fonction create_return() qui fait ce travail. 
+
+.. autofunction:: create_return
+
+Fonctions spécifiques ou modifiées par année
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: srd.federal.form_2016
+
+.. autoclass:: srd.federal.form_2017
+
+.. autoclass:: srd.federal.form_2018
+
+.. autoclass:: srd.federal.form_2019
+
+.. autoclass:: srd.federal.form_2020
