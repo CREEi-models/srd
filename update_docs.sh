@@ -1,0 +1,1 @@
+scp -r ../TechDocs/build/html docs
