@@ -24,18 +24,18 @@ def get_params(file, delimiter, numerical_key = False):
         d_params = {int(k): v for k, v in d_params.items()}
     return d_params
 
-def get_schedule(file):
+def get_schedule(file,delimiter=','):
     d_schedule = {}
     with open(file) as params:
-        rows = csv.reader(params)
+        rows = csv.reader(params,delimiter=delimiter)
         for row in rows:
             var, value = row[0], row[1:]
             value = [float(v) for v in value]
             d_schedule[var] = value
     return d_schedule
 
-def add_schedule_as_attr(inst, path):
-    d_schedule = get_schedule(path)
+def add_schedule_as_attr(inst, path,delimiter=','):
+    d_schedule = get_schedule(path,delimiter=delimiter)
     inst.__dict__.update(d_schedule)
 
 def add_params_as_attr(inst, path,delimiter=','):

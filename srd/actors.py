@@ -13,6 +13,8 @@ class Person:
     ----------
     age: int
         age de l'individu
+    male: int 
+        1 si individu est un homme
     earn: float
         revenu de travail
     rpp: float
@@ -46,11 +48,12 @@ class Person:
     oas_years_post: int
         n/d
     """
-    def __init__(self, age=50, earn=0, rpp=0, cpp=0, othtax=0, othntax=0, 
+    def __init__(self, age=50, male=True, earn=0, rpp=0, cpp=0, othtax=0, othntax=0, 
                  inc_rrsp=0, selfemp_earn=0, con_rrsp=0, years_can=None,
                  disabled=False, cqppc = None, widow=False,
                  asset=0, dc_exp0_7=0, dc_exp8_16=0, oas_years_post = 0):
         self.age = age
+        self.male = male
         self.inc_earn = earn
         self.inc_rpp = rpp
         self.inc_cpp = cpp
@@ -69,13 +72,14 @@ class Person:
         self.oas_years_post = oas_years_post
         self.inc_oas = 0.0
         self.inc_gis = 0.0
+        self.inc_social_ass = 0.0
         self.allow_couple = 0
         self.allow_surv = 0
         self.fed_return = None 
         self.pro_return = None
         self.payroll = None 
         self.net_inc = self.inc_tot()
-        self.disp_inc = self.net_inc - self.con_rrsp
+        self.disp_inc = self.inc_tot() - self.con_rrsp
         return 
     def inc_work(self):
         """
@@ -240,9 +244,8 @@ class Hhold:
         self.nkids = len([s for s in self.dep if s.age <= 30])
         self.nold = len([s for s in self.dep if s.age >= 65])
         self.nhh = 1 + self.couple + len(self.dep)
-        self.hh_size = 1 + self.couple + self.nkids
-
-
+        self.size = 1 + self.couple + self.nkids
+        return
     def split_pension_income(self):
         # use this function after inc_oas has been computed?
         # age eligibility? type of pension eligible?

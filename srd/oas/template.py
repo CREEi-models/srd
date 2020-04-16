@@ -194,7 +194,7 @@ class template:
 
     def compute_allowance(self, p, hh):
         """
-        Calcul de base de l'allocation du survivant.
+        Calcul de base de l'allocation du survivant ou de couple.
 
         Parameters
         ----------
@@ -205,7 +205,7 @@ class template:
         Returns
         -------
         float
-            Allocation du survivant de base.
+            Allocation du survivant ou de couple de base.
         """
         cutoff = self.rate_high_inc * self.oas_full * p.sq_factor
         allow = self.gis_full_single * p.sq_factor

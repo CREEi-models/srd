@@ -1,5 +1,5 @@
 import numpy as np 
-from srd import federal, oas
+from srd import federal, oas, quebec, payroll, assistance
 
 class tax:
     """
@@ -9,6 +9,8 @@ class tax:
     ----------
     year: int 
         année pour le calcul 
+    prov: str
+        province (pour le moment seulement Québec, par défaut)
     ifed: boolean
         vrai si calcul de l'impôt fédéral demandé
     ioas: boolean
@@ -18,16 +20,24 @@ class tax:
     ipayroll: boolean
         vrai si calcul des cotisations sociales est demandé
     """
-    def __init__(self,year,ifed=True,ioas=True,iprov=False,ipayroll=False):
+    def __init__(self,year,prov='qc',ifed=True,ioas=True,iprov=True,ipayroll=True,iass=True):
         self.year = year
         self.ifed = ifed
         self.iprov = iprov
         self.ipayroll = ipayroll
+        self.ioas = ioas
+        self.iass = iass
+        if ipayroll:
+            self.payroll = payroll(year)
         if ifed:
             self.federal = federal.form(year)
-        self.ioas = ioas
+        if iprov:
+            if prov=='qc':
+                self.prov = quebec.form(year)
         if ioas:
             self.oas = oas.program(year)
+        if iass:
+            self.ass = assistance.program(year)
         return
     def compute(self,hh):
         """
@@ -40,12 +50,14 @@ class tax:
         """
         if self.ioas:
             self.compute_oas(hh)
+        if self.ipayroll:
+            self.compute_payroll(hh)
         if self.ifed:
             self.compute_federal(hh)
         if self.iprov:
             self.compute_prov(hh)
-        if self.ipayroll:
-            self.compute_payroll(hh)
+        if self.iass:
+            self.compute_ass(hh)
         return 
     def compute_oas(self,hh):
         """
@@ -72,26 +84,41 @@ class tax:
         """
         Calcul de l'impôt provincial.
 
-        N'est pas implémenté pour l'instant. 
-
         Parameters
         ----------
         hh: Hhold
             instance de la classe Hhold
         """
+        self.prov.file(hh)
         return
     def compute_payroll(self,hh):
         """
         Calcul des cotisations sociales.
 
-        N'est pas implémenté pour l'instant. 
+        Parameters
+        ----------
+        hh: Hhold
+            instance de la classe Hhold
+        """
+        self.payroll.compute(hh)
+        return
+    def compute_ass(self,hh):
+        """
+        Calcul de l'aide sociale.
 
         Parameters
         ----------
         hh: Hhold
             instance de la classe Hhold
         """
+        ass = self.ass.apply(hh)
+        if hh.couple: 
+            for p in hh.sp:
+                p.inc_social_ass = ass/2.0
+        else :
+            hh.sp.inc_social_ass = ass
         return
+
     def netinc(self,hh):
         """
         Calcul du revenu après impôt fédéral et provincial.
@@ -109,16 +136,18 @@ class tax:
         return
     def dispinc(self,hh):
         """
-        Calcul du revenu disponible après impôt et cotisations (sociale et REER).
+        Calcul du revenu disponible après impôt, cotisations (sociale et REER) et aide sociale.
 
-        Calcul fait au niveau individuel et ensuite rattaché à la personne. Un calcul au niveau du ménage est aussi effectué.
+        Calcul fait au niveau individuel et ensuite rattaché à la personne.
 
         """
         self.netinc(hh)
         for p in hh.sp:
             ninc = p.net_inc
             if self.ipayroll:
-                ninc -= p.payroll['total']
+                ninc -= sum(list(p.payroll.values()))   
+            if self.iass:
+                ninc += p.inc_social_ass
             ninc -= p.con_rrsp
             p.disp_inc = ninc       
         return
