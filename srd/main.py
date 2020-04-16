@@ -7,8 +7,8 @@ from srd import federal, quebec
 fed_form = federal.form(2016)
 qc_form = quebec.form(2016)
 
-jean = srd.Person(age=45,earn=50e3)
-pauline = srd.Person(age=45,earn=25e3)
+jean = srd.Person(age=45,earn=50e3, disabled=True)
+pauline = srd.Person(age=70,earn=25e3)
 hh = srd.Hhold(jean,pauline,prov='qc')
 child = srd.Dependent(age=0)
 hh.add_dependent(child)
