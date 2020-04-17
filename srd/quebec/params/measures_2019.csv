@@ -1,12 +1,13 @@
 variable;value;type;definition;source ;comments
-work_deduc_max;1130;float;;;
+work_deduc_max;1170;float;;;
 work_deduc_rate;0.06;float;;;
-nrtc_age_max;2485;float;;
+nrtc_age_max;3212;float;;;
 nrtc_age;65;int;;;
-nrtc_single;1355;float;;;
-nrtc_pension_max;2210;float;;;
-nrtc_age_rate;0.15;float;;;
-nrtc_age_cutoff;33505;float;;;
-nrtc_rate;0.2;float;;;
-base;11550;float;;;
-nrtc_disabled;2625;float;;;
+nrtc_single;1750;float;;;
+nrtc_pension_max;2853;float;;;
+nrtc_pension_factor;1.25;float;;;
+nrtc_claw_rate;0.1875;float;;;
+nrtc_claw_cutoff;34610;float;;;
+nrtc_rate;0.15;float;;;
+nrtc_base;15269;float;;;
+nrtc_disabled;3391;float;;;

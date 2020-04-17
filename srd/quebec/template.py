@@ -142,7 +142,7 @@ class template:
         """
         cred_amount = self.get_age_cred(p) + self.get_single_cred(p,hh) + self.get_pension_cred(p)
         cred_amount = max(0, cred_amount - self.get_nrtcred_clawback(p,hh))
-        p.prov_return['non_refund_credits'] = self.nrtc_rate * (self.base 
+        p.prov_return['non_refund_credits'] = self.nrtc_rate * (self.nrtc_base 
                             + cred_amount + self.get_disabled_cred(p))
     def get_nrtcred_clawback(self,p,hh):
         """
@@ -158,7 +158,7 @@ class template:
             instance de la classe Hhold
         """        
         fam_netinc = sum([s.prov_return['net_income'] for s in hh.sp])
-        return max(self.nrtc_age_rate*(fam_netinc - self.nrtc_age_cutoff),0.0)
+        return max(self.nrtc_claw_rate*(fam_netinc - self.nrtc_claw_cutoff),0.0)
     def get_age_cred(self, p):
         """
         Crédit d'impôt selon l'âge.
@@ -200,7 +200,8 @@ class template:
         p: Person
             instance de la classe Person
         """
-        return min(p.inc_rpp, self.nrtc_pension_max)
+        return min(p.inc_rpp * self.nrtc_pension_factor, self.nrtc_pension_max)
+
     def get_disabled_cred(self, p):
         """
         Crédit d'impôt pour invalidité.

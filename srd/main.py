@@ -5,7 +5,7 @@ import srd
 from srd import federal, quebec
 
 fed_form = federal.form(2016)
-qc_form = quebec.form(2016)
+qc_form = quebec.form(2020)
 
 jean = srd.Person(age=45,earn=50e3, disabled=True)
 pauline = srd.Person(age=70,earn=25e3)
