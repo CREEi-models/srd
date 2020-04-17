@@ -1,1 +1,1 @@
-scp -r ../TechDocs/build/html docs
+scp -r ../TechDocs/build/html/* docs

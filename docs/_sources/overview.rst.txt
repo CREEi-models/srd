@@ -9,23 +9,18 @@ Premier pas avec le SRD
 Installation du SRD
 ======================
 
-On peut installer facilement le SRD en utilisant pip ::
+On peut installer facilement le SRD en allant chercher d'abord sur github ::
 
-  pip install creei-srd
+  git clone https://github.com/creei-models/srd srd --recursive
 
 
-On importe le modèle de la manière suivante:
+Ensuite on a qu'a installer en allant dans srd/ et en lancant au terminal ::
+
+  python setup.py install
+
+Dans un notebook ou un projet, on invoque srd en ajoutant la commande suivante:
 
 .. code:: ipython3
 
     import srd
 
-On peut aussi se servir directement du module et utilisant au haut de notre notebook ou programme:
-
-.. code:: ipython3
-
-    import sys
-    sys.path.append(path_to_module)
-
-Ou path_to_module est le nom du chemin au répertoire ou on peut voir srd. Par exemple sur
-dropbox, ce sera ~/cedia/srd/Model.
