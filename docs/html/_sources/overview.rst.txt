@@ -16,7 +16,7 @@ On peut installer facilement le SRD en allant chercher d'abord sur github ::
 
 Ensuite on a qu'a installer en allant dans srd/ et en lancant au terminal ::
 
-python setup.py install
+  python setup.py install
 
 Dans un notebook ou un projet, on invoque srd en ajoutant la commande suivante:
 
