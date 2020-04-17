@@ -1,0 +1,19 @@
+
+.. automodule:: srd
+
+
+Les acteurs
+-----------
+
+Les fonctions d'acteurs permettent de déclarer des profils. 
+
+.. currentmodule:: srd 
+
+.. autoclass:: Person
+    :members: inc_work, inc_non_work, inc_tot 
+
+.. autoclass:: Dependent
+    :members: 
+
+.. autoclass:: Hhold
+    :members: add_dependent,count,split_pension_income,fam_inc_work, fam_inc_non_work, fam_tot_inc, fam_net_inc, fam_disp_inc
