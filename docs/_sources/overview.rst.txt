@@ -24,3 +24,5 @@ Dans un notebook ou un projet, on invoque srd en ajoutant la commande suivante:
 
     import srd
 
+Vous ne devriez pas travailler dans ce répertoire d'installation.  
+
