@@ -1,7 +1,0 @@
-include assistance/params/*
-include federal/params/*
-include ei/params/*
-include oas/params/* 
-include qpip/params/*
-include quebec/params/* 
-include solidarity/params/*
