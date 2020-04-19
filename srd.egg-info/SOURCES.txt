@@ -66,9 +66,14 @@ srd/backup/params/2016/socsol/socsol_yt.csv
 srd/cpp/__init__.py
 srd/cpp/cpp.py
 srd/cpp/setup.py
+srd/cpp/docs/Doc de Stat Canada_supplement et max CPP benefits.xlsx
+srd/cpp/docs/paramètres financiers.xlsx
 srd/cpp/params/corr2010_curr.csv
 srd/cpp/params/cpi.csv
+srd/cpp/params/cpp_history.xlsx
+srd/cpp/params/cpp_history_full.xlsx
 srd/cpp/params/cppyear.csv
+srd/cpp/params/qpp_history.xlsx
 srd/ei/__init__.py
 srd/ei/programs.py
 srd/ei/template.py
