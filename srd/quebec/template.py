@@ -44,7 +44,7 @@ class template:
         return
     def calc_gross_income(self,p):
         """
-        Fonction qui calcule le revenu total (brutte).
+        Fonction qui calcule le revenu total (brut).
 
         Cette fonction correspond au revenu total d'une personne au fin de l'impôt. 
 
@@ -227,7 +227,8 @@ class template:
         hh: Hhold
             instance de la classe Hhold
         """
-        p.prov_return['refund_credits'] = self.witb(p,hh)
+        p.prov_return['refund_credits'] = self.witb(p, hh) + self.ccap(p, hh)
+    
     def witb(self,p,hh):
         """
         Prime au travail.
@@ -246,11 +247,9 @@ class template:
             Montant de la Prime au travail
         """
         return 0.0
-    def ccap(self,p,hh):
+    def ccap(self, p, hh):
         """
         Allocation familiale.
-       
-        Ce crédit remboursable n'est pas encore implémenté. 
         
         Parameters
         ----------
@@ -262,8 +261,46 @@ class template:
         -------
         float
             Montant de l'allocation familiale
-        """        
-        return 0.0
+
+            Cette fonction calcule le montant reçu en fonction du nombre d'enfants,
+            de la situation familiale (couple/monoparental) et du revenu. 
+        """
+        fam_netinc = sum([s.prov_return['net_income'] for s in hh.sp])
+        nkids = len([d for d in hh.dep if d.age < self.ccap_max_age])
+
+        if hh.couple:
+            clawback = max(0, self.ccap_claw_rate * (fam_netinc - self.ccap_claw_cutoff_couple))
+            add_amount_min = 0
+            add_amount_max = 0
+        else:
+            clawback = max(0, 0.04 * (fam_netinc - self.ccap_claw_cutoff_single))
+            add_amount_min = self.ccap_amount_single_min
+            add_amount_max = self.ccap_amount_single_max
+
+        if nkids == 0:
+            return 0
+
+        if hh.couple and p.male and hh.sp[0].male != hh.sp[1].male:
+            return 0 # heterosexual couple: mother receives benefit
+
+        if nkids == 1:
+            amount = max(add_amount_min + self.ccap_kid1_min,
+                         add_amount_max + self.ccap_kid1_max - clawback)            
+        elif nkids < 4:
+            amount = max(add_amount_min + self.ccap_kid1_min + (nkids - 1) * self.ccap_kid23_min, 
+                         add_amount_max + self.ccap_kid1_max 
+                         + (nkids - 1) * self.ccap_kid23_max - clawback)
+        else:
+            amount = max(add_amount_min + self.ccap_kid1_min + 2 * self.ccap_kid23_min 
+                         + (nkids - 3) * self.ccap_kid4p_min, 
+                         add_amount_max + self.ccap_kid1_max + 2 * self.ccap_kid23_max
+                         + (nkids - 3) * self.ccap_kid4p_max - clawback)
+
+        if hh.couple and hh.sp[0].male == hh.sp[1].male:
+            return amount / 2 # same sex couples get 1/2 each
+        else:
+            return amount
+
     def cchcare(self,p,hh):
         """
         Crédit pour frais de garde.

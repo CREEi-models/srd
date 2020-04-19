@@ -224,6 +224,7 @@ class template:
             amount = num_ch_0_5 * self.ccb_young + num_ch_6_17 * self.ccb_old
             claw_num_ch = min(num_ch_0_5 + num_ch_6_17, self.ccb_max_num_ch)
             adj_fam_net_inc = sum([p.fed_return['net_income'] for p in hh.sp]) 
+            
             l_rates_1 = [self.ccb_rate_1_1ch, self.ccb_rate_1_2ch,
                         self.ccb_rate_1_3ch, self.ccb_rate_1_4ch]
             d_rates_1 = {k+1: v for k, v in enumerate(l_rates_1)}

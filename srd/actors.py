@@ -225,7 +225,7 @@ class Hhold:
         """
         return sum([p.disp_inc for p in self.sp])
 
-    def add_dependent(self, dependent): # necessary?
+    def add_dependent(self, *dependents): # necessary?
         """
         Fonction pour ajouter un dépendant.
 
@@ -234,7 +234,8 @@ class Hhold:
         dependent: Dependent
             instance de la classe Dependent
         """
-        self.dep.append(dependent)     
+        for d in dependents:
+            self.dep.append(d)     
 
     def count(self): # do we need this?
         """

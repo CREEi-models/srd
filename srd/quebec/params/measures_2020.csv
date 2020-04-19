@@ -11,3 +11,15 @@ nrtc_claw_cutoff;35205;float;;;
 nrtc_rate;0.15;float;;;assumed constant
 nrtc_base;15532;float;;;
 nrtc_disabled;3449;float;;;
+ccap_max_age;18;int;;https://cffp.recherche.usherbrooke.ca/outils-ressources/guide-mesures-fiscales/allocation-famille-soutien-enfants/;  
+ccap_claw_rate;0.04;float;;;
+ccap_claw_cutoff_couple;49842;float;;;
+ccap_claw_cutoff_single;36256;float;;;
+ccap_amount_single_min;352;float;;;
+ccap_amount_single_max;882;float;;;
+ccap_kid1_min;1000;float;;;
+ccap_kid1_max;2515;float;;;
+ccap_kid23_min;1000;float;;;
+ccap_kid23_max;2515;float;;;
+ccap_kid4p_min;1000;float;;;
+ccap_kid4p_max;2515;float;;;
