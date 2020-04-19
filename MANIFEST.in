@@ -1,1 +1,1 @@
-recursive-include srd *.csv
+recursive-include srd *.csv *.xlsx
