@@ -1,1 +1,1 @@
-recursive-include srd/*
+recursive-include srd *.csv
