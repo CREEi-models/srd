@@ -15,7 +15,7 @@ class template:
     def __init__(self):
         add_params_as_attr(self, module_dir + '/quebec/params/measures_2016.csv',delimiter=';')
         add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2016.csv',delimiter=';')
-        add_schedule_as_attr(self, module_dir + '/quebec/params/cchcare_2016.csv',delimiter=';')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2016.csv',delimiter=';')
         return
     def file(self, hh):
         """
@@ -301,7 +301,7 @@ class template:
         else:
             return amount
 
-    def cchcare(self,p,hh):
+    def chcare(self,p,hh):
         """
         Crédit pour frais de garde.
        

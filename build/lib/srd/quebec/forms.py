@@ -36,7 +36,7 @@ class form_2016(template):
     def __init__(self):
         add_params_as_attr(self, module_dir + '/quebec/params/measures_2016.csv',delimiter=';')
         add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2016.csv',delimiter=';')
-        add_schedule_as_attr(self, module_dir + '/quebec/params/cchcare_2016.csv',delimiter=';')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2016.csv',delimiter=';')
         return
 
 class form_2017(template):
@@ -46,7 +46,7 @@ class form_2017(template):
     def __init__(self):
         add_params_as_attr(self, module_dir + '/quebec/params/measures_2017.csv',delimiter=';')
         add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2017.csv',delimiter=';')
-        add_schedule_as_attr(self, module_dir + '/quebec/params/cchcare_2017.csv',delimiter=';')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2017.csv',delimiter=';')
         return
 
 class form_2018(template):
@@ -56,7 +56,7 @@ class form_2018(template):
     def __init__(self):
         add_params_as_attr(self, module_dir + '/quebec/params/measures_2018.csv',delimiter=';')
         add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2018.csv',delimiter=';')
-        add_schedule_as_attr(self, module_dir + '/quebec/params/cchcare_2018.csv',delimiter=';')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2018.csv',delimiter=';')
         return
 
 class form_2019(template):
@@ -66,7 +66,7 @@ class form_2019(template):
     def __init__(self):
         add_params_as_attr(self, module_dir + '/quebec/params/measures_2019.csv',delimiter=';')
         add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2019.csv',delimiter=';')
-        add_schedule_as_attr(self, module_dir + '/quebec/params/cchcare_2019.csv',delimiter=';')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2019.csv',delimiter=';')
         return
 
 class form_2020(template):
@@ -76,5 +76,5 @@ class form_2020(template):
     def __init__(self):
         add_params_as_attr(self, module_dir + '/quebec/params/measures_2020.csv',delimiter=';')
         add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2020.csv',delimiter=';')
-        add_schedule_as_attr(self, module_dir + '/quebec/params/cchcare_2020.csv',delimiter=';')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2020.csv',delimiter=';')
         return

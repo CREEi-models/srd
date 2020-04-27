@@ -41,17 +41,15 @@ class Person:
         statut de veuf/veuve
     asset: float 
         valeur marchande des actifs
-    dc_exp0_7: int
-        nombre de dépendants âges 0 à 7 ans
-    dc_exp8_16: int
-        nombre de dépendants âges 8 à 16 ans
+    child_care_exp: float
+        dépense en frais de garde sur enfants de moins de 17 ans
     oas_years_post: int
-        n/d
+        nombre d'années de report pour la pension OAS (après 65 ans)
     """
     def __init__(self, age=50, male=True, earn=0, rpp=0, cpp=0, othtax=0, othntax=0, 
-                 inc_rrsp=0, selfemp_earn=0, con_rrsp=0, years_can=None,
-                 disabled=False, cqppc = None, widow=False,
-                 asset=0, dc_exp0_7=0, dc_exp8_16=0, oas_years_post = 0):
+                 inc_rrsp=0, selfemp_earn=0, con_rrsp=0, years_can=None, 
+                 disabled=False, cqppc = None, widow=False, ndays_chcare_k1=0,
+                 ndays_chcare_k2=0, asset=0, oas_years_post = 0):
         self.age = age
         self.male = male
         self.inc_earn = earn
@@ -66,9 +64,9 @@ class Person:
         self.disabled = disabled        
         self.cqppc = cqppc
         self.widow = widow
+        self.ndays_chcare_k1 = ndays_chcare_k1 # should be the kid with the most days, 
+        self.ndays_chcare_k2 = ndays_chcare_k2 # second kid with most days, in same order for both spouses
         self.asset = asset
-        self.dc_exp0_7 = dc_exp0_7
-        self.dc_exp8_16 = dc_exp8_16
         self.oas_years_post = oas_years_post
         self.inc_oas = 0.0
         self.inc_gis = 0.0
@@ -164,14 +162,16 @@ class Hhold:
     prov: str
         province (qc = quebec)
     """
-    def __init__(self, first, second=None, prov='qc'):
+    def __init__(self, first, second=None, child_care_exp=0, prov='qc'):
         self.sp = [first]
         self.couple = bool(second)
         if self.couple:
             self.sp.append(second)
+        self.child_care_exp = child_care_exp
         self.prov = prov
         self.dep = []
         self.count()
+
     def fam_inc_work(self):
         """
         Fonction qui calcule le revenu familial de travail.
@@ -182,6 +182,7 @@ class Hhold:
             Revenu familial de travail
         """
         return sum([p.inc_work() for p in self.sp])
+
     def fam_inc_non_work(self):
         """
         Fonction qui calcule le revenu familial autre que travail.

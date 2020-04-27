@@ -20,7 +20,7 @@ class template:
         """
         Fonction qui permet de calculer les impôts.
 
-        Cette fonction est celle qui éxécute le calcul des impôts. 
+        Cette fonction est celle qui éxécute le calcul des impôts.
 
         Parameters
         ----------
@@ -36,7 +36,7 @@ class template:
         for p in hh.sp:
             self.calc_tax(p)
             self.calc_non_refundable_tax_credits(p)
-            p.fed_return['net_tax_liability'] = max(0.0, p.fed_return['gross_tax_liability'] 
+            p.fed_return['net_tax_liability'] = max(0.0, p.fed_return['gross_tax_liability']
                 - p.fed_return['non_refund_credits'])
             self.calc_refundable_tax_credits(p,hh)
             p.fed_return['net_tax_liability'] -= p.fed_return['refund_credits']
@@ -44,20 +44,20 @@ class template:
         """
         Fonction qui calcule le revenu total (brutte).
 
-        Cette fonction correspond au revenu total d'une personne au fin de l'impôt. 
+        Cette fonction correspond au revenu total d'une personne au fin de l'impôt.
 
         Parameters
         ----------
         p: Person
             instance de la classe Person
         """
-        p.fed_return['gross_income'] = p.inc_earn + p.inc_self_earn + p.inc_oas + p.inc_gis + p.inc_cpp + p.inc_rpp + p.inc_othtax + p.inc_rrsp 
-        return        
+        p.fed_return['gross_income'] = p.inc_earn + p.inc_self_earn + p.inc_oas + p.inc_gis + p.inc_cpp + p.inc_rpp + p.inc_othtax + p.inc_rrsp
+        return
     def calc_net_income(self, p):
         """
         Fonction qui calcule le revenu net au sens de l'impôt.
 
-        Cette fonction correspond au revenu net d'une personne au fin de l'impôt. On y soustrait les déductions. 
+        Cette fonction correspond au revenu net d'une personne au fin de l'impôt. On y soustrait les déductions.
 
         Parameters
         ----------
@@ -70,7 +70,7 @@ class template:
         """
         Fonction qui calcule le revenu imposable au sens de l'impôt.
 
-        Cette fonction correspond au revenu imposable d'une personne au fin de l'impôt. On y soustrait une portion des gains en capitaux. 
+        Cette fonction correspond au revenu imposable d'une personne au fin de l'impôt. On y soustrait une portion des gains en capitaux.
 
         Parameters
         ----------
@@ -83,8 +83,8 @@ class template:
         """
         Fonction qui calcule les déductions.
 
-        Cette fonction fait la somme des différentes déductions du contribuable. 
-        
+        Cette fonction fait la somme des différentes déductions du contribuable.
+
         Parameters
         ----------
         p: Person
@@ -97,8 +97,8 @@ class template:
         """
         Fonction qui calcule l'impôt à payer selon la table d'impôt.
 
-        Cette fonction utilise la table d'impôt de l'année cours. 
-        
+        Cette fonction utilise la table d'impôt de l'année cours.
+
         Parameters
         ----------
         p: Person
@@ -107,27 +107,27 @@ class template:
         ind = np.searchsorted(self.l_brackets, p.fed_return['taxable_income'], 'right') - 1
         p.fed_return['gross_tax_liability'] = self.l_constant[ind] + \
             self.l_rates[ind] * (p.fed_return['taxable_income'] - self.l_brackets[ind])
-    
+
     def calc_non_refundable_tax_credits(self, p):
         """
         Fonction qui calcule les crédits d'impôt non-remboursable.
 
-        Cette fonction fait la somme de tous les crédits d'impôt modélisés. 
-        
+        Cette fonction fait la somme de tous les crédits d'impôt modélisés.
+
         Parameters
         ----------
         p: Person
             instance de la classe Person
         """
-        p.fed_return['non_refund_credits'] = self.rate_non_ref_tax_cred * (self.basic_amount 
+        p.fed_return['non_refund_credits'] = self.rate_non_ref_tax_cred * (self.basic_amount
             + self.get_age_cred(p) + self.get_pension_cred(p) + self.get_disabled_cred(p))
 
     def get_age_cred(self, p):
         """
         Crédit d'impôt selon l'âge.
 
-        Ce crédit est non-remboursable. 
-        
+        Ce crédit est non-remboursable.
+
         Parameters
         ----------
         p: Person
@@ -141,8 +141,8 @@ class template:
         """
         Crédit d'impôt pour revenu de retraite.
 
-        Ce crédit est non-remboursable. 
-        
+        Ce crédit est non-remboursable.
+
         Parameters
         ----------
         p: Person
@@ -154,8 +154,8 @@ class template:
         """
         Crédit d'impôt pour invalidité.
 
-        Ce crédit est non-remboursable. 
-        
+        Ce crédit est non-remboursable.
+
         Parameters
         ----------
         p: Person
@@ -168,7 +168,7 @@ class template:
     def calc_refundable_tax_credits(self, p, hh):
         """
         Fonction qui fait la somme des crédits remboursables.
-       
+
         Parameters
         ----------
         p: Person
@@ -181,7 +181,7 @@ class template:
     def abatment(self, p, hh):
         """
         Abatement du Québec à l'impôt fédéral.
-       
+
         Parameters
         ----------
         p: Person
@@ -201,7 +201,7 @@ class template:
     def ccb(self,p,hh,iclaw=True):
         """
         Allocation canadienne pour enfants (CCB).
-        
+
         Parameters
         ----------
         p: Person
@@ -214,8 +214,8 @@ class template:
             Montant de la ACE (CCB)
         """
         num_ch_0_5 = sum([1 for d in hh.dep if d.age <= self.ccb_young_max_age])
-        num_ch_6_17 = sum([1 for d in hh.dep 
-                        if self.ccb_young_max_age < d.age <= self.ccb_old_max_age])        
+        num_ch_6_17 = sum([1 for d in hh.dep
+                        if self.ccb_young_max_age < d.age <= self.ccb_old_max_age])
         if num_ch_0_5 + num_ch_6_17 == 0:
             return 0
         if hh.couple and p.male and hh.sp[0].male != hh.sp[1].male:
@@ -223,8 +223,8 @@ class template:
         else:
             amount = num_ch_0_5 * self.ccb_young + num_ch_6_17 * self.ccb_old
             claw_num_ch = min(num_ch_0_5 + num_ch_6_17, self.ccb_max_num_ch)
-            adj_fam_net_inc = sum([p.fed_return['net_income'] for p in hh.sp]) 
-            
+            adj_fam_net_inc = sum([p.fed_return['net_income'] for p in hh.sp])
+
             l_rates_1 = [self.ccb_rate_1_1ch, self.ccb_rate_1_2ch,
                         self.ccb_rate_1_3ch, self.ccb_rate_1_4ch]
             d_rates_1 = {k+1: v for k, v in enumerate(l_rates_1)}
@@ -245,14 +245,14 @@ class template:
                 return max(0, amount - clawback) / 2 # same sex couples get 1/2 each
             else:
                 return max(0, amount - clawback)
-            
+
 
     def witb(self,p,hh):
         """
         Prestation fiscale pour le revenu de travail (WITB).
-       
-        Ce crédit n'est pas encore implémenté. 
-        
+
+        Ce crédit n'est pas encore implémenté.
+
         Parameters
         ----------
         p: Person
@@ -264,13 +264,37 @@ class template:
         float
             Montant de la PFRT (WITB)
         """
-        return 0.0
+        fam_work_inc = sum([p.inc_earn + p.inc_self_earn for p in hh.sp])
+        fam_net_inc = sum([p.prov_return['net_income'] for p in hh.sp])
+        dep = (len([d for d in hh.dep if d.age <= self.max_age_dep]) > 0)
+
+        if not hh.couple:
+            base = self.witb_base_single_qc
+            rate = self.witb_rate_single_dep_qc if dep else self.witb_rate_single_qc
+            witb_max = self.witb_max_single_dep_qc if dep else self.witb_max_single_qc
+            exemption = self.witb_exemption_single_dep_qc if dep else self.witb_exemption_single_qc
+        else:
+            base = self.witb_base_couple_qc
+            rate = self.witb_rate_couple_dep_qc if dep else self.witb_rate_couple_qc
+            witb_max = self.witb_max_couple_dep_qc if dep else self.witb_max_couple_qc
+            exemption = self.witb_exemption_couple_dep_qc if dep else self.witb_exemption_couple_qc
+
+        amount = rate * max(0, fam_work_inc - base)
+        adj_amount = min(witb_max, amount)
+        clawback = self.wit_claw_rate * max(0, fam_net_inc - exemption)
+        net_amount = max(0, adj_amount - clawback)
+        if not hh.couple:
+            return net_amount
+        else:
+            return (p.inc_earn + p.inc_self_earn) / fam_work_inc * net_amount
+
+
     def witbds(self,p,hh):
         """
         Supplément pour invalidité à Prestation fiscale pour le revenu de travail (WITBDS).
-       
-        Ce crédit n'est pas encore implémenté. 
-        
+
+        Ce crédit n'est pas encore implémenté.
+
         Parameters
         ----------
         p: Person
@@ -282,6 +306,32 @@ class template:
         float
             Montant de la SIPFRT (WITBDS)
         """
-        return 0.0
- 
-     
+        if not p.disabled:
+            return 0
+
+        fam_work_inc = sum([p.inc_earn + p.inc_self_earn for p in hh.sp])
+        fam_net_inc = sum([p.prov_return['net_income'] for p in hh.sp])
+        dep = len([d for d in hh.dep if d.age <= self.max_age_dep]) > 0
+        couple_dis = sum([p.disabled for p in hh.sp]) == 2
+
+        base = self.witb_dis_base_qc
+        witb_max = self.witb_dis_max_qc
+        claw_rate = self.witb_dis_claw_rate_qc
+        if not hh.couple:
+            rate = self.witb_dis_rate_single_qc
+            exemption = self.witb_dis_exemption_single_dep_qc if dep else self.witb_dis_exemption_single_qc
+        else:
+            rate = self.witb_dis_rate_couple_qc
+            exemption = self.witb_dis_exemption_couple_dep_qc if dep else self.witb_dis_exemption_couple_qc
+            if couple_dis:
+                claw_rate = self.witb_dis_claw_rate_both_dis_qc
+                exemption = self.witb_dis_exemption_both_dis_dep_qc if dep else self.witb_dis_exemption_both_dis_qc
+
+        amount = rate * max(0, fam_work_inc - base)
+        adj_amount = min(witb_max, amount)
+        clawback = claw_rate * max(0, fam_net_inc - exemption)
+        net_amount = max(0, adj_amount - clawback)
+        if not hh.couple:
+            return net_amount
+        else:
+            return (p.inc_earn + p.inc_self_earn) / fam_work_inc * net_amount
