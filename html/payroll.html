@@ -1,0 +1,260 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="fr" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="fr" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Cotisations sociales &mdash; Documentation Simulateur de revenu disponible </title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="Programme d’assurance emploi" href="ei.html" />
+    <link rel="prev" title="Pension de la sécurité de la vieillesse" href="oas.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Simulateur de revenu disponible
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Menu:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Premier pas avec le SRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="actors.html">Les acteurs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="federal.html">Impôt Fédéral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quebec.html">Impôt du Québec</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oas.html">Pension de la sécurité de la vieillesse</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Cotisations sociales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ei.html">Programme d’assurance emploi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qpip.html">Régime québécois d’assurance parentale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="assistance.html">Aide sociale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calculators.html">Calculateur de revenu disponible</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TutorialFed.html">Exemple de calcul de l’impôt fédéral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TutorialCalculator.html">Exemple de calcul du revenu disponible</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Simulateur de revenu disponible</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Cotisations sociales</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/payroll.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="cotisations-sociales">
+<h1>Cotisations sociales<a class="headerlink" href="#cotisations-sociales" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Les cotisations sociales sont prises en charge par la classe payroll. Cette classe prend en charge les cotisations provenant du RQAP (Québec), l’assurance emploi ainsi que du RRQ et RPC. Pour ces dernières, le module cpp de la chaire est utilisé et une fonction de la classe payroll (get_cpp_contrib) ira chercher les contributions à l’intérieur de ce module.</p>
+<p>La classe payroll attachera à chaque membre d’un couple un rapport de cotisations qui contiendra toutes ces contributions. Pour le RRQ et RPC, les cotisations à la prestations de base du régime ainsi que les suppléments provenant de l’expansion du programme en 2016 sont séparées puisque leur traitement fiscal est différent.</p>
+<dl class="class">
+<dt id="srd.payroll">
+<em class="property">class </em><code class="sig-prename descclassname">srd.</code><code class="sig-name descname">payroll</code><span class="sig-paren">(</span><em class="sig-param">year</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.payroll" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Calcul des cotisations sociales.</p>
+<p>Calcul des cotisations sociales provenant de l’assurance emploi, le RQAP (Québec) et le RRQ (RPC).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>year</strong> (<em>int</em>) – année pour le calcul</p>
+</dd>
+</dl>
+<dl class="method">
+<dt id="srd.payroll.compute">
+<code class="sig-name descname">compute</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.payroll.compute" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui fait le calcul et crée le rapport de cotisations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.payroll.get_cpp_contrib">
+<code class="sig-name descname">get_cpp_contrib</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.payroll.get_cpp_contrib" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction pour le calcul des cotisations RPC et RRQ.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>les montants des prestations de base et le supplément RRQ/RRQ</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>list de float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ei.html" class="btn btn-neutral float-right" title="Programme d’assurance emploi" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="oas.html" class="btn btn-neutral float-left" title="Pension de la sécurité de la vieillesse" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Équipe CREEi
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
