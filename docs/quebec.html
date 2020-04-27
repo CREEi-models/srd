@@ -277,7 +277,8 @@
 <dt id="srd.quebec.template.calc_taxable_income">
 <code class="sig-name descname">calc_taxable_income</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.calc_taxable_income" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le revenu imposable au sens de l’impôt.</p>
-<p>Cette fonction correspond au revenu imposable d’une personne au fin de l’impôt. On y soustrait une portion des gains en capitaux.</p>
+<p>Cette fonction correspond au revenu imposable d’une personne au fin de l’impôt.
+On y soustrait une portion des gains en capitaux.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
@@ -301,27 +302,6 @@
 <p>Cette fonction calcule le montant reçu en fonction du nombre d’enfants,
 de la situation familiale (couple/monoparental) et du revenu.</p>
 </p>
-</dd>
-<dt class="field-odd">Type renvoyé</dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="srd.quebec.template.cchcare">
-<code class="sig-name descname">cchcare</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.cchcare" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Crédit pour frais de garde.</p>
-<p>Ce crédit remboursable n’est pas encore implémenté.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
-<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
-</ul>
-</dd>
-<dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>Montant du crédit pour frais de garde</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
 <dd class="field-odd"><p>float</p>
@@ -396,7 +376,11 @@ de la situation familiale (couple/monoparental) et du revenu.</p>
 <dt id="srd.quebec.template.witb">
 <code class="sig-name descname">witb</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.witb" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Prime au travail.</p>
-<p>Ce crédit n’est pas encore implémenté.</p>
+<p>Cette fonction calcule la prime au travail en tenant compte du revenu
+du travail, du revenu pour le ménage et de la présence d’un enfant à charge.
+Pour les couples, la prime est partagée au pro-rata des revenus du travail.
+Le supplément à la prime au travail et la prime au travail adaptée
+ne sont pas calculées.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">
@@ -405,7 +389,7 @@ de la situation familiale (couple/monoparental) et du revenu.</p>
 </ul>
 </dd>
 <dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>Montant de la Prime au travail</p>
+<dd class="field-even"><p>Montant de la Prime au travail par individu</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
 <dd class="field-odd"><p>float</p>
