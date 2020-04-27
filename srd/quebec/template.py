@@ -346,6 +346,9 @@ class template:
         """
         Allocation familiale.
 
+        Cette fonction calcule le montant reçu en fonction du nombre d'enfants,
+        de la situation familiale (couple/monoparental) et du revenu.
+
         Parameters
         ----------
         p: Person
@@ -356,9 +359,6 @@ class template:
         -------
         float
             Montant de l'allocation familiale
-
-            Cette fonction calcule le montant reçu en fonction du nombre d'enfants,
-            de la situation familiale (couple/monoparental) et du revenu.
         """
         if hh.couple and p.male and hh.sp[0].male != hh.sp[1].male:
             return 0 # heterosexual couple: mother receives benefit
