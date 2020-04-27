@@ -2,28 +2,28 @@
 Impôt du Québec
 ---------------
 
-Survol 
+Survol
 ^^^^^^
 
-L'impôt du Québec est pris en charge par le module quebec. Ce module contient un gabarit qui nous documentons ici-bas ainsi que des classes spécifiques à chaque année.   
+L'impôt du Québec est pris en charge par le module quebec. Ce module contient un gabarit qui nous documentons ici-bas ainsi que des classes spécifiques à chaque année.
 
 .. currentmodule:: srd.quebec
 
-La fonction form permet de choisir l'année du rapport d'impôt et ira tirer une instance du rapport pour cette année. L'instance est retournée par la fonction.  
+La fonction form permet de choisir l'année du rapport d'impôt et ira tirer une instance du rapport pour cette année. L'instance est retournée par la fonction.
 
 .. autofunction:: form
 
 Gabarit du rapport
 ^^^^^^^^^^^^^^^^^^^^
 
-Nous utilisons un gabarit afin de créer les rapports à chaque année. Quand le programme change seulement dans ces paramètres, le rapport ira seulement chercher les nouveaux paramètres. Quand des fonctions changent, l'utilisateur n'a qu'à modifier les fonctions touchées (ou en rajouter). 
+Nous utilisons un gabarit afin de créer les rapports à chaque année. Quand le programme change seulement dans ces paramètres, le rapport ira seulement chercher les nouveaux paramètres. Quand des fonctions changent, l'utilisateur n'a qu'à modifier les fonctions touchées (ou en rajouter).
 
-Nous reproduisons içi la spécification du gabarit. Il est calcqué sur le rapport de 2016.  
+Nous reproduisons içi la spécification du gabarit. Il est calqué sur le rapport de 2016.
 
 .. autoclass:: template
-    :members: file, calc_gross_income, calc_net_income, calc_taxable_income, calc_deductions, calc_tax, calc_non_refundable_tax_credits, get_ntcred_clawback, get_age_cred, get_single_cred, get_pension_cred, get_disabled_cred, calc_refundable_tax_credits, witb, ccap, cchcare
+    :members: file, calc_gross_income, calc_net_income, calc_taxable_income, calc_deductions, work_deduc, calc_tax, calc_non_refundable_tax_credits, get_nrtcred_clawback, get_age_cred, get_single_cred, get_pension_cred, get_exp_worker_cred, get_disabled_cred, calc_refundable_tax_credits, witb, chcare, calc_contributions, add_contrib_subsid_chcare, solidarity
 
-Le gabarit collecte les résultats sur un rapport d'impôt qui sera rattaché à la personne sous la forme d'une dictionnaire python. Ceci permet de différencier les attributs d'une personne qui font parti de son profil et les variables générées par l'impôt. C'est la fonction create_return() qui fait ce travail. 
+Le gabarit collecte les résultats sur un rapport d'impôt qui sera rattaché à la personne sous la forme d'une dictionnaire python. Ceci permet de différencier les attributs d'une personne qui font parti de son profil et les variables générées par l'impôt. C'est la fonction create_return() qui fait ce travail.
 
 .. autofunction:: create_return
 
@@ -31,11 +31,14 @@ Fonctions spécifiques ou modifiées par année
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. autoclass:: srd.quebec.form_2016
+    :members: calc_contributions, health_contrib
 
 .. autoclass:: srd.quebec.form_2017
 
 .. autoclass:: srd.quebec.form_2018
 
 .. autoclass:: srd.quebec.form_2019
+    :members: add_contrib_subsid_chcare
 
 .. autoclass:: srd.quebec.form_2020
+    :members: add_contrib_subsid_chcare

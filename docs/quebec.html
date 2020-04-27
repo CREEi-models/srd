@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
-        <script src="_static/translations.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -191,11 +191,43 @@
 <div class="section" id="gabarit-du-rapport">
 <h2>Gabarit du rapport<a class="headerlink" href="#gabarit-du-rapport" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Nous utilisons un gabarit afin de créer les rapports à chaque année. Quand le programme change seulement dans ces paramètres, le rapport ira seulement chercher les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou en rajouter).</p>
-<p>Nous reproduisons içi la spécification du gabarit. Il est calcqué sur le rapport de 2016.</p>
+<p>Nous reproduisons içi la spécification du gabarit. Il est calqué sur le rapport de 2016.</p>
 <dl class="class">
 <dt id="srd.quebec.template">
 <em class="property">class </em><code class="sig-prename descclassname">srd.quebec.</code><code class="sig-name descname">template</code><a class="headerlink" href="#srd.quebec.template" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Gabarit pour impôt provincial Québec.</p>
+<dl class="method">
+<dt id="srd.quebec.template.add_contrib_subsid_chcare">
+<code class="sig-name descname">add_contrib_subsid_chcare</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.add_contrib_subsid_chcare" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Contribution additionnelle pour service de garde éducatifs
+à l’enfance subventionnés.</p>
+<p>Cette fonction calcule le montant dû en fonction
+du nombre de jours de garde et du revenu familial.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.quebec.template.calc_contributions">
+<code class="sig-name descname">calc_contributions</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.calc_contributions" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule l’impôt à payer selon la table d’impôt.</p>
+<p>Cette fonction utilise la table d’impôt de l’année cours.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="method">
 <dt id="srd.quebec.template.calc_deductions">
 <code class="sig-name descname">calc_deductions</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.calc_deductions" title="Lien permanent vers cette définition">¶</a></dt>
@@ -287,9 +319,9 @@ On y soustrait une portion des gains en capitaux.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="srd.quebec.template.ccap">
-<code class="sig-name descname">ccap</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.ccap" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Allocation familiale.</p>
+<dt id="srd.quebec.template.chcare">
+<code class="sig-name descname">chcare</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.chcare" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Crédit pour frais de garde.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">
@@ -298,7 +330,7 @@ On y soustrait une portion des gains en capitaux.</p>
 </ul>
 </dd>
 <dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p><p>Montant de l’allocation familiale</p>
+<dd class="field-even"><p><p>Montant du crédit pour frais de garde</p>
 <p>Cette fonction calcule le montant reçu en fonction du nombre d’enfants,
 de la situation familiale (couple/monoparental) et du revenu.</p>
 </p>
@@ -346,6 +378,36 @@ de la situation familiale (couple/monoparental) et du revenu.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="srd.quebec.template.get_exp_worker_cred">
+<code class="sig-name descname">get_exp_worker_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.get_exp_worker_cred" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Crédit d’impôt pour travailleur d’expérience / pour la prolongation de carrière</p>
+<p>Ce crédit est non-remboursable. Nous avons fait l’hypothèse que les travailleurs
+de 65 ans sont nés le 1er janvier (dans l’année en cours, les revenus avant
+et après le 65ème anniversaire sont soumis à des traitments différents,
+ce qui complique beaucoup le modèle mais change peu les résultats.)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.quebec.template.get_nrtcred_clawback">
+<code class="sig-name descname">get_nrtcred_clawback</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.get_nrtcred_clawback" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule la récupération des montants en raison d’âge, vivant seule et revenu de retraite.</p>
+<p>Cette fonction utilise le revenu net du ménage.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
 <dt id="srd.quebec.template.get_pension_cred">
 <code class="sig-name descname">get_pension_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.get_pension_cred" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Crédit d’impôt pour revenu de retraite.</p>
@@ -362,6 +424,22 @@ de la situation familiale (couple/monoparental) et du revenu.</p>
 <code class="sig-name descname">get_single_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.get_single_cred" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Crédit pour personne seule</p>
 <p>Ce crédit est non-remboursable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.quebec.template.solidarity">
+<code class="sig-name descname">solidarity</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.solidarity" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule le crédit d’impôt pour solidarité.</p>
+<p>Cette fonction calcule le montant reçu par chacun des conjoints en fonction
+du revenu familial de l’année fiscale courante (cela devrait être l’année précédente).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">
@@ -397,6 +475,17 @@ ne sont pas calculées.</p>
 </dl>
 </dd></dl>
 
+<dl class="method">
+<dt id="srd.quebec.template.work_deduc">
+<code class="sig-name descname">work_deduc</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.work_deduc" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule la déduction pour travailleur.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <p>Le gabarit collecte les résultats sur un rapport d’impôt qui sera rattaché à la personne sous la forme d’une dictionnaire python. Ceci permet de différencier les attributs d’une personne qui font parti de son profil et les variables générées par l’impôt. C’est la fonction create_return() qui fait ce travail.</p>
@@ -412,6 +501,37 @@ ne sont pas calculées.</p>
 <dt id="srd.quebec.form_2016">
 <em class="property">class </em><code class="sig-prename descclassname">srd.quebec.</code><code class="sig-name descname">form_2016</code><a class="headerlink" href="#srd.quebec.form_2016" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Rapport d’impôt de 2016.</p>
+<dl class="method">
+<dt id="srd.quebec.form_2016.calc_contributions">
+<code class="sig-name descname">calc_contributions</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2016.calc_contributions" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule l’impôt à payer selon la table d’impôt.</p>
+<p>Cette fonction utilise la table d’impôt de l’année cours.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.quebec.form_2016.health_contrib">
+<code class="sig-name descname">health_contrib</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2016.health_contrib" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Contribution  santé.</p>
+<p>Cette fonction calcule le montant dû en fonction du revenu net.
+Abolie en 2017.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -430,12 +550,44 @@ ne sont pas calculées.</p>
 <dt id="srd.quebec.form_2019">
 <em class="property">class </em><code class="sig-prename descclassname">srd.quebec.</code><code class="sig-name descname">form_2019</code><a class="headerlink" href="#srd.quebec.form_2019" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Rapport d’impôt de 2019.</p>
+<dl class="method">
+<dt id="srd.quebec.form_2019.add_contrib_subsid_chcare">
+<code class="sig-name descname">add_contrib_subsid_chcare</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2019.add_contrib_subsid_chcare" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule la contribution additionnelle
+pour service de garde éducatifs à l’enfance subventionnés.</p>
+<p>Supprimé en 2019</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
 <dt id="srd.quebec.form_2020">
 <em class="property">class </em><code class="sig-prename descclassname">srd.quebec.</code><code class="sig-name descname">form_2020</code><a class="headerlink" href="#srd.quebec.form_2020" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Rapport d’impôt de 2020.</p>
+<dl class="method">
+<dt id="srd.quebec.form_2020.add_contrib_subsid_chcare">
+<code class="sig-name descname">add_contrib_subsid_chcare</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2020.add_contrib_subsid_chcare" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule la contribution additionnelle
+pour service de garde éducatifs à l’enfance subventionnés.</p>
+<p>Supprimé en 2019</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </div>
