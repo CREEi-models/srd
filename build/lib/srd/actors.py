@@ -7,13 +7,13 @@ class Person:
     """
     Classe pour définir une personne.
 
-    Ceci définit une personne et son profil en terme de revenus et actifs. 
-    
+    Ceci définit une personne et son profil en terme de revenus et actifs.
+
     Parameters
     ----------
     age: int
         age de l'individu
-    male: int 
+    male: int
         1 si individu est un homme
     earn: float
         revenu de travail
@@ -24,11 +24,11 @@ class Person:
     othtax: float
         autre revenu imposable
     othntax: float
-        autre revenu non-imposable 
+        autre revenu non-imposable
     inc_rrsp: float
         revenu de REER (sortie)
     selfemp_earn: float
-        revenu de travailleur autonome 
+        revenu de travailleur autonome
     con_rrsp: float
         contribution REER
     years_can: int
@@ -39,7 +39,7 @@ class Person:
         contribution au RRQ
     widow: boolean
         statut de veuf/veuve
-    asset: float 
+    asset: float
         valeur marchande des actifs
     dc_exp0_7: int
         nombre de dépendants âges 0 à 7 ans
@@ -48,7 +48,7 @@ class Person:
     oas_years_post: int
         n/d
     """
-    def __init__(self, age=50, male=True, earn=0, rpp=0, cpp=0, othtax=0, othntax=0, 
+    def __init__(self, age=50, male=True, earn=0, rpp=0, cpp=0, othtax=0, othntax=0,
                  inc_rrsp=0, selfemp_earn=0, con_rrsp=0, years_can=None,
                  disabled=False, cqppc = None, widow=False,
                  asset=0, dc_exp0_7=0, dc_exp8_16=0, oas_years_post = 0):
@@ -63,7 +63,7 @@ class Person:
         self.con_rrsp = con_rrsp
         self.years_can = years_can # number of years in Canada (max = 40)
         self.inc_self_earn = selfemp_earn
-        self.disabled = disabled        
+        self.disabled = disabled
         self.cqppc = cqppc
         self.widow = widow
         self.asset = asset
@@ -75,12 +75,12 @@ class Person:
         self.inc_social_ass = 0.0
         self.allow_couple = 0
         self.allow_surv = 0
-        self.fed_return = None 
+        self.fed_return = None
         self.pro_return = None
-        self.payroll = None 
+        self.payroll = None
         self.net_inc = self.inc_tot()
         self.disp_inc = self.inc_tot() - self.con_rrsp
-        return 
+
     def inc_work(self):
         """
         Fonction qui retourne le revenu de travail.
@@ -94,10 +94,12 @@ class Person:
             revenu de travail.
         """
         return self.inc_earn + self.inc_self_earn
+
+    @property
     def inc_non_work(self):
         """
         Fonction qui retourne le revenu autre que travail
-        
+
         Returns
         -------
 
@@ -105,6 +107,7 @@ class Person:
             revenu autre que travail.
         """
         return self.inc_rpp + self.inc_cpp + self.inc_othtax + self.inc_othntax + self.inc_rrsp + self.inc_oas + self.inc_gis
+
     def inc_tot(self):
         """
         Fonction qui retourne le revenu total.
@@ -121,8 +124,8 @@ class Dependent:
     """
     Classe pour définir un dépendant.
 
-    Ceci définit un dépendant et son profil. 
-    
+    Ceci définit un dépendant et son profil.
+
     Parameters
     ----------
     age: int
@@ -138,7 +141,7 @@ class Dependent:
     health_care: float
         montant de dépenses en santé admissibles
     """
-    
+
     def __init__(self, age, disa=None, child_care=None, school=None,
                 home_care=None, health_care=None):
         self.age = age
@@ -153,8 +156,8 @@ class Hhold:
     """
     Classe pour définir un ménage.
 
-    Ceci définit un ménage et son profil. 
-    
+    Ceci définit un ménage et son profil.
+
     Parameters
     ----------
     first: Person
@@ -175,7 +178,7 @@ class Hhold:
     def fam_inc_work(self):
         """
         Fonction qui calcule le revenu familial de travail.
-        
+
         Returns
         -------
         float
@@ -185,7 +188,7 @@ class Hhold:
     def fam_inc_non_work(self):
         """
         Fonction qui calcule le revenu familial autre que travail.
-        
+
         Returns
         -------
         float
@@ -195,7 +198,7 @@ class Hhold:
     def fam_tot_inc(self):
         """
         Fonction qui calcule le revenu familial total.
-        
+
         Returns
         -------
         float
@@ -205,7 +208,7 @@ class Hhold:
     def fam_net_inc(self):
         """
         Fonction qui calcule le revenu familial après impôt.
-        
+
         Returns
         -------
         float
@@ -217,7 +220,7 @@ class Hhold:
         Fonction qui calcule le revenu familial disponible.
 
         Il s'agit du revenu après impôt, cotisations sociales et REER.
-        
+
         Returns
         -------
         float
@@ -235,7 +238,7 @@ class Hhold:
             instance de la classe Dependent
         """
         for d in dependents:
-            self.dep.append(d)     
+            self.dep.append(d)
 
     def count(self): # do we need this?
         """

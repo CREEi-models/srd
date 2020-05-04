@@ -1,26 +1,26 @@
-variable,value,type,definition,source ,comments
-basic_amount_poor,13229,float,,,
-basic_amount_rich,12298,float,,,
-age_cred_amount,7637,float,,,
-min_age_cred,65,int,,,
-age_cred_exemption,38508,float,,,
-age_cred_claw_rate,0.15,float,,,
-pension_cred_amount,2000,float,,,could not find it but hasn't changed since 2016
-disability_cred_amount,8576,float,,,
-rate_non_ref_tax_cred,0.15,float,,,
-rate_abatment_qc,0.165,float,,,
-ccb_young_max_age,5,int,,https://www.canada.ca/en/revenue-agency/services/tax/individuals/frequently-asked-questions-individuals/adjustment-personal-income-tax-benefit-amounts.html,
-ccb_old_max_age,17,int,,,
-ccb_young,6765,float,,,
-ccb_old,5708,float,,,
-ccb_max_num_ch,4,int,,,
-ccb_cutoff_1,31711,float,,,
-ccb_cutoff_2,68708,float,,,
-ccb_rate_1_1ch,0.07,float,,,I assumed all the rates stay constant
-ccb_rate_1_2ch,0.135,float,,,
-ccb_rate_1_3ch,0.19,float,,,
-ccb_rate_1_4ch,0.23,float,,,
-ccb_rate_2_1ch,0.032,float,,,
-ccb_rate_2_2ch,0.057,float,,,
-ccb_rate_2_3ch,0.08,float,,,
-ccb_rate_2_4ch,0.095,float,,,
+variable;value;type;definition;source ;comments
+basic_amount_poor;13229;float;;;
+basic_amount_rich;12298;float;;;
+age_cred_amount;7637;float;;;
+min_age_cred;65;int;;;
+age_cred_exemption;38508;float;;;
+age_cred_claw_rate;0.15;float;;;
+pension_cred_amount;2000;float;;;could not find it but hasn't changed since 2016
+disability_cred_amount;8576;float;;;
+rate_non_ref_tax_cred;0.15;float;;;
+rate_abatment_qc;0.165;float;;;
+ccb_young_max_age;5;int;;https://www.canada.ca/en/revenue-agency/services/tax/individuals/frequently-asked-questions-individuals/adjustment-personal-income-tax-benefit-amounts.html;
+ccb_old_max_age;17;int;;;
+ccb_young;6765;float;;;
+ccb_old;5708;float;;;
+ccb_max_num_ch;4;int;;;
+ccb_cutoff_1;31711;float;;;
+ccb_cutoff_2;68708;float;;;
+ccb_rate_1_1ch;0.07;float;;;I assumed all the rates stay constant
+ccb_rate_1_2ch;0.135;float;;;
+ccb_rate_1_3ch;0.19;float;;;
+ccb_rate_1_4ch;0.23;float;;;
+ccb_rate_2_1ch;0.032;float;;;
+ccb_rate_2_2ch;0.057;float;;;
+ccb_rate_2_3ch;0.08;float;;;
+ccb_rate_2_4ch;0.095;float;;;

@@ -1,0 +1,26 @@
+variable;value;type;definition;source;comments
+witb_max_age_dep;18;int;;;
+witb_base_single_qc;2400;int;;form 5005-S6;
+witb_base_couple_qc;3600;int;;;
+witb_rate_single_dep_qc;0.15;float;;;
+witb_rate_qc;0.274;float;;;
+witb_rate_couple_dep_qc;0.14;float;;;
+witb_max_single_qc;2279.68;float;;;
+witb_max_single_dep_qc;1248.00;float;;;
+witb_max_couple_qc;3557.62;float;;;
+witb_max_couple_dep_qc;1817.76;float;;;
+witb_exemption_single_qc;12060.00;float;;;
+witb_exemption_single_dep_qc;12065.00;float;;;
+witb_exemption_couple_qc;18520.00;float;;;
+witb_exemption_couple_dep_qc;18540.00;float;;;
+witb_claw_rate_qc;0.2;float;;;
+witb_dis_base_qc;1200;int;;;
+witb_dis_max_qc;700.00;float;;;
+witb_dis_rate_single_qc;0.4;float;;;
+witb_dis_rate_couple_qc;0.2;float;;;
+witb_dis_exemption_single_qc;23458.40;float;;;
+witb_dis_exemption_single_dep_qc;18305.00;float;;;
+witb_dis_exemption_couple_qc;36308.10;float;;;
+witb_dis_exemption_couple_dep_qc;27628.80;float;;;
+witb_dis_claw_rate_qc;0.2;float;;;
+witb_dis_couple_claw_rate_qc;0.1;float;;;both spouses disabled

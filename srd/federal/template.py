@@ -12,10 +12,7 @@ class template:
     """
     Gabarit pour impôt fédéral.
     """
-    def __init__(self):
-        add_params_as_attr(self, module_dir + '/federal/params/federal_2016.csv',delimiter=';')
-        add_schedule_as_attr(self, module_dir + '/federal/params/schedule_2016.csv')
-        return
+
     def file(self, hh):
         """
         Fonction qui permet de calculer les impôts.
@@ -30,7 +27,7 @@ class template:
         for p in hh.sp:
             p.fed_return = create_return()
             self.calc_gross_income(p)
-            self.calc_deductions(p)
+            self.calc_deductions(p, hh)
             self.calc_net_income(p)
             self.calc_taxable_income(p)
         for p in hh.sp:
@@ -40,6 +37,7 @@ class template:
                 - p.fed_return['non_refund_credits'])
             self.calc_refundable_tax_credits(p,hh)
             p.fed_return['net_tax_liability'] -= p.fed_return['refund_credits']
+
     def calc_gross_income(self,p):
         """
         Fonction qui calcule le revenu total (brutte).
@@ -79,7 +77,7 @@ class template:
         """
         p.fed_return['taxable_income'] = p.fed_return['net_income']
         return
-    def calc_deductions(self,p):
+    def calc_deductions(self, p, hh):
         """
         Fonction qui calcule les déductions.
 
@@ -90,8 +88,40 @@ class template:
         p: Person
             instance de la classe Person
         """
-        p.fed_return['deductions'] = p.con_rrsp
-        p.fed_return['deductions'] += p.inc_gis
+        p.fed_return['deductions'] = p.con_rrsp + p.inc_gis + self.chcare(p, hh)
+
+    def chcare(self, p, hh):
+        """
+        Déduction pour frais de garde.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+        Returns
+        -------
+        float
+            Montant de la déduction pour frais de garde
+
+            Cette fonction calcule le montant reçu en fonction des frais de garde,
+            de l'âge des enfants et du revenu le moins élevé du couple. Le montant
+            est reçu par le conjoint qui a le revenu le moins élevé.
+        """
+
+        p_low_inc = min(hh.sp, key = lambda p: p.inc_earn + p.inc_self_earn)
+
+        if p != p_low_inc or hh.child_care_exp == 0:
+            return 0
+
+        nkids_0_6 = len([d for d in hh.dep if d.age <= self.chcare_max_age_young])
+        nkids_7_16 = len([d for d in hh.dep
+                          if self.chcare_max_age_young < d.age <= self.chcare_max_age_old])
+        max_chcare = nkids_0_6 * self.chcare_young + nkids_7_16 * self.chcare_old
+
+        return min(max_chcare, hh.child_care_exp,
+                   self.chcare_rate_inc * (p.inc_earn + p.inc_self_earn))
 
     def calc_tax(self, p):
         """
@@ -176,11 +206,13 @@ class template:
         hh: Hhold
             instance de la classe Hhold
         """
-        p.fed_return['refund_credits'] = self.abatment(p,hh) + self.ccb(p,hh)
+        p.fed_return['refund_credits'] = self.abatment(p,hh) + self.ccb(p,hh) \
+                                         + self.witb(p, hh) + self.witbds(p, hh) \
+                                         + self.gst_hst_credit(p, hh)
 
     def abatment(self, p, hh):
         """
-        Abatement du Québec à l'impôt fédéral.
+        Abattement du Québec à l'impôt fédéral.
 
         Parameters
         ----------
@@ -249,9 +281,10 @@ class template:
 
     def witb(self,p,hh):
         """
-        Prestation fiscale pour le revenu de travail (WITB).
+        Prestation fiscale pour le revenu de travail (WITB). A partir de 2019,
+        cela devient l'Allocation canadienne pour les travailleurs (CWB).
 
-        Ce crédit n'est pas encore implémenté.
+        Dans le cas d'un couple, la prestation est répartie au pro-rata des revenus du travail.
 
         Parameters
         ----------
@@ -264,36 +297,34 @@ class template:
         float
             Montant de la PFRT (WITB)
         """
+        dep = (len([d for d in hh.dep if d.age <= self.witb_max_age_dep]) > 0)
         fam_work_inc = sum([p.inc_earn + p.inc_self_earn for p in hh.sp])
-        fam_net_inc = sum([p.prov_return['net_income'] for p in hh.sp])
-        dep = (len([d for d in hh.dep if d.age <= self.max_age_dep]) > 0)
 
         if not hh.couple:
             base = self.witb_base_single_qc
-            rate = self.witb_rate_single_dep_qc if dep else self.witb_rate_single_qc
+            rate = self.witb_rate_single_dep_qc if dep else self.witb_rate_qc
             witb_max = self.witb_max_single_dep_qc if dep else self.witb_max_single_qc
             exemption = self.witb_exemption_single_dep_qc if dep else self.witb_exemption_single_qc
+            factor = 1
         else:
             base = self.witb_base_couple_qc
-            rate = self.witb_rate_couple_dep_qc if dep else self.witb_rate_couple_qc
+            rate = self.witb_rate_couple_dep_qc if dep else self.witb_rate_qc
             witb_max = self.witb_max_couple_dep_qc if dep else self.witb_max_couple_qc
             exemption = self.witb_exemption_couple_dep_qc if dep else self.witb_exemption_couple_qc
-
-        amount = rate * max(0, fam_work_inc - base)
-        adj_amount = min(witb_max, amount)
-        clawback = self.wit_claw_rate * max(0, fam_net_inc - exemption)
-        net_amount = max(0, adj_amount - clawback)
-        if not hh.couple:
-            return net_amount
-        else:
-            return (p.inc_earn + p.inc_self_earn) / fam_work_inc * net_amount
+            if fam_work_inc > 0:
+                factor = (p.inc_earn + p.inc_self_earn) / fam_work_inc
+            else:
+                factor = 1/2
 
 
-    def witbds(self,p,hh):
+        return factor * self.compute_witb_witbds(p, hh, rate, base, witb_max,
+                                                 self.witb_claw_rate_qc, exemption)
+
+    def witbds(self, p, hh):
         """
         Supplément pour invalidité à Prestation fiscale pour le revenu de travail (WITBDS).
+        A partir de 2019, cela devient le supplément pour invalidité à l'Allocation canadienne pour les travailleurs.
 
-        Ce crédit n'est pas encore implémenté.
 
         Parameters
         ----------
@@ -309,13 +340,9 @@ class template:
         if not p.disabled:
             return 0
 
-        fam_work_inc = sum([p.inc_earn + p.inc_self_earn for p in hh.sp])
-        fam_net_inc = sum([p.prov_return['net_income'] for p in hh.sp])
-        dep = len([d for d in hh.dep if d.age <= self.max_age_dep]) > 0
+        dep = len([d for d in hh.dep if d.age <= self.witb_max_age_dep]) > 0
         couple_dis = sum([p.disabled for p in hh.sp]) == 2
 
-        base = self.witb_dis_base_qc
-        witb_max = self.witb_dis_max_qc
         claw_rate = self.witb_dis_claw_rate_qc
         if not hh.couple:
             rate = self.witb_dis_rate_single_qc
@@ -324,14 +351,69 @@ class template:
             rate = self.witb_dis_rate_couple_qc
             exemption = self.witb_dis_exemption_couple_dep_qc if dep else self.witb_dis_exemption_couple_qc
             if couple_dis:
-                claw_rate = self.witb_dis_claw_rate_both_dis_qc
-                exemption = self.witb_dis_exemption_both_dis_dep_qc if dep else self.witb_dis_exemption_both_dis_qc
+                claw_rate = self.witb_dis_couple_claw_rate_qc
+                exemption = self.witb_dis_exemption_couple_dep_qc if dep else self.witb_dis_exemption_couple_qc
 
+        return self.compute_witb_witbds(p, hh, rate, self.witb_dis_base_qc,
+                                         self.witb_dis_max_qc, claw_rate, exemption)
+
+    def compute_witb_witbds(self, p, hh, rate, base, witb_max, claw_rate, exemption):
+        """
+        Calcule de la prestation fiscale pour le revenu de travail.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+        rate: float
+            Taux appliqué au revenu du travail
+        base: float
+            Montant de base
+        witb_max: float
+            Montant maximal
+        claw_rate:
+            Taux de réduction
+        exemption: float
+            Exemption
+
+        Returns
+        -------
+        float
+            Montant de la PFRT (WITB) / SIPFRT (WITBDS)
+        """
+        fam_net_inc = sum([p.fed_return['net_income'] for p in hh.sp])
+        fam_work_inc = sum([p.inc_earn + p.inc_self_earn for p in hh.sp])
         amount = rate * max(0, fam_work_inc - base)
         adj_amount = min(witb_max, amount)
         clawback = claw_rate * max(0, fam_net_inc - exemption)
-        net_amount = max(0, adj_amount - clawback)
-        if not hh.couple:
-            return net_amount
+        return max(0, adj_amount - clawback)
+
+    def gst_hst_credit(self, p, hh):
+        """
+        Crédit pour la taxe sur les produits et services/taxe de vente harmonisée (TPS/TVH)
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+        Returns
+        -------
+        float
+            Montant du crédit
+        """
+        fam_net_inc = sum([p.fed_return['net_income'] for p in hh.sp])
+        nkids = len([d for d in hh.dep if d.age < self.gst_cred_kids_max_age])
+
+        clawback = self.gst_cred_claw_rate * max(0, fam_net_inc - self.gst_cred_claw_cutoff)
+        amount = self.gst_cred_base
+
+        if hh.couple or nkids >= 1:
+            amount += amount + nkids * self.gst_cred_other # single with kids works same as couple
         else:
-            return (p.inc_earn + p.inc_self_earn) / fam_work_inc * net_amount
+            amount += min(self.gst_cred_other,
+                          self.gst_cred_rate * max(0, fam_net_inc - self.gst_cred_base_amount))
+        return amount / ( 1 + hh.couple)

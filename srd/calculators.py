@@ -1,14 +1,14 @@
-import numpy as np 
+import numpy as np
 from srd import federal, oas, quebec, payroll, assistance
 
 class tax:
     """
-    Classe général pour le calcul des impôts, contributions et prestations. 
+    Classe général pour le calcul des impôts, contributions et prestations.
 
     Parameters
     ----------
-    year: int 
-        année pour le calcul 
+    year: int
+        année pour le calcul
     prov: str
         province (pour le moment seulement Québec, par défaut)
     ifed: boolean
@@ -58,7 +58,7 @@ class tax:
             self.compute_prov(hh)
         if self.iass:
             self.compute_ass(hh)
-        return 
+
     def compute_oas(self,hh):
         """
         Calcul des prestations de PSV et SRG.
@@ -69,6 +69,7 @@ class tax:
             instance de la classe Hhold
         """
         self.oas.file(hh)
+
     def compute_federal(self,hh):
         """
         Calcul de l'impôt fédéral.
@@ -112,12 +113,8 @@ class tax:
             instance de la classe Hhold
         """
         ass = self.ass.apply(hh)
-        if hh.couple: 
-            for p in hh.sp:
-                p.inc_social_ass = ass/2.0
-        else :
-            hh.sp.inc_social_ass = ass
-        return
+        for p in hh.sp:
+            p.inc_social_ass = ass / (1 + hh.couple)
 
     def netinc(self,hh):
         """
@@ -127,12 +124,12 @@ class tax:
 
         """
         for p in hh.sp:
-            ninc = p.inc_tot() 
+            ninc = p.inc_tot()
             if self.ifed:
-                ninc -= p.fed_return['net_tax_liability']  
+                ninc -= p.fed_return['net_tax_liability']
             if self.iprov:
                 ninc -= p.prov_return['net_tax_liability']
-            p.net_inc = ninc 
+            p.net_inc = ninc
         return
     def dispinc(self,hh):
         """
@@ -145,9 +142,9 @@ class tax:
         for p in hh.sp:
             ninc = p.net_inc
             if self.ipayroll:
-                ninc -= sum(list(p.payroll.values()))   
+                ninc -= sum(list(p.payroll.values()))
             if self.iass:
                 ninc += p.inc_social_ass
             ninc -= p.con_rrsp
-            p.disp_inc = ninc       
+            p.disp_inc = ninc
         return

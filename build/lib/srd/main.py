@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/Users/11259018/Dropbox (CEDIA)/srd/Model')
+sys.path.append('/Users/pyann/Dropbox (CEDIA)/srd/Model')
 
 import srd
 from srd import federal, quebec

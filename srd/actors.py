@@ -7,13 +7,13 @@ class Person:
     """
     Classe pour définir une personne.
 
-    Ceci définit une personne et son profil en terme de revenus et actifs. 
-    
+    Ceci définit une personne et son profil en terme de revenus et actifs.
+
     Parameters
     ----------
     age: int
         age de l'individu
-    male: int 
+    male: int
         1 si individu est un homme
     earn: float
         revenu de travail
@@ -24,30 +24,28 @@ class Person:
     othtax: float
         autre revenu imposable
     othntax: float
-        autre revenu non-imposable 
+        autre revenu non-imposable
     inc_rrsp: float
         revenu de REER (sortie)
     selfemp_earn: float
-        revenu de travailleur autonome 
+        revenu de travailleur autonome
     con_rrsp: float
         contribution REER
     years_can: int
-        nombre d'année au Canada
+        nombre d'années au Canada lorsque oas est demandé
     disabled: boolean
         statut d'invalidité
     cqppc: float
         contribution au RRQ
     widow: boolean
         statut de veuf/veuve
-    asset: float 
+    asset: float
         valeur marchande des actifs
-    child_care_exp: float
-        dépense en frais de garde sur enfants de moins de 17 ans
     oas_years_post: int
         nombre d'années de report pour la pension OAS (après 65 ans)
     """
-    def __init__(self, age=50, male=True, earn=0, rpp=0, cpp=0, othtax=0, othntax=0, 
-                 inc_rrsp=0, selfemp_earn=0, con_rrsp=0, years_can=None, 
+    def __init__(self, age=50, male=True, earn=0, rpp=0, cpp=0, othtax=0, othntax=0,
+                 inc_rrsp=0, selfemp_earn=0, con_rrsp=0, years_can=None,
                  disabled=False, cqppc = None, widow=False, ndays_chcare_k1=0,
                  ndays_chcare_k2=0, asset=0, oas_years_post = 0):
         self.age = age
@@ -59,26 +57,27 @@ class Person:
         self.inc_othntax = othntax
         self.inc_rrsp = inc_rrsp
         self.con_rrsp = con_rrsp
-        self.years_can = years_can # number of years in Canada (max = 40)
+        self.years_can = age if years_can is None else years_can # number of years in Canada (max = 40)
         self.inc_self_earn = selfemp_earn
-        self.disabled = disabled        
+        self.disabled = disabled
         self.cqppc = cqppc
         self.widow = widow
-        self.ndays_chcare_k1 = ndays_chcare_k1 # should be the kid with the most days, 
+        self.ndays_chcare_k1 = ndays_chcare_k1 # should be the kid with the most days,
         self.ndays_chcare_k2 = ndays_chcare_k2 # second kid with most days, in same order for both spouses
         self.asset = asset
         self.oas_years_post = oas_years_post
-        self.inc_oas = 0.0
-        self.inc_gis = 0.0
-        self.inc_social_ass = 0.0
+        self.inc_oas = 0
+        self.inc_gis = 0
+        self.inc_social_ass = 0
         self.allow_couple = 0
         self.allow_surv = 0
-        self.fed_return = None 
+        self.fed_return = None
         self.pro_return = None
-        self.payroll = None 
+        self.payroll = None
         self.net_inc = self.inc_tot()
         self.disp_inc = self.inc_tot() - self.con_rrsp
-        return 
+
+    @property
     def inc_work(self):
         """
         Fonction qui retourne le revenu de travail.
@@ -92,10 +91,12 @@ class Person:
             revenu de travail.
         """
         return self.inc_earn + self.inc_self_earn
+
+    @property
     def inc_non_work(self):
         """
         Fonction qui retourne le revenu autre que travail
-        
+
         Returns
         -------
 
@@ -103,6 +104,7 @@ class Person:
             revenu autre que travail.
         """
         return self.inc_rpp + self.inc_cpp + self.inc_othtax + self.inc_othntax + self.inc_rrsp + self.inc_oas + self.inc_gis
+
     def inc_tot(self):
         """
         Fonction qui retourne le revenu total.
@@ -113,14 +115,14 @@ class Person:
         float
             revenu total.
         """
-        return self.inc_work() + self.inc_non_work()
+        return self.inc_work + self.inc_non_work
 
 class Dependent:
     """
     Classe pour définir un dépendant.
 
-    Ceci définit un dépendant et son profil. 
-    
+    Ceci définit un dépendant et son profil.
+
     Parameters
     ----------
     age: int
@@ -136,7 +138,7 @@ class Dependent:
     health_care: float
         montant de dépenses en santé admissibles
     """
-    
+
     def __init__(self, age, disa=None, child_care=None, school=None,
                 home_care=None, health_care=None):
         self.age = age
@@ -151,14 +153,16 @@ class Hhold:
     """
     Classe pour définir un ménage.
 
-    Ceci définit un ménage et son profil. 
-    
+    Ceci définit un ménage et son profil.
+
     Parameters
     ----------
     first: Person
         instance Person du premier membre du couple
     second: Person
         instance Person du 2e membre (si 2e membre)
+    child_care_exp: float
+        montant total des frais de garde (pour tous les enfants)
     prov: str
         province (qc = quebec)
     """
@@ -175,7 +179,7 @@ class Hhold:
     def fam_inc_work(self):
         """
         Fonction qui calcule le revenu familial de travail.
-        
+
         Returns
         -------
         float
@@ -186,7 +190,7 @@ class Hhold:
     def fam_inc_non_work(self):
         """
         Fonction qui calcule le revenu familial autre que travail.
-        
+
         Returns
         -------
         float
@@ -196,7 +200,7 @@ class Hhold:
     def fam_tot_inc(self):
         """
         Fonction qui calcule le revenu familial total.
-        
+
         Returns
         -------
         float
@@ -206,7 +210,7 @@ class Hhold:
     def fam_net_inc(self):
         """
         Fonction qui calcule le revenu familial après impôt.
-        
+
         Returns
         -------
         float
@@ -218,7 +222,7 @@ class Hhold:
         Fonction qui calcule le revenu familial disponible.
 
         Il s'agit du revenu après impôt, cotisations sociales et REER.
-        
+
         Returns
         -------
         float
@@ -236,7 +240,7 @@ class Hhold:
             instance de la classe Dependent
         """
         for d in dependents:
-            self.dep.append(d)     
+            self.dep.append(d)
 
     def count(self): # do we need this?
         """

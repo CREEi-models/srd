@@ -1,0 +1,26 @@
+variable;value;type;definition;source;comments
+witb_max_age_dep;18;int;;;
+witb_base_single_qc;2400;int;;form 5005-S6;
+witb_base_couple_qc;3600;int;;;
+witb_rate_single_dep_qc;0.15;float;;;
+witb_rate_qc;0.274;float;;;
+witb_rate_couple_dep_qc;0.14;float;;;
+witb_max_single_qc;2318.89;float;;https://www.taxtips.ca/filing/canada-workers-benefit/cwb-2020-quebec.htm;
+witb_max_single_dep_qc;1269.47;float;;;
+witb_max_couple_qc;3618.81;float;;;
+witb_max_couple_dep_qc;1849.03;float;;;
+witb_exemption_single_qc;12267.43;float;;;
+witb_exemption_single_dep_qc;12272.52;float;;;
+witb_exemption_couple_qc;18838.54;float;;;
+witb_exemption_couple_dep_qc;18858.89;float;;;
+witb_claw_rate_qc;0.2;float;;;
+witb_dis_base_qc;1200;int;;;
+witb_dis_max_qc;712.04;float;;;
+witb_dis_rate_single_qc;0.4;float;;;
+witb_dis_rate_couple_qc;0.2;float;;;
+witb_dis_exemption_single_qc;23861.88;float;;;
+witb_dis_exemption_single_dep_qc;18619.87;float;;;
+witb_dis_exemption_couple_qc;36932.59;float;;;
+witb_dis_exemption_couple_dep_qc;28104.04;float;;;
+witb_dis_claw_rate_qc;0.2;float;;;
+witb_dis_couple_claw_rate_qc;0.1;float;;;both spouses disabled

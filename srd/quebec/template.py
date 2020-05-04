@@ -70,7 +70,7 @@ class template:
             instance de la classe Person
         """
         p.prov_return['net_income'] =  p.prov_return['gross_income'] - p.prov_return['deductions']
-        return
+
     def calc_taxable_income(self, p):
         """
         Fonction qui calcule le revenu imposable au sens de l'impôt.
@@ -96,9 +96,7 @@ class template:
         p: Person
             instance de la classe Person
         """
-        p.prov_return['deductions'] = p.con_rrsp
-        p.prov_return['deductions'] += p.inc_gis
-        p.prov_return['deductions'] += self.work_deduc(p)
+        p.prov_return['deductions'] = p.con_rrsp + p.inc_gis + self.work_deduc(p)
 
     def work_deduc(self, p):
         """
@@ -455,9 +453,12 @@ class template:
 
     def calc_contributions(self, p, hh):
         """
-        Fonction qui calcule l'impôt à payer selon la table d'impôt.
+        Fonction qui calcule les contributions.
 
-        Cette fonction utilise la table d'impôt de l'année cours.
+        Cette fonction fait la somme des contributions du contribuable.
+        La contribution santé est abolie en 2017.
+        La contribution additionnelle pour service de garde éducatifs à l'enfance subventionnés
+        abolie en 2019.
 
         Parameters
         ----------
@@ -466,7 +467,55 @@ class template:
         hh: Hhold
             instance de la classe Hhold
         """
-        p.prov_return['contributions'] += self.add_contrib_subsid_chcare(p, hh)
+        p.prov_return['contributions'] = self.add_contrib_subsid_chcare(p, hh) \
+                                         + self.health_contrib(p, hh)
+
+    def health_contrib(self, p, hh):
+        """
+        Contribution santé.
+
+        Cette fonction calcule le montant dû en fonction du revenu net.
+        Abolie en 2017.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+        """
+        fam_net_inc = sum([p.prov_return['net_income'] for p in hh.sp])
+        if hh.couple:
+            age_spouse = hh.sp[1-hh.sp.index(p)].age
+        nkids = len([d for d in hh.dep if d.age < self.health_max_age_kid])
+
+        if p.prov_return['net_income'] <= self.health_cutoff_10:
+            return 0
+        if not hh.couple:
+            cond12 = nkids == 1 and fam_net_inc <= self.health_cutoff_12
+            cond14 = nkids == 2 and fam_net_inc <= self.health_cutoff_14
+            if cond12 or cond14:
+                return 0
+        if hh.couple:
+            cond16 = fam_net_inc <= self.health_cutoff_16
+            cond18 = nkids == 1 and fam_net_inc <= self.health_cutoff_18
+            cond20 = nkids == 2 and fam_net_inc <= self.health_cutoff_20
+            if cond16 or cond18 or cond20:
+                return 0
+
+        if not hh.couple and p.age >= self.health_age_high and p.inc_gis > self.health_cutoff_27:
+            return 0
+        if hh.couple and p.age >= self.health_age_high:
+            cond28 = age_spouse >= self.health_age_high and p.inc_gis > self.health_cutoff_28
+            cond29 = self.health_age_low <= age_spouse < self.health_age_high and p.inc_gis > self.health_cutoff_29
+            cond31 = age_spouse < self.health_age_low and p.inc_gis > self.health_cutoff_31
+            if cond28 or cond29 or cond31:
+                return 0
+        # not sure about conditions 33 and 35
+
+        ind = np.searchsorted(self.l_health_brackets, p.prov_return['net_income'], 'right') - 1
+        return min(self.l_health_max[ind], self.l_health_constant[ind] + \
+            self.l_health_rates[ind] * (p.prov_return['net_income'] - self.l_health_brackets[ind]))
 
     def add_contrib_subsid_chcare(self, p, hh):
         """
@@ -475,6 +524,7 @@ class template:
 
         Cette fonction calcule le montant dû en fonction
         du nombre de jours de garde et du revenu familial.
+        Abolie en 2019.
 
         Parameters
         ----------
