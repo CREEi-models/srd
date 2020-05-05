@@ -12,7 +12,7 @@ Intialisation d’un ménage
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 On doit d’abord initialiser un ménage. Ici nous supposerons un couple
-avec deux membres ayant l’âge de 45 ans et des revenus de travail de
+avec deux membres ayant tous les deux 45 ans et des revenus de travail de
 50,000$ et 25,000$ respectivement.
 
 .. code:: ipython3
@@ -27,7 +27,7 @@ On les insère dans un ménage vivant au Québec
     hh = srd.Hhold(jean,pauline,prov='qc')
 
 On peut voir le profil de chacun des membres du ménage en utilisant
-vars():
+*vars()*:
 
 .. code:: ipython3
 
@@ -76,7 +76,7 @@ On doit d’abord créer un rapport d’impôt pour une année en particulier.
     fed_form = federal.form(2020)
 
 On peut voir les différents paramètres du système fiscal en utilisant
-encore vars()
+encore *vars()*
 
 .. code:: ipython3
 
@@ -148,7 +148,7 @@ encore vars()
 
 
 
-On remplit le rapport d’impôt à l’aide de la fonction file().
+On remplit le rapport d’impôt à l’aide de la fonction *file()*.
 
 .. code:: ipython3
 
@@ -200,8 +200,8 @@ personne
 Expérience
 ^^^^^^^^^^
 
-On peut faire des expériences assez complexe. La première serait de
-regader l’impôt fédéral payé si on incrémente les revenus de travail
+On peut faire des expériences assez complexes. La première serait de
+regarder l’impôt fédéral payé si on incrémente les revenus de travail.
 
 .. code:: ipython3
 

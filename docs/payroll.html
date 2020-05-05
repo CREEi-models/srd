@@ -161,13 +161,13 @@
             
   <div class="section" id="cotisations-sociales">
 <h1>Cotisations sociales<a class="headerlink" href="#cotisations-sociales" title="Lien permanent vers ce titre">¶</a></h1>
-<p>Les cotisations sociales sont prises en charge par la classe payroll. Cette classe prend en charge les cotisations provenant du RQAP (Québec), l’assurance emploi ainsi que du RRQ et RPC. Pour ces dernières, le module cpp de la chaire est utilisé et une fonction de la classe payroll (get_cpp_contrib) ira chercher les contributions à l’intérieur de ce module.</p>
-<p>La classe payroll attachera à chaque membre d’un couple un rapport de cotisations qui contiendra toutes ces contributions. Pour le RRQ et RPC, les cotisations à la prestations de base du régime ainsi que les suppléments provenant de l’expansion du programme en 2016 sont séparées puisque leur traitement fiscal est différent.</p>
+<p>Les cotisations sociales sont prises en charge par la classe <em>payroll</em>. Cette classe prend en charge les cotisations provenant du régime québécois d’assurance parentale (RQAP) (Québec), l’assurance emploi ainsi que du régime des rentes du Québec (RRQ) et du régime de pensions du Canada (RPC). Pour ces dernières, le module <em>cpp</em> de la chaire est utilisé et une fonction de la classe <em>payroll</em> (<em>get_cpp_contrib</em>) ira chercher les contributions à l’intérieur de ce module.</p>
+<p>La classe <em>payroll</em> attachera à chaque membre d’un couple un rapport de cotisations qui contiendra toutes ces contributions. Pour le RRQ et RPC, les cotisations aux prestations de base du régime ainsi que les suppléments provenant de l’expansion du programme en 2016 sont séparées puisque leur traitement fiscal est différent.</p>
 <dl class="class">
 <dt id="srd.payroll">
 <em class="property">class </em><code class="sig-prename descclassname">srd.</code><code class="sig-name descname">payroll</code><span class="sig-paren">(</span><em class="sig-param">year</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.payroll" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Calcul des cotisations sociales.</p>
-<p>Calcul des cotisations sociales provenant de l’assurance emploi, le RQAP (Québec) et le RRQ (RPC).</p>
+<p>Calcul des cotisations sociales provenant de l’assurance emploi, le RQAP (Québec), le RRQ (Québec) ainsi que le RPC.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>year</strong> (<em>int</em>) – année pour le calcul</p>
@@ -196,7 +196,7 @@
 </ul>
 </dd>
 <dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>les montants des prestations de base et le supplément RRQ/RRQ</p>
+<dd class="field-even"><p>Les montants des prestations de base et le supplément RRQ/RRQ</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
 <dd class="field-odd"><p>list de float</p>

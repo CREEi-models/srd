@@ -21,7 +21,7 @@ class template:
         """
         Fonction qui permet de calculer les impôts.
 
-        Cette fonction est celle qui éxécute le calcul des impôts. 
+        Cette fonction est celle qui éxécute le calcul des impôts.
 
         Parameters
         ----------
@@ -37,7 +37,7 @@ class template:
         for p in hh.sp:
             self.calc_tax(p)
             self.calc_non_refundable_tax_credits(p,hh)
-            p.prov_return['net_tax_liability'] = max(0.0, p.prov_return['gross_tax_liability'] 
+            p.prov_return['net_tax_liability'] = max(0.0, p.prov_return['gross_tax_liability']
                 - p.prov_return['non_refund_credits'])
             self.calc_refundable_tax_credits(p,hh)
             p.prov_return['net_tax_liability'] -= p.prov_return['refund_credits']
@@ -46,20 +46,20 @@ class template:
         """
         Fonction qui calcule le revenu total (brut).
 
-        Cette fonction correspond au revenu total d'une personne au fin de l'impôt. 
+        Cette fonction correspond au revenu total d'une personne au fin de l'impôt.
 
         Parameters
         ----------
         p: Person
             instance de la classe Person
         """
-        p.prov_return['gross_income'] = p.inc_earn + p.inc_self_earn + p.inc_oas + p.inc_gis + p.inc_cpp + p.inc_rpp + p.inc_othtax + p.inc_rrsp 
-        return        
+        p.prov_return['gross_income'] = p.inc_earn + p.inc_self_earn + p.inc_oas + p.inc_gis + p.inc_cpp + p.inc_rpp + p.inc_othtax + p.inc_rrsp
+        return
     def calc_net_income(self, p):
         """
         Fonction qui calcule le revenu net au sens de l'impôt.
 
-        Cette fonction correspond au revenu net d'une personne au fin de l'impôt. On y soustrait les déductions. 
+        Cette fonction correspond au revenu net d'une personne au fin de l'impôt. On y soustrait les déductions.
 
         Parameters
         ----------
@@ -72,7 +72,7 @@ class template:
         """
         Fonction qui calcule le revenu imposable au sens de l'impôt.
 
-        Cette fonction correspond au revenu imposable d'une personne au fin de l'impôt. On y soustrait une portion des gains en capitaux. 
+        Cette fonction correspond au revenu imposable d'une personne au fin de l'impôt. On y soustrait une portion des gains en capitaux.
 
         Parameters
         ----------
@@ -85,8 +85,8 @@ class template:
         """
         Fonction qui calcule les déductions.
 
-        Cette fonction fait la somme des différentes déductions du contribuable. 
-        
+        Cette fonction fait la somme des différentes déductions du contribuable.
+
         Parameters
         ----------
         p: Person
@@ -103,11 +103,11 @@ class template:
         Parameters
         ----------
         p: Person
-            instance de la classe Person 
+            instance de la classe Person
         """
         work_earn = p.inc_earn + p.inc_self_earn
         if work_earn>0.0:
-            deduc = min(work_earn*self.work_deduc_rate,self.work_deduc_max) 
+            deduc = min(work_earn*self.work_deduc_rate,self.work_deduc_max)
         else :
             deduc = 0.0
         return deduc
@@ -116,8 +116,8 @@ class template:
         """
         Fonction qui calcule l'impôt à payer selon la table d'impôt.
 
-        Cette fonction utilise la table d'impôt de l'année cours. 
-        
+        Cette fonction utilise la table d'impôt de l'année cours.
+
         Parameters
         ----------
         p: Person
@@ -131,8 +131,8 @@ class template:
         """
         Fonction qui calcule les crédits d'impôt non-remboursable.
 
-        Cette fonction fait la somme de tous les crédits d'impôt modélisés. 
-        
+        Cette fonction fait la somme de tous les crédits d'impôt modélisés.
+
         Parameters
         ----------
         p: Person
@@ -142,29 +142,29 @@ class template:
         """
         cred_amount = self.get_age_cred(p) + self.get_single_cred(p,hh) + self.get_pension_cred(p)
         cred_amount = max(0, cred_amount - self.get_nrtcred_clawback(p,hh))
-        p.prov_return['non_refund_credits'] = self.nrtc_rate * (self.nrtc_base 
+        p.prov_return['non_refund_credits'] = self.nrtc_rate * (self.nrtc_base
                             + cred_amount + self.get_disabled_cred(p))
     def get_nrtcred_clawback(self,p,hh):
         """
-        Fonction qui calcule la récupération des montants en raison d'âge, vivant seule et revenu de retraite.
+        Fonction qui calcule la récupération des montants des crédits en raison de l'âge, vivant seule et revenu de retraite.
 
-        Cette fonction utilise le revenu net du ménage. 
-        
+        Cette fonction utilise le revenu net du ménage.
+
         Parameters
         ----------
         p: Person
             instance de la classe Person
         hh: Hhold
             instance de la classe Hhold
-        """        
+        """
         fam_netinc = sum([s.prov_return['net_income'] for s in hh.sp])
         return max(self.nrtc_claw_rate*(fam_netinc - self.nrtc_claw_cutoff),0.0)
     def get_age_cred(self, p):
         """
         Crédit d'impôt selon l'âge.
 
-        Ce crédit est non-remboursable. 
-        
+        Ce crédit est non-remboursable.
+
         Parameters
         ----------
         p: Person
@@ -177,7 +177,7 @@ class template:
         Crédit pour personne seule
 
         Ce crédit est non-remboursable.
-        
+
         Parameters
         ----------
         p: Person
@@ -193,8 +193,8 @@ class template:
         """
         Crédit d'impôt pour revenu de retraite.
 
-        Ce crédit est non-remboursable. 
-        
+        Ce crédit est non-remboursable.
+
         Parameters
         ----------
         p: Person
@@ -206,8 +206,8 @@ class template:
         """
         Crédit d'impôt pour invalidité.
 
-        Ce crédit est non-remboursable. 
-        
+        Ce crédit est non-remboursable.
+
         Parameters
         ----------
         p: Person
@@ -215,11 +215,11 @@ class template:
         """
         amount = self.nrtc_disabled if p.disabled else 0
         return amount
-        
+
     def calc_refundable_tax_credits(self, p, hh):
         """
         Fonction qui fait la somme des crédits remboursables.
-       
+
         Parameters
         ----------
         p: Person
@@ -228,13 +228,13 @@ class template:
             instance de la classe Hhold
         """
         p.prov_return['refund_credits'] = self.witb(p, hh) + self.ccap(p, hh)
-    
+
     def witb(self,p,hh):
         """
         Prime au travail.
-       
-        Ce crédit n'est pas encore implémenté. 
-        
+
+        Ce crédit n'est pas encore implémenté.
+
         Parameters
         ----------
         p: Person
@@ -250,7 +250,7 @@ class template:
     def ccap(self, p, hh):
         """
         Allocation familiale.
-        
+
         Parameters
         ----------
         p: Person
@@ -263,7 +263,7 @@ class template:
             Montant de l'allocation familiale
 
             Cette fonction calcule le montant reçu en fonction du nombre d'enfants,
-            de la situation familiale (couple/monoparental) et du revenu. 
+            de la situation familiale (couple/monoparental) et du revenu.
         """
         fam_netinc = sum([s.prov_return['net_income'] for s in hh.sp])
         nkids = len([d for d in hh.dep if d.age < self.ccap_max_age])
@@ -285,14 +285,14 @@ class template:
 
         if nkids == 1:
             amount = max(add_amount_min + self.ccap_kid1_min,
-                         add_amount_max + self.ccap_kid1_max - clawback)            
+                         add_amount_max + self.ccap_kid1_max - clawback)
         elif nkids < 4:
-            amount = max(add_amount_min + self.ccap_kid1_min + (nkids - 1) * self.ccap_kid23_min, 
-                         add_amount_max + self.ccap_kid1_max 
+            amount = max(add_amount_min + self.ccap_kid1_min + (nkids - 1) * self.ccap_kid23_min,
+                         add_amount_max + self.ccap_kid1_max
                          + (nkids - 1) * self.ccap_kid23_max - clawback)
         else:
-            amount = max(add_amount_min + self.ccap_kid1_min + 2 * self.ccap_kid23_min 
-                         + (nkids - 3) * self.ccap_kid4p_min, 
+            amount = max(add_amount_min + self.ccap_kid1_min + 2 * self.ccap_kid23_min
+                         + (nkids - 3) * self.ccap_kid4p_min,
                          add_amount_max + self.ccap_kid1_max + 2 * self.ccap_kid23_max
                          + (nkids - 3) * self.ccap_kid4p_max - clawback)
 
@@ -304,9 +304,9 @@ class template:
     def chcare(self,p,hh):
         """
         Crédit pour frais de garde.
-       
-        Ce crédit remboursable n'est pas encore implémenté. 
-        
+
+        Ce crédit remboursable n'est pas encore implémenté.
+
         Parameters
         ----------
         p: Person
@@ -317,7 +317,6 @@ class template:
         -------
         float
             Montant du crédit pour frais de garde
-        """        
+        """
         return 0.0
- 
-     
+

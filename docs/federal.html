@@ -168,7 +168,7 @@
 <h1>Impôt Fédéral<a class="headerlink" href="#impot-federal" title="Lien permanent vers ce titre">¶</a></h1>
 <div class="section" id="survol">
 <h2>Survol<a class="headerlink" href="#survol" title="Lien permanent vers ce titre">¶</a></h2>
-<p>L’impôt fédéral est pris en charge par le module federal. Ce module contient un gabarit qui nous documentons ici-bas ainsi que des classes spécifiques à chaque année.</p>
+<p>L’impôt fédéral est pris en charge par le module federal. Ce module contient un gabarit que nous documentons ici-bas ainsi que des classes spécifiques à chaque année.</p>
 <p>La fonction form permet de choisir l’année du rapport d’impôt et ira tirer une instance du rapport pour cette année. L’instance est retournée par la fonction.</p>
 <dl class="function">
 <dt id="srd.federal.form">
@@ -191,7 +191,7 @@
 <div class="section" id="gabarit-du-rapport">
 <h2>Gabarit du rapport<a class="headerlink" href="#gabarit-du-rapport" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Nous utilisons un gabarit afin de créer les rapports à chaque année. Quand le programme change seulement dans ces paramètres, le rapport ira seulement chercher les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou en rajouter).</p>
-<p>Nous reproduisons içi la spécification du gabarit. Il est calcqué sur le rapport de 2016.</p>
+<p>Nous reproduisons ici la spécification du gabarit. Il est calcqué sur le rapport de 2016.</p>
 <dl class="class">
 <dt id="srd.federal.template">
 <em class="property">class </em><code class="sig-prename descclassname">srd.federal.</code><code class="sig-name descname">template</code><a class="headerlink" href="#srd.federal.template" title="Lien permanent vers cette définition">¶</a></dt>
@@ -208,7 +208,7 @@
 </ul>
 </dd>
 <dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>Montant de l’abatement</p>
+<dd class="field-even"><p>Montant de l’abattement</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
 <dd class="field-odd"><p>float</p>
@@ -232,7 +232,7 @@
 <dt id="srd.federal.template.calc_gross_income">
 <code class="sig-name descname">calc_gross_income</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_gross_income" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le revenu total (brutte).</p>
-<p>Cette fonction correspond au revenu total d’une personne au fin de l’impôt.</p>
+<p>Cette fonction correspond au revenu total d’une personne aux fins de l’impôt.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
@@ -244,7 +244,7 @@
 <dt id="srd.federal.template.calc_net_income">
 <code class="sig-name descname">calc_net_income</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_net_income" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le revenu net au sens de l’impôt.</p>
-<p>Cette fonction correspond au revenu net d’une personne au fin de l’impôt. On y soustrait les déductions.</p>
+<p>Cette fonction correspond au revenu net d’une personne aux fins de l’impôt. On y soustrait les déductions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
@@ -255,7 +255,7 @@
 <dl class="method">
 <dt id="srd.federal.template.calc_non_refundable_tax_credits">
 <code class="sig-name descname">calc_non_refundable_tax_credits</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_non_refundable_tax_credits" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui calcule les crédits d’impôt non-remboursable.</p>
+<dd><p>Fonction qui calcule les crédits d’impôt non-remboursables.</p>
 <p>Cette fonction fait la somme de tous les crédits d’impôt modélisés.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -282,7 +282,7 @@
 <dt id="srd.federal.template.calc_tax">
 <code class="sig-name descname">calc_tax</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_tax" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule l’impôt à payer selon la table d’impôt.</p>
-<p>Cette fonction utilise la table d’impôt de l’année cours.</p>
+<p>Cette fonction utilise la table d’impôt de l’année en cours.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
@@ -294,7 +294,7 @@
 <dt id="srd.federal.template.calc_taxable_income">
 <code class="sig-name descname">calc_taxable_income</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_taxable_income" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le revenu imposable au sens de l’impôt.</p>
-<p>Cette fonction correspond au revenu imposable d’une personne au fin de l’impôt. On y soustrait une portion des gains en capitaux.</p>
+<p>Cette fonction correspond au revenu imposable d’une personne aux fins de l’impôt. On y soustrait une portion des gains en capitaux.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
@@ -305,7 +305,7 @@
 <dl class="method">
 <dt id="srd.federal.template.ccb">
 <code class="sig-name descname">ccb</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em>, <em class="sig-param">iclaw=True</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.ccb" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Allocation canadienne pour enfants (CCB).</p>
+<dd><p>Allocation canadienne pour enfants (ACE/CCB).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">
@@ -314,7 +314,7 @@
 </ul>
 </dd>
 <dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>Montant de la ACE (CCB)</p>
+<dd class="field-even"><p>Montant de l’ACE (CCB)</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
 <dd class="field-odd"><p>float</p>
@@ -326,7 +326,7 @@
 <dt id="srd.federal.template.file">
 <code class="sig-name descname">file</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.file" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui permet de calculer les impôts.</p>
-<p>Cette fonction est celle qui éxécute le calcul des impôts.</p>
+<p>Cette fonction est celle qui exécute le calcul des impôts.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
@@ -373,8 +373,8 @@
 <dl class="method">
 <dt id="srd.federal.template.witb">
 <code class="sig-name descname">witb</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.witb" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Prestation fiscale pour le revenu de travail (WITB). A partir de 2019,
-cela devient l’Allocation canadienne pour les travailleurs (CWB).</p>
+<dd><p>Prestation fiscale pour le revenu de travail (PFRT/WITB). A partir de 2019,
+cela devient l’Allocation canadienne pour les travailleurs (ACT/CWB).</p>
 <p>Dans le cas d’un couple, la prestation est répartie au pro-rata des revenus du travail.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -395,8 +395,9 @@ cela devient l’Allocation canadienne pour les travailleurs (CWB).</p>
 <dl class="method">
 <dt id="srd.federal.template.witbds">
 <code class="sig-name descname">witbds</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.witbds" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Supplément pour invalidité à Prestation fiscale pour le revenu de travail (WITBDS).
-A partir de 2019, cela devient le supplément pour invalidité à l’Allocation canadienne pour les travailleurs.</p>
+<dd><p>Supplément pour invalidité à la prestation fiscale pour le revenu de travail
+(SIPFRT/WITBDS).
+À partir de 2019, cela devient le supplément pour invalidité à l’Allocation canadienne pour les travailleurs (ACT).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">
@@ -415,7 +416,7 @@ A partir de 2019, cela devient le supplément pour invalidité à l’Allocation
 
 </dd></dl>
 
-<p>Le gabarit collecte les résultats sur un rapport d’impôt qui sera rattaché à la personne sous la forme d’une dictionnaire python. Ceci permet de différencier les attributs d’une personne qui font parti de son profil et les variables générées par l’impôt. C’est la fonction create_return() qui fait ce travail.</p>
+<p>Le gabarit collecte les résultats sur un rapport d’impôt qui sera rattaché à la personne sous la forme d’un dictionnaire python. Ceci permet de différencier les attributs d’une personne qui font partie de son profil et les variables générées par l’impôt. C’est la fonction create_return() qui fait ce travail.</p>
 <dl class="function">
 <dt id="srd.federal.create_return">
 <code class="sig-prename descclassname">srd.federal.</code><code class="sig-name descname">create_return</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.create_return" title="Lien permanent vers cette définition">¶</a></dt>

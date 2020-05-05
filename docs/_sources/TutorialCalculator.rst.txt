@@ -4,7 +4,7 @@ Exemple de calcul du revenu disponible
 Construction du ménage
 ~~~~~~~~~~~~~~~~~~~~~~
 
-On construit un ménage ou les deux conjoints ont 45 ans, les revenus de
+On construit un ménage où les deux conjoints ont 45 ans, les revenus de
 travail sont respectivement 50000$ et 25000$ et Jean contribue 5000$ à
 son REER.
 
@@ -19,7 +19,7 @@ son REER.
     hh = srd.Hhold(jean,pauline,prov='qc')
 
 Le revenu familial total et net (après impôt) est initialisé à la même
-valeur si aucun calcul des impôt est fait. Le revenu disponible retire
+valeur si aucun calcul des impôts n'est fait. Le revenu disponible retire
 la cotisation REER.
 
 .. code:: ipython3
@@ -47,7 +47,7 @@ l’impôt fédéral.
 
     tax = srd.tax(2016)
 
-La fonction compute() calcule tous les impôts et cotisations demandées
+La fonction *compute()* calcule tous les impôts et cotisations demandées
 
 .. code:: ipython3
 
@@ -57,9 +57,9 @@ Calcul des revenus net et disponible
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Après avoir fait les calculs, on peut calculer différents concepts de
-revenus après impôt à l’aide des fonctions netinc() et dispinc().
+revenus après impôt à l’aide des fonctions *netinc()* et *dispinc()*.
 Celles-ci viendront modifier les attributs des conjoints pour les
-variables net_inc et disp_inc.
+variables *net_inc* et *disp_inc*.
 
 .. code:: ipython3
 

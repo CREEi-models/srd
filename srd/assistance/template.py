@@ -15,17 +15,17 @@ class template:
         """
         Fonction pour appliquer au programme et recevoir une prestation.
 
-        Ceci calcule une prestation intégrée d'aide sociale. 
+        Ceci calcule une prestation intégrée d'aide sociale.
 
         Parameters
         ----------
         hh: Hhold
             instance de la classe acteur Hhold
-        
+
         Returns
         -------
-        float 
-            montant de l'aide sociale.
+        float
+            Montant de l'aide sociale.
         """
         hh.count()
         amount = 0.0
@@ -34,36 +34,36 @@ class template:
         return amount
     def shelter(self,hh):
         """
-        Composante logement. 
+        Composante logement.
 
-        N'est pas implémentée pour l'instant. 
-        
+        N'est pas implémentée pour l'instant.
+
         Parameters
         ----------
-        hh: Hhold 
+        hh: Hhold
             instance de la classe Hhold
-        
+
         Returns
         -------
         float
-            montant de la composante logement
+            Montant de la composante logement
         """
         return 0.0
     def basic(self, hh):
         """
-        Composante de base et supplément enfant (dénuement ACE). 
+        Composante de base et supplément enfant (dénuement ACE).
 
-        À noter que le test de ressources n'est pas appliqué. 
+        À noter que le test de ressources n'est pas appliqué.
 
         Parameters
         ----------
-        hh: Hhold 
+        hh: Hhold
             instance de la classe Hhold
-        
+
         Returns
         -------
-        float 
-            montant de la composante de base et supplément enfant.
+        float
+            Montant de la composante de base et supplément enfant.
         """
         # determine assets
         assets = sum([s.asset for s in hh.sp])
@@ -79,17 +79,17 @@ class template:
         ccb_real = sum([self.fed.ccb(s,hh,iclaw=True) for s in hh.sp])
         ccb_max = sum([self.fed.ccb(s,hh,iclaw=False) for s in hh.sp])
         top_off = max(ccb_max - ccb_real,0.0)
-        amount = top_off 
+        amount = top_off
         sabc = self.socass_base_couple
         sabs = self.socass_base_single
         sarr = self.socass_reductionrate
         saec = self.socass_exemption_couple
         saes = self.socass_exemption_single
         if hh.couple:
-            amount += sabc 
+            amount += sabc
             clawback = max(sarr * max(0.0,tot_inc - saec) - ei_contr - cpp_contr - rap_contr,0.0)
         else :
-            amount += sabs 
+            amount += sabs
             clawback = max(sarr * max(0.0,tot_inc - saes) - ei_contr - cpp_contr - rap_contr,0.0)
         amount = max(amount - clawback, 0.0)
-        return amount 
+        return amount

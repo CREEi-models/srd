@@ -10,7 +10,7 @@ def create_return():
 
 class template:
     """
-    Gabarit pour impôt provincial Québec.
+    Gabarit pour l'impôt provincial québecois.
     """
     def __init__(self):
         add_params_as_attr(self, module_dir + '/quebec/params/measures_2016.csv',delimiter=';')
@@ -22,7 +22,7 @@ class template:
         """
         Fonction qui permet de calculer les impôts.
 
-        Cette fonction est celle qui éxécute le calcul des impôts.
+        Cette fonction est celle qui exécute le calcul des impôts.
 
         Parameters
         ----------
@@ -48,21 +48,22 @@ class template:
         """
         Fonction qui calcule le revenu total (brut).
 
-        Cette fonction correspond au revenu total d'une personne au fin de l'impôt.
+        Cette fonction correspond au revenu total d'une personne aux fins de l'impôt.
 
         Parameters
         ----------
         p: Person
             instance de la classe Person
         """
-        p.prov_return['gross_income'] = p.inc_earn + p.inc_self_earn + p.inc_oas \
-                                        + p.inc_gis + p.inc_cpp + p.inc_rpp + p.inc_othtax + p.inc_rrsp
+        p.prov_return['gross_income'] = (p.inc_earn + p.inc_self_earn + p.inc_oas
+                                         + p.inc_gis + p.inc_cpp + p.inc_rpp + p.inc_othtax
+                                         + p.inc_rrsp)
 
     def calc_net_income(self, p):
         """
         Fonction qui calcule le revenu net au sens de l'impôt.
 
-        Cette fonction correspond au revenu net d'une personne au fin de l'impôt. On y soustrait les déductions.
+        Cette fonction correspond au revenu net d'une personne aux fins de l'impôt. On y soustrait les déductions.
 
         Parameters
         ----------
@@ -75,7 +76,7 @@ class template:
         """
         Fonction qui calcule le revenu imposable au sens de l'impôt.
 
-        Cette fonction correspond au revenu imposable d'une personne au fin de l'impôt.
+        Cette fonction correspond au revenu imposable d'une personne aux fins de l'impôt.
         On y soustrait une portion des gains en capitaux.
 
         Parameters
@@ -96,7 +97,8 @@ class template:
         p: Person
             instance de la classe Person
         """
-        p.prov_return['deductions'] = p.con_rrsp + p.inc_gis + self.work_deduc(p)
+        p.qc_work_deduc = self.work_deduc(p)
+        p.prov_return['deductions'] = p.con_rrsp + p.inc_gis + p.qc_work_deduc
 
     def work_deduc(self, p):
         """
@@ -108,10 +110,10 @@ class template:
             instance de la classe Person
         """
         work_earn = p.inc_earn + p.inc_self_earn
-        if work_earn>0.0:
+        if work_earn > 0:
             deduc = min(work_earn*self.work_deduc_rate,self.work_deduc_max)
         else :
-            deduc = 0.0
+            deduc = 0
         return deduc
 
     def calc_non_refundable_tax_credits(self, p, hh):
@@ -127,15 +129,21 @@ class template:
         hh: Hhold
             instance de la classe Hhold
         """
-        cred_amount = self.get_age_cred(p) + self.get_single_cred(p,hh) \
-                      + self.get_pension_cred(p) + self.get_exp_worker_cred(p)
+        p.qc_age_cred = self.get_age_cred(p)
+        p.qc_single_cred = self.get_single_cred(p,hh)
+        p.qc_pension_cred = self.get_pension_cred(p)
+        p.qc_exp_worker_cred = self.get_exp_worker_cred(p)
+        p.qc_disabled_cred = self.get_disabled_cred(p)
+
+        cred_amount = (p.qc_age_cred + p.qc_single_cred + p.qc_pension_cred
+                       + p.qc_exp_worker_cred)
         cred_amount = max(0, cred_amount - self.get_nrtcred_clawback(p,hh))
         p.prov_return['non_refund_credits'] = self.nrtc_rate * (self.nrtc_base
-                                              + cred_amount + self.get_disabled_cred(p))
+                                              + cred_amount + p.qc_disabled_cred)
 
     def get_nrtcred_clawback(self,p,hh):
         """
-        Fonction qui calcule la récupération des montants en raison d'âge, vivant seule et revenu de retraite.
+        Fonction qui calcule la récupération des montants en raison de l'âge, vivant seule et revenu de retraite.
 
         Cette fonction utilise le revenu net du ménage.
 
@@ -196,12 +204,12 @@ class template:
 
     def get_exp_worker_cred(self, p):
         """
-        Crédit d'impôt pour travailleur d'expérience / pour la prolongation de carrière
+        Crédit d'impôt pour les travailleurs d'expérience. Depuis 2019, renommé crédit d'impôts pour la prolongation de carrière.
 
         Ce crédit est non-remboursable. Nous avons fait l'hypothèse que les travailleurs
         de 65 ans sont nés le 1er janvier (dans l'année en cours, les revenus avant
-        et après le 65ème anniversaire sont soumis à des traitments différents,
-        ce qui complique beaucoup le modèle mais change peu les résultats.)
+        et après le 65ème anniversaire sont soumis à des traitements différents,
+        ce qui complique beaucoup le modèle mais change peu les résultats).
 
         Parameters
         ----------
@@ -274,9 +282,15 @@ class template:
         hh: Hhold
             instance de la classe Hhold
         """
-        p.prov_return['refund_credits'] = self.witb(p, hh) + self.ccap(p, hh) \
-                                          + self.chcare(p, hh) \
-                                          + self.solidarity(p, hh)
+
+        p.qc_witb = self.witb(p, hh)
+        p.qc_ccap = self.ccap(p, hh)
+        p.qc_chcare = self.chcare(p, hh)
+        p.qc_solidarity = self.solidarity(p, hh)
+
+
+        p.prov_return['refund_credits'] = (p.qc_witb + p.qc_ccap + p.qc_chcare
+                                           + p.qc_solidarity)
 
     def witb(self,p,hh):
         """
@@ -286,7 +300,7 @@ class template:
         du travail, du revenu pour le ménage et de la présence d'un enfant à charge.
         Pour les couples, la prime est partagée au pro-rata des revenus du travail.
         Le supplément à la prime au travail et la prime au travail adaptée
-        ne sont pas calculées.
+        ne sont pas calculés.
 
         Parameters
         ----------
@@ -297,7 +311,7 @@ class template:
         Returns
         -------
         float
-            Montant de la Prime au travail par individu
+            Montant de la prime au travail par individu
         """
         fam_work_inc = sum([p.inc_earn + p.inc_self_earn for p in hh.sp])
         fam_net_inc = sum([p.prov_return['net_income'] for p in hh.sp])
@@ -440,7 +454,7 @@ class template:
         """
         Fonction qui calcule l'impôt à payer selon la table d'impôt.
 
-        Cette fonction utilise la table d'impôt de l'année cours.
+        Cette fonction utilise la table d'impôt de l'année en cours.
 
         Parameters
         ----------
@@ -457,8 +471,8 @@ class template:
 
         Cette fonction fait la somme des contributions du contribuable.
         La contribution santé est abolie en 2017.
-        La contribution additionnelle pour service de garde éducatifs à l'enfance subventionnés
-        abolie en 2019.
+        La contribution additionnelle pour les services de garde éducatifs
+        à l'enfance subventionnés est abolie en 2019.
 
         Parameters
         ----------
@@ -511,7 +525,7 @@ class template:
             cond31 = age_spouse < self.health_age_low and p.inc_gis > self.health_cutoff_31
             if cond28 or cond29 or cond31:
                 return 0
-        # not sure about conditions 33 and 35
+        # not sure about conditions 33 and 35 (very uncommon cases)
 
         ind = np.searchsorted(self.l_health_brackets, p.prov_return['net_income'], 'right') - 1
         return min(self.l_health_max[ind], self.l_health_constant[ind] + \
@@ -519,12 +533,13 @@ class template:
 
     def add_contrib_subsid_chcare(self, p, hh):
         """
-        Contribution additionnelle pour service de garde éducatifs
+        Contribution additionnelle pour les services de garde éducatifs
         à l'enfance subventionnés.
 
         Cette fonction calcule le montant dû en fonction
-        du nombre de jours de garde et du revenu familial.
-        Abolie en 2019.
+        du nombre de jours de garde et du revenu familial. Chaque conjoint paie
+        en fonction du nombre de jours de garde sur son relevé 30.
+        La contribution est abolie en 2019.
 
         Parameters
         ----------

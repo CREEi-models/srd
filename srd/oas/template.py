@@ -28,11 +28,12 @@ class template:
         for p in hh.sp:
             if not p.elig_oas:
                 continue
-            p.sq_factor = min(1, p.years_can / self.min_years_can) # < 1 if less than 10 years in CAN
+            p.sq_factor = min(1, p.years_can / self.min_years_can)
+            # < 1 if less than 10 years in CAN; seems relevant only in very uncommon cases
             if not hh.couple:
                 if p.elig_oas == 'pension':
                     p.inc_oas = self.compute_pension(p)
-                    p.inc_gis = self.gis(p, hh, p.net_inc_exempt, 'high')
+                    p.inc_gis = self.gis(p, hh, hh.net_inc_exempt, 'high')
                 elif p.elig_oas == 'allowance':
                     p.allow_surv = self.survivor_allowance(p, hh)
             else:
@@ -148,7 +149,7 @@ class template:
             Allocation du survivant, incluant bonus et récupération.
         """
         allow = self.compute_allowance(p, hh, self.gis_full_high)
-        claw_bonus = self.bonus_claw_rate * max(0, p.net_inc_exempt - self.bonus_exempt_single)
+        claw_bonus = self.bonus_claw_rate * max(0, hh.net_inc_exempt - self.bonus_exempt_single)
         return max(0, allow + self.allow_surv_bonus *p.sq_factor - claw_bonus)
 
     def couple_allowance(self, p, hh):

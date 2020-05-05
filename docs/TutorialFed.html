@@ -176,7 +176,7 @@
 <div class="section" id="intialisation-dun-menage">
 <h2>Intialisation d’un ménage<a class="headerlink" href="#intialisation-dun-menage" title="Lien permanent vers ce titre">¶</a></h2>
 <p>On doit d’abord initialiser un ménage. Ici nous supposerons un couple
-avec deux membres ayant l’âge de 45 ans et des revenus de travail de
+avec deux membres ayant tous les deux 45 ans et des revenus de travail de
 50,000$ et 25,000$ respectivement.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">jean</span> <span class="o">=</span> <span class="n">srd</span><span class="o">.</span><span class="n">Person</span><span class="p">(</span><span class="n">age</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span><span class="n">earn</span><span class="o">=</span><span class="mf">50e3</span><span class="p">)</span>
 <span class="n">pauline</span> <span class="o">=</span> <span class="n">srd</span><span class="o">.</span><span class="n">Person</span><span class="p">(</span><span class="n">age</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span><span class="n">earn</span><span class="o">=</span><span class="mf">25e3</span><span class="p">)</span>
@@ -187,7 +187,7 @@ avec deux membres ayant l’âge de 45 ans et des revenus de travail de
 </pre></div>
 </div>
 <p>On peut voir le profil de chacun des membres du ménage en utilisant
-vars():</p>
+<em>vars()</em>:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">vars</span><span class="p">(</span><span class="n">jean</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -226,7 +226,7 @@ vars():</p>
 </pre></div>
 </div>
 <p>On peut voir les différents paramètres du système fiscal en utilisant
-encore vars()</p>
+encore <em>vars()</em></p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">vars</span><span class="p">(</span><span class="n">fed_form</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -290,7 +290,7 @@ encore vars()</p>
  <span class="s1">&#39;l_constant&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">6792.0</span><span class="p">,</span> <span class="mf">16075.0</span><span class="p">,</span> <span class="mf">29029.0</span><span class="p">,</span> <span class="mf">46317.0</span><span class="p">]}</span>
 </pre></div>
 </div>
-<p>On remplit le rapport d’impôt à l’aide de la fonction file().</p>
+<p>On remplit le rapport d’impôt à l’aide de la fonction <em>file()</em>.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fed_form</span><span class="o">.</span><span class="n">file</span><span class="p">(</span><span class="n">hh</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -325,8 +325,8 @@ personne</p>
 </div>
 <div class="section" id="experience">
 <h2>Expérience<a class="headerlink" href="#experience" title="Lien permanent vers ce titre">¶</a></h2>
-<p>On peut faire des expériences assez complexe. La première serait de
-regader l’impôt fédéral payé si on incrémente les revenus de travail</p>
+<p>On peut faire des expériences assez complexes. La première serait de
+regarder l’impôt fédéral payé si on incrémente les revenus de travail.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">earns</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">10e3</span><span class="p">,</span><span class="mf">200e3</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">atrs</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">earn</span> <span class="ow">in</span> <span class="n">earns</span><span class="p">:</span>

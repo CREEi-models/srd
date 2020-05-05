@@ -90,8 +90,8 @@ class form_2019(form_2018):
         Fonction qui calcule les contributions.
 
         Cette fonction fait la somme des contributions du contribuable.
-        Contribution additionnelle pour service de garde éducatifs à l'enfance subventionnés
-        abolie en 2019.
+        La contribution additionnelle pour service de garde éducatifs à l'enfance subventionnés
+        est abolie en 2019.
 
         Parameters
         ----------

@@ -14,7 +14,7 @@ class payroll:
     """
     Calcul des cotisations sociales.
 
-    Calcul des cotisations sociales provenant de l'assurance emploi, le RQAP (Québec) et le RRQ (RPC).
+    Calcul des cotisations sociales provenant de l'assurance emploi, le RQAP (Québec), le RRQ (Québec) ainsi que le RPC.
 
     Parameters
     ----------
@@ -60,7 +60,7 @@ class payroll:
         Returns
         -------
         list de float
-            les montants des prestations de base et le supplément RRQ/RRQ
+            Les montants des prestations de base et le supplément RRQ/RRQ
         """
         rules = self.qpp_rules if hh.prov == 'qc' else self.cpp_rules
         if (p.age < 18) | (p.age > 69):

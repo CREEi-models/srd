@@ -12,15 +12,15 @@ class Person:
     Parameters
     ----------
     age: int
-        age de l'individu
+        âge de l'individu
     male: int
         1 si individu est un homme
     earn: float
         revenu de travail
     rpp: float
-        revenu de RCR
+        revenu de régime complémentaire de retraite (RCR)
     cpp: float
-        revenu de RRQ
+        revenu de régime de rentes du Québec (RRQ)
     othtax: float
         autre revenu imposable
     othntax: float
@@ -32,7 +32,7 @@ class Person:
     con_rrsp: float
         contribution REER
     years_can: int
-        nombre d'années au Canada lorsque oas est demandé
+        nombre d'années au Canada lorsque OAS est demandé
     disabled: boolean
         statut d'invalidité
     cqppc: float
@@ -103,7 +103,8 @@ class Person:
         float
             revenu autre que travail.
         """
-        return self.inc_rpp + self.inc_cpp + self.inc_othtax + self.inc_othntax + self.inc_rrsp + self.inc_oas + self.inc_gis
+        return (self.inc_rpp + self.inc_cpp + self.inc_othtax + self.inc_othntax
+                + self.inc_rrsp + self.inc_oas + self.inc_gis)
 
     def inc_tot(self):
         """
@@ -126,15 +127,15 @@ class Dependent:
     Parameters
     ----------
     age: int
-        age de l'individu
+        âge de l'individu
     disa: boolean
         statut d'invalidité
     child_care: float
-        montant des dépenses frais de garde
+        montant des dépenses de frais de garde
     school: float
-        montant des dépenses scolarité
+        montant des dépenses de scolarité
     home_care: float
-        montant d'aide à domicile
+        montant de l'aide à domicile
     health_care: float
         montant de dépenses en santé admissibles
     """
@@ -241,6 +242,13 @@ class Hhold:
         """
         for d in dependents:
             self.dep.append(d)
+
+    def compute_child_care_exp(self):
+        """
+        Fonction qui calcule les dépenses totales en frais de garde
+        pour les enfants de moins de 17 ans
+        """
+        self.child_care_exp = sum([d.child_care for d in hh.dep if d.age <= 16])
 
     def count(self): # do we need this?
         """

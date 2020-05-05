@@ -9,20 +9,20 @@ Premier pas avec le SRD
 Installation du SRD
 ======================
 
-On peut installer facilement le SRD en allant chercher d'abord sur github ::
+On peut installer facilement le SRD en allant chercher d'abord sur GitHub::
 
   git clone https://github.com/creei-models/srd srd --recursive
 
 
-Ensuite on a qu'a installer en allant dans srd/ et en lancant au terminal ::
+Ensuite on n'à qu'à installer en allant dans srd/ et en lançant au terminal::
 
   python setup.py install
 
-Dans un notebook ou un projet, on invoque srd en ajoutant la commande suivante:
+Dans un notebook ou un projet, on invoque SRD en ajoutant la commande suivante:
 
 .. code:: ipython3
 
     import srd
 
-Vous ne devriez pas travailler dans ce répertoire d'installation.  
+Vous ne devriez pas travailler dans ce répertoire d'installation.
 

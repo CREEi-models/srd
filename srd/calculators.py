@@ -131,7 +131,7 @@ class tax:
                 ninc -= p.prov_return['net_tax_liability']
             p.net_inc = ninc
         return
-    def dispinc(self,hh):
+    def disp_inc(self,hh):
         """
         Calcul du revenu disponible après impôt, cotisations (sociale et REER) et aide sociale.
 

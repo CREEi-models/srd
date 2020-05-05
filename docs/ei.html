@@ -168,8 +168,8 @@
 <h1>Programme d’assurance emploi<a class="headerlink" href="#programme-d-assurance-emploi" title="Lien permanent vers ce titre">¶</a></h1>
 <div class="section" id="survol">
 <h2>Survol<a class="headerlink" href="#survol" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Le programme d’assurance emploi est pris en charge par le module ei. Ce module contient un gabarit que nous documentons ici-bas ainsi que des classes dérivées spécifiques à chaque année.</p>
-<p>La fonction program permet de choisir l’année du programme et ira tirer une instance du programme pour cette année. L’instance est retournée par la fonction.</p>
+<p>Le programme d’assurance emploi est pris en charge par le module <em>ei</em>. Ce module contient un gabarit que nous documentons ici-bas ainsi que des classes dérivées spécifiques à chaque année.</p>
+<p>La fonction <em>program</em> permet de choisir l’année du programme et ira tirer une instance du programme pour cette année. L’instance est retournée par la fonction.</p>
 <dl class="function">
 <dt id="srd.ei.program">
 <code class="sig-prename descclassname">srd.ei.</code><code class="sig-name descname">program</code><span class="sig-paren">(</span><em class="sig-param">year</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ei.program" title="Lien permanent vers cette définition">¶</a></dt>
@@ -191,13 +191,13 @@
 </div>
 <div class="section" id="gabarit-du-programme">
 <h2>Gabarit du programme<a class="headerlink" href="#gabarit-du-programme" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Nous utilisons un gabarit afin de créer les programmes à chaque année. Quand le programme change seulement au niveau des paramètres d’une année à l’autre, nous irons chercher seulement les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou en rajouter). L’avantage des classes dérivées est de ne pas avoir à répeter toutes les fonctions d’une année à l’autre si celles-ci n’ont pas changer.</p>
+<p>Nous utilisons un gabarit afin de créer les programmes à chaque année. Quand le programme change seulement au niveau des paramètres d’une année à l’autre, nous irons chercher seulement les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou en rajouter). L’avantage des classes dérivées est de ne pas avoir à répéter toutes les fonctions d’une année à l’autre si elles n’ont pas changé.</p>
 <p>Nous reproduisons ici la spécification du gabarit. Il est calibré sur le programme en vigueur en 2016.</p>
 <dl class="class">
 <dt id="srd.ei.template">
 <em class="property">class </em><code class="sig-prename descclassname">srd.ei.</code><code class="sig-name descname">template</code><a class="headerlink" href="#srd.ei.template" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Programme d’assurance emploi.</p>
-<p>Ce garabit sert pour l’instant à calculer les cotisations à l’assurance emploi.</p>
+<p>Ce gabarit sert pour l’instant à calculer les cotisations à l’assurance emploi.</p>
 <dl class="method">
 <dt id="srd.ei.template.contrib">
 <code class="sig-name descname">contrib</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ei.template.contrib" title="Lien permanent vers cette définition">¶</a></dt>

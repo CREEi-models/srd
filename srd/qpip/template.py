@@ -4,9 +4,9 @@ module_dir = os.path.dirname(os.path.dirname(__file__))
 
 class template:
     """
-    Programme québécois d'assurance parentale. 
+    Programme québécois d'assurance parentale.
 
-    Ce garabit sert pour l'instant à calculer les cotisations au programme québécois d'assurance parentale. 
+    Ce gabarit sert pour l'instant à calculer les cotisations au programme québécois d'assurance parentale.
 
     """
     def __init__(self):
@@ -14,7 +14,7 @@ class template:
         return
     def contrib(self, p, hh):
         """
-        Fonction pour calculer les contributions à l'assurance parentale. 
+        Fonction pour calculer les contributions à l'assurance parentale.
 
         Parameters
         ----------
@@ -26,8 +26,8 @@ class template:
         Returns
         -------
         float
-            montant de la cotisation à l'assurance parental (annuelle)
-        """       
+            Montant de la cotisation à l'assurance parental (annuelle)
+        """
         pay = 0.0
         if p.inc_earn + p.inc_self_earn <= self.qualifying_threshold_QPIP:
             pay = 0.0

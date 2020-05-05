@@ -17,7 +17,7 @@ class template:
         """
         Fonction qui permet de calculer les impôts.
 
-        Cette fonction est celle qui éxécute le calcul des impôts.
+        Cette fonction est celle qui exécute le calcul des impôts.
 
         Parameters
         ----------
@@ -42,20 +42,22 @@ class template:
         """
         Fonction qui calcule le revenu total (brutte).
 
-        Cette fonction correspond au revenu total d'une personne au fin de l'impôt.
+        Cette fonction correspond au revenu total d'une personne aux fins de l'impôt.
 
         Parameters
         ----------
         p: Person
             instance de la classe Person
         """
-        p.fed_return['gross_income'] = p.inc_earn + p.inc_self_earn + p.inc_oas + p.inc_gis + p.inc_cpp + p.inc_rpp + p.inc_othtax + p.inc_rrsp
-        return
+        p.fed_return['gross_income'] = (p.inc_earn + p.inc_self_earn + p.inc_oas
+                                        + p.inc_gis + p.inc_cpp + p.inc_rpp + p.inc_othtax
+                                        + p.inc_rrsp)
+
     def calc_net_income(self, p):
         """
         Fonction qui calcule le revenu net au sens de l'impôt.
 
-        Cette fonction correspond au revenu net d'une personne au fin de l'impôt. On y soustrait les déductions.
+        Cette fonction correspond au revenu net d'une personne aux fins de l'impôt. On y soustrait les déductions.
 
         Parameters
         ----------
@@ -68,7 +70,7 @@ class template:
         """
         Fonction qui calcule le revenu imposable au sens de l'impôt.
 
-        Cette fonction correspond au revenu imposable d'une personne au fin de l'impôt. On y soustrait une portion des gains en capitaux.
+        Cette fonction correspond au revenu imposable d'une personne aux fins de l'impôt. On y soustrait une portion des gains en capitaux.
 
         Parameters
         ----------
@@ -76,7 +78,7 @@ class template:
             instance de la classe Person
         """
         p.fed_return['taxable_income'] = p.fed_return['net_income']
-        return
+
     def calc_deductions(self, p, hh):
         """
         Fonction qui calcule les déductions.
@@ -88,7 +90,8 @@ class template:
         p: Person
             instance de la classe Person
         """
-        p.fed_return['deductions'] = p.con_rrsp + p.inc_gis + self.chcare(p, hh)
+        p.fed_chcare = self.chcare(p, hh)
+        p.fed_return['deductions'] = p.con_rrsp + p.inc_gis + p.fed_chcare
 
     def chcare(self, p, hh):
         """
@@ -110,7 +113,7 @@ class template:
             est reçu par le conjoint qui a le revenu le moins élevé.
         """
 
-        p_low_inc = min(hh.sp, key = lambda p: p.inc_earn + p.inc_self_earn)
+        p_low_inc = min(hh.sp, key=lambda p: p.inc_earn + p.inc_self_earn)
 
         if p != p_low_inc or hh.child_care_exp == 0:
             return 0
@@ -127,7 +130,7 @@ class template:
         """
         Fonction qui calcule l'impôt à payer selon la table d'impôt.
 
-        Cette fonction utilise la table d'impôt de l'année cours.
+        Cette fonction utilise la table d'impôt de l'année en cours.
 
         Parameters
         ----------
@@ -140,7 +143,7 @@ class template:
 
     def calc_non_refundable_tax_credits(self, p):
         """
-        Fonction qui calcule les crédits d'impôt non-remboursable.
+        Fonction qui calcule les crédits d'impôt non-remboursables.
 
         Cette fonction fait la somme de tous les crédits d'impôt modélisés.
 
@@ -149,8 +152,11 @@ class template:
         p: Person
             instance de la classe Person
         """
+        p.fed_age_cred = self.get_age_cred(p)
+        p.fed_pension_cred = self.get_pension_cred(p)
+        p.fed_disabled_cred = self.get_disabled_cred(p)
         p.fed_return['non_refund_credits'] = self.rate_non_ref_tax_cred * (self.basic_amount
-            + self.get_age_cred(p) + self.get_pension_cred(p) + self.get_disabled_cred(p))
+            + p.fed_age_cred + p.fed_pension_cred + p.fed_disabled_cred)
 
     def get_age_cred(self, p):
         """
@@ -163,7 +169,7 @@ class template:
         p: Person
             instance de la classe Person
         """
-        amount = self.age_cred_amount if p.age >= self.min_age_cred else 0.0
+        amount = self.age_cred_amount if p.age >= self.min_age_cred else 0
         clawback = self.age_cred_claw_rate * max(0, p.fed_return['net_income'] - self.age_cred_exemption)
         return max(0, amount - clawback)
 
@@ -206,9 +212,13 @@ class template:
         hh: Hhold
             instance de la classe Hhold
         """
-        p.fed_return['refund_credits'] = self.abatment(p,hh) + self.ccb(p,hh) \
-                                         + self.witb(p, hh) + self.witbds(p, hh) \
-                                         + self.gst_hst_credit(p, hh)
+        p.fed_abatment_qc = self.abatment(p, hh)
+        p.fed_ccb = self.ccb(p, hh)
+        p.fed_witb = self.witb(p, hh)
+        p.fed_witbds = self.witbds(p, hh)
+        p.fed_gst_hst_credit = self.gst_hst_credit(p, hh)
+        p.fed_return['refund_credits'] = (p.fed_abatment_qc + p.fed_ccb + p.fed_witb
+                                          + p.fed_witbds + p.fed_gst_hst_credit)
 
     def abatment(self, p, hh):
         """
@@ -223,7 +233,7 @@ class template:
         Returns
         -------
         float
-            Montant de l'abatement
+            Montant de l'abattement
         """
         if hh.prov == 'qc':
             return p.fed_return['net_tax_liability'] * self.rate_abatment_qc
@@ -232,7 +242,7 @@ class template:
 
     def ccb(self,p,hh,iclaw=True):
         """
-        Allocation canadienne pour enfants (CCB).
+        Allocation canadienne pour enfants (ACE/CCB).
 
         Parameters
         ----------
@@ -243,7 +253,7 @@ class template:
         Returns
         -------
         float
-            Montant de la ACE (CCB)
+            Montant de l'ACE (CCB)
         """
         num_ch_0_5 = sum([1 for d in hh.dep if d.age <= self.ccb_young_max_age])
         num_ch_6_17 = sum([1 for d in hh.dep
@@ -281,8 +291,8 @@ class template:
 
     def witb(self,p,hh):
         """
-        Prestation fiscale pour le revenu de travail (WITB). A partir de 2019,
-        cela devient l'Allocation canadienne pour les travailleurs (CWB).
+        Prestation fiscale pour le revenu de travail (PFRT/WITB). A partir de 2019,
+        cela devient l'Allocation canadienne pour les travailleurs (ACT/CWB).
 
         Dans le cas d'un couple, la prestation est répartie au pro-rata des revenus du travail.
 
@@ -322,8 +332,9 @@ class template:
 
     def witbds(self, p, hh):
         """
-        Supplément pour invalidité à Prestation fiscale pour le revenu de travail (WITBDS).
-        A partir de 2019, cela devient le supplément pour invalidité à l'Allocation canadienne pour les travailleurs.
+        Supplément pour invalidité à la prestation fiscale pour le revenu de travail
+        (SIPFRT/WITBDS).
+        À partir de 2019, cela devient le supplément pour invalidité à l'Allocation canadienne pour les travailleurs (ACT).
 
 
         Parameters
