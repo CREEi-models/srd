@@ -10,7 +10,7 @@ def create_return():
 
 class template:
     """
-    Gabarit pour l'impôt provincial québecois.
+    Gabarit pour l'impôt provincial québécois.
     """
     def __init__(self):
         add_params_as_attr(self, module_dir + '/quebec/params/measures_2016.csv',delimiter=';')
@@ -118,7 +118,7 @@ class template:
 
     def calc_non_refundable_tax_credits(self, p, hh):
         """
-        Fonction qui calcule les crédits d'impôt non-remboursable.
+        Fonction qui calcule les crédits d'impôt non-remboursables.
 
         Cette fonction fait la somme de tous les crédits d'impôt modélisés.
 

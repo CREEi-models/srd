@@ -168,7 +168,7 @@
 <h1>Pension de la sécurité de la vieillesse<a class="headerlink" href="#pension-de-la-securite-de-la-vieillesse" title="Lien permanent vers ce titre">¶</a></h1>
 <div class="section" id="survol">
 <h2>Survol<a class="headerlink" href="#survol" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Le programme de la PSV (et le SRG) est pris en charge par le module oas. Ce module contient un gabarit que nous documentons ici-bas ainsi que des classes dérivées spécifiques à chaque année.</p>
+<p>Le programme de la pension de la sécurité à la vieillesse (PSV) et le supplément du revenu garanti (SRG) sont pris en charge par le module <em>oas</em>. Ce module contient un gabarit que nous documentons ici-bas ainsi que des classes dérivées spécifiques à chaque année.</p>
 <p>La fonction program permet de choisir l’année du programme et ira tirer une instance du programme pour cette année. L’instance est retournée par la fonction.</p>
 <dl class="function">
 <dt id="srd.oas.program">
@@ -190,7 +190,7 @@
 </div>
 <div class="section" id="gabarit-du-programme">
 <h2>Gabarit du programme<a class="headerlink" href="#gabarit-du-programme" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Nous utilisons un gabarit afin de créer les programmes à chaque année. Quand le programme change seulement au niveau des paramètres d’une année à l’autre, nous irons chercher seulement les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou en rajouter). L’avantage des classes dérivées est de ne pas avoir à répeter toutes les fonctions d’une année à l’autre si celles-ci n’ont pas changer.</p>
+<p>Nous utilisons un gabarit afin de créer les programmes à chaque année. Quand le programme change seulement au niveau des paramètres d’une année à l’autre, nous irons chercher seulement les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou en rajouter). L’avantage des classes dérivées est de ne pas avoir à répéter toutes les fonctions d’une année à l’autre si celles-ci n’ont pas changer.</p>
 <p>Nous reproduisons ici la spécification du gabarit. Il est calibré sur le programme en vigueur en 2016.</p>
 <dl class="class">
 <dt id="srd.oas.template">
@@ -239,7 +239,7 @@
 <dl class="method">
 <dt id="srd.oas.template.eligibility">
 <code class="sig-name descname">eligibility</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.eligibility" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Evalue l’éligibilité de la personne pour l’oas, le gis et les allocations
+<dd><p>Evalue l’éligibilité de la personne pour l’OAS, le GIS et les allocations
 de couple et de survivant.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -252,7 +252,7 @@ de couple et de survivant.</p>
 <dt id="srd.oas.template.file">
 <code class="sig-name descname">file</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.file" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction pour appliquer au programme et recevoir une prestation.</p>
-<p>Ceci calcule les prestations pour la PSV et le SRG.</p>
+<p>Ceci calcule les prestations pour la PSV (OAS) et le SRG (GIS).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe acteur Hhold</p>

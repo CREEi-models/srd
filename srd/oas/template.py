@@ -14,7 +14,7 @@ class template:
         """
         Fonction pour appliquer au programme et recevoir une prestation.
 
-        Ceci calcule les prestations pour la PSV et le SRG.
+        Ceci calcule les prestations pour la PSV (OAS) et le SRG (GIS).
 
         Parameters
         ----------
@@ -53,7 +53,7 @@ class template:
 
     def eligibility(self, p, hh):
         """
-        Evalue l'éligibilité de la personne pour l'oas, le gis et les allocations
+        Evalue l'éligibilité de la personne pour l'OAS, le GIS et les allocations
         de couple et de survivant.
 
         Parameters

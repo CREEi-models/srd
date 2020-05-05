@@ -168,8 +168,8 @@
 <h1>Impôt Fédéral<a class="headerlink" href="#impot-federal" title="Lien permanent vers ce titre">¶</a></h1>
 <div class="section" id="survol">
 <h2>Survol<a class="headerlink" href="#survol" title="Lien permanent vers ce titre">¶</a></h2>
-<p>L’impôt fédéral est pris en charge par le module federal. Ce module contient un gabarit que nous documentons ici-bas ainsi que des classes spécifiques à chaque année.</p>
-<p>La fonction form permet de choisir l’année du rapport d’impôt et ira tirer une instance du rapport pour cette année. L’instance est retournée par la fonction.</p>
+<p>L’impôt fédéral est pris en charge par le module <em>federal</em>. Ce module contient un gabarit que nous documentons ici-bas ainsi que des classes spécifiques à chaque année.</p>
+<p>La fonction <em>form</em> permet de choisir l’année du rapport d’impôt et ira tirer une instance du rapport pour cette année. L’instance est retournée par la fonction.</p>
 <dl class="function">
 <dt id="srd.federal.form">
 <code class="sig-prename descclassname">srd.federal.</code><code class="sig-name descname">form</code><span class="sig-paren">(</span><em class="sig-param">year</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form" title="Lien permanent vers cette définition">¶</a></dt>
@@ -191,11 +191,11 @@
 <div class="section" id="gabarit-du-rapport">
 <h2>Gabarit du rapport<a class="headerlink" href="#gabarit-du-rapport" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Nous utilisons un gabarit afin de créer les rapports à chaque année. Quand le programme change seulement dans ces paramètres, le rapport ira seulement chercher les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou en rajouter).</p>
-<p>Nous reproduisons ici la spécification du gabarit. Il est calcqué sur le rapport de 2016.</p>
+<p>Nous reproduisons ici la spécification du gabarit. Il est calqué sur le rapport de 2016.</p>
 <dl class="class">
 <dt id="srd.federal.template">
 <em class="property">class </em><code class="sig-prename descclassname">srd.federal.</code><code class="sig-name descname">template</code><a class="headerlink" href="#srd.federal.template" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Gabarit pour impôt fédéral.</p>
+<dd><p>Gabarit pour l’impôt fédéral.</p>
 <dl class="method">
 <dt id="srd.federal.template.abatment">
 <code class="sig-name descname">abatment</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.abatment" title="Lien permanent vers cette définition">¶</a></dt>
@@ -375,7 +375,7 @@
 <code class="sig-name descname">witb</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.witb" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Prestation fiscale pour le revenu de travail (PFRT/WITB). A partir de 2019,
 cela devient l’Allocation canadienne pour les travailleurs (ACT/CWB).</p>
-<p>Dans le cas d’un couple, la prestation est répartie au pro-rata des revenus du travail.</p>
+<p>Dans le cas d’un couple, la prestation est répartie au prorata des revenus du travail.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">

@@ -1,5 +1,0 @@
-variable,value,type,definition,source,comments
-qualifying_threshold_QPIP,2000,float,,,
-rate_QPIP_earn,0.00548,float,,, 
-rate_QPIP_selfemp_earn,0.00973,float,,,
-max_QPIP_earn,74000,float,,,

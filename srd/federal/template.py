@@ -10,7 +10,7 @@ def create_return():
 
 class template:
     """
-    Gabarit pour impôt fédéral.
+    Gabarit pour l'impôt fédéral.
     """
 
     def file(self, hh):
@@ -294,7 +294,7 @@ class template:
         Prestation fiscale pour le revenu de travail (PFRT/WITB). A partir de 2019,
         cela devient l'Allocation canadienne pour les travailleurs (ACT/CWB).
 
-        Dans le cas d'un couple, la prestation est répartie au pro-rata des revenus du travail.
+        Dans le cas d'un couple, la prestation est répartie au prorata des revenus du travail.
 
         Parameters
         ----------
@@ -427,4 +427,4 @@ class template:
         else:
             amount += min(self.gst_cred_other,
                           self.gst_cred_rate * max(0, fam_net_inc - self.gst_cred_base_amount))
-        return amount / ( 1 + hh.couple)
+        return amount / (1 + hh.couple)

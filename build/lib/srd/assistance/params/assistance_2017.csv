@@ -1,6 +1,0 @@
-variable;value;type;definition;source;comments
-socass_base_single;7536;float;;https://www.emploiquebec.gouv.qc.ca/uploads/tx_fceqpubform/00_nouv-montants-prestation_2017.pdf;
-socass_base_couple;11664;float;;;
-socass_reductionrate;1;float;;;
-socass_exemption_single;2400;float;;;
-socass_exemption_couple;3600;float;;;

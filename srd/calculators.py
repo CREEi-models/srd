@@ -3,7 +3,7 @@ from srd import federal, oas, quebec, payroll, assistance
 
 class tax:
     """
-    Classe général pour le calcul des impôts, contributions et prestations.
+    Classe générale pour le calcul des impôts, contributions et prestations.
 
     Parameters
     ----------
