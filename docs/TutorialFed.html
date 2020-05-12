@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-        <script type="text/javascript" src="_static/translations.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/translations.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -221,7 +221,7 @@ avec deux membres ayant tous les deux 45 ans et des revenus de travail de
 <div class="section" id="calcul-de-limpot-federal">
 <h2>Calcul de l’impôt fédéral<a class="headerlink" href="#calcul-de-limpot-federal" title="Lien permanent vers ce titre">¶</a></h2>
 <p>On doit d’abord créer un rapport d’impôt pour une année en particulier.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">srd</span> <span class="k">import</span> <span class="n">federal</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">srd</span> <span class="kn">import</span> <span class="n">federal</span>
 <span class="n">fed_form</span> <span class="o">=</span> <span class="n">federal</span><span class="o">.</span><span class="n">form</span><span class="p">(</span><span class="mi">2020</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -333,7 +333,7 @@ regarder l’impôt fédéral payé si on incrémente les revenus de travail.</p
     <span class="n">jean</span><span class="o">.</span><span class="n">inc_earn</span> <span class="o">=</span> <span class="n">earn</span>
     <span class="n">fed_form</span><span class="o">.</span><span class="n">file</span><span class="p">(</span><span class="n">hh</span><span class="p">)</span>
     <span class="n">atrs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">jean</span><span class="o">.</span><span class="n">fed_return</span><span class="p">[</span><span class="s1">&#39;net_tax_liability&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">jean</span><span class="o">.</span><span class="n">fed_return</span><span class="p">[</span><span class="s1">&#39;gross_income&#39;</span><span class="p">])</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">earns</span><span class="p">,</span><span class="n">atrs</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;niveau de revenu de travail&#39;</span><span class="p">)</span>
@@ -354,7 +354,7 @@ d’imposition. Supposons qu’on change le montant de base en l’augmentant</p
     <span class="n">bases</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fed_form</span><span class="o">.</span><span class="n">basic_amount</span><span class="p">)</span>
     <span class="n">fed_form</span><span class="o">.</span><span class="n">file</span><span class="p">(</span><span class="n">hh</span><span class="p">)</span>
     <span class="n">atrs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">jean</span><span class="o">.</span><span class="n">fed_return</span><span class="p">[</span><span class="s1">&#39;net_tax_liability&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">jean</span><span class="o">.</span><span class="n">fed_return</span><span class="p">[</span><span class="s1">&#39;gross_income&#39;</span><span class="p">])</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bases</span><span class="p">,</span><span class="n">atrs</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;montant de base&#39;</span><span class="p">)</span>

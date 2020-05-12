@@ -11,7 +11,7 @@ class template:
     """
     def __init__(self):
         add_params_as_attr(self,module_dir+'/ei/params/parameters_2016.csv')
-        return
+
     def contrib(self, p, hh):
         """
         Fonction pour calculer les contributions à l'assurance emploi.

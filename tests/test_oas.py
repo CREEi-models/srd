@@ -21,6 +21,33 @@ def test_not_min_years_can():
     assert p.allow_surv == 0
     assert p.allow_couple == 0
 
+def test_postpone_oas():
+    p0 = srd.Person(age=65, years_can=9, oas_years_post=2)
+    hh = srd.Hhold(p0, prov='qc')
+
+    oas_program = oas.program(year)
+    oas_program.file(hh)
+    p = hh.sp[0]
+
+    assert p.inc_oas == 0
+    assert p.inc_gis == 0
+    assert p.allow_surv == 0
+    assert p.allow_couple == 0
+
+def test_postpone_oas_couple():
+    p0 = srd.Person(age=65, oas_years_post=2)
+    p1 = srd.Person(age=65)
+    hh = srd.Hhold(p0, p1, prov='qc')
+
+    oas_program = oas.program(year)
+    oas_program.file(hh)
+    p0, p1 = hh.sp
+
+    assert p0.elig_oas == False
+    assert p0.inc_oas == 0 < p1.inc_oas
+    assert p0.inc_gis == 0 < p1.inc_gis
+    assert p0.allow_surv == p1.allow_surv == 0
+    assert p0.allow_couple == p1.allow_couple == 0
 
 @pytest.mark.parametrize('age, prog', [(58, 'nothing'), (62, 'allowance'),
                                        (70, 'oas+gis')])

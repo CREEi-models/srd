@@ -10,4 +10,3 @@ La classe *payroll* attachera à chaque membre d'un couple un rapport de cotisat
 
 .. autoclass:: payroll
     :members: compute, get_cpp_contrib
-

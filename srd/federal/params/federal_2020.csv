@@ -1,4 +1,4 @@
-variable;value;type;definition;source ;comments
+variable;value;type;definition;source;comments
 basic_amount_poor;13229;float;;;
 basic_amount_rich;12298;float;;;
 age_cred_amount;7637;float;;;
@@ -13,6 +13,7 @@ ccb_young_max_age;5;int;;https://www.canada.ca/en/revenue-agency/services/tax/in
 ccb_old_max_age;17;int;;;
 ccb_young;6765;float;;;
 ccb_old;5708;float;;;
+ccb_covid_supp;300;float;;https://www.canada.ca/fr/ministere-finances/plan-intervention-economique.html;
 ccb_max_num_ch;4;int;;;
 ccb_cutoff_1;31711;float;;;
 ccb_cutoff_2;68708;float;;;
@@ -26,11 +27,13 @@ ccb_rate_2_3ch;0.08;float;;;
 ccb_rate_2_4ch;0.095;float;;;
 gst_cred_kids_max_age;18;int;;;
 gst_cred_claw_rate;0.05;float;;https://www.canada.ca/en/revenue-agency/services/child-family-benefits/goods-services-tax-harmonized-sales-tax-gst-hst-credit/gst-hst-credit-calculation-sheets.html;
-gst_cred_claw_cutoff;38507;float;;;indexé 1.9%
+gst_cred_claw_cutoff;38507;float;;;indexed at 1.9%
 gst_cred_base;296;float;;;
 gst_cred_other;156;float;;;
 gst_cred_rate;0.02;float;;;
 gst_cred_base_amount;9591;float;;;
+gst_covid_single;400;float;;https://www.canada.ca/fr/ministere-finances/plan-intervention-economique.html;
+gst_covid_couple;600;float;;;
 chcare_max_age_young;6;int;;form T778;
 chcare_max_age_old;16;int;;;
 chcare_young;8000;float;;;hasn't changed since 2016

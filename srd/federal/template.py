@@ -40,7 +40,7 @@ class template:
 
     def calc_gross_income(self,p):
         """
-        Fonction qui calcule le revenu total (brutte).
+        Fonction qui calcule le revenu total (brut).
 
         Cette fonction correspond au revenu total d'une personne aux fins de l'impôt.
 
@@ -49,7 +49,7 @@ class template:
         p: Person
             instance de la classe Person
         """
-        p.fed_return['gross_income'] = (p.inc_earn + p.inc_self_earn + p.inc_oas
+        p.fed_return['gross_income'] = (p.inc_work + p.inc_oas
                                         + p.inc_gis + p.inc_cpp + p.inc_rpp + p.inc_othtax
                                         + p.inc_rrsp)
 
@@ -113,7 +113,7 @@ class template:
             est reçu par le conjoint qui a le revenu le moins élevé.
         """
 
-        p_low_inc = min(hh.sp, key=lambda p: p.inc_earn + p.inc_self_earn)
+        p_low_inc = min(hh.sp, key=lambda p: p.inc_work)
 
         if p != p_low_inc or hh.child_care_exp == 0:
             return 0
@@ -124,7 +124,7 @@ class template:
         max_chcare = nkids_0_6 * self.chcare_young + nkids_7_16 * self.chcare_old
 
         return min(max_chcare, hh.child_care_exp,
-                   self.chcare_rate_inc * (p.inc_earn + p.inc_self_earn))
+                   self.chcare_rate_inc * p.inc_work)
 
     def calc_tax(self, p):
         """
@@ -268,7 +268,7 @@ class template:
             adj_fam_net_inc = sum([p.fed_return['net_income'] for p in hh.sp])
 
             l_rates_1 = [self.ccb_rate_1_1ch, self.ccb_rate_1_2ch,
-                        self.ccb_rate_1_3ch, self.ccb_rate_1_4ch]
+                         self.ccb_rate_1_3ch, self.ccb_rate_1_4ch]
             d_rates_1 = {k+1: v for k, v in enumerate(l_rates_1)}
             l_rates_2 = [self.ccb_rate_2_1ch, self.ccb_rate_2_2ch,
                         self.ccb_rate_2_3ch, self.ccb_rate_2_4ch]
@@ -308,7 +308,6 @@ class template:
             Montant de la PFRT (WITB)
         """
         dep = (len([d for d in hh.dep if d.age <= self.witb_max_age_dep]) > 0)
-        fam_work_inc = sum([p.inc_earn + p.inc_self_earn for p in hh.sp])
 
         if not hh.couple:
             base = self.witb_base_single_qc
@@ -321,8 +320,8 @@ class template:
             rate = self.witb_rate_couple_dep_qc if dep else self.witb_rate_qc
             witb_max = self.witb_max_couple_dep_qc if dep else self.witb_max_couple_qc
             exemption = self.witb_exemption_couple_dep_qc if dep else self.witb_exemption_couple_qc
-            if fam_work_inc > 0:
-                factor = (p.inc_earn + p.inc_self_earn) / fam_work_inc
+            if hh.fam_inc_work > 0:
+                factor = p.inc_work / hh.fam_inc_work
             else:
                 factor = 1/2
 
@@ -395,8 +394,7 @@ class template:
             Montant de la PFRT (WITB) / SIPFRT (WITBDS)
         """
         fam_net_inc = sum([p.fed_return['net_income'] for p in hh.sp])
-        fam_work_inc = sum([p.inc_earn + p.inc_self_earn for p in hh.sp])
-        amount = rate * max(0, fam_work_inc - base)
+        amount = rate * max(0, hh.fam_inc_work - base)
         adj_amount = min(witb_max, amount)
         clawback = claw_rate * max(0, fam_net_inc - exemption)
         return max(0, adj_amount - clawback)

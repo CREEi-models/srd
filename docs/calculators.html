@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-        <script type="text/javascript" src="_static/translations.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/translations.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -174,7 +174,7 @@
 <p>Le calculateur  contient les fonctions suivantes:</p>
 <dl class="class">
 <dt id="srd.tax">
-<em class="property">class </em><code class="sig-prename descclassname">srd.</code><code class="sig-name descname">tax</code><span class="sig-paren">(</span><em class="sig-param">year</em>, <em class="sig-param">prov='qc'</em>, <em class="sig-param">ifed=True</em>, <em class="sig-param">ioas=True</em>, <em class="sig-param">iprov=True</em>, <em class="sig-param">ipayroll=True</em>, <em class="sig-param">iass=True</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax" title="Lien permanent vers cette définition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">srd.</code><code class="sig-name descname">tax</code><span class="sig-paren">(</span><em class="sig-param">year</em>, <em class="sig-param">prov='qc'</em>, <em class="sig-param">ifed=True</em>, <em class="sig-param">ioas=True</em>, <em class="sig-param">iprov=True</em>, <em class="sig-param">ipayroll=True</em>, <em class="sig-param">iass=True</em>, <em class="sig-param">policy=&lt;srd.covid.programs.policy object&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Classe générale pour le calcul des impôts, contributions et prestations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -185,6 +185,7 @@
 <li><p><strong>ioas</strong> (<em>boolean</em>) – vrai si calcul des prestations de PSV et SRG est demandé</p></li>
 <li><p><strong>iprov</strong> (<em>boolean</em>) – vrai si calcul de l’impôt provincial est demandé</p></li>
 <li><p><strong>ipayroll</strong> (<em>boolean</em>) – vrai si calcul des cotisations sociales est demandé</p></li>
+<li><p><strong>icovid_all</strong> (<em>boolean</em>) – vrai si calcul des mesures d’urgence liées à la covid-19 est demandé (seulement en 2020)</p></li>
 </ul>
 </dd>
 </dl>
@@ -241,6 +242,13 @@
 <dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.tax.disp_inc">
+<code class="sig-name descname">disp_inc</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.disp_inc" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Calcul du revenu disponible après impôt, cotisations (sociale et REER) et aide sociale.</p>
+<p>Calcul fait au niveau individuel et ensuite rattaché à la personne.</p>
 </dd></dl>
 
 <dl class="method">

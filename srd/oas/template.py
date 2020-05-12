@@ -63,21 +63,16 @@ class template:
         """
         if p.age < self.min_age_allow or p.years_can < self.min_years_can:
             p.elig_oas = False
-        elif p.age >= self.min_age_oas:
+        elif p.age >= self.min_age_oas + p.oas_years_post:
             p.elig_oas = 'pension'
-        elif hh.couple or p.widow is True:
+        elif p.age < self.min_age_oas and (hh.couple or p.widow is True):
             p.elig_oas = 'allowance'
         else:
             p.elig_oas = False
 
     def compute_pension(self, p):
-
-        if p.age < self.min_age_oas + p.oas_years_post:
-            p.oas = 0
-            return
-
-        p.oas = min(1, p.years_can / self.max_years_can) * self.oas_full
-        p.oas *= 1 + self.postpone_oas_bonus * p.oas_years_post
+        p.oas_65 = min(1, p.years_can / self.max_years_can) * self.oas_full
+        p.oas = p.oas_65 * (1 + self.postpone_oas_bonus * p.oas_years_post)
         return self.pension_clawback(p)
 
     def pension_clawback(self, p):
@@ -127,7 +122,7 @@ class template:
         else:
             bonus_exempt = self.bonus_exempt_single
 
-        gis = (gis_full + self.oas_full - p.oas) * p.sq_factor
+        gis = (gis_full + self.oas_full - p.oas_65) * p.sq_factor
         claw_gis = self.gis_claw_rate * income / (1+hh.couple)
         bonus = gis_bonus * p.sq_factor
         claw_bonus = self.bonus_claw_rate * max(0, hh.net_inc_exempt - bonus_exempt) / (1+hh.couple)

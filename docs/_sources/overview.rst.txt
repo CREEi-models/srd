@@ -14,7 +14,7 @@ On peut installer facilement le SRD en allant chercher d'abord sur GitHub::
   git clone https://github.com/creei-models/srd srd --recursive
 
 
-Ensuite on n'a qu'à installer en allant dans srd/ et en lançant au terminal::
+On complète l'installation en allant dans srd/ et en lançant au terminal::
 
   python setup.py install
 

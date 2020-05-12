@@ -1,5 +1,5 @@
 import numpy as np
-from srd import federal, oas, quebec, payroll, assistance
+from srd import federal, oas, quebec, payroll, assistance, covid
 
 class tax:
     """
@@ -19,27 +19,35 @@ class tax:
         vrai si calcul de l'impôt provincial est demandé
     ipayroll: boolean
         vrai si calcul des cotisations sociales est demandé
+    icovid_all: boolean
+        vrai si calcul des mesures d'urgence liées à la covid-19 est demandé (seulement en 2020)
     """
-    def __init__(self,year,prov='qc',ifed=True,ioas=True,iprov=True,ipayroll=True,iass=True):
+    def __init__(self, year, prov='qc', ifed=True, ioas=True, iprov=True,
+                 ipayroll=True, iass=True, policy=covid.policy()):
         self.year = year
         self.ifed = ifed
         self.iprov = iprov
         self.ipayroll = ipayroll
         self.ioas = ioas
         self.iass = iass
+        self.policy = policy
+
         if ipayroll:
             self.payroll = payroll(year)
+        if policy.some_measures and year==2020:
+            self.covid = covid.programs(policy)
         if ifed:
-            self.federal = federal.form(year)
+            self.federal = federal.form(year, policy)
         if iprov:
-            if prov=='qc':
+            if prov == 'qc':
                 self.prov = quebec.form(year)
         if ioas:
             self.oas = oas.program(year)
         if iass:
             self.ass = assistance.program(year)
         return
-    def compute(self,hh):
+
+    def compute(self, hh):
         """
         Calcul tous les éléments demandés.
 
@@ -52,6 +60,8 @@ class tax:
             self.compute_oas(hh)
         if self.ipayroll:
             self.compute_payroll(hh)
+        if self.policy.some_measures and self.year==2020:
+            self.compute_covid(hh)
         if self.ifed:
             self.compute_federal(hh)
         if self.iprov:
@@ -103,6 +113,18 @@ class tax:
         """
         self.payroll.compute(hh)
         return
+    def compute_covid(self, hh):
+        """
+        Calcul des prestations canadiennes d'urgences (PCU et PCUE)
+        et du programme incitatif pour la rétention des travailleurs essentiels (PIRTE).
+
+        Parameters
+        ----------
+        hh: Hhold
+            instance de la classe Hhold
+        """
+        self.covid.compute(hh)
+
     def compute_ass(self,hh):
         """
         Calcul de l'aide sociale.
@@ -121,10 +143,9 @@ class tax:
         Calcul du revenu après impôt fédéral et provincial.
 
         Calcul fait au niveau individuel et ensuite rattaché à la personne. Un calcul au niveau du ménage est aussi effectué.
-
         """
         for p in hh.sp:
-            ninc = p.inc_tot()
+            ninc = p.inc_tot
             if self.ifed:
                 ninc -= p.fed_return['net_tax_liability']
             if self.iprov:

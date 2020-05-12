@@ -6,7 +6,7 @@ sys.path.append('/Users/pyann/Dropbox (CEDIA)/srd/Model')
 import srd
 from srd import oas
 
-year = 2016
+year = 2019
 
 @pytest.mark.parametrize('age, inc_oas', [(58, 0), (62, 0), (70, 7000)])
 def test_age_oas(age, inc_oas):
@@ -20,7 +20,7 @@ def test_age_oas(age, inc_oas):
     for p in hh.sp:
         assert isclose(p.inc_oas, inc_oas, rel_tol=0.1)
 
-@pytest.mark.parametrize('net_inc, inc_oas', [(60000, 7000), (80000, 5000),
+@pytest.mark.parametrize('net_inc, inc_oas', [(60000, 7000), (80000, 6000),
                                               (150000, 0)])
 def test_net_inc_oas(net_inc, inc_oas):
     p0 = srd.Person(age=70, othtax=net_inc)
@@ -33,7 +33,7 @@ def test_net_inc_oas(net_inc, inc_oas):
     for p in hh.sp:
         assert isclose(p.inc_oas, inc_oas, rel_tol=0.1)
 
-@pytest.mark.parametrize('inc_non_work, inc_gis', [(0, 6000), (10000, 2500),
+@pytest.mark.parametrize('inc_non_work, inc_gis', [(0, 6000), (10000, 12*95.41),
                                               (20000, 0)])
 def test_inc_non_work_inc_gis(inc_non_work, inc_gis):
     p0 = srd.Person(age=70, othtax=inc_non_work)

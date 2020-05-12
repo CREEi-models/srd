@@ -43,11 +43,18 @@ class Person:
         valeur marchande des actifs
     oas_years_post: int
         nombre d'années de report pour la pension OAS (après 65 ans)
+    months_cerb: int
+        nombre de mois pour lesquels la CPU est demandée
+    months_cesb: int
+        nombre de mois pour lesquels la CPUE est demandée
+    essential_worker: boolean
+        True si travailleur essentiel
     """
     def __init__(self, age=50, male=True, earn=0, rpp=0, cpp=0, othtax=0, othntax=0,
                  inc_rrsp=0, selfemp_earn=0, con_rrsp=0, years_can=None,
-                 disabled=False, cqppc = None, widow=False, ndays_chcare_k1=0,
-                 ndays_chcare_k2=0, asset=0, oas_years_post = 0):
+                 disabled=False, cqppc=None, widow=False, ndays_chcare_k1=0,
+                 ndays_chcare_k2=0, asset=0, oas_years_post=0, months_cerb=0,
+                 months_cesb=0, essential_worker=False):
         self.age = age
         self.male = male
         self.inc_earn = earn
@@ -66,16 +73,22 @@ class Person:
         self.ndays_chcare_k2 = ndays_chcare_k2 # second kid with most days, in same order for both spouses
         self.asset = asset
         self.oas_years_post = oas_years_post
+        self.months_cerb = months_cerb
+        self.months_cesb = months_cesb
+        self.essential_worker = essential_worker
         self.inc_oas = 0
         self.inc_gis = 0
         self.inc_social_ass = 0
         self.allow_couple = 0
         self.allow_surv = 0
+        self.inc_cerb = 0
+        self.inc_cesb = 0
+        self.inc_iprew = 0
+        self.net_inc = None
+        self.disp_inc = None
         self.fed_return = None
         self.pro_return = None
         self.payroll = None
-        self.net_inc = self.inc_tot()
-        self.disp_inc = self.inc_tot() - self.con_rrsp
 
     @property
     def inc_work(self):
@@ -90,7 +103,8 @@ class Person:
         float
             revenu de travail.
         """
-        return self.inc_earn + self.inc_self_earn
+        return self.inc_earn + self.inc_self_earn \
+            + self.inc_cerb + self.inc_cesb + self.inc_iprew
 
     @property
     def inc_non_work(self):
@@ -106,6 +120,7 @@ class Person:
         return (self.inc_rpp + self.inc_cpp + self.inc_othtax + self.inc_othntax
                 + self.inc_rrsp + self.inc_oas + self.inc_gis)
 
+    @property
     def inc_tot(self):
         """
         Fonction qui retourne le revenu total.
@@ -177,6 +192,7 @@ class Hhold:
         self.dep = []
         self.count()
 
+    @property
     def fam_inc_work(self):
         """
         Fonction qui calcule le revenu familial de travail.
@@ -186,7 +202,7 @@ class Hhold:
         float
             Revenu familial de travail
         """
-        return sum([p.inc_work() for p in self.sp])
+        return sum([p.inc_work for p in self.sp])
 
     def fam_inc_non_work(self):
         """
@@ -197,7 +213,8 @@ class Hhold:
         float
             Revenu familial autre que travail
         """
-        return sum([p.inc_non_work() for p in self.sp])
+        return sum([p.inc_non_work for p in self.sp])
+
     def fam_tot_inc(self):
         """
         Fonction qui calcule le revenu familial total.
@@ -207,7 +224,8 @@ class Hhold:
         float
             Revenu familial total
         """
-        return sum([p.inc_tot() for p in self.sp])
+        return sum([p.inc_tot for p in self.sp])
+
     def fam_net_inc(self):
         """
         Fonction qui calcule le revenu familial après impôt.
@@ -218,6 +236,7 @@ class Hhold:
             Revenu familial total après impôt
         """
         return sum([p.net_inc for p in self.sp])
+
     def fam_disp_inc(self):
         """
         Fonction qui calcule le revenu familial disponible.

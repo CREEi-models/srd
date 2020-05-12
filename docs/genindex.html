@@ -22,11 +22,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-        <script type="text/javascript" src="_static/translations.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/translations.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -91,6 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="ei.html">Programme d’assurance emploi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="qpip.html">Régime québécois d’assurance parentale</a></li>
 <li class="toctree-l1"><a class="reference internal" href="assistance.html">Aide sociale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="covid.html">Prestations liées à la covid-19</a></li>
 <li class="toctree-l1"><a class="reference internal" href="calculators.html">Calculateur de revenu disponible</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialFed.html">Exemple de calcul de l’impôt fédéral</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialCalculator.html">Exemple de calcul du revenu disponible</a></li>
@@ -257,23 +258,31 @@
         <li><a href="quebec.html#srd.quebec.template.calc_taxable_income">(méthode srd.quebec.template)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="quebec.html#srd.quebec.template.ccap">ccap() (méthode srd.quebec.template)</a>
 </li>
       <li><a href="federal.html#srd.federal.template.ccb">ccb() (méthode srd.federal.template)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="quebec.html#srd.quebec.template.chcare">chcare() (méthode srd.quebec.template)</a>
 </li>
-      <li><a href="payroll.html#srd.payroll.compute">compute() (méthode srd.payroll)</a>
+      <li><a href="covid.html#srd.covid.programs.compute">compute() (méthode srd.covid.programs)</a>
 
       <ul>
+        <li><a href="payroll.html#srd.payroll.compute">(méthode srd.payroll)</a>
+</li>
         <li><a href="calculators.html#srd.tax.compute">(méthode srd.tax)</a>
 </li>
       </ul></li>
       <li><a href="oas.html#srd.oas.template.compute_allowance">compute_allowance() (méthode srd.oas.template)</a>
 </li>
+      <li><a href="covid.html#srd.covid.programs.compute_cerb">compute_cerb() (méthode srd.covid.programs)</a>
+</li>
+      <li><a href="covid.html#srd.covid.programs.compute_cesb">compute_cesb() (méthode srd.covid.programs)</a>
+</li>
       <li><a href="calculators.html#srd.tax.compute_federal">compute_federal() (méthode srd.tax)</a>
+</li>
+      <li><a href="covid.html#srd.covid.programs.compute_iprew">compute_iprew() (méthode srd.covid.programs)</a>
 </li>
       <li><a href="calculators.html#srd.tax.compute_oas">compute_oas() (méthode srd.tax)</a>
 </li>
@@ -306,6 +315,10 @@
       <li><a href="actors.html#srd.Dependent">Dependent (classe dans srd)</a>
 </li>
   </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="calculators.html#srd.tax.disp_inc">disp_inc() (méthode srd.tax)</a>
+</li>
+  </ul></td>
 </tr></table>
 
 <h2 id="E">E</h2>
@@ -323,7 +336,7 @@
 </li>
       <li><a href="actors.html#srd.Hhold.fam_inc_non_work">fam_inc_non_work() (méthode srd.Hhold)</a>
 </li>
-      <li><a href="actors.html#srd.Hhold.fam_inc_work">fam_inc_work() (méthode srd.Hhold)</a>
+      <li><a href="actors.html#srd.Hhold.fam_inc_work">fam_inc_work() (srd.Hhold property)</a>
 </li>
       <li><a href="actors.html#srd.Hhold.fam_net_inc">fam_net_inc() (méthode srd.Hhold)</a>
 </li>
@@ -433,7 +446,7 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="actors.html#srd.Person.inc_tot">inc_tot() (méthode srd.Person)</a>
+      <li><a href="actors.html#srd.Person.inc_tot">inc_tot() (srd.Person property)</a>
 </li>
       <li><a href="actors.html#srd.Person.inc_work">inc_work() (srd.Person property)</a>
 </li>
@@ -456,6 +469,8 @@
       <li><a href="oas.html#srd.oas.template.pension_clawback">pension_clawback() (méthode srd.oas.template)</a>
 </li>
       <li><a href="actors.html#srd.Person">Person (classe dans srd)</a>
+</li>
+      <li><a href="covid.html#srd.covid.policy">policy (classe dans srd.covid)</a>
 </li>
       <li><a href="assistance.html#srd.assistance.program">program() (dans le module srd.assistance)</a>
 
@@ -519,6 +534,8 @@
         <li><a href="qpip.html#srd.qpip.programs.program_2020">(classe dans srd.qpip.programs)</a>
 </li>
       </ul></li>
+      <li><a href="covid.html#srd.covid.programs">programs (classe dans srd.covid)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -527,10 +544,14 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="assistance.html#srd.assistance.template.shelter">shelter() (méthode srd.assistance.template)</a>
 </li>
+      <li><a href="covid.html#srd.covid.policy.shut_all_measures">shut_all_measures() (méthode srd.covid.policy)</a>
+</li>
       <li><a href="quebec.html#srd.quebec.template.solidarity">solidarity() (méthode srd.quebec.template)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="covid.html#srd.covid.policy.some_measures">some_measures() (srd.covid.policy property)</a>
+</li>
       <li><a href="actors.html#srd.Hhold.split_pension_income">split_pension_income() (méthode srd.Hhold)</a>
 </li>
       <li><a href="actors.html#module-srd">srd (module)</a>

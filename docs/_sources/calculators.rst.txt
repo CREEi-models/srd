@@ -15,4 +15,4 @@ Les fonctions du calculateur
 Le calculateur  contient les fonctions suivantes:
 
 .. autoclass:: tax
-    :members: compute, compute_oas, compute_federal, compute_prov, compute_payroll, netinc, dispinc
+    :members: compute, compute_oas, compute_federal, compute_prov, compute_payroll, netinc, disp_inc

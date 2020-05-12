@@ -55,7 +55,7 @@ class template:
         p: Person
             instance de la classe Person
         """
-        p.prov_return['gross_income'] = (p.inc_earn + p.inc_self_earn + p.inc_oas
+        p.prov_return['gross_income'] = (p.inc_work + p.inc_oas
                                          + p.inc_gis + p.inc_cpp + p.inc_rpp + p.inc_othtax
                                          + p.inc_rrsp)
 
@@ -109,7 +109,7 @@ class template:
         p: Person
             instance de la classe Person
         """
-        work_earn = p.inc_earn + p.inc_self_earn
+        work_earn = p.inc_work
         if work_earn > 0:
             deduc = min(work_earn*self.work_deduc_rate,self.work_deduc_max)
         else :
@@ -219,8 +219,7 @@ class template:
         if p.age < self.exp_work_min_age:
             return 0
 
-        work_inc = p.inc_earn + p.inc_self_earn
-        clawback = self.exp_work_claw_rate * max(0, work_inc - self.exp_work_cut_inc)
+        clawback = self.exp_work_claw_rate * max(0, p.inc_work - self.exp_work_cut_inc)
         adj_tax_liability = max(0, p.prov_return['gross_tax_liability']
                                 - self.nrtc_rate * (self.nrtc_base + p.age_cred))
         min_amount = 0
@@ -237,7 +236,7 @@ class template:
                 montant minimal du crédit d'impôt (env. 15% de 4000 pour les individus nés avant 1951)
             """
             base = self.exp_work_rate * min(max_work_inc,
-                                            work_inc - self.exp_work_min_inc)
+                                            p.inc_work - self.exp_work_min_inc)
             base_claw_adj = max(min_amount, base - clawback)
             return min(base_claw_adj, adj_tax_liability)
 
@@ -288,7 +287,6 @@ class template:
         p.qc_chcare = self.chcare(p, hh)
         p.qc_solidarity = self.solidarity(p, hh)
 
-
         p.prov_return['refund_credits'] = (p.qc_witb + p.qc_ccap + p.qc_chcare
                                            + p.qc_solidarity)
 
@@ -313,11 +311,10 @@ class template:
         float
             Montant de la prime au travail par individu
         """
-        fam_work_inc = sum([p.inc_earn + p.inc_self_earn for p in hh.sp])
         fam_net_inc = sum([p.prov_return['net_income'] for p in hh.sp])
         dependent = len([d for d in hh.dep if d.age <= self.witb_max_age]) > 0
 
-        if fam_work_inc < self.witb_cut_inc_low_single:
+        if hh.fam_inc_work < self.witb_cut_inc_low_single:
             return 0
 
         def calc_witb(rate, cut_inc_low, cut_inc_high):
@@ -340,7 +337,7 @@ class template:
             float
                 Montant de la Prime au travail par ménage
             """
-            amount = rate * max(0, min(cut_inc_high, fam_work_inc) - cut_inc_low)
+            amount = rate * max(0, min(cut_inc_high, hh.fam_inc_work) - cut_inc_low)
             clawback = self.witb_claw_rate * max(0, fam_net_inc - cut_inc_high)
             return max(0, amount - clawback)
 
@@ -348,7 +345,7 @@ class template:
             rate = self.witb_rate_couple_dep if dependent else self.witb_rate
             fam_witb = calc_witb(rate, self.witb_cut_inc_low_couple,
                              self.witb_cut_inc_high_couple)
-            return (p.inc_earn + p.inc_self_earn) / fam_work_inc * fam_witb
+            return p.inc_work / hh.fam_inc_work * fam_witb
         else:
             rate = self.witb_rate_single_dep if dependent else self.witb_rate
             return calc_witb(rate, self.witb_cut_inc_low_single,

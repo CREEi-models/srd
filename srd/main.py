@@ -4,18 +4,19 @@ import pickle
 import time
 
 import srd
-from srd import tax
+from srd import tax, Person, Hhold, Dependent, covid
 
-tax_form = tax(2020)
+policy = covid.policy(icovid_gst=False)
+policy.shut_all_measures()
+print(vars(policy))
+tax_form = tax(2020, policy=policy)
 
-with open('bdsps/l_hh.pkl', "rb") as f:
-    l_hh = pickle.load(f)
-print(len(l_hh))
+p0 = Person(months_cesb=1)
+p1 = Person(months_cesb=2, earn=6000, essential_worker=True)
+hh = Hhold(p0, p1, prov='qc')
+dep = Dependent(age=12)
+hh.dep.append(dep)
 
-start = time.time()
+tax_form.compute(hh)
 
-for i, hh in enumerate(l_hh):
-    print(i)
-    tax_form.compute(hh)
-
-print(time.time() - start)
+print(p0.covid)

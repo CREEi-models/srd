@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-        <script type="text/javascript" src="_static/translations.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/translations.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -172,7 +172,7 @@
 <p>La fonction <em>form</em> permet de choisir l’année du rapport d’impôt et ira tirer une instance du rapport pour cette année. L’instance est retournée par la fonction.</p>
 <dl class="function">
 <dt id="srd.federal.form">
-<code class="sig-prename descclassname">srd.federal.</code><code class="sig-name descname">form</code><span class="sig-paren">(</span><em class="sig-param">year</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-prename descclassname">srd.federal.</code><code class="sig-name descname">form</code><span class="sig-paren">(</span><em class="sig-param">year</em>, <em class="sig-param">policy=&lt;srd.covid.programs.policy object&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui permet de sélectionner le formulaire d’impôt fédéral par année.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -231,7 +231,7 @@
 <dl class="method">
 <dt id="srd.federal.template.calc_gross_income">
 <code class="sig-name descname">calc_gross_income</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_gross_income" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui calcule le revenu total (brutte).</p>
+<dd><p>Fonction qui calcule le revenu total (brut).</p>
 <p>Cette fonction correspond au revenu total d’une personne aux fins de l’impôt.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -451,7 +451,7 @@ cela devient l’Allocation canadienne pour les travailleurs (ACT/CWB).</p>
 
 <dl class="class">
 <dt id="srd.federal.form_2020">
-<em class="property">class </em><code class="sig-prename descclassname">srd.federal.</code><code class="sig-name descname">form_2020</code><a class="headerlink" href="#srd.federal.form_2020" title="Lien permanent vers cette définition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">srd.federal.</code><code class="sig-name descname">form_2020</code><span class="sig-paren">(</span><em class="sig-param">policy</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2020" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Rapport d’impôt de 2020.</p>
 </dd></dl>
 

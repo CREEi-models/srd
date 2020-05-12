@@ -74,7 +74,7 @@ class template:
         # determine numbers of kids
         hh.count()
         # income measure (total from all sources, excludes refundable tax credits)
-        tot_inc = sum([s.inc_tot() for s in hh.sp])
+        tot_inc = sum([s.inc_tot for s in hh.sp])
         # get top off if ccb reduced
         ccb_real = sum([self.fed.ccb(s,hh,iclaw=True) for s in hh.sp])
         ccb_max = sum([self.fed.ccb(s,hh,iclaw=False) for s in hh.sp])

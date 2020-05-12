@@ -6,21 +6,22 @@
 Simulateur de revenu disponible Québec
 ===========================================================
 
-Le Simulateur de revenu disponible (SRD) a été mis au point par l'équipe de la `chaire sur les enjeux économiques intergénérationels <https://www.creei.ca>`_, une chaire conjointe HEC Montréal et ESG UQAM. 
+Le Simulateur de revenu disponible (SRD) a été mis au point par l'équipe de la `chaire sur les enjeux économiques intergénérationels <https://www.creei.ca>`_, une chaire conjointe HEC Montréal et ESG UQAM.
 
 .. toctree::
    :maxdepth: 2
    :caption: Menu:
-   
+
    overview.rst
    actors.rst
    federal.rst
    quebec.rst
    oas.rst
-   payroll.rst 
+   payroll.rst
    ei.rst
    qpip.rst
    assistance.rst
+   covid.rst
    calculators.rst
    TutorialFed.rst
    TutorialCalculator.rst
