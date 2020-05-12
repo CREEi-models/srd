@@ -8,12 +8,26 @@ from scipy.optimize import minimize
 
 class behavior:
     def __init__(self,icouple=True, ihetero=True, icost=False, nreps=100):
+        """Classe pour estimer modèle offre de travail par méthode de vraisemblance simulée
+
+        Keyword Arguments:
+            icouple {bool} -- vrai si considère échantillon de couple (default: {True})
+            ihetero {bool} -- vrai si permet hétérogénéité inobservée (default: {True})
+            icost {bool} -- vrai si permet coût fixe pour chaque option (default: {False})
+            nreps {int} -- nombre de réplication si permet hétérogénéité inobservée (default: {100})
+        """
         self.icouple = icouple 
         self.ihetero = ihetero 
         self.icost = icost
         self.nreps = nreps
         return 
     def discretize(self,gridh = [0,1000,2000,3000],Lmax=4e3):
+        """Fonction permetant de discrétiser les heures sur une grille
+
+        Keyword Arguments:
+            gridh {list} -- [description] (default: {[0,1000,2000,3000]})
+            Lmax {[type]} -- [description] (default: {4e3})
+        """
         self.nh = len(gridh)
         self.gridh = gridh
         if self.icouple:
@@ -148,21 +162,74 @@ class behavior:
             fcosts = self.pars.loc[self.pars.index.get_level_values(0)=='FC','value'].values
             prob = prob_couple(choice,mu_r,mu_s,mu_c,mu_rs,C,Lr,Ls,Lv,eta_r,eta_s,fcosts,N,R,J)      
         return np.mean(np.log(prob))
-            
+
+    def loglike_i(self,theta):
+        self.set_theta(theta)
+        # compute shifters
+        self.shifters()
+        N = self.n
+        R = self.nreps       
+        if self.icouple:
+            mu_r = self.data.loc[:,'mu_r'].values
+            mu_s = self.data.loc[:,'mu_s'].values
+            mu_c = self.pars.loc[('C','constant'),'value'].values
+            mu_rs = self.pars.loc[('L(r,s)','constant'),'value']
+            C = self.data[['cons_'+str(j) for j in range(self.nh)]].values
+            Lmax = self.Lmax
+            Lr = [Lmax-h[0] for h in self.gridh]
+            Ls = [Lmax-h[1] for h in self.gridh]
+            V = np.zeros((2,2))
+            V[0,0] = np.exp(self.pars.loc[('L(r)','sigma'),'value'])
+            V[1,1] = np.exp(self.pars.loc[('L(s)','sigma'),'value'])
+            V[1,0] = np.tanh(self.pars.loc[('L(r,s)','rho'),'value'])*np.sqrt(V[0,0]*V[1,1])
+            V[0,1] = V[1,0]
+            Lv = cholesky(V, lower=True)
+            eta_r = self.draws_r
+            eta_s = self.draws_s
+            J = self.nh
+            choice = self.data.loc[:,'h_choice']
+            fcosts = self.pars.loc[self.pars.index.get_level_values(0)=='FC','value'].values
+            prob = prob_couple(choice,mu_r,mu_s,mu_c,mu_rs,C,Lr,Ls,Lv,eta_r,eta_s,fcosts,N,R,J)      
+        return np.log(prob)
+
     def estimate(self):
         init_theta = self.extract_theta()
-        neg_loglike = -self.loglike 
+        neg_loglike = lambda x: -self.loglike(x) 
         results = minimize(neg_loglike,init_theta,method='BFGS')
         if results.success:
             print('optimizer exited successfully with ', results.nit,' iterations.')
         else :
-            print('DID NOT EXIT SUCCESSFULLY!', results.nit,' iterations.')
+            print('did not exit successfully!', results.nit,' iterations.')
         self.set_theta(results.x)
-        self.loglike_value = loglike(results.x)
+        self.loglike_value = self.loglike(results.x)
         return 
     def covar(self):
-        return 
-    def summary(self):
+        # number of free parameters and number of observations
+        npars = self.nfreepars
+        n = self.n
+        # matrix to save gragients
+        G = np.zeros((n,npars))
+        # step for computing gradient
+        eps = 1e-4
+        # get thetas from pars object
+        theta = self.extract_theta()
+        # compute baseline likelihood contributions
+        fn_zero = self.loglike_i(theta)
+        # compute gradient of each obs with respect to each parameter
+        for i in range(npars):
+            theta_up = theta[:]
+            theta_up[i] += eps
+            fn_up = self.loglike_i(theta_up)
+            G[:,i] = (fn_up - fn_zero)/eps
+        # outer product of gradient formula
+        invcov = G.T @ G
+        cov = np.linalg.inv(invcov)/n
+        # save for future reference
+        self.cov_pars = cov
+        # compute standard errors
+        ses = np.sqrt(np.diagonal(cov))
+        # save standard errors in parameters
+        self.pars.loc[self.pars.free,'se'] = ses
         return 
 
 @njit(parallel=False)

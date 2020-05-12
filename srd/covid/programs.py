@@ -45,6 +45,7 @@ class policy:
     def some_measures(self):
         """
         Au moins une mesure spéciale covid-19.
+        
         Returns
         -------
         boolean

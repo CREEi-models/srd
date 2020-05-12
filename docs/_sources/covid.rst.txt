@@ -2,18 +2,24 @@
 Prestations liées à la covid-19
 -------------------------------
 
-Les mesures d’urgence pour soutenir la population canadiennes durant la pandémie de covid-19 sont prises en charge par la classe *covid*.
+Survol
+^^^^^^
 
-Au niveau fédéral, cette classe permet l’inclusion de la prestation canadienne d’urgence (PCU) ainsi que la prestation canadienne d’urgence pour étudiants (PCUE).
-
-Pour le Québec, cette classe permet le calcul du programme incitatif pour la rétention des travailleurs essentiels (PIRTE).
-
+Les mesures d’urgence pour soutenir la population canadiennes durant la pandémie de covid-19 sont prises en charge par la classe *covid*. Au niveau fédéral, cette classe permet l’inclusion de la prestation canadienne d’urgence (PCU) ainsi que la prestation canadienne d’urgence pour étudiants (PCUE). Pour le Québec, cette classe permet le calcul du programme incitatif pour la rétention des travailleurs essentiels (PIRTE).
 Les prestations de la PCU, PCUE et PIRTE sont considérées comme revenus du travail mais n'affectent pas les cotisations à l'assurence emploi, au régime québécois d'assurance parentale et au CPP/QPP.
 
 .. currentmodule:: srd.covid
 
+La classe *policy* permet de définir quels programmes on désire inclure dans les calculs du simulateur:
+
 .. autoclass:: policy
     :members: shut_all_measures, some_measures
+
+
+Gabarit du programme
+^^^^^^^^^^^^^^^^^^^^
+
+Une instance de la classe *policy* est ensuite entrée dans la classe *programs* et seuls les programmes qui ont été séléctionnés sont appliqués
 
 .. autoclass:: programs
     :members: compute, compute_cerb, compute_cesb, compute_iprew

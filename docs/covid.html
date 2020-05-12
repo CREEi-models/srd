@@ -35,7 +35,9 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Recherche" href="search.html" /> 
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="Calculateur de revenu disponible" href="calculators.html" />
+    <link rel="prev" title="Aide sociale" href="assistance.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -80,7 +82,7 @@
             
             
               <p class="caption"><span class="caption-text">Menu:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Premier pas avec le SRD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="actors.html">Les acteurs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="federal.html">Impôt Fédéral</a></li>
@@ -90,6 +92,11 @@
 <li class="toctree-l1"><a class="reference internal" href="ei.html">Programme d’assurance emploi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="qpip.html">Régime québécois d’assurance parentale</a></li>
 <li class="toctree-l1"><a class="reference internal" href="assistance.html">Aide sociale</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Prestations liées à la covid-19</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gabarit-du-programme">Gabarit du programme</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="calculators.html">Calculateur de revenu disponible</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialFed.html">Exemple de calcul de l’impôt fédéral</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialCalculator.html">Exemple de calcul du revenu disponible</a></li>
@@ -159,10 +166,11 @@
             
   <div class="section" id="prestations-liees-a-la-covid-19">
 <h1>Prestations liées à la covid-19<a class="headerlink" href="#prestations-liees-a-la-covid-19" title="Lien permanent vers ce titre">¶</a></h1>
-<p>Les mesures d’urgence pour soutenir la population canadiennes durant la pandémie de covid-19 sont prises en charge par la classe <em>covid</em>.</p>
-<p>Au niveau fédéral, cette classe permet l’inclusion de la prestation canadienne d’urgence (PCU) ainsi que la prestation canadienne d’urgence pour étudiants (PCUE).</p>
-<p>Pour le Québec, cette classe permet le calcul du programme incitatif pour la rétention des travailleurs essentiels (PIRTE).</p>
-<p>Les prestations de la PCU, PCUE et PIRTE sont considérées comme revenus du travail mais n’affectent pas les cotisations à l’assurence emploi, au régime québécois d’assurance parentale et au CPP/QPP.</p>
+<div class="section" id="survol">
+<h2>Survol<a class="headerlink" href="#survol" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Les mesures d’urgence pour soutenir la population canadiennes durant la pandémie de covid-19 sont prises en charge par la classe <em>covid</em>. Au niveau fédéral, cette classe permet l’inclusion de la prestation canadienne d’urgence (PCU) ainsi que la prestation canadienne d’urgence pour étudiants (PCUE). Pour le Québec, cette classe permet le calcul du programme incitatif pour la rétention des travailleurs essentiels (PIRTE).
+Les prestations de la PCU, PCUE et PIRTE sont considérées comme revenus du travail mais n’affectent pas les cotisations à l’assurence emploi, au régime québécois d’assurance parentale et au CPP/QPP.</p>
+<p>La classe <em>policy</em> permet de définir quels programmes on désire inclure dans les calculs du simulateur:</p>
 <dl class="class">
 <dt id="srd.covid.policy">
 <em class="property">class </em><code class="sig-prename descclassname">srd.covid.</code><code class="sig-name descname">policy</code><span class="sig-paren">(</span><em class="sig-param">icerb=True</em>, <em class="sig-param">icesb=True</em>, <em class="sig-param">iiprew=True</em>, <em class="sig-param">icovid_gst=True</em>, <em class="sig-param">icovid_ccb=True</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.covid.policy" title="Lien permanent vers cette définition">¶</a></dt>
@@ -188,13 +196,23 @@
 <dl class="method">
 <dt id="srd.covid.policy.some_measures">
 <em class="property">property </em><code class="sig-name descname">some_measures</code><a class="headerlink" href="#srd.covid.policy.some_measures" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Au moins une mesure spéciale covid-19.
-:returns: True s’il y a au moins une mesure, False sinon.
-:rtype: boolean</p>
+<dd><p>Au moins une mesure spéciale covid-19.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Renvoie</dt>
+<dd class="field-odd"><p>True s’il y a au moins une mesure, False sinon.</p>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p>boolean</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
 
+</div>
+<div class="section" id="gabarit-du-programme">
+<h2>Gabarit du programme<a class="headerlink" href="#gabarit-du-programme" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Une instance de la classe <em>policy</em> est ensuite entrée dans la classe <em>programs</em> et seuls les programmes qui ont été séléctionnés sont appliqués</p>
 <dl class="class">
 <dt id="srd.covid.programs">
 <em class="property">class </em><code class="sig-prename descclassname">srd.covid.</code><code class="sig-name descname">programs</code><span class="sig-paren">(</span><em class="sig-param">policy</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.covid.programs" title="Lien permanent vers cette définition">¶</a></dt>
@@ -284,12 +302,22 @@ durant laquelle la prestation est demandée.</p>
 </dd></dl>
 
 </div>
+</div>
 
 
            </div>
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="calculators.html" class="btn btn-neutral float-right" title="Calculateur de revenu disponible" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="assistance.html" class="btn btn-neutral float-left" title="Aide sociale" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
