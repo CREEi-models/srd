@@ -57,7 +57,7 @@ class Person:
                  months_cesb=0, essential_worker=False):
         self.age = age
         self.male = male
-        self.inc_earn = earn
+        self.attach_inc_earn_month(earn)
         self.inc_rpp = rpp
         self.inc_cpp = cpp
         self.inc_othtax = othtax
@@ -73,7 +73,7 @@ class Person:
         self.ndays_chcare_k2 = ndays_chcare_k2 # second kid with most days, in same order for both spouses
         self.asset = asset
         self.oas_years_post = oas_years_post
-        self.months_cerb = months_cerb
+        self.months_cerb = months_cerb # assuming that last year's work income > 5000
         self.months_cesb = months_cesb
         self.essential_worker = essential_worker
         self.inc_oas = 0
@@ -84,11 +84,35 @@ class Person:
         self.inc_cerb = 0
         self.inc_cesb = 0
         self.inc_iprew = 0
+        self.covid = None
         self.net_inc = None
         self.disp_inc = None
         self.fed_return = None
         self.pro_return = None
         self.payroll = None
+
+    def attach_inc_earn_month(self, earn):
+        """
+        Fonction qui convertit le revenu du travail salarié annuel en revenu mensuel et vice-versa.
+
+        On entre le revenu du travail salarié annuel ou mensuel (liste avec 12 éléments)
+        et le revenu du travail salarié annuel et mensuel deviennent des attributs de la personne.
+
+        Parameters
+        ----------
+        earn: float or list
+
+        Returns
+        -------
+        float
+            revenu de travail.
+        """
+        if type(earn) == list and len(earn) == 12:
+            self.inc_earn_month = earn
+            self.inc_earn = sum(earn)
+        else:
+            self.inc_earn_month = [earn / 12] * 12
+            self.inc_earn = earn
 
     @property
     def inc_work(self):

@@ -7,7 +7,7 @@ from srd import tax, Person, Hhold, Dependent, covid
 
 year = 2020
 
-def test_increase_cbb_gst():
+def test_increase_cbb():
     tax_form = tax(2020)
     p = Person()
     hh = Hhold(p, prov='qc')
@@ -16,7 +16,6 @@ def test_increase_cbb_gst():
 
     tax_form.compute(hh)
 
-    gst_covid = p.fed_gst_hst_credit
     ccb_covid = p.fed_ccb
 
     policy = covid.policy()
@@ -29,11 +28,37 @@ def test_increase_cbb_gst():
 
     tax_form.compute(hh)
 
-    gst = p.fed_gst_hst_credit
     ccb = p.fed_ccb
 
-    assert gst_covid > gst
     assert ccb_covid == ccb + 300
+
+@pytest.mark.parametrize('nkids , increase', [(0, 443), (1, 443 + 290)])
+def test_increase_gst_single(nkids, increase):
+    tax_form = tax(2020)
+    def create_hh(nkids):
+        p = Person(earn=20e3)
+        hh = Hhold(p, prov='qc')
+        for _ in range(nkids):
+            d = Dependent(age=12)
+            hh.dep.append(d)
+        return hh
+
+    hh = create_hh(nkids)
+    tax_form.compute(hh)
+
+    gst_covid = hh.sp[0].fed_gst_hst_credit
+
+    policy = covid.policy()
+    policy.shut_all_measures()
+    tax_form = tax(2020, policy=policy)
+
+    hh = create_hh(nkids)
+    tax_form.compute(hh)
+
+    gst = hh.sp[0].fed_gst_hst_credit
+
+    assert gst_covid == gst + increase
+
 
 def test_cerb():
     tax_form = tax(2020)

@@ -8,7 +8,7 @@ Importation du module
 
     import srd
 
-Intialisation d’un ménage
+Initialisation d’un ménage
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 On doit d’abord initialiser un ménage. Ici nous supposerons un couple

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Impôt Fédéral &mdash; Documentation Simulateur de revenu disponible </title>
+  <title>Impôt fédéral &mdash; Documentation Simulateur de revenu disponible </title>
   
 
   
@@ -85,7 +85,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Premier pas avec le SRD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="actors.html">Les acteurs</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Impôt Fédéral</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Impôt fédéral</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#survol">Survol</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gabarit-du-rapport">Gabarit du rapport</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
@@ -97,6 +97,7 @@
 <li class="toctree-l1"><a class="reference internal" href="ei.html">Programme d’assurance emploi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="qpip.html">Régime québécois d’assurance parentale</a></li>
 <li class="toctree-l1"><a class="reference internal" href="assistance.html">Aide sociale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="covid.html">Prestations liées à la covid-19</a></li>
 <li class="toctree-l1"><a class="reference internal" href="calculators.html">Calculateur de revenu disponible</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialFed.html">Exemple de calcul de l’impôt fédéral</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialCalculator.html">Exemple de calcul du revenu disponible</a></li>
@@ -145,7 +146,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Impôt Fédéral</li>
+      <li>Impôt fédéral</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -165,10 +166,10 @@
            <div itemprop="articleBody">
             
   <div class="section" id="impot-federal">
-<h1>Impôt Fédéral<a class="headerlink" href="#impot-federal" title="Lien permanent vers ce titre">¶</a></h1>
+<h1>Impôt fédéral<a class="headerlink" href="#impot-federal" title="Lien permanent vers ce titre">¶</a></h1>
 <div class="section" id="survol">
 <h2>Survol<a class="headerlink" href="#survol" title="Lien permanent vers ce titre">¶</a></h2>
-<p>L’impôt fédéral est pris en charge par le module <em>federal</em>. Ce module contient un gabarit que nous documentons ici-bas ainsi que des classes spécifiques à chaque année.</p>
+<p>L’impôt fédéral est pris en charge par le module <em>federal</em>. Ce module contient un gabarit que nous documentons ici-bas ainsi que des classes spécifiques chaque année.</p>
 <p>La fonction <em>form</em> permet de choisir l’année du rapport d’impôt et ira tirer une instance du rapport pour cette année. L’instance est retournée par la fonction.</p>
 <dl class="function">
 <dt id="srd.federal.form">
@@ -190,7 +191,7 @@
 </div>
 <div class="section" id="gabarit-du-rapport">
 <h2>Gabarit du rapport<a class="headerlink" href="#gabarit-du-rapport" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Nous utilisons un gabarit afin de créer les rapports à chaque année. Quand le programme change seulement dans ces paramètres, le rapport ira seulement chercher les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou en rajouter).</p>
+<p>Nous utilisons un gabarit afin de créer les rapports chaque année. Quand le programme change seulement dans ces paramètres, le rapport ira seulement chercher les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou en rajouter).</p>
 <p>Nous reproduisons ici la spécification du gabarit. Il est calqué sur le rapport de 2016.</p>
 <dl class="class">
 <dt id="srd.federal.template">

@@ -85,7 +85,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Premier pas avec le SRD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="actors.html">Les acteurs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="federal.html">Impôt Fédéral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="federal.html">Impôt fédéral</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quebec.html">Impôt du Québec</a></li>
 <li class="toctree-l1"><a class="reference internal" href="oas.html">Pension de la sécurité de la vieillesse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="payroll.html">Cotisations sociales</a></li>
@@ -212,7 +212,7 @@ Les prestations de la PCU, PCUE et PIRTE sont considérées comme revenus du tra
 </div>
 <div class="section" id="gabarit-du-programme">
 <h2>Gabarit du programme<a class="headerlink" href="#gabarit-du-programme" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Une instance de la classe <em>policy</em> est ensuite entrée dans la classe <em>programs</em> et seuls les programmes qui ont été séléctionnés sont appliqués</p>
+<p>Une instance de la classe <em>policy</em> est ensuite entrée dans la classe <em>programs</em> et seuls les programmes qui ont été séléctionnés sont appliqués.</p>
 <dl class="class">
 <dt id="srd.covid.programs">
 <em class="property">class </em><code class="sig-prename descclassname">srd.covid.</code><code class="sig-name descname">programs</code><span class="sig-paren">(</span><em class="sig-param">policy</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.covid.programs" title="Lien permanent vers cette définition">¶</a></dt>
@@ -259,9 +259,8 @@ durant laquelle la prestation est demandée.</p>
 <dt id="srd.covid.programs.compute_cesb">
 <code class="sig-name descname">compute_cesb</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.covid.programs.compute_cesb" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction pour le calcul de la PCUE.</p>
-<p>Calcule la PCUE en fonction du statut (invalidité, dépendents)
-et du nombre de blocs de 4 semaines (mois)
-durant laquelle la prestation est demandée.</p>
+<p>Calcule la PCUE en fonction de la prestation mensuelle à laquelle l’individu
+a droit et du nombre de blocs de 4 semaines (mois) durant lequel la prestation est demandée.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">

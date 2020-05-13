@@ -69,4 +69,4 @@ class payroll:
             acc = cpp.account(byear=self.year - p.age, rules=rules)
             acc.MakeContrib(year=self.year, earn=p.inc_earn)
             hist = acc.history[p.age - 18]
-            return hist.contrib, hist.contrib_s1+hist.contrib_s2
+            return hist.contrib, hist.contrib_s1 + hist.contrib_s2

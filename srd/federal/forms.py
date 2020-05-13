@@ -80,6 +80,9 @@ class form_2020(template):
         if policy.icovid_ccb:
             self.ccb_young += self.ccb_covid_supp
             self.ccb_old += self.ccb_covid_supp
+        if policy.icovid_gst:
+            self.gst_cred_base *= 2
+            self.gst_cred_other *= 2
 
     def calc_non_refundable_tax_credits(self, p):
         """
@@ -107,36 +110,36 @@ class form_2020(template):
         p.fed_return['non_refund_credits'] = self.rate_non_ref_tax_cred * (basic_amount
             + p.fed_age_cred + p.fed_pension_cred + p.fed_disabled_cred)
 
-    def gst_hst_credit(self, p, hh):
-        """
-        Crédit pour la taxe sur les produits et services/taxe de vente harmonisée (TPS/TVH)
+    # def gst_hst_credit(self, p, hh):
+    #     """
+    #     Crédit pour la taxe sur les produits et services/taxe de vente harmonisée (TPS/TVH)
 
-        Parameters
-        ----------
-        p: Person
-            instance de la classe Person
-        hh: Hhold
-            instance de la classe Hhold
-        Returns
-        -------
-        float
-            Montant du crédit
-        """
-        fam_net_inc = sum([p.fed_return['net_income'] for p in hh.sp])
-        nkids = len([d for d in hh.dep if d.age < self.gst_cred_kids_max_age])
+    #     Parameters
+    #     ----------
+    #     p: Person
+    #         instance de la classe Person
+    #     hh: Hhold
+    #         instance de la classe Hhold
+    #     Returns
+    #     -------
+    #     float
+    #         Montant du crédit
+    #     """
+    #     fam_net_inc = sum([p.fed_return['net_income'] for p in hh.sp])
+    #     nkids = len([d for d in hh.dep if d.age < self.gst_cred_kids_max_age])
 
-        clawback = self.gst_cred_claw_rate * max(0, fam_net_inc - self.gst_cred_claw_cutoff)
-        amount = self.gst_cred_base
+    #     clawback = self.gst_cred_claw_rate * max(0, fam_net_inc - self.gst_cred_claw_cutoff)
+    #     amount = self.gst_cred_base
 
-        if self.policy.icovid_gst: # only difference in 2020 compared to other years
-            if hh.couple:
-                amount += self.gst_covid_couple
-            else:
-                amount += self.gst_covid_single
+    #     if self.policy.icovid_gst: # only difference in 2020 compared to other years
+    #         if hh.couple:
+    #             amount += self.gst_covid_couple
+    #         else:
+    #             amount += self.gst_covid_single
 
-        if hh.couple or nkids >= 1:
-            amount += amount + nkids * self.gst_cred_other # single with kids works same as couple
-        else:
-            amount += min(self.gst_cred_other,
-                          self.gst_cred_rate * max(0, fam_net_inc - self.gst_cred_base_amount))
-        return amount / (1 + hh.couple)
+    #     if hh.couple or nkids >= 1:
+    #         amount += amount + nkids * self.gst_cred_other # single with kids works same as couple
+    #     else:
+    #         amount += min(self.gst_cred_other,
+    #                       self.gst_cred_rate * max(0, fam_net_inc - self.gst_cred_base_amount))
+    #     return amount / (1 + hh.couple)

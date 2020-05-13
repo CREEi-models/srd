@@ -1,11 +1,11 @@
 
-Impôt Fédéral
+Impôt fédéral
 -------------
 
 Survol
 ^^^^^^
 
-L'impôt fédéral est pris en charge par le module *federal*. Ce module contient un gabarit que nous documentons ici-bas ainsi que des classes spécifiques à chaque année.
+L'impôt fédéral est pris en charge par le module *federal*. Ce module contient un gabarit que nous documentons ici-bas ainsi que des classes spécifiques chaque année.
 
 .. currentmodule:: srd.federal
 
@@ -16,7 +16,7 @@ La fonction *form* permet de choisir l'année du rapport d'impôt et ira tirer u
 Gabarit du rapport
 ^^^^^^^^^^^^^^^^^^^^
 
-Nous utilisons un gabarit afin de créer les rapports à chaque année. Quand le programme change seulement dans ces paramètres, le rapport ira seulement chercher les nouveaux paramètres. Quand des fonctions changent, l'utilisateur n'a qu'à modifier les fonctions touchées (ou en rajouter).
+Nous utilisons un gabarit afin de créer les rapports chaque année. Quand le programme change seulement dans ces paramètres, le rapport ira seulement chercher les nouveaux paramètres. Quand des fonctions changent, l'utilisateur n'a qu'à modifier les fonctions touchées (ou en rajouter).
 
 Nous reproduisons ici la spécification du gabarit. Il est calqué sur le rapport de 2016.
 

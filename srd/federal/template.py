@@ -418,11 +418,12 @@ class template:
         nkids = len([d for d in hh.dep if d.age < self.gst_cred_kids_max_age])
 
         clawback = self.gst_cred_claw_rate * max(0, fam_net_inc - self.gst_cred_claw_cutoff)
-        amount = self.gst_cred_base
 
+        amount = self.gst_cred_base
         if hh.couple or nkids >= 1:
-            amount += amount + nkids * self.gst_cred_other # single with kids works same as couple
+            amount += self.gst_cred_base + nkids * self.gst_cred_other # single with kids works same as couple
         else:
             amount += min(self.gst_cred_other,
                           self.gst_cred_rate * max(0, fam_net_inc - self.gst_cred_base_amount))
-        return amount / (1 + hh.couple)
+
+        return (amount - clawback) / (1 + hh.couple)

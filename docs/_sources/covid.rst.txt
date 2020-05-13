@@ -19,7 +19,7 @@ La classe *policy* permet de définir quels programmes on désire inclure dans l
 Gabarit du programme
 ^^^^^^^^^^^^^^^^^^^^
 
-Une instance de la classe *policy* est ensuite entrée dans la classe *programs* et seuls les programmes qui ont été séléctionnés sont appliqués
+Une instance de la classe *policy* est ensuite entrée dans la classe *programs* et seuls les programmes qui ont été séléctionnés sont appliqués.
 
 .. autoclass:: programs
     :members: compute, compute_cerb, compute_cesb, compute_iprew

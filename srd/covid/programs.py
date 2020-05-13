@@ -45,7 +45,7 @@ class policy:
     def some_measures(self):
         """
         Au moins une mesure spéciale covid-19.
-        
+
         Returns
         -------
         boolean
@@ -109,18 +109,19 @@ class programs:
         float
             Le montant de la PCU.
         """
-        if p.inc_work < self.cerb_min_inc_work: # should be last year's income
+        if p.months_cerb == 0:
             return 0
         else:
-            return p.months_cerb * self.cerb_base
+            l_cerb = [self.cerb_base for month in range(4, 4 + p.months_cerb)
+                      if p.inc_earn_month[month] < self.cerb_max_earn]
+            return sum(l_cerb)
 
     def compute_cesb(self, p, hh):
         """
         Fonction pour le calcul de la PCUE.
 
-        Calcule la PCUE en fonction du statut (invalidité, dépendents)
-        et du nombre de blocs de 4 semaines (mois)
-        durant laquelle la prestation est demandée.
+        Calcule la PCUE en fonction de la prestation mensuelle à laquelle l'individu
+        a droit et du nombre de blocs de 4 semaines (mois) durant lequel la prestation est demandée.
 
         Parameters
         ----------
@@ -136,22 +137,39 @@ class programs:
         """
         if p.months_cesb == 0:
             return 0
+        else:
+            monthly_cesb = self.monthly_cesb(p, hh)
+            l_cesb = [monthly_cesb for month in range(4, 4 + p.months_cerb)
+                  if p.inc_earn_month[month] < self.cerb_max_earn]
+            return sum(l_cesb)
+
+    def compute_monthly_cesb(self, p, hh):
+        """
+        Calcule le montant mensuelle de la PCUE en fonction du statut (invalidité, dépendents)
+
+        Parameters
+        ----------
+
+        Returns
+        -------
+        float
+            La prestation mensuelle
+        """
 
         dep = len(hh.dep) > 0
         if p.disabled:
-            return p.months_cesb * (self.cesb_base + self.cesb_supp)
+            return self.cesb_base + self.cesb_supp
         if not p.disabled and not dep:
-            return p.months_cesb * self.cesb_base
+            return self.cesb_base
         if dep:
             if hh.couple:
                 spouse = hh.sp[1 - hh.sp.index(p)]
                 if spouse.disabled:
-                    return p.months_cesb * (self.cesb_base + self.cesb_supp)
+                    return self.cesb_base + self.cesb_supp
                 else:
-                    return p.months_cesb * (self.cesb_base + self.cesb_supp / 2)
+                    return self.cesb_base + self.cesb_supp / 2
             else:
-                return p.months_cesb * (self.cesb_base + self.cesb_supp)
-
+                return self.cesb_base + self.cesb_supp
 
     def compute_iprew(self, p):
         """
@@ -174,4 +192,6 @@ class programs:
             p.inc_tot > self.iprew_max_inc_tot):
             return 0
         else:
-            return self.iprew_amount
+            l_iprew = [self.iprew_monthly_amount for month in range(4, 8)
+                       if p.inc_earn_month[month] < self.iprew_max_earn]
+            return sum(l_iprew)

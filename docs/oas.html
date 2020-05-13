@@ -85,7 +85,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Premier pas avec le SRD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="actors.html">Les acteurs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="federal.html">Impôt Fédéral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="federal.html">Impôt fédéral</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quebec.html">Impôt du Québec</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Pension de la sécurité de la vieillesse</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#survol">Survol</a></li>
@@ -97,6 +97,7 @@
 <li class="toctree-l1"><a class="reference internal" href="ei.html">Programme d’assurance emploi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="qpip.html">Régime québécois d’assurance parentale</a></li>
 <li class="toctree-l1"><a class="reference internal" href="assistance.html">Aide sociale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="covid.html">Prestations liées à la covid-19</a></li>
 <li class="toctree-l1"><a class="reference internal" href="calculators.html">Calculateur de revenu disponible</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialFed.html">Exemple de calcul de l’impôt fédéral</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialCalculator.html">Exemple de calcul du revenu disponible</a></li>
@@ -168,7 +169,7 @@
 <h1>Pension de la sécurité de la vieillesse<a class="headerlink" href="#pension-de-la-securite-de-la-vieillesse" title="Lien permanent vers ce titre">¶</a></h1>
 <div class="section" id="survol">
 <h2>Survol<a class="headerlink" href="#survol" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Le programme de la pension de la sécurité à la vieillesse (PSV) et le supplément du revenu garanti (SRG) sont pris en charge par le module <em>oas</em>. Ce module contient un gabarit que nous documentons ici-bas ainsi que des classes dérivées spécifiques à chaque année.</p>
+<p>Le programme de la pension de la sécurité à la vieillesse (PSV) et le supplément du revenu garanti (SRG) sont pris en charge par le module <em>oas</em>. Ce module contient un gabarit que nous documentons ici-bas ainsi que des classes dérivées spécifiques chaque année.</p>
 <p>La fonction program permet de choisir l’année du programme et ira tirer une instance du programme pour cette année. L’instance est retournée par la fonction.</p>
 <dl class="function">
 <dt id="srd.oas.program">
@@ -190,7 +191,7 @@
 </div>
 <div class="section" id="gabarit-du-programme">
 <h2>Gabarit du programme<a class="headerlink" href="#gabarit-du-programme" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Nous utilisons un gabarit afin de créer les programmes à chaque année. Quand le programme change seulement au niveau des paramètres d’une année à l’autre, nous irons chercher seulement les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou en rajouter). L’avantage des classes dérivées est de ne pas avoir à répéter toutes les fonctions d’une année à l’autre si celles-ci n’ont pas changer.</p>
+<p>Nous utilisons un gabarit afin de créer les programmes chaque année. Quand le programme change seulement au niveau des paramètres d’une année à l’autre, nous irons chercher seulement les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou en rajouter). L’avantage des classes dérivées est de ne pas avoir à répéter toutes les fonctions d’une année à l’autre si celles-ci n’ont pas changé.</p>
 <p>Nous reproduisons ici la spécification du gabarit. Il est calibré sur le programme en vigueur en 2016.</p>
 <dl class="class">
 <dt id="srd.oas.template">
