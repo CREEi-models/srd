@@ -1,3 +1,6 @@
 [submodule "srd/cpp"]
 	path = srd/cpp
 	url = https://github.com/creei-models/cpp
+[submodule "srd/srp"]
+	path = srd/srp
+	url = https://github.com/creei-models/srp
