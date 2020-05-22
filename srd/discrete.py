@@ -4,8 +4,8 @@ import pandas as pd
 from numba import njit, prange
 from itertools import product
 from scipy.linalg import cholesky
-from scipy.optimize import minimize 
-from functools import partial 
+from scipy.optimize import minimize
+from functools import partial
 
 class behavior:
     def __init__(self,icouple=True, ihetero=True, icost=False, nreps=100):
@@ -17,11 +17,11 @@ class behavior:
             icost {bool} -- vrai si permet coût fixe pour chaque option (default: {False})
             nreps {int} -- nombre de réplication si permet hétérogénéité inobservée (default: {100})
         """
-        self.icouple = icouple 
-        self.ihetero = ihetero 
+        self.icouple = icouple
+        self.ihetero = ihetero
         self.icost = icost
         self.nreps = nreps
-        return 
+        return
     def discretize(self,gridh = [0,1000,2000,3000],Lmax=4e3):
         """Fonction permetant de discrétiser les heures sur une grille
 
@@ -47,13 +47,13 @@ class behavior:
             self.data['h_choice'] = self.data.loc[:,'r_choice']
             self.nh = len(self.gridh)
         self.Lmax = Lmax
-        return 
+        return
     def dispinc(self,row,hours):
         """Fonction permettant le calcul du revenu disponible étant donné un choix d'heures travaillées
 
         Arguments:
             row {pandas} -- ligne pandas contenant les information d'un ménage
-            hours {float ou tuple de float} -- Si couples, tuple d'heures travaillées, si personne seule, un seul nombre. 
+            hours {float ou tuple de float} -- Si couples, tuple d'heures travaillées, si personne seule, un seul nombre.
 
         Returns:
             [float] -- le revenu disponible du ménage.
@@ -66,7 +66,7 @@ class behavior:
             row['hhold'].sp[0].earn = hours*row['r_wage']
             self.tax.compute(row['hhold'])
             self.tax.disp_inc(row['hhold'])
-        return row['hhold'].fam_disp_inc()
+        return row['hhold'].fam_disp_inc
     def budget(self,year=2020):
         """Fonction qui calcule tous les revenus disponibles pour la grille d'heures
 
@@ -76,8 +76,8 @@ class behavior:
         self.tax = tax(year)
         for j,h in enumerate(self.gridh):
             f = partial(self.dispinc,hours=h)
-            self.data['cons_'+str(j)] = self.data.apply(f,axis=1) 
-        return 
+            self.data['cons_'+str(j)] = self.data.apply(f,axis=1)
+        return
     def set_shifters(self,list_of_varnames):
         """Fonction permettant de spécifier les noms de variables qui ajusteront l'utilité marginale du loisir.
 
@@ -86,7 +86,7 @@ class behavior:
         """
         self.shifters_vars = list_of_varnames
         self.nshifters = len(list_of_varnames)
-        return 
+        return
     def shifters(self):
         """ Fonction qui calcule la valeur des utilités marginales du loisir (sans la portion inobservables)
         """
@@ -110,7 +110,7 @@ class behavior:
         self.pars.set_index(['group','label'],inplace=True)
         # consumption
         self.pars.loc[('C','constant'),:] = [1e-2,0.0,True]
-        # respondent leisure 
+        # respondent leisure
         self.pars.loc[('L(r)','constant'),:] = [1e-2,0.0,True]
         for v in self.shifters_vars:
             self.pars.loc[('L(r)',v),:] = [0.0,0.0,True]
@@ -118,7 +118,7 @@ class behavior:
         if self.ihetero:
             self.pars.loc[('L(r)','sigma'),:] = [-3,0.0,True]
         # spouse (if couple)
-        if self.icouple: 
+        if self.icouple:
             self.pars.loc[('L(s)','constant'),:] = [1e-2,0.0,True]
             for v in self.shifters_vars:
                 self.pars.loc[('L(s)',v),:] = [0.0,0.0,True]
@@ -139,7 +139,7 @@ class behavior:
         # number of parameters
         self.npars = len(self.pars)
         self.nfreepars = self.pars['free'].sum()
-        return 
+        return
     def fixpar(self,group,label,value):
         """ Fonction afin de fixer la valeur d'un paramètre (contraint l'estimation)
 
@@ -148,10 +148,10 @@ class behavior:
             label {[type]} -- Le nom du paramètre (constant ou le nom d'un shifter, etc)
             value {[type]} -- Valeur à laquelle le paramètre est contraint
         """
-        self.pars.loc[(group,label),'free'] = False 
+        self.pars.loc[(group,label),'free'] = False
         self.pars.loc[(group,label),'value'] = value
         self.nfreepars = self.pars['free'].sum()
-        return 
+        return
     def initdata(self,file):
         """Fonction qui initialise les données.
 
@@ -161,34 +161,34 @@ class behavior:
             file {str} -- le nom du fichier de données mise en forme.
         """
         self.data = pd.read_pickle(file)
-        if self.icouple: 
+        if self.icouple:
             self.data = self.data.loc[self.data.couple,:]
         else :
-            self.data = self.data.loc[self.data.couple==False,:]    
+            self.data = self.data.loc[self.data.couple==False,:]
         self.n = len(self.data)
-        return 
+        return
     def initdraws(self):
-        """Initialisation des tirages aléatoires pour l'estimation. 
+        """Initialisation des tirages aléatoires pour l'estimation.
         """
         if self.icouple:
             self.draws_r = np.random.normal((self.n,self.nreps))
             self.draws_s = np.random.normal((self.n,self.nreps))
         else :
-            self.draws_r = np.random.normal((self.n,self.nreps))   
-        return 
+            self.draws_r = np.random.normal((self.n,self.nreps))
+        return
     def set_theta(self,theta):
         """Fonction permettant d'assigner les paramètres libres à l'instance pars
 
         Arguments:
-            theta {numpy.array} -- Vecteur de paramètres libres. 
+            theta {numpy.array} -- Vecteur de paramètres libres.
         """
         self.pars.loc[self.pars.free,'value'] = theta
-        return 
+        return
     def extract_theta(self):
         """Fonction permettant d'extraire les paramètres libres provenant de l'instance pars
 
         Returns:
-            [numpy.array] -- vecteur des paramètres libres. 
+            [numpy.array] -- vecteur des paramètres libres.
         """
         theta = self.pars.loc[self.pars.free,'value']
         return theta
@@ -205,7 +205,7 @@ class behavior:
         # compute shifters
         self.shifters()
         N = self.n
-        R = self.nreps       
+        R = self.nreps
         if self.icouple:
             mu_r = self.data.loc[:,'mu_r'].values
             mu_s = self.data.loc[:,'mu_s'].values
@@ -226,7 +226,7 @@ class behavior:
             J = self.nh
             choice = self.data.loc[:,'h_choice']
             fcosts = self.pars.loc[self.pars.index.get_level_values(0)=='FC','value'].values
-            prob = prob_couple(choice,mu_r,mu_s,mu_c,mu_rs,C,Lr,Ls,Lv,eta_r,eta_s,fcosts,N,R,J)  
+            prob = prob_couple(choice,mu_r,mu_s,mu_c,mu_rs,C,Lr,Ls,Lv,eta_r,eta_s,fcosts,N,R,J)
         else :
             mu_r = self.data.loc[:,'mu_r'].values
             mu_c = self.pars.loc[('C','constant'),'value'].values
@@ -238,14 +238,14 @@ class behavior:
             J = self.nh
             choice = self.data.loc[:,'r_choice']
             fcosts = self.pars.loc[self.pars.index.get_level_values(0)=='FC','value'].values
-            prob = prob_single(choice,mu_r,mu_c,C,Lr,sigma,eta_r,fcosts,N,R,J)     
+            prob = prob_single(choice,mu_r,mu_c,C,Lr,sigma,eta_r,fcosts,N,R,J)
         return np.mean(np.log(prob))
 
     def loglike_i(self,theta):
         """Contribution à la vraisemblance simulée
 
         Arguments:
-            theta {numpy.array} -- vecteur de paramètres libres. 
+            theta {numpy.array} -- vecteur de paramètres libres.
 
         Returns:
             [numpy.array] -- vecteur des contributions de chaque ménage à la log-vraisemblance
@@ -254,7 +254,7 @@ class behavior:
         # compute shifters
         self.shifters()
         N = self.n
-        R = self.nreps       
+        R = self.nreps
         if self.icouple:
             mu_r = self.data.loc[:,'mu_r'].values
             mu_s = self.data.loc[:,'mu_s'].values
@@ -275,7 +275,7 @@ class behavior:
             J = self.nh
             choice = self.data.loc[:,'h_choice']
             fcosts = self.pars.loc[self.pars.index.get_level_values(0)=='FC','value'].values
-            prob = prob_couple(choice,mu_r,mu_s,mu_c,mu_rs,C,Lr,Ls,Lv,eta_r,eta_s,fcosts,N,R,J)    
+            prob = prob_couple(choice,mu_r,mu_s,mu_c,mu_rs,C,Lr,Ls,Lv,eta_r,eta_s,fcosts,N,R,J)
         else :
             mu_r = self.data.loc[:,'mu_r'].values
             mu_c = self.pars.loc[('C','constant'),'value'].values
@@ -287,17 +287,17 @@ class behavior:
             J = self.nh
             choice = self.data.loc[:,'r_choice']
             fcosts = self.pars.loc[self.pars.index.get_level_values(0)=='FC','value'].values
-            prob = prob_single(choice,mu_r,mu_c,C,Lr,sigma,eta_r,fcosts,N,R,J)               
+            prob = prob_single(choice,mu_r,mu_c,C,Lr,sigma,eta_r,fcosts,N,R,J)
         return np.log(prob)
 
     def estimate(self):
         """ Fonction permettant d'estimer les paramètres par maximum de vraisemblance simulée
 
-        Utilise l'algorithme BFGS. Après l'estimation, les paramètres sont placés dans pars et la log vraisemblance simulée est sauvegardée comme attribut de la classe. 
+        Utilise l'algorithme BFGS. Après l'estimation, les paramètres sont placés dans pars et la log vraisemblance simulée est sauvegardée comme attribut de la classe.
 
         """
         init_theta = self.extract_theta()
-        neg_loglike = lambda x: -self.loglike(x) 
+        neg_loglike = lambda x: -self.loglike(x)
         results = minimize(neg_loglike,init_theta,method='BFGS')
         if results.success:
             print('optimizer exited successfully with ', results.nit,' iterations.')
@@ -305,11 +305,11 @@ class behavior:
             print('did not exit successfully!', results.nit,' iterations.')
         self.set_theta(results.x)
         self.loglike_value = self.loglike(results.x)
-        return 
+        return
     def covar(self):
         """ Fonction permettant de calculer les écart-types.
 
-        Utilise la méthode du produit des gradients croisés (OPG). Les écart-types sont placés dans pars et la matrice variance-covariance est sauvegardée comme attribut de la classe. 
+        Utilise la méthode du produit des gradients croisés (OPG). Les écart-types sont placés dans pars et la matrice variance-covariance est sauvegardée comme attribut de la classe.
         """
         # number of free parameters and number of observations
         npars = self.nfreepars
@@ -337,26 +337,26 @@ class behavior:
         ses = np.sqrt(np.diagonal(cov))
         # save standard errors in parameters
         self.pars.loc[self.pars.free,'se'] = ses
-        return 
+        return
 
 @njit(parallel=False)
 def prob_couple(choice,mu_r,mu_s,mu_c,mu_rs,
                     C,Lr,Ls,Lv,eta_r,eta_s,fcosts,N,R,J):
     """Fonction numba pour calculer la probabilité d'observer les choix des ménages.
-    
+
     Arguments:
         choice {numpy.array} -- vecteur des choix (discret en indice) des N ménages
         mu_r {numpy.array} -- vecteur des utilités marginales du loisir de r
         mu_s {numpy.array} -- vecteur des utilités marginales du loisir de s
         mu_c {float} -- utilité marginale de la consommation (fixe)
         mu_rs {float} -- utilité marginale du loisir conjoint
-        C {numpy.array} -- matrice des revenus disponibles (N par J ou J est le nombre d'alternatives) 
+        C {numpy.array} -- matrice des revenus disponibles (N par J ou J est le nombre d'alternatives)
         Lr {numpy.array} -- vecteur des heures de loisirs de r (J alternatives)
         Ls {numpy.array} -- vecteur des heures de loisirs de s (J alternatives)
         Lv {numpy.array} -- décomposition de cholesky de la matrice variance covariance des termes inobservables
         eta_r {numpy.array} -- tirages N(0,1) pour le terme inobservables du répondant (N par R)
         eta_s {numpy.array} -- tirages N(0,1) pour le terme inobservables du conjoint (N par R)
-        fcosts {numpy.array} -- paramètres de coûts fixes des J alternatives. 
+        fcosts {numpy.array} -- paramètres de coûts fixes des J alternatives.
         N {int} -- nombre de ménages
         R {int} -- nombre de réplications (simulations)
         J {int} -- nombre d'alternatives
@@ -365,17 +365,17 @@ def prob_couple(choice,mu_r,mu_s,mu_c,mu_rs,
         [numpy.array] -- probabilités d'observer le choix de chacun des ménages (N par 1)
     """
     pr = np.zeros((N,R))
-    u = np.zeros((N,J))   
+    u = np.zeros((N,J))
     for r in range(R):
         mur = mu_r + Lv[0,0]*eta_r[:,r]
         mus = mu_s + Lv[1,0]*eta_r[:,r] + Lv[1,1]*eta_s[:,r]
         for j in range(J):
-            u[:,j] = (mur*np.log(Lr[j]) + mus*np.log(Ls[j]) 
+            u[:,j] = (mur*np.log(Lr[j]) + mus*np.log(Ls[j])
                  + mu_c*np.log(C[:,j]) + mu_rs*np.log(Lr[j])*np.log(Ls[j])+ fcosts[j])
         for i in range(N):
             pr[i,r] = np.exp(u[i,choice[i]])/np.sum(np.exp(u[i,:]))
     return np.mean(pr,axis=1)
-        
+
 @njit(parallel=False)
 def prob_single(choice,mu_r,mu_c,C,Lr,sigma,eta,fcosts,N,R,J):
     """Fonction numba pour calculer la probabilité d'observer les choix des ménages.
@@ -384,11 +384,11 @@ def prob_single(choice,mu_r,mu_c,C,Lr,sigma,eta,fcosts,N,R,J):
         choice {numpy.array} -- vecteur des choix (discret en indice) des N ménages
         mu_r {numpy.array} -- vecteur des utilités marginales du loisir de r
         mu_c {float} -- utilité marginale de la consommation (fixe)
-        C {numpy.array} -- matrice des revenus disponibles (N par J ou J est le nombre d'alternatives) 
+        C {numpy.array} -- matrice des revenus disponibles (N par J ou J est le nombre d'alternatives)
         Lr {numpy.array} -- vecteur des heures de loisirs de r (J alternatives)
-        sigma {float} -- écart-type de la distribution du terme inobservable. 
+        sigma {float} -- écart-type de la distribution du terme inobservable.
         eta {numpy.array} -- tirages N(0,1) pour le terme inobservables du répondant (N par R)
-        fcosts {numpy.array} -- paramètres de coûts fixes des J alternatives. 
+        fcosts {numpy.array} -- paramètres de coûts fixes des J alternatives.
         N {int} -- nombre de ménages
         R {int} -- nombre de réplications (simulations)
         J {int} -- nombre d'alternatives
@@ -396,7 +396,7 @@ def prob_single(choice,mu_r,mu_c,C,Lr,sigma,eta,fcosts,N,R,J):
         [numpy.array] -- probabilités d'observer le choix de chacun des ménages (N par 1)
     """
     pr = np.zeros((N,R))
-    u = np.zeros((N,J))   
+    u = np.zeros((N,J))
     for r in range(R):
         mur = mu_r + sigma*eta[:,r]
         for j in range(J):
@@ -404,7 +404,7 @@ def prob_single(choice,mu_r,mu_c,C,Lr,sigma,eta,fcosts,N,R,J):
         for i in range(N):
             pr[i,r] = np.exp(u[i,choice[i]])/np.sum(np.exp(u[i,:]))
     return np.mean(pr,axis=1)
-            
-        
-            
-    
+
+
+
+

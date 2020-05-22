@@ -1,7 +1,7 @@
 from srd import add_params_as_attr
 import os
 module_dir = os.path.dirname(os.path.dirname(__file__))
-from srd.cpp import cpp
+from srd.srp import srp
 from srd import qpip
 from srd import ei
 import numpy as np
@@ -23,8 +23,8 @@ class payroll:
     """
     def __init__(self, year):
         self.year = year
-        self.qpp_rules = cpp.rules(qpp=True)
-        self.cpp_rules = cpp.rules(qpp=False)
+        self.qpp_rules = srp.rules(qpp=True)
+        self.cpp_rules = srp.rules(qpp=False)
         self.qpip_prog = qpip.program(self.year)
         self.ei_prog = ei.program(self.year)
 
@@ -66,7 +66,10 @@ class payroll:
         if (p.age < 18) | (p.age > 69):
             return 0.0, 0.0
         else:
-            acc = cpp.account(byear=self.year - p.age, rules=rules)
-            acc.MakeContrib(year=self.year, earn=p.inc_earn)
+            acc = srp.account(byear=self.year - p.age, rules=rules)
+            acc.MakeContrib(year=self.year, earn=p.inc_earn,
+                            earn_aut=p.inc_self_earn)
             hist = acc.history[p.age - 18]
-            return hist.contrib, hist.contrib_s1 + hist.contrib_s2
+            return (hist.contrib +  hist.contrib_aut,
+                    hist.contrib_s1 + hist.contrib_s2 +
+                    hist.contrib_aut_s1 + hist.contrib_aut_s2)

@@ -32,11 +32,11 @@ def test_increase_cbb():
 
     assert ccb_covid == ccb + 300
 
-@pytest.mark.parametrize('nkids , increase', [(0, 443), (1, 443 + 290)])
+@pytest.mark.parametrize('nkids , increase', [(0, 296+156), (1, 296 + 156 + 296)])
 def test_increase_gst_single(nkids, increase):
     tax_form = tax(2020)
     def create_hh(nkids):
-        p = Person(earn=20e3)
+        p = Person(earn=38e3)
         hh = Hhold(p, prov='qc')
         for _ in range(nkids):
             d = Dependent(age=12)
@@ -62,7 +62,7 @@ def test_increase_gst_single(nkids, increase):
 
 def test_cerb():
     tax_form = tax(2020)
-    p = Person(earn=6000, months_cerb=2)
+    p = Person(earn=6000, months_cerb_cesb=2)
     hh = Hhold(p, prov='qc')
 
     tax_form.compute(hh)
@@ -71,7 +71,7 @@ def test_cerb():
 
 def test_no_cerb():
     tax_form = tax(2020)
-    p = Person(earn=4000, months_cerb=2)
+    p = Person(earn=[2000]*12, months_cerb_cesb=2)
     hh = Hhold(p, prov='qc')
 
     tax_form.compute(hh)
@@ -80,7 +80,7 @@ def test_no_cerb():
 
 def test_base_cesb():
     tax_form = tax(2020)
-    p = Person(earn=6000, months_cesb=2)
+    p = Person(earn=6000, months_cerb_cesb=2, student=True)
     hh = Hhold(p, prov='qc')
 
     tax_form.compute(hh)
@@ -90,7 +90,7 @@ def test_base_cesb():
 
 def test_supp_disabled_cesb():
     tax_form = tax(2020)
-    p = Person(earn=6000, months_cesb=2, disabled=True)
+    p = Person(earn=6000, months_cerb_cesb=2, student=True, disabled=True)
     hh = Hhold(p, prov='qc')
 
     tax_form.compute(hh)
@@ -100,7 +100,7 @@ def test_supp_disabled_cesb():
 
 def test_no_cesb():
     tax_form = tax(2020)
-    p = Person(earn=4000, months_cesb=0)
+    p = Person(earn=13000, months_cerb_cesb=2, student=True)
     hh = Hhold(p, prov='qc')
 
     tax_form.compute(hh)
@@ -109,7 +109,7 @@ def test_no_cesb():
 
 def test_supp_dep_cesb():
     tax_form = tax(2020)
-    p = Person(months_cesb=1)
+    p = Person(months_cerb_cesb=1, student=True)
     hh = Hhold(p, prov='qc')
     dep = Dependent(age=12)
     hh.dep.append(dep)
@@ -120,8 +120,8 @@ def test_supp_dep_cesb():
 
 def test_couple_cesb_disabled():
     tax_form = tax(2020)
-    p0 = Person(months_cesb=1)
-    p1 = Person(months_cesb=3, disabled=True)
+    p0 = Person(months_cerb_cesb=1, student=True)
+    p1 = Person(months_cerb_cesb=3, student=True, disabled=True)
 
     hh = Hhold(p0, p1, prov='qc')
 
@@ -133,8 +133,8 @@ def test_couple_cesb_disabled():
 def test_couple_cesb_dep():
 
     tax_form = tax(2020)
-    p0 = Person(months_cesb=1)
-    p1 = Person(months_cesb=2)
+    p0 = Person(months_cerb_cesb=1, student=True)
+    p1 = Person(months_cerb_cesb=2, student=True)
     hh = Hhold(p0, p1, prov='qc')
     dep = Dependent(age=12)
     hh.dep.append(dep)
@@ -147,8 +147,8 @@ def test_couple_cesb_dep():
 def test_couple_cesb_dep_disabled():
 
     tax_form = tax(2020)
-    p0 = Person(months_cesb=1, disabled=True)
-    p1 = Person(months_cesb=2)
+    p0 = Person(months_cerb_cesb=1, student=True, disabled=True)
+    p1 = Person(months_cerb_cesb=2, student=True)
     hh = Hhold(p0, p1, prov='qc')
     dep = Dependent(age=12)
     hh.dep.append(dep)
@@ -190,3 +190,20 @@ def test_no_iprew():
     tax_form.compute(hh)
 
     assert p.covid['iprew'] == 0
+
+    p = Person(essential_worker=True, earn=29000)
+    hh = Hhold(p, prov='qc')
+
+    tax_form.compute(hh)
+
+    assert p.covid['iprew'] == 0
+
+def test_iprew_3_months():
+    # income too high in august
+    tax_form = tax(2020)
+    p = Person(essential_worker=True, earn=[2000]*6 + [2600]*6)
+    hh = Hhold(p, prov='qc')
+
+    tax_form.compute(hh)
+
+    assert p.covid['iprew'] == 3 * 400

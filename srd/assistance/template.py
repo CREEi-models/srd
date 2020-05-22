@@ -27,11 +27,11 @@ class template:
         float
             Montant de l'aide sociale.
         """
-        hh.count()
         amount = 0.0
         amount += self.shelter(hh)
         amount += self.basic(hh)
         return amount
+
     def shelter(self,hh):
         """
         Composante logement.
@@ -48,7 +48,8 @@ class template:
         float
             Montant de la composante logement
         """
-        return 0.0
+        return 0
+
     def basic(self, hh):
         """
         Composante de base et supplément enfant (dénuement ACE).
@@ -65,31 +66,24 @@ class template:
         float
             Montant de la composante de base et supplément enfant.
         """
-        # determine assets
+        # assets test
         assets = sum([s.asset for s in hh.sp])
+        cutoff = self.socass_assets_couple if hh.couple else self.socass_assets_single
+        if assets > cutoff:
+            return 0
         # determine ei, cpp and qpip contributions
-        ei_contr = sum([s.payroll['ei'] for s in hh.sp])
-        cpp_contr = sum([s.payroll['cpp']+s.payroll['cpp_supp'] for s in hh.sp])
-        rap_contr = sum([s.payroll['qpip'] for s in hh.sp])
-        # determine numbers of kids
-        hh.count()
-        # income measure (total from all sources, excludes refundable tax credits)
-        tot_inc = sum([s.inc_tot for s in hh.sp])
+        contributions = sum([sum(p.payroll.values()) for p in hh.sp])
         # get top off if ccb reduced
-        ccb_real = sum([self.fed.ccb(s,hh,iclaw=True) for s in hh.sp])
-        ccb_max = sum([self.fed.ccb(s,hh,iclaw=False) for s in hh.sp])
-        top_off = max(ccb_max - ccb_real,0.0)
-        amount = top_off
-        sabc = self.socass_base_couple
-        sabs = self.socass_base_single
-        sarr = self.socass_reductionrate
-        saec = self.socass_exemption_couple
-        saes = self.socass_exemption_single
+        ccb_real = sum([self.fed.ccb(s,hh, iclaw=True) for s in hh.sp])
+        ccb_max = sum([self.fed.ccb(s,hh, iclaw=False) for s in hh.sp])
+        amount = max(0, ccb_max - ccb_real)
+
         if hh.couple:
-            amount += sabc
-            clawback = max(sarr * max(0.0,tot_inc - saec) - ei_contr - cpp_contr - rap_contr,0.0)
+            amount += self.socass_base_couple
+            clawback = max(0, max(0, hh.fam_tot_inc - self.socass_exemption_couple)
+                              - contributions)
         else :
-            amount += sabs
-            clawback = max(sarr * max(0.0,tot_inc - saes) - ei_contr - cpp_contr - rap_contr,0.0)
-        amount = max(amount - clawback, 0.0)
-        return amount
+            amount += self.socass_base_single
+            clawback = max(0, max(0, hh.fam_tot_inc - self.socass_exemption_single)
+                              - contributions)
+        return max(0, amount - clawback) / (1 + hh.couple)

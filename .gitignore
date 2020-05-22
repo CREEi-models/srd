@@ -1,5 +1,7 @@
 *.pyc
 
+*.ipynb_checkpoints
+
 bdsps/
 
 l_hh.pkl

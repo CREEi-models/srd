@@ -50,11 +50,12 @@ class Person:
     essential_worker: boolean
         True si travailleur essentiel
     """
-    def __init__(self, age=50, male=True, earn=0, rpp=0, cpp=0, othtax=0, othntax=0,
-                 inc_rrsp=0, selfemp_earn=0, con_rrsp=0, years_can=None,
-                 disabled=False, cqppc=None, widow=False, ndays_chcare_k1=0,
-                 ndays_chcare_k2=0, asset=0, oas_years_post=0, months_cerb=0,
-                 months_cesb=0, essential_worker=False):
+    def __init__(self, age=50, male=True, earn=0, rpp=0, cpp=0, othtax=0,
+                 othntax=0, inc_rrsp=0, selfemp_earn=0, con_rrsp=0, con_rpp=0,
+                 years_can=None, disabled=False, cqppc=None, widow=False,
+                 ndays_chcare_k1=0, ndays_chcare_k2=0, asset=0,
+                 oas_years_post=0, months_cerb_cesb=0, student=False,
+                 essential_worker=False):
         self.age = age
         self.male = male
         self.attach_inc_earn_month(earn)
@@ -64,6 +65,7 @@ class Person:
         self.inc_othntax = othntax
         self.inc_rrsp = inc_rrsp
         self.con_rrsp = con_rrsp
+        self.con_rpp = con_rpp
         self.years_can = age if years_can is None else years_can # number of years in Canada (max = 40)
         self.inc_self_earn = selfemp_earn
         self.disabled = disabled
@@ -73,8 +75,8 @@ class Person:
         self.ndays_chcare_k2 = ndays_chcare_k2 # second kid with most days, in same order for both spouses
         self.asset = asset
         self.oas_years_post = oas_years_post
-        self.months_cerb = months_cerb # assuming that last year's work income > 5000
-        self.months_cesb = months_cesb
+        self.compute_months_cerb_cesb(months_cerb_cesb, student)
+        self.student = student
         self.essential_worker = essential_worker
         self.inc_oas = 0
         self.inc_gis = 0
@@ -88,8 +90,9 @@ class Person:
         self.net_inc = None
         self.disp_inc = None
         self.fed_return = None
-        self.pro_return = None
+        self.prov_return = None
         self.payroll = None
+
 
     def attach_inc_earn_month(self, earn):
         """
@@ -156,6 +159,26 @@ class Person:
             revenu total.
         """
         return self.inc_work + self.inc_non_work
+
+    def compute_months_cerb_cesb(self, months_cerb_cesb, student):
+        """
+        Fonction qui établit le nombre de mois de PCU ou PCUE selon le nombre de mois
+        pour lesquels la personne demande la prestation et si elle est aux études.
+
+        Parameters
+        ----------
+        months_cerb_cesb: int
+            Nombre de mois pour lesquels la prestation est demandée
+        student: boolean
+            True si la personne est étudiante (ou l'était en décembre 2019)
+        """
+        self.months_cesb = self.months_cerb = 0
+        if months_cerb_cesb > 0:
+            if student:
+                self.months_cesb = months_cerb_cesb
+            else:
+                self.months_cerb = months_cerb_cesb # assuming that last year's work income > 5000
+
 
 class Dependent:
     """
@@ -239,6 +262,7 @@ class Hhold:
         """
         return sum([p.inc_non_work for p in self.sp])
 
+    @property
     def fam_tot_inc(self):
         """
         Fonction qui calcule le revenu familial total.
@@ -261,6 +285,7 @@ class Hhold:
         """
         return sum([p.net_inc for p in self.sp])
 
+    @property
     def fam_disp_inc(self):
         """
         Fonction qui calcule le revenu familial disponible.
@@ -298,11 +323,12 @@ class Hhold:
         Fonction pour calculer la composition du ménage.
         """
         self.ndep = len(self.dep)
-        self.nkids = len([s for s in self.dep if s.age <= 30])
+        self.nkids0_5 = len([s for s in self.dep if s.age <= 5])
+        self.nkids0_17 = len([s for s in self.dep if s.age <= 17])
         self.nold = len([s for s in self.dep if s.age >= 65])
         self.nhh = 1 + self.couple + len(self.dep)
-        self.size = 1 + self.couple + self.nkids
-        return
+        self.size = 1 + self.couple + self.nkids0_17
+
     def split_pension_income(self):
         # use this function after inc_oas has been computed?
         # age eligibility? type of pension eligible?

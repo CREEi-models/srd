@@ -70,7 +70,8 @@ class template:
         p: Person
             instance de la classe Person
         """
-        p.prov_return['net_income'] =  p.prov_return['gross_income'] - p.prov_return['deductions']
+        p.prov_return['net_income'] =  max(0, p.prov_return['gross_income']
+                                              - p.prov_return['deductions'])
 
     def calc_taxable_income(self, p):
         """
@@ -98,7 +99,7 @@ class template:
             instance de la classe Person
         """
         p.qc_work_deduc = self.work_deduc(p)
-        p.prov_return['deductions'] = p.con_rrsp + p.inc_gis + p.qc_work_deduc
+        p.prov_return['deductions'] = p.con_rrsp + p.con_rpp + p.inc_gis + p.qc_work_deduc
 
     def work_deduc(self, p):
         """
@@ -110,8 +111,8 @@ class template:
             instance de la classe Person
         """
         work_earn = p.inc_work
-        if work_earn > 0:
-            deduc = min(work_earn*self.work_deduc_rate,self.work_deduc_max)
+        if p.inc_work > 0:
+            deduc = min(work_earn * self.work_deduc_rate, self.work_deduc_max)
         else :
             deduc = 0
         return deduc
@@ -168,8 +169,10 @@ class template:
         p: Person
             instance de la classe Person
         """
-        p.age_cred = self.nrtc_age_max if p.age >= self.nrtc_age else 0
-        return p.age_cred
+        if p.age <= self.nrtc_age:
+            return 0
+        else:
+            return self.nrtc_age_max
 
     def get_single_cred(self,p,hh):
         """
@@ -221,7 +224,7 @@ class template:
 
         clawback = self.exp_work_claw_rate * max(0, p.inc_work - self.exp_work_cut_inc)
         adj_tax_liability = max(0, p.prov_return['gross_tax_liability']
-                                - self.nrtc_rate * (self.nrtc_base + p.age_cred))
+                                - self.nrtc_rate * (self.nrtc_base + p.qc_age_cred))
         min_amount = 0
 
         def calc_amount(max_work_inc, min_amount):

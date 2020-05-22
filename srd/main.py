@@ -6,21 +6,65 @@ import time
 import srd
 from srd import tax, Person, Hhold, Dependent, covid
 
-policy = covid.policy(icovid_gst=True)
+# policy = covid.policy()
 # policy.shut_all_measures()
-print(vars(policy))
-tax_form = tax(2020, policy=policy)
+# tax_form = tax(2020, policy=policy)
 
-p0 = Person(months_cesb=1)
-earn = [3000] * 4 + [1000] * 8
-p1 = Person(months_cesb=2, earn=earn, essential_worker=True)
-hh = Hhold(p0, p1, prov='qc')
-dep = Dependent(age=12)
-hh.dep.append(dep)
+year = 2020
+p0 = Person(asset=1000, earn=0e3, selfemp_earn=10e3)
 
-tax_form.compute(hh)
+hh = Hhold(p0, prov='qc')
 
-print(p1.__dict__)
-print(p1.inc_earn)
-print(len(p1.inc_earn_month), p1.inc_earn_month)
+
+tax_form = tax(year)
+tax_form.compute_payroll(hh)
+tax_form.compute_ass(hh)
+
+print(p0.payroll)
+
+# p0 = Person(age=25, earn=1000)
+# p1 = Person(age=25, earn=1000)
+# hh = Hhold(p0, p1, prov='qc')
+# d = Dependent(age=3)
+# hh.dep.append(d)
+
+# tax_form.compute(hh)
+# print(p0.__dict__)
+# print(p1.__dict__)
+
+# l_hh =[]
+
+# for nkids in [0, 1, 2]:
+#     p0 = Person(age=25, earn=8*4*40*13.10)
+#     p1 = Person(age=25, earn=0)
+#     hh = Hhold(p0, p1, prov='qc')
+#     for k in range(nkids):
+#         d = Dependent(age=3)
+#         hh.dep.append(d)
+
+#     tax_form.compute(hh)
+#     print(p0.disp_inc, p1.disp_inc)
+#     print(hh.fam_disp_inc)
+
+#     l_hh.append(hh)
+
+# l_vars = [vars(hh.sp[0]) for hh in l_hh]
+# # print(l_vars)
+
+# d ={}
+# for var in l_vars[0]:
+#     for i, _ in enumerate(l_vars):
+#         val = l_vars[i][var]
+#         if var not in d:
+#             d[var] = [val]
+#         else:
+#             d[var].append(val)
+
+# d_clean = {k: d[k] for k in d if d[k][0] != d[k][1]}
+# d_res = {k: v for k, v in d_clean.items() if k in ['fed_chcare', 'fed_ccb', 'fed_gst_hst_credit', 'qc_chcare', 'qc_ccap', 'qc_solidarity']}
+
+# print(d_res)
+
+
+
 

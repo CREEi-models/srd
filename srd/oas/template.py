@@ -7,8 +7,6 @@ class template:
     Classe qui contient un template du programme OAS et GIS (tel que rencontré en 2016)
 
     """
-    def __init__(self):
-        add_params_as_attr(self, module_dir + '/oas/params/old_age_sec_2016.csv')
 
     def file(self, hh):
         """
@@ -32,14 +30,14 @@ class template:
             # < 1 if less than 10 years in CAN; seems relevant only in very uncommon cases
             if not hh.couple:
                 if p.elig_oas == 'pension':
-                    p.inc_oas = self.compute_pension(p)
+                    p.inc_oas = self.compute_pension(p, hh)
                     p.inc_gis = self.gis(p, hh, hh.net_inc_exempt, 'high')
                 elif p.elig_oas == 'allowance':
                     p.allow_surv = self.survivor_allowance(p, hh)
             else:
                 spouse = hh.sp[1-hh.sp.index(p)]
                 if p.elig_oas == 'pension':
-                    p.inc_oas = self.compute_pension(p)
+                    p.inc_oas = self.compute_pension(p, hh)
                     if spouse.elig_oas == 'pension':
                         p.inc_gis = self.gis(p, hh, hh.net_inc_exempt, 'low')
                     elif spouse.elig_oas == 'allowance':
@@ -70,12 +68,28 @@ class template:
         else:
             p.elig_oas = False
 
-    def compute_pension(self, p):
+    def compute_pension(self, p, hh):
+        """
+        Calcule la PSV.
+
+        Parameters
+        ----------
+
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+
+        Returns
+        -------
+        float
+            récupération de la PSV
+        """
         p.oas_65 = min(1, p.years_can / self.max_years_can) * self.oas_full
         p.oas = p.oas_65 * (1 + self.postpone_oas_bonus * p.oas_years_post)
-        return self.pension_clawback(p)
+        return self.pension_clawback(p, hh)
 
-    def pension_clawback(self, p):
+    def pension_clawback(self, p, hh):
         """
         Calcul la récupération de la PSV
 
@@ -84,13 +98,32 @@ class template:
         Parameters
         ----------
         p: Person
-            instance de la classe acteur Person.
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
         """
-        if p.net_inc + self.oas_full <= self.oas_claw_cutoff:
+        self.compute_net_income(p, hh)
+        if p.fed_return['net_income'] + self.oas_full <= self.oas_claw_cutoff:
             return p.oas
         else:
             return max(0, (p.oas - self.oas_claw_rate
-            * (p.net_inc - self.oas_claw_cutoff)) / (1 + self.oas_claw_rate))
+            * (p.fed_return['net_income'] - self.oas_claw_cutoff)) / (1 + self.oas_claw_rate))
+
+    def compute_net_income(self, p, hh):
+        """
+        Calcule le revenu net (sans la PSV).
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+        """
+        p.fed_return = {k: 0 for k in ['gross_income','deductions','net_income']}
+        self.federal.calc_gross_income(p)
+        self.federal.calc_deductions(p, hh)
+        self.federal.calc_net_income(p)
 
     def gis(self, p, hh, income, low_high):
         """

@@ -4,7 +4,7 @@ import numpy as np
 from srd import add_params_as_attr
 
 def create_stub():
-        lines = ['pcu', 'pcue', 'iprew']
+        lines = ['cerb', 'cesb', 'iprew']
         return dict(zip(lines, np.zeros(len(lines))))
 
 class policy:
@@ -96,7 +96,7 @@ class programs:
         """
         Fonction pour le calcul de la PCU.
 
-        Calcule la PCU en fonction du nombre de blocs de 4 semaines (mois)
+        Calcule la PCU en fonction du nombre de blocs de self.begin_april semaines (mois)
         durant laquelle la prestation est demandée.
 
         Parameters
@@ -112,8 +112,9 @@ class programs:
         if p.months_cerb == 0:
             return 0
         else:
-            l_cerb = [self.cerb_base for month in range(4, 4 + p.months_cerb)
-                      if p.inc_earn_month[month] < self.cerb_max_earn]
+            l_cerb = [self.cerb_base for month
+                      in range(self.begin_april, self.begin_april + p.months_cerb)
+                      if p.inc_earn_month[month] <= self.cerb_max_earn]
             return sum(l_cerb)
 
     def compute_cesb(self, p, hh):
@@ -121,7 +122,7 @@ class programs:
         Fonction pour le calcul de la PCUE.
 
         Calcule la PCUE en fonction de la prestation mensuelle à laquelle l'individu
-        a droit et du nombre de blocs de 4 semaines (mois) durant lequel la prestation est demandée.
+        a droit et du nombre de blocs de self.begin_april semaines (mois) durant lequel la prestation est demandée.
 
         Parameters
         ----------
@@ -138,9 +139,10 @@ class programs:
         if p.months_cesb == 0:
             return 0
         else:
-            monthly_cesb = self.monthly_cesb(p, hh)
-            l_cesb = [monthly_cesb for month in range(4, 4 + p.months_cerb)
-                  if p.inc_earn_month[month] < self.cerb_max_earn]
+            monthly_cesb = self.compute_monthly_cesb(p, hh)
+            l_cesb = [monthly_cesb for month
+                      in range(self.begin_april, self.begin_april + p.months_cesb)
+                  if p.inc_earn_month[month] <= self.cesb_max_earn]
             return sum(l_cesb)
 
     def compute_monthly_cesb(self, p, hh):
@@ -180,7 +182,7 @@ class programs:
         p: Person
             instance de la classe Person
 
-        Calcule la PIRTE pour la période de 16 semaines (4 mois) si le travailleur
+        Calcule la PIRTE pour la période de 16 semaines (self.begin_april mois) si le travailleur
         est éligible.
 
         Returns
@@ -192,6 +194,7 @@ class programs:
             p.inc_tot > self.iprew_max_inc_tot):
             return 0
         else:
-            l_iprew = [self.iprew_monthly_amount for month in range(4, 8)
-                       if p.inc_earn_month[month] < self.iprew_max_earn]
+            l_iprew = [self.iprew_monthly_amount for month
+                       in range(self.begin_april, self.begin_april + 4)
+                       if 0 < p.inc_earn_month[month] <= self.iprew_max_earn]
             return sum(l_iprew)

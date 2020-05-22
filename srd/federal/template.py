@@ -38,7 +38,7 @@ class template:
             self.calc_refundable_tax_credits(p,hh)
             p.fed_return['net_tax_liability'] -= p.fed_return['refund_credits']
 
-    def calc_gross_income(self,p):
+    def calc_gross_income(self, p):
         """
         Fonction qui calcule le revenu total (brut).
 
@@ -49,8 +49,8 @@ class template:
         p: Person
             instance de la classe Person
         """
-        p.fed_return['gross_income'] = (p.inc_work + p.inc_oas
-                                        + p.inc_gis + p.inc_cpp + p.inc_rpp + p.inc_othtax
+        p.fed_return['gross_income'] = (p.inc_work + p.inc_oas + p.inc_gis
+                                        + p.inc_cpp + p.inc_rpp + p.inc_othtax
                                         + p.inc_rrsp)
 
     def calc_net_income(self, p):
@@ -64,7 +64,8 @@ class template:
         p: Person
             instance de la classe Person
         """
-        p.fed_return['net_income'] =  p.fed_return['gross_income'] - p.fed_return['deductions']
+        p.fed_return['net_income'] =  max(0, p.fed_return['gross_income']
+                                          - p.fed_return['deductions'])
 
     def calc_taxable_income(self,p):
         """
@@ -91,7 +92,7 @@ class template:
             instance de la classe Person
         """
         p.fed_chcare = self.chcare(p, hh)
-        p.fed_return['deductions'] = p.con_rrsp + p.inc_gis + p.fed_chcare
+        p.fed_return['deductions'] = p.con_rrsp + p.con_rpp     + p.inc_gis + p.fed_chcare
 
     def chcare(self, p, hh):
         """
@@ -282,7 +283,7 @@ class template:
                 else:
                     clawback = 0
             else :
-                clawback = 0.0
+                clawback = 0
             if hh.couple and hh.sp[0].male == hh.sp[1].male:
                 return max(0, amount - clawback) / 2 # same sex couples get 1/2 each
             else:
@@ -367,7 +368,8 @@ class template:
         return self.compute_witb_witbds(p, hh, rate, self.witb_dis_base_qc,
                                          self.witb_dis_max_qc, claw_rate, exemption)
 
-    def compute_witb_witbds(self, p, hh, rate, base, witb_max, claw_rate, exemption):
+    def compute_witb_witbds(self, p, hh, rate, base, witb_max, claw_rate,
+                            exemption):
         """
         Calcule de la prestation fiscale pour le revenu de travail.
 
@@ -426,4 +428,4 @@ class template:
             amount += min(self.gst_cred_other,
                           self.gst_cred_rate * max(0, fam_net_inc - self.gst_cred_base_amount))
 
-        return (amount - clawback) / (1 + hh.couple)
+        return max(0, amount - clawback) / (1 + hh.couple)
