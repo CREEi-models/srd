@@ -27,7 +27,7 @@ class Person:
         autre revenu non-imposable
     inc_rrsp: float
         revenu de REER (sortie)
-    selfemp_earn: float
+    self_earn: float
         revenu de travailleur autonome
     con_rrsp: float
         contribution REER
@@ -51,7 +51,7 @@ class Person:
         True si travailleur essentiel
     """
     def __init__(self, age=50, male=True, earn=0, rpp=0, cpp=0, othtax=0,
-                 othntax=0, inc_rrsp=0, selfemp_earn=0, con_rrsp=0, con_rpp=0,
+                 othntax=0, inc_rrsp=0, self_earn=0, con_rrsp=0, con_rpp=0,
                  years_can=None, disabled=False, cqppc=None, widow=False,
                  ndays_chcare_k1=0, ndays_chcare_k2=0, asset=0,
                  oas_years_post=0, months_cerb_cesb=0, student=False,
@@ -67,7 +67,7 @@ class Person:
         self.con_rrsp = con_rrsp
         self.con_rpp = con_rpp
         self.years_can = age if years_can is None else years_can # number of years in Canada (max = 40)
-        self.inc_self_earn = selfemp_earn
+        self.inc_self_earn = self_earn
         self.disabled = disabled
         self.cqppc = cqppc
         self.widow = widow
@@ -324,10 +324,10 @@ class Hhold:
         """
         self.ndep = len(self.dep)
         self.nkids0_5 = len([s for s in self.dep if s.age <= 5])
-        self.nkids0_17 = len([s for s in self.dep if s.age <= 17])
+        self.nkids0_18 = len([s for s in self.dep if s.age <= 18])
         self.nold = len([s for s in self.dep if s.age >= 65])
         self.nhh = 1 + self.couple + len(self.dep)
-        self.size = 1 + self.couple + self.nkids0_17
+        self.size = 1 + self.couple + self.nkids0_18
 
     def split_pension_income(self):
         # use this function after inc_oas has been computed?

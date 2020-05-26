@@ -92,7 +92,7 @@ class template:
             instance de la classe Person
         """
         p.fed_chcare = self.chcare(p, hh)
-        p.fed_return['deductions'] = p.con_rrsp + p.con_rpp     + p.inc_gis + p.fed_chcare
+        p.fed_return['deductions'] = p.con_rrsp + p.con_rpp + p.inc_gis + p.fed_chcare
 
     def chcare(self, p, hh):
         """
@@ -198,8 +198,7 @@ class template:
         p: Person
             instance de la classe Person
         """
-        amount = self.disability_cred_amount if p.disabled else 0
-        return amount
+        return self.disability_cred_amount if p.disabled else 0
         # disabled dependent not taken into account (see lines 316 and 318)
 
     def calc_refundable_tax_credits(self, p, hh):
@@ -239,7 +238,7 @@ class template:
         if hh.prov == 'qc':
             return p.fed_return['net_tax_liability'] * self.rate_abatment_qc
         else:
-            return 0.0
+            return 0
 
     def ccb(self,p,hh,iclaw=True):
         """
@@ -325,7 +324,6 @@ class template:
                 factor = p.inc_work / hh.fam_inc_work
             else:
                 factor = 1/2
-
 
         return factor * self.compute_witb_witbds(p, hh, rate, base, witb_max,
                                                  self.witb_claw_rate_qc, exemption)
@@ -417,7 +415,7 @@ class template:
             Montant du crédit
         """
         fam_net_inc = sum([p.fed_return['net_income'] for p in hh.sp])
-        nkids = len([d for d in hh.dep if d.age < self.gst_cred_kids_max_age])
+        nkids = len([d for d in hh.dep if d.age <= self.gst_cred_kids_max_age])
 
         clawback = self.gst_cred_claw_rate * max(0, fam_net_inc - self.gst_cred_claw_cutoff)
 

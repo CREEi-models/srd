@@ -1,26 +1,22 @@
 import sys
 sys.path.append('/Users/pyann/Dropbox (CEDIA)/srd/Model')
+
+import numpy as np
+import matplotlib.pyplot as plt
 import pickle
 import time
 
 import srd
-from srd import tax, Person, Hhold, Dependent, covid
+from srd import tax, Person, Hhold, Dependent, covid, incentives
 
-# policy = covid.policy()
-# policy.shut_all_measures()
-# tax_form = tax(2020, policy=policy)
+policy = covid.policy()
+policy.shut_all_measures()
+tax_form = tax(2020, policy=policy)
 
-year = 2020
-p0 = Person(asset=1000, earn=0e3, selfemp_earn=10e3)
-
+p0 = Person(asset=1000, earn=5000)
 hh = Hhold(p0, prov='qc')
 
-
-tax_form = tax(year)
-tax_form.compute_payroll(hh)
-tax_form.compute_ass(hh)
-
-print(p0.payroll)
+tax_form.compute(hh)
 
 # p0 = Person(age=25, earn=1000)
 # p1 = Person(age=25, earn=1000)
