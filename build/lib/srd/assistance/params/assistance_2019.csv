@@ -1,0 +1,8 @@
+variable;value;type;definition;source;comments
+socass_assets_couple;2500;float;;;liquid assets not considered
+socass_assets_single;1500;float;;;
+socass_base_single;8028;float;;https://www.canlii.org/fr/qc/legis/regl/rlrq-c-a-13.1.1-r-1/149022/rlrq-c-a-13.1.1-r-1.html;
+socass_base_couple;12264;float;;https://www.mess.gouv.qc.ca/publications/pdf/ADMIN_plan_action_2017-2023.pdf;Bonification mensuelle de 25 dollars
+socass_reductionrate;1;float;;;
+socass_exemption_single;2400;float;;;
+socass_exemption_couple;3600;float;;;

@@ -1,0 +1,23 @@
+variable;value;type;definition;source;comments;
+max_years_can;40;int;;;;
+min_age_oas;65;int;;;;
+min_years_can;10;int;;;;
+min_age_allow;60;int;;;;
+work_exempt;3500;int;;https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/guaranteed-income-supplement/benefit-amount.html;augmented to 5000 starting july 2020;a new partial exemption of 50%, to apply on up to $10,000 of annual employment and self-employment income beyond the new $5,000 threshold for each GIS or Allowance recipient, as well as their spouse or common-law partner
+oas_full;7417.1;float;;;projection inflation 2%;
+oas_claw_cutoff;79054;int;;;;
+oas_claw_rate;0.15;float;;;;
+postpone_oas_bonus;0.072;float;;;0.6% per month postponed;
+gis_full_high;9443.99;float;;;projection inflation 2%;
+gis_full_low;6240.38;float;;;projection inflation 2%;
+gis_claw_rate;0.5;float;;;;
+bonus_exempt_single;2000;int;;;;
+bonus_exempt_couple;4000;int;;;;
+bonus_claw_rate;0.25;float;;;;
+rate_high_inc;1.33333333;float;;;;
+rate_allow;0.75;float;;;;
+rate_allow_high_inc;0.5;float;;;;
+gis_bonus_high;1634.25;float;;;projection inflation 2%;
+gis_bonus_low;420;float;;;;
+allow_surv_bonus;1634.25;float;;;projection inflation 2%;
+allow_couple_bonus;420;int;;;;

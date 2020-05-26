@@ -1,0 +1,13 @@
+variable;value;type;definition;source ;comments
+begin_april;3;int;;;programs begin in april 2020 (march 15th in reality)
+cerb_base;2000;float;;https://www.canada.ca/en/revenue-agency/services/benefits/apply-for-cerb-with-cra.html;
+cerb_min_inc_work;5000;float;;;
+cerb_max_earn;1000;float;;;max monthly earnings allowed
+cesb_base;1250;float;;https://www.canada.ca/en/employment-social-development/news/2020/04/government-of-canada-introduces-legislation-to-support-students-in-need.html;
+cesb_supp;750;float;;;
+cesb_max_earn;1000;float;;;max monthly earnings allowed
+iprew_min_inc_work;5000;float;;https://www.revenuquebec.ca/fr/salle-de-presse/actualites/details/167331/2020-04-03/;
+iprew_max_inc_tot;28600;float;;;
+iprew_monthly_amount;400;float;;;
+iprew_max_earn;2500;float;;;max monthly earnings allowed
+iprew_max_months;8;int;;;iprew expected to last 8 months

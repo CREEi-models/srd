@@ -1,0 +1,23 @@
+variable;value;type;definition;source;comments
+max_years_can;40;int;;;
+min_age_oas;65;int;;;
+min_years_can;10;int;;;
+min_age_allow;60;int;;;
+work_exempt;3500;int;;;
+oas_full;7121.31;float;;https://www.canada.ca/en/employment-social-development/programs/pensions/pension/statistics/2018-quarterly-january-march.html;
+oas_claw_cutoff;75910;int;;;
+oas_claw_rate;0.15;float;;;
+postpone_oas_bonus;0.072;float;;;0.6% per month postponed
+gis_full_high;9056.59;float;;;
+gis_full_low;5982.93;float;;;
+gis_claw_rate;0.5;float;;;
+bonus_exempt_single;2000;int;;;
+bonus_exempt_couple;4000;int;;;
+bonus_claw_rate;0.25;float;;;
+rate_high_inc;1.33333333;float;;;
+rate_allow;0.75;float;;;
+rate_allow_high_inc;0.5;float;;;
+gis_bonus_high;1579.73;float;;;
+gis_bonus_low;420;float;;;
+allow_surv_bonus;1579.73;float;;;
+allow_couple_bonus;420;int;;;

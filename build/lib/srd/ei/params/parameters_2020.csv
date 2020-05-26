@@ -1,0 +1,4 @@
+variable;value;type;definition;source;comments
+rate_EI;0.0158;float;;2020 Employment Insurance Premium Rate;
+rate_EI_qc;0.0120;float;;2020 Employment Insurance Premium Rate;
+max_earn_EI;54200;float;;2020 Employment Insurance Premium Rate;

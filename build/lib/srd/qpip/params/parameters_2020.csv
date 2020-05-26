@@ -1,0 +1,5 @@
+variable;value;type;definition;source;comments
+qualifying_threshold_QPIP;2000;float;;;
+rate_QPIP_earn;0.00494;float;;;
+rate_QPIP_self_earn;0.00878;float;;;
+max_QPIP_earn;78500;float;;;

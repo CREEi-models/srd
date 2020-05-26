@@ -1,0 +1,4 @@
+variable;value;type;definition;source;comments
+rate_EI;0.0162;float;;2019 Employment Insurance Premium Rate;
+rate_EI_qc;0.0125;float;;2019 Employment Insurance Premium Rate;
+max_earn_EI;53100;float;;2019 Employment Insurance Premium Rate;

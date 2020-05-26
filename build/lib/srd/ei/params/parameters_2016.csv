@@ -1,0 +1,4 @@
+variable;value;type;definition;source;comments
+rate_EI;0.0188;float;;2016 Employment Insurance Premium Rate;
+rate_EI_qc;0.0152;float;;2016 Employment Insurance Premium Rate;
+max_earn_EI;50800;float;;2016 Employment Insurance Premium Rate;
