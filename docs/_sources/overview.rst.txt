@@ -26,3 +26,8 @@ Dans un notebook ou un projet, on invoque SRD en ajoutant la commande suivante:
 
 Vous ne devriez pas travailler dans ce répertoire d'installation.
 
+Pour désinstaller le module SRD, il suffit de rentrer la commande suivante dans le terminal::
+
+  pip uninstall srd
+
+Il faudra ensuite encore effacer le répertoire SRD local si l'on veut s'en débarrasser.

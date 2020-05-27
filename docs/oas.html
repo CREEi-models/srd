@@ -173,7 +173,7 @@
 <p>La fonction program permet de choisir l’année du programme et ira tirer une instance du programme pour cette année. L’instance est retournée par la fonction.</p>
 <dl class="function">
 <dt id="srd.oas.program">
-<code class="sig-prename descclassname">srd.oas.</code><code class="sig-name descname">program</code><span class="sig-paren">(</span><em class="sig-param">year</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.program" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-prename descclassname">srd.oas.</code><code class="sig-name descname">program</code><span class="sig-paren">(</span><em class="sig-param">year</em>, <em class="sig-param">federal</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.program" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui permet de sélectionner le programme par année.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -210,6 +210,26 @@
 </dd>
 <dt class="field-even">Renvoie</dt>
 <dd class="field-even"><p>Allocation du survivant ou de couple de base.</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.oas.template.compute_pension">
+<code class="sig-name descname">compute_pension</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.compute_pension" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Calcule la PSV.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>récupération de la PSV</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
 <dd class="field-odd"><p>float</p>
@@ -285,12 +305,15 @@ de couple et de survivant.</p>
 
 <dl class="method">
 <dt id="srd.oas.template.pension_clawback">
-<code class="sig-name descname">pension_clawback</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.pension_clawback" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">pension_clawback</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.pension_clawback" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Calcul la récupération de la PSV</p>
 <p>Basé sur le revenu net et incluant la PSV.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe acteur Person.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -322,31 +345,31 @@ de couple et de survivant.</p>
 <h2>Fonctions spécifiques ou modifiées par année<a class="headerlink" href="#fonctions-specifiques-ou-modifiees-par-annee" title="Lien permanent vers ce titre">¶</a></h2>
 <dl class="class">
 <dt id="srd.oas.programs.program_2016">
-<em class="property">class </em><code class="sig-prename descclassname">srd.oas.programs.</code><code class="sig-name descname">program_2016</code><a class="headerlink" href="#srd.oas.programs.program_2016" title="Lien permanent vers cette définition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">srd.oas.programs.</code><code class="sig-name descname">program_2016</code><span class="sig-paren">(</span><em class="sig-param">federal</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2016" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Version du programme de 2016.</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="srd.oas.programs.program_2017">
-<em class="property">class </em><code class="sig-prename descclassname">srd.oas.programs.</code><code class="sig-name descname">program_2017</code><a class="headerlink" href="#srd.oas.programs.program_2017" title="Lien permanent vers cette définition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">srd.oas.programs.</code><code class="sig-name descname">program_2017</code><span class="sig-paren">(</span><em class="sig-param">federal</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2017" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Version du programme de 2017.</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="srd.oas.programs.program_2018">
-<em class="property">class </em><code class="sig-prename descclassname">srd.oas.programs.</code><code class="sig-name descname">program_2018</code><a class="headerlink" href="#srd.oas.programs.program_2018" title="Lien permanent vers cette définition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">srd.oas.programs.</code><code class="sig-name descname">program_2018</code><span class="sig-paren">(</span><em class="sig-param">federal</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2018" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Version du programme de 2018.</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="srd.oas.programs.program_2019">
-<em class="property">class </em><code class="sig-prename descclassname">srd.oas.programs.</code><code class="sig-name descname">program_2019</code><a class="headerlink" href="#srd.oas.programs.program_2019" title="Lien permanent vers cette définition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">srd.oas.programs.</code><code class="sig-name descname">program_2019</code><span class="sig-paren">(</span><em class="sig-param">federal</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2019" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Version du programme de 2019.</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="srd.oas.programs.program_2020">
-<em class="property">class </em><code class="sig-prename descclassname">srd.oas.programs.</code><code class="sig-name descname">program_2020</code><a class="headerlink" href="#srd.oas.programs.program_2020" title="Lien permanent vers cette définition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">srd.oas.programs.</code><code class="sig-name descname">program_2020</code><span class="sig-paren">(</span><em class="sig-param">federal</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2020" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Version du programme de 2020.</p>
 </dd></dl>
 

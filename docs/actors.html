@@ -165,7 +165,7 @@
 <p>Les fonctions d’acteurs permettent de déclarer des profils.</p>
 <dl class="class">
 <dt id="srd.Person">
-<em class="property">class </em><code class="sig-prename descclassname">srd.</code><code class="sig-name descname">Person</code><span class="sig-paren">(</span><em class="sig-param">age=50</em>, <em class="sig-param">male=True</em>, <em class="sig-param">earn=0</em>, <em class="sig-param">rpp=0</em>, <em class="sig-param">cpp=0</em>, <em class="sig-param">othtax=0</em>, <em class="sig-param">othntax=0</em>, <em class="sig-param">inc_rrsp=0</em>, <em class="sig-param">selfemp_earn=0</em>, <em class="sig-param">con_rrsp=0</em>, <em class="sig-param">years_can=None</em>, <em class="sig-param">disabled=False</em>, <em class="sig-param">cqppc=None</em>, <em class="sig-param">widow=False</em>, <em class="sig-param">ndays_chcare_k1=0</em>, <em class="sig-param">ndays_chcare_k2=0</em>, <em class="sig-param">asset=0</em>, <em class="sig-param">oas_years_post=0</em>, <em class="sig-param">months_cerb=0</em>, <em class="sig-param">months_cesb=0</em>, <em class="sig-param">essential_worker=False</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Person" title="Lien permanent vers cette définition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">srd.</code><code class="sig-name descname">Person</code><span class="sig-paren">(</span><em class="sig-param">age=50</em>, <em class="sig-param">male=True</em>, <em class="sig-param">earn=0</em>, <em class="sig-param">rpp=0</em>, <em class="sig-param">cpp=0</em>, <em class="sig-param">othtax=0</em>, <em class="sig-param">othntax=0</em>, <em class="sig-param">inc_rrsp=0</em>, <em class="sig-param">self_earn=0</em>, <em class="sig-param">con_rrsp=0</em>, <em class="sig-param">con_rpp=0</em>, <em class="sig-param">years_can=None</em>, <em class="sig-param">disabled=False</em>, <em class="sig-param">cqppc=None</em>, <em class="sig-param">widow=False</em>, <em class="sig-param">ndays_chcare_k1=0</em>, <em class="sig-param">ndays_chcare_k2=0</em>, <em class="sig-param">asset=0</em>, <em class="sig-param">oas_years_post=0</em>, <em class="sig-param">months_cerb_cesb=0</em>, <em class="sig-param">student=False</em>, <em class="sig-param">essential_worker=False</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Person" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Classe pour définir une personne.</p>
 <p>Ceci définit une personne et son profil en terme de revenus et actifs.</p>
 <dl class="field-list simple">
@@ -179,7 +179,7 @@
 <li><p><strong>othtax</strong> (<em>float</em>) – autre revenu imposable</p></li>
 <li><p><strong>othntax</strong> (<em>float</em>) – autre revenu non-imposable</p></li>
 <li><p><strong>inc_rrsp</strong> (<em>float</em>) – revenu de REER (sortie)</p></li>
-<li><p><strong>selfemp_earn</strong> (<em>float</em>) – revenu de travailleur autonome</p></li>
+<li><p><strong>self_earn</strong> (<em>float</em>) – revenu de travailleur autonome</p></li>
 <li><p><strong>con_rrsp</strong> (<em>float</em>) – contribution REER</p></li>
 <li><p><strong>years_can</strong> (<em>int</em>) – nombre d’années au Canada lorsque OAS est demandé</p></li>
 <li><p><strong>disabled</strong> (<em>boolean</em>) – statut d’invalidité</p></li>
@@ -291,7 +291,7 @@
 
 <dl class="method">
 <dt id="srd.Hhold.fam_disp_inc">
-<code class="sig-name descname">fam_disp_inc</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.fam_disp_inc" title="Lien permanent vers cette définition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">fam_disp_inc</code><a class="headerlink" href="#srd.Hhold.fam_disp_inc" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le revenu familial disponible.</p>
 <p>Il s’agit du revenu après impôt, cotisations sociales et REER.</p>
 <dl class="field-list simple">
@@ -348,7 +348,7 @@
 
 <dl class="method">
 <dt id="srd.Hhold.fam_tot_inc">
-<code class="sig-name descname">fam_tot_inc</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.fam_tot_inc" title="Lien permanent vers cette définition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">fam_tot_inc</code><a class="headerlink" href="#srd.Hhold.fam_tot_inc" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le revenu familial total.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Renvoie</dt>

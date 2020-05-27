@@ -5,7 +5,7 @@ Programme d'assurance emploi
 Survol
 ^^^^^^
 
-Le programme d'assurance emploi est pris en charge par le module *ei*. Ce module contient un gabarit que nous documentons ici-bas ainsi que des classes dérivées spécifiques à chaque année.
+Le programme d'assurance-emploi est pris en charge par le module *ei*. Ce module contient un gabarit que nous documentons ici-bas ainsi que des classes dérivées spécifiques chaque année.
 
 .. currentmodule:: srd.ei
 
@@ -18,7 +18,7 @@ Pour le moment, le programme ne permet que de calculer les contributions.
 Gabarit du programme
 ^^^^^^^^^^^^^^^^^^^^
 
-Nous utilisons un gabarit afin de créer les programmes à chaque année. Quand le programme change seulement au niveau des paramètres d'une année à l'autre, nous irons chercher seulement les nouveaux paramètres. Quand des fonctions changent, l'utilisateur n'a qu'à modifier les fonctions touchées (ou en rajouter). L'avantage des classes dérivées est de ne pas avoir à répéter toutes les fonctions d'une année à l'autre si elles n'ont pas changé.
+Nous utilisons un gabarit afin de créer les programmes chaque année. Quand le programme change seulement au niveau des paramètres d'une année à l'autre, nous irons chercher seulement les nouveaux paramètres. Quand des fonctions changent, l'utilisateur n'a qu'à modifier les fonctions touchées (ou en rajouter). L'avantage des classes dérivées est de ne pas avoir à répéter toutes les fonctions d'une année à l'autre si elles n'ont pas changé.
 
 Nous reproduisons ici la spécification du gabarit. Il est calibré sur le programme en vigueur en 2016.
 
