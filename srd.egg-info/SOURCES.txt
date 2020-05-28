@@ -88,6 +88,7 @@ srd/solidarity/__init__.py
 srd/solidarity/programs.py
 srd/solidarity/template.py
 srd/srp/documents/Doc de Stat Canada_supplement et max CPP benefits.xlsx
+srd/srp/documents/paramètres financiers.xlsx
 srd/srp/documents/paramètres financiers.xlsx
 srd/srp/srp/params/corr2010_curr.csv
 srd/srp/srp/params/cpi.csv

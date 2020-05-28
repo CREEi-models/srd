@@ -8,7 +8,7 @@ Author-email: pierre-carl.michaud@hec.ca
 License: UNKNOWN
 Description: # Simulateur de revenu disponible
         
-        Ce package contient le modÃ¨le de simulation du revenu dÃ©veloppÃ© par la chaire [CREEi](http://www.creei.ca). La [documentation](https://creei-models.github.io/srd/) du modÃ¨le devrait Ãªtre consultÃ© concernant l'installation et l'utilisation du modÃ¨le.
+        Ce package contient le modèle de simulation du revenu développé par la chaire [CREEi](http://www.creei.ca). La [documentation](https://creei-models.github.io/srd/) du modèle devrait être consulté concernant l'installation et l'utilisation du modèle.
 Platform: UNKNOWN
 Classifier: Programming Language :: Python :: 3
 Classifier: License :: OSI Approved :: MIT License

@@ -275,7 +275,7 @@ class incentives:
         self.cases['sp_work'] = self.cases['s_inc_earn']>0.0
         self.cases['nkids'] = np.where(self.cases['n_kids']>2,2,self.cases['n_kids'])
         self.cases['essential'] = self.cases['r_essential_worker']
-        self.cases['student'] = False 
+        self.cases['student'] = False
         self.cases['wage_multiple'] = self.cases['r_wage']/self.minwage
         self.cases['r_hours_worked_week'] = self.cases['r_hours_worked']/50
         self.cases['s_hours_worked_week'] = self.cases['s_hours_worked']/50
@@ -332,7 +332,7 @@ class incentives:
             results['earn_post'] = self.hours_full *self.weeks_per_month * self.months_post * results['wage']
         else :
             results['earn_pre'] = results['r_hours_worked_week'] * self.weeks_per_month * self.months_pre * results['wage']
-            results['earn_post'] = results['r_hours_worked_week'] *self.weeks_per_month * self.months_post * results['wage']                
+            results['earn_post'] = results['r_hours_worked_week'] *self.weeks_per_month * self.months_post * results['wage']
         results['earn_covid'] = h * self.weeks_per_month * self.months_covid * results['wage']
         results['earn'] = results['earn_pre'] + results['earn_covid'] + results['earn_post']
         nchunks = cpu_count()

@@ -273,7 +273,7 @@ class Hhold:
             Revenu familial total
         """
         return sum([p.inc_tot for p in self.sp])
-
+    
     def fam_net_inc(self):
         """
         Fonction qui calcule le revenu familial après impôt.

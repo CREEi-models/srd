@@ -48,6 +48,8 @@ class behavior:
             self.nh = len(self.gridh)
         self.Lmax = Lmax
         return
+    #def map_chunk(self,df):
+    #    return df.apply(self.map_dispinc,axis=1)
     def dispinc(self,row,hours):
         """Fonction permettant le calcul du revenu disponible étant donné un choix d'heures travaillées
 
@@ -61,11 +63,10 @@ class behavior:
         if self.icouple:
             row['hhold'].sp[0].earn = hours[0]*row['r_wage']
             row['hhold'].sp[1].earn = hours[1]*row['s_wage']
-            self.tax.compute(row['hhold'])
         else :
             row['hhold'].sp[0].earn = hours*row['r_wage']
-            self.tax.compute(row['hhold'])
-            self.tax.disp_inc(row['hhold'])
+        self.tax.compute(row['hhold'])
+        self.tax.disp_inc(row['hhold'])
         return row['hhold'].fam_disp_inc
     def budget(self,year=2020):
         """Fonction qui calcule tous les revenus disponibles pour la grille d'heures
