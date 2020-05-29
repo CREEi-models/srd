@@ -142,19 +142,19 @@ class tax:
         for p in hh.sp:
             p.inc_social_ass = self.ass.apply(hh)
 
-    def netinc(self,hh):
+    def compute_after_tax_inc(self,hh):
         """
         Calcul du revenu après impôt fédéral et provincial.
 
         Calcul fait au niveau individuel et ensuite rattaché à la personne. Un calcul au niveau du ménage est aussi effectué.
         """
         for p in hh.sp:
-            ninc = p.inc_tot
+            after_tax_inc = p.inc_tot
             if self.ifed:
-                ninc -= p.fed_return['net_tax_liability']
+                after_tax_inc -= p.fed_return['net_tax_liability']
             if self.iprov:
-                ninc -= p.prov_return['net_tax_liability']
-            p.net_inc = ninc
+                after_tax_inc -= p.prov_return['net_tax_liability']
+            p.after_tax_inc = after_tax_inc
         return
     def disp_inc(self,hh):
         """
@@ -163,15 +163,15 @@ class tax:
         Calcul fait au niveau individuel et ensuite rattaché à la personne.
 
         """
-        self.netinc(hh)
+        self.compute_after_tax_inc(hh)
         for p in hh.sp:
-            ninc = p.net_inc
+            disp_inc = p.after_tax_inc
             if self.ipayroll:
-                ninc -= sum(list(p.payroll.values()))
+                disp_inc -= sum(list(p.payroll.values()))
             if self.iass:
-                ninc += p.inc_social_ass
-            ninc -= p.con_rrsp
-            p.disp_inc = ninc
+                disp_inc += p.inc_social_ass
+            disp_inc -= p.con_rrsp
+            p.disp_inc = disp_inc
 
 class incentives:
     def __init__(self, case_mode=True, year=2020,data_file=None):

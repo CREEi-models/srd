@@ -37,9 +37,9 @@ solidarity_max_age_kid;18;int;http://www.finances.gouv.qc.ca/documents/Autres/fr
 solidarity_tvq_base;285;float;;
 solidarity_housing_kid;118;float;;
 solidarity_tvq_couple;285;float;;
-solidarity_housing_couple;670;float;;
+solidarity_housing_not_alone;670;float;;
 solidarity_tvq_single;136;float;;
-solidarity_housing_single;552;float;;
+solidarity_housing_alone;552;float;;
 solidarity_cutoff;33935;float;;
 solidarity_rate_total;0.06;float;;
 solidarity_rate_tvq;0.03;float;;

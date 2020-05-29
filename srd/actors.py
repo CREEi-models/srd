@@ -87,7 +87,7 @@ class Person:
         self.inc_cesb = 0
         self.inc_iprew = 0
         self.covid = None
-        self.net_inc = None
+        self.after_tax_inc = None
         self.disp_inc = None
         self.fed_return = None
         self.prov_return = None
@@ -228,8 +228,11 @@ class Hhold:
         montant total des frais de garde (pour tous les enfants)
     prov: str
         province (qc = quebec)
+    n_adults_in_hh: int
+        nombre d'adultes dans le ménage (18 ans et plus)
     """
-    def __init__(self, first, second=None, child_care_exp=0, prov='qc'):
+    def __init__(self, first, second=None, child_care_exp=0, prov='qc',
+                 n_adults_in_hh=None):
         self.sp = [first]
         self.couple = bool(second)
         if self.couple:
@@ -237,7 +240,29 @@ class Hhold:
         self.child_care_exp = child_care_exp
         self.prov = prov
         self.dep = []
+        self.n_adults_in_hh = self.adjust_n_adults(n_adults_in_hh)
         self.count()
+
+    def adjust_n_adults(self, n_adults_in_hh):
+        """
+        Fonction qui calcule le nombre d'adultes dans le ménage si celui-ci
+        n'est pas fourni
+
+        Parameters
+        ----------
+        n_adults_in_hh: float
+            nombre d'adultes dans le ménage s'il est fourni, None sinon
+
+        Returns
+        -------
+        float
+            nombre d'adulte dans le ménage
+        """
+        if n_adults_in_hh:
+            return n_adults_in_hh
+        else:
+            adult_deps = len([s for s in self.dep if s.age > 18])
+            return 2 + adult_deps if self.couple else 1 + adult_deps
 
     @property
     def fam_inc_work(self):
@@ -273,8 +298,8 @@ class Hhold:
             Revenu familial total
         """
         return sum([p.inc_tot for p in self.sp])
-    
-    def fam_net_inc(self):
+
+    def fam_after_tax_inc(self):
         """
         Fonction qui calcule le revenu familial après impôt.
 
@@ -283,7 +308,7 @@ class Hhold:
         float
             Revenu familial total après impôt
         """
-        return sum([p.net_inc for p in self.sp])
+        return sum([p.after_tax_inc for p in self.sp])
 
     @property
     def fam_disp_inc(self):

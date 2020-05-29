@@ -14,9 +14,18 @@ policy.shut_all_measures()
 tax_form = tax(2020, policy=policy)
 
 p0 = Person(asset=1000, earn=5000)
-hh = Hhold(p0, prov='qc')
+p1 = Person()
+hh = Hhold(p0, p1, n_adults_in_hh=1, prov='qc')
+
+
+
+print(hh.n_adults_in_hh)
 
 tax_form.compute(hh)
+
+print(p0.qc_single_cred)
+
+
 
 # p0 = Person(age=25, earn=1000)
 # p1 = Person(age=25, earn=1000)

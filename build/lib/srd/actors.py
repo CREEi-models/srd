@@ -87,7 +87,7 @@ class Person:
         self.inc_cesb = 0
         self.inc_iprew = 0
         self.covid = None
-        self.net_inc = None
+        self.after_tax_inc = None
         self.disp_inc = None
         self.fed_return = None
         self.prov_return = None
@@ -273,7 +273,7 @@ class Hhold:
             Revenu familial total
         """
         return sum([p.inc_tot for p in self.sp])
-    
+
     def fam_net_inc(self):
         """
         Fonction qui calcule le revenu familial après impôt.
@@ -283,7 +283,7 @@ class Hhold:
         float
             Revenu familial total après impôt
         """
-        return sum([p.net_inc for p in self.sp])
+        return sum([p.after_tax_inc for p in self.sp])
 
     @property
     def fam_disp_inc(self):

@@ -174,9 +174,9 @@ class template:
         else:
             return self.nrtc_age_max
 
-    def get_single_cred(self,p,hh):
+    def get_single_cred(self, p, hh):
         """
-        Crédit pour personne seule
+        Crédit pour personne vivant seule
 
         Ce crédit est non-remboursable.
 
@@ -187,10 +187,7 @@ class template:
         hh: Hhold
             instance de la classe Hhold
         """
-        amount = 0
-        if not hh.couple:
-            amount += self.nrtc_single
-        return amount
+        return self.nrtc_single if hh.n_adults_in_hh == 1 else 0
 
     def get_pension_cred(self, p):
         """
@@ -575,16 +572,21 @@ class template:
         hh: Hhold
             instance de la classe Hhold
         """
-        fam_net_inc = sum([p.prov_return['net_income'] for p in hh.sp])
         nkids = len([d for d in hh.dep if d.age < self.solidarity_max_age_kid])
+        fam_net_inc = sum([p.prov_return['net_income'] for p in hh.sp])
+
         amount_tvq = self.solidarity_tvq_base
-        amount_housing = nkids * self.solidarity_housing_kid
         if hh.couple:
             amount_tvq += self.solidarity_tvq_couple
-            amount_housing += self.solidarity_housing_couple
-        else:
+        elif hh.n_adults_in_hh == 1:
             amount_tvq += self.solidarity_tvq_single
-            amount_housing += self.solidarity_housing_single
+
+        amount_housing = nkids * self.solidarity_housing_kid
+        if hh.n_adults_in_hh == 1:
+            amount_housing += self.solidarity_housing_alone
+        else:
+            amount = self.solidarity_housing_not_alone / hh.n_adults_in_hh
+            amount_housing += 2 * amount if hh.couple else amount
 
         base_claw = max(0, fam_net_inc - self.solidarity_cutoff)
         net_amount_total = max(0, amount_tvq + amount_housing

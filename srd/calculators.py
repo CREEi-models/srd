@@ -142,19 +142,19 @@ class tax:
         for p in hh.sp:
             p.inc_social_ass = self.ass.apply(hh)
 
-    def netinc(self,hh):
+    def compute_after_tax_inc(self,hh):
         """
         Calcul du revenu après impôt fédéral et provincial.
 
         Calcul fait au niveau individuel et ensuite rattaché à la personne. Un calcul au niveau du ménage est aussi effectué.
         """
         for p in hh.sp:
-            ninc = p.inc_tot
+            after_tax_inc = p.inc_tot
             if self.ifed:
-                ninc -= p.fed_return['net_tax_liability']
+                after_tax_inc -= p.fed_return['net_tax_liability']
             if self.iprov:
-                ninc -= p.prov_return['net_tax_liability']
-            p.net_inc = ninc
+                after_tax_inc -= p.prov_return['net_tax_liability']
+            p.after_tax_inc = after_tax_inc
         return
     def disp_inc(self,hh):
         """
@@ -163,15 +163,15 @@ class tax:
         Calcul fait au niveau individuel et ensuite rattaché à la personne.
 
         """
-        self.netinc(hh)
+        self.compute_after_tax_inc(hh)
         for p in hh.sp:
-            ninc = p.net_inc
+            disp_inc = p.after_tax_inc
             if self.ipayroll:
-                ninc -= sum(list(p.payroll.values()))
+                disp_inc -= sum(list(p.payroll.values()))
             if self.iass:
-                ninc += p.inc_social_ass
-            ninc -= p.con_rrsp
-            p.disp_inc = ninc
+                disp_inc += p.inc_social_ass
+            disp_inc -= p.con_rrsp
+            p.disp_inc = disp_inc
 
 class incentives:
     def __init__(self, case_mode=True, year=2020,data_file=None):
@@ -228,18 +228,21 @@ class incentives:
         cases = cases.loc[to_drop==False,:]
         self.cases = cases
         return
-    def set_hours(self,nh=51,maxh=50,dh=10,weeks_per_month=4,hours_full=40):
+    def set_hours(self,nh=51,maxh=50,dh=10,weeks_per_year=52.1,hours_full=40):
         self.nh = nh
         self.maxh = maxh
         self.gridh = np.linspace(0,self.maxh,self.nh)
         self.dh = dh
-        self.weeks_per_month = weeks_per_month
+        self.weeks_per_year = weeks_per_year
         self.hours_full = hours_full
         return
     def set_covid(self,months_pre=3,months_covid=4):
         self.months_pre = months_pre
         self.months_covid = months_covid
         self.months_post = 12 - months_pre - months_covid
+        self.share_covid = months_covid*4/self.weeks_per_year
+        self.share_pre = 0.5*(1-self.share_covid)
+        self.share_post = 0.5*(1-self.share_covid)
         return
     def set_wages(self,minwage=13.1,avgwage=25.0):
         self.minwage = minwage
@@ -258,7 +261,7 @@ class incentives:
             hh = Hhold(p,prov='qc')
             if i[0]=='couple':
                 if i[1]:
-                    sp_earn = self.avgwage*40.0*50.0
+                    sp_earn = self.avgwage*40.0*52.1
                 else :
                     sp_earn = 0.0
                 sp = Person(age=45,earn=sp_earn)
@@ -328,12 +331,12 @@ class incentives:
         results = self.cases.copy()
         results['wage'] = self.minwage * np.array(results.index.get_level_values('wage_multiple'))
         if self.case_mode:
-            results['earn_pre'] = self.hours_full * self.weeks_per_month * self.months_pre * results['wage']
-            results['earn_post'] = self.hours_full *self.weeks_per_month * self.months_post * results['wage']
+            results['earn_pre'] = self.hours_full * self.weeks_per_year * self.share_pre * results['wage']
+            results['earn_post'] = self.hours_full *self.weeks_per_year * self.share_post * results['wage']
         else :
-            results['earn_pre'] = results['r_hours_worked_week'] * self.weeks_per_month * self.months_pre * results['wage']
-            results['earn_post'] = results['r_hours_worked_week'] *self.weeks_per_month * self.months_post * results['wage']
-        results['earn_covid'] = h * self.weeks_per_month * self.months_covid * results['wage']
+            results['earn_pre'] = results['r_hours_worked_week'] * self.weeks_per_year * self.share_pre * results['wage']
+            results['earn_post'] = results['r_hours_worked_week'] *self.weeks_per_year * self.share_post * results['wage']
+        results['earn_covid'] = h * self.weeks_per_year * self.share_covid * results['wage']
         results['earn'] = results['earn_pre'] + results['earn_covid'] + results['earn_post']
         nchunks = cpu_count()
         chunks = np.array_split(results,nchunks)

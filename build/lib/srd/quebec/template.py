@@ -581,10 +581,10 @@ class template:
         amount_housing = nkids * self.solidarity_housing_kid
         if hh.couple:
             amount_tvq += self.solidarity_tvq_couple
-            amount_housing += self.solidarity_housing_couple
+            amount_housing += self.solidarity_housing_not_alone
         else:
             amount_tvq += self.solidarity_tvq_single
-            amount_housing += self.solidarity_housing_single
+            amount_housing += self.solidarity_housing_alone
 
         base_claw = max(0, fam_net_inc - self.solidarity_cutoff)
         net_amount_total = max(0, amount_tvq + amount_housing
