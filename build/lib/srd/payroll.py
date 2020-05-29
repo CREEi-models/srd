@@ -1,7 +1,7 @@
 from srd import add_params_as_attr
 import os
 module_dir = os.path.dirname(os.path.dirname(__file__))
-from srd.srp import srp
+import srpp
 from srd import qpip
 from srd import ei
 import numpy as np

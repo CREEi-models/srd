@@ -259,7 +259,7 @@
 
 <dl class="class">
 <dt id="srd.Hhold">
-<em class="property">class </em><code class="sig-prename descclassname">srd.</code><code class="sig-name descname">Hhold</code><span class="sig-paren">(</span><em class="sig-param">first</em>, <em class="sig-param">second=None</em>, <em class="sig-param">child_care_exp=0</em>, <em class="sig-param">prov='qc'</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold" title="Lien permanent vers cette définition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">srd.</code><code class="sig-name descname">Hhold</code><span class="sig-paren">(</span><em class="sig-param">first</em>, <em class="sig-param">second=None</em>, <em class="sig-param">child_care_exp=0</em>, <em class="sig-param">prov='qc'</em>, <em class="sig-param">n_adults_in_hh=None</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Classe pour définir un ménage.</p>
 <p>Ceci définit un ménage et son profil.</p>
 <dl class="field-list simple">
@@ -269,6 +269,7 @@
 <li><p><strong>second</strong> (<a class="reference internal" href="#srd.Person" title="srd.Person"><em>Person</em></a>) – instance Person du 2e membre (si 2e membre)</p></li>
 <li><p><strong>child_care_exp</strong> (<em>float</em>) – montant total des frais de garde (pour tous les enfants)</p></li>
 <li><p><strong>prov</strong> (<em>str</em>) – province (qc = quebec)</p></li>
+<li><p><strong>n_adults_in_hh</strong> (<em>int</em>) – nombre d’adultes dans le ménage (18 ans et plus)</p></li>
 </ul>
 </dd>
 </dl>
@@ -325,20 +326,6 @@
 <dl class="field-list simple">
 <dt class="field-odd">Renvoie</dt>
 <dd class="field-odd"><p>Revenu familial de travail</p>
-</dd>
-<dt class="field-even">Type renvoyé</dt>
-<dd class="field-even"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="srd.Hhold.fam_net_inc">
-<code class="sig-name descname">fam_net_inc</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.fam_net_inc" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui calcule le revenu familial après impôt.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Renvoie</dt>
-<dd class="field-odd"><p>Revenu familial total après impôt</p>
 </dd>
 <dt class="field-even">Type renvoyé</dt>
 <dd class="field-even"><p>float</p>

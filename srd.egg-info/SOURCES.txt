@@ -11,6 +11,7 @@ srd/tools.py
 srd.egg-info/PKG-INFO
 srd.egg-info/SOURCES.txt
 srd.egg-info/dependency_links.txt
+srd.egg-info/requires.txt
 srd.egg-info/top_level.txt
 srd/assistance/__init__.py
 srd/assistance/programs.py
@@ -87,12 +88,3 @@ srd/quebec/params/schedule_2020.csv
 srd/solidarity/__init__.py
 srd/solidarity/programs.py
 srd/solidarity/template.py
-srd/srp/documents/Doc de Stat Canada_supplement et max CPP benefits.xlsx
-srd/srp/documents/paramètres financiers.xlsx
-srd/srp/documents/paramètres financiers.xlsx
-srd/srp/srp/params/corr2010_curr.csv
-srd/srp/srp/params/cpi.csv
-srd/srp/srp/params/cpp_history.xlsx
-srd/srp/srp/params/cpp_history_full.xlsx
-srd/srp/srp/params/cppyear.csv
-srd/srp/srp/params/qpp_history.xlsx

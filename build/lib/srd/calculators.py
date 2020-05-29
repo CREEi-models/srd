@@ -228,18 +228,21 @@ class incentives:
         cases = cases.loc[to_drop==False,:]
         self.cases = cases
         return
-    def set_hours(self,nh=51,maxh=50,dh=10,weeks_per_month=4,hours_full=40):
+    def set_hours(self,nh=51,maxh=50,dh=10,weeks_per_year=52.1,hours_full=40):
         self.nh = nh
         self.maxh = maxh
         self.gridh = np.linspace(0,self.maxh,self.nh)
         self.dh = dh
-        self.weeks_per_month = weeks_per_month
+        self.weeks_per_year = weeks_per_year
         self.hours_full = hours_full
         return
     def set_covid(self,months_pre=3,months_covid=4):
         self.months_pre = months_pre
         self.months_covid = months_covid
         self.months_post = 12 - months_pre - months_covid
+        self.share_covid = months_covid*4/self.weeks_per_year
+        self.share_pre = 0.5*(1-self.share_covid)
+        self.share_post = 0.5*(1-self.share_covid)
         return
     def set_wages(self,minwage=13.1,avgwage=25.0):
         self.minwage = minwage
@@ -258,7 +261,7 @@ class incentives:
             hh = Hhold(p,prov='qc')
             if i[0]=='couple':
                 if i[1]:
-                    sp_earn = self.avgwage*40.0*50.0
+                    sp_earn = self.avgwage*40.0*52.1
                 else :
                     sp_earn = 0.0
                 sp = Person(age=45,earn=sp_earn)
@@ -328,12 +331,12 @@ class incentives:
         results = self.cases.copy()
         results['wage'] = self.minwage * np.array(results.index.get_level_values('wage_multiple'))
         if self.case_mode:
-            results['earn_pre'] = self.hours_full * self.weeks_per_month * self.months_pre * results['wage']
-            results['earn_post'] = self.hours_full *self.weeks_per_month * self.months_post * results['wage']
+            results['earn_pre'] = self.hours_full * self.weeks_per_year * self.share_pre * results['wage']
+            results['earn_post'] = self.hours_full *self.weeks_per_year * self.share_post * results['wage']
         else :
-            results['earn_pre'] = results['r_hours_worked_week'] * self.weeks_per_month * self.months_pre * results['wage']
-            results['earn_post'] = results['r_hours_worked_week'] *self.weeks_per_month * self.months_post * results['wage']
-        results['earn_covid'] = h * self.weeks_per_month * self.months_covid * results['wage']
+            results['earn_pre'] = results['r_hours_worked_week'] * self.weeks_per_year * self.share_pre * results['wage']
+            results['earn_post'] = results['r_hours_worked_week'] *self.weeks_per_year * self.share_post * results['wage']
+        results['earn_covid'] = h * self.weeks_per_year * self.share_covid * results['wage']
         results['earn'] = results['earn_pre'] + results['earn_covid'] + results['earn_post']
         nchunks = cpu_count()
         chunks = np.array_split(results,nchunks)

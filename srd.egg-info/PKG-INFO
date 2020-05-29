@@ -1,7 +1,7 @@
 Metadata-Version: 2.1
 Name: srd
-Version: 0.0.2
-Summary: Modele de simulation du revenu disponible
+Version: 0.1.0
+Summary: Modele de simulation du revenu disponible Quebec
 Home-page: https://creei-models.github.io/srd/
 Author: Équipe CREEi
 Author-email: pierre-carl.michaud@hec.ca

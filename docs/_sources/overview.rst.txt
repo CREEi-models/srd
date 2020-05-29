@@ -9,25 +9,15 @@ Premier pas avec le SRD
 Installation du SRD
 ======================
 
-On peut installer facilement le SRD en allant chercher d'abord sur GitHub::
+On peut installer facilement le SRD en allant utilisant pip::
 
-  git clone https://github.com/creei-models/srd srd --recursive
+  pip install srd
 
 
-On complète l'installation en allant dans srd/ et en lançant au terminal::
-
-  python setup.py install
+Le SRD dépend d'un autre package produit par la chaire, le SRPP, qui permet de simuler les revenus de pensions publiques (RPC et RRQ). Celui ci est installé automatiquement en installant le SRD. 
 
 Dans un notebook ou un projet, on invoque SRD en ajoutant la commande suivante:
 
 .. code:: ipython3
 
     import srd
-
-Vous ne devriez pas travailler dans ce répertoire d'installation.
-
-Pour désinstaller le module SRD, il suffit de rentrer la commande suivante dans le terminal::
-
-  pip uninstall srd
-
-Il faudra ensuite encore effacer le répertoire SRD local si l'on veut s'en débarrasser.

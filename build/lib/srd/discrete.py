@@ -74,10 +74,11 @@ class behavior:
         Keyword Arguments:
             year {int} -- année du système fiscal (default: {2020})
         """
+        data = self.data.copy()
         self.tax = tax(year)
         for j,h in enumerate(self.gridh):
             f = partial(self.dispinc,hours=h)
-            self.data['cons_'+str(j)] = self.data.apply(f,axis=1)
+            self.data['cons_'+str(j)] = data.swifter.apply(f,axis=1)
         return
     def set_shifters(self,list_of_varnames):
         """Fonction permettant de spécifier les noms de variables qui ajusteront l'utilité marginale du loisir.

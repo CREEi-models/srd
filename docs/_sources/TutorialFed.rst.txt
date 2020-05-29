@@ -9,7 +9,7 @@ Importation du module
     import srd
 
 Initialisation d’un ménage
-^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 On doit d’abord initialiser un ménage. Ici nous supposerons un couple
 avec deux membres ayant tous les deux 45 ans et des revenus de travail de
