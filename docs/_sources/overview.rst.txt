@@ -27,6 +27,6 @@ Pour désinstaller SRD, il suffit d'utiliser pip::
 
   pip uninstall srd
 
-En cas de questions/commentaires/suggestions, n'hésitez pas à `nous contacter`_.
+En cas de questions, commentaires ou suggestions, n'hésitez pas à `nous contacter`_.
 
 .. _nous contacter: pierre-yves.yanni@hec.ca
