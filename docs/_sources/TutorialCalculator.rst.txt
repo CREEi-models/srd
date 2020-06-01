@@ -18,20 +18,17 @@ son REER.
     pauline = srd.Person(age=45,earn=25e3)
     hh = srd.Hhold(jean,pauline,prov='qc')
 
-Le revenu familial total et net (après impôt) est initialisé à la même
-valeur si aucun calcul des impôts n'est fait. Le revenu disponible retire
-la cotisation REER.
+Les revenus familiaux totaux, disponibles et après impôts peuvent être appelés.
+À ce stade, le revenus après impôts et disponible ne sont pas encore calculés.
 
 .. code:: ipython3
 
-    hh.fam_tot_inc(), hh.fam_net_inc(), hh.fam_disp_inc()
-
-
+    hh.fam_tot_inc, hh.fam_after_tax_inc, hh.fam_disp_inc
 
 
 .. parsed-literal::
 
-    (75000.0, 75000.0, 70000.0)
+    (75000.0, None, None)
 
 
 
@@ -57,53 +54,53 @@ Calcul des revenus net et disponible
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Après avoir fait les calculs, on peut calculer différents concepts de
-revenus après impôt à l’aide des fonctions *netinc()* et *dispinc()*.
+revenus après impôt à l’aide des fonctions *compute_after_tax_inc()* et *disp_inc()*.
 Celles-ci viendront modifier les attributs des conjoints pour les
-variables *net_inc* et *disp_inc*.
+variables *after_tax_inc* et *disp_inc*.
 
 .. code:: ipython3
 
-    tax.netinc(hh)
+    tax.disp_inc(hh)
 
 .. code:: ipython3
 
-    tax.dispinc(hh)
+    tax.compute_after_tax_inc(hh)
 
 On peut voir que les variables ont été modifiées.
 
 .. code:: ipython3
 
-    hh.fam_tot_inc(), hh.fam_net_inc(), hh.fam_disp_inc()
+    hh.fam_tot_inc, hh.fam_after_tax_inc, hh.fam_disp_inc
 
 
 
 
 .. parsed-literal::
 
-    (75000.0, 69106.737, 64106.736999999994)
+    (75000.0, 62604.14, 52432.14)
 
 
 
 .. code:: ipython3
 
-    jean.inc_tot(), jean.net_inc, jean.disp_inc
+    jean.inc_tot, jean.after_tax_inc, jean.disp_inc
 
 
 
 
 .. parsed-literal::
 
-    (50000.0, 45800.8685, 40800.8685)
+    (50000.0, 40857.47, 32347.34)
 
 
 
 .. code:: ipython3
 
-    pauline.inc_tot(), pauline.net_inc, pauline.disp_inc
+    pauline.inc_tot, pauline.after_tax_inc, pauline.disp_inc
 
 
 
 
 .. parsed-literal::
 
-    (25000.0, 23305.8685, 23305.8685)
+    (25000.0, 21746.6685, 20084.7935)

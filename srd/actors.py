@@ -299,6 +299,7 @@ class Hhold:
         """
         return sum([p.inc_tot for p in self.sp])
 
+    @property
     def fam_after_tax_inc(self):
         """
         Fonction qui calcule le revenu familial après impôt.
@@ -308,7 +309,10 @@ class Hhold:
         float
             Revenu familial total après impôt
         """
-        return sum([p.after_tax_inc for p in self.sp])
+        try:
+            return sum([p.after_tax_inc for p in self.sp])
+        except:
+            return None
 
     @property
     def fam_disp_inc(self):
@@ -322,7 +326,10 @@ class Hhold:
         float
             Revenu familial disponible après impôt et cotisations.
         """
-        return sum([p.disp_inc for p in self.sp])
+        try:
+            return sum([p.disp_inc for p in self.sp])
+        except:
+            return None
 
     def add_dependent(self, *dependents): # necessary?
         """

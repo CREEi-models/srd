@@ -191,7 +191,7 @@ class programs:
             Le montant de la PIRTE pour les 16 semaines.
         """
         if (not p.essential_worker or p.inc_work < self.iprew_min_inc_work or
-            p.inc_tot > self.iprew_max_inc_tot):
+            p.tot_inc > self.iprew_max_tot_inc):
             return 0
         else:
             l_iprew = [self.iprew_monthly_amount for month

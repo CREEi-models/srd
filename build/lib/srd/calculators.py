@@ -149,7 +149,7 @@ class tax:
         Calcul fait au niveau individuel et ensuite rattaché à la personne. Un calcul au niveau du ménage est aussi effectué.
         """
         for p in hh.sp:
-            after_tax_inc = p.inc_tot
+            after_tax_inc = p.tot_inc
             if self.ifed:
                 after_tax_inc -= p.fed_return['net_tax_liability']
             if self.iprov:

@@ -148,7 +148,7 @@ class Person:
                 + self.inc_rrsp + self.inc_oas + self.inc_gis)
 
     @property
-    def inc_tot(self):
+    def tot_inc(self):
         """
         Fonction qui retourne le revenu total.
 
@@ -297,7 +297,7 @@ class Hhold:
         float
             Revenu familial total
         """
-        return sum([p.inc_tot for p in self.sp])
+        return sum([p.tot_inc for p in self.sp])
 
     def fam_after_tax_inc(self):
         """
