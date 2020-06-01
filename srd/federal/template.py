@@ -124,8 +124,7 @@ class template:
                           if self.chcare_max_age_young < d.age <= self.chcare_max_age_old])
         max_chcare = nkids_0_6 * self.chcare_young + nkids_7_16 * self.chcare_old
 
-        return min(max_chcare, hh.child_care_exp,
-                   self.chcare_rate_inc * p.inc_work)
+        return min(max_chcare, hh.child_care_exp, self.chcare_rate_inc * p.inc_work)
 
     def calc_tax(self, p):
         """

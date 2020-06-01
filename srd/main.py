@@ -13,17 +13,15 @@ policy = covid.policy()
 policy.shut_all_measures()
 tax_form = tax(2020, policy=policy)
 
-p0 = Person(asset=1000, earn=5000)
-p1 = Person()
-hh = Hhold(p0, p1, n_adults_in_hh=1, prov='qc')
+p0 = Person(asset=1000, earn=0, self_earn=50000)
 
-
-
-print(hh.n_adults_in_hh)
+hh = Hhold(p0, n_adults_in_hh=1, prov='qc')
 
 tax_form.compute(hh)
 
-print(p0.qc_single_cred)
+print(p0.contrib_cpp, p0.contrib_cpp_self)
+
+
 
 
 

@@ -23,8 +23,8 @@ class payroll:
     """
     def __init__(self, year):
         self.year = year
-        self.qpp_rules = srp.rules(qpp=True)
-        self.cpp_rules = srp.rules(qpp=False)
+        self.qpp_rules = srpp.rules(qpp=True)
+        self.cpp_rules = srpp.rules(qpp=False)
         self.qpip_prog = qpip.program(self.year)
         self.ei_prog = ei.program(self.year)
 
@@ -66,10 +66,12 @@ class payroll:
         if (p.age < 18) | (p.age > 69):
             return 0.0, 0.0
         else:
-            acc = srp.account(byear=self.year - p.age, rules=rules)
+            acc = srpp.account(byear=self.year - p.age, rules=rules)
             acc.MakeContrib(year=self.year, earn=p.inc_earn,
                             earn_aut=p.inc_self_earn)
             hist = acc.history[p.age - 18]
-            return (hist.contrib +  hist.contrib_aut,
+            p.contrib_cpp, p.contrib_cpp_self = hist.contrib, hist.contrib_aut
+
+            return (hist.contrib + hist.contrib_aut,
                     hist.contrib_s1 + hist.contrib_s2 +
                     hist.contrib_aut_s1 + hist.contrib_aut_s2)
