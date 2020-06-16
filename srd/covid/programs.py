@@ -25,14 +25,17 @@ class policy:
         majoration du crédit pour la taxe sur les produits et services/taxe de vente harmonisée (TPS/TVH)
     icovid_ccb: boolean
         majoration de l'allocation canadienne pour enfants (ACE/CCB)
+    iei: boolean
+        Assurance emploi d'urgence
     """
     def __init__(self, icerb=True, icesb=True, iiprew=True, icovid_gst=True,
-                 icovid_ccb=True):
+                 icovid_ccb=True, iei=False):
         self.icerb = icerb
         self.icesb = icesb
         self.iiprew = iiprew
         self.icovid_gst = icovid_gst
         self.icovid_ccb = icovid_ccb
+        self.iei = iei
 
     def shut_all_measures(self):
         """
@@ -51,8 +54,7 @@ class policy:
         boolean
             True s'il y a au moins une mesure, False sinon.
         """
-
-        return any(v is True for v in vars(self).values())
+        return any(v is True for k, v in vars(self).items() if k != 'iei')
 
 class programs:
     """
@@ -109,12 +111,12 @@ class programs:
         float
             Le montant de la PCU.
         """
-        if p.months_cerb == 0:
+        if p.months_cerb == 0 or p.prev_inc_work < self.cerb_min_inc_work:
             return 0
         else:
             l_cerb = [self.cerb_base for month
                       in range(self.begin_april, self.begin_april + p.months_cerb)
-                      if p.inc_earn_month[month] <= self.cerb_max_earn]
+                      if p.inc_work_month[month] <= self.cerb_max_earn]
             return sum(l_cerb)
 
     def compute_cesb(self, p, hh):
@@ -142,7 +144,7 @@ class programs:
             monthly_cesb = self.compute_monthly_cesb(p, hh)
             l_cesb = [monthly_cesb for month
                       in range(self.begin_april, self.begin_april + p.months_cesb)
-                  if p.inc_earn_month[month] <= self.cesb_max_earn]
+                  if p.inc_work_month[month] <= self.cesb_max_earn]
             return sum(l_cesb)
 
     def compute_monthly_cesb(self, p, hh):
@@ -195,6 +197,6 @@ class programs:
             return 0
         else:
             l_iprew = [self.iprew_monthly_amount for month
-                       in range(self.begin_april, self.begin_april + 4)
-                       if 0 < p.inc_earn_month[month] <= self.iprew_max_earn]
+                       in range(self.begin_april, self.begin_april + self.iprew_max_months)
+                       if 0 < p.inc_work_month[month] <= self.iprew_max_earn]
             return sum(l_iprew)

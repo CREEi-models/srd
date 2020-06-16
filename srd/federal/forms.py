@@ -1,6 +1,7 @@
 from srd import add_params_as_attr, add_schedule_as_attr, covid
 import os
 from srd.federal import template
+from srd import ei
 module_dir = os.path.dirname(os.path.dirname(__file__))
 
 # wrapper to pick correct year
@@ -112,3 +113,42 @@ class form_2020(template):
         p.fed_disabled_cred = self.get_disabled_cred(p)
         p.fed_return['non_refund_credits'] = self.rate_non_ref_tax_cred * (basic_amount
             + p.fed_age_cred + p.fed_pension_cred + p.fed_disabled_cred)
+
+    def calc_net_income(self, p):
+        """
+        Fonction qui calcule le revenu net au sens de l'impôt.
+
+        Cette fonction correspond au revenu net d'une personne aux fins de l'impôt. On y soustrait les déductions.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        """
+        p.fed_return['net_income'] =  max(0, p.fed_return['gross_income']
+                                          - p.fed_return['deductions'])
+        self.repayments_ei(p)
+
+    def repayments_ei(self, p):
+        """
+        Fonction qui calcule le montant du remboursement d'assurance-emploi,
+        ajuste le montant des bénéfices, le revenu net et le revenu brut.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+
+        Returns
+        -------
+        float
+            montant du remboursement
+        """
+        excess_net_inc = max(0, p.fed_return['net_income'] - self.ei_max_net_inc)
+        if excess_net_inc > 0:
+            repayment = self.ei_rate_repay * min(p.inc_ei, excess_net_inc)
+            p.inc_ei -= repayment
+            p.fed_return['net_income'] -= repayment
+            p.fed_return['gross_income'] -= repayment
+
+

@@ -61,13 +61,13 @@ class behavior:
             [float] -- le revenu disponible du ménage.
         """
         if self.icouple:
-            row['hhold'].sp[0].earn = hours[0]*row['r_wage']
-            row['hhold'].sp[1].earn = hours[1]*row['s_wage']
+            row['hhold'].sp[0].inc_earn = hours[0]*row['r_wage']
+            row['hhold'].sp[1].inc_earn = hours[1]*row['s_wage']
         else :
-            row['hhold'].sp[0].earn = hours*row['r_wage']
+            row['hhold'].sp[0].inc_earn = hours*row['r_wage']
         self.tax.compute(row['hhold'])
         self.tax.disp_inc(row['hhold'])
-        return row['hhold'].fam_disp_inc
+        return max(row['hhold'].fam_disp_inc,1.0)
     def budget(self,year=2020):
         """Fonction qui calcule tous les revenus disponibles pour la grille d'heures
 
@@ -97,7 +97,7 @@ class behavior:
         mu = mu.reset_index().set_index('label')['value']
         self.data['mu_r'] = mu['constant']
         for v in self.shifters_vars:
-            self.data['mu_r'] += self.data['r_'+v]*mu[v]
+                self.data['mu_r'] += self.data['r_'+v]*mu[v]
         if self.icouple:
             mu = self.pars.loc[self.pars.index.get_level_values(0)=='L(s)','value']
             mu = mu.reset_index().set_index('label')['value']
@@ -111,25 +111,25 @@ class behavior:
         self.pars = pd.DataFrame(columns=['group','label','value','se','free'])
         self.pars.set_index(['group','label'],inplace=True)
         # consumption
-        self.pars.loc[('C','constant'),:] = [1e-2,0.0,True]
+        self.pars.loc[('C','constant'),:] = [1.0,0.0,True]
         # respondent leisure
-        self.pars.loc[('L(r)','constant'),:] = [1e-2,0.0,True]
+        self.pars.loc[('L(r)','constant'),:] = [1.0,0.0,True]
         for v in self.shifters_vars:
             self.pars.loc[('L(r)',v),:] = [0.0,0.0,True]
         # if heterogeneity
         if self.ihetero:
-            self.pars.loc[('L(r)','sigma'),:] = [-3,0.0,True]
+            self.pars.loc[('L(r)','sigma'),:] = [-1,0.0,True]
         # spouse (if couple)
         if self.icouple:
-            self.pars.loc[('L(s)','constant'),:] = [1e-2,0.0,True]
+            self.pars.loc[('L(s)','constant'),:] = [1.0,0.0,True]
             for v in self.shifters_vars:
                 self.pars.loc[('L(s)',v),:] = [0.0,0.0,True]
             # if heterogeneity
             if self.ihetero:
-                self.pars.loc[('L(s)','sigma'),:] = [-3,0.0,True]
+                self.pars.loc[('L(s)','sigma'),:] = [-1,0.0,True]
         # joint leisure (if couple)
         if self.icouple:
-            self.pars.loc[('L(r,s)','constant'),:] = [1e-2,0.0,True]
+            self.pars.loc[('L(r,s)','constant'),:] = [1.0,0.0,True]
         # correlation UH
         if self.icouple:
             if self.ihetero:
@@ -173,10 +173,10 @@ class behavior:
         """Initialisation des tirages aléatoires pour l'estimation.
         """
         if self.icouple:
-            self.draws_r = np.random.normal((self.n,self.nreps))
-            self.draws_s = np.random.normal((self.n,self.nreps))
+            self.draws_r = np.random.normal(size=(self.n,self.nreps))
+            self.draws_s = np.random.normal(size=(self.n,self.nreps))
         else :
-            self.draws_r = np.random.normal((self.n,self.nreps))
+            self.draws_r = np.random.normal(size=(self.n,self.nreps))
         return
     def set_theta(self,theta):
         """Fonction permettant d'assigner les paramètres libres à l'instance pars
@@ -209,14 +209,14 @@ class behavior:
         N = self.n
         R = self.nreps
         if self.icouple:
-            mu_r = self.data.loc[:,'mu_r'].values
-            mu_s = self.data.loc[:,'mu_s'].values
-            mu_c = self.pars.loc[('C','constant'),'value'].values
+            mu_r = self.data.loc[:,'mu_r'].astype('float64').values
+            mu_s = self.data.loc[:,'mu_s'].astype('float64').values
+            mu_c = self.pars.loc[('C','constant'),'value']
             mu_rs = self.pars.loc[('L(r,s)','constant'),'value']
             C = self.data[['cons_'+str(j) for j in range(self.nh)]].values
             Lmax = self.Lmax
-            Lr = [Lmax-h[0] for h in self.gridh]
-            Ls = [Lmax-h[1] for h in self.gridh]
+            Lr = np.array([Lmax-h[0] for h in self.gridh])
+            Ls = np.array([Lmax-h[1] for h in self.gridh])
             V = np.zeros((2,2))
             V[0,0] = np.exp(self.pars.loc[('L(r)','sigma'),'value'])
             V[1,1] = np.exp(self.pars.loc[('L(s)','sigma'),'value'])
@@ -226,11 +226,14 @@ class behavior:
             eta_r = self.draws_r
             eta_s = self.draws_s
             J = self.nh
-            choice = self.data.loc[:,'h_choice']
-            fcosts = self.pars.loc[self.pars.index.get_level_values(0)=='FC','value'].values
+            choice = self.data.loc[:,'h_choice'].astype('int64').values
+            if self.icost:
+                fcosts = self.pars.loc[self.pars.index.get_level_values(0)=='FC','value'].values
+            else :
+                fcosts = np.zeros(J)
             prob = prob_couple(choice,mu_r,mu_s,mu_c,mu_rs,C,Lr,Ls,Lv,eta_r,eta_s,fcosts,N,R,J)
         else :
-            mu_r = self.data.loc[:,'mu_r'].values
+            mu_r = self.data.loc[:,'mu_r'].astype('float64').values
             mu_c = self.pars.loc[('C','constant'),'value'].values
             C = self.data[['cons_'+str(j) for j in range(self.nh)]].values
             Lmax = self.Lmax
@@ -238,9 +241,13 @@ class behavior:
             sigma = np.sqrt(np.exp(self.pars.loc[('L(r)','sigma'),'value']))
             eta_r = self.draws_r
             J = self.nh
-            choice = self.data.loc[:,'r_choice']
-            fcosts = self.pars.loc[self.pars.index.get_level_values(0)=='FC','value'].values
+            choice = self.data.loc[:,'r_choice'].astype('int64').values
+            if self.icost:
+                fcosts = self.pars.loc[self.pars.index.get_level_values(0)=='FC','value'].values
+            else :
+                fcosts = np.zeros(J)
             prob = prob_single(choice,mu_r,mu_c,C,Lr,sigma,eta_r,fcosts,N,R,J)
+        #print(np.mean(np.log(prob)))
         return np.mean(np.log(prob))
 
     def loglike_i(self,theta):
@@ -260,12 +267,12 @@ class behavior:
         if self.icouple:
             mu_r = self.data.loc[:,'mu_r'].values
             mu_s = self.data.loc[:,'mu_s'].values
-            mu_c = self.pars.loc[('C','constant'),'value'].values
+            mu_c = self.pars.loc[('C','constant'),'value']
             mu_rs = self.pars.loc[('L(r,s)','constant'),'value']
             C = self.data[['cons_'+str(j) for j in range(self.nh)]].values
             Lmax = self.Lmax
-            Lr = [Lmax-h[0] for h in self.gridh]
-            Ls = [Lmax-h[1] for h in self.gridh]
+            Lr = np.array([Lmax-h[0] for h in self.gridh])
+            Ls = np.array([Lmax-h[1] for h in self.gridh])
             V = np.zeros((2,2))
             V[0,0] = np.exp(self.pars.loc[('L(r)','sigma'),'value'])
             V[1,1] = np.exp(self.pars.loc[('L(s)','sigma'),'value'])
@@ -275,8 +282,11 @@ class behavior:
             eta_r = self.draws_r
             eta_s = self.draws_s
             J = self.nh
-            choice = self.data.loc[:,'h_choice']
-            fcosts = self.pars.loc[self.pars.index.get_level_values(0)=='FC','value'].values
+            choice = self.data.loc[:,'h_choice'].values
+            if self.icost:
+                fcosts = self.pars.loc[self.pars.index.get_level_values(0)=='FC','value'].values
+            else :
+                fcosts = np.zeros(J)
             prob = prob_couple(choice,mu_r,mu_s,mu_c,mu_rs,C,Lr,Ls,Lv,eta_r,eta_s,fcosts,N,R,J)
         else :
             mu_r = self.data.loc[:,'mu_r'].values
@@ -287,8 +297,11 @@ class behavior:
             sigma = np.sqrt(np.exp(self.pars.loc[('L(r)','sigma'),'value']))
             eta_r = self.draws_r
             J = self.nh
-            choice = self.data.loc[:,'r_choice']
-            fcosts = self.pars.loc[self.pars.index.get_level_values(0)=='FC','value'].values
+            choice = self.data.loc[:,'r_choice'].values
+            if self.icost:
+                fcosts = self.pars.loc[self.pars.index.get_level_values(0)=='FC','value'].values
+            else :
+                fcosts = np.zeros(J)
             prob = prob_single(choice,mu_r,mu_c,C,Lr,sigma,eta_r,fcosts,N,R,J)
         return np.log(prob)
 
@@ -343,7 +356,7 @@ class behavior:
 
 @njit(parallel=False)
 def prob_couple(choice,mu_r,mu_s,mu_c,mu_rs,
-                    C,Lr,Ls,Lv,eta_r,eta_s,fcosts,N,R,J):
+                    C,Lr,Ls,Lv,eta_r,eta_s,fcosts, N, R, J):
     """Fonction numba pour calculer la probabilité d'observer les choix des ménages.
 
     Arguments:
@@ -366,8 +379,8 @@ def prob_couple(choice,mu_r,mu_s,mu_c,mu_rs,
     Returns:
         [numpy.array] -- probabilités d'observer le choix de chacun des ménages (N par 1)
     """
-    pr = np.zeros((N,R))
     u = np.zeros((N,J))
+    pi = np.zeros(N)
     for r in range(R):
         mur = mu_r + Lv[0,0]*eta_r[:,r]
         mus = mu_s + Lv[1,0]*eta_r[:,r] + Lv[1,1]*eta_s[:,r]
@@ -375,9 +388,10 @@ def prob_couple(choice,mu_r,mu_s,mu_c,mu_rs,
             u[:,j] = (mur*np.log(Lr[j]) + mus*np.log(Ls[j])
                  + mu_c*np.log(C[:,j]) + mu_rs*np.log(Lr[j])*np.log(Ls[j])+ fcosts[j])
         for i in range(N):
-            pr[i,r] = np.exp(u[i,choice[i]])/np.sum(np.exp(u[i,:]))
-    return np.mean(pr,axis=1)
+            pi[i] += np.exp(u[i,choice[i]])/np.sum(np.exp(u[i,:]))/R
+    return pi
 
+#@njit('float64[:](int64[:],float64[:],float64[:],float64[:,:],float64[:],float64,float64[:,:],float64[:],int64,int64,int64)',parallel=False)
 @njit(parallel=False)
 def prob_single(choice,mu_r,mu_c,C,Lr,sigma,eta,fcosts,N,R,J):
     """Fonction numba pour calculer la probabilité d'observer les choix des ménages.
@@ -397,15 +411,15 @@ def prob_single(choice,mu_r,mu_c,C,Lr,sigma,eta,fcosts,N,R,J):
     Returns:
         [numpy.array] -- probabilités d'observer le choix de chacun des ménages (N par 1)
     """
-    pr = np.zeros((N,R))
+    pi = np.zeros(N)
     u = np.zeros((N,J))
     for r in range(R):
         mur = mu_r + sigma*eta[:,r]
         for j in range(J):
             u[:,j] = (mur*np.log(Lr[j]) + mu_c*np.log(C[:,j]) + fcosts[j])
         for i in range(N):
-            pr[i,r] = np.exp(u[i,choice[i]])/np.sum(np.exp(u[i,:]))
-    return np.mean(pr,axis=1)
+            pi[i] += np.exp(u[i,choice[i]])/np.sum(np.exp(u[i,:]))/R
+    return pi
 
 
 

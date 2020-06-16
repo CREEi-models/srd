@@ -31,4 +31,4 @@ class template:
         rate = self.rate_EI_qc if hh.prov == 'qc' else self.rate_EI
         return rate * min(p.inc_earn, self.max_earn_EI)
 
-
+    

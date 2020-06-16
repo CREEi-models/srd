@@ -55,9 +55,9 @@ class template:
         p: Person
             instance de la classe Person
         """
-        p.prov_return['gross_income'] = (p.inc_work + p.inc_oas
-                                         + p.inc_gis + p.inc_cpp + p.inc_rpp + p.inc_othtax
-                                         + p.inc_rrsp)
+        p.prov_return['gross_income'] = (p.inc_work + p.inc_ei + p.inc_oas
+                                         + p.inc_gis + p.inc_cpp + p.inc_rpp
+                                         + p.inc_othtax + p.inc_rrsp)
 
     def calc_net_income(self, p):
         """
@@ -204,7 +204,8 @@ class template:
 
     def get_exp_worker_cred(self, p):
         """
-        Crédit d'impôt pour les travailleurs d'expérience. Depuis 2019, renommé crédit d'impôts pour la prolongation de carrière.
+        Crédit d'impôt pour les travailleurs d'expérience.
+        Depuis 2019, renommé crédit d'impôts pour la prolongation de carrière.
 
         Ce crédit est non-remboursable. Nous avons fait l'hypothèse que les travailleurs
         de 65 ans sont nés le 1er janvier (dans l'année en cours, les revenus avant
@@ -222,7 +223,6 @@ class template:
         clawback = self.exp_work_claw_rate * max(0, p.inc_work - self.exp_work_cut_inc)
         adj_tax_liability = max(0, p.prov_return['gross_tax_liability']
                                 - self.nrtc_rate * (self.nrtc_base + p.qc_age_cred))
-        min_amount = 0
 
         def calc_amount(max_work_inc, min_amount):
             """
@@ -239,6 +239,8 @@ class template:
                                             p.inc_work - self.exp_work_min_inc)
             base_claw_adj = max(min_amount, base - clawback)
             return min(base_claw_adj, adj_tax_liability)
+
+        min_amount = 0
 
         if p.age == 60:
             return calc_amount(self.exp_work_max_work_inc_60, min_amount)
@@ -423,7 +425,8 @@ class template:
             Cette fonction calcule le montant reçu en fonction du nombre d'enfants,
             de la situation familiale (couple/monoparental) et du revenu.
         """
-        if hh.child_care_exp == 0:
+        child_care_exp = sum([d.child_care for d in hh.dep])
+        if child_care_exp == 0:
             return 0
 
         if hh.couple and p.male and hh.sp[0].male != hh.sp[1].male:
@@ -433,7 +436,7 @@ class template:
         nkids_7_16 = len([d for d in hh.dep
                           if self.chcare_max_age_young < d.age <= self.chcare_max_age_old])
 
-        amount = min(hh.child_care_exp,
+        amount = min(child_care_exp,
                      nkids_0_6 * self.chcare_young + nkids_7_16 * self.chcare_old)
         fam_net_inc = sum([s.prov_return['net_income'] for s in hh.sp])
         ind = np.searchsorted(self.chcare_brack, fam_net_inc, 'right') - 1

@@ -4,8 +4,9 @@ import numpy as np
 module_dir = os.path.dirname(os.path.dirname(__file__))
 
 def create_return():
-        lines = ['gross_income','deductions','net_income','taxable_income','gross_tax_liability',
-        'non_refund_credits','refund_credits','net_tax_liability']
+        lines = ['gross_income','deductions', 'net_income', 'taxable_income',
+                 'gross_tax_liability', 'non_refund_credits', 'refund_credits',
+                 'net_tax_liability']
         return dict(zip(lines,np.zeros(len(lines))))
 
 class template:
@@ -49,9 +50,9 @@ class template:
         p: Person
             instance de la classe Person
         """
-        p.fed_return['gross_income'] = (p.inc_work + p.inc_oas + p.inc_gis
-                                        + p.inc_cpp + p.inc_rpp + p.inc_othtax
-                                        + p.inc_rrsp)
+        p.fed_return['gross_income'] = (p.inc_work + p.inc_ei + p.inc_oas
+                                        + p.inc_gis + p.inc_cpp + p.inc_rpp
+                                        + p.inc_othtax + p.inc_rrsp)
 
     def calc_net_income(self, p):
         """
@@ -113,10 +114,12 @@ class template:
             de l'âge des enfants et du revenu le moins élevé du couple. Le montant
             est reçu par le conjoint qui a le revenu le moins élevé.
         """
+        child_care_exp = sum([d.child_care for d in hh.dep])
+        if child_care_exp == 0:
+            return 0
 
         p_low_inc = min(hh.sp, key=lambda p: p.inc_work)
-
-        if p != p_low_inc or hh.child_care_exp == 0:
+        if p != p_low_inc:
             return 0
 
         nkids_0_6 = len([d for d in hh.dep if d.age <= self.chcare_max_age_young])
@@ -124,7 +127,7 @@ class template:
                           if self.chcare_max_age_young < d.age <= self.chcare_max_age_old])
         max_chcare = nkids_0_6 * self.chcare_young + nkids_7_16 * self.chcare_old
 
-        return min(max_chcare, hh.child_care_exp, self.chcare_rate_inc * p.inc_work)
+        return min(max_chcare, child_care_exp, self.chcare_rate_inc * p.inc_work)
 
     def calc_tax(self, p):
         """

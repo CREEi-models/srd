@@ -55,10 +55,11 @@ class Person:
                  years_can=None, disabled=False, cqppc=None, widow=False,
                  ndays_chcare_k1=0, ndays_chcare_k2=0, asset=0,
                  oas_years_post=0, months_cerb_cesb=0, student=False,
-                 essential_worker=False):
+                 essential_worker=False, hours_month=None, prev_inc_work=None):
         self.age = age
         self.male = male
-        self.attach_inc_earn_month(earn)
+        self.attach_inc_work_month(earn, self_earn)
+        self.attach_prev_work_inc(prev_inc_work)
         self.inc_rpp = rpp
         self.inc_cpp = cpp
         self.inc_othtax = othtax
@@ -67,7 +68,6 @@ class Person:
         self.con_rrsp = con_rrsp
         self.con_rpp = con_rpp
         self.years_can = age if years_can is None else years_can # number of years in Canada (max = 40)
-        self.inc_self_earn = self_earn
         self.disabled = disabled
         self.cqppc = cqppc
         self.widow = widow
@@ -78,8 +78,10 @@ class Person:
         self.compute_months_cerb_cesb(months_cerb_cesb, student)
         self.student = student
         self.essential_worker = essential_worker
+        self.hours_month = hours_month # could enter list of hours for ei
         self.inc_oas = 0
         self.inc_gis = 0
+        self.inc_ei = 0
         self.inc_social_ass = 0
         self.allow_couple = 0
         self.allow_surv = 0
@@ -93,29 +95,32 @@ class Person:
         self.prov_return = None
         self.payroll = None
 
+    def attach_prev_work_inc(self, prev_work_inc):
+        if prev_work_inc is None:
+            self.prev_inc_work = self.inc_earn + self.inc_self_earn
+        else:
+            self.prev_inc_work = prev_work_inc
 
-    def attach_inc_earn_month(self, earn):
+    def attach_inc_work_month(self, earn, self_earn):
         """
-        Fonction qui convertit le revenu du travail salarié annuel en revenu mensuel et vice-versa.
+        Fonction qui convertit le revenu du travail annuel en revenu mensuel et vice-versa.
 
-        On entre le revenu du travail salarié annuel ou mensuel (liste avec 12 éléments)
-        et le revenu du travail salarié annuel et mensuel deviennent des attributs de la personne.
+        On entre le revenu du travail annuel ou mensuel (liste avec 12 éléments)
+        et le revenu du travail annuel et mensuel deviennent des attributs de la personne.
 
         Parameters
         ----------
         earn: float or list
-
-        Returns
-        -------
-        float
-            revenu de travail.
+        self_earn: float or list
         """
-        if type(earn) == list and len(earn) == 12:
-            self.inc_earn_month = earn
+        if isinstance(earn, list) and isinstance(self_earn, list):
+            self.inc_work_month = earn + self_earn
             self.inc_earn = sum(earn)
+            self.inc_self_earn = sum(self_earn)
         else:
-            self.inc_earn_month = [earn / 12] * 12
+            self.inc_work_month = [(earn + self_earn) / 12] * 12
             self.inc_earn = earn
+            self.inc_self_earn = self_earn
 
     @property
     def inc_work(self):
@@ -145,7 +150,7 @@ class Person:
             revenu autre que travail.
         """
         return (self.inc_rpp + self.inc_cpp + self.inc_othtax + self.inc_othntax
-                + self.inc_rrsp + self.inc_oas + self.inc_gis)
+                + self.inc_rrsp + self.inc_oas + self.inc_gis + self.inc_ei)
 
     @property
     def inc_tot(self):
@@ -231,13 +236,12 @@ class Hhold:
     n_adults_in_hh: int
         nombre d'adultes dans le ménage (18 ans et plus)
     """
-    def __init__(self, first, second=None, child_care_exp=0, prov='qc',
+    def __init__(self, first, second=None, prov='qc',
                  n_adults_in_hh=None):
         self.sp = [first]
         self.couple = bool(second)
         if self.couple:
             self.sp.append(second)
-        self.child_care_exp = child_care_exp
         self.prov = prov
         self.dep = []
         self.n_adults_in_hh = self.adjust_n_adults(n_adults_in_hh)
@@ -333,22 +337,15 @@ class Hhold:
 
     def add_dependent(self, *dependents): # necessary?
         """
-        Fonction pour ajouter un dépendant.
+        Fonction pour ajouter un ou ou plusieurs dépendant(s).
 
         Parameters
         ----------
         dependent: Dependent
-            instance de la classe Dependent
+            instance de la classe Dependent ou liste d'instances de la classe Dependent
         """
         for d in dependents:
             self.dep.append(d)
-
-    def compute_child_care_exp(self):
-        """
-        Fonction qui calcule les dépenses totales en frais de garde
-        pour les enfants de moins de 17 ans
-        """
-        self.child_care_exp = sum([d.child_care for d in hh.dep if d.age <= 16])
 
     def count(self): # do we need this?
         """
