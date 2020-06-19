@@ -39,6 +39,8 @@ class Person:
         contribution au RRQ
     widow: boolean
         statut de veuf/veuve
+    med_exp: float
+        frais médicaux
     asset: float
         valeur marchande des actifs
     oas_years_post: int
@@ -53,7 +55,7 @@ class Person:
     def __init__(self, age=50, male=True, earn=0, rpp=0, cpp=0, othtax=0,
                  othntax=0, inc_rrsp=0, self_earn=0, con_rrsp=0, con_rpp=0,
                  years_can=None, disabled=False, cqppc=None, widow=False,
-                 ndays_chcare_k1=0, ndays_chcare_k2=0, asset=0,
+                 med_exp=0, ndays_chcare_k1=0, ndays_chcare_k2=0, asset=0,
                  oas_years_post=0, months_cerb_cesb=0, student=False,
                  essential_worker=False, hours_month=None, prev_inc_work=None):
         self.age = age
@@ -71,6 +73,7 @@ class Person:
         self.disabled = disabled
         self.cqppc = cqppc
         self.widow = widow
+        self.med_exp = med_exp
         self.ndays_chcare_k1 = ndays_chcare_k1 # should be the kid with the most days,
         self.ndays_chcare_k2 = ndays_chcare_k2 # second kid with most days, in same order for both spouses
         self.asset = asset
@@ -203,18 +206,18 @@ class Dependent:
         montant des dépenses de scolarité
     home_care: float
         montant de l'aide à domicile
-    health_care: float
+    med_exp: float
         montant de dépenses en santé admissibles
     """
 
-    def __init__(self, age, disa=None, child_care=None, school=None,
-                home_care=None, health_care=None):
+    def __init__(self, age, disa=None, child_care=0, school=None,
+                home_care=None, med_exp=0):
         self.age = age
         self.disa = disa
         self.child_care = child_care
         self.school = school
         self.home_care = home_care
-        self.health_care = health_care
+        self.med_exp = med_exp
 
 
 class Hhold:
@@ -346,14 +349,18 @@ class Hhold:
         """
         for d in dependents:
             self.dep.append(d)
+    @property
+    def nkids0_5(self):
+        return len([s for s in self.dep if s.age <= 5])
+    @property
+    def nkids0_18(self):
+        return len([s for s in self.dep if s.age <= 18])
 
     def count(self): # do we need this?
         """
         Fonction pour calculer la composition du ménage.
         """
         self.ndep = len(self.dep)
-        self.nkids0_5 = len([s for s in self.dep if s.age <= 5])
-        self.nkids0_18 = len([s for s in self.dep if s.age <= 18])
         self.nold = len([s for s in self.dep if s.age >= 65])
         self.nhh = 1 + self.couple + len(self.dep)
         self.size = 1 + self.couple + self.nkids0_18

@@ -108,11 +108,13 @@ class form_2020(template):
         else:
             slope = (self.basic_amount_rich - self.basic_amount_poor) / (br_rich - br_poor)
             basic_amount = self.basic_amount_poor + (p.fed_return['net_income'] - br_poor) * slope
+
         p.fed_age_cred = self.get_age_cred(p)
+        p.fed_cpp_contrib_cred = self.get_cpp_contrib_cred(p)
         p.fed_pension_cred = self.get_pension_cred(p)
         p.fed_disabled_cred = self.get_disabled_cred(p)
         p.fed_return['non_refund_credits'] = self.rate_non_ref_tax_cred * (basic_amount
-            + p.fed_age_cred + p.fed_pension_cred + p.fed_disabled_cred)
+            + p.fed_age_cred + p.fed_cpp_contrib_cred + p.fed_pension_cred + p.fed_disabled_cred)
 
     def calc_net_income(self, p):
         """

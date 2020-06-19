@@ -8,17 +8,20 @@ import matplotlib.pyplot as plt
 from srd import tax, incentives, Person, Hhold, Dependent
 from srd.covid import policy
 
+for year in range(2016, 2021):
+    print(year)
 
+    tax_form = tax(year)
 
-tax_form = tax(2016, ipayroll=False)
+    p0 = Person(age=50, earn = 40e3, med_exp=5000)
+    p1 = Person(earn=10e3, med_exp=10000)
+    d = Dependent(age=12, med_exp=1000)
+    hh = Hhold(p0, p1, prov='qc')
+    hh.dep.append(d)
+    print([p.med_exp for p in hh.sp] + [d.med_exp for d in hh.dep])
 
-p = Person(age=65, earn=1e3)
-
-hh = Hhold(p, prov='qc')
-tax_form.compute(hh)
-
-
-
+    tax_form.compute(hh)
+    print(vars(hh))
 
 
 

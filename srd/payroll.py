@@ -64,7 +64,8 @@ class payroll:
         """
         rules = self.qpp_rules if hh.prov == 'qc' else self.cpp_rules
         if (p.age < 18) | (p.age > 69):
-            return 0.0, 0.0
+            p.contrib_cpp, p.contrib_cpp_self = 0, 0
+            return 0, 0
         else:
             acc = srpp.account(byear=self.year - p.age, rules=rules)
             acc.MakeContrib(year=self.year, earn=p.inc_earn,

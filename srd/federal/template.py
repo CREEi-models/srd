@@ -93,7 +93,9 @@ class template:
             instance de la classe Person
         """
         p.fed_chcare = self.chcare(p, hh)
-        p.fed_return['deductions'] = p.con_rrsp + p.con_rpp + p.inc_gis + p.fed_chcare
+        p.fed_cpp_deduction = self.cpp_deduction(p)
+        p.fed_return['deductions'] = (p.con_rrsp + p.con_rpp + p.inc_gis
+                                      + p.fed_chcare + p.fed_cpp_deduction)
 
     def chcare(self, p, hh):
         """
@@ -129,6 +131,22 @@ class template:
 
         return min(max_chcare, child_care_exp, self.chcare_rate_inc * p.inc_work)
 
+    def cpp_deduction(self, p):
+        """
+        Déduction pour les cotisations RPC/RRQ pour les travailleurs autonomes.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+
+        Returns
+        -------
+        float
+            Montant de la déduction
+        """
+        return p.contrib_cpp_self / 2
+
     def calc_tax(self, p):
         """
         Fonction qui calcule l'impôt à payer selon la table d'impôt.
@@ -156,10 +174,11 @@ class template:
             instance de la classe Person
         """
         p.fed_age_cred = self.get_age_cred(p)
+        p.fed_cpp_contrib_cred = self.get_cpp_contrib_cred(p)
         p.fed_pension_cred = self.get_pension_cred(p)
         p.fed_disabled_cred = self.get_disabled_cred(p)
         p.fed_return['non_refund_credits'] = self.rate_non_ref_tax_cred * (self.basic_amount
-            + p.fed_age_cred + p.fed_pension_cred + p.fed_disabled_cred)
+            + p.fed_age_cred + p.fed_cpp_contrib_cred + p.fed_pension_cred + p.fed_disabled_cred)
 
     def get_age_cred(self, p):
         """
@@ -171,10 +190,31 @@ class template:
         ----------
         p: Person
             instance de la classe Person
+
+        Returns
+        -------
+            Montant du crédit
         """
         amount = self.age_cred_amount if p.age >= self.min_age_cred else 0
         clawback = self.age_cred_claw_rate * max(0, p.fed_return['net_income'] - self.age_cred_exemption)
         return max(0, amount - clawback)
+
+    def get_cpp_contrib_cred(self, p):
+        """
+        Crédit d'impôt pour contributions RPC/RRQ.
+
+        Ce crédit est non-remboursable.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+
+        Returns
+        -------
+            Montant du crédit
+        """
+        return p.contrib_cpp + p.contrib_cpp_self / 2
 
     def get_pension_cred(self, p):
         """
@@ -186,6 +226,10 @@ class template:
         ----------
         p: Person
             instance de la classe Person
+
+        Returns
+        -------
+            Montant du crédit
         """
         return min(p.inc_rpp, self.pension_cred_amount)
 
@@ -199,6 +243,10 @@ class template:
         ----------
         p: Person
             instance de la classe Person
+
+        Returns
+        -------
+            Montant du crédit
         """
         return self.disability_cred_amount if p.disabled else 0
         # disabled dependent not taken into account (see lines 316 and 318)
@@ -403,7 +451,8 @@ class template:
 
     def gst_hst_credit(self, p, hh):
         """
-        Crédit pour la taxe sur les produits et services/taxe de vente harmonisée (TPS/TVH)
+        Crédit pour la taxe sur les produits et services/taxe de vente harmonisée (TPS/TVH).
+        Le montant du crédit est reçu par la conjoint au revenu imposable le plus élevé.
 
         Parameters
         ----------
@@ -416,6 +465,9 @@ class template:
         float
             Montant du crédit
         """
+        if p is not max(hh.sp, key=lambda p: p.fed_return['taxable_income']):
+            return 0
+
         fam_net_inc = sum([p.fed_return['net_income'] for p in hh.sp])
         nkids = len([d for d in hh.dep if d.age <= self.gst_cred_kids_max_age])
 
@@ -428,4 +480,4 @@ class template:
             amount += min(self.gst_cred_other,
                           self.gst_cred_rate * max(0, fam_net_inc - self.gst_cred_base_amount))
 
-        return max(0, amount - clawback) / (1 + hh.couple)
+        return max(0, amount - clawback)

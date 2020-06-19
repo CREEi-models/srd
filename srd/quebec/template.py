@@ -99,7 +99,9 @@ class template:
             instance de la classe Person
         """
         p.qc_work_deduc = self.work_deduc(p)
-        p.prov_return['deductions'] = p.con_rrsp + p.con_rpp + p.inc_gis + p.qc_work_deduc
+        p.qc_cpp_deduction = self.cpp_deduction(p)
+        p.prov_return['deductions'] = (p.con_rrsp + p.con_rpp + p.inc_gis
+                                       + p.qc_work_deduc + p.qc_cpp_deduction)
 
     def work_deduc(self, p):
         """
@@ -117,6 +119,22 @@ class template:
             deduc = 0
         return deduc
 
+    def cpp_deduction(self, p):
+        """
+        Déduction pour les cotisations RPC/RRQ pour les travailleurs autonomes.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+
+        Returns
+        -------
+        float
+            Montant de la déduction
+        """
+        return p.contrib_cpp_self / 2
+
     def calc_non_refundable_tax_credits(self, p, hh):
         """
         Fonction qui calcule les crédits d'impôt non-remboursables.
@@ -131,18 +149,21 @@ class template:
             instance de la classe Hhold
         """
         p.qc_age_cred = self.get_age_cred(p)
-        p.qc_single_cred = self.get_single_cred(p,hh)
+        p.qc_living_alone_cred = self.get_living_alone_cred(p, hh)
         p.qc_pension_cred = self.get_pension_cred(p)
-        p.qc_exp_worker_cred = self.get_exp_worker_cred(p)
+        cred_amount = p.qc_age_cred + p.qc_living_alone_cred + p.qc_pension_cred
+        p.qc_age_alone_pension = max(0, cred_amount - self.get_nrtcred_clawback(p, hh))
+
         p.qc_disabled_cred = self.get_disabled_cred(p)
+        p.qc_med_exp_nr_cred = self.get_med_exp_cred(p, hh)
+        p.qc_exp_worker_cred = self.get_exp_worker_cred(p)
 
-        cred_amount = (p.qc_age_cred + p.qc_single_cred + p.qc_pension_cred
-                       + p.qc_exp_worker_cred)
-        cred_amount = max(0, cred_amount - self.get_nrtcred_clawback(p,hh))
-        p.prov_return['non_refund_credits'] = self.nrtc_rate * (self.nrtc_base
-                                              + cred_amount + p.qc_disabled_cred)
+        p.prov_return['non_refund_credits'] = (
+            self.nrtc_rate * (self.nrtc_base + p.qc_age_alone_pension
+                              + p.qc_disabled_cred + p.qc_med_exp_nr_cred)
+            + p.qc_exp_worker_cred)
 
-    def get_nrtcred_clawback(self,p,hh):
+    def get_nrtcred_clawback(self, p, hh):
         """
         Fonction qui calcule la récupération des montants en raison de l'âge, vivant seule et revenu de retraite.
 
@@ -154,9 +175,14 @@ class template:
             instance de la classe Person
         hh: Hhold
             instance de la classe Hhold
+
+        Returns
+        -------
+        float
+            Montant du recouvrement
         """
-        fam_netinc = sum([s.prov_return['net_income'] for s in hh.sp])
-        return max(self.nrtc_claw_rate*(fam_netinc - self.nrtc_claw_cutoff),0.0)
+        fam_net_inc = sum([s.prov_return['net_income'] for s in hh.sp])
+        return max(self.nrtc_claw_rate*(fam_net_inc - self.nrtc_claw_cutoff), 0)
 
     def get_age_cred(self, p):
         """
@@ -168,13 +194,18 @@ class template:
         ----------
         p: Person
             instance de la classe Person
+
+        Returns
+        -------
+        float
+            Montant du crédit
         """
-        if p.age <= self.nrtc_age:
+        if p.age < self.nrtc_age:
             return 0
         else:
             return self.nrtc_age_max
 
-    def get_single_cred(self, p, hh):
+    def get_living_alone_cred(self, p, hh):
         """
         Crédit pour personne vivant seule
 
@@ -186,8 +217,13 @@ class template:
             instance de la classe Person
         hh: Hhold
             instance de la classe Hhold
+
+        Returns
+        -------
+        float
+            Montant du crédit
         """
-        return self.nrtc_single if hh.n_adults_in_hh == 1 else 0
+        return self.nrtc_living_alone if hh.n_adults_in_hh == 1 else 0
 
     def get_pension_cred(self, p):
         """
@@ -199,6 +235,11 @@ class template:
         ----------
         p: Person
             instance de la classe Person
+
+        Returns
+        -------
+        float
+            Montant du crédit
         """
         return min(p.inc_rpp * self.nrtc_pension_factor, self.nrtc_pension_max)
 
@@ -216,15 +257,20 @@ class template:
         ----------
         p: Person
             instance de la classe Person
+
+        Returns
+        -------
+        float
+            Montant du crédit
         """
         if p.age < self.exp_work_min_age:
             return 0
 
         clawback = self.exp_work_claw_rate * max(0, p.inc_work - self.exp_work_cut_inc)
-        adj_tax_liability = max(0, p.prov_return['gross_tax_liability']
-                                - self.nrtc_rate * (self.nrtc_base + p.qc_age_cred))
+        adj_tax_liability = max(0, p.prov_return['gross_tax_liability'] # l. 39 TP-1.D
+                                - self.nrtc_rate * (self.nrtc_base + p.qc_age_alone_pension))
 
-        def calc_amount(max_work_inc, min_amount):
+        def calc_amount(max_work_inc, min_amount=0):
             """
             Calcule le crédit.
 
@@ -234,28 +280,37 @@ class template:
                 montant maximal de revenu de travail admissible
             min_amount: float
                 montant minimal du crédit d'impôt (env. 15% de 4000 pour les individus nés avant 1951)
-            """
-            base = self.exp_work_rate * min(max_work_inc,
-                                            p.inc_work - self.exp_work_min_inc)
-            base_claw_adj = max(min_amount, base - clawback)
-            return min(base_claw_adj, adj_tax_liability)
 
-        min_amount = 0
+            Returns
+            -------
+            float
+                Montant du crédit
+            """
+            base = max(0, self.exp_work_rate * min(max_work_inc,
+                                                   p.inc_work - self.exp_work_min_inc))
+            if base <= min_amount:
+                return min(base, adj_tax_liability)
+            else:
+                base_claw_adj = max(min_amount, base - clawback)
+                return min(base_claw_adj, adj_tax_liability)
 
         if p.age == 60:
-            return calc_amount(self.exp_work_max_work_inc_60, min_amount)
+            return calc_amount(self.exp_work_max_work_inc_60)
         elif p.age == 61:
-            return calc_amount(self.exp_work_max_work_inc_61, min_amount)
+            return calc_amount(self.exp_work_max_work_inc_61)
         elif p.age == 62:
-            return calc_amount(self.exp_work_max_work_inc_62, min_amount)
+            return calc_amount(self.exp_work_max_work_inc_62)
         elif p.age == 63:
-            return calc_amount(self.exp_work_max_work_inc_63, min_amount)
+            return calc_amount(self.exp_work_max_work_inc_63)
         elif p.age == 64:
-            return calc_amount(self.exp_work_max_work_inc_64, min_amount)
+            return calc_amount(self.exp_work_max_work_inc_64)
         elif p.age >= 65:
-            if p.age > self.exp_work_age_born_bef51:
+            if p.age >= self.exp_work_age_born_bef51:
                 min_amount = self.exp_work_min_amount_born_51
-            return calc_amount(self.exp_work_max_work_inc_65, min_amount)
+            else:
+                min_amount = 0
+            return calc_amount(self.exp_work_max_work_inc_65,
+                               min_amount=min_amount)
 
 
     def get_disabled_cred(self, p):
@@ -268,9 +323,38 @@ class template:
         ----------
         p: Person
             instance de la classe Person
+
+        Returns
+        -------
+        float
+            Montant du crédit
         """
         amount = self.nrtc_disabled if p.disabled else 0
         return amount
+
+    def get_med_exp_cred(self, p, hh):
+        """
+        Crédit d'impôt pour frais médicaux.
+
+        Ce crédit est non-remboursable.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+        Returns
+        -------
+        float
+            Montant du crédit
+        """
+        if p is not max(hh.sp, key=lambda p: p.fed_return['taxable_income']):
+            return 0
+
+        fam_net_inc = sum([p.fed_return['net_income'] for p in hh.sp])
+        med_exp = sum([p.med_exp for p in hh.sp] + [d.med_exp for d in hh.dep])
+        return max(0, med_exp - self.nrtc_med_exp_rate * fam_net_inc)
 
     def calc_refundable_tax_credits(self, p, hh):
         """
@@ -283,14 +367,58 @@ class template:
         hh: Hhold
             instance de la classe Hhold
         """
-
-        p.qc_witb = self.witb(p, hh)
-        p.qc_ccap = self.ccap(p, hh)
         p.qc_chcare = self.chcare(p, hh)
+        p.qc_witb = self.witb(p, hh)
+        p.qc_med_exp = self.med_exp(p, hh)
+
+        p.qc_ccap = self.ccap(p, hh)
         p.qc_solidarity = self.solidarity(p, hh)
 
-        p.prov_return['refund_credits'] = (p.qc_witb + p.qc_ccap + p.qc_chcare
-                                           + p.qc_solidarity)
+        p.prov_return['refund_credits'] = (p.qc_chcare + p.qc_witb + p.qc_med_exp
+                                           + p.qc_ccap + p.qc_solidarity)
+
+    def chcare(self ,p, hh):
+        """
+        Crédit pour frais de garde.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+        Returns
+        -------
+        float
+            Montant du crédit pour frais de garde
+
+            Cette fonction calcule le montant reçu en fonction du nombre d'enfants,
+            de la situation familiale (couple/monoparental) et du revenu.
+        """
+        child_care_exp = sum([d.child_care for d in hh.dep])
+        if child_care_exp == 0:
+            return 0
+
+        if hh.couple and p.male and hh.sp[0].male != hh.sp[1].male:
+            return 0 # heterosexual couple: mother receives benefit
+
+        nkids_0_6 = len([d for d in hh.dep if d.age <= self.chcare_max_age_young])
+        nkids_7_16 = len([d for d in hh.dep
+                          if self.chcare_max_age_young < d.age <= self.chcare_max_age_old])
+
+        amount = min(child_care_exp,
+                     nkids_0_6 * self.chcare_young + nkids_7_16 * self.chcare_old)
+        fam_net_inc = sum([s.prov_return['net_income'] for s in hh.sp])
+        ind = np.searchsorted(self.chcare_brack, fam_net_inc, 'right') - 1
+        net_amount = self.chcare_rate[ind] * amount
+
+        if hh.couple and p.male and hh.sp[0].male != hh.sp[1].male:
+            return 0 # heterosexual couple: mother receives benefit
+
+        if hh.couple and hh.sp[0].male == hh.sp[1].male:
+            return net_amount / 2 # same sex couples get 1/2 each
+        else:
+            return net_amount
 
     def witb(self,p,hh):
         """
@@ -353,6 +481,31 @@ class template:
             return calc_witb(rate, self.witb_cut_inc_low_single,
                              self.witb_cut_inc_high_single)
 
+    def med_exp(self, p, hh):
+        """
+        Crédit remboursable pour frais médicaux.
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+
+        Returns
+        -------
+        float
+            Montant du crédit
+        """
+        if p is not max(hh.sp, key=lambda p: p.fed_return['taxable_income']):
+            return 0
+        if p.inc_work < self.med_exp_min_work_inc:
+            return 0
+
+        base = min(self.med_exp_max, self.med_exp_rate * p.qc_med_exp_nr_cred)
+        fam_net_inc = sum([p.prov_return['net_income'] for p in hh.sp])
+        clawback = self.med_exp_claw_rate * fam_net_inc
+        return max(0, base - clawback)
+
     def ccap(self, p, hh):
         """
         Allocation familiale.
@@ -406,49 +559,6 @@ class template:
             return amount / 2 # same sex couples get 1/2 each
         else:
             return amount
-
-    def chcare(self ,p, hh):
-        """
-        Crédit pour frais de garde.
-
-        Parameters
-        ----------
-        p: Person
-            instance de la classe Person
-        hh: Hhold
-            instance de la classe Hhold
-        Returns
-        -------
-        float
-            Montant du crédit pour frais de garde
-
-            Cette fonction calcule le montant reçu en fonction du nombre d'enfants,
-            de la situation familiale (couple/monoparental) et du revenu.
-        """
-        child_care_exp = sum([d.child_care for d in hh.dep])
-        if child_care_exp == 0:
-            return 0
-
-        if hh.couple and p.male and hh.sp[0].male != hh.sp[1].male:
-            return 0 # heterosexual couple: mother receives benefit
-
-        nkids_0_6 = len([d for d in hh.dep if d.age <= self.chcare_max_age_young])
-        nkids_7_16 = len([d for d in hh.dep
-                          if self.chcare_max_age_young < d.age <= self.chcare_max_age_old])
-
-        amount = min(child_care_exp,
-                     nkids_0_6 * self.chcare_young + nkids_7_16 * self.chcare_old)
-        fam_net_inc = sum([s.prov_return['net_income'] for s in hh.sp])
-        ind = np.searchsorted(self.chcare_brack, fam_net_inc, 'right') - 1
-        net_amount = self.chcare_rate[ind] * amount
-
-        if hh.couple and p.male and hh.sp[0].male != hh.sp[1].male:
-            return 0 # heterosexual couple: mother receives benefit
-
-        if hh.couple and hh.sp[0].male == hh.sp[1].male:
-            return net_amount / 2 # same sex couples get 1/2 each
-        else:
-            return net_amount
 
     def calc_tax(self, p):
         """
