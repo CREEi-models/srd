@@ -4,9 +4,9 @@ import numpy as np
 module_dir = os.path.dirname(os.path.dirname(__file__))
 
 def create_return():
-        lines = ['gross_income','deductions', 'net_income', 'taxable_income',
-                 'gross_tax_liability', 'non_refund_credits', 'refund_credits',
-                 'net_tax_liability']
+        lines = ['gross_income','deductions_gross_inc', 'net_income',
+                 'deductions_net_inc', 'taxable_income', 'gross_tax_liability',
+                 'non_refund_credits', 'refund_credits', 'net_tax_liability']
         return dict(zip(lines,np.zeros(len(lines))))
 
 class template:
@@ -28,12 +28,13 @@ class template:
         for p in hh.sp:
             p.fed_return = create_return()
             self.calc_gross_income(p)
-            self.calc_deductions(p, hh)
+            self.calc_deduc_gross_income(p, hh)
             self.calc_net_income(p)
+            self.calc_deduc_net_income(p)
             self.calc_taxable_income(p)
         for p in hh.sp:
             self.calc_tax(p)
-            self.calc_non_refundable_tax_credits(p)
+            self.calc_non_refundable_tax_credits(p, hh)
             p.fed_return['net_tax_liability'] = max(0.0, p.fed_return['gross_tax_liability']
                 - p.fed_return['non_refund_credits'])
             self.calc_refundable_tax_credits(p,hh)
@@ -52,7 +53,8 @@ class template:
         """
         p.fed_return['gross_income'] = (p.inc_work + p.inc_ei + p.inc_oas
                                         + p.inc_gis + p.inc_cpp + p.inc_rpp
-                                        + p.inc_othtax + p.inc_rrsp)
+                                        + p.cap_gains + p.inc_othtax
+                                        + p.inc_rrsp)
 
     def calc_net_income(self, p):
         """
@@ -66,22 +68,24 @@ class template:
             instance de la classe Person
         """
         p.fed_return['net_income'] =  max(0, p.fed_return['gross_income']
-                                          - p.fed_return['deductions'])
+                                          - p.fed_return['deductions_gross_inc'])
 
     def calc_taxable_income(self,p):
         """
         Fonction qui calcule le revenu imposable au sens de l'impôt.
 
-        Cette fonction correspond au revenu imposable d'une personne aux fins de l'impôt. On y soustrait une portion des gains en capitaux.
+        Cette fonction correspond au revenu imposable d'une personne aux fins de l'impôt.
+        On y soustrait une portion des gains en capitaux.
 
         Parameters
         ----------
         p: Person
             instance de la classe Person
         """
-        p.fed_return['taxable_income'] = p.fed_return['net_income']
+        p.fed_return['taxable_income'] = (p.fed_return['net_income']
+                                          - p.fed_return['deductions_net_inc'])
 
-    def calc_deductions(self, p, hh):
+    def calc_deduc_gross_income(self, p, hh):
         """
         Fonction qui calcule les déductions.
 
@@ -91,11 +95,14 @@ class template:
         ----------
         p: Person
             instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
         """
         p.fed_chcare = self.chcare(p, hh)
         p.fed_cpp_deduction = self.cpp_deduction(p)
-        p.fed_return['deductions'] = (p.con_rrsp + p.con_rpp + p.inc_gis
-                                      + p.fed_chcare + p.fed_cpp_deduction)
+        p.fed_return['deductions_net_inc'] = (p.con_rrsp + p.con_rpp
+                                              + p.inc_gis + p.fed_chcare
+                                              + p.fed_cpp_deduction)
 
     def chcare(self, p, hh):
         """
@@ -147,6 +154,22 @@ class template:
         """
         return p.contrib_cpp_self / 2
 
+    def calc_deduc_net_income(self, p):
+        """
+        Fonction qui calcule les déductions suivantes:
+        - Pertes en capital net des autres années.
+        - Déduction pour gain en capital.
+
+        Permet une déduction maximale égale aux gains en capitaux taxables nets.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        """
+        p.fed_return['deductions_net_inc'] = min(p.cap_gains,
+                                                 p.cap_losses + p.cap_gains_exempt)
+
     def calc_tax(self, p):
         """
         Fonction qui calcule l'impôt à payer selon la table d'impôt.
@@ -162,7 +185,7 @@ class template:
         p.fed_return['gross_tax_liability'] = self.l_constant[ind] + \
             self.l_rates[ind] * (p.fed_return['taxable_income'] - self.l_brackets[ind])
 
-    def calc_non_refundable_tax_credits(self, p):
+    def calc_non_refundable_tax_credits(self, p, hh):
         """
         Fonction qui calcule les crédits d'impôt non-remboursables.
 
@@ -175,10 +198,14 @@ class template:
         """
         p.fed_age_cred = self.get_age_cred(p)
         p.fed_cpp_contrib_cred = self.get_cpp_contrib_cred(p)
+        p.fed_empl_cred = self.get_empl_cred(p)
         p.fed_pension_cred = self.get_pension_cred(p)
         p.fed_disabled_cred = self.get_disabled_cred(p)
+        p.fed_med_exp_nr_cred = self.get_med_exp_nr_cred(p, hh)
+
         p.fed_return['non_refund_credits'] = self.rate_non_ref_tax_cred * (self.basic_amount
-            + p.fed_age_cred + p.fed_cpp_contrib_cred + p.fed_pension_cred + p.fed_disabled_cred)
+            + p.fed_age_cred + p.fed_cpp_contrib_cred + p.fed_pension_cred
+            + p.fed_disabled_cred + p.fed_med_exp_nr_cred)
 
     def get_age_cred(self, p):
         """
@@ -216,6 +243,23 @@ class template:
         """
         return p.contrib_cpp + p.contrib_cpp_self / 2
 
+    def get_empl_cred(self, p):
+        """
+        Montant canadien pour emploi.
+
+        Ce crédit est non-remboursable.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+
+        Returns
+        -------
+            Montant du crédit
+        """
+        return min(self.empl_cred_max, p.inc_earn)
+
     def get_pension_cred(self, p):
         """
         Crédit d'impôt pour revenu de retraite.
@@ -251,6 +295,35 @@ class template:
         return self.disability_cred_amount if p.disabled else 0
         # disabled dependent not taken into account (see lines 316 and 318)
 
+    def get_med_exp_nr_cred(self, p, hh):
+        """
+        Crédit d'impôt pour frais médicaux.
+
+        Ce crédit est non-remboursable.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+
+        Returns
+        -------
+            Montant du crédit
+        """
+        if p is not min(hh.sp, key=lambda p: p.fed_return['net_income']):
+            return 0
+
+        med_exp = sum([p.med_exp for p in hh.sp]
+                       + [d.med_exp for d in hh.dep if d.age <= self.med_exp_nr_cred_max_age])
+        clawback = min(self.med_exp_nr_cred_max_claw,
+                       self.med_exp_nr_cred_rate * p.fed_return['net_income'])
+        med_exp_other_dep = sum([d.med_exp for d in hh.dep
+                                 if d.age > self.med_exp_nr_cred_max_age])
+        # rem: we assume that dependents over 16 have zero net income (otherwise there would be a clawback)
+        return max(0, max(0, med_exp - clawback) + med_exp_other_dep)
+
     def calc_refundable_tax_credits(self, p, hh):
         """
         Fonction qui fait la somme des crédits remboursables.
@@ -266,9 +339,12 @@ class template:
         p.fed_ccb = self.ccb(p, hh)
         p.fed_witb = self.witb(p, hh)
         p.fed_witbds = self.witbds(p, hh)
+        p.fed_med_exp = self.med_exp(p, hh)
         p.fed_gst_hst_credit = self.gst_hst_credit(p, hh)
-        p.fed_return['refund_credits'] = (p.fed_abatment_qc + p.fed_ccb + p.fed_witb
-                                          + p.fed_witbds + p.fed_gst_hst_credit)
+
+        p.fed_return['refund_credits'] = (
+            p.fed_abatment_qc + p.fed_ccb + p.fed_witb + p.fed_witbds
+            + p.fed_med_exp + p.fed_gst_hst_credit)
 
     def abatment(self, p, hh):
         """
@@ -337,7 +413,6 @@ class template:
                 return max(0, amount - clawback) / 2 # same sex couples get 1/2 each
             else:
                 return max(0, amount - clawback)
-
 
     def witb(self,p,hh):
         """
@@ -448,6 +523,32 @@ class template:
         adj_amount = min(witb_max, amount)
         clawback = claw_rate * max(0, fam_net_inc - exemption)
         return max(0, adj_amount - clawback)
+
+    def med_exp(self, p, hh):
+        """
+        Crédit remboursable pour frais médicaux.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+
+        Returns
+        -------
+        float
+            Montant du crédit
+        """
+        if p is not min(hh.sp, key=lambda p: p.fed_return['net_income']):
+            return 0
+        if p.inc_work < self.med_exp_min_work_inc:
+            return 0
+
+        base = min(self.med_exp_max, self.med_exp_rate * p.fed_med_exp_nr_cred) # note line 215 could be added (0 at the moment)
+        fam_net_inc = sum([p.fed_return['net_income'] for p in hh.sp])
+        clawback = self.med_exp_claw_rate * max(0, fam_net_inc - self.med_exp_claw_cutoff)
+        return max(0, base - clawback)
 
     def gst_hst_credit(self, p, hh):
         """

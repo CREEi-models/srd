@@ -21,6 +21,12 @@ class Person:
         revenu de régime complémentaire de retraite (RCR)
     cpp: float
         revenu de régime de rentes du Québec (RRQ)
+    cap_gains: float
+        gains en capitaux taxables nets de l'année (50% * max(0, gains - pertes))
+    cap_losses: float
+        pertes en capital d'autres années
+    cap_gains_exempt: float
+        exonération des gains en capitaux demandée
     othtax: float
         autre revenu imposable
     othntax: float
@@ -45,25 +51,32 @@ class Person:
         valeur marchande des actifs
     oas_years_post: int
         nombre d'années de report pour la pension OAS (après 65 ans)
-    months_cerb: int
-        nombre de mois pour lesquels la CPU est demandée
-    months_cesb: int
-        nombre de mois pour lesquels la CPUE est demandée
+    months_cerb_cesb: int
+        nombre de mois pour lesquels la CPU(E) est demandée
     essential_worker: boolean
         True si travailleur essentiel
+    dep_senior: boolean
+        True si personne (senior) n'est pas autonome.
+    home_support_cost: float
+        coût du maintien à domicile
     """
-    def __init__(self, age=50, male=True, earn=0, rpp=0, cpp=0, othtax=0,
-                 othntax=0, inc_rrsp=0, self_earn=0, con_rrsp=0, con_rpp=0,
+    def __init__(self, age=50, male=True, earn=0, rpp=0, cpp=0, cap_gains=0,
+                 cap_losses=0, cap_gains_exempt=0, othtax=0, othntax=0,
+                 inc_rrsp=0, self_earn=0, con_rrsp=0, con_rpp=0,
                  years_can=None, disabled=False, cqppc=None, widow=False,
                  med_exp=0, ndays_chcare_k1=0, ndays_chcare_k2=0, asset=0,
                  oas_years_post=0, months_cerb_cesb=0, student=False,
-                 essential_worker=False, hours_month=None, prev_inc_work=None):
+                 essential_worker=False, hours_month=None, prev_inc_work=None,
+                 dep_senior=False, home_support_cost=0):
         self.age = age
         self.male = male
         self.attach_inc_work_month(earn, self_earn)
         self.attach_prev_work_inc(prev_inc_work)
         self.inc_rpp = rpp
         self.inc_cpp = cpp
+        self.cap_gains = max(0, cap_gains) # or should we just trust user?
+        self.cap_losses = cap_losses
+        self.cap_gains_exempt = cap_gains_exempt
         self.inc_othtax = othtax
         self.inc_othntax = othntax
         self.inc_rrsp = inc_rrsp
@@ -82,6 +95,8 @@ class Person:
         self.student = student
         self.essential_worker = essential_worker
         self.hours_month = hours_month # could enter list of hours for ei
+        self.dep_senior = dep_senior
+        self.home_support_cost = home_support_cost
         self.inc_oas = 0
         self.inc_gis = 0
         self.inc_ei = 0

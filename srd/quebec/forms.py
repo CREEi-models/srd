@@ -76,6 +76,24 @@ class form_2018(form_2017):
         add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2018.csv',delimiter=';')
         add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2018.csv',delimiter=';')
 
+    def senior_assist(self, p, hh):
+        # see docstring in template
+        if max([p.age for p in hh.sp]) < self.senior_assist_min_age:
+            return 0
+
+        n_elderly = len([p.age for p in hh.sp
+                         if p.age >= self.senior_assist_min_age])
+        amount = self.senior_assist_amount * n_elderly
+        fam_net_inc = sum([s.prov_return['net_income'] for s in hh.sp])
+
+        if hh.couple:
+            cutoff = self.senior_assist_cutoff_couple
+        else:
+            cutoff = self.senior_assist_cutoff_single
+        clawback = self.senior_assist_claw_rate * max(0, fam_net_inc - cutoff)
+
+        return max(0, amount - clawback) / (1 + hh.couple)
+
 class form_2019(form_2018):
     """
     Rapport d'impôt de 2019.

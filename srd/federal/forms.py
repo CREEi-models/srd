@@ -88,7 +88,7 @@ class form_2020(template):
         # note: the measures to increase ccb and gst_credit are based on fiscal year 2019 in reality
         #       but on fiscal year 2020 in our simulator; the difference is small (<50$ in worst case)
 
-    def calc_non_refundable_tax_credits(self, p):
+    def calc_non_refundable_tax_credits(self, p, hh):
         """
         Fonction qui calcule les crédits d'impôt non-remboursable.
 
@@ -111,10 +111,14 @@ class form_2020(template):
 
         p.fed_age_cred = self.get_age_cred(p)
         p.fed_cpp_contrib_cred = self.get_cpp_contrib_cred(p)
+        p.fed_empl_cred = self.get_empl_cred(p)
         p.fed_pension_cred = self.get_pension_cred(p)
         p.fed_disabled_cred = self.get_disabled_cred(p)
+        p.fed_med_exp_nr_cred = self.get_med_exp_nr_cred(p, hh)
+
         p.fed_return['non_refund_credits'] = self.rate_non_ref_tax_cred * (basic_amount
-            + p.fed_age_cred + p.fed_cpp_contrib_cred + p.fed_pension_cred + p.fed_disabled_cred)
+            + p.fed_age_cred + p.fed_cpp_contrib_cred + p.fed_empl_cred
+            + p.fed_pension_cred + p.fed_disabled_cred + p.fed_med_exp_nr_cred)
 
     def calc_net_income(self, p):
         """
@@ -128,7 +132,7 @@ class form_2020(template):
             instance de la classe Person
         """
         p.fed_return['net_income'] =  max(0, p.fed_return['gross_income']
-                                          - p.fed_return['deductions'])
+                                          - p.fed_return['deductions_net_inc'])
         self.repayments_ei(p)
 
     def repayments_ei(self, p):

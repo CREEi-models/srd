@@ -4,8 +4,10 @@ import numpy as np
 module_dir = os.path.dirname(os.path.dirname(__file__))
 
 def create_return():
-        lines = ['gross_income','deductions','net_income','taxable_income','gross_tax_liability',
-                 'contributions', 'non_refund_credits','refund_credits','net_tax_liability']
+        lines = ['gross_income','deductions_gross_inc','net_income',
+                 'deductions_net_inc', 'taxable_income','gross_tax_liability',
+                 'contributions', 'non_refund_credits','refund_credits',
+                 'net_tax_liability']
         return dict(zip(lines,np.zeros(len(lines))))
 
 class template:
@@ -32,8 +34,9 @@ class template:
         for p in hh.sp:
             p.prov_return = create_return()
             self.calc_gross_income(p)
-            self.calc_deductions(p)
+            self.calc_deduc_gross_income(p)
             self.calc_net_income(p)
+            self.calc_deduc_net_income(p)
             self.calc_taxable_income(p)
         for p in hh.sp:
             self.calc_tax(p)
@@ -57,7 +60,8 @@ class template:
         """
         p.prov_return['gross_income'] = (p.inc_work + p.inc_ei + p.inc_oas
                                          + p.inc_gis + p.inc_cpp + p.inc_rpp
-                                         + p.inc_othtax + p.inc_rrsp)
+                                         + p.cap_gains + p.inc_othtax
+                                         + p.inc_rrsp)
 
     def calc_net_income(self, p):
         """
@@ -71,7 +75,7 @@ class template:
             instance de la classe Person
         """
         p.prov_return['net_income'] =  max(0, p.prov_return['gross_income']
-                                              - p.prov_return['deductions'])
+                                            - p.prov_return['deductions_gross_inc'])
 
     def calc_taxable_income(self, p):
         """
@@ -85,9 +89,10 @@ class template:
         p: Person
             instance de la classe Person
         """
-        p.prov_return['taxable_income'] = p.prov_return['net_income']
+        p.prov_return['taxable_income'] = (p.prov_return['net_income']
+                                           - p.prov_return['deductions_net_inc'])
 
-    def calc_deductions(self, p):
+    def calc_deduc_gross_income(self, p):
         """
         Fonction qui calcule les déductions.
 
@@ -100,8 +105,9 @@ class template:
         """
         p.qc_work_deduc = self.work_deduc(p)
         p.qc_cpp_deduction = self.cpp_deduction(p)
-        p.prov_return['deductions'] = (p.con_rrsp + p.con_rpp + p.inc_gis
-                                       + p.qc_work_deduc + p.qc_cpp_deduction)
+        p.prov_return['deductions_net_inc'] = (p.con_rrsp + p.con_rpp
+                                               + p.inc_gis + p.qc_work_deduc
+                                               + p.qc_cpp_deduction)
 
     def work_deduc(self, p):
         """
@@ -134,6 +140,37 @@ class template:
             Montant de la déduction
         """
         return p.contrib_cpp_self / 2
+
+    def calc_deduc_net_income(self, p):
+        """
+        Fonction qui calcule les déductions suivantes:
+        - Pertes en capital net des autres années.
+        - Déduction pour gain en capital.
+
+        Permet une déduction maximale égale aux gains en capitaux taxables nets.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        """
+        p.prov_return['deductions_net_inc'] = min(p.cap_gains,
+                                                 p.cap_losses + p.cap_gains_exempt)
+
+    def calc_tax(self, p):
+        """
+        Fonction qui calcule l'impôt à payer selon la table d'impôt.
+
+        Cette fonction utilise la table d'impôt de l'année en cours.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        """
+        ind = np.searchsorted(self.l_brackets, p.prov_return['taxable_income'], 'right') - 1
+        p.prov_return['gross_tax_liability'] = self.l_constant[ind] + \
+            self.l_rates[ind] * (p.prov_return['taxable_income'] - self.l_brackets[ind])
 
     def calc_non_refundable_tax_credits(self, p, hh):
         """
@@ -367,15 +404,22 @@ class template:
         hh: Hhold
             instance de la classe Hhold
         """
+
         p.qc_chcare = self.chcare(p, hh)
         p.qc_witb = self.witb(p, hh)
+        p.qc_home_support = self.home_support(p, hh)
+        p.qc_senior_assist = self.senior_assist(p, hh)
         p.qc_med_exp = self.med_exp(p, hh)
 
         p.qc_ccap = self.ccap(p, hh)
         p.qc_solidarity = self.solidarity(p, hh)
 
-        p.prov_return['refund_credits'] = (p.qc_chcare + p.qc_witb + p.qc_med_exp
-                                           + p.qc_ccap + p.qc_solidarity)
+        l_all_creds = [p.qc_chcare, p.qc_witb, p.qc_home_support,
+                       p.qc_senior_assist, p.qc_med_exp, p.qc_ccap,
+                       p.qc_solidarity]
+        l_existing_creds = [cred for cred in l_all_creds if cred] # removes credits not implemented
+
+        p.prov_return['refund_credits'] = sum(l_existing_creds)
 
     def chcare(self ,p, hh):
         """
@@ -481,6 +525,58 @@ class template:
             return calc_witb(rate, self.witb_cut_inc_low_single,
                              self.witb_cut_inc_high_single)
 
+    def home_support(self, p, hh):
+        """
+        Crédit d’impôt pour maintien à domicile des aînés.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+
+        Returns
+        -------
+        float
+            Montant du crédit
+        """
+        if p.age < 70:
+            return 0
+
+        sp_70 = [p for p in hh.sp if p.age >= self.home_supp_min_age]
+
+        if (len(sp_70) == 2) and (hh.sp.index(p) == 1):
+            return 0  # give the credit to first spouse if both 70+
+
+        expenses = sum([p.home_support_cost for p in sp_70])
+        max_expenses = sum([self.home_supp_max_dep if p.dep_senior
+                            else self.home_supp_max_non_dep for p in sp_70])
+        admissible_expenses = min(expenses, max_expenses)
+        fam_net_inc = sum([p.prov_return['net_income'] for p in hh.sp])
+        clawback = self.home_supp_claw_rate * max(0, fam_net_inc - self.home_supp_cutoff)
+        no_dep = len([p for p in hh.sp if p.dep_senior]) == 0
+        return max(0, self.home_supp_rate * admissible_expenses - no_dep * clawback)
+
+    def senior_assist(self, p, hh):
+        """
+        Crédit remboursable pour support aux ainés.
+        En vigueur à partir de 2018.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+
+        Returns
+        -------
+        float
+            Montant du crédit
+        """
+        pass
+
     def med_exp(self, p, hh):
         """
         Crédit remboursable pour frais médicaux.
@@ -503,7 +599,7 @@ class template:
 
         base = min(self.med_exp_max, self.med_exp_rate * p.qc_med_exp_nr_cred)
         fam_net_inc = sum([p.prov_return['net_income'] for p in hh.sp])
-        clawback = self.med_exp_claw_rate * fam_net_inc
+        clawback = self.med_exp_claw_rate * max(0, fam_net_inc - self.med_exp_claw_cutoff)
         return max(0, base - clawback)
 
     def ccap(self, p, hh):
@@ -559,21 +655,6 @@ class template:
             return amount / 2 # same sex couples get 1/2 each
         else:
             return amount
-
-    def calc_tax(self, p):
-        """
-        Fonction qui calcule l'impôt à payer selon la table d'impôt.
-
-        Cette fonction utilise la table d'impôt de l'année en cours.
-
-        Parameters
-        ----------
-        p: Person
-            instance de la classe Person
-        """
-        ind = np.searchsorted(self.l_brackets, p.prov_return['taxable_income'], 'right') - 1
-        p.prov_return['gross_tax_liability'] = self.l_constant[ind] + \
-            self.l_rates[ind] * (p.prov_return['taxable_income'] - self.l_brackets[ind])
 
     def calc_contributions(self, p, hh):
         """

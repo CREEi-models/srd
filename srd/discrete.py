@@ -233,36 +233,49 @@ class behavior:
         N = self.n
         R = self.nreps
         if self.icouple:
-            mu_r = self.data.loc[:,'mu_r'].astype('float64').values
-            mu_s = self.data.loc[:,'mu_s'].astype('float64').values
+            J = self.nh_c
+            mu_r = self.data.loc[:,'mu_r'].astype('float64').values.reshape((N,1))
+            mu_s = self.data.loc[:,'mu_s'].astype('float64').values.reshape((N,1))
             mu_c = self.pars.loc[('C','constant'),'value']
             mu_rs = self.pars.loc[('L(r,s)','constant'),'value']
-            C = self.data[['cons_'+str(j) for j in range(self.nh_c)]].values
+            C = self.data[['cons_'+str(j) for j in range(self.nh_c)]].values.reshape((N,J))
             Lmax = self.Lmax
-            Lr = np.array([Lmax-h[0] for h in self.gridh_c])
-            Ls = np.array([Lmax-h[1] for h in self.gridh_c])
+            Lr = np.array([Lmax-h[0] for h in self.gridh_c]).reshape((1,J))
+            Ls = np.array([Lmax-h[1] for h in self.gridh_c]).reshape((1,J))
             V = np.zeros((2,2))
-            V[0,0] = np.exp(self.pars.loc[('L(r)','sigma'),'value'])**2
-            V[1,1] = np.exp(self.pars.loc[('L(s)','sigma'),'value'])**2
+            V[0,0] = np.exp(self.pars.loc[('L(r)','sigma'),'value'])
+            V[1,1] = np.exp(self.pars.loc[('L(s)','sigma'),'value'])
             V[1,0] = np.tanh(self.pars.loc[('L(r,s)','rho'),'value'])*np.sqrt(V[0,0]*V[1,1])
             V[0,1] = V[1,0]
             Lv = cholesky(V, lower=True)
             eta_r = self.draws_r
             eta_s = self.draws_s
-            J = self.nh_c
+
             choice = self.data.loc[:,'h_choice'].astype('int64').values
             if self.icost:
                 fcosts_r = self.pars.loc[self.pars.index.get_level_values(0)=='FC(r)','value'].values
                 fcosts_r = np.insert(fcosts_r,0,0.0)
                 fcosts_s = self.pars.loc[self.pars.index.get_level_values(0)=='FC(s)','value'].values
                 fcosts_s = np.insert(fcosts_s,0,0.0)
-                fcosts_r = np.array(np.repeat(fcosts_r,self.nh),dtype='float64')
-                fcosts_s = np.array(np.kron(np.ones(self.nh),fcosts_s),dtype='float64')
+                fcosts_r = np.array(np.repeat(fcosts_r,self.nh),dtype='float64').reshape((1,J))
+                fcosts_s = np.array(np.kron(np.ones(self.nh),fcosts_s),dtype='float64').reshape((1,J))
             else :
                 fcosts_r = np.zeros(J)
                 fcosts_s = np.zeros(J)
             utils = np.zeros((N,J))
-            pr = prob_couple(choice,mu_r,mu_s,mu_c,mu_rs,C,Lr,Ls,Lv,eta_r,eta_s,fcosts_r,fcosts_s,N,R,J)
+            pr = np.zeros((N,R))
+            for r in range(R):
+                mur = mu_r + Lv[0,0]*eta_r[:,r]
+                mus = mu_s + Lv[1,0]*eta_r[:,r] + Lv[1,1]*eta_s[:,r]
+                utils = mur @ np.log(Lr) + mus @ np.log(Ls) + mu_c * np.log(C) 
+                utils += np.ones((N,1)) @ (mu_rs*(np.log(Lr)*np.log(Ls)) +fcosts_r + fcosts_s)
+                #for j in range(J):
+                #    utils[:,j] = mur*np.log(Lr[j]) + mus*np.log(Ls[j]) + mu_c*np.log(C[:,j]) + mu_rs*np.log(Lr[j])*np.log(Ls[j]) + fcosts_r[j] + fcosts_s[j]
+                num = np.exp(utils[np.arange(N),choice])
+                den = np.sum(np.exp(utils),axis=1)
+                pr[:,r] = num/den
+                #print(np.min(np.mean(pr,axis=1)),np.max(np.mean(pr,axis=1)))
+            #pr = prob_couple(choice,mu_r,mu_s,mu_c,mu_rs,C,Lr,Ls,Lv,eta_r,eta_s,fcosts_r,fcosts_s,N,R,J)
         else :
             mu_r = self.data.loc[:,'mu_r'].astype('float64').values
             mu_c = self.pars.loc[('C','constant'),'value'].values
@@ -345,9 +358,10 @@ class behavior:
             theta_up[i] += eps
             fn_up = self.loglike_i(theta_up)
             G[:,i] = (fn_up - fn_zero)/eps
-        # outer product of gradient formula
-        invcov = G.T @ G
-        cov = np.linalg.inv(invcov)/n
+        # outer product of gradient formula (OPG)
+        B = G.T @ G /n
+        # covariance matrix
+        cov = np.linalg.inv(B)/n
         # save for future reference
         self.cov_pars = cov
         # compute standard errors

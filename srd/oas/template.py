@@ -120,9 +120,9 @@ class template:
         hh: Hhold
             instance de la classe Hhold
         """
-        p.fed_return = {k: 0 for k in ['gross_income','deductions','net_income']}
+        p.fed_return = {k: 0 for k in ['gross_income','deductions_gross_inc','net_income']}
         self.federal.calc_gross_income(p)
-        self.federal.calc_deductions(p, hh)
+        self.federal.calc_deduc_gross_income(p, hh)
         self.federal.calc_net_income(p)
 
     def gis(self, p, hh, income, low_high):
