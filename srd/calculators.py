@@ -1,3 +1,4 @@
+from copy import deepcopy
 import numpy as np
 from srd import federal, oas, quebec, payroll, assistance, covid, ei, Person, Hhold, Dependent
 from itertools import product, chain
@@ -51,7 +52,27 @@ class tax:
             self.oas = oas.program(year, self.federal)
         if iass:
             self.ass = assistance.program(year)
-        return
+
+    def compute_split(self, hh, n_points):
+        if not hh.elig_split:
+            self.compute(hh)
+            return list(hh)
+
+        l_hh = []
+        l_frac = np.linspace(-0.5 * hh.sp[0].max_split,
+                             0.5 * hh.sp[1].max_split, n_points)
+        for frac in l_frac:
+            hh_f = deepcopy(hh)
+            if frac < 0:
+                hh_f.sp[1].pension_split = - frac
+                hh_f.sp[0].pension_deduction = - frac
+            else:
+                hh_f.sp[0].pension_split = frac
+                hh_f.sp[1].pension_deduction = frac
+            self.compute(hh_f)
+            l_hh.append(hh_f)
+        hh = max(l_hh, key=lambda x: x.fam_disp_inc)
+        return hh, l_hh, l_frac
 
     def compute(self, hh):
         """

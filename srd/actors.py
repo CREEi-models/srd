@@ -97,6 +97,8 @@ class Person:
         self.hours_month = hours_month # could enter list of hours for ei
         self.dep_senior = dep_senior
         self.home_support_cost = home_support_cost
+        self.pension_split = 0
+        self.pension_deduction = 0
         self.inc_oas = 0
         self.inc_gis = 0
         self.inc_ei = 0
@@ -264,6 +266,8 @@ class Hhold:
         self.dep = []
         self.n_adults_in_hh = self.adjust_n_adults(n_adults_in_hh)
         self.count()
+        self.compute_max_split()
+        self.assess_elig_split()
 
     def adjust_n_adults(self, n_adults_in_hh):
         """
@@ -380,29 +384,23 @@ class Hhold:
         self.nhh = 1 + self.couple + len(self.dep)
         self.size = 1 + self.couple + self.nkids0_18
 
-    def split_pension_income(self):
-        # use this function after inc_oas has been computed?
-        # age eligibility? type of pension eligible?
-        # see documentation Gaelle
-        """
-        Fonction pour faire le fractionnement des revenus de retraite.
-        """
-        # compute net transfers from 0 to 1
-        income = []
-        for p in self.sp:
-            income.append(p.inc_oas + p.inc_cpp + p.inc_rpp + p.inc_othtax)
-        transfer = np.clip((income[0] - income[1]) / 2,
-            -common.max_split * (self.sp[1].inc_rpp + self.sp[1].inc_othtax),
-            common.max_split * (self.sp[0].inc_rpp + self.sp[0].inc_othtax))
 
-        who = 0 if transfer > 0 else 1
-        inc_rpp_othtax = self.sp[who].inc_rpp + self.sp[who].inc_othtax + 1e-12
-        rpp_transfer = self.sp[who].inc_rpp / inc_rpp_othtax * transfer
-        othtax_transfer = self.sp[who].inc_othtax / inc_rpp_othtax * transfer
-        for who, sp in enumerate(self.sp):
-            if who == 0:
-                rpp = sp.rpp - rpp_transfer
-                othtax = sp.othtax - othtax_transfer
-            else:
-                rpp = sp.rpp + rpp_transfer
-                othtax = sp.othtax + othtax_transfer
+    def compute_max_split(self):
+        """
+        Fonction qui calcule le montant max de revenu de pension
+        pouvant être fractionné.
+        """
+        if not self.couple:
+            self.sp[0].max_split = 0
+        else:
+            for p in self.sp:
+                p.max_split = p.inc_rpp
+                if p.age >= 65:
+                    p.max_split += p.inc_rrsp
+
+    def assess_elig_split(self):
+        """
+        Fonction qui établit si le ménage est éligible pour le fractionnement
+        de pension.
+        """
+        self.elig_split = len([p for p in self.sp if p.max_split > 0]) > 0

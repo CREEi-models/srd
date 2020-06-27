@@ -53,8 +53,8 @@ class template:
         """
         p.fed_return['gross_income'] = (p.inc_work + p.inc_ei + p.inc_oas
                                         + p.inc_gis + p.inc_cpp + p.inc_rpp
-                                        + p.cap_gains + p.inc_othtax
-                                        + p.inc_rrsp)
+                                        + p.pension_split + p.cap_gains
+                                        + p.inc_othtax + p.inc_rrsp)
 
     def calc_net_income(self, p):
         """
@@ -100,8 +100,9 @@ class template:
         """
         p.fed_chcare = self.chcare(p, hh)
         p.fed_cpp_deduction = self.cpp_deduction(p)
-        p.fed_return['deductions_net_inc'] = (p.con_rrsp + p.con_rpp
+        p.fed_return['deductions_gross_inc'] = (p.con_rrsp + p.con_rpp
                                               + p.inc_gis + p.fed_chcare
+                                              + p.pension_deduction
                                               + p.fed_cpp_deduction)
 
     def chcare(self, p, hh):
@@ -199,7 +200,7 @@ class template:
         p.fed_age_cred = self.get_age_cred(p)
         p.fed_cpp_contrib_cred = self.get_cpp_contrib_cred(p)
         p.fed_empl_cred = self.get_empl_cred(p)
-        p.fed_pension_cred = self.get_pension_cred(p)
+        p.fed_pension_cred = self.get_pension_cred(p, hh)
         p.fed_disabled_cred = self.get_disabled_cred(p)
         p.fed_med_exp_nr_cred = self.get_med_exp_nr_cred(p, hh)
 
@@ -260,7 +261,7 @@ class template:
         """
         return min(self.empl_cred_max, p.inc_earn)
 
-    def get_pension_cred(self, p):
+    def get_pension_cred(self, p, hh):
         """
         Crédit d'impôt pour revenu de retraite.
 
@@ -275,7 +276,14 @@ class template:
         -------
             Montant du crédit
         """
-        return min(p.inc_rpp, self.pension_cred_amount)
+        if p.age < self.pension_cred_min_age_split:
+            other_p = hh.sp[1 - hh.sp.index(p)]
+            pension_split_cred = min(p.pension_split, 0.5 * other_p.inc_rpp)
+        else:
+            pension_split_cred = p.pension_split
+
+        return min(self.pension_cred_amount,
+                   p.inc_rpp - p.pension_deduction + pension_split_cred)
 
     def get_disabled_cred(self, p):
         """

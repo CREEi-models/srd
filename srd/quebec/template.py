@@ -60,8 +60,8 @@ class template:
         """
         p.prov_return['gross_income'] = (p.inc_work + p.inc_ei + p.inc_oas
                                          + p.inc_gis + p.inc_cpp + p.inc_rpp
-                                         + p.cap_gains + p.inc_othtax
-                                         + p.inc_rrsp)
+                                         + p.pension_split + p.cap_gains
+                                         + p.inc_othtax + p.inc_rrsp)
 
     def calc_net_income(self, p):
         """
@@ -105,8 +105,9 @@ class template:
         """
         p.qc_work_deduc = self.work_deduc(p)
         p.qc_cpp_deduction = self.cpp_deduction(p)
-        p.prov_return['deductions_net_inc'] = (p.con_rrsp + p.con_rpp
+        p.prov_return['deductions_gross_inc'] = (p.con_rrsp + p.con_rpp
                                                + p.inc_gis + p.qc_work_deduc
+                                               + p.pension_deduction
                                                + p.qc_cpp_deduction)
 
     def work_deduc(self, p):
@@ -237,10 +238,7 @@ class template:
         float
             Montant du crédit
         """
-        if p.age < self.nrtc_age:
-            return 0
-        else:
-            return self.nrtc_age_max
+        return self.nrtc_age_max if p.age >= self.nrtc_age else 0
 
     def get_living_alone_cred(self, p, hh):
         """
@@ -278,7 +276,10 @@ class template:
         float
             Montant du crédit
         """
-        return min(p.inc_rpp * self.nrtc_pension_factor, self.nrtc_pension_max)
+        pension_split_cred = (p.inc_rpp + p.inc_rrsp - p.pension_deduction
+                              + p.pension_split)
+        return min(self.nrtc_pension_max,
+                   pension_split_cred * self.nrtc_pension_factor)
 
     def get_exp_worker_cred(self, p):
         """
