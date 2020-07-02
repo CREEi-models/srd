@@ -9,19 +9,17 @@ from srd import tax, incentives, Person, Hhold, Dependent
 from srd.covid import policy
 
 for year in range(2016, 2021):
-    print(year)
 
     tax_form = tax(year)
 
-    p0 = Person(age=80, cap_gains=10e3, cap_losses=5e3, cap_gains_exempt=2e3)
-    p1 = Person(age=75, earn=10e3, dep_senior=False, home_support_cost=50e3)
-    d = Dependent(age=12, med_exp=1000)
+    p0 = Person(age=64, rpp=50e3,)
+    p1 = Person(age=70, rpp=100e3)
     hh = Hhold(p0, p1, prov='qc')
-    hh.dep.append(d)
-    print([p.med_exp for p in hh.sp] + [d.med_exp for d in hh.dep])
 
-    tax_form.compute(hh)
-    print(vars(hh.sp[0]))
+    hh = tax_form.compute(hh, n_points=1)
+
+    print(hh.fam_disp_inc)
+
 
 
 # def main():

@@ -112,7 +112,7 @@ class form_2020(template):
         p.fed_age_cred = self.get_age_cred(p)
         p.fed_cpp_contrib_cred = self.get_cpp_contrib_cred(p)
         p.fed_empl_cred = self.get_empl_cred(p)
-        p.fed_pension_cred = self.get_pension_cred(p)
+        p.fed_pension_cred = self.get_pension_cred(p, hh)
         p.fed_disabled_cred = self.get_disabled_cred(p)
         p.fed_med_exp_nr_cred = self.get_med_exp_nr_cred(p, hh)
 
@@ -132,7 +132,7 @@ class form_2020(template):
             instance de la classe Person
         """
         p.fed_return['net_income'] =  max(0, p.fed_return['gross_income']
-                                          - p.fed_return['deductions_net_inc'])
+                                          - p.fed_return['deductions_gross_inc'])
         self.repayments_ei(p)
 
     def repayments_ei(self, p):

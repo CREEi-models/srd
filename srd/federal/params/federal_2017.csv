@@ -6,6 +6,7 @@ age_cred_exemption;36430;float;;T1-2017 Federal Worksheet (line 301);
 age_cred_claw_rate;0.15;float;;;
 empl_cred_max;1178;float;;;
 pension_cred_amount;2000;float;;T1-2017 Federal Worksheet (line 314);
+pension_cred_min_age_split;65;int;;;
 disability_cred_amount;8113;float;;T1-2017 Federal Worksheet (line 316);
 med_exp_nr_cred_max_age;16;int;;Guide fiscal 2017;
 med_exp_nr_cred_max_claw;2268;float;;Guide fiscal 2017;
