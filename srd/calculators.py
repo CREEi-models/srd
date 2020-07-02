@@ -75,6 +75,9 @@ class tax:
         Hhold
             instance de la classe Hhold
         """
+        if not hh.elig_split:
+            self.compute_all(hh)
+            return hh
 
         def compute_with_transfer(hh, transfer):
             """

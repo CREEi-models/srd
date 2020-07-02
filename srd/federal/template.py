@@ -276,7 +276,7 @@ class template:
         -------
             Montant du crédit
         """
-        if p.age < self.pension_cred_min_age_split:
+        if hh.elig_split and (p.age < self.pension_cred_min_age_split):
             other_p = hh.sp[1 - hh.sp.index(p)]
             pension_split_cred = min(p.pension_split, 0.5 * other_p.inc_rpp)
         else:
