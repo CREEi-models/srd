@@ -98,7 +98,9 @@ class Person:
         self.dep_senior = dep_senior
         self.home_support_cost = home_support_cost
         self.pension_split = 0
+        self.pension_split_qc = 0
         self.pension_deduction = 0
+        self.pension_deduction_qc = 0
         self.inc_oas = 0
         self.inc_gis = 0
         self.inc_ei = 0
@@ -394,9 +396,9 @@ class Hhold:
             self.sp[0].max_split = 0
         else:
             for p in self.sp:
-                p.max_split = p.inc_rpp
+                p.max_split = 0.5 * p.inc_rpp
                 if p.age >= 65:
-                    p.max_split += p.inc_rrsp
+                    p.max_split += 0.5 * p.inc_rrsp
 
     def assess_elig_split(self):
         """

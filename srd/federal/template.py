@@ -82,8 +82,8 @@ class template:
         p: Person
             instance de la classe Person
         """
-        p.fed_return['taxable_income'] = (p.fed_return['net_income']
-                                          - p.fed_return['deductions_net_inc'])
+        p.fed_return['taxable_income'] = max(0, p.fed_return['net_income']
+                                             - p.fed_return['deductions_net_inc'])
 
     def calc_deduc_gross_income(self, p, hh):
         """

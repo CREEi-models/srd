@@ -53,28 +53,81 @@ class tax:
         if iass:
             self.ass = assistance.program(year)
 
-    def compute_split(self, hh, n_points):
-        if not hh.elig_split:
-            self.compute(hh)
-            return list(hh)
+    def compute(self, hh, n_points=1):
+        """
+        Cette fonction transfère des revenus de pensions pour les couples éligibles
+        et retient la solution qui maximize le revenu disponible familial.
+        Si n_points=0, pas de fractionnement des revenus de pensions. Par défaut
+        (n_points=1), les revenus bruts sont égalisés dans la mesure des transferts
+        possibles. Pour n>1, une simulation est faite pour chaque point de la grille.
+        A noter que lorsque n augmente, les solutions avec n inférieur (notamment n=0)
+        sont aussi considérées.
+
+        Parameters
+        ----------
+        hh: Hhold
+            instance de la classe Hhold
+        n_points: int
+            nombre de points utilisés pour optimiser le transfert de revenus de
+            pension.
+        Returns
+        -------
+        Hhold
+            instance de la classe Hhold
+        """
+
+        def compute_with_transfer(hh, transfer):
+            """
+            Cette fonction effectue les transferts de revenus de pension, appelle
+            la fonction qui simule le ménage et ajoute le résultat à une liste.
+
+            Parameters
+            ----------
+            hh: Hold
+                instance de la classe Hhold
+            transfer: float
+                transfert du premier au second conjoint (du second au premier si négatif)
+            """
+            hh_new = deepcopy(hh)
+            p0, p1 = hh_new.sp[0], hh_new.sp[1]
+            if transfer < 0:
+                p0.pension_split = - transfer
+                p1.pension_deduction = - transfer
+                if p1.age >= 65:
+                    p0.pension_split_qc = p0.pension_split
+                    p1.pension_deduction_qc = p1.pension_deduction
+            else:
+                p1.pension_split = transfer
+                p0.pension_deduction = transfer
+                if p1.age >= 65:
+                    p1.pension_split_qc = p1.pension_split
+                    p0.pension_deduction_qc = p0.pension_deduction
+
+                p0.pension_split_qc = p0.pension_split if p1.age < 65 else 0
+            l_transfers.append(transfer)
+            self.compute_all(hh_new)
+            l_hh.append(hh_new)
 
         l_hh = []
-        l_frac = np.linspace(-0.5 * hh.sp[0].max_split,
-                             0.5 * hh.sp[1].max_split, n_points)
-        for frac in l_frac:
-            hh_f = deepcopy(hh)
-            if frac < 0:
-                hh_f.sp[1].pension_split = - frac
-                hh_f.sp[0].pension_deduction = - frac
-            else:
-                hh_f.sp[0].pension_split = frac
-                hh_f.sp[1].pension_deduction = frac
-            self.compute(hh_f)
-            l_hh.append(hh_f)
-        hh = max(l_hh, key=lambda x: x.fam_disp_inc)
-        return hh, l_hh, l_frac
+        l_transfers = []
+        compute_with_transfer(hh, 0)
 
-    def compute(self, hh):
+        if hh.elig_split and (n_points > 0):
+            desired_transfer = (hh.sp[0].inc_tot - hh.sp[1].inc_tot) / 2
+            transfer = np.clip(desired_transfer, - hh.sp[1].max_split,
+                                hh.sp[0].max_split)
+            compute_with_transfer(hh, transfer)
+
+        if hh.elig_split and (n_points > 1):
+            grid_transfers = np.linspace(-0.5 * hh.sp[1].max_split,
+                                        0.5 * hh.sp[0].max_split, n_points-1)
+            for transfer in grid_transfers:
+                compute_with_transfer(hh, transfer)
+
+        hh_star = max(l_hh, key=lambda x: x.fam_disp_inc)
+        return hh_star
+
+    def compute_all(self, hh):
         """
         Calcul tous les éléments demandés.
 

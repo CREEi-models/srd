@@ -12,14 +12,13 @@ for year in range(2016, 2021):
 
     tax_form = tax(year)
 
-    p0 = Person(age=64, rpp=0e3,)
+    p0 = Person(age=64, rpp=50e3,)
     p1 = Person(age=70, rpp=100e3)
     hh = Hhold(p0, p1, prov='qc')
 
-    hh, l_hh, l_frac = tax_form.compute_split(hh, 6)
+    hh = tax_form.compute(hh, n_points=1)
 
     print(hh.fam_disp_inc)
-    print(l_frac[np.argmax([hh.fam_disp_inc for hh in l_hh])])
 
 
 

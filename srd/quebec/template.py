@@ -60,7 +60,7 @@ class template:
         """
         p.prov_return['gross_income'] = (p.inc_work + p.inc_ei + p.inc_oas
                                          + p.inc_gis + p.inc_cpp + p.inc_rpp
-                                         + p.pension_split + p.cap_gains
+                                         + p.pension_split_qc + p.cap_gains
                                          + p.inc_othtax + p.inc_rrsp)
 
     def calc_net_income(self, p):
@@ -89,7 +89,7 @@ class template:
         p: Person
             instance de la classe Person
         """
-        p.prov_return['taxable_income'] = (p.prov_return['net_income']
+        p.prov_return['taxable_income'] = max(0, p.prov_return['net_income']
                                            - p.prov_return['deductions_net_inc'])
 
     def calc_deduc_gross_income(self, p):
@@ -107,7 +107,7 @@ class template:
         p.qc_cpp_deduction = self.cpp_deduction(p)
         p.prov_return['deductions_gross_inc'] = (p.con_rrsp + p.con_rpp
                                                + p.inc_gis + p.qc_work_deduc
-                                               + p.pension_deduction
+                                               + p.pension_deduction_qc
                                                + p.qc_cpp_deduction)
 
     def work_deduc(self, p):
@@ -270,14 +270,16 @@ class template:
         ----------
         p: Person
             instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
 
         Returns
         -------
         float
             Montant du crédit
         """
-        pension_split_cred = (p.inc_rpp + p.inc_rrsp - p.pension_deduction
-                              + p.pension_split)
+        pension_split_cred = (p.inc_rpp + p.inc_rrsp - p.pension_deduction_qc
+                              + p.pension_split_qc)
         return min(self.nrtc_pension_max,
                    pension_split_cred * self.nrtc_pension_factor)
 
