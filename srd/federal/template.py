@@ -302,7 +302,7 @@ class template:
         -------
             Montant du crédit
         """
-        return p.contrib_qpip_self - p.fed_qpip_cred
+        return p.contrib_qpip_self - p.fed_qpip_deduction
 
     def get_empl_cred(self, p):
         """

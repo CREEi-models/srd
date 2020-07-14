@@ -3,6 +3,7 @@ div_elig_factor;1.38;float;;;
 div_other_can_factor;1.17;float;;;
 div_elig_cred_rate;0.150198;float;;;
 div_other_can_cred_rate;0.105217;float;;;
+qpip_deduc_rate;0.4368;float;;Schedule 10;
 basic_amount;11635;float;;T1-2017 Schedule 1;
 age_cred_amount;7225;float;;;
 min_age_cred;65;int;;;
