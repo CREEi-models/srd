@@ -1,4 +1,5 @@
 import numpy as np
+from copy import deepcopy
 
 
 # INITIALIZE INDIVIDUALS AND HOUSEHOLDS #
@@ -206,6 +207,16 @@ class Person:
             else:
                 self.months_cerb = months_cerb_cesb # assuming that last year's work income > 5000
 
+    def copy(self):
+        self.temp = deepcopy(self.__dict__)
+
+    def reset(self):
+        l_attr = [k for k in self.__dict__ if k != 'temp']
+        for k in l_attr:
+            delattr(self, k)
+        for attr, val in self.temp.items():
+            setattr(self, attr, val)
+
 
 class Dependent:
     """
@@ -361,7 +372,7 @@ class Hhold:
 
     def add_dependent(self, *dependents): # necessary?
         """
-        Fonction pour ajouter un ou ou plusieurs dépendant(s).
+        Fonction pour ajouter un ou plusieurs dépendant(s).
 
         Parameters
         ----------
@@ -406,3 +417,18 @@ class Hhold:
         de pension.
         """
         self.elig_split = len([p for p in self.sp if p.max_split > 0]) > 0
+
+    def copy(self):
+        d_attr_not_sp = {k: v for k,v in vars(self).items() if k != 'sp'}
+        for p in self.sp:
+            p.copy()
+        self.temp = deepcopy(d_attr_not_sp)
+
+    def reset(self):
+        for p in self.sp:
+            p.reset()
+        l_attr = [k for k in self.__dict__ if k not in ('sp', 'temp')]
+        for k in l_attr:
+            delattr(self, k)
+        for attr, val in self.temp.items():
+            setattr(self, attr, val)

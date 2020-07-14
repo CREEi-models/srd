@@ -65,28 +65,28 @@ class tax:
             transfer = np.clip(desired_transfer, - hh.sp[1].max_split,
                                 hh.sp[0].max_split)
             hh.reset()
-            compute_with_transfer(hh, transfer)
+            self.compute_with_transfer(hh, transfer)
 
             if hh.fam_disp_inc > fam_disp_inc_max:
                 fam_disp_inc_max, transfer_max = hh.fam_disp_inc, transfer
 
             if n_points > 1:
-            grid_transfers = np.linspace(-0.5 * hh.sp[1].max_split,
+                grid_transfers = np.linspace(-0.5 * hh.sp[1].max_split,
                                         0.5 * hh.sp[0].max_split, n_points-1)
-            for transfer in grid_transfers:
-                hh.reset()
-                compute_with_transfer(hh, transfer)
-                if hh.fam_disp_inc > fam_disp_inc_max:
-                fam_disp_inc_max, transfer_max = hh.fam_disp_inc, transfer
+                for transfer in grid_transfers:
+                    hh.reset()
+                    self.compute_with_transfer(hh, transfer)
+                    if hh.fam_disp_inc > fam_disp_inc_max:
+                        fam_disp_inc_max, transfer_max = hh.fam_disp_inc, transfer
 
             if transfer != transfer_max:
-                compute_with_transfer(hh, transfer)
+                self.compute_with_transfer(hh, transfer_max)
 
 
 
 
 
-    def compute(self, hh, n_points=1):
+    def compute_old(self, hh, n_points=1):
         """
         Cette fonction transfère des revenus de pensions pour les couples éligibles
         et retient la solution qui maximize le revenu disponible familial.
@@ -127,7 +127,7 @@ class tax:
         hh_star = max(l_hh, key=lambda x: x.fam_disp_inc)
         return hh_star
 
-    def compute_with_transfer(hh, transfer):
+    def compute_with_transfer(self, hh, transfer):
         """
         Cette fonction effectue les transferts de revenus de pension, appelle
         la fonction qui simule le ménage et ajoute le résultat à une liste.
@@ -154,12 +154,12 @@ class tax:
                 p1.pension_split_qc = p1.pension_split
                 p0.pension_deduction_qc = p0.pension_deduction
 
-            p0.pension_split_qc = p0.pension_split if p1.age < 65 else 0
+            # p0.pension_split_qc = p0.pension_split if p1.age < 65 else 0 # I don't understand this
         self.compute_all(hh)
 
     def compute_all(self, hh):
         """
-        Calcul tous les éléments demandés.
+        Calcule tous les éléments demandés.
 
         Parameters
         ----------

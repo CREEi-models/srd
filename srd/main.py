@@ -12,11 +12,11 @@ for year in range(2016, 2021):
 
     tax_form = tax(year)
 
-    p0 = Person(age=64, rpp=50e3,)
+    p0 = Person(age=70, rpp=50e3,)
     p1 = Person(age=70, rpp=100e3)
     hh = Hhold(p0, p1, prov='qc')
 
-    hh = tax_form.compute(hh, n_points=1)
+    tax_form.compute(hh, n_points=5)
 
     print(hh.fam_disp_inc)
 
