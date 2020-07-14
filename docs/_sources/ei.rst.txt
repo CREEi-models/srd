@@ -38,3 +38,4 @@ Fonctions spécifiques ou modifiées par année
 .. autoclass:: srd.ei.programs.program_2019
 
 .. autoclass:: srd.ei.programs.program_2020
+    :members: compute_benefits_covid

@@ -5,15 +5,18 @@
 Les acteurs
 -----------
 
-Les fonctions d'acteurs permettent de déclarer des profils. 
+Les fonctions d'acteurs permettent de déclarer des profils.
 
-.. currentmodule:: srd 
+.. currentmodule:: srd
 
 .. autoclass:: Person
-    :members: inc_work, inc_non_work, inc_tot 
+    :members: attach_prev_work_inc, attach_inc_work_month, inc_work,
+    inc_non_work, inc_tot, compute_months_cerb_cesb
 
 .. autoclass:: Dependent
-    :members: 
+    :members:
 
 .. autoclass:: Hhold
-    :members: add_dependent,count,split_pension_income,fam_inc_work, fam_inc_non_work, fam_tot_inc, fam_net_inc, fam_disp_inc
+    :members: adjust_n_adults, fam_inc_work, fam_inc_non_work, fam_tot_inc,
+    fam_after_tax, fam_disp_inc, add_dependent, nkids0_5, nkids0_18, count,
+    compute_max_split, assess_elig_split

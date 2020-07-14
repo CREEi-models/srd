@@ -45,7 +45,7 @@ class payroll:
             base, supp = self.get_cpp_contrib(p,hh)
             p.payroll['cpp']  = base
             p.payroll['cpp_supp'] = supp
-        return
+
     def get_cpp_contrib(self, p, hh):
         """
         Fonction pour le calcul des cotisations RPC et RRQ.

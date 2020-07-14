@@ -22,4 +22,5 @@ Gabarit du programme
 Une instance de la classe *policy* est ensuite entrée dans la classe *programs* et seuls les programmes qui ont été séléctionnés sont appliqués.
 
 .. autoclass:: programs
-    :members: compute, compute_cerb, compute_cesb, compute_iprew
+    :members: compute, compute_cerb, compute_cesb, compute_monthly_cesb,
+    compute_iprew

@@ -19,7 +19,7 @@ class template:
         add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2016.csv',delimiter=';')
         add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2016.csv',delimiter=';')
         add_schedule_as_attr(self, module_dir + '/quebec/params/health_contrib_2016.csv',delimiter=';')
-        return
+
     def file(self, hh):
         """
         Fonction qui permet de calculer les impôts.
@@ -41,9 +41,11 @@ class template:
         for p in hh.sp:
             self.calc_tax(p)
             self.calc_non_refundable_tax_credits(p, hh)
+            self.calc_div_tax_credit(p)
             self.calc_contributions(p, hh)
             p.prov_return['net_tax_liability'] = max(0, p.prov_return['gross_tax_liability']
-                 + p.prov_return['contributions'] - p.prov_return['non_refund_credits'])
+                 + p.prov_return['contributions'] - p.prov_return['non_refund_credits']
+                 - p.qc_div_tax_credit)
             self.calc_refundable_tax_credits(p, hh)
             p.prov_return['net_tax_liability'] -= p.prov_return['refund_credits']
 
@@ -58,10 +60,13 @@ class template:
         p: Person
             instance de la classe Person
         """
+        p.taxable_div = (self.div_elig_factor * p.div_elig
+                         + self.div_other_can_factor * p.div_other_can)
         p.prov_return['gross_income'] = (p.inc_work + p.inc_ei + p.inc_oas
                                          + p.inc_gis + p.inc_cpp + p.inc_rpp
                                          + p.pension_split_qc + p.cap_gains
-                                         + p.inc_othtax + p.inc_rrsp)
+                                         + p.inc_othtax + p.taxable_div
+                                         + p.inc_rrsp)
 
     def calc_net_income(self, p):
         """
@@ -104,11 +109,11 @@ class template:
             instance de la classe Person
         """
         p.qc_work_deduc = self.work_deduc(p)
-        p.qc_cpp_deduction = self.cpp_deduction(p)
+        p.qc_cpp_qpip_deduction = self.cpp_qpip_deduction(p)
         p.prov_return['deductions_gross_inc'] = (p.con_rrsp + p.con_rpp
                                                + p.inc_gis + p.qc_work_deduc
                                                + p.pension_deduction_qc
-                                               + p.qc_cpp_deduction)
+                                               + p.qc_cpp_qpip_deduction)
 
     def work_deduc(self, p):
         """
@@ -126,9 +131,9 @@ class template:
             deduc = 0
         return deduc
 
-    def cpp_deduction(self, p):
+    def cpp_qpip_deduction(self, p):
         """
-        Déduction pour les cotisations RPC/RRQ pour les travailleurs autonomes.
+        Déduction pour les cotisations RPC/RRQ et RQAP pour les travailleurs autonomes.
 
         Parameters
         ----------
@@ -140,13 +145,13 @@ class template:
         float
             Montant de la déduction
         """
-        return p.contrib_cpp_self / 2
+        return p.contrib_cpp_self / 2 + self.qpip_deduc_rate * p.contrib_qpip_self
 
     def calc_deduc_net_income(self, p):
         """
         Fonction qui calcule les déductions suivantes:
         - Pertes en capital net des autres années.
-        - Déduction pour gain en capital.
+        - Déduction pour gain en capital exonéré.
 
         Permet une déduction maximale égale aux gains en capitaux taxables nets.
 
@@ -156,7 +161,7 @@ class template:
             instance de la classe Person
         """
         p.prov_return['deductions_net_inc'] = min(p.cap_gains,
-                                                 p.cap_losses + p.cap_gains_exempt)
+                                                  p.cap_losses + p.cap_gains_exempt)
 
     def calc_tax(self, p):
         """
@@ -195,11 +200,13 @@ class template:
         p.qc_disabled_cred = self.get_disabled_cred(p)
         p.qc_med_exp_nr_cred = self.get_med_exp_cred(p, hh)
         p.qc_exp_worker_cred = self.get_exp_worker_cred(p)
+        p.qc_donations_cred = self.get_donations_cred(p)
+        p.qc_union_dues_cred = self.get_union_dues_cred(p)
 
         p.prov_return['non_refund_credits'] = (
             self.nrtc_rate * (self.nrtc_base + p.qc_age_alone_pension
                               + p.qc_disabled_cred + p.qc_med_exp_nr_cred)
-            + p.qc_exp_worker_cred)
+                              + p.qc_exp_worker_cred + p.qc_union_dues_cred)
 
     def get_nrtcred_clawback(self, p, hh):
         """
@@ -352,6 +359,47 @@ class template:
             return calc_amount(self.exp_work_max_work_inc_65,
                                min_amount=min_amount)
 
+    def get_donations_cred(self, p):
+        """
+        Crédit d'impôt pour dons.
+
+        Ce crédit est non-remboursable.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+
+        Returns
+        -------
+        float
+            Montant du crédit
+        """
+        tot_donation = p.donation + p.gift
+
+        if tot_donation <= self.nrtc_donation_low_cut:
+            return tot_donation * self.nrtc_donation_low_rate
+        else:
+            return (self.nrtc_donation_low_cut * self.nrtc_donation_low_rate
+                    + (tot_donation - self.nrtc_donation_low_cut) * self.nrtc_donation_med_rate)
+
+    def get_union_dues_cred(self, p):
+        """
+        Crédit d’impôt pour cotisations syndicales et professionnelles
+
+        Ce crédit est non-remboursable.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+
+        Returns
+        -------
+        float
+            Montant du crédit
+        """
+        return self.nrtc_union_dues_rate * p.union_dues
 
     def get_disabled_cred(self, p):
         """
@@ -369,8 +417,7 @@ class template:
         float
             Montant du crédit
         """
-        amount = self.nrtc_disabled if p.disabled else 0
-        return amount
+        return self.nrtc_disabled if p.disabled else 0
 
     def get_med_exp_cred(self, p, hh):
         """
@@ -395,6 +442,18 @@ class template:
         fam_net_inc = sum([p.fed_return['net_income'] for p in hh.sp])
         med_exp = sum([p.med_exp for p in hh.sp] + [d.med_exp for d in hh.dep])
         return max(0, med_exp - self.nrtc_med_exp_rate * fam_net_inc)
+
+    def calc_div_tax_credit(self, p):
+        """
+        Crédit d'impôt pour dividendes
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        """
+        p.qc_div_tax_credit = (self.div_elig_cred_net_rate * p.div_elig
+                               + self.div_other_can_cred_net_rate * p.div_other_can)
 
     def calc_refundable_tax_credits(self, p, hh):
         """

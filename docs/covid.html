@@ -173,7 +173,7 @@ Les prestations de la PCU, PCUE et PIRTE sont considérées comme revenus du tra
 <p>La classe <em>policy</em> permet de définir quels programmes on désire inclure dans les calculs du simulateur:</p>
 <dl class="class">
 <dt id="srd.covid.policy">
-<em class="property">class </em><code class="sig-prename descclassname">srd.covid.</code><code class="sig-name descname">policy</code><span class="sig-paren">(</span><em class="sig-param">icerb=True</em>, <em class="sig-param">icesb=True</em>, <em class="sig-param">iiprew=True</em>, <em class="sig-param">icovid_gst=True</em>, <em class="sig-param">icovid_ccb=True</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.covid.policy" title="Lien permanent vers cette définition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">srd.covid.</code><code class="sig-name descname">policy</code><span class="sig-paren">(</span><em class="sig-param">icerb=True</em>, <em class="sig-param">icesb=True</em>, <em class="sig-param">iiprew=True</em>, <em class="sig-param">icovid_gst=True</em>, <em class="sig-param">icovid_ccb=True</em>, <em class="sig-param">iei=False</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.covid.policy" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Mesures liées à la covid-19.</p>
 <p>Permet de choisir quelles mesures sont appliquées dans le simulateur.</p>
 <dl class="field-list simple">
@@ -184,6 +184,7 @@ Les prestations de la PCU, PCUE et PIRTE sont considérées comme revenus du tra
 <li><p><strong>iiprew</strong> (<em>boolean</em>) – PIRTE est appliquée</p></li>
 <li><p><strong>icovid_gst</strong> (<em>boolean</em>) – majoration du crédit pour la taxe sur les produits et services/taxe de vente harmonisée (TPS/TVH)</p></li>
 <li><p><strong>icovid_ccb</strong> (<em>boolean</em>) – majoration de l’allocation canadienne pour enfants (ACE/CCB)</p></li>
+<li><p><strong>iei</strong> (<em>boolean</em>) – Assurance emploi d’urgence</p></li>
 </ul>
 </dd>
 </dl>
@@ -213,93 +214,6 @@ Les prestations de la PCU, PCUE et PIRTE sont considérées comme revenus du tra
 <div class="section" id="gabarit-du-programme">
 <h2>Gabarit du programme<a class="headerlink" href="#gabarit-du-programme" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Une instance de la classe <em>policy</em> est ensuite entrée dans la classe <em>programs</em> et seuls les programmes qui ont été séléctionnés sont appliqués.</p>
-<dl class="class">
-<dt id="srd.covid.programs">
-<em class="property">class </em><code class="sig-prename descclassname">srd.covid.</code><code class="sig-name descname">programs</code><span class="sig-paren">(</span><em class="sig-param">policy</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.covid.programs" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Calcul des prestations d’urgence liées à la covid-19.</p>
-<p>Calcul de la prestation canadienne d’urgence (PCU), prestation canadienne
-d’urgence pour les étudiants (PCUE)
-et programme incitatif pour la rétention des travailleurs essentiels (PIRTE)</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>policy</strong> (<a class="reference internal" href="#srd.covid.policy" title="srd.covid.policy"><em>policy</em></a>) – instance de la classe policy</p>
-</dd>
-</dl>
-<dl class="method">
-<dt id="srd.covid.programs.compute">
-<code class="sig-name descname">compute</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.covid.programs.compute" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui fait le calcul et crée le rapport de cotisations.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="srd.covid.programs.compute_cerb">
-<code class="sig-name descname">compute_cerb</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.covid.programs.compute_cerb" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction pour le calcul de la PCU.</p>
-<p>Calcule la PCU en fonction du nombre de blocs de self.begin_april semaines (mois)
-durant laquelle la prestation est demandée.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
-</dd>
-<dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>Le montant de la PCU.</p>
-</dd>
-<dt class="field-odd">Type renvoyé</dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="srd.covid.programs.compute_cesb">
-<code class="sig-name descname">compute_cesb</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.covid.programs.compute_cesb" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction pour le calcul de la PCUE.</p>
-<p>Calcule la PCUE en fonction de la prestation mensuelle à laquelle l’individu
-a droit et du nombre de blocs de self.begin_april semaines (mois) durant lequel la prestation est demandée.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
-<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
-</ul>
-</dd>
-<dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>Le montant de la PCUE.</p>
-</dd>
-<dt class="field-odd">Type renvoyé</dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="srd.covid.programs.compute_iprew">
-<code class="sig-name descname">compute_iprew</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.covid.programs.compute_iprew" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction pour le calcul de la PIRTE.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
-<li><p><strong>la PIRTE pour la période de 16 semaines</strong><strong> (</strong><strong>self.begin_april mois</strong><strong>) </strong><strong>si le travailleur</strong> (<em>Calcule</em>) – </p></li>
-<li><p><strong>éligible.</strong> (<em>est</em>) – </p></li>
-</ul>
-</dd>
-<dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>Le montant de la PIRTE pour les 16 semaines.</p>
-</dd>
-<dt class="field-odd">Type renvoyé</dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 </div>
 

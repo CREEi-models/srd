@@ -1,4 +1,9 @@
 variable;value;type;definition;source;comments
+div_elig_factor;1.38;float;;;
+div_other_can_factor;1.17;float;;;
+div_elig_cred_net_rate;0.16422;float;;;
+div_other_can_cred_net_rate;0.082485;float;;;
+qpip_deduc_rate;0.43679;float;;;
 work_deduc_max;1130;float;;;
 work_deduc_rate;0.06;float;;;
 nrtc_age_max;2485;float;;;
@@ -12,6 +17,10 @@ nrtc_rate;0.2;float;;;
 nrtc_base;11550;float;;;
 nrtc_disabled;2625;float;;;
 nrtc_med_exp_rate;0.03;float;;TP-1.D.B;
+nrtc_donation_low_cut;200;float;;;
+nrtc_donation_low_rate;0.20;float;;;
+nrtc_donation_med_rate;0.24;float;;;
+nrtc_union_dues_rate;0.10;float;;;
 ccap_max_age;18;int;;;
 ccap_claw_rate;0.04;float;;;
 ccap_claw_cutoff_couple;47665;float;;;

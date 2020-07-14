@@ -75,7 +75,7 @@ class tax:
         Hhold
             instance de la classe Hhold
         """
-        if not hh.elig_split:
+        if not hh.elig_split or (n_points==0):
             self.compute_all(hh)
             return hh
 
@@ -102,7 +102,7 @@ class tax:
             else:
                 p1.pension_split = transfer
                 p0.pension_deduction = transfer
-                if p1.age >= 65:
+                if p0.age >= 65:
                     p1.pension_split_qc = p1.pension_split
                     p0.pension_deduction_qc = p0.pension_deduction
 
@@ -115,11 +115,10 @@ class tax:
         l_transfers = []
         compute_with_transfer(hh, 0)
 
-        if hh.elig_split and (n_points > 0):
-            desired_transfer = (hh.sp[0].inc_tot - hh.sp[1].inc_tot) / 2
-            transfer = np.clip(desired_transfer, - hh.sp[1].max_split,
-                                hh.sp[0].max_split)
-            compute_with_transfer(hh, transfer)
+        desired_transfer = (hh.sp[0].inc_tot - hh.sp[1].inc_tot) / 2
+        transfer = np.clip(desired_transfer, - hh.sp[1].max_split,
+                            hh.sp[0].max_split)
+        compute_with_transfer(hh, transfer)
 
         if hh.elig_split and (n_points > 1):
             grid_transfers = np.linspace(-0.5 * hh.sp[1].max_split,
@@ -248,7 +247,7 @@ class tax:
             if self.iprov:
                 after_tax_inc -= p.prov_return['net_tax_liability']
             p.after_tax_inc = after_tax_inc
-        return
+
     def disp_inc(self,hh):
         """
         Calcul du revenu disponible après impôt, cotisations (sociale et REER) et aide sociale.
@@ -265,6 +264,7 @@ class tax:
                 disp_inc += p.inc_social_ass
             disp_inc -= p.con_rrsp
             p.disp_inc = disp_inc
+
 
 class incentives:
     def __init__(self, case_mode=True, year=2020, data_file=None,

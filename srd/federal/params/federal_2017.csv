@@ -1,4 +1,8 @@
 variable;value;type;definition;source;comments
+div_elig_factor;1.38;float;;;
+div_other_can_factor;1.17;float;;;
+div_elig_cred_rate;0.150198;float;;;
+div_other_can_cred_rate;0.105217;float;;;
 basic_amount;11635;float;;T1-2017 Schedule 1;
 age_cred_amount;7225;float;;;
 min_age_cred;65;int;;;
@@ -11,6 +15,12 @@ disability_cred_amount;8113;float;;T1-2017 Federal Worksheet (line 316);
 med_exp_nr_cred_max_age;16;int;;Guide fiscal 2017;
 med_exp_nr_cred_max_claw;2268;float;;Guide fiscal 2017;
 med_exp_nr_cred_rate;0.03;float;;Guide fiscal 2017;
+donation_frac_net;0.75;float;;;
+donation_low_cut;200;float;;;
+donation_high_cut;202800;float;;;
+donation_low_rate;0.15;float;;;
+donation_med_rate;0.29;float;;;
+donation_high_rate;0.33;float;;;
 rate_non_ref_tax_cred;0.15;float;;;
 rate_abatment_qc;0.165;float;;T1 General 2017;
 ccb_young_max_age;5;int;;https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit-overview/canada-child-benefit-ccb-payment-amounts.html;

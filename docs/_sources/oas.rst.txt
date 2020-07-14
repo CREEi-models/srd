@@ -21,7 +21,9 @@ Nous utilisons un gabarit afin de créer les programmes chaque année. Quand le 
 Nous reproduisons ici la spécification du gabarit. Il est calibré sur le programme en vigueur en 2016.
 
 .. autoclass:: template
-    :members: file,eligibility,compute_pension,pension_clawback, gis, survivor_allowance, couple_allowance, compute_allowance
+    :members: file, eligibility, compute_net_income, compute_net_inc_exemption,
+    compute_pension,pension_clawback, gis, survivor_allowance, couple_allowance,
+    compute_allowance
 
 Fonctions spécifiques ou modifiées par année
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -35,3 +37,4 @@ Fonctions spécifiques ou modifiées par année
 .. autoclass:: srd.oas.programs.program_2019
 
 .. autoclass:: srd.oas.programs.program_2020
+    :members: compute_net_inc_exemption

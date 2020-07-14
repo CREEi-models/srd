@@ -21,7 +21,7 @@ class template:
         """
         for p in hh.sp:
             self.eligibility(p, hh)
-        if not [p for p in hh.sp if p.elig_oas]: # elimin
+        if not [p for p in hh.sp if p.elig_oas]: # eliminate non-eligible hholds
             return
 
         for p in hh.sp:
