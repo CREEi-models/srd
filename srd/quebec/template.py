@@ -24,7 +24,8 @@ class template:
         """
         Fonction qui permet de calculer les impôts.
 
-        Cette fonction est celle qui exécute le calcul des impôts.
+        Cette fonction est celle qui calcule les déductions,
+        les crédits non-remboursables et remboursables et les impôts nets.
 
         Parameters
         ----------
@@ -293,7 +294,7 @@ class template:
     def get_exp_worker_cred(self, p):
         """
         Crédit d'impôt pour les travailleurs d'expérience.
-        Depuis 2019, renommé crédit d'impôts pour la prolongation de carrière.
+        Depuis 2019, renommé crédit d'impôt pour la prolongation de carrière.
 
         Ce crédit est non-remboursable. Nous avons fait l'hypothèse que les travailleurs
         de 65 ans sont nés le 1er janvier (dans l'année en cours, les revenus avant
@@ -642,6 +643,7 @@ class template:
     def med_exp(self, p, hh):
         """
         Crédit remboursable pour frais médicaux.
+
         Parameters
         ----------
         p: Person

@@ -18,7 +18,8 @@ class template:
         """
         Fonction qui permet de calculer les impôts.
 
-        Cette fonction est celle qui exécute le calcul des impôts.
+        Cette fonction est celle qui calcule les déductions,
+        les crédits non-remboursables et remboursables et les impôts nets.
 
         Parameters
         ----------
@@ -528,7 +529,7 @@ class template:
 
     def witb(self,p,hh):
         """
-        Prestation fiscale pour le revenu de travail (PFRT/WITB). A partir de 2019,
+        Prestation fiscale pour le revenu de travail (PFRT/WITB). À partir de 2019,
         cela devient l'Allocation canadienne pour les travailleurs (ACT/CWB).
 
         Dans le cas d'un couple, la prestation est répartie au prorata des revenus du travail.
@@ -606,7 +607,7 @@ class template:
     def compute_witb_witbds(self, p, hh, rate, base, witb_max, claw_rate,
                             exemption):
         """
-        Calcule de la prestation fiscale pour le revenu de travail.
+        Calcul de la prestation fiscale pour le revenu de travail.
 
         Parameters
         ----------
@@ -665,7 +666,7 @@ class template:
     def gst_hst_credit(self, p, hh):
         """
         Crédit pour la taxe sur les produits et services/taxe de vente harmonisée (TPS/TVH).
-        Le montant du crédit est reçu par la conjoint au revenu imposable le plus élevé.
+        Le montant du crédit est reçu par le conjoint au revenu imposable le plus élevé.
 
         Parameters
         ----------

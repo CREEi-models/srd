@@ -190,9 +190,7 @@ class Person:
     @property
     def inc_non_work(self):
         """
-        Fonction qui retourne le revenu autre que travail
-
-        Returns
+        Fonction qui retourne le total des revenus autre que revenu du travail.
         -------
 
         float
@@ -413,7 +411,8 @@ class Hhold:
 
     def count(self): # do we need this?
         """
-        Fonction pour calculer la composition du ménage.
+        Fonction pour calculer la composition du ménage (nombre d'enfants,
+        de dépendents, taille de la famille).
         """
         self.ndep = len(self.dep)
         self.nold = len([s for s in self.dep if s.age >= 65])
@@ -424,7 +423,8 @@ class Hhold:
     def compute_max_split(self):
         """
         Fonction qui calcule le montant max de revenu de pension
-        pouvant être fractionné.
+        pouvant être fractionné
+        (et l'attache à chaque conjoint du ménage: attribut *max_split*).
         """
         if not self.couple:
             self.sp[0].max_split = 0
@@ -437,6 +437,6 @@ class Hhold:
     def assess_elig_split(self):
         """
         Fonction qui établit si le ménage est éligible pour le fractionnement
-        de pension.
+        de pension (et l'attache au ménage: attribut *elig_split*).
         """
         self.elig_split = len([p for p in self.sp if p.max_split > 0]) > 0

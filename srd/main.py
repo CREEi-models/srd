@@ -8,21 +8,19 @@ import matplotlib.pyplot as plt
 from srd import tax, incentives, Person, Hhold, Dependent, federal
 from srd.covid import policy
 
+for year in range(2017, 2021):
 
-julia1 = Person(age=30, earn=20e3, self_earn=20e3)
-jules1 = Person(age=65, cpp=5000)
-hh = Hhold(julia1, jules1, prov='qc')
+    print(year)
 
-tax = tax(2016)
-hh = tax.compute(hh)
-
-print(vars(hh.sp[0]))
-
-print(hh.sp[0].qc_donations_cred)
-print(hh.sp[0].payroll)
+    julia1 = Person(age=30, earn=20e3, self_earn=20e3)
+    jules1 = Person(age=65, cpp=5000)
+    hh = Hhold(julia1, jules1, prov='qc')
 
 
+    tax_system = tax(year)
+    hh = tax_system.compute(hh)
 
+    print(vars(hh.sp[0]))
 
 
 
