@@ -23,4 +23,4 @@ Une instance de la classe *policy* est ensuite entrée dans la classe *programs*
 
 .. autoclass:: programs
     :members: compute, compute_cerb, compute_cesb, compute_monthly_cesb,
-    compute_iprew
+              compute_iprew

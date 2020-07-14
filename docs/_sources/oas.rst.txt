@@ -22,8 +22,8 @@ Nous reproduisons ici la spécification du gabarit. Il est calibré sur le progr
 
 .. autoclass:: template
     :members: file, eligibility, compute_net_income, compute_net_inc_exemption,
-    compute_pension,pension_clawback, gis, survivor_allowance, couple_allowance,
-    compute_allowance
+              compute_pension,pension_clawback, gis, survivor_allowance,
+              couple_allowance, compute_allowance
 
 Fonctions spécifiques ou modifiées par année
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

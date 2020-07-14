@@ -86,8 +86,8 @@ class program_2020(program_2019):
         Calcule le revenu net de l'exemption sur les revenus du travail salarié.
 
         A partir de 2020-2021:
-        * les revenus de travail autonome bénéficient également de l'exemption
-        * les revenus du travail bénéficient d'une nouvelle exemption
+        les revenus de travail autonome bénéficient également de l'exemption
+        es revenus du travail bénéficient d'une nouvelle exemption
           entre 5000$ et 10000$ à un taux de 0.5.
 
         Parameters

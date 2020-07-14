@@ -22,12 +22,13 @@ Nous reproduisons ici la spécification du gabarit. Il est calqué sur le rappor
 
 .. autoclass:: template
     :members: file, calc_gross_income, calc_net_income, calc_taxable_income,
-    calc_deduc_gross_income, chcare, cpp_deduction, qpip_deduction,
-    calc_deduc_net_income, calc_tax, calc_non_refundable_tax_credits,
-    get_age_cred, get_cpp_contrib_cred, get_qpip_cred, get_qpip_self_cred,
-    get_empl_cred, get_pension_cred, get_disabled_cred, get_mex_exp_cred,
-    get_donations_cred, calc_div_tax_credits, calc_refundable_tax_credits,
-    abatment, ccb, witb, witbds, compute_witb_witbds, med_exp, gst_hst_credit
+              calc_deduc_gross_income, chcare, cpp_deduction, qpip_deduction,
+              calc_deduc_net_income, calc_tax, calc_non_refundable_tax_credits,
+              get_age_cred, get_cpp_contrib_cred, get_qpip_cred,
+              get_qpip_self_cred, get_empl_cred, get_pension_cred,
+              get_disabled_cred, get_med_exp_nr_cred, get_donations_cred,
+              calc_div_tax_credit, calc_refundable_tax_credits, abatment, ccb,
+              witb, witbds, compute_witb_witbds, med_exp, gst_hst_credit
 
 Le gabarit collecte les résultats sur un rapport d'impôt qui sera rattaché à la personne sous la forme d'un dictionnaire python. Ceci permet de différencier les attributs d'une personne qui font partie de son profil et les variables générées par l'impôt. C'est la fonction create_return() qui fait ce travail.
 

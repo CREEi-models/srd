@@ -164,6 +164,136 @@
 <h1>Les acteurs<a class="headerlink" href="#les-acteurs" title="Lien permanent vers ce titre">¶</a></h1>
 <p>Les fonctions d’acteurs permettent de déclarer des profils.</p>
 <dl class="class">
+<dt id="srd.Person">
+<em class="property">class </em><code class="sig-prename descclassname">srd.</code><code class="sig-name descname">Person</code><span class="sig-paren">(</span><em class="sig-param">age=50</em>, <em class="sig-param">male=True</em>, <em class="sig-param">earn=0</em>, <em class="sig-param">rpp=0</em>, <em class="sig-param">cpp=0</em>, <em class="sig-param">cap_gains=0</em>, <em class="sig-param">cap_losses=0</em>, <em class="sig-param">cap_gains_exempt=0</em>, <em class="sig-param">othtax=0</em>, <em class="sig-param">othntax=0</em>, <em class="sig-param">inc_rrsp=0</em>, <em class="sig-param">self_earn=0</em>, <em class="sig-param">div_elig=0</em>, <em class="sig-param">div_other_can=0</em>, <em class="sig-param">con_rrsp=0</em>, <em class="sig-param">con_rpp=0</em>, <em class="sig-param">union_dues=0</em>, <em class="sig-param">donation=0</em>, <em class="sig-param">gift=0</em>, <em class="sig-param">years_can=None</em>, <em class="sig-param">disabled=False</em>, <em class="sig-param">cqppc=None</em>, <em class="sig-param">widow=False</em>, <em class="sig-param">med_exp=0</em>, <em class="sig-param">ndays_chcare_k1=0</em>, <em class="sig-param">ndays_chcare_k2=0</em>, <em class="sig-param">asset=0</em>, <em class="sig-param">oas_years_post=0</em>, <em class="sig-param">months_cerb_cesb=0</em>, <em class="sig-param">student=False</em>, <em class="sig-param">essential_worker=False</em>, <em class="sig-param">hours_month=None</em>, <em class="sig-param">prev_inc_work=None</em>, <em class="sig-param">dep_senior=False</em>, <em class="sig-param">home_support_cost=0</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Person" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Classe pour définir une personne.</p>
+<p>Ceci définit une personne et son profil en terme de revenus et actifs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>age</strong> (<em>int</em>) – âge de l’individu</p></li>
+<li><p><strong>male</strong> (<em>int</em>) – 1 si individu est un homme</p></li>
+<li><p><strong>earn</strong> (<em>float</em>) – revenu de travail</p></li>
+<li><p><strong>rpp</strong> (<em>float</em>) – revenu de régime complémentaire de retraite (RCR)</p></li>
+<li><p><strong>cpp</strong> (<em>float</em>) – revenu de régime de rentes du Québec (RRQ)</p></li>
+<li><p><strong>cap_gains</strong> (<em>float</em>) – gains en capitaux taxables nets de l’année (50% * max(0, gains - pertes))</p></li>
+<li><p><strong>cap_losses</strong> (<em>float</em>) – pertes en capital d’autres années</p></li>
+<li><p><strong>cap_gains_exempt</strong> (<em>float</em>) – exonération des gains en capitaux demandée</p></li>
+<li><p><strong>othtax</strong> (<em>float</em>) – autre revenu imposable</p></li>
+<li><p><strong>othntax</strong> (<em>float</em>) – autre revenu non-imposable</p></li>
+<li><p><strong>inc_rrsp</strong> (<em>float</em>) – revenu de REER (sortie)</p></li>
+<li><p><strong>self_earn</strong> (<em>float</em>) – revenu de travailleur autonome</p></li>
+<li><p><strong>div_elig</strong> (<em>float</em>) – montant réel des dividendes déterminés (canadiens)</p></li>
+<li><p><strong>div_other_can</strong> (<em>float</em>) – montant réel des dividendes ordinaires (canadiens)</p></li>
+<li><p><strong>con_rrsp</strong> (<em>float</em>) – contribution REER</p></li>
+<li><p><strong>union_dues</strong> (<em>float</em>) – cotisations syndicales, professionnelles ou autres</p></li>
+<li><p><strong>donation</strong> (<em>float</em>) – don de bienfaisance et autres dons</p></li>
+<li><p><strong>gift</strong> (<em>float</em>) – dons de biens culturels et écosensibles</p></li>
+<li><p><strong>years_can</strong> (<em>int</em>) – nombre d’années au Canada lorsque OAS est demandé</p></li>
+<li><p><strong>disabled</strong> (<em>boolean</em>) – statut d’invalidité</p></li>
+<li><p><strong>cqppc</strong> (<em>float</em>) – contribution au RRQ</p></li>
+<li><p><strong>widow</strong> (<em>boolean</em>) – statut de veuf/veuve</p></li>
+<li><p><strong>med_exp</strong> (<em>float</em>) – frais médicaux</p></li>
+<li><p><strong>asset</strong> (<em>float</em>) – valeur marchande des actifs</p></li>
+<li><p><strong>oas_years_post</strong> (<em>int</em>) – nombre d’années de report pour la pension OAS (après 65 ans)</p></li>
+<li><p><strong>months_cerb_cesb</strong> (<em>int</em>) – nombre de mois pour lesquels la CPU(E) est demandée</p></li>
+<li><p><strong>essential_worker</strong> (<em>boolean</em>) – True si travailleur essentiel</p></li>
+<li><p><strong>dep_senior</strong> (<em>boolean</em>) – True si personne (senior) n’est pas autonome.</p></li>
+<li><p><strong>home_support_cost</strong> (<em>float</em>) – coût du maintien à domicile</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="srd.Person.attach_inc_work_month">
+<code class="sig-name descname">attach_inc_work_month</code><span class="sig-paren">(</span><em class="sig-param">earn</em>, <em class="sig-param">self_earn</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Person.attach_inc_work_month" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui convertit le revenu du travail annuel en revenu mensuel et vice-versa.</p>
+<p>On entre le revenu du travail annuel ou mensuel (liste avec 12 éléments)
+et le revenu du travail annuel et mensuel deviennent des attributs de la personne.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>earn</strong> (<em>float</em><em> or </em><em>list</em>) – revenu de travail salarié</p></li>
+<li><p><strong>self_earn</strong> (<em>float</em><em> or </em><em>list</em>) – revenu de travail autonome</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.Person.attach_prev_work_inc">
+<code class="sig-name descname">attach_prev_work_inc</code><span class="sig-paren">(</span><em class="sig-param">prev_work_inc</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Person.attach_prev_work_inc" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui ajoute le revenu du travail de l’an passé s’il est disponible
+et l’approxime avec le revenu du travail actuel sinon.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>prev_work_inc</strong> (<em>float</em>) – revenu de travail de l’année précédente</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.Person.compute_months_cerb_cesb">
+<code class="sig-name descname">compute_months_cerb_cesb</code><span class="sig-paren">(</span><em class="sig-param">months_cerb_cesb</em>, <em class="sig-param">student</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Person.compute_months_cerb_cesb" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui établit le nombre de mois de PCU ou PCUE selon le nombre de mois
+pour lesquels la personne demande la prestation et si elle est aux études.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>months_cerb_cesb</strong> (<em>int</em>) – Nombre de mois pour lesquels la prestation est demandée</p></li>
+<li><p><strong>student</strong> (<em>boolean</em>) – True si la personne est étudiante (ou l’était en décembre 2019)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.Person.inc_non_work">
+<em class="property">property </em><code class="sig-name descname">inc_non_work</code><a class="headerlink" href="#srd.Person.inc_non_work" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui retourne le revenu autre que travail</p>
+<dl class="field-list simple">
+<dt class="field-odd">Renvoie</dt>
+<dd class="field-odd"><p>revenu autre que travail.</p>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.Person.inc_tot">
+<em class="property">property </em><code class="sig-name descname">inc_tot</code><a class="headerlink" href="#srd.Person.inc_tot" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui retourne le revenu total.</p>
+<p>Ce revenu total contient les montants réels des dividendes de sociétés
+canadiennes (et not les montants imposables).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Renvoie</dt>
+<dd class="field-odd"><p>revenu total.</p>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.Person.inc_work">
+<em class="property">property </em><code class="sig-name descname">inc_work</code><a class="headerlink" href="#srd.Person.inc_work" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui retourne le revenu de travail.</p>
+<p>Inclut le revenu de travailleur autonome.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Renvoie</dt>
+<dd class="field-odd"><p>revenu de travail.</p>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="srd.Dependent">
 <em class="property">class </em><code class="sig-prename descclassname">srd.</code><code class="sig-name descname">Dependent</code><span class="sig-paren">(</span><em class="sig-param">age</em>, <em class="sig-param">disa=None</em>, <em class="sig-param">child_care=0</em>, <em class="sig-param">school=None</em>, <em class="sig-param">home_care=None</em>, <em class="sig-param">med_exp=0</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Dependent" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Classe pour définir un dépendant.</p>
@@ -180,6 +310,144 @@
 </ul>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="srd.Hhold">
+<em class="property">class </em><code class="sig-prename descclassname">srd.</code><code class="sig-name descname">Hhold</code><span class="sig-paren">(</span><em class="sig-param">first</em>, <em class="sig-param">second=None</em>, <em class="sig-param">prov='qc'</em>, <em class="sig-param">n_adults_in_hh=None</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Classe pour définir un ménage.</p>
+<p>Ceci définit un ménage et son profil.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>first</strong> (<a class="reference internal" href="#srd.Person" title="srd.Person"><em>Person</em></a>) – instance Person du premier membre du couple</p></li>
+<li><p><strong>second</strong> (<a class="reference internal" href="#srd.Person" title="srd.Person"><em>Person</em></a>) – instance Person du 2e membre (si 2e membre)</p></li>
+<li><p><strong>child_care_exp</strong> (<em>float</em>) – montant total des frais de garde (pour tous les enfants)</p></li>
+<li><p><strong>prov</strong> (<em>str</em>) – province (qc = quebec)</p></li>
+<li><p><strong>n_adults_in_hh</strong> (<em>int</em>) – nombre d’adultes dans le ménage (18 ans et plus)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="srd.Hhold.add_dependent">
+<code class="sig-name descname">add_dependent</code><span class="sig-paren">(</span><em class="sig-param">*dependents</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.add_dependent" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction pour ajouter un ou ou plusieurs dépendant(s).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>dependent</strong> (<a class="reference internal" href="#srd.Dependent" title="srd.Dependent"><em>Dependent</em></a>) – instance de la classe Dependent ou liste d’instances de la classe Dependent</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.Hhold.adjust_n_adults">
+<code class="sig-name descname">adjust_n_adults</code><span class="sig-paren">(</span><em class="sig-param">n_adults_in_hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.adjust_n_adults" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule le nombre d’adultes dans le ménage si celui-ci
+n’est pas fourni</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>n_adults_in_hh</strong> (<em>float</em>) – nombre d’adultes dans le ménage s’il est fourni, None sinon</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>nombre d’adulte dans le ménage</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.Hhold.assess_elig_split">
+<code class="sig-name descname">assess_elig_split</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.assess_elig_split" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui établit si le ménage est éligible pour le fractionnement
+de pension.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.Hhold.compute_max_split">
+<code class="sig-name descname">compute_max_split</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.compute_max_split" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule le montant max de revenu de pension
+pouvant être fractionné.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.Hhold.count">
+<code class="sig-name descname">count</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.count" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction pour calculer la composition du ménage.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.Hhold.fam_after_tax_inc">
+<em class="property">property </em><code class="sig-name descname">fam_after_tax_inc</code><a class="headerlink" href="#srd.Hhold.fam_after_tax_inc" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule le revenu familial après impôt.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Renvoie</dt>
+<dd class="field-odd"><p>Revenu familial total après impôt</p>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.Hhold.fam_disp_inc">
+<em class="property">property </em><code class="sig-name descname">fam_disp_inc</code><a class="headerlink" href="#srd.Hhold.fam_disp_inc" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule le revenu familial disponible.</p>
+<p>Il s’agit du revenu après impôt, cotisations sociales et REER.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Renvoie</dt>
+<dd class="field-odd"><p>Revenu familial disponible après impôt et cotisations.</p>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.Hhold.fam_inc_non_work">
+<code class="sig-name descname">fam_inc_non_work</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.fam_inc_non_work" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule le revenu familial autre que travail.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Renvoie</dt>
+<dd class="field-odd"><p>Revenu familial autre que travail</p>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.Hhold.fam_inc_work">
+<em class="property">property </em><code class="sig-name descname">fam_inc_work</code><a class="headerlink" href="#srd.Hhold.fam_inc_work" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule le revenu familial de travail.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Renvoie</dt>
+<dd class="field-odd"><p>Revenu familial de travail</p>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.Hhold.fam_tot_inc">
+<em class="property">property </em><code class="sig-name descname">fam_tot_inc</code><a class="headerlink" href="#srd.Hhold.fam_tot_inc" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule le revenu familial total.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Renvoie</dt>
+<dd class="field-odd"><p>Revenu familial total</p>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </div>
