@@ -56,11 +56,11 @@ class tax:
     def compute(self, hh, n_points=1):
         """
         Cette fonction transfère des revenus de pensions pour les couples éligibles
-        et retient la solution qui maximize le revenu disponible familial.
+        et retient la solution qui maximise le revenu disponible familial.
         Si n_points=0, pas de fractionnement des revenus de pensions. Par défaut
         (n_points=1), les revenus bruts sont égalisés dans la mesure des transferts
         possibles. Pour n>1, une simulation est faite pour chaque point de la grille.
-        A noter que lorsque n augmente, les solutions avec n inférieur (notamment n=0)
+        À noter que lorsque n augmente, les solutions avec n inférieur (notamment n=0)
         sont aussi considérées.
 
         Parameters

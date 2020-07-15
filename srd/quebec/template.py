@@ -227,8 +227,7 @@ class template:
         float
             Montant du recouvrement
         """
-        fam_net_inc = sum([s.prov_return['net_income'] for s in hh.sp])
-        return max(self.nrtc_claw_rate*(fam_net_inc - self.nrtc_claw_cutoff), 0)
+        return max(self.nrtc_claw_rate*(hh.fam_net_inc_prov - self.nrtc_claw_cutoff), 0)
 
     def get_age_cred(self, p):
         """
@@ -440,9 +439,8 @@ class template:
         if p is not max(hh.sp, key=lambda p: p.fed_return['taxable_income']):
             return 0
 
-        fam_net_inc = sum([p.fed_return['net_income'] for p in hh.sp])
         med_exp = sum([p.med_exp for p in hh.sp] + [d.med_exp for d in hh.dep])
-        return max(0, med_exp - self.nrtc_med_exp_rate * fam_net_inc)
+        return max(0, med_exp - self.nrtc_med_exp_rate * hh.fam_net_inc_prov)
 
     def calc_div_tax_credit(self, p):
         """
@@ -509,14 +507,9 @@ class template:
         if hh.couple and p.male and hh.sp[0].male != hh.sp[1].male:
             return 0 # heterosexual couple: mother receives benefit
 
-        nkids_0_6 = len([d for d in hh.dep if d.age <= self.chcare_max_age_young])
-        nkids_7_16 = len([d for d in hh.dep
-                          if self.chcare_max_age_young < d.age <= self.chcare_max_age_old])
-
         amount = min(child_care_exp,
-                     nkids_0_6 * self.chcare_young + nkids_7_16 * self.chcare_old)
-        fam_net_inc = sum([s.prov_return['net_income'] for s in hh.sp])
-        ind = np.searchsorted(self.chcare_brack, fam_net_inc, 'right') - 1
+                     hh.nkids_0_6 * self.chcare_young + hh.nkids_7_16 * self.chcare_old)
+        ind = np.searchsorted(self.chcare_brack, hh.fam_net_inc_prov, 'right') - 1
         net_amount = self.chcare_rate[ind] * amount
 
         if hh.couple and p.male and hh.sp[0].male != hh.sp[1].male:
@@ -548,7 +541,6 @@ class template:
         float
             Montant de la prime au travail par individu
         """
-        fam_net_inc = sum([p.prov_return['net_income'] for p in hh.sp])
         dependent = len([d for d in hh.dep if d.age <= self.witb_max_age]) > 0
 
         if hh.fam_inc_work < self.witb_cut_inc_low_single:
@@ -575,7 +567,7 @@ class template:
                 Montant de la Prime au travail par ménage
             """
             amount = rate * max(0, min(cut_inc_high, hh.fam_inc_work) - cut_inc_low)
-            clawback = self.witb_claw_rate * max(0, fam_net_inc - cut_inc_high)
+            clawback = self.witb_claw_rate * max(0, hh.fam_net_inc_prov - cut_inc_high)
             return max(0, amount - clawback)
 
         if hh.couple:
@@ -616,8 +608,7 @@ class template:
         max_expenses = sum([self.home_supp_max_dep if p.dep_senior
                             else self.home_supp_max_non_dep for p in sp_70])
         admissible_expenses = min(expenses, max_expenses)
-        fam_net_inc = sum([p.prov_return['net_income'] for p in hh.sp])
-        clawback = self.home_supp_claw_rate * max(0, fam_net_inc - self.home_supp_cutoff)
+        clawback = self.home_supp_claw_rate * max(0, hh.fam_net_inc_prov - self.home_supp_cutoff)
         no_dep = len([p for p in hh.sp if p.dep_senior]) == 0
         return max(0, self.home_supp_rate * admissible_expenses - no_dep * clawback)
 
@@ -662,8 +653,7 @@ class template:
             return 0
 
         base = min(self.med_exp_max, self.med_exp_rate * p.qc_med_exp_nr_cred)
-        fam_net_inc = sum([p.prov_return['net_income'] for p in hh.sp])
-        clawback = self.med_exp_claw_rate * max(0, fam_net_inc - self.med_exp_claw_cutoff)
+        clawback = self.med_exp_claw_rate * max(0, hh.fam_net_inc_prov - self.med_exp_claw_cutoff)
         return max(0, base - clawback)
 
     def ccap(self, p, hh):
@@ -687,8 +677,8 @@ class template:
         if hh.couple and p.male and hh.sp[0].male != hh.sp[1].male:
             return 0 # heterosexual couple: mother receives benefit
 
-        nkids = len([d for d in hh.dep if d.age < self.ccap_max_age])
-        if nkids == 0:
+
+        if hh.nkids_0_17 == 0:
             return 0
 
         fam_netinc = sum([s.prov_return['net_income'] for s in hh.sp])
@@ -702,18 +692,18 @@ class template:
             add_amount_min = self.ccap_amount_single_min
             add_amount_max = self.ccap_amount_single_max
 
-        if nkids == 1:
+        if hh.nkids_0_17 == 1:
             amount = max(add_amount_min + self.ccap_kid1_min,
                          add_amount_max + self.ccap_kid1_max - clawback)
-        elif nkids < 4:
-            amount = max(add_amount_min + self.ccap_kid1_min + (nkids - 1) * self.ccap_kid23_min,
+        elif hh.nkids_0_17 < 4:
+            amount = max(add_amount_min + self.ccap_kid1_min + (hh.nkids_0_17 - 1) * self.ccap_kid23_min,
                          add_amount_max + self.ccap_kid1_max
-                         + (nkids - 1) * self.ccap_kid23_max - clawback)
+                         + (hh.nkids_0_17 - 1) * self.ccap_kid23_max - clawback)
         else:
             amount = max(add_amount_min + self.ccap_kid1_min + 2 * self.ccap_kid23_min
-                         + (nkids - 3) * self.ccap_kid4p_min,
+                         + (hh.nkids_0_17 - 3) * self.ccap_kid4p_min,
                          add_amount_max + self.ccap_kid1_max + 2 * self.ccap_kid23_max
-                         + (nkids - 3) * self.ccap_kid4p_max - clawback)
+                         + (hh.nkids_0_17 - 3) * self.ccap_kid4p_max - clawback)
 
         if hh.couple and hh.sp[0].male == hh.sp[1].male:
             return amount / 2 # same sex couples get 1/2 each
@@ -753,22 +743,20 @@ class template:
         hh: Hhold
             instance de la classe Hhold
         """
-        fam_net_inc = sum([p.prov_return['net_income'] for p in hh.sp])
         if hh.couple:
             age_spouse = hh.sp[1-hh.sp.index(p)].age
-        nkids = len([d for d in hh.dep if d.age < self.health_max_age_kid])
 
         if p.prov_return['net_income'] <= self.health_cutoff_10:
             return 0
         if not hh.couple:
-            cond12 = nkids == 1 and fam_net_inc <= self.health_cutoff_12
-            cond14 = nkids == 2 and fam_net_inc <= self.health_cutoff_14
+            cond12 = hh.nkids_0_17 == 1 and hh.fam_net_inc_prov <= self.health_cutoff_12
+            cond14 = hh.nkids_0_17 == 2 and hh.fam_net_inc_prov <= self.health_cutoff_14
             if cond12 or cond14:
                 return 0
         if hh.couple:
-            cond16 = fam_net_inc <= self.health_cutoff_16
-            cond18 = nkids == 1 and fam_net_inc <= self.health_cutoff_18
-            cond20 = nkids == 2 and fam_net_inc <= self.health_cutoff_20
+            cond16 = hh.fam_net_inc_prov <= self.health_cutoff_16
+            cond18 = hh.nkids_0_17 == 1 and hh.fam_net_inc_prov <= self.health_cutoff_18
+            cond20 = hh.nkids_0_17 == 2 and hh.fam_net_inc_prov <= self.health_cutoff_20
             if cond16 or cond18 or cond20:
                 return 0
 
@@ -803,15 +791,14 @@ class template:
         hh: Hhold
             instance de la classe Hhold
         """
-        fam_net_inc = sum([p.prov_return['net_income'] for p in hh.sp])
         ndays_chcare = sum([p.ndays_chcare_k1 + p.ndays_chcare_k2 for p in hh.sp])
 
-        if fam_net_inc <= self.add_chcare_min_income or ndays_chcare == 0:
+        if hh.fam_net_inc_prov <= self.add_chcare_min_income or ndays_chcare == 0:
             return 0
         contrib_k1 = self.add_chcare_min_contrib
-        if fam_net_inc > self.add_chcare_cutoff_income:
+        if hh.fam_net_inc_prov > self.add_chcare_cutoff_income:
             contrib_k1 += min(self.add_chcare_max_extra_contrib,
-                              (fam_net_inc - self.add_chcare_cutoff_income)
+                              (hh.fam_net_inc_prov - self.add_chcare_cutoff_income)
                               * self.add_chcare_rate / self.add_chcare_ndays_year)
 
         return p.ndays_chcare_k1 * contrib_k1 + p.ndays_chcare_k2 * contrib_k1 / 2
@@ -830,23 +817,20 @@ class template:
         hh: Hhold
             instance de la classe Hhold
         """
-        nkids = len([d for d in hh.dep if d.age < self.solidarity_max_age_kid])
-        fam_net_inc = sum([p.prov_return['net_income'] for p in hh.sp])
-
         amount_tvq = self.solidarity_tvq_base
         if hh.couple:
             amount_tvq += self.solidarity_tvq_couple
         elif hh.n_adults_in_hh == 1:
             amount_tvq += self.solidarity_tvq_single
 
-        amount_housing = nkids * self.solidarity_housing_kid
+        amount_housing = hh.nkids_0_17 * self.solidarity_housing_kid
         if hh.n_adults_in_hh == 1:
             amount_housing += self.solidarity_housing_alone
         else:
             amount = self.solidarity_housing_not_alone / hh.n_adults_in_hh
             amount_housing += 2 * amount if hh.couple else amount
 
-        base_claw = max(0, fam_net_inc - self.solidarity_cutoff)
+        base_claw = max(0, hh.fam_net_inc_prov - self.solidarity_cutoff)
         net_amount_total = max(0, amount_tvq + amount_housing
                                - self.solidarity_rate_total * base_claw)
         net_amount_tvq = max(0, amount_tvq - self.solidarity_rate_tvq * base_claw)

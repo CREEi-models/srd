@@ -184,8 +184,7 @@ class programs:
         p: Person
             instance de la classe Person
 
-        Calcule la PIRTE pour la période de 16 semaines (self.begin_april mois) si le travailleur
-        est éligible.
+        Calcule la PIRTE pour la période de 16 semaines (self.begin_april mois) si le travailleur est éligible.
 
         Returns
         -------

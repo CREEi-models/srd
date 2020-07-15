@@ -114,13 +114,13 @@ class form_2018(form_2017):
         n_elderly = len([p.age for p in hh.sp
                          if p.age >= self.senior_assist_min_age])
         amount = self.senior_assist_amount * n_elderly
-        fam_net_inc = sum([s.prov_return['net_income'] for s in hh.sp])
 
         if hh.couple:
             cutoff = self.senior_assist_cutoff_couple
         else:
             cutoff = self.senior_assist_cutoff_single
-        clawback = self.senior_assist_claw_rate * max(0, fam_net_inc - cutoff)
+
+        clawback = self.senior_assist_claw_rate * max(0, hh.fam_net_inc_prov - cutoff)
 
         return max(0, amount - clawback) / (1 + hh.couple)
 

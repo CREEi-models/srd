@@ -359,6 +359,30 @@ class Hhold:
         return sum([p.inc_non_work for p in self.sp])
 
     @property
+    def fam_net_inc_prov(self):
+        """
+        Fonction qui calcule le revenu familial net provincial.
+
+        Returns
+        -------
+        float
+            Revenu familial net provincial
+        """
+        return sum([s.prov_return['net_income'] for s in self.sp])
+
+    @property
+    def fam_net_inc_fed(self):
+        """
+        Fonction qui calcule le revenu familial net fédéral.
+
+        Returns
+        -------
+        float
+            Revenu familial net fédéral
+        """
+        return sum([s.fed_return['net_income'] for s in self.sp])
+
+    @property
     def fam_tot_inc(self):
         """
         Fonction qui calcule le revenu familial total.
@@ -413,23 +437,20 @@ class Hhold:
         """
         for d in dependents:
             self.dep.append(d)
-    @property
-    def nkids0_5(self):
-        return len([s for s in self.dep if s.age <= 5])
-    @property
-    def nkids0_18(self):
-        return len([s for s in self.dep if s.age <= 18])
 
     def count(self): # do we need this?
         """
         Fonction pour calculer la composition du ménage (nombre d'enfants,
         de dépendents, taille de la famille).
         """
+        self.nkids_0_6 = len([s for s in self.dep if s.age <= 6])
+        self.nkids_7_16 = len([s for s in self.dep if 6 < s.age <= 16])
+        self.nkids_0_17 = len([s for s in self.dep if s.age <= 17])
+        self.nkids_0_18 = len([s for s in self.dep if s.age <= 18])
         self.ndep = len(self.dep)
         self.nold = len([s for s in self.dep if s.age >= 65])
         self.nhh = 1 + self.couple + len(self.dep)
-        self.size = 1 + self.couple + self.nkids0_18
-
+        self.size = 1 + self.couple + self.nkids_0_18
 
     def compute_max_split(self):
         """

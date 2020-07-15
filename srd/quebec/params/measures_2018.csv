@@ -1,8 +1,8 @@
 variable;value;type;definition;source ;comments
 div_elig_factor;1.38;float;;;
 div_other_can_factor;1.16;float;;;
-div_elig_cred_net_rate;0.163806;float;0,163806;;1/4 * le taux de 2018 pour janvier à mars et 3/4 * le taux de mars à décembre
-div_other_can_cred_net_rate;0.07525725;float;0,07525725;;1/4 * le taux de 2018 pour janvier à mars et 3/4 * le taux de mars à décembre
+div_elig_cred_net_rate;0.163806;float;0,163806;;1/4 * le taux de 2018 pour janvier ï¿½ mars et 3/4 * le taux de mars ï¿½ dï¿½cembre
+div_other_can_cred_net_rate;0.07525725;float;0,07525725;;1/4 * le taux de 2018 pour janvier ï¿½ mars et 3/4 * le taux de mars ï¿½ dï¿½cembre
 qpip_deduc_rate;0.43679;float;;annexe R;
 work_deduc_max;1150;float;;;
 work_deduc_rate;0.06;float;;;
@@ -23,7 +23,6 @@ nrtc_donation_low_rate;0.20;float;;;
 nrtc_donation_med_rate;0.24;float;;;
 nrtc_donation_high_rate;0.2575;float;;;
 nrtc_union_dues_rate;0.10;float;;https://www.retraitequebec.gouv.qc.ca/fr/salle_presse/2017/Pages/20171201.aspx;
-ccap_max_age;18;int;;http://www.finances.gouv.qc.ca/documents/Autres/fr/AUTFR_DepensesFiscales2018.pdf;
 ccap_claw_rate;0.04;float;;;
 ccap_claw_cutoff_couple;48246;float;;;
 ccap_claw_cutoff_single;35096;float;;;
@@ -35,8 +34,6 @@ ccap_kid23_min;630;float;;;
 ccap_kid23_max;1214;float;;;
 ccap_kid4p_min;630;float;;;
 ccap_kid4p_max;1821;float;;;
-chcare_max_age_young;6;int;;;
-chcare_max_age_old;16;int;;;
 chcare_young;9500;float;;;
 chcare_old;5000;float;TP-1.D.I(2018-12).pdf;;
 add_chcare_min_income;51340;float;;;
@@ -45,7 +42,6 @@ add_chcare_cutoff_income;77005;float;;;
 add_chcare_max_extra_contrib;13.20;float;;;
 add_chcare_ndays_year;260;float;;;
 add_chcare_rate;0.039;float;http://www.cqff.com/liens/solidarite.pdf;;
-solidarity_max_age_kid;18;int;;;
 solidarity_tvq_base;287;float;;;
 solidarity_housing_kid;119;float;;;
 solidarity_tvq_couple;287;float;;;
