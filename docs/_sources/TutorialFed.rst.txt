@@ -229,7 +229,7 @@ On remplit le rapport d’impôt à l’aide de la fonction *tax()*.
 
     from srd import tax
     tax_form = tax(2020)
-    tax.compute(hh)
+    tax_form.compute(hh)
 
 On peut visualiser un rapport d’impôt sommaire qui est rattaché à chaque
 personne
@@ -276,7 +276,7 @@ personne
 
 
 
-On peut ajouter des enfants au ménage à l'aide de la fonction *add_dependents()*
+On peut ajouter des enfants au ménage à l'aide de la fonction *add_dependent()*
 
 .. code:: ipython3
 
@@ -289,7 +289,7 @@ On peut ensuite calculer le nouveau rapport d’impôt pour les deux adultes de 
 
 .. code:: ipython3
 
-    tax.compute(hh)
+    tax_form.compute(hh)
     jean.fed_return
 
 
@@ -396,11 +396,11 @@ d’imposition. Supposons qu’on change le montant de base en l’augmentant
     atrs = []
     bases = []
     jean.inc_earn = 50e3
-    base_amount = fed_form.basic_amount_poor
+    base_amount = tax_form.federal.basic_amount_poor
     for b in base:
-        fed_form.basic_amount_poor = base_amount * b
-        bases.append(fed_form.basic_amount_poor)
-        fed_form.file(hh)
+        tax_form.federal.basic_amount_poor = base_amount * b
+        bases.append(tax_form.federal.basic_amount_poor)
+        tax_form.compute(hh)
         atrs.append(jean.fed_return['net_tax_liability']/jean.fed_return['gross_income'])
 
     plt.figure()
@@ -411,6 +411,6 @@ d’imposition. Supposons qu’on change le montant de base en l’augmentant
 
 
 
-.. image:: output_22_0.png
+.. image:: output_ex2.png
 
 

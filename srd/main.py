@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 from srd import tax, incentives, Person, Hhold, Dependent, federal
 from srd.covid import policy
 
-for year in range(2016, 2021):
+for year in range(2020, 2021):
 
     print(year)
 

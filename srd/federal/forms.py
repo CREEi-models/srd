@@ -88,16 +88,20 @@ class form_2020(form_2019):
         # note: the measures to increase ccb and gst_credit are based on fiscal year 2019 in reality
         #       but on fiscal year 2020 in our simulator; the difference is small (<50$ in worst case)
 
-    def calc_non_refundable_tax_credits(self, p, hh):
+    def compute_basic_amount(self, p):
         """
-        Fonction qui calcule les crédits d'impôt non-remboursable.
-
-        Cette fonction fait la somme de tous les crédits d'impôt modélisés.
+        Fonction qui calcule le montant personnel de base des crédits d'impôts non-remboursables.
+        Le calcul de ce montant change en 2020.
 
         Parameters
         ----------
         p: Person
             instance de la classe Person
+
+        Returns
+        -------
+        float:
+            montant personnel de base
         """
         br_poor, br_rich = self.l_brackets[-2:]
 
@@ -109,16 +113,7 @@ class form_2020(form_2019):
             slope = (self.basic_amount_rich - self.basic_amount_poor) / (br_rich - br_poor)
             basic_amount = self.basic_amount_poor + (p.fed_return['net_income'] - br_poor) * slope
 
-        p.fed_age_cred = self.get_age_cred(p)
-        p.fed_cpp_contrib_cred = self.get_cpp_contrib_cred(p)
-        p.fed_empl_cred = self.get_empl_cred(p)
-        p.fed_pension_cred = self.get_pension_cred(p, hh)
-        p.fed_disabled_cred = self.get_disabled_cred(p)
-        p.fed_med_exp_nr_cred = self.get_med_exp_nr_cred(p, hh)
-
-        p.fed_return['non_refund_credits'] = self.rate_non_ref_tax_cred * (basic_amount
-            + p.fed_age_cred + p.fed_cpp_contrib_cred + p.fed_empl_cred
-            + p.fed_pension_cred + p.fed_disabled_cred + p.fed_med_exp_nr_cred)
+        return basic_amount
 
     def calc_net_income(self, p):
         """

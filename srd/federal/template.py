@@ -226,10 +226,28 @@ class template:
         p.fed_med_exp_nr_cred = self.get_med_exp_nr_cred(p, hh)
         p.donation_cred = self.get_donations_cred(p)
 
-        p.fed_return['non_refund_credits'] = self.rate_non_ref_tax_cred * (self.basic_amount
-            + p.fed_age_cred + p.fed_cpp_contrib_cred + p.fed_qpip_cred +
-            + p.fed_qpip_self_cred + p.fed_empl_cred + p.fed_pension_cred
-            + p.fed_disabled_cred + p.fed_med_exp_nr_cred + p.donation_cred)
+        p.fed_return['non_refund_credits'] = (self.rate_non_ref_tax_cred
+            * (self.compute_basic_amount(p) + p.fed_age_cred
+               + p.fed_cpp_contrib_cred + p.fed_qpip_cred +
+               + p.fed_qpip_self_cred + p.fed_empl_cred + p.fed_pension_cred
+               + p.fed_disabled_cred + p.fed_med_exp_nr_cred + p.donation_cred))
+
+    def compute_basic_amount(self, p):
+        """
+        Fonction qui calcule le montant personnel de base des crédits d'impôts non-remboursables.
+        Le calcul de ce montant change en 2020.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+
+        Returns
+        -------
+        float:
+            montant personnel de base
+        """
+        return self.basic_amount
 
     def get_age_cred(self, p):
         """
