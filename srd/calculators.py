@@ -79,59 +79,63 @@ class tax:
             self.compute_all(hh)
             return hh
 
-        def compute_with_transfer(hh, transfer):
-            """
-            Cette fonction effectue les transferts de revenus de pension, appelle
-            la fonction qui simule le ménage et ajoute le résultat à une liste.
+        hh.copy()
+        self.compute_all(hh)
 
-            Parameters
-            ----------
-            hh: Hold
-                instance de la classe Hhold
-            transfer: float
-                transfert du premier au second conjoint (du second au premier si négatif)
-            """
-            hh_new = deepcopy(hh)
-            p0, p1 = hh_new.sp[0], hh_new.sp[1]
-            if transfer < 0:
-                p0.pension_split = - transfer
-                p1.pension_deduction = - transfer
-                if p1.age >= 65:
-                    p0.pension_split_qc = p0.pension_split
-                    p1.pension_deduction_qc = p1.pension_deduction
-            else:
-                p1.pension_split = transfer
-                p0.pension_deduction = transfer
-                if p0.age >= 65:
-                    p1.pension_split_qc = p1.pension_split
-                    p0.pension_deduction_qc = p0.pension_deduction
+        if hh.elig_split and n_points > 0:
+            fam_disp_inc_max, transfer_max = hh.fam_disp_inc, 0
 
-                p0.pension_split_qc = p0.pension_split if p1.age < 65 else 0
-            l_transfers.append(transfer)
-            self.compute_all(hh_new)
-            l_hh.append(hh_new)
+            desired_transfer = (hh.sp[0].inc_tot - hh.sp[1].inc_tot) / 2
+            transfer = np.clip(desired_transfer, - hh.sp[1].max_split,
+                                hh.sp[0].max_split)
+            self.compute_with_transfer(hh, transfer)
 
-        l_hh = []
-        l_transfers = []
-        compute_with_transfer(hh, 0)
+            if hh.fam_disp_inc > fam_disp_inc_max:
+                fam_disp_inc_max, transfer_max = hh.fam_disp_inc, transfer
 
-        desired_transfer = (hh.sp[0].inc_tot - hh.sp[1].inc_tot) / 2
-        transfer = np.clip(desired_transfer, - hh.sp[1].max_split,
-                            hh.sp[0].max_split)
-        compute_with_transfer(hh, transfer)
+            if n_points > 1:
+                grid_transfers = np.linspace(hh.sp[1].max_split,
+                                             hh.sp[0].max_split, n_points-1)
+                for transfer in grid_transfers:
+                    self.compute_with_transfer(hh, transfer)
+                    if hh.fam_disp_inc > fam_disp_inc_max:
+                        fam_disp_inc_max, transfer_max = hh.fam_disp_inc, transfer
 
-        if hh.elig_split and (n_points > 1):
-            grid_transfers = np.linspace(-0.5 * hh.sp[1].max_split,
-                                        0.5 * hh.sp[0].max_split, n_points-1)
-            for transfer in grid_transfers:
-                compute_with_transfer(hh, transfer)
+            if transfer != transfer_max:
+                self.compute_with_transfer(hh, transfer_max)
 
-        hh_star = max(l_hh, key=lambda x: x.fam_disp_inc)
-        return hh_star
+    def compute_with_transfer(self, hh, transfer):
+        """
+        Cette fonction effectue les transferts de revenus de pension et appelle
+        la fonction qui simule le ménage.
+
+        Parameters
+        ----------
+        hh: Hold
+            instance de la classe Hhold
+        transfer: float
+            transfert du premier au second conjoint (du second au premier si négatif)
+        """
+        hh.reset()
+        p0, p1 = hh.sp[0], hh.sp[1]
+        if transfer < 0:
+            p0.pension_split = - transfer
+            p1.pension_deduction = - transfer
+            if p1.age >= 65:
+                p0.pension_split_qc = p0.pension_split
+                p1.pension_deduction_qc = p1.pension_deduction
+        else:
+            p1.pension_split = transfer
+            p0.pension_deduction = transfer
+            if p0.age >= 65:
+                p1.pension_split_qc = p1.pension_split
+                p0.pension_deduction_qc = p0.pension_deduction
+
+        self.compute_all(hh)
 
     def compute_all(self, hh):
         """
-        Calcul tous les éléments demandés.
+        Calcule tous les éléments demandés.
 
         Parameters
         ----------

@@ -24,7 +24,11 @@ for year in range(2017, 2021):
 
 
 
+    p0 = Person(age=60, rpp=50e3, inc_rrsp=20e3)
+    p1 = Person(age=70, rpp=25e3)
+    hh = Hhold(p0, p1, prov='qc')
 
+    tax_form.compute(hh, n_points=5)
 
 
 
