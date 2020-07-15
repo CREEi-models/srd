@@ -12,23 +12,15 @@ for year in range(2017, 2021):
 
     print(year)
 
-    julia1 = Person(age=30, earn=20e3, self_earn=20e3)
+    julia1 = Person(age=70, rpp=20e3, inc_rrsp=20e3)
     jules1 = Person(age=65, cpp=5000)
     hh = Hhold(julia1, jules1, prov='qc')
 
 
     tax_system = tax(year)
-    hh = tax_system.compute(hh)
+    tax_system.compute(hh, n_points=6)
 
     print(vars(hh.sp[0]))
-
-
-
-    p0 = Person(age=60, rpp=50e3, inc_rrsp=20e3)
-    p1 = Person(age=70, rpp=25e3)
-    hh = Hhold(p0, p1, prov='qc')
-
-    tax_form.compute(hh, n_points=5)
 
 
 
