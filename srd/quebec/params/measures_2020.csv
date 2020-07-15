@@ -1,4 +1,9 @@
 variable;value;type;definition;source ;comments
+div_elig_factor;1.38;float;;;
+div_other_can_factor;1.15;float;;;
+div_elig_cred_net_rate;0.16146;float;;;
+div_other_can_cred_net_rate;0.054855;float;;;
+qpip_deduc_rate;0.43683;float;;;*on assume le même quand 2019 car taux ne varie pas bcp
 work_deduc_max;1190;float;;https://www.revenuquebec.ca/fr/entreprises/retenues-et-cotisations/trousse-employeur/principaux-changements-pour-2020/;1.72% indexation rate
 work_deduc_rate;0.06;float;;;assumed constant
 nrtc_age_max;3212;float;;;
@@ -12,6 +17,12 @@ nrtc_rate;0.15;float;;;assumed constant
 nrtc_base;15532;float;;;
 nrtc_disabled;3449;float;;;
 nrtc_med_exp_rate;0.03;float;;TP-1.D.B;
+nrtc_donation_low_cut;200;float;;;
+nrtc_donation_high_cut;108388;float;montant de 2019 ajusté avec le taux d'indexation de 2020;;106 555$  * (1.0172)
+nrtc_donation_low_rate;0.20;float;;;
+nrtc_donation_med_rate;0.24;float;;;
+nrtc_donation_high_rate;0.2575;float;;;
+nrtc_union_dues_rate;0.10;float;;;
 ccap_max_age;18;int;;https://cffp.recherche.usherbrooke.ca/outils-ressources/guide-mesures-fiscales/allocation-famille-soutien-enfants/;
 ccap_claw_rate;0.04;float;;;
 ccap_claw_cutoff_couple;49842;float;;;

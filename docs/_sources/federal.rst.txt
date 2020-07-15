@@ -21,7 +21,14 @@ Nous utilisons un gabarit afin de créer les rapports chaque année. Quand le pr
 Nous reproduisons ici la spécification du gabarit. Il est calqué sur le rapport de 2016.
 
 .. autoclass:: template
-    :members: file, calc_gross_income, calc_net_income, calc_taxable_income, calc_deductions, calc_tax, calc_non_refundable_tax_credits, get_age_cred, get_pension_cred, get_disabled_cred, calc_refundable_tax_credits, abatment, ccb, witb, witbds
+    :members: file, calc_gross_income, calc_net_income, calc_taxable_income,
+              calc_deduc_gross_income, chcare, cpp_deduction, qpip_deduction,
+              calc_deduc_net_income, calc_tax, calc_non_refundable_tax_credits,
+              get_age_cred, get_cpp_contrib_cred, get_qpip_cred,
+              get_qpip_self_cred, get_empl_cred, get_pension_cred,
+              get_disabled_cred, get_med_exp_nr_cred, get_donations_cred,
+              calc_div_tax_credit, calc_refundable_tax_credits, abatment, ccb,
+              witb, witbds, compute_witb_witbds, med_exp, gst_hst_credit
 
 Le gabarit collecte les résultats sur un rapport d'impôt qui sera rattaché à la personne sous la forme d'un dictionnaire python. Ceci permet de différencier les attributs d'une personne qui font partie de son profil et les variables générées par l'impôt. C'est la fonction create_return() qui fait ce travail.
 
@@ -39,3 +46,4 @@ Fonctions spécifiques ou modifiées par année
 .. autoclass:: srd.federal.form_2019
 
 .. autoclass:: srd.federal.form_2020
+    :members: calc_non_refundable_tax_credits, calc_net_income, repayments_ei

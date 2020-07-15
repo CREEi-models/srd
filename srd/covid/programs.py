@@ -144,7 +144,7 @@ class programs:
             monthly_cesb = self.compute_monthly_cesb(p, hh)
             l_cesb = [monthly_cesb for month
                       in range(self.begin_april, self.begin_april + p.months_cesb)
-                  if p.inc_work_month[month] <= self.cesb_max_earn]
+                      if p.inc_work_month[month] <= self.cesb_max_earn]
             return sum(l_cesb)
 
     def compute_monthly_cesb(self, p, hh):

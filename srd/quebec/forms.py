@@ -67,6 +67,36 @@ class form_2017(form_2016):
         """
         p.prov_return['contributions'] += self.add_contrib_subsid_chcare(p, hh)
 
+    def get_donations_cred(self, p):
+        """
+        Crédit d'impôt pour dons.
+
+        Ce crédit est non-remboursable.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+
+        Returns
+        -------
+        float
+            Montant du crédit
+        """
+        tot_donation = p.donation + p.gift
+
+        if tot_donation <= self.nrtc_donation_low_cut:
+            return tot_donation * self.nrtc_donation_low_rate
+        else:
+            extra_donation = tot_donation - self.nrtc_donation_low_cut
+            high_inc = max(0, p.fed_return['taxable_income']
+                             - self.nrtc_donation_high_cut)
+            donation_high_inc = min(extra_donation, high_inc)
+            donation_low_inc = extra_donation - donation_high_inc
+            return (self.nrtc_donation_low_cut * self.nrtc_donation_low_rate
+                    + donation_high_inc * self.nrtc_donation_high_rate
+                    + donation_low_inc * self.nrtc_donation_med_rate)
+
 class form_2018(form_2017):
     """
     Rapport d'impôt de 2018.

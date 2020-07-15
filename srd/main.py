@@ -5,12 +5,24 @@ sys.path.append(path_py)
 import numpy as np
 import matplotlib.pyplot as plt
 
-from srd import tax, incentives, Person, Hhold, Dependent
+from srd import tax, incentives, Person, Hhold, Dependent, federal
 from srd.covid import policy
 
-for year in range(2016, 2021):
+for year in range(2017, 2021):
 
-    tax_form = tax(year)
+    print(year)
+
+    julia1 = Person(age=30, earn=20e3, self_earn=20e3)
+    jules1 = Person(age=65, cpp=5000)
+    hh = Hhold(julia1, jules1, prov='qc')
+
+
+    tax_system = tax(year)
+    hh = tax_system.compute(hh)
+
+    print(vars(hh.sp[0]))
+
+
 
     p0 = Person(age=60, rpp=50e3, inc_rrsp=20e3)
     p1 = Person(age=70, rpp=25e3)
@@ -18,7 +30,6 @@ for year in range(2016, 2021):
 
     tax_form.compute(hh, n_points=5)
 
-    print(hh.fam_disp_inc)
 
 
 

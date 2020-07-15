@@ -39,7 +39,7 @@ class form_2016(template):
         add_params_as_attr(self, module_dir + '/federal/params/fed_witb_qc_2016.csv')
         add_schedule_as_attr(self, module_dir + '/federal/params/schedule_2016.csv')
 
-class form_2017(template):
+class form_2017(form_2016):
     """
     Rapport d'impôt de 2017.
     """
@@ -49,7 +49,7 @@ class form_2017(template):
         add_schedule_as_attr(self, module_dir + '/federal/params/schedule_2017.csv')
         return
 
-class form_2018(template):
+class form_2018(form_2017):
     """
     Rapport d'impôt de 2018.
     """
@@ -59,7 +59,7 @@ class form_2018(template):
         add_schedule_as_attr(self, module_dir + '/federal/params/schedule_2018.csv')
         return
 
-class form_2019(template):
+class form_2019(form_2018):
     """
     Rapport d'impôt de 2019.
     """
@@ -69,7 +69,7 @@ class form_2019(template):
         add_schedule_as_attr(self, module_dir + '/federal/params/schedule_2019.csv')
         return
 
-class form_2020(template):
+class form_2020(form_2019):
     """
     Rapport d'impôt de 2020.
     """
@@ -156,5 +156,3 @@ class form_2020(template):
             p.inc_ei -= repayment
             p.fed_return['net_income'] -= repayment
             p.fed_return['gross_income'] -= repayment
-
-

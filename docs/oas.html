@@ -218,6 +218,37 @@
 </dd></dl>
 
 <dl class="method">
+<dt id="srd.oas.template.compute_net_inc_exemption">
+<code class="sig-name descname">compute_net_inc_exemption</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.compute_net_inc_exemption" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Calcule le revenu net de l’exemption sur les revenus du travail salarié</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Revenu net de l’exemption sur les revenus du travail</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.oas.template.compute_net_income">
+<code class="sig-name descname">compute_net_income</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.compute_net_income" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Calcule le revenu net (sans la PSV).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
 <dt id="srd.oas.template.compute_pension">
 <code class="sig-name descname">compute_pension</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.compute_pension" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Calcule la PSV.</p>
@@ -371,6 +402,29 @@ de couple et de survivant.</p>
 <dt id="srd.oas.programs.program_2020">
 <em class="property">class </em><code class="sig-prename descclassname">srd.oas.programs.</code><code class="sig-name descname">program_2020</code><span class="sig-paren">(</span><em class="sig-param">federal</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2020" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Version du programme de 2020.</p>
+<dl class="method">
+<dt id="srd.oas.programs.program_2020.compute_net_inc_exemption">
+<code class="sig-name descname">compute_net_inc_exemption</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2020.compute_net_inc_exemption" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Calcule le revenu net de l’exemption sur les revenus du travail salarié.</p>
+<p>A partir de 2020-2021:
+les revenus de travail autonome bénéficient également de l’exemption
+es revenus du travail bénéficient d’une nouvelle exemption</p>
+<blockquote>
+<div><p>entre 5000$ et 10000$ à un taux de 0.5.</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Revenu net de l’exemption sur les revenus du travail</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </div>

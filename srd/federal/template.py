@@ -18,7 +18,8 @@ class template:
         """
         Fonction qui permet de calculer les impôts.
 
-        Cette fonction est celle qui exécute le calcul des impôts.
+        Cette fonction est celle qui calcule les déductions,
+        les crédits non-remboursables et remboursables et les impôts nets.
 
         Parameters
         ----------
@@ -35,8 +36,9 @@ class template:
         for p in hh.sp:
             self.calc_tax(p)
             self.calc_non_refundable_tax_credits(p, hh)
+            self.calc_div_tax_credit(p)
             p.fed_return['net_tax_liability'] = max(0.0, p.fed_return['gross_tax_liability']
-                - p.fed_return['non_refund_credits'])
+                - p.fed_return['non_refund_credits'] - p.fed_div_tax_credit)
             self.calc_refundable_tax_credits(p,hh)
             p.fed_return['net_tax_liability'] -= p.fed_return['refund_credits']
 
@@ -51,6 +53,8 @@ class template:
         p: Person
             instance de la classe Person
         """
+        p.taxable_div = (self.div_elig_factor * p.div_elig
+                         + self.div_other_can_factor * p.div_other_can)
         p.fed_return['gross_income'] = (p.inc_work + p.inc_ei + p.inc_oas
                                         + p.inc_gis + p.inc_cpp + p.inc_rpp
                                         + p.pension_split + p.cap_gains
@@ -100,10 +104,13 @@ class template:
         """
         p.fed_chcare = self.chcare(p, hh)
         p.fed_cpp_deduction = self.cpp_deduction(p)
+        p.fed_qpip_deduction = self.qpip_deduction(p)
         p.fed_return['deductions_gross_inc'] = (p.con_rrsp + p.con_rpp
                                               + p.inc_gis + p.fed_chcare
                                               + p.pension_deduction
-                                              + p.fed_cpp_deduction)
+                                              + p.union_dues
+                                              + p.fed_cpp_deduction
+                                              + p.fed_qpip_deduction)
 
     def chcare(self, p, hh):
         """
@@ -155,11 +162,27 @@ class template:
         """
         return p.contrib_cpp_self / 2
 
+    def qpip_deduction(self, p):
+        """
+        Déduction pour les cotisations RQAP pour les travailleurs autonomes.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+
+        Returns
+        -------
+        float
+            Montant de la déduction
+        """
+        return self.qpip_deduc_rate * p.contrib_qpip_self
+
     def calc_deduc_net_income(self, p):
         """
         Fonction qui calcule les déductions suivantes:
         - Pertes en capital net des autres années.
-        - Déduction pour gain en capital.
+        - Déduction pour gain en capital exonéré.
 
         Permet une déduction maximale égale aux gains en capitaux taxables nets.
 
@@ -199,14 +222,18 @@ class template:
         """
         p.fed_age_cred = self.get_age_cred(p)
         p.fed_cpp_contrib_cred = self.get_cpp_contrib_cred(p)
+        p.fed_qpip_cred = self.get_qpip_cred(p)
+        p.fed_qpip_self_cred = self.get_qpip_self_cred(p)
         p.fed_empl_cred = self.get_empl_cred(p)
         p.fed_pension_cred = self.get_pension_cred(p, hh)
         p.fed_disabled_cred = self.get_disabled_cred(p)
         p.fed_med_exp_nr_cred = self.get_med_exp_nr_cred(p, hh)
+        p.donation_cred = self.get_donations_cred(p)
 
         p.fed_return['non_refund_credits'] = self.rate_non_ref_tax_cred * (self.basic_amount
-            + p.fed_age_cred + p.fed_cpp_contrib_cred + p.fed_pension_cred
-            + p.fed_disabled_cred + p.fed_med_exp_nr_cred)
+            + p.fed_age_cred + p.fed_cpp_contrib_cred + p.fed_qpip_cred +
+            + p.fed_qpip_self_cred + p.fed_empl_cred + p.fed_pension_cred
+            + p.fed_disabled_cred + p.fed_med_exp_nr_cred + p.donation_cred)
 
     def get_age_cred(self, p):
         """
@@ -244,6 +271,40 @@ class template:
         """
         return p.contrib_cpp + p.contrib_cpp_self / 2
 
+    def get_qpip_cred(self, p):
+        """
+        Crédit d'impôt pour contributions RQAP pour travailleur salarié.
+
+        Ce crédit est non-remboursable.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+
+        Returns
+        -------
+            Montant du crédit
+        """
+        return p.contrib_qpip
+
+    def get_qpip_self_cred(self, p):
+        """
+        Crédit d'impôt pour contributions RQAP pour travailleur autonome.
+
+        Ce crédit est non-remboursable.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+
+        Returns
+        -------
+            Montant du crédit
+        """
+        return p.contrib_qpip_self - p.fed_qpip_deduction
+
     def get_empl_cred(self, p):
         """
         Montant canadien pour emploi.
@@ -276,7 +337,7 @@ class template:
         -------
             Montant du crédit
         """
-        if p.age < self.pension_cred_min_age_split:
+        if hh.elig_split and (p.age < self.pension_cred_min_age_split):
             other_p = hh.sp[1 - hh.sp.index(p)]
             pension_split_cred = min(p.pension_split, 0.5 * other_p.inc_rpp)
         else:
@@ -331,6 +392,50 @@ class template:
                                  if d.age > self.med_exp_nr_cred_max_age])
         # rem: we assume that dependents over 16 have zero net income (otherwise there would be a clawback)
         return max(0, max(0, med_exp - clawback) + med_exp_other_dep)
+
+    def get_donations_cred(self, p):
+        """
+        Crédit d'impôt pour dons.
+
+        Ce crédit est non-remboursable.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+
+        Returns
+        -------
+        float
+            Montant du crédit
+        """
+        tot_donation = (
+            min(self.donation_frac_net * p.fed_return['net_income'], p.donation) + p.gift)
+
+        if tot_donation <= self.donation_low_cut:
+            return tot_donation * self.donation_low_rate
+        else:
+            extra_donation = tot_donation - self.donation_low_cut
+            high_inc = max(0, p.fed_return['taxable_income']
+                             - self.donation_high_cut)
+            donation_high_inc = min(extra_donation, high_inc)
+            donation_low_inc = extra_donation - donation_high_inc
+            return (self.donation_low_cut * self.donation_low_rate
+                    + donation_high_inc * self.donation_high_rate
+                    + donation_low_inc * self.donation_med_rate)
+
+    def calc_div_tax_credit(self, p):
+        """
+        Crédit d'impôt pour dividendes
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        """
+        p.fed_div_tax_credit = (
+            self.div_elig_cred_rate * self.div_elig_factor * p.div_elig
+            + self.div_other_can_cred_rate * self.div_other_can_factor * p.div_other_can)
 
     def calc_refundable_tax_credits(self, p, hh):
         """
@@ -424,7 +529,7 @@ class template:
 
     def witb(self,p,hh):
         """
-        Prestation fiscale pour le revenu de travail (PFRT/WITB). A partir de 2019,
+        Prestation fiscale pour le revenu de travail (PFRT/WITB). À partir de 2019,
         cela devient l'Allocation canadienne pour les travailleurs (ACT/CWB).
 
         Dans le cas d'un couple, la prestation est répartie au prorata des revenus du travail.
@@ -502,7 +607,7 @@ class template:
     def compute_witb_witbds(self, p, hh, rate, base, witb_max, claw_rate,
                             exemption):
         """
-        Calcule de la prestation fiscale pour le revenu de travail.
+        Calcul de la prestation fiscale pour le revenu de travail.
 
         Parameters
         ----------
@@ -561,7 +666,7 @@ class template:
     def gst_hst_credit(self, p, hh):
         """
         Crédit pour la taxe sur les produits et services/taxe de vente harmonisée (TPS/TVH).
-        Le montant du crédit est reçu par la conjoint au revenu imposable le plus élevé.
+        Le montant du crédit est reçu par le conjoint au revenu imposable le plus élevé.
 
         Parameters
         ----------

@@ -235,10 +235,23 @@ La contribution additionnelle pour les services de garde éducatifs
 </dd></dl>
 
 <dl class="method">
-<dt id="srd.quebec.template.calc_deductions">
-<code class="sig-name descname">calc_deductions</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.calc_deductions" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui calcule les déductions.</p>
-<p>Cette fonction fait la somme des différentes déductions du contribuable.</p>
+<dt id="srd.quebec.template.calc_deduc_net_income">
+<code class="sig-name descname">calc_deduc_net_income</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.calc_deduc_net_income" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule les déductions suivantes:
+- Pertes en capital net des autres années.
+- Déduction pour gain en capital exonéré.</p>
+<p>Permet une déduction maximale égale aux gains en capitaux taxables nets.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.quebec.template.calc_div_tax_credit">
+<code class="sig-name descname">calc_div_tax_credit</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.calc_div_tax_credit" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Crédit d’impôt pour dividendes</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
@@ -370,6 +383,23 @@ de la situation familiale (couple/monoparental) et du revenu.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="srd.quebec.template.cpp_qpip_deduction">
+<code class="sig-name descname">cpp_qpip_deduction</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.cpp_qpip_deduction" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Déduction pour les cotisations RPC/RRQ et RQAP pour les travailleurs autonomes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant de la déduction</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
 <dt id="srd.quebec.template.file">
 <code class="sig-name descname">file</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.file" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui permet de calculer les impôts.</p>
@@ -390,6 +420,12 @@ de la situation familiale (couple/monoparental) et du revenu.</p>
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
 </dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant du crédit</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
 </dl>
 </dd></dl>
 
@@ -402,13 +438,38 @@ de la situation familiale (couple/monoparental) et du revenu.</p>
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
 </dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant du crédit</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.quebec.template.get_donations_cred">
+<code class="sig-name descname">get_donations_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.get_donations_cred" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Crédit d’impôt pour dons.</p>
+<p>Ce crédit est non-remboursable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant du crédit</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="srd.quebec.template.get_exp_worker_cred">
 <code class="sig-name descname">get_exp_worker_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.get_exp_worker_cred" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Crédit d’impôt pour les travailleurs d’expérience. Depuis 2019, renommé crédit d’impôts pour la prolongation de carrière.</p>
+<dd><p>Crédit d’impôt pour les travailleurs d’expérience.
+Depuis 2019, renommé crédit d’impôts pour la prolongation de carrière.</p>
 <p>Ce crédit est non-remboursable. Nous avons fait l’hypothèse que les travailleurs
 de 65 ans sont nés le 1er janvier (dans l’année en cours, les revenus avant
 et après le 65ème anniversaire sont soumis à des traitements différents,
@@ -416,6 +477,54 @@ ce qui complique beaucoup le modèle mais change peu les résultats).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant du crédit</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.quebec.template.get_living_alone_cred">
+<code class="sig-name descname">get_living_alone_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.get_living_alone_cred" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Crédit pour personne vivant seule</p>
+<p>Ce crédit est non-remboursable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant du crédit</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.quebec.template.get_med_exp_cred">
+<code class="sig-name descname">get_med_exp_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.get_med_exp_cred" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Crédit d’impôt pour frais médicaux.</p>
+<p>Ce crédit est non-remboursable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant du crédit</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
 </dd>
 </dl>
 </dd></dl>
@@ -432,6 +541,12 @@ ce qui complique beaucoup le modèle mais change peu les résultats).</p>
 <li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
 </ul>
 </dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant du recouvrement</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
 </dl>
 </dd></dl>
 
@@ -442,22 +557,109 @@ ce qui complique beaucoup le modèle mais change peu les résultats).</p>
 <p>Ce crédit est non-remboursable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant du crédit</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
-<dt id="srd.quebec.template.get_single_cred">
-<code class="sig-name descname">get_single_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.get_single_cred" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Crédit pour personne vivant seule</p>
+<dt id="srd.quebec.template.get_union_dues_cred">
+<code class="sig-name descname">get_union_dues_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.get_union_dues_cred" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Crédit d’impôt pour cotisations syndicales et professionnelles</p>
 <p>Ce crédit est non-remboursable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant du crédit</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.quebec.template.health_contrib">
+<code class="sig-name descname">health_contrib</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.health_contrib" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Contribution santé.</p>
+<p>Cette fonction calcule le montant dû en fonction du revenu net.
+Abolie en 2017.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
 <li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.quebec.template.home_support">
+<code class="sig-name descname">home_support</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.home_support" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Crédit d’impôt pour maintien à domicile des aînés.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant du crédit</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.quebec.template.med_exp">
+<code class="sig-name descname">med_exp</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.med_exp" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Crédit remboursable pour frais médicaux.
+:param p: instance de la classe Person
+:type p: Person
+:param hh: instance de la classe Hhold
+:type hh: Hhold</p>
+<dl class="field-list simple">
+<dt class="field-odd">Renvoie</dt>
+<dd class="field-odd"><p>Montant du crédit</p>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.quebec.template.senior_assist">
+<code class="sig-name descname">senior_assist</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.senior_assist" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Crédit remboursable pour support aux ainés.
+En vigueur à partir de 2018.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant du crédit</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
 </dd>
 </dl>
 </dd></dl>
@@ -529,52 +731,73 @@ ne sont pas calculés.</p>
 <dt id="srd.quebec.form_2016">
 <em class="property">class </em><code class="sig-prename descclassname">srd.quebec.</code><code class="sig-name descname">form_2016</code><a class="headerlink" href="#srd.quebec.form_2016" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Rapport d’impôt de 2016.</p>
-<dl class="method">
-<dt id="srd.quebec.form_2016.calc_contributions">
-<code class="sig-name descname">calc_contributions</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2016.calc_contributions" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui calcule les contributions.</p>
-<p>Cette fonction fait la somme des contributions du contribuable.
-La contribution santé est abolie en 2017.
-La contribution additionnelle pour les services de garde éducatifs
-à l’enfance subventionnés est abolie en 2019.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
-<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="srd.quebec.form_2016.health_contrib">
-<code class="sig-name descname">health_contrib</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2016.health_contrib" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Contribution santé.</p>
-<p>Cette fonction calcule le montant dû en fonction du revenu net.
-Abolie en 2017.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
-<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
 </dd></dl>
 
 <dl class="class">
 <dt id="srd.quebec.form_2017">
 <em class="property">class </em><code class="sig-prename descclassname">srd.quebec.</code><code class="sig-name descname">form_2017</code><a class="headerlink" href="#srd.quebec.form_2017" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Rapport d’impôt de 2017.</p>
+<dl class="method">
+<dt id="srd.quebec.form_2017.calc_contributions">
+<code class="sig-name descname">calc_contributions</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2017.calc_contributions" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule les contributions.</p>
+<p>Cette fonction fait la somme des contributions du contribuable.
+La contribution santé est abolie en 2017.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.quebec.form_2017.get_donations_cred">
+<code class="sig-name descname">get_donations_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2017.get_donations_cred" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Crédit d’impôt pour dons.</p>
+<p>Ce crédit est non-remboursable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant du crédit</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
 <dt id="srd.quebec.form_2018">
 <em class="property">class </em><code class="sig-prename descclassname">srd.quebec.</code><code class="sig-name descname">form_2018</code><a class="headerlink" href="#srd.quebec.form_2018" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Rapport d’impôt de 2018.</p>
+<dl class="method">
+<dt id="srd.quebec.form_2018.senior_assist">
+<code class="sig-name descname">senior_assist</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2018.senior_assist" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Crédit remboursable pour support aux ainés.
+En vigueur à partir de 2018.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant du crédit</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -582,14 +805,12 @@ Abolie en 2017.</p>
 <em class="property">class </em><code class="sig-prename descclassname">srd.quebec.</code><code class="sig-name descname">form_2019</code><a class="headerlink" href="#srd.quebec.form_2019" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Rapport d’impôt de 2019.</p>
 <dl class="method">
-<dt id="srd.quebec.form_2019.add_contrib_subsid_chcare">
-<code class="sig-name descname">add_contrib_subsid_chcare</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2019.add_contrib_subsid_chcare" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Contribution additionnelle pour les services de garde éducatifs
-à l’enfance subventionnés.</p>
-<p>Cette fonction calcule le montant dû en fonction
-du nombre de jours de garde et du revenu familial. Chaque conjoint paie
-en fonction du nombre de jours de garde sur son relevé 30.
-La contribution est abolie en 2019.</p>
+<dt id="srd.quebec.form_2019.calc_contributions">
+<code class="sig-name descname">calc_contributions</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2019.calc_contributions" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule les contributions.</p>
+<p>Cette fonction fait la somme des contributions du contribuable.
+La contribution additionnelle pour service de garde éducatifs à l’enfance subventionnés
+est abolie en 2019.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">
@@ -606,25 +827,6 @@ La contribution est abolie en 2019.</p>
 <dt id="srd.quebec.form_2020">
 <em class="property">class </em><code class="sig-prename descclassname">srd.quebec.</code><code class="sig-name descname">form_2020</code><a class="headerlink" href="#srd.quebec.form_2020" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Rapport d’impôt de 2020.</p>
-<dl class="method">
-<dt id="srd.quebec.form_2020.add_contrib_subsid_chcare">
-<code class="sig-name descname">add_contrib_subsid_chcare</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2020.add_contrib_subsid_chcare" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Contribution additionnelle pour les services de garde éducatifs
-à l’enfance subventionnés.</p>
-<p>Cette fonction calcule le montant dû en fonction
-du nombre de jours de garde et du revenu familial. Chaque conjoint paie
-en fonction du nombre de jours de garde sur son relevé 30.
-La contribution est abolie en 2019.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
-<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
 </dd></dl>
 
 </div>

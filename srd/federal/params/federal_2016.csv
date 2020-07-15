@@ -1,4 +1,9 @@
-variable;value;type;definition;source ;comments
+variable;value;type;definition;source;comments
+div_elig_factor;1.38;float;;;
+div_other_can_factor;1.17;float;;;
+div_elig_cred_rate;0.150198;float;;;
+div_other_can_cred_rate;0.105217;float;;;
+qpip_deduc_rate;0.4368;float;;5005-S10;
 basic_amount;11474;float;;;
 age_cred_amount;7125;float;;;
 min_age_cred;65;int;;;
@@ -11,6 +16,12 @@ disability_cred_amount;8001;float;;;
 med_exp_nr_cred_max_age;16;int;;;
 med_exp_nr_cred_max_claw;2237;float;;;
 med_exp_nr_cred_rate;0.03;float;;;
+donation_frac_net;0.75;float;;;
+donation_low_cut;200;float;;;
+donation_high_cut;200000;float;;;
+donation_low_rate;0.15;float;;;
+donation_med_rate;0.29;float;;;
+donation_high_rate;0.33;float;;;
 rate_non_ref_tax_cred;0.15;float;;;
 rate_abatment_qc;0.165;float;;;
 ccb_young_max_age;5;int;;;
@@ -37,7 +48,7 @@ gst_cred_kids_max_age;18;int;;;
 gst_cred_claw_rate;0.05;float;;https://www.canada.ca/en/revenue-agency/services/child-family-benefits/goods-services-tax-harmonized-sales-tax-gst-hst-credit/gst-hst-credit-calculation-sheets.html;
 gst_cred_claw_cutoff;35926;float;;;
 gst_cred_base;276;float;;;
-gst_cred_other;145;float;;
+gst_cred_other;145;float;;;
 gst_cred_rate;0.02;float;;;
 gst_cred_base_amount;8948;float;;;
 chcare_max_age_young;6;int;;form T778;

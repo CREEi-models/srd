@@ -75,6 +75,9 @@ class tax:
         Hhold
             instance de la classe Hhold
         """
+        if not hh.elig_split or (n_points==0):
+            self.compute_all(hh)
+            return hh
 
         hh.copy()
         self.compute_all(hh)
@@ -248,7 +251,7 @@ class tax:
             if self.iprov:
                 after_tax_inc -= p.prov_return['net_tax_liability']
             p.after_tax_inc = after_tax_inc
-        return
+
     def disp_inc(self,hh):
         """
         Calcul du revenu disponible après impôt, cotisations (sociale et REER) et aide sociale.
@@ -265,6 +268,7 @@ class tax:
                 disp_inc += p.inc_social_ass
             disp_inc -= p.con_rrsp
             p.disp_inc = disp_inc
+
 
 class incentives:
     def __init__(self, case_mode=True, year=2020, data_file=None,

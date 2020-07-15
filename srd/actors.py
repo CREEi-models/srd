@@ -36,8 +36,18 @@ class Person:
         revenu de REER (sortie)
     self_earn: float
         revenu de travailleur autonome
+    div_elig: float
+        montant réel des dividendes déterminés (canadiens)
+    div_other_can: float
+        montant réel des dividendes ordinaires (canadiens)
     con_rrsp: float
         contribution REER
+    union_dues: float
+        cotisations syndicales, professionnelles ou autres
+    donation: float
+        don de bienfaisance et autres dons
+    gift: float
+        dons de biens culturels et écosensibles
     years_can: int
         nombre d'années au Canada lorsque OAS est demandé
     disabled: boolean
@@ -63,7 +73,8 @@ class Person:
     """
     def __init__(self, age=50, male=True, earn=0, rpp=0, cpp=0, cap_gains=0,
                  cap_losses=0, cap_gains_exempt=0, othtax=0, othntax=0,
-                 inc_rrsp=0, self_earn=0, con_rrsp=0, con_rpp=0,
+                 inc_rrsp=0, self_earn=0, div_elig=0, div_other_can=0, con_rrsp=0,
+                 con_rpp=0, union_dues=0, donation=0, gift=0,
                  years_can=None, disabled=False, cqppc=None, widow=False,
                  med_exp=0, ndays_chcare_k1=0, ndays_chcare_k2=0, asset=0,
                  oas_years_post=0, months_cerb_cesb=0, student=False,
@@ -80,9 +91,14 @@ class Person:
         self.cap_gains_exempt = cap_gains_exempt
         self.inc_othtax = othtax
         self.inc_othntax = othntax
+        self.div_elig= div_elig
+        self.div_other_can = div_other_can
         self.inc_rrsp = inc_rrsp
         self.con_rrsp = con_rrsp
         self.con_rpp = con_rpp
+        self.union_dues = union_dues
+        self.donation = donation
+        self.gift = gift
         self.years_can = age if years_can is None else years_can # number of years in Canada (max = 40)
         self.disabled = disabled
         self.cqppc = cqppc
@@ -119,6 +135,15 @@ class Person:
         self.payroll = None
 
     def attach_prev_work_inc(self, prev_work_inc):
+        """
+        Fonction qui ajoute le revenu du travail de l'an passé s'il est disponible
+        et l'approxime avec le revenu du travail actuel sinon.
+
+        Parameters
+        ----------
+        prev_work_inc: float
+            revenu de travail de l'année précédente
+        """
         if prev_work_inc is None:
             self.prev_inc_work = self.inc_earn + self.inc_self_earn
         else:
@@ -134,7 +159,9 @@ class Person:
         Parameters
         ----------
         earn: float or list
+            revenu de travail salarié
         self_earn: float or list
+            revenu de travail autonome
         """
         if isinstance(earn, list) and isinstance(self_earn, list):
             self.inc_work_month = earn + self_earn
@@ -164,21 +191,23 @@ class Person:
     @property
     def inc_non_work(self):
         """
-        Fonction qui retourne le revenu autre que travail
-
-        Returns
+        Fonction qui retourne le total des revenus autre que revenu du travail.
         -------
 
         float
             revenu autre que travail.
         """
         return (self.inc_rpp + self.inc_cpp + self.inc_othtax + self.inc_othntax
-                + self.inc_rrsp + self.inc_oas + self.inc_gis + self.inc_ei)
+                + self.inc_rrsp + self.inc_oas + self.inc_gis + self.inc_ei
+                + self.div_elig + self.div_other_can)
 
     @property
     def inc_tot(self):
         """
         Fonction qui retourne le revenu total.
+
+        Ce revenu total contient les montants réels des dividendes de sociétés
+        canadiennes (et not les montants imposables).
 
         Returns
         -------
@@ -186,7 +215,10 @@ class Person:
         float
             revenu total.
         """
-        return self.inc_work + self.inc_non_work
+        return (self.inc_work + self.inc_rpp + self.inc_cpp + self.inc_othtax
+                + self.inc_othntax + self.inc_rrsp + self.inc_oas
+                + self.inc_gis + self.inc_ei + self.div_elig
+                + self.div_other_can)
 
     def compute_months_cerb_cesb(self, months_cerb_cesb, student):
         """
@@ -390,7 +422,8 @@ class Hhold:
 
     def count(self): # do we need this?
         """
-        Fonction pour calculer la composition du ménage.
+        Fonction pour calculer la composition du ménage (nombre d'enfants,
+        de dépendents, taille de la famille).
         """
         self.ndep = len(self.dep)
         self.nold = len([s for s in self.dep if s.age >= 65])
@@ -401,7 +434,8 @@ class Hhold:
     def compute_max_split(self):
         """
         Fonction qui calcule le montant max de revenu de pension
-        pouvant être fractionné.
+        pouvant être fractionné
+        (et l'attache à chaque conjoint du ménage: attribut *max_split*).
         """
         if not self.couple:
             self.sp[0].max_split = 0
@@ -414,7 +448,7 @@ class Hhold:
     def assess_elig_split(self):
         """
         Fonction qui établit si le ménage est éligible pour le fractionnement
-        de pension.
+        de pension (et l'attache au ménage: attribut *elig_split*).
         """
         self.elig_split = len([p for p in self.sp if p.max_split > 0]) > 0
 
