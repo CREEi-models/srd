@@ -169,7 +169,7 @@
 <div class="section" id="survol">
 <h2>Survol<a class="headerlink" href="#survol" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Les mesures d’urgence pour soutenir la population canadiennes durant la pandémie de covid-19 sont prises en charge par la classe <em>covid</em>. Au niveau fédéral, cette classe permet l’inclusion de la prestation canadienne d’urgence (PCU) ainsi que la prestation canadienne d’urgence pour étudiants (PCUE). Pour le Québec, cette classe permet le calcul du programme incitatif pour la rétention des travailleurs essentiels (PIRTE).
-Les prestations de la PCU, PCUE et PIRTE sont considérées comme revenus du travail mais n’affectent pas les cotisations à l’assurence emploi, au régime québécois d’assurance parentale et au CPP/QPP.</p>
+Les prestations de la PCU, PCUE et PIRTE sont considérées comme revenus du travail, mais n’affectent pas les cotisations à l’assurance emploi, au régime québécois d’assurance parentale et au CPP/QPP.</p>
 <p>La classe <em>policy</em> permet de définir quels programmes on désire inclure dans les calculs du simulateur:</p>
 <dl class="class">
 <dt id="srd.covid.policy">
@@ -241,7 +241,7 @@ et programme incitatif pour la rétention des travailleurs essentiels (PIRTE)</p
 <dt id="srd.covid.programs.compute_cerb">
 <code class="sig-name descname">compute_cerb</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.covid.programs.compute_cerb" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction pour le calcul de la PCU.</p>
-<p>Calcule la PCU en fonction du nombre de blocs de self.begin_april semaines (mois)
+<p>Calcule la PCU en fonction du nombre de blocs de 4 semaines (mois)
 durant laquelle la prestation est demandée.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -261,7 +261,7 @@ durant laquelle la prestation est demandée.</p>
 <code class="sig-name descname">compute_cesb</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.covid.programs.compute_cesb" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction pour le calcul de la PCUE.</p>
 <p>Calcule la PCUE en fonction de la prestation mensuelle à laquelle l’individu
-a droit et du nombre de blocs de self.begin_april semaines (mois) durant lequel la prestation est demandée.</p>
+a droit et du nombre de blocs de 4 semaines (mois) durant lequel la prestation est demandée.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">
@@ -282,13 +282,10 @@ a droit et du nombre de blocs de self.begin_april semaines (mois) durant lequel 
 <dt id="srd.covid.programs.compute_iprew">
 <code class="sig-name descname">compute_iprew</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.covid.programs.compute_iprew" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction pour le calcul de la PIRTE.</p>
+<p>Calcule la PIRTE pour la période de 16 semaines (4 mois) si le travailleur est éligible.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
-<li><p><strong>la PIRTE pour la période de 16 semaines</strong><strong> (</strong><strong>self.begin_april mois</strong><strong>) </strong><strong>si le travailleur</strong> (<em>Calcule</em>) – </p></li>
-<li><p><strong>éligible.</strong> (<em>est</em>) – </p></li>
-</ul>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
 </dd>
 <dt class="field-even">Renvoie</dt>
 <dd class="field-even"><p>Le montant de la PIRTE pour les 16 semaines.</p>

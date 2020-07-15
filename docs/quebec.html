@@ -169,7 +169,7 @@
 <h1>Impôt du Québec<a class="headerlink" href="#impot-du-quebec" title="Lien permanent vers ce titre">¶</a></h1>
 <div class="section" id="survol">
 <h2>Survol<a class="headerlink" href="#survol" title="Lien permanent vers ce titre">¶</a></h2>
-<p>L’impôt du Québec est pris en charge par le module <em>quebec</em>. Ce module contient un gabarit que nous documentons ici-bas ainsi que des classes spécifiques chaque année.</p>
+<p>L’impôt du Québec est pris en charge par le module <em>quebec</em>. Ce module contient un gabarit que nous documentons ci-dessous ainsi que des classes spécifiques chaque année.</p>
 <p>La fonction <em>form</em> permet de choisir l’année du rapport d’impôt et ira tirer une instance du rapport pour cette année. L’instance est retournée par la fonction.</p>
 <dl class="function">
 <dt id="srd.quebec.form">
@@ -191,7 +191,7 @@
 </div>
 <div class="section" id="gabarit-du-rapport">
 <h2>Gabarit du rapport<a class="headerlink" href="#gabarit-du-rapport" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Nous utilisons un gabarit afin de créer les rapports chaque année. Quand le programme change seulement dans ces paramètres, le rapport ira seulement chercher les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou en rajouter).</p>
+<p>Nous utilisons un gabarit afin de créer les rapports chaque année. Quand le programme change seulement dans ces paramètres, le rapport ira seulement chercher les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou en rajouter). Toutes modifications de fonction survenues après l’année 2016 sont indiquées ci-dessous.</p>
 <p>Nous reproduisons ici la spécification du gabarit. Il est calqué sur le rapport de 2016.</p>
 <dl class="class">
 <dt id="srd.quebec.template">
@@ -403,7 +403,8 @@ de la situation familiale (couple/monoparental) et du revenu.</p>
 <dt id="srd.quebec.template.file">
 <code class="sig-name descname">file</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.file" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui permet de calculer les impôts.</p>
-<p>Cette fonction est celle qui exécute le calcul des impôts.</p>
+<p>Cette fonction est celle qui calcule les déductions,
+les crédits non-remboursables et remboursables et les impôts nets.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
@@ -469,7 +470,7 @@ de la situation familiale (couple/monoparental) et du revenu.</p>
 <dt id="srd.quebec.template.get_exp_worker_cred">
 <code class="sig-name descname">get_exp_worker_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.get_exp_worker_cred" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Crédit d’impôt pour les travailleurs d’expérience.
-Depuis 2019, renommé crédit d’impôts pour la prolongation de carrière.</p>
+Depuis 2019, renommé crédit d’impôt pour la prolongation de carrière.</p>
 <p>Ce crédit est non-remboursable. Nous avons fait l’hypothèse que les travailleurs
 de 65 ans sont nés le 1er janvier (dans l’année en cours, les revenus avant
 et après le 65ème anniversaire sont soumis à des traitements différents,
@@ -628,17 +629,19 @@ Abolie en 2017.</p>
 <dl class="method">
 <dt id="srd.quebec.template.med_exp">
 <code class="sig-name descname">med_exp</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.med_exp" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Crédit remboursable pour frais médicaux.
-:param p: instance de la classe Person
-:type p: Person
-:param hh: instance de la classe Hhold
-:type hh: Hhold</p>
+<dd><p>Crédit remboursable pour frais médicaux.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Renvoie</dt>
-<dd class="field-odd"><p>Montant du crédit</p>
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
 </dd>
-<dt class="field-even">Type renvoyé</dt>
-<dd class="field-even"><p>float</p>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant du crédit</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
 </dd>
 </dl>
 </dd></dl>

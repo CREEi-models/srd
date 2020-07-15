@@ -216,7 +216,7 @@ class tax:
 
     def compute_ei(self, hh):
         """
-        Calcul des prestations de l'assurance emploi qui remplaceraient la PCU.
+        Calcul des prestations de l'assurance emploi qui remplaceraient la PCU (contrefactuel).
 
         Parameters
         ----------

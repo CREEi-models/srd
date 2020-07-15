@@ -5,7 +5,7 @@ Pension de la sécurité de la vieillesse
 Survol
 ^^^^^^
 
-Le programme de la pension de la sécurité à la vieillesse (PSV) et le supplément du revenu garanti (SRG) sont pris en charge par le module *oas*. Ce module contient un gabarit que nous documentons ici-bas ainsi que des classes dérivées spécifiques chaque année.
+Le programme de la pension de la sécurité à la vieillesse (PSV) et le supplément du revenu garanti (SRG) sont pris en charge par le module *oas*. Ce module contient un gabarit que nous documentons ci-dessous ainsi que des classes dérivées spécifiques chaque année.
 
 .. currentmodule:: srd.oas
 

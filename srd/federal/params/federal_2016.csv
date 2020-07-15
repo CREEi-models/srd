@@ -24,8 +24,6 @@ donation_med_rate;0.29;float;;;
 donation_high_rate;0.33;float;;;
 rate_non_ref_tax_cred;0.15;float;;;
 rate_abatment_qc;0.165;float;;;
-ccb_young_max_age;5;int;;;
-ccb_old_max_age;17;int;;;
 ccb_young;6400;float;;https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit-overview/canada-child-benefit-ccb-payment-amounts.html;
 ccb_old;5400;float;;;
 ccb_max_num_ch;4;int;;;

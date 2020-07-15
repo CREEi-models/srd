@@ -137,7 +137,7 @@ class Person:
     def attach_prev_work_inc(self, prev_work_inc):
         """
         Fonction qui ajoute le revenu du travail de l'an passé s'il est disponible
-        et l'approxime avec le revenu du travail actuel sinon.
+        ou l'approxime avec le revenu du travail actuel sinon.
 
         Parameters
         ----------
@@ -181,7 +181,6 @@ class Person:
 
         Returns
         -------
-
         float
             revenu de travail.
         """
@@ -192,8 +191,9 @@ class Person:
     def inc_non_work(self):
         """
         Fonction qui retourne le total des revenus autre que revenu du travail.
-        -------
 
+        Returns
+        -------
         float
             revenu autre que travail.
         """
@@ -240,9 +240,16 @@ class Person:
                 self.months_cerb = months_cerb_cesb # assuming that last year's work income > 5000
 
     def copy(self):
+        """
+        Fonction qui produit une copie des attributs de la personne.
+        """
         self.temp = deepcopy(self.__dict__)
 
     def reset(self):
+        """
+        Fonction qui utilise la copie des attributs de la personne
+        pour réinitialiser l'instance de la personne.
+        """
         l_attr = [k for k in self.__dict__ if k != 'temp']
         for k in l_attr:
             delattr(self, k)
@@ -294,8 +301,6 @@ class Hhold:
         instance Person du premier membre du couple
     second: Person
         instance Person du 2e membre (si 2e membre)
-    child_care_exp: float
-        montant total des frais de garde (pour tous les enfants)
     prov: str
         province (qc = quebec)
     n_adults_in_hh: int
@@ -309,8 +314,11 @@ class Hhold:
             self.sp.append(second)
         self.prov = prov
         self.dep = []
+        self.nkids_0_6 = 0
+        self.nkids_7_16 = 0
+        self.nkids_0_17 = 0
+        self.nkids_0_18 = 0
         self.n_adults_in_hh = self.adjust_n_adults(n_adults_in_hh)
-        self.count()
         self.compute_max_split()
         self.assess_elig_split()
 
@@ -426,6 +434,18 @@ class Hhold:
         except:
             return None
 
+    @property
+    def child_care_exp(self):
+        """
+        Fonction qui calcule la dépense en frais de garde pour le ménage.
+
+        Returns
+        -------
+        float
+            Montant total des dépenses de frais de garde.
+        """
+        return sum([d.child_care for d in self.dep])
+
     def add_dependent(self, *dependents): # necessary?
         """
         Fonction pour ajouter un ou plusieurs dépendant(s).
@@ -437,20 +457,18 @@ class Hhold:
         """
         for d in dependents:
             self.dep.append(d)
+        self.count()
 
-    def count(self): # do we need this?
+    def count(self):
         """
-        Fonction pour calculer la composition du ménage (nombre d'enfants,
-        de dépendents, taille de la famille).
+        Fonction pour calculer le nombre d'enfants dans différentes catégories d'âge.
         """
+        self.nkids_0_5 = len([s for s in self.dep if s.age <= 5])
+        self.nkids_6_17 = len([s for s in self.dep if 5 < s.age <= 17])
+        self.nkids_0_17 = self.nkids_0_5 + self.nkids_6_17
         self.nkids_0_6 = len([s for s in self.dep if s.age <= 6])
         self.nkids_7_16 = len([s for s in self.dep if 6 < s.age <= 16])
-        self.nkids_0_17 = len([s for s in self.dep if s.age <= 17])
         self.nkids_0_18 = len([s for s in self.dep if s.age <= 18])
-        self.ndep = len(self.dep)
-        self.nold = len([s for s in self.dep if s.age >= 65])
-        self.nhh = 1 + self.couple + len(self.dep)
-        self.size = 1 + self.couple + self.nkids_0_18
 
     def compute_max_split(self):
         """
@@ -474,12 +492,20 @@ class Hhold:
         self.elig_split = len([p for p in self.sp if p.max_split > 0]) > 0
 
     def copy(self):
+        """
+        Fonction qui produit une copie des attributs du ménage
+        et des personnes dans le ménage.
+        """
         d_attr_not_sp = {k: v for k,v in vars(self).items() if k != 'sp'}
         for p in self.sp:
             p.copy()
         self.temp = deepcopy(d_attr_not_sp)
 
     def reset(self):
+        """
+        Fonction qui utilise la copie des attributs du ménage et des personnes
+        pour réinitialiser l'instance du ménage.
+        """
         for p in self.sp:
             p.reset()
         l_attr = [k for k in self.__dict__ if k not in ('sp', 'temp')]

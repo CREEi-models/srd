@@ -20,10 +20,10 @@ for year in range(2016, 2021):
     joseph =Dependent(age=18)
     hh.add_dependent(james, jean, joseph)
 
-    tax_system = tax(year)
-    tax_system.compute(hh, n_points=6)
+    tax_form = tax(year)
+    tax_form.compute(hh)
 
-    print(hh.fam_disp_inc)
+    print(vars(hh))
 
 
 

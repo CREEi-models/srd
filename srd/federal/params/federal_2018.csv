@@ -1,4 +1,4 @@
-variable;value;type;definition;source ;comments
+variable;value;type;definition;source;comments
 div_elig_factor;1.38;float;;;
 div_other_can_factor;1.16;float;;;
 div_elig_cred_rate;0.150198;float;;;
@@ -24,9 +24,7 @@ donation_med_rate;0.29;float;;;
 donation_high_rate;0.33;float;;;
 rate_non_ref_tax_cred;0.15;float;;;
 rate_abatment_qc;0.165;float;;T1 General 2018;
-ccb_young_max_age;5;int;;https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit-overview/canada-child-benefit-ccb-calculation-sheet-july-2018-june-2019-payments-2017-tax-year.html;
-ccb_old_max_age;17;int;;;
-ccb_young;6496;float;;;
+ccb_young;6496;float;;https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit-overview/canada-child-benefit-ccb-calculation-sheet-july-2018-june-2019-payments-2017-tax-year.html;
 ccb_old;5481;float;;;
 ccb_max_num_ch;4;int;;;
 ccb_cutoff_1;30450;float;;;

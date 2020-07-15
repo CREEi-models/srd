@@ -500,14 +500,13 @@ class template:
             Cette fonction calcule le montant reçu en fonction du nombre d'enfants,
             de la situation familiale (couple/monoparental) et du revenu.
         """
-        child_care_exp = sum([d.child_care for d in hh.dep])
-        if child_care_exp == 0:
+        if hh.child_care_exp == 0:
             return 0
 
         if hh.couple and p.male and hh.sp[0].male != hh.sp[1].male:
             return 0 # heterosexual couple: mother receives benefit
 
-        amount = min(child_care_exp,
+        amount = min(hh.child_care_exp,
                      hh.nkids_0_6 * self.chcare_young + hh.nkids_7_16 * self.chcare_old)
         ind = np.searchsorted(self.chcare_brack, hh.fam_net_inc_prov, 'right') - 1
         net_amount = self.chcare_rate[ind] * amount
@@ -541,8 +540,6 @@ class template:
         float
             Montant de la prime au travail par individu
         """
-        dependent = len([d for d in hh.dep if d.age <= self.witb_max_age]) > 0
-
         if hh.fam_inc_work < self.witb_cut_inc_low_single:
             return 0
 
@@ -571,12 +568,12 @@ class template:
             return max(0, amount - clawback)
 
         if hh.couple:
-            rate = self.witb_rate_couple_dep if dependent else self.witb_rate
+            rate = self.witb_rate_couple_dep if hh.nkids_0_18 > 0 else self.witb_rate
             fam_witb = calc_witb(rate, self.witb_cut_inc_low_couple,
                              self.witb_cut_inc_high_couple)
             return p.inc_work / hh.fam_inc_work * fam_witb
         else:
-            rate = self.witb_rate_single_dep if dependent else self.witb_rate
+            rate = self.witb_rate_single_dep if hh.nkids_0_18 > 0 else self.witb_rate
             return calc_witb(rate, self.witb_cut_inc_low_single,
                              self.witb_cut_inc_high_single)
 

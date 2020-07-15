@@ -45,7 +45,6 @@ solidarity_housing_alone;567;float;;;
 solidarity_cutoff;34800;float;;;
 solidarity_rate_total;0.06;float;;;
 solidarity_rate_tvq;0.03;float;https://cffp.recherche.usherbrooke.ca/outils-ressources/guide-mesures-fiscales/credit-impot-remboursable-prime-travail/;;
-witb_max_age;18;int;;;
 witb_rate_couple_dep;0.25;float;;;
 witb_rate;0.105;float;;;
 witb_cut_inc_low_couple;3600;float;;;

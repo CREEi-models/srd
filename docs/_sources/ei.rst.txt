@@ -5,7 +5,7 @@ Programme d'assurance emploi
 Survol
 ^^^^^^
 
-Le programme d'assurance-emploi est pris en charge par le module *ei*. Ce module contient un gabarit que nous documentons ici-bas ainsi que des classes dérivées spécifiques chaque année.
+Le programme d'assurance-emploi est pris en charge par le module *ei*. Ce module contient un gabarit que nous documentons ci-dessous ainsi que des classes dérivées spécifiques chaque année.
 
 .. currentmodule:: srd.ei
 

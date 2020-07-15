@@ -5,7 +5,7 @@ Aide sociale
 Survol
 ^^^^^^
 
-Le programme de l'aide sociale est pris en charge par le module *assistance*. Ce module contient un gabarit que nous documentons ici-bas ainsi que des classes dérivées spécifiques chaque année.
+Le programme de l'aide sociale est pris en charge par le module *assistance*. Ce module contient un gabarit que nous documentons ci-dessous ainsi que des classes dérivées spécifiques chaque année.
 
 .. currentmodule:: srd.assistance
 

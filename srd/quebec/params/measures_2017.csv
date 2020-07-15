@@ -51,7 +51,6 @@ solidarity_housing_alone;552;float;;;
 solidarity_cutoff;33935;float;;;
 solidarity_rate_total;0.06;float;;;
 solidarity_rate_tvq;0.03;float;;;
-witb_max_age;18;int;;;
 witb_rate_couple_dep;0.25;float;;;
 witb_rate;0.09;float;;;
 witb_cut_inc_low_couple;3600;float;;;

@@ -5,7 +5,7 @@ Régime québécois d'assurance parentale
 Survol
 ^^^^^^
 
-Le programme d'assurance parentale au Québec est pris en charge par le module *qpip*. Ce module contient un gabarit que nous documentons ici-bas, ainsi que des classes dérivées spécifiques chaque année.
+Le programme d'assurance parentale au Québec est pris en charge par le module *qpip*. Ce module contient un gabarit que nous documentons ci-dessous, ainsi que des classes dérivées spécifiques chaque année.
 
 .. currentmodule:: srd.qpip
 
