@@ -83,12 +83,11 @@ class program_2020(program_2019):
 
     def compute_net_inc_exemption(self, hh):
         """
-        Calcule le revenu net de l'exemption sur les revenus du travail salarié.
+        Calcule le revenu net incluant l'exemption sur les revenus du travail salarié.
 
-        A partir de 2020-2021:
-        les revenus de travail autonome bénéficient également de l'exemption
-        es revenus du travail bénéficient d'une nouvelle exemption
-          entre 5000$ et 10000$ à un taux de 0.5.
+        À partir de 2020-2021:
+        les revenus de travail autonome bénéficient également de l'exemption.
+        Les revenus du travail entre 5000$ et 1000$ bénéficient d'une nouvelle exemption partielle de 0.5.
 
         Parameters
         ----------

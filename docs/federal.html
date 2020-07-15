@@ -169,7 +169,7 @@
 <h1>Impôt fédéral<a class="headerlink" href="#impot-federal" title="Lien permanent vers ce titre">¶</a></h1>
 <div class="section" id="survol">
 <h2>Survol<a class="headerlink" href="#survol" title="Lien permanent vers ce titre">¶</a></h2>
-<p>L’impôt fédéral est pris en charge par le module <em>federal</em>. Ce module contient un gabarit que nous documentons ici-bas ainsi que des classes spécifiques chaque année.</p>
+<p>L’impôt fédéral est pris en charge par le module <em>federal</em>. Ce module contient un gabarit que nous documentons ci-dessous ainsi que des classes spécifiques pour chaque année.</p>
 <p>La fonction <em>form</em> permet de choisir l’année du rapport d’impôt et ira tirer une instance du rapport pour cette année. L’instance est retournée par la fonction.</p>
 <dl class="function">
 <dt id="srd.federal.form">
@@ -191,7 +191,7 @@
 </div>
 <div class="section" id="gabarit-du-rapport">
 <h2>Gabarit du rapport<a class="headerlink" href="#gabarit-du-rapport" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Nous utilisons un gabarit afin de créer les rapports chaque année. Quand le programme change seulement dans ces paramètres, le rapport ira seulement chercher les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou en rajouter).</p>
+<p>Nous utilisons un gabarit afin de créer les rapports chaque année. Quand le programme change seulement dans ces paramètres, le rapport ira seulement chercher les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou en rajouter). Toutes modifications de fonction survenues après l’année 2016 sont indiquées ci-dessous.</p>
 <p>Nous reproduisons ici la spécification du gabarit. Il est calqué sur le rapport de 2016.</p>
 <dl class="class">
 <dt id="srd.federal.template">
@@ -341,6 +341,7 @@ On y soustrait une portion des gains en capitaux.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
 <li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+<li><p><strong>iclaw</strong> (<em>boolean</em>) – récupération des prestations si True, pas de récupération si False</p></li>
 </ul>
 </dd>
 <dt class="field-even">Renvoie</dt>
@@ -379,7 +380,7 @@ est reçu par le conjoint qui a le revenu le moins élevé.</p>
 <dl class="method">
 <dt id="srd.federal.template.compute_witb_witbds">
 <code class="sig-name descname">compute_witb_witbds</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em>, <em class="sig-param">rate</em>, <em class="sig-param">base</em>, <em class="sig-param">witb_max</em>, <em class="sig-param">claw_rate</em>, <em class="sig-param">exemption</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.compute_witb_witbds" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Calcule de la prestation fiscale pour le revenu de travail.</p>
+<dd><p>Calcul de la prestation fiscale pour le revenu de travail.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">
@@ -422,7 +423,8 @@ est reçu par le conjoint qui a le revenu le moins élevé.</p>
 <dt id="srd.federal.template.file">
 <code class="sig-name descname">file</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.file" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui permet de calculer les impôts.</p>
-<p>Cette fonction est celle qui exécute le calcul des impôts.</p>
+<p>Cette fonction est celle qui calcule les déductions,
+les crédits non-remboursables et remboursables et les impôts nets.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
@@ -599,7 +601,7 @@ est reçu par le conjoint qui a le revenu le moins élevé.</p>
 <dt id="srd.federal.template.gst_hst_credit">
 <code class="sig-name descname">gst_hst_credit</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.gst_hst_credit" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Crédit pour la taxe sur les produits et services/taxe de vente harmonisée (TPS/TVH).
-Le montant du crédit est reçu par la conjoint au revenu imposable le plus élevé.</p>
+Le montant du crédit est reçu par le conjoint au revenu imposable le plus élevé.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">
@@ -656,7 +658,7 @@ Le montant du crédit est reçu par la conjoint au revenu imposable le plus éle
 <dl class="method">
 <dt id="srd.federal.template.witb">
 <code class="sig-name descname">witb</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.witb" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Prestation fiscale pour le revenu de travail (PFRT/WITB). A partir de 2019,
+<dd><p>Prestation fiscale pour le revenu de travail (PFRT/WITB). À partir de 2019,
 cela devient l’Allocation canadienne pour les travailleurs (ACT/CWB).</p>
 <p>Dans le cas d’un couple, la prestation est répartie au prorata des revenus du travail.</p>
 <dl class="field-list simple">

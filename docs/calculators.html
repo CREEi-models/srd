@@ -168,7 +168,7 @@
 <h1>Calculateur de revenu disponible<a class="headerlink" href="#calculateur-de-revenu-disponible" title="Lien permanent vers ce titre">¶</a></h1>
 <div class="section" id="survol">
 <h2>Survol<a class="headerlink" href="#survol" title="Lien permanent vers ce titre">¶</a></h2>
-<p>La classe principale du simulateur est <em>tax</em> qui permet de faire différents calculs d’impôts, de prestations et de cotisations et de calculer le revenu disponible ainsi que des taux moyen et marginaux effectifs de taxation.</p>
+<p>La classe principale du simulateur est <em>tax</em> qui permet de faire différents calculs d’impôts, de prestations et de cotisations et de calculer le revenu disponible ainsi que des taux moyen et des taux marginaux effectifs de taxation.</p>
 </div>
 <div class="section" id="les-fonctions-du-calculateur">
 <h2>Les fonctions du calculateur<a class="headerlink" href="#les-fonctions-du-calculateur" title="Lien permanent vers ce titre">¶</a></h2>
@@ -194,16 +194,16 @@
 <dt id="srd.tax.compute">
 <code class="sig-name descname">compute</code><span class="sig-paren">(</span><em class="sig-param">hh</em>, <em class="sig-param">n_points=1</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Cette fonction transfère des revenus de pensions pour les couples éligibles
-et retient la solution qui maximize le revenu disponible familial.
+et retient la solution qui maximise le revenu disponible familial.
 Si n_points=0, pas de fractionnement des revenus de pensions. Par défaut
 (n_points=1), les revenus bruts sont égalisés dans la mesure des transferts
 possibles. Pour n&gt;1, une simulation est faite pour chaque point de la grille.
-A noter que lorsque n augmente, les solutions avec n inférieur (notamment n=0)
+À noter que lorsque n augmente, les solutions avec n inférieur (notamment n=0)
 sont aussi considérées.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>hh</strong> (<em>Hhold</em>) – instance de la classe Hhold</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
 <li><p><strong>n_points</strong> (<em>int</em>) – nombre de points utilisés pour optimiser le transfert de revenus de
 pension.</p></li>
 </ul>
@@ -212,7 +212,7 @@ pension.</p></li>
 <dd class="field-even"><p>instance de la classe Hhold</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
-<dd class="field-odd"><p>Hhold</p>
+<dd class="field-odd"><p><a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold">Hhold</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -227,10 +227,10 @@ pension.</p></li>
 <dl class="method">
 <dt id="srd.tax.compute_all">
 <code class="sig-name descname">compute_all</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute_all" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Calcul tous les éléments demandés.</p>
+<dd><p>Calcule tous les éléments demandés.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>hh</strong> (<em>Hhold</em>) – instance de la classe Hhold</p>
+<dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
 </dd>
 </dl>
 </dd></dl>
@@ -241,7 +241,7 @@ pension.</p></li>
 <dd><p>Calcul de l’aide sociale.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>hh</strong> (<em>Hhold</em>) – instance de la classe Hhold</p>
+<dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
 </dd>
 </dl>
 </dd></dl>
@@ -253,7 +253,7 @@ pension.</p></li>
 et du programme incitatif pour la rétention des travailleurs essentiels (PIRTE).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>hh</strong> (<em>Hhold</em>) – instance de la classe Hhold</p>
+<dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
 </dd>
 </dl>
 </dd></dl>
@@ -261,10 +261,10 @@ et du programme incitatif pour la rétention des travailleurs essentiels (PIRTE)
 <dl class="method">
 <dt id="srd.tax.compute_ei">
 <code class="sig-name descname">compute_ei</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute_ei" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Calcul des prestations de l’assurance emploi qui remplaceraient la PCU.</p>
+<dd><p>Calcul des prestations de l’assurance emploi qui remplaceraient la PCU (contrefactuel).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>hh</strong> (<em>Hhold</em>) – instance de la classe Hhold</p>
+<dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
 </dd>
 </dl>
 </dd></dl>
@@ -275,7 +275,7 @@ et du programme incitatif pour la rétention des travailleurs essentiels (PIRTE)
 <dd><p>Calcul de l’impôt fédéral.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>hh</strong> (<em>Hhold</em>) – instance de la classe Hhold</p>
+<dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
 </dd>
 </dl>
 </dd></dl>
@@ -286,7 +286,7 @@ et du programme incitatif pour la rétention des travailleurs essentiels (PIRTE)
 <dd><p>Calcul des prestations de PSV et SRG.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>hh</strong> (<em>Hhold</em>) – instance de la classe Hhold</p>
+<dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
 </dd>
 </dl>
 </dd></dl>
@@ -297,7 +297,7 @@ et du programme incitatif pour la rétention des travailleurs essentiels (PIRTE)
 <dd><p>Calcul des cotisations sociales.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>hh</strong> (<em>Hhold</em>) – instance de la classe Hhold</p>
+<dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
 </dd>
 </dl>
 </dd></dl>
@@ -308,7 +308,22 @@ et du programme incitatif pour la rétention des travailleurs essentiels (PIRTE)
 <dd><p>Calcul de l’impôt provincial.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>hh</strong> (<em>Hhold</em>) – instance de la classe Hhold</p>
+<dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.tax.compute_with_transfer">
+<code class="sig-name descname">compute_with_transfer</code><span class="sig-paren">(</span><em class="sig-param">hh</em>, <em class="sig-param">transfer</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute_with_transfer" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Cette fonction effectue les transferts de revenus de pension et appelle
+la fonction qui simule le ménage.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>hh</strong> (<em>Hold</em>) – instance de la classe Hhold</p></li>
+<li><p><strong>transfer</strong> (<em>float</em>) – transfert du premier au second conjoint (du second au premier si négatif)</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>

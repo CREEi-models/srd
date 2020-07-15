@@ -98,7 +98,7 @@ class programs:
         """
         Fonction pour le calcul de la PCU.
 
-        Calcule la PCU en fonction du nombre de blocs de self.begin_april semaines (mois)
+        Calcule la PCU en fonction du nombre de blocs de 4 semaines (mois)
         durant laquelle la prestation est demandée.
 
         Parameters
@@ -124,7 +124,7 @@ class programs:
         Fonction pour le calcul de la PCUE.
 
         Calcule la PCUE en fonction de la prestation mensuelle à laquelle l'individu
-        a droit et du nombre de blocs de self.begin_april semaines (mois) durant lequel la prestation est demandée.
+        a droit et du nombre de blocs de 4 semaines (mois) durant lequel la prestation est demandée.
 
         Parameters
         ----------
@@ -179,13 +179,12 @@ class programs:
         """
         Fonction pour le calcul de la PIRTE.
 
+        Calcule la PIRTE pour la période de 16 semaines (4 mois) si le travailleur est éligible.
+
         Parameters
         ----------
         p: Person
             instance de la classe Person
-
-        Calcule la PIRTE pour la période de 16 semaines (self.begin_april mois) si le travailleur
-        est éligible.
 
         Returns
         -------

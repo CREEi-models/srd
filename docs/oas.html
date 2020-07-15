@@ -169,7 +169,7 @@
 <h1>Pension de la sécurité de la vieillesse<a class="headerlink" href="#pension-de-la-securite-de-la-vieillesse" title="Lien permanent vers ce titre">¶</a></h1>
 <div class="section" id="survol">
 <h2>Survol<a class="headerlink" href="#survol" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Le programme de la pension de la sécurité à la vieillesse (PSV) et le supplément du revenu garanti (SRG) sont pris en charge par le module <em>oas</em>. Ce module contient un gabarit que nous documentons ici-bas ainsi que des classes dérivées spécifiques chaque année.</p>
+<p>Le programme de la pension de la sécurité à la vieillesse (PSV) et le supplément du revenu garanti (SRG) sont pris en charge par le module <em>oas</em>. Ce module contient un gabarit que nous documentons ci-dessous ainsi que des classes dérivées spécifiques chaque année.</p>
 <p>La fonction program permet de choisir l’année du programme et ira tirer une instance du programme pour cette année. L’instance est retournée par la fonction.</p>
 <dl class="function">
 <dt id="srd.oas.program">
@@ -220,7 +220,7 @@
 <dl class="method">
 <dt id="srd.oas.template.compute_net_inc_exemption">
 <code class="sig-name descname">compute_net_inc_exemption</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.compute_net_inc_exemption" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Calcule le revenu net de l’exemption sur les revenus du travail salarié</p>
+<dd><p>Calcule le revenu net incluant l’exemption sur les revenus du travail salarié</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
@@ -405,13 +405,10 @@ de couple et de survivant.</p>
 <dl class="method">
 <dt id="srd.oas.programs.program_2020.compute_net_inc_exemption">
 <code class="sig-name descname">compute_net_inc_exemption</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2020.compute_net_inc_exemption" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Calcule le revenu net de l’exemption sur les revenus du travail salarié.</p>
-<p>A partir de 2020-2021:
-les revenus de travail autonome bénéficient également de l’exemption
-es revenus du travail bénéficient d’une nouvelle exemption</p>
-<blockquote>
-<div><p>entre 5000$ et 10000$ à un taux de 0.5.</p>
-</div></blockquote>
+<dd><p>Calcule le revenu net incluant l’exemption sur les revenus du travail salarié.</p>
+<p>À partir de 2020-2021:
+les revenus de travail autonome bénéficient également de l’exemption.
+Les revenus du travail entre 5000$ et 1000$ bénéficient d’une nouvelle exemption partielle de 0.5.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>

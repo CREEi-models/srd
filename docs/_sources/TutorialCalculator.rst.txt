@@ -42,7 +42,7 @@ l’impôt fédéral.
 
 .. code:: ipython3
 
-    tax = srd.tax(2016)
+    tax_form = srd.tax(2016)
 
 La fonction *compute()* calcule tous les impôts et cotisations demandées
 
@@ -77,7 +77,7 @@ On peut voir que les variables ont été modifiées.
 
 .. parsed-literal::
 
-    (75000.0, 62604.14, 52432.14)
+    (75000.0, 63399.9755, 53227.9755)
 
 
 
@@ -90,7 +90,7 @@ On peut voir que les variables ont été modifiées.
 
 .. parsed-literal::
 
-    (50000.0, 40857.47, 32347.34)
+    (50000.0, 41347.33690625, 32837.21190625)
 
 
 
@@ -103,4 +103,4 @@ On peut voir que les variables ont été modifiées.
 
 .. parsed-literal::
 
-    (25000.0, 21746.6685, 20084.7935)
+    (25000.0, 22052.638593749998, 20390.763593749998)

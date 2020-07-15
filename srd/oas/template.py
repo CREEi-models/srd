@@ -90,7 +90,7 @@ class template:
 
     def compute_net_inc_exemption(self, hh):
         """
-        Calcule le revenu net de l'exemption sur les revenus du travail salarié
+        Calcule le revenu net incluant l'exemption sur les revenus du travail salarié
 
         Parameters
         ----------

@@ -131,20 +131,16 @@ class template:
             de l'âge des enfants et du revenu le moins élevé du couple. Le montant
             est reçu par le conjoint qui a le revenu le moins élevé.
         """
-        child_care_exp = sum([d.child_care for d in hh.dep])
-        if child_care_exp == 0:
+
+        if hh.child_care_exp == 0:
             return 0
 
         p_low_inc = min(hh.sp, key=lambda p: p.inc_work)
         if p != p_low_inc:
             return 0
 
-        nkids_0_6 = len([d for d in hh.dep if d.age <= self.chcare_max_age_young])
-        nkids_7_16 = len([d for d in hh.dep
-                          if self.chcare_max_age_young < d.age <= self.chcare_max_age_old])
-        max_chcare = nkids_0_6 * self.chcare_young + nkids_7_16 * self.chcare_old
-
-        return min(max_chcare, child_care_exp, self.chcare_rate_inc * p.inc_work)
+        max_chcare = hh.nkids_0_6 * self.chcare_young + hh.nkids_7_16 * self.chcare_old
+        return min(max_chcare, hh.child_care_exp, self.chcare_rate_inc * p.inc_work)
 
     def cpp_deduction(self, p):
         """
@@ -385,7 +381,7 @@ class template:
             return 0
 
         med_exp = sum([p.med_exp for p in hh.sp]
-                       + [d.med_exp for d in hh.dep if d.age <= self.med_exp_nr_cred_max_age])
+            + [d.med_exp for d in hh.dep if d.age <= self.med_exp_nr_cred_max_age])
         clawback = min(self.med_exp_nr_cred_max_claw,
                        self.med_exp_nr_cred_rate * p.fed_return['net_income'])
         med_exp_other_dep = sum([d.med_exp for d in hh.dep
@@ -479,7 +475,7 @@ class template:
         else:
             return 0
 
-    def ccb(self,p,hh,iclaw=True):
+    def ccb(self, p, hh, iclaw=True):
         """
         Allocation canadienne pour enfants (ACE/CCB).
 
@@ -489,21 +485,21 @@ class template:
             instance de la classe Person
         hh: Hhold
             instance de la classe Hhold
+        iclaw: boolean
+            récupération des prestations si True, pas de récupération si False
+
         Returns
         -------
         float
             Montant de l'ACE (CCB)
         """
-        num_ch_0_5 = sum([1 for d in hh.dep if d.age <= self.ccb_young_max_age])
-        num_ch_6_17 = sum([1 for d in hh.dep
-                        if self.ccb_young_max_age < d.age <= self.ccb_old_max_age])
-        if num_ch_0_5 + num_ch_6_17 == 0:
+        if hh.nkids_0_17 == 0:
             return 0
         if hh.couple and p.male and hh.sp[0].male != hh.sp[1].male:
             return 0 # heterosexual couple: mother receives benefit
         else:
-            amount = num_ch_0_5 * self.ccb_young + num_ch_6_17 * self.ccb_old
-            claw_num_ch = min(num_ch_0_5 + num_ch_6_17, self.ccb_max_num_ch)
+            amount = hh.nkids_0_5 * self.ccb_young + hh.nkids_6_17 * self.ccb_old
+            claw_num_ch = min(hh.nkids_0_5 + hh.nkids_6_17, self.ccb_max_num_ch)
             adj_fam_net_inc = sum([p.fed_return['net_income'] for p in hh.sp])
 
             l_rates_1 = [self.ccb_rate_1_1ch, self.ccb_rate_1_2ch,
@@ -545,19 +541,17 @@ class template:
         float
             Montant de la PFRT (WITB)
         """
-        dep = (len([d for d in hh.dep if d.age <= self.witb_max_age_dep]) > 0)
-
         if not hh.couple:
             base = self.witb_base_single_qc
-            rate = self.witb_rate_single_dep_qc if dep else self.witb_rate_qc
-            witb_max = self.witb_max_single_dep_qc if dep else self.witb_max_single_qc
-            exemption = self.witb_exemption_single_dep_qc if dep else self.witb_exemption_single_qc
+            rate = self.witb_rate_single_dep_qc if hh.nkids_0_18 else self.witb_rate_qc
+            witb_max = self.witb_max_single_dep_qc if hh.nkids_0_18 else self.witb_max_single_qc
+            exemption = self.witb_exemption_single_dep_qc if hh.nkids_0_18 else self.witb_exemption_single_qc
             factor = 1
         else:
             base = self.witb_base_couple_qc
-            rate = self.witb_rate_couple_dep_qc if dep else self.witb_rate_qc
-            witb_max = self.witb_max_couple_dep_qc if dep else self.witb_max_couple_qc
-            exemption = self.witb_exemption_couple_dep_qc if dep else self.witb_exemption_couple_qc
+            rate = self.witb_rate_couple_dep_qc if hh.nkids_0_18 else self.witb_rate_qc
+            witb_max = self.witb_max_couple_dep_qc if hh.nkids_0_18 else self.witb_max_couple_qc
+            exemption = self.witb_exemption_couple_dep_qc if hh.nkids_0_18 else self.witb_exemption_couple_qc
             if hh.fam_inc_work > 0:
                 factor = p.inc_work / hh.fam_inc_work
             else:
@@ -587,19 +581,17 @@ class template:
         if not p.disabled:
             return 0
 
-        dep = len([d for d in hh.dep if d.age <= self.witb_max_age_dep]) > 0
         couple_dis = sum([p.disabled for p in hh.sp]) == 2
-
         claw_rate = self.witb_dis_claw_rate_qc
         if not hh.couple:
             rate = self.witb_dis_rate_single_qc
-            exemption = self.witb_dis_exemption_single_dep_qc if dep else self.witb_dis_exemption_single_qc
+            exemption = self.witb_dis_exemption_single_dep_qc if hh.nkids_0_18 else self.witb_dis_exemption_single_qc
         else:
             rate = self.witb_dis_rate_couple_qc
-            exemption = self.witb_dis_exemption_couple_dep_qc if dep else self.witb_dis_exemption_couple_qc
+            exemption = self.witb_dis_exemption_couple_dep_qc if hh.nkids_0_18 else self.witb_dis_exemption_couple_qc
             if couple_dis:
                 claw_rate = self.witb_dis_couple_claw_rate_qc
-                exemption = self.witb_dis_exemption_couple_dep_qc if dep else self.witb_dis_exemption_couple_qc
+                exemption = self.witb_dis_exemption_couple_dep_qc if hh.nkids_0_18 else self.witb_dis_exemption_couple_qc
 
         return self.compute_witb_witbds(p, hh, rate, self.witb_dis_base_qc,
                                          self.witb_dis_max_qc, claw_rate, exemption)
@@ -631,10 +623,9 @@ class template:
         float
             Montant de la PFRT (WITB) / SIPFRT (WITBDS)
         """
-        fam_net_inc = sum([p.fed_return['net_income'] for p in hh.sp])
         amount = rate * max(0, hh.fam_inc_work - base)
         adj_amount = min(witb_max, amount)
-        clawback = claw_rate * max(0, fam_net_inc - exemption)
+        clawback = claw_rate * max(0, hh.fam_net_inc_fed - exemption)
         return max(0, adj_amount - clawback)
 
     def med_exp(self, p, hh):
@@ -659,8 +650,7 @@ class template:
             return 0
 
         base = min(self.med_exp_max, self.med_exp_rate * p.fed_med_exp_nr_cred) # note line 215 could be added (0 at the moment)
-        fam_net_inc = sum([p.fed_return['net_income'] for p in hh.sp])
-        clawback = self.med_exp_claw_rate * max(0, fam_net_inc - self.med_exp_claw_cutoff)
+        clawback = self.med_exp_claw_rate * max(0, hh.fam_net_inc_fed - self.med_exp_claw_cutoff)
         return max(0, base - clawback)
 
     def gst_hst_credit(self, p, hh):
@@ -682,16 +672,13 @@ class template:
         if p is not max(hh.sp, key=lambda p: p.fed_return['taxable_income']):
             return 0
 
-        fam_net_inc = sum([p.fed_return['net_income'] for p in hh.sp])
-        nkids = len([d for d in hh.dep if d.age <= self.gst_cred_kids_max_age])
-
-        clawback = self.gst_cred_claw_rate * max(0, fam_net_inc - self.gst_cred_claw_cutoff)
+        clawback = self.gst_cred_claw_rate * max(0, hh.fam_net_inc_fed - self.gst_cred_claw_cutoff)
 
         amount = self.gst_cred_base
-        if hh.couple or nkids >= 1:
-            amount += self.gst_cred_base + nkids * self.gst_cred_other # single with kids works same as couple
+        if hh.couple or hh.nkids_0_18 >= 1:
+            amount += self.gst_cred_base + hh.nkids_0_18 * self.gst_cred_other # single with kids works same as couple
         else:
             amount += min(self.gst_cred_other,
-                          self.gst_cred_rate * max(0, fam_net_inc - self.gst_cred_base_amount))
+                          self.gst_cred_rate * max(0, hh.fam_net_inc_fed - self.gst_cred_base_amount))
 
         return max(0, amount - clawback)

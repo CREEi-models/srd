@@ -56,11 +56,19 @@ On peut voir le profil de chacun des membres du ménage en utilisant
      'inc_earn': 50000.0,
      'inc_rpp': 0,
      'inc_cpp': 0,
+     'cap_gains': 0,
+     'cap_losses': 0,
+     'cap_gains_exempt': 0,
      'inc_othtax': 0,
      'inc_othntax': 0,
+     'div_elig': 0,
+     'div_other_can': 0,
      'inc_rrsp': 0,
      'con_rrsp': 0,
      'con_rpp': 0,
+     'union_dues': 0,
+     'donation': 0,
+     'gift': 0,
      'years_can': 45,
      'inc_self_earn': 0,
      'disabled': False,
@@ -74,8 +82,16 @@ On peut voir le profil de chacun des membres du ménage en utilisant
      'months_cerb': 0,
      'student': False,
      'essential_worker': False,
+     'hours_month': None,
+     'dep_senior': False,
+     'home_support_cost': 0,
+     'pension_split': 0,
+     'pension_split_qc': 0,
+     'pension_deduction': 0,
+     'pension_deduction_qc': 0,
      'inc_oas': 0,
      'inc_gis': 0,
+     'inc_ei': 0,
      'inc_social_ass': 0,
      'allow_couple': 0,
      'allow_surv': 0,
@@ -87,7 +103,8 @@ On peut voir le profil de chacun des membres du ménage en utilisant
      'disp_inc': None,
      'fed_return': None,
      'prov_return': None,
-     'payroll': None}
+     'payroll': None
+     'max_split': 0.0}
 
 
 Calcul de l’impôt fédéral
@@ -112,14 +129,29 @@ encore *vars()*
 
 .. parsed-literal::
 
-    {'basic_amount_poor': 13229.0,
+    {'div_elig_factor': 1.38,
+     'div_other_can_factor': 1.15,
+     'div_elig_cred_rate': 0.150198,
+     'div_other_can_cred_rate': 0.090313,
+     'qpip_deduc_rate': 0.43683,
+     'basic_amount_poor': 13229.0,
      'basic_amount_rich': 12298.0,
      'age_cred_amount': 7637.0,
      'min_age_cred': 65,
      'age_cred_exemption': 38508.0,
      'age_cred_claw_rate': 0.15,
      'pension_cred_amount': 2000.0,
+     'pension_cred_min_age_split': 65,
      'disability_cred_amount': 8576.0,
+     'med_exp_nr_cred_max_age': 16,
+     'med_exp_nr_cred_max_claw': 2397.0,
+     'med_exp_nr_cred_rate': 0.03,
+     'donation_frac_net': 0.75,
+     'donation_low_cut': 200.0,
+     'donation_high_cut': 214368.0,
+     'donation_low_rate': 0.15,
+     'donation_med_rate': 0.29,
+     'donation_high_rate': 0.33,
      'rate_non_ref_tax_cred': 0.15,
      'rate_abatment_qc': 0.165,
      'ccb_young_max_age': 5,
@@ -138,6 +170,11 @@ encore *vars()*
      'ccb_rate_2_2ch': 0.057,
      'ccb_rate_2_3ch': 0.08,
      'ccb_rate_2_4ch': 0.095,
+     'med_exp_rate': 0.25,
+     'med_exp_claw_rate': 0.05,
+     'med_exp_claw_cutoff': 28164.0,
+     'med_exp_max': 1272.0,
+     'med_exp_min_work_inc': 3714.0,
      'gst_cred_kids_max_age': 18,
      'gst_cred_claw_rate': 0.05,
      'gst_cred_claw_cutoff': 38507.0,
@@ -152,6 +189,8 @@ encore *vars()*
      'chcare_young': 8000.0,
      'chcare_old': 5000.0,
      'chcare_rate_inc': 0.66666,
+     'ei_max_net_inc': 67636.0,
+     'ei_rate_repay': 0.3,
      'witb_max_age_dep': 18,
      'witb_base_single_qc': 2400,
      'witb_base_couple_qc': 3600,
@@ -184,11 +223,13 @@ encore *vars()*
 
 
 
-On remplit le rapport d’impôt à l’aide de la fonction *file()*.
+On remplit le rapport d’impôt à l’aide de la fonction *tax()*.
 
 .. code:: ipython3
 
-    fed_form.file(hh)
+    from srd import tax
+    tax_form = tax(2020)
+    tax.compute(hh)
 
 On peut visualiser un rapport d’impôt sommaire qui est rattaché à chaque
 personne
@@ -203,13 +244,14 @@ personne
 .. parsed-literal::
 
     {'gross_income': 50000.0,
-     'deductions': 0,
+     'deductions_gross_inc': 0,
      'net_income': 50000.0,
+     'deductions_net_inc': 0,
      'taxable_income': 50000.0,
      'gross_tax_liability': 7580.325,
-     'non_refund_credits': 1984.35,
-     'refund_credits': 923.3358750000001,
-     'net_tax_liability': 4672.639125000001}
+     'non_refund_credits': 2547.804,
+     'refund_credits': 830.365965,
+     'net_tax_liability': 4202.155035}
 
 
 
@@ -223,13 +265,96 @@ personne
 .. parsed-literal::
 
     {'gross_income': 25000.0,
-     'deductions': 0,
+     'deductions_gross_inc': 0,
      'net_income': 25000.0,
-     'taxable_income': 25000.0,
+     'deductions_net_inc': 0,
+     'taxable_income':25000.0,
      'gross_tax_liability': 3750.0,
-     'non_refund_credits': 1984.35,
-     'refund_credits': 291.33225000000004,
-     'net_tax_liability': 1474.3177500000002}
+     'non_refund_credits': 2345.304,
+     'refund_credits': 231.77483999999998,
+     'net_tax_liability': 1172.9211599999999}
+
+
+
+On peut ajouter des enfants au ménage à l'aide de la fonction *add_dependents()*
+
+.. code:: ipython3
+
+    emma = srd.Dependent(age=4, child_care=2000, med_exp=500)
+    alex = srd.Dependent(age=14, school=4000)
+    hh.add_dependent(emma,alex)
+
+
+On peut ensuite calculer le nouveau rapport d’impôt pour les deux adultes de la famille.
+
+.. code:: ipython3
+
+    tax.compute(hh)
+    jean.fed_return
+
+
+
+
+.. parsed-literal::
+
+    {'gross_income': 50000.0,
+     'deductions_gross_inc': 0,
+     'net_income': 50000.0,
+     'deductions_net_inc': 0,
+     'taxable_income': 50000.0,
+     'gross_tax_liability': 7580.325,
+     'non_refund_credits': 2547.804,
+     'refund_credits': 4830.5964650000005,
+     'net_tax_liability': 201.9245349999992}
+
+
+
+.. code:: ipython3
+
+    pauline.fed_return
+
+
+
+
+.. parsed-literal::
+
+    {'gross_income': 25000.0,
+     'deductions_gross_inc': 2000.0,
+     'net_income': 23000.0,
+     'deductions_net_inc': 0,
+     'taxable_income':23000.0,
+     'gross_tax_liability': 3450.0,
+     'non_refund_credits': 2345.304,
+     'refund_credits': 4099.155339999999,
+     'net_tax_liability': -2994.4593399999994}
+
+
+On peut voir les différents attributs du ménage en utilisant encore *vars()*
+
+
+.. code:: ipython3
+
+    vars(hh)
+
+
+
+
+.. parsed-literal::
+
+    {'sp': [<srd.actors.Person at 0x1afccbfb608>,
+      <srd.actors.Person at 0x1afccbfb5c8>],
+     'couple': True,
+     'prov': 'qc',
+     'dep': [<srd.actors.Dependent at 0x1afccd81d08>,
+      <srd.actors.Dependent at 0x1afccd99548>],
+     'nkids_0_6': 1,
+     'nkids_7_16': 1,
+     'nkids_0_17': 2,
+     'nkids_0_18': 2,
+     'n_adults_in_hh': 2,
+     'elig_split': False
+     'nkids_0_5': 1,
+     'nkids_6_17': 1}
 
 
 
@@ -247,8 +372,9 @@ regarder l’impôt fédéral payé si on incrémente les revenus de travail.
     earns = np.linspace(10e3,200e3,100)
     atrs = []
     for earn in earns:
-        jean.inc_earn = earn
-        fed_form.file(hh)
+        jean = srd.Person(age=45,earn=earn)
+        hh = srd.Hhold(jean, prov='qc')
+        tax_form.compute(hh)
         atrs.append(jean.fed_return['net_tax_liability']/jean.fed_return['gross_income'])
 
     plt.figure()
@@ -258,7 +384,7 @@ regarder l’impôt fédéral payé si on incrémente les revenus de travail.
     plt.show()
 
 
-.. image:: output_20_0.png
+.. image:: output_ex1.png
 
 
 On peut aussi faire une expérience ou on change un paramètre du système

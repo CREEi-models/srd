@@ -26,7 +26,7 @@ class template:
         Returns
         -------
         float
-            Montant de la cotisation à l'assurance parental (annuelle)
+            Montant de la cotisation à l'assurance parentale (annuelle)
         """
         if p.inc_work <= self.qualifying_threshold_QPIP:
             p.contrib_qpip = p.contrib_qpip_self = 0
