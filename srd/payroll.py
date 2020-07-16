@@ -1,20 +1,23 @@
-from srd import add_params_as_attr
 import os
-module_dir = os.path.dirname(os.path.dirname(__file__))
 import srpp
 from srd import qpip
 from srd import ei
 import numpy as np
 
+module_dir = os.path.dirname(os.path.dirname(__file__))
+
+
 def create_stub():
-        lines = ['cpp','cpp_supp','qpip','ei']
-        return dict(zip(lines, np.zeros(len(lines))))
+    lines = ['cpp', 'cpp_supp', 'qpip', 'ei']
+    return dict(zip(lines, np.zeros(len(lines))))
+
 
 class payroll:
     """
     Calcul des cotisations sociales.
 
-    Calcul des cotisations sociales provenant de l'assurance emploi, le RQAP (Québec), le RRQ (Québec) ainsi que le RPC.
+    Calcul des cotisations sociales provenant de l'assurance emploi,
+    le RQAP (Québec), le RRQ (Québec) ainsi que le RPC.
 
     Parameters
     ----------
@@ -39,11 +42,11 @@ class payroll:
         """
         for p in hh.sp:
             p.payroll = create_stub()
-            p.payroll['ei'] = self.ei_prog.contrib(p,hh)
-            if hh.prov=='qc':
-                p.payroll['qpip'] = self.qpip_prog.contrib(p,hh)
-            base, supp = self.get_cpp_contrib(p,hh)
-            p.payroll['cpp']  = base
+            p.payroll['ei'] = self.ei_prog.contrib(p, hh)
+            if hh.prov == 'qc':
+                p.payroll['qpip'] = self.qpip_prog.contrib(p, hh)
+            base, supp = self.get_cpp_contrib(p, hh)
+            p.payroll['cpp'] = base
             p.payroll['cpp_supp'] = supp
 
     def get_cpp_contrib(self, p, hh):

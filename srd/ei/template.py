@@ -2,6 +2,7 @@ from srd import add_params_as_attr
 import os
 module_dir = os.path.dirname(os.path.dirname(__file__))
 
+
 class template:
     """
     Programme d'assurance emploi.
@@ -10,7 +11,7 @@ class template:
 
     """
     def __init__(self):
-        add_params_as_attr(self,module_dir+'/ei/params/parameters_2016.csv')
+        add_params_as_attr(self, module_dir + '/ei/params/parameters_2016.csv')
 
     def contrib(self, p, hh):
         """

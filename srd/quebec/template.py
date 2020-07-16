@@ -3,22 +3,24 @@ import os
 import numpy as np
 module_dir = os.path.dirname(os.path.dirname(__file__))
 
+
 def create_return():
-        lines = ['gross_income','deductions_gross_inc','net_income',
-                 'deductions_net_inc', 'taxable_income','gross_tax_liability',
-                 'contributions', 'non_refund_credits','refund_credits',
-                 'net_tax_liability']
-        return dict(zip(lines,np.zeros(len(lines))))
+    lines = ['gross_income', 'deductions_gross_inc', 'net_income',
+             'deductions_net_inc', 'taxable_income', 'gross_tax_liability',
+             'contributions', 'non_refund_credits', 'refund_credits',
+             'net_tax_liability']
+    return dict(zip(lines, np.zeros(len(lines))))
+
 
 class template:
     """
     Gabarit pour l'impôt provincial québécois.
     """
     def __init__(self):
-        add_params_as_attr(self, module_dir + '/quebec/params/measures_2016.csv',delimiter=';')
-        add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2016.csv',delimiter=';')
-        add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2016.csv',delimiter=';')
-        add_schedule_as_attr(self, module_dir + '/quebec/params/health_contrib_2016.csv',delimiter=';')
+        add_params_as_attr(self, module_dir + '/quebec/params/measures_2016.csv')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2016.csv')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2016.csv')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/health_contrib_2016.csv')
 
     def file(self, hh):
         """
@@ -44,9 +46,9 @@ class template:
             self.calc_non_refundable_tax_credits(p, hh)
             self.calc_div_tax_credit(p)
             self.calc_contributions(p, hh)
-            p.prov_return['net_tax_liability'] = max(0, p.prov_return['gross_tax_liability']
-                 + p.prov_return['contributions'] - p.prov_return['non_refund_credits']
-                 - p.qc_div_tax_credit)
+            p.prov_return['net_tax_liability'] = max(0,
+                p.prov_return['gross_tax_liability'] + p.prov_return['contributions']
+                - p.prov_return['non_refund_credits'] - p.qc_div_tax_credit)
             self.calc_refundable_tax_credits(p, hh)
             p.prov_return['net_tax_liability'] -= p.prov_return['refund_credits']
 
@@ -80,7 +82,7 @@ class template:
         p: Person
             instance de la classe Person
         """
-        p.prov_return['net_income'] =  max(0, p.prov_return['gross_income']
+        p.prov_return['net_income'] = max(0, p.prov_return['gross_income']
                                             - p.prov_return['deductions_gross_inc'])
 
     def calc_taxable_income(self, p):
@@ -96,7 +98,7 @@ class template:
             instance de la classe Person
         """
         p.prov_return['taxable_income'] = max(0, p.prov_return['net_income']
-                                           - p.prov_return['deductions_net_inc'])
+                                                - p.prov_return['deductions_net_inc'])
 
     def calc_deduc_gross_income(self, p):
         """
@@ -112,9 +114,9 @@ class template:
         p.qc_work_deduc = self.work_deduc(p)
         p.qc_cpp_qpip_deduction = self.cpp_qpip_deduction(p)
         p.prov_return['deductions_gross_inc'] = (p.con_rrsp + p.con_rpp
-                                               + p.inc_gis + p.qc_work_deduc
-                                               + p.pension_deduction_qc
-                                               + p.qc_cpp_qpip_deduction)
+                                                 + p.inc_gis + p.qc_work_deduc
+                                                 + p.pension_deduction_qc
+                                                 + p.qc_cpp_qpip_deduction)
 
     def work_deduc(self, p):
         """
@@ -127,10 +129,9 @@ class template:
         """
         work_earn = p.inc_work
         if p.inc_work > 0:
-            deduc = min(work_earn * self.work_deduc_rate, self.work_deduc_max)
-        else :
-            deduc = 0
-        return deduc
+            return min(work_earn * self.work_deduc_rate, self.work_deduc_max)
+        else:
+           return 0
 
     def cpp_qpip_deduction(self, p):
         """
@@ -314,7 +315,7 @@ class template:
             return 0
 
         clawback = self.exp_work_claw_rate * max(0, p.inc_work - self.exp_work_cut_inc)
-        adj_tax_liability = max(0, p.prov_return['gross_tax_liability'] # l. 39 TP-1.D
+        adj_tax_liability = max(0, p.prov_return['gross_tax_liability']  # l. 39 TP-1.D
                                   - self.nrtc_rate * (self.nrtc_base + p.qc_age_alone_pension))
 
         def calc_amount(max_work_inc, min_amount=0):
@@ -478,11 +479,11 @@ class template:
         l_all_creds = [p.qc_chcare, p.qc_witb, p.qc_home_support,
                        p.qc_senior_assist, p.qc_med_exp, p.qc_ccap,
                        p.qc_solidarity]
-        l_existing_creds = [cred for cred in l_all_creds if cred] # removes credits not implemented
+        l_existing_creds = [cred for cred in l_all_creds if cred]  # removes credits not implemented
 
         p.prov_return['refund_credits'] = sum(l_existing_creds)
 
-    def chcare(self ,p, hh):
+    def chcare(self, p, hh):
         """
         Crédit pour frais de garde.
 
@@ -703,7 +704,7 @@ class template:
                          + (hh.nkids_0_17 - 3) * self.ccap_kid4p_max - clawback)
 
         if hh.couple and hh.sp[0].male == hh.sp[1].male:
-            return amount / 2 # same sex couples get 1/2 each
+            return amount / 2  # same sex couples get 1/2 each
         else:
             return amount
 

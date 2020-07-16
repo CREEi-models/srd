@@ -1,8 +1,6 @@
-import numpy as np
 from copy import deepcopy
-
-
 # INITIALIZE INDIVIDUALS AND HOUSEHOLDS #
+
 
 class Person:
     """
@@ -49,7 +47,7 @@ class Person:
     gift: float
         dons de biens culturels et écosensibles
     years_can: int
-        nombre d'années au Canada lorsque OAS est demandé
+        nombre d'années au Canada lorsque la PSV est demandé
     disabled: boolean
         statut d'invalidité
     cqppc: float
@@ -61,7 +59,7 @@ class Person:
     asset: float
         valeur marchande des actifs
     oas_years_post: int
-        nombre d'années de report pour la pension OAS (après 65 ans)
+        nombre d'années de report pour la pension la PSV (après 65 ans)
     months_cerb_cesb: int
         nombre de mois pour lesquels la CPU(E) est demandée
     essential_worker: boolean
@@ -86,12 +84,12 @@ class Person:
         self.attach_prev_work_inc(prev_inc_work)
         self.inc_rpp = rpp
         self.inc_cpp = cpp
-        self.cap_gains = max(0, cap_gains) # or should we just trust user?
+        self.cap_gains = max(0, cap_gains)  # or should we just trust user?
         self.cap_losses = cap_losses
         self.cap_gains_exempt = cap_gains_exempt
         self.inc_othtax = othtax
         self.inc_othntax = othntax
-        self.div_elig= div_elig
+        self.div_elig = div_elig
         self.div_other_can = div_other_can
         self.inc_rrsp = inc_rrsp
         self.con_rrsp = con_rrsp
@@ -99,19 +97,19 @@ class Person:
         self.union_dues = union_dues
         self.donation = donation
         self.gift = gift
-        self.years_can = age if years_can is None else years_can # number of years in Canada (max = 40)
+        self.years_can = age if years_can is None else years_can  # number of years in Canada (max = 40)
         self.disabled = disabled
         self.cqppc = cqppc
         self.widow = widow
         self.med_exp = med_exp
-        self.ndays_chcare_k1 = ndays_chcare_k1 # should be the kid with the most days,
-        self.ndays_chcare_k2 = ndays_chcare_k2 # second kid with most days, in same order for both spouses
+        self.ndays_chcare_k1 = ndays_chcare_k1  # should be the kid with the most days,
+        self.ndays_chcare_k2 = ndays_chcare_k2  # second kid with most days, in same order for both spouses
         self.asset = asset
         self.oas_years_post = oas_years_post
         self.compute_months_cerb_cesb(months_cerb_cesb, student)
         self.student = student
         self.essential_worker = essential_worker
-        self.hours_month = hours_month # could enter list of hours for ei
+        self.hours_month = hours_month  # could enter list of hours for ei
         self.dep_senior = dep_senior
         self.home_support_cost = home_support_cost
         self.pension_split = 0
@@ -237,7 +235,7 @@ class Person:
             if student:
                 self.months_cesb = months_cerb_cesb
             else:
-                self.months_cerb = months_cerb_cesb # assuming that last year's work income > 5000
+                self.months_cerb = months_cerb_cesb  # assuming that last year's work income > 5000
 
     def copy(self):
         """
@@ -280,7 +278,7 @@ class Dependent:
     """
 
     def __init__(self, age, disa=None, child_care=0, school=None,
-                home_care=None, med_exp=0):
+                 home_care=None, med_exp=0):
         self.age = age
         self.disa = disa
         self.child_care = child_care
@@ -412,10 +410,7 @@ class Hhold:
         float
             Revenu familial total après impôt
         """
-        try:
-            return sum([p.after_tax_inc for p in self.sp])
-        except:
-            return None
+        return sum([p.after_tax_inc for p in self.sp])
 
     @property
     def fam_disp_inc(self):
@@ -429,10 +424,7 @@ class Hhold:
         float
             Revenu familial disponible après impôt et cotisations.
         """
-        try:
-            return sum([p.disp_inc for p in self.sp])
-        except:
-            return None
+        return sum([p.disp_inc for p in self.sp])
 
     @property
     def child_care_exp(self):
@@ -446,7 +438,7 @@ class Hhold:
         """
         return sum([d.child_care for d in self.dep])
 
-    def add_dependent(self, *dependents): # necessary?
+    def add_dependent(self, *dependents):  # necessary?
         """
         Fonction pour ajouter un ou plusieurs dépendant(s).
 
@@ -496,7 +488,7 @@ class Hhold:
         Fonction qui produit une copie des attributs du ménage
         et des personnes dans le ménage.
         """
-        d_attr_not_sp = {k: v for k,v in vars(self).items() if k != 'sp'}
+        d_attr_not_sp = {k: v for k, v in vars(self).items() if k != 'sp'}
         for p in self.sp:
             p.copy()
         self.temp = deepcopy(d_attr_not_sp)

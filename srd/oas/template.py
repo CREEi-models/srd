@@ -1,6 +1,6 @@
-from srd import add_params_as_attr
 import os
 module_dir = os.path.dirname(os.path.dirname(__file__))
+
 
 class template:
     """
@@ -21,7 +21,7 @@ class template:
         """
         for p in hh.sp:
             self.eligibility(p, hh)
-        if not [p for p in hh.sp if p.elig_oas]: # eliminate non-eligible hholds
+        if not [p for p in hh.sp if p.elig_oas]:  # eliminate non-eligible hholds
             return
 
         for p in hh.sp:
@@ -83,7 +83,8 @@ class template:
         hh: Hhold
             instance de la classe Hhold
         """
-        p.fed_return = {k: 0 for k in ['gross_income','deductions_gross_inc','net_income']}
+        p.fed_return = {k: 0 for k in ['gross_income', 'deductions_gross_inc',
+                                       'net_income']}
         self.federal.calc_gross_income(p)
         self.federal.calc_deduc_gross_income(p, hh)
         self.federal.calc_net_income(p)
@@ -148,7 +149,7 @@ class template:
             return p.oas
         else:
             return max(0, (p.oas - self.oas_claw_rate
-            * (p.fed_return['net_income'] - self.oas_claw_cutoff)) / (1 + self.oas_claw_rate))
+                * (p.fed_return['net_income'] - self.oas_claw_cutoff)) / (1 + self.oas_claw_rate))
 
     def gis(self, p, hh, income, low_high):
         """
@@ -203,7 +204,7 @@ class template:
         """
         allow = self.compute_allowance(p, hh, self.gis_full_high)
         claw_bonus = self.bonus_claw_rate * max(0, hh.net_inc_exempt - self.bonus_exempt_single)
-        return max(0, allow + self.allow_surv_bonus *p.sq_factor - claw_bonus)
+        return max(0, allow + self.allow_surv_bonus * p.sq_factor - claw_bonus)
 
     def couple_allowance(self, p, hh):
         """

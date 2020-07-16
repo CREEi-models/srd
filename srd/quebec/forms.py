@@ -1,9 +1,9 @@
 import os
-import numpy as np
 from srd import add_params_as_attr, add_schedule_as_attr
 from srd.quebec import template
 
 module_dir = os.path.dirname(os.path.dirname(__file__))
+
 
 # wrapper to pick correct year
 def form(year):
@@ -19,17 +19,18 @@ def form(year):
     class instance
         Une instance du formulaire pour l'année sélectionnée.
     """
-    if year==2016:
+    if year == 2016:
         p = form_2016()
-    if year==2017:
+    if year == 2017:
         p = form_2017()
-    if year==2018:
+    if year == 2018:
         p = form_2018()
-    if year==2019:
+    if year == 2019:
         p = form_2019()
-    if year==2020:
+    if year == 2020:
         p = form_2020()
     return p
+
 
 class form_2016(template):
     """
@@ -40,7 +41,7 @@ class form_2016(template):
         add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2016.csv')
         add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2016.csv')
         add_schedule_as_attr(self, module_dir + '/quebec/params/health_contrib_2016.csv')
-        return
+
 
 class form_2017(form_2016):
     """
@@ -97,6 +98,7 @@ class form_2017(form_2016):
                     + donation_high_inc * self.nrtc_donation_high_rate
                     + donation_low_inc * self.nrtc_donation_med_rate)
 
+
 class form_2018(form_2017):
     """
     Rapport d'impôt de 2018.
@@ -123,6 +125,7 @@ class form_2018(form_2017):
         clawback = self.senior_assist_claw_rate * max(0, hh.fam_net_inc_prov - cutoff)
 
         return max(0, amount - clawback) / (1 + hh.couple)
+
 
 class form_2019(form_2018):
     """

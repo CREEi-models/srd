@@ -1,11 +1,13 @@
 import os
-module_dir = os.path.dirname(os.path.dirname(__file__))
 import numpy as np
 from srd import add_params_as_attr
 
+module_dir = os.path.dirname(os.path.dirname(__file__))
+
 def create_stub():
-        lines = ['cerb', 'cesb', 'iprew']
-        return dict(zip(lines, np.zeros(len(lines))))
+    lines = ['cerb', 'cesb', 'iprew']
+    return dict(zip(lines, np.zeros(len(lines))))
+
 
 class policy:
     """
@@ -22,7 +24,8 @@ class policy:
     iiprew: boolean
         PIRTE est appliquée
     icovid_gst: boolean
-        majoration du crédit pour la taxe sur les produits et services/taxe de vente harmonisée (TPS/TVH)
+        majoration du crédit pour la taxe sur les produits
+        et services/taxe de vente harmonisée (TPS/TVH)
     icovid_ccb: boolean
         majoration de l'allocation canadienne pour enfants (ACE/CCB)
     iei: boolean
@@ -56,6 +59,7 @@ class policy:
         """
         return any(v is True for k, v in vars(self).items() if k != 'iei')
 
+
 class programs:
     """
     Calcul des prestations d'urgence liées à la covid-19.
@@ -70,7 +74,7 @@ class programs:
         instance de la classe policy
     """
     def __init__(self, policy):
-        add_params_as_attr(self, module_dir + '/covid/covid.csv',delimiter=';')
+        add_params_as_attr(self, module_dir + '/covid/covid.csv')
         self.policy = policy
 
     def compute(self, hh):
@@ -90,7 +94,7 @@ class programs:
             if self.policy.icesb:
                 p.inc_cesb = self.compute_cesb(p, hh)
                 p.covid['cesb'] = p.inc_cesb
-            if self.policy.iiprew and hh.prov=='qc':
+            if self.policy.iiprew and hh.prov == 'qc':
                 p.inc_iprew = self.compute_iprew(p)
                 p.covid['iprew'] = p.inc_iprew
 

@@ -1,10 +1,9 @@
-from copy import deepcopy
 import numpy as np
 from srd import federal, oas, quebec, payroll, assistance, covid, ei, Person, Hhold, Dependent
-from itertools import product, chain
+from itertools import product
 import pandas as pd
-import swifter
 from multiprocessing import cpu_count, Pool
+
 
 class tax:
     """
@@ -39,9 +38,9 @@ class tax:
 
         if ipayroll:
             self.payroll = payroll(year)
-        if policy.some_measures and year==2020:
+        if policy.some_measures and year == 2020:
             self.covid = covid.programs(policy)
-        if policy.iei and year==2020:
+        if policy.iei and year == 2020:
             self.ei = ei.program(year)
         if ifed:
             self.federal = federal.form(year, policy)
@@ -75,7 +74,7 @@ class tax:
         Hhold
             instance de la classe Hhold
         """
-        if not hh.elig_split or (n_points==0):
+        if not hh.elig_split or (n_points == 0):
             self.compute_all(hh)
             return hh
 
@@ -87,7 +86,7 @@ class tax:
 
             desired_transfer = (hh.sp[0].inc_tot - hh.sp[1].inc_tot) / 2
             transfer = np.clip(desired_transfer, - hh.sp[1].max_split,
-                                hh.sp[0].max_split)
+                               hh.sp[0].max_split)
             self.compute_with_transfer(hh, transfer)
 
             if hh.fam_disp_inc > fam_disp_inc_max:
@@ -143,12 +142,12 @@ class tax:
             instance de la classe Hhold
         """
         if self.ipayroll:
-            self.compute_payroll(hh) # put payroll before oas
+            self.compute_payroll(hh)  # put payroll before oas
         if self.ioas:
             self.compute_oas(hh)
-        if self.policy.some_measures and self.year==2020:
+        if self.policy.some_measures and self.year == 2020:
             self.compute_covid(hh)
-        if self.policy.iei and self.year==2020:
+        if self.policy.iei and self.year == 2020:
             self.compute_ei(hh)
         if self.ifed:
             self.compute_federal(hh)
@@ -158,7 +157,7 @@ class tax:
             self.compute_ass(hh)
         self.disp_inc(hh)
 
-    def compute_oas(self,hh):
+    def compute_oas(self, hh):
         """
         Calcul des prestations de PSV et SRG.
 
@@ -169,7 +168,7 @@ class tax:
         """
         self.oas.file(hh)
 
-    def compute_federal(self,hh):
+    def compute_federal(self, hh):
         """
         Calcul de l'impôt fédéral.
 
@@ -179,8 +178,8 @@ class tax:
             instance de la classe Hhold
         """
         self.federal.file(hh)
-        return
-    def compute_prov(self,hh):
+
+    def compute_prov(self, hh):
         """
         Calcul de l'impôt provincial.
 
@@ -190,8 +189,8 @@ class tax:
             instance de la classe Hhold
         """
         self.prov.file(hh)
-        return
-    def compute_payroll(self,hh):
+
+    def compute_payroll(self, hh):
         """
         Calcul des cotisations sociales.
 
@@ -201,7 +200,7 @@ class tax:
             instance de la classe Hhold
         """
         self.payroll.compute(hh)
-        return
+
     def compute_covid(self, hh):
         """
         Calcul des prestations canadiennes d'urgences (PCU et PCUE)
@@ -238,7 +237,7 @@ class tax:
         for p in hh.sp:
             p.inc_social_ass = self.ass.apply(hh)
 
-    def compute_after_tax_inc(self,hh):
+    def compute_after_tax_inc(self, hh):
         """
         Calcul du revenu après impôt fédéral et provincial.
 
@@ -252,7 +251,7 @@ class tax:
                 after_tax_inc -= p.prov_return['net_tax_liability']
             p.after_tax_inc = after_tax_inc
 
-    def disp_inc(self,hh):
+    def disp_inc(self, hh):
         """
         Calcul du revenu disponible après impôt, cotisations (sociale et REER) et aide sociale.
 
@@ -279,15 +278,15 @@ class incentives:
         self.set_cases()
         if case_mode:
             self.init_hh()
-        else :
+        else:
             self.load_hh(data_file)
         self.set_hours()
         self.set_covid()
         self.set_tax_system()
         self.multiprocessing = multiprocessing
-        return
+
     def set_cases(self, icouple=True, isp_work=True, ikids=True,
-                  iessential=True, insch=True, wages=np.linspace(1,5,10)):
+                  iessential=True, insch=True, wages=np.linspace(1, 5, 10)):
         self.icouple = icouple
         self.isp_work = isp_work
         self.ikids = ikids
@@ -296,45 +295,47 @@ class incentives:
         self.wages = wages
         l_index = []
         if self.icouple:
-            l_index.append(['single','couple'])
+            l_index.append(['single', 'couple'])
             if self.isp_work:
-                l_index.append([True,False])
-            else :
+                l_index.append([True, False])
+            else:
                 l_index.append([False])
-        else :
+        else:
             # for couple
             l_index.append(['single'])
             # for sp_work
             l_index.append([False])
         if self.ikids:
             l_index.append([0,1,2])
-        else :
+        else:
             l_index.append([0])
         if self.iessential:
             l_index.append([True,False])
-        else :
+        else:
             l_index.append([False])
         if self.insch:
             l_index.append([True,False])
-        else :
+        else:
             l_index.append([False])
         l_index.append(wages)
         cases = list(product(*l_index))
         cases = pd.DataFrame(index=pd.MultiIndex.from_tuples(cases))
-        cases.index.names=['couple','sp_work', 'nkids',  'essential', 'student', 'wage_multiple']
+        cases.index.names = ['couple', 'sp_work', 'nkids',  'essential',
+                             'student', 'wage_multiple']
         to_drop = (cases.index.get_level_values(0)=='single') & (cases.index.get_level_values('sp_work')==True)
-        cases = cases.loc[to_drop==False,:]
+        cases = cases.loc[to_drop==False, :]
         self.cases = cases
 
-    def set_hours(self,nh=51,maxh=50,dh=10,weeks_per_year=52.1,hours_full=40):
+    def set_hours(self, nh=51, maxh=50, dh=10, weeks_per_year=52.1,
+                  hours_full=40):
         self.nh = nh
         self.maxh = maxh
-        self.gridh = np.linspace(0,self.maxh,self.nh)
+        self.gridh = np.linspace(0,self.maxh, self.nh)
         self.dh = dh
         self.weeks_per_year = weeks_per_year
         self.hours_full = hours_full
 
-    def set_covid(self,months_pre=3,months_covid=4):
+    def set_covid(self, months_pre=3, months_covid=4):
         self.months_pre = months_pre
         self.months_covid = months_covid
         self.months_post = 12 - months_pre - months_covid
@@ -342,12 +343,12 @@ class incentives:
         self.share_pre = self.months_pre * 4 / self.weeks_per_year
         self.share_post = self.months_post * 4 / self.weeks_per_year
 
-    def set_wages(self,minwage=13.1,avgwage=25.0):
+    def set_wages(self,minwage=13.1, avgwage=25.0):
         self.minwage = minwage
         self.avgwage = avgwage
 
-    def set_tax_system(self,tax_system=None):
-        if tax_system != None:
+    def set_tax_system(self, tax_system=None):
+        if tax_system is not None:
             self.tax_system = tax_system
         else :
             self.tax_system = tax(self.year,iass=False)
@@ -356,34 +357,36 @@ class incentives:
         self.cases['hhold'] = None
         for i in self.cases.index:
             p = Person(age=45, essential_worker=i[3], student=i[4])
-            hh = Hhold(p,prov='qc')
-            if i[0]=='couple':
+            hh = Hhold(p, prov='qc')
+            if i[0] == 'couple':
                 if i[1]:
                     sp_earn = self.avgwage * self.hours_full * 52.1
-                else :
+                else:
                     sp_earn = 0.0
                 sp = Person(age=45,earn=sp_earn)
                 hh.sp.append(sp)
-            if i[2]>0:
+            if i[2] > 0:
                 for k in range(i[2]):
                     d = Dependent(age=3)
                     hh.dep.append(d)
             self.cases.loc[i,'hhold'] = hh
-        return
+
     def load_hh(self, file):
         if isinstance(file, pd.DataFrame):
             self.cases = file
         else:
             self.cases = pd.read_pickle(file)
         self.cases['couple'] = np.where(self.cases['couple'],'couple','single')
-        self.cases['sp_work'] = self.cases['s_inc_earn']>0.0
+        self.cases['sp_work'] = self.cases['s_inc_earn'] > 0
         self.cases['nkids'] = np.where(self.cases['n_kids']>2,2,self.cases['n_kids'])
         self.cases['essential'] = self.cases['r_essential_worker']
         self.cases['student'] = self.cases['r_student']
         self.cases['wage_multiple'] = self.cases['r_wage']/self.minwage
-        self.cases['r_hours_worked_week'] = self.cases['r_hours_worked']/50
-        self.cases['s_hours_worked_week'] = self.cases['s_hours_worked']/50
-        self.cases = self.cases.set_index(['couple','sp_work','nkids','essential','student','wage_multiple'])
+        self.cases['r_hours_worked_week'] = self.cases['r_hours_worked'] / 50
+        self.cases['s_hours_worked_week'] = self.cases['s_hours_worked'] / 50
+        self.cases = self.cases.set_index(['couple', 'sp_work', 'nkids',
+                                           'essential', 'student',
+                                           'wage_multiple'])
 
     def map_dispinc(self, row):
         """
@@ -411,7 +414,7 @@ class incentives:
         self.tax_system.disp_inc(row['hhold'])
         return row['hhold'].fam_disp_inc
 
-    def set_track_fed(self,attributes=[]):
+    def set_track_fed(self, attributes=[]):
         """ Fonction qui permet de sortir des éléments du rapport d'impôt fédéral
 
         Keyword Arguments:
@@ -419,7 +422,7 @@ class incentives:
         """
         self.fed_track = attributes
 
-    def set_track_prov(self,attributes=[]):
+    def set_track_prov(self, attributes=[]):
         """ Fonction qu permet de sortir des éléments du rapport d'impôt du Québec
 
         Keyword Arguments:
@@ -427,7 +430,7 @@ class incentives:
         """
         self.prov_track = attributes
 
-    def map_chunk(self,df):
+    def map_chunk(self, df):
         return df.apply(self.map_dispinc,axis=1)
 
     def get_dispinc(self,h,ifed=False,iprov=False):
@@ -436,7 +439,7 @@ class incentives:
         if self.case_mode:
             results['hours_pre'] = self.hours_full * self.weeks_per_year * self.share_pre
             results['hours_post'] = self.hours_full * self.weeks_per_year * self.share_pre
-        else :
+        else:
             results['hours_pre'] = results['r_hours_worked_week'] * self.weeks_per_year * self.share_pre
             results['hours_post'] = results['r_hours_worked_week'] *self.weeks_per_year * self.share_post
         results['earn_pre'] = results['hours_pre'] * results['wage']
@@ -461,13 +464,13 @@ class incentives:
                 results['prov_'+attr] = [hh.sp[0].prov_return[attr] for hh in results['hhold']]
         return results
 
-    def get_one_emtr(self,h):
+    def get_one_emtr(self, h):
         work_base = self.get_dispinc(h)
         work_more = self.get_dispinc(h+self.dh)
         temi = 1.0 - (work_more['dispinc'] - work_base['dispinc'])/(work_more['earn'] - work_base['earn'])
         return temi
 
-    def get_one_ptr(self,h):
+    def get_one_ptr(self, h):
         work_base = self.get_dispinc(0)
         work_more = self.get_dispinc(h)
         tepi = 1.0 - (work_more['dispinc'] - work_base['dispinc'])/(work_more['earn'] - work_base['earn'])

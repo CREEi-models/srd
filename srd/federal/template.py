@@ -1,14 +1,14 @@
-from srd import add_params_as_attr, add_schedule_as_attr
 import os
-import sys
 import numpy as np
 module_dir = os.path.dirname(os.path.dirname(__file__))
 
+
 def create_return():
-        lines = ['gross_income','deductions_gross_inc', 'net_income',
-                 'deductions_net_inc', 'taxable_income', 'gross_tax_liability',
-                 'non_refund_credits', 'refund_credits', 'net_tax_liability']
-        return dict(zip(lines,np.zeros(len(lines))))
+    lines = ['gross_income', 'deductions_gross_inc', 'net_income',
+             'deductions_net_inc', 'taxable_income', 'gross_tax_liability',
+             'non_refund_credits', 'refund_credits', 'net_tax_liability']
+    return dict(zip(lines, np.zeros(len(lines))))
+
 
 class template:
     """
@@ -38,9 +38,10 @@ class template:
             self.calc_tax(p)
             self.calc_non_refundable_tax_credits(p, hh)
             self.calc_div_tax_credit(p)
-            p.fed_return['net_tax_liability'] = max(0.0, p.fed_return['gross_tax_liability']
-                - p.fed_return['non_refund_credits'] - p.fed_div_tax_credit)
-            self.calc_refundable_tax_credits(p,hh)
+            p.fed_return['net_tax_liability'] = max(0,
+                p.fed_return['gross_tax_liability'] - p.fed_return['non_refund_credits']
+                - p.fed_div_tax_credit)
+            self.calc_refundable_tax_credits(p, hh)
             p.fed_return['net_tax_liability'] -= p.fed_return['refund_credits']
 
     def calc_gross_income(self, p):
@@ -72,10 +73,10 @@ class template:
         p: Person
             instance de la classe Person
         """
-        p.fed_return['net_income'] =  max(0, p.fed_return['gross_income']
-                                          - p.fed_return['deductions_gross_inc'])
+        p.fed_return['net_income'] = max(0, p.fed_return['gross_income']
+                                           - p.fed_return['deductions_gross_inc'])
 
-    def calc_taxable_income(self,p):
+    def calc_taxable_income(self, p):
         """
         Fonction qui calcule le revenu imposable au sens de l'impôt.
 
@@ -107,11 +108,11 @@ class template:
         p.fed_cpp_deduction = self.cpp_deduction(p)
         p.fed_qpip_deduction = self.qpip_deduction(p)
         p.fed_return['deductions_gross_inc'] = (p.con_rrsp + p.con_rpp
-                                              + p.inc_gis + p.fed_chcare
-                                              + p.pension_deduction
-                                              + p.union_dues
-                                              + p.fed_cpp_deduction
-                                              + p.fed_qpip_deduction)
+                                                + p.inc_gis + p.fed_chcare
+                                                + p.pension_deduction
+                                                + p.union_dues
+                                                + p.fed_cpp_deduction
+                                                + p.fed_qpip_deduction)
 
     def chcare(self, p, hh):
         """
@@ -162,7 +163,6 @@ class template:
         except AttributeError as e:
             msg = 'le ménage doit être passé dans payroll pour obtenir les contributions cpp/rrq et rqap'
             raise Exception(msg) from e
-
 
     def qpip_deduction(self, p):
         """
@@ -520,7 +520,7 @@ class template:
         if hh.nkids_0_17 == 0:
             return 0
         if hh.couple and p.male and hh.sp[0].male != hh.sp[1].male:
-            return 0 # heterosexual couple: mother receives benefit
+            return 0  # heterosexual couple: mother receives benefit
         else:
             amount = hh.nkids_0_5 * self.ccb_young + hh.nkids_6_17 * self.ccb_old
             claw_num_ch = min(hh.nkids_0_5 + hh.nkids_6_17, self.ccb_max_num_ch)
@@ -530,7 +530,7 @@ class template:
                          self.ccb_rate_1_3ch, self.ccb_rate_1_4ch]
             d_rates_1 = {k+1: v for k, v in enumerate(l_rates_1)}
             l_rates_2 = [self.ccb_rate_2_1ch, self.ccb_rate_2_2ch,
-                        self.ccb_rate_2_3ch, self.ccb_rate_2_4ch]
+                         self.ccb_rate_2_3ch, self.ccb_rate_2_4ch]
             d_rates_2 = {k+1: v for k, v in enumerate(l_rates_2)}
             if iclaw:
                 if adj_fam_net_inc > self.ccb_cutoff_2:
@@ -540,14 +540,14 @@ class template:
                     clawback = d_rates_1[claw_num_ch] * (adj_fam_net_inc - self.ccb_cutoff_1)
                 else:
                     clawback = 0
-            else :
+            else:
                 clawback = 0
             if hh.couple and hh.sp[0].male == hh.sp[1].male:
-                return max(0, amount - clawback) / 2 # same sex couples get 1/2 each
+                return max(0, amount - clawback) / 2  # same sex couples get 1/2 each
             else:
                 return max(0, amount - clawback)
 
-    def witb(self,p,hh):
+    def witb(self, p, hh):
         """
         Prestation fiscale pour le revenu de travail (PFRT/WITB). À partir de 2019,
         cela devient l'Allocation canadienne pour les travailleurs (ACT/CWB).
@@ -618,7 +618,7 @@ class template:
                 exemption = self.witb_dis_exemption_couple_dep_qc if hh.nkids_0_18 else self.witb_dis_exemption_couple_qc
 
         return self.compute_witb_witbds(p, hh, rate, self.witb_dis_base_qc,
-                                         self.witb_dis_max_qc, claw_rate, exemption)
+                                        self.witb_dis_max_qc, claw_rate, exemption)
 
     def compute_witb_witbds(self, p, hh, rate, base, witb_max, claw_rate,
                             exemption):
@@ -673,7 +673,7 @@ class template:
         if p.inc_work < self.med_exp_min_work_inc:
             return 0
 
-        base = min(self.med_exp_max, self.med_exp_rate * p.fed_med_exp_nr_cred) # note line 215 could be added (0 at the moment)
+        base = min(self.med_exp_max, self.med_exp_rate * p.fed_med_exp_nr_cred)  # note line 215 could be added (0 at the moment)
         clawback = self.med_exp_claw_rate * max(0, hh.fam_net_inc_fed - self.med_exp_claw_cutoff)
         return max(0, base - clawback)
 
@@ -700,7 +700,7 @@ class template:
 
         amount = self.gst_cred_base
         if hh.couple or hh.nkids_0_18 >= 1:
-            amount += self.gst_cred_base + hh.nkids_0_18 * self.gst_cred_other # single with kids works same as couple
+            amount += self.gst_cred_base + hh.nkids_0_18 * self.gst_cred_other  # single with kids works same as couple
         else:
             amount += min(self.gst_cred_other,
                           self.gst_cred_rate * max(0, hh.fam_net_inc_fed - self.gst_cred_base_amount))
