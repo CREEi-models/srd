@@ -36,10 +36,10 @@ class form_2016(template):
     Rapport d'impôt de 2016.
     """
     def __init__(self):
-        add_params_as_attr(self, module_dir + '/quebec/params/measures_2016.csv',delimiter=';')
-        add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2016.csv',delimiter=';')
-        add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2016.csv',delimiter=';')
-        add_schedule_as_attr(self, module_dir + '/quebec/params/health_contrib_2016.csv',delimiter=';')
+        add_params_as_attr(self, module_dir + '/quebec/params/measures_2016.csv')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2016.csv')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2016.csv')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/health_contrib_2016.csv')
         return
 
 class form_2017(form_2016):
@@ -47,9 +47,9 @@ class form_2017(form_2016):
     Rapport d'impôt de 2017.
     """
     def __init__(self):
-        add_params_as_attr(self, module_dir + '/quebec/params/measures_2017.csv',delimiter=';')
-        add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2017.csv',delimiter=';')
-        add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2017.csv',delimiter=';')
+        add_params_as_attr(self, module_dir + '/quebec/params/measures_2017.csv')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2017.csv')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2017.csv')
 
     def calc_contributions(self, p, hh):
         """
@@ -102,9 +102,9 @@ class form_2018(form_2017):
     Rapport d'impôt de 2018.
     """
     def __init__(self):
-        add_params_as_attr(self, module_dir + '/quebec/params/measures_2018.csv',delimiter=';')
-        add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2018.csv',delimiter=';')
-        add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2018.csv',delimiter=';')
+        add_params_as_attr(self, module_dir + '/quebec/params/measures_2018.csv')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2018.csv')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2018.csv')
 
     def senior_assist(self, p, hh):
         # see docstring in template
@@ -129,9 +129,9 @@ class form_2019(form_2018):
     Rapport d'impôt de 2019.
     """
     def __init__(self):
-        add_params_as_attr(self, module_dir + '/quebec/params/measures_2019.csv',delimiter=';')
-        add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2019.csv',delimiter=';')
-        add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2019.csv',delimiter=';')
+        add_params_as_attr(self, module_dir + '/quebec/params/measures_2019.csv')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2019.csv')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2019.csv')
 
     def calc_contributions(self, p, hh):
         """
@@ -155,6 +155,6 @@ class form_2020(form_2019):
     Rapport d'impôt de 2020.
     """
     def __init__(self):
-        add_params_as_attr(self, module_dir + '/quebec/params/measures_2020.csv',delimiter=';')
-        add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2020.csv',delimiter=';')
-        add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2020.csv',delimiter=';')
+        add_params_as_attr(self, module_dir + '/quebec/params/measures_2020.csv')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2020.csv')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2020.csv')

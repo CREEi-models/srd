@@ -1,5 +1,6 @@
 from srd import add_params_as_attr, add_schedule_as_attr
 import os
+import sys
 import numpy as np
 module_dir = os.path.dirname(os.path.dirname(__file__))
 
@@ -156,7 +157,12 @@ class template:
         float
             Montant de la déduction
         """
-        return p.contrib_cpp_self / 2
+        try:
+            return p.contrib_cpp_self / 2
+        except AttributeError as e:
+            msg = 'le ménage doit être passé dans payroll pour obtenir les contributions cpp/rrq et rqap'
+            raise Exception(msg) from e
+
 
     def qpip_deduction(self, p):
         """

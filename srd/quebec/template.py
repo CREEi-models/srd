@@ -227,7 +227,7 @@ class template:
         float
             Montant du recouvrement
         """
-        return max(self.nrtc_claw_rate*(hh.fam_net_inc_prov - self.nrtc_claw_cutoff), 0)
+        return max(0, self.nrtc_claw_rate*(hh.fam_net_inc_prov - self.nrtc_claw_cutoff))
 
     def get_age_cred(self, p):
         """
@@ -315,7 +315,7 @@ class template:
 
         clawback = self.exp_work_claw_rate * max(0, p.inc_work - self.exp_work_cut_inc)
         adj_tax_liability = max(0, p.prov_return['gross_tax_liability'] # l. 39 TP-1.D
-                                - self.nrtc_rate * (self.nrtc_base + p.qc_age_alone_pension))
+                                  - self.nrtc_rate * (self.nrtc_base + p.qc_age_alone_pension))
 
         def calc_amount(max_work_inc, min_amount=0):
             """
