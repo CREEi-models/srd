@@ -1,11 +1,13 @@
 import os
-module_dir = os.path.dirname(os.path.dirname(__file__))
 import numpy as np
 from srd import add_params_as_attr
 
+module_dir = os.path.dirname(os.path.dirname(__file__))
+
 def create_stub():
-        lines = ['cerb', 'cesb', 'iprew']
-        return dict(zip(lines, np.zeros(len(lines))))
+    lines = ['cerb', 'cesb', 'iprew']
+    return dict(zip(lines, np.zeros(len(lines))))
+
 
 class policy:
     """
@@ -22,17 +24,21 @@ class policy:
     iiprew: boolean
         PIRTE est appliquée
     icovid_gst: boolean
-        majoration du crédit pour la taxe sur les produits et services/taxe de vente harmonisée (TPS/TVH)
+        majoration du crédit pour la taxe sur les produits
+        et services/taxe de vente harmonisée (TPS/TVH)
     icovid_ccb: boolean
         majoration de l'allocation canadienne pour enfants (ACE/CCB)
+    iei: boolean
+        Assurance emploi d'urgence
     """
     def __init__(self, icerb=True, icesb=True, iiprew=True, icovid_gst=True,
-                 icovid_ccb=True):
+                 icovid_ccb=True, iei=False):
         self.icerb = icerb
         self.icesb = icesb
         self.iiprew = iiprew
         self.icovid_gst = icovid_gst
         self.icovid_ccb = icovid_ccb
+        self.iei = iei
 
     def shut_all_measures(self):
         """
@@ -51,8 +57,8 @@ class policy:
         boolean
             True s'il y a au moins une mesure, False sinon.
         """
+        return any(v is True for k, v in vars(self).items() if k != 'iei')
 
-        return any(v is True for v in vars(self).values())
 
 class programs:
     """
@@ -68,7 +74,7 @@ class programs:
         instance de la classe policy
     """
     def __init__(self, policy):
-        add_params_as_attr(self, module_dir + '/covid/covid.csv',delimiter=';')
+        add_params_as_attr(self, module_dir + '/covid/covid.csv')
         self.policy = policy
 
     def compute(self, hh):
@@ -88,7 +94,7 @@ class programs:
             if self.policy.icesb:
                 p.inc_cesb = self.compute_cesb(p, hh)
                 p.covid['cesb'] = p.inc_cesb
-            if self.policy.iiprew and hh.prov=='qc':
+            if self.policy.iiprew and hh.prov == 'qc':
                 p.inc_iprew = self.compute_iprew(p)
                 p.covid['iprew'] = p.inc_iprew
 
@@ -96,7 +102,7 @@ class programs:
         """
         Fonction pour le calcul de la PCU.
 
-        Calcule la PCU en fonction du nombre de blocs de self.begin_april semaines (mois)
+        Calcule la PCU en fonction du nombre de blocs de 4 semaines (mois)
         durant laquelle la prestation est demandée.
 
         Parameters
@@ -109,12 +115,12 @@ class programs:
         float
             Le montant de la PCU.
         """
-        if p.months_cerb == 0:
+        if p.months_cerb == 0 or p.prev_inc_work < self.cerb_min_inc_work:
             return 0
         else:
             l_cerb = [self.cerb_base for month
                       in range(self.begin_april, self.begin_april + p.months_cerb)
-                      if p.inc_earn_month[month] <= self.cerb_max_earn]
+                      if p.inc_work_month[month] <= self.cerb_max_earn]
             return sum(l_cerb)
 
     def compute_cesb(self, p, hh):
@@ -122,7 +128,7 @@ class programs:
         Fonction pour le calcul de la PCUE.
 
         Calcule la PCUE en fonction de la prestation mensuelle à laquelle l'individu
-        a droit et du nombre de blocs de self.begin_april semaines (mois) durant lequel la prestation est demandée.
+        a droit et du nombre de blocs de 4 semaines (mois) durant lequel la prestation est demandée.
 
         Parameters
         ----------
@@ -142,7 +148,7 @@ class programs:
             monthly_cesb = self.compute_monthly_cesb(p, hh)
             l_cesb = [monthly_cesb for month
                       in range(self.begin_april, self.begin_april + p.months_cesb)
-                  if p.inc_earn_month[month] <= self.cesb_max_earn]
+                      if p.inc_work_month[month] <= self.cesb_max_earn]
             return sum(l_cesb)
 
     def compute_monthly_cesb(self, p, hh):
@@ -177,13 +183,12 @@ class programs:
         """
         Fonction pour le calcul de la PIRTE.
 
+        Calcule la PIRTE pour la période de 16 semaines (4 mois) si le travailleur est éligible.
+
         Parameters
         ----------
         p: Person
             instance de la classe Person
-
-        Calcule la PIRTE pour la période de 16 semaines (self.begin_april mois) si le travailleur
-        est éligible.
 
         Returns
         -------
@@ -191,10 +196,10 @@ class programs:
             Le montant de la PIRTE pour les 16 semaines.
         """
         if (not p.essential_worker or p.inc_work < self.iprew_min_inc_work or
-            p.tot_inc > self.iprew_max_tot_inc):
+            p.inc_tot > self.iprew_max_inc_tot):
             return 0
         else:
             l_iprew = [self.iprew_monthly_amount for month
-                       in range(self.begin_april, self.begin_april + 4)
-                       if 0 < p.inc_earn_month[month] <= self.iprew_max_earn]
+                       in range(self.begin_april, self.begin_april + self.iprew_max_months)
+                       if 0 < p.inc_work_month[month] <= self.iprew_max_earn]
             return sum(l_iprew)

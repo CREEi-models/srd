@@ -2,3 +2,12 @@ variable;value;type;definition;source;comments
 rate_EI;0.0158;float;;2020 Employment Insurance Premium Rate;
 rate_EI_qc;0.0120;float;;2020 Employment Insurance Premium Rate;
 max_earn_EI;54200;float;;2020 Employment Insurance Premium Rate;
+min_earn_EI;2000;float;;;
+min_inc_work;5000;float;;;
+begin_april;3;int;;;programs begin in april 2020 (march 15th in reality)
+rate_benefits;0.55;float;;
+months_per_year;12;int;;
+max_hours_month;120;int;;30 per week
+claw_rate_low;0.5;float;;
+claw_rate_high;1;float;;
+perc_cutoff_high;0.9;float;;

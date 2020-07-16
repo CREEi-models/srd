@@ -623,7 +623,7 @@ class template:
     def compute_witb_witbds(self, p, hh, rate, base, witb_max, claw_rate,
                             exemption):
         """
-        Calcul de la prestation fiscale pour le revenu de travail.
+        Calcul de la prestation fiscale pour le revenu de travail (PFRT).
 
         Parameters
         ----------

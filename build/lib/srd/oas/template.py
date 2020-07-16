@@ -1,6 +1,6 @@
-from srd import add_params_as_attr
 import os
 module_dir = os.path.dirname(os.path.dirname(__file__))
+
 
 class template:
     """
@@ -21,8 +21,12 @@ class template:
         """
         for p in hh.sp:
             self.eligibility(p, hh)
-        hh.net_inc_exempt = sum([max(0, p.inc_work - self.work_exempt) + p.inc_non_work
-                                 for p in hh.sp])
+        if not [p for p in hh.sp if p.elig_oas]:  # eliminate non-eligible hholds
+            return
+
+        for p in hh.sp:
+            self.compute_net_income(p, hh)
+        hh.net_inc_exempt = self.compute_net_inc_exemption(hh)
         for p in hh.sp:
             if not p.elig_oas:
                 continue
@@ -68,6 +72,45 @@ class template:
         else:
             p.elig_oas = False
 
+    def compute_net_income(self, p, hh):
+        """
+        Calcule le revenu net (sans la PSV).
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+        """
+        p.fed_return = {k: 0 for k in ['gross_income', 'deductions_gross_inc',
+                                       'net_income']}
+        self.federal.calc_gross_income(p)
+        self.federal.calc_deduc_gross_income(p, hh)
+        self.federal.calc_net_income(p)
+
+    def compute_net_inc_exemption(self, hh):
+        """
+        Calcule le revenu net incluant l'exemption sur les revenus du travail salarié
+
+        Parameters
+        ----------
+        hh: Hhold
+            instance de la classe Hhold
+
+        Returns
+        -------
+        float
+            Revenu net de l'exemption sur les revenus du travail
+        """
+        net_inc_exempt = 0
+        for p in hh.sp:
+            exempted_inc = min(p.inc_earn, self.work_exempt)
+            payroll = p.payroll['cpp'] + p.payroll['cpp_supp'] + p.payroll['ei']
+            net_inc_exempt += max(0, p.fed_return['net_income'] - exempted_inc
+                                    - payroll)
+        return net_inc_exempt
+
     def compute_pension(self, p, hh):
         """
         Calcule la PSV.
@@ -102,28 +145,11 @@ class template:
         hh: Hhold
             instance de la classe Hhold
         """
-        self.compute_net_income(p, hh)
         if p.fed_return['net_income'] + self.oas_full <= self.oas_claw_cutoff:
             return p.oas
         else:
             return max(0, (p.oas - self.oas_claw_rate
-            * (p.fed_return['net_income'] - self.oas_claw_cutoff)) / (1 + self.oas_claw_rate))
-
-    def compute_net_income(self, p, hh):
-        """
-        Calcule le revenu net (sans la PSV).
-
-        Parameters
-        ----------
-        p: Person
-            instance de la classe Person
-        hh: Hhold
-            instance de la classe Hhold
-        """
-        p.fed_return = {k: 0 for k in ['gross_income','deductions','net_income']}
-        self.federal.calc_gross_income(p)
-        self.federal.calc_deductions(p, hh)
-        self.federal.calc_net_income(p)
+                * (p.fed_return['net_income'] - self.oas_claw_cutoff)) / (1 + self.oas_claw_rate))
 
     def gis(self, p, hh, income, low_high):
         """
@@ -178,7 +204,7 @@ class template:
         """
         allow = self.compute_allowance(p, hh, self.gis_full_high)
         claw_bonus = self.bonus_claw_rate * max(0, hh.net_inc_exempt - self.bonus_exempt_single)
-        return max(0, allow + self.allow_surv_bonus *p.sq_factor - claw_bonus)
+        return max(0, allow + self.allow_surv_bonus * p.sq_factor - claw_bonus)
 
     def couple_allowance(self, p, hh):
         """

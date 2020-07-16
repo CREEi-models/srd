@@ -13,7 +13,7 @@ class Person:
     age: int
         âge de l'individu
     male: int
-        1 si individu est un homme
+        1 si l'individu est un homme
     earn: float
         revenu de travail
     rpp: float
@@ -47,7 +47,7 @@ class Person:
     gift: float
         dons de biens culturels et écosensibles
     years_can: int
-        nombre d'années au Canada lorsque la PSV est demandé
+        nombre d'années au Canada lorsque la pension de la Sécurité de la vieillesse (SV) est demandée
     disabled: boolean
         statut d'invalidité
     cqppc: float
@@ -59,7 +59,7 @@ class Person:
     asset: float
         valeur marchande des actifs
     oas_years_post: int
-        nombre d'années de report pour la pension la PSV (après 65 ans)
+        nombre d'années de report pour la pension SV (après 65 ans)
     months_cerb_cesb: int
         nombre de mois pour lesquels la CPU(E) est demandée
     essential_worker: boolean
@@ -188,7 +188,7 @@ class Person:
     @property
     def inc_non_work(self):
         """
-        Fonction qui retourne le total des revenus autre que revenu du travail.
+        Fonction qui retourne le total des revenus autre que les revenus du travail.
 
         Returns
         -------
@@ -274,7 +274,7 @@ class Dependent:
     home_care: float
         montant de l'aide à domicile
     med_exp: float
-        montant de dépenses en santé admissibles
+        montant des dépenses en santé admissibles
     """
 
     def __init__(self, age, disa=None, child_care=0, school=None,
@@ -333,7 +333,7 @@ class Hhold:
         Returns
         -------
         float
-            nombre d'adulte dans le ménage
+            nombre d'adultes dans le ménage
         """
         if n_adults_in_hh:
             return n_adults_in_hh

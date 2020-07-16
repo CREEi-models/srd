@@ -1,4 +1,5 @@
 from srd import tax
+from srd import covid
 import numpy as np
 import pandas as pd
 from numba import njit, prange
@@ -38,8 +39,8 @@ class behavior:
             self.data['r_choice_hours'] = self.data['r_choice'].replace(dict(zip(np.arange(self.nh),self.gridh)))
             self.data['s_choice_hours'] = self.data['s_choice'].replace(dict(zip(np.arange(self.nh),self.gridh)))
             self.data['h_choice'] = self.data['r_choice']*self.nh + self.data['s_choice']
-            self.gridh = list(product(*[self.gridh,self.gridh]))
-            self.nh = len(self.gridh)
+            self.gridh_c = list(product(*[self.gridh,self.gridh]))
+            self.nh_c = len(self.gridh_c)
         else :
             for i in self.data.index:
                 self.data.loc[i,'r_choice'] = np.absolute(gridh-self.data.loc[i,'r_hours_worked']).argmin().astype('int64')
@@ -61,24 +62,33 @@ class behavior:
             [float] -- le revenu disponible du ménage.
         """
         if self.icouple:
-            row['hhold'].sp[0].earn = hours[0]*row['r_wage']
-            row['hhold'].sp[1].earn = hours[1]*row['s_wage']
+            row['hhold'].sp[0].inc_earn = hours[0]*row['r_wage']
+            row['hhold'].sp[1].inc_earn = hours[1]*row['s_wage']
         else :
-            row['hhold'].sp[0].earn = hours*row['r_wage']
+            row['hhold'].sp[0].inc_earn = hours*row['r_wage']
         self.tax.compute(row['hhold'])
         self.tax.disp_inc(row['hhold'])
-        return row['hhold'].fam_disp_inc
-    def budget(self,year=2020):
+        return max(row['hhold'].fam_disp_inc,1.0)
+    def budget(self,year=2020,policy=False,iload=False):
         """Fonction qui calcule tous les revenus disponibles pour la grille d'heures
 
         Keyword Arguments:
             year {int} -- année du système fiscal (default: {2020})
         """
-        data = self.data.copy()
-        self.tax = tax(year)
-        for j,h in enumerate(self.gridh):
-            f = partial(self.dispinc,hours=h)
-            self.data['cons_'+str(j)] = data.swifter.apply(f,axis=1)
+        if iload:
+            budget = pd.read_pickle('budget.pkl')
+            self.data = self.data.merge(budget,left_index=True,right_index=True)
+        else:
+            data = self.data.copy()
+            cov = covid.policy()
+            cov.shut_all_measures()
+            self.tax = tax(year,policy=cov)
+            for j,h in enumerate(self.gridh_c):
+                f = partial(self.dispinc,hours=h)
+                self.data['cons_'+str(j)] = data.swifter.apply(f,axis=1)
+
+            budget = self.data[['cons_'+str(j) for j in range(self.nh_c)]]
+            budget.to_pickle('budget.pkl')
         return
     def set_shifters(self,list_of_varnames):
         """Fonction permettant de spécifier les noms de variables qui ajusteront l'utilité marginale du loisir.
@@ -97,7 +107,7 @@ class behavior:
         mu = mu.reset_index().set_index('label')['value']
         self.data['mu_r'] = mu['constant']
         for v in self.shifters_vars:
-            self.data['mu_r'] += self.data['r_'+v]*mu[v]
+                self.data['mu_r'] += self.data['r_'+v]*mu[v]
         if self.icouple:
             mu = self.pars.loc[self.pars.index.get_level_values(0)=='L(s)','value']
             mu = mu.reset_index().set_index('label')['value']
@@ -111,25 +121,25 @@ class behavior:
         self.pars = pd.DataFrame(columns=['group','label','value','se','free'])
         self.pars.set_index(['group','label'],inplace=True)
         # consumption
-        self.pars.loc[('C','constant'),:] = [1e-2,0.0,True]
+        self.pars.loc[('C','constant'),:] = [0.0,0.0,True]
         # respondent leisure
-        self.pars.loc[('L(r)','constant'),:] = [1e-2,0.0,True]
+        self.pars.loc[('L(r)','constant'),:] = [0.0,0.0,True]
         for v in self.shifters_vars:
             self.pars.loc[('L(r)',v),:] = [0.0,0.0,True]
         # if heterogeneity
         if self.ihetero:
-            self.pars.loc[('L(r)','sigma'),:] = [-3,0.0,True]
+            self.pars.loc[('L(r)','sigma'),:] = [-1,0.0,True]
         # spouse (if couple)
         if self.icouple:
-            self.pars.loc[('L(s)','constant'),:] = [1e-2,0.0,True]
+            self.pars.loc[('L(s)','constant'),:] = [0.0,0.0,True]
             for v in self.shifters_vars:
                 self.pars.loc[('L(s)',v),:] = [0.0,0.0,True]
             # if heterogeneity
             if self.ihetero:
-                self.pars.loc[('L(s)','sigma'),:] = [-3,0.0,True]
+                self.pars.loc[('L(s)','sigma'),:] = [-1,0.0,True]
         # joint leisure (if couple)
         if self.icouple:
-            self.pars.loc[('L(r,s)','constant'),:] = [1e-2,0.0,True]
+            self.pars.loc[('L(r,s)','constant'),:] = [0.0,0.0,True]
         # correlation UH
         if self.icouple:
             if self.ihetero:
@@ -137,7 +147,10 @@ class behavior:
         # fixed costs
         if self.icost:
             for h in range(1,self.nh):
-                self.pars.loc[('FC',str(h)),:] = [0.0,0.0,True]
+                self.pars.loc[('FC(r)',str(h)),:] = [0.0,0.0,True]
+            if self.icouple:
+                for h in range(1,self.nh):
+                    self.pars.loc[('FC(s)',str(h)),:] = [0.0,0.0,True]
         # number of parameters
         self.npars = len(self.pars)
         self.nfreepars = self.pars['free'].sum()
@@ -146,12 +159,23 @@ class behavior:
         """ Fonction afin de fixer la valeur d'un paramètre (contraint l'estimation)
 
         Arguments:
-            group {[type]} -- Le groupe de paramètres (C,L(r),L(s),L(r,s),FC)
+            group {[type]} -- Le groupe de paramètres (C,L(r),L(s),L(r,s),FC(r),FC(s))
             label {[type]} -- Le nom du paramètre (constant ou le nom d'un shifter, etc)
             value {[type]} -- Valeur à laquelle le paramètre est contraint
         """
         self.pars.loc[(group,label),'free'] = False
         self.pars.loc[(group,label),'value'] = value
+        self.nfreepars = self.pars['free'].sum()
+        return
+    def freepar(self,group,label):
+        """ Fonction afin de fixer la valeur d'un paramètre (contraint l'estimation)
+
+        Arguments:
+            group {[type]} -- Le groupe de paramètres (C,L(r),L(s),L(r,s),FC(r),FC(s))
+            label {[type]} -- Le nom du paramètre (constant ou le nom d'un shifter, etc)
+            value {[type]} -- Valeur à laquelle le paramètre est contraint
+        """
+        self.pars.loc[(group,label),'free'] = True
         self.nfreepars = self.pars['free'].sum()
         return
     def initdata(self,file):
@@ -173,10 +197,10 @@ class behavior:
         """Initialisation des tirages aléatoires pour l'estimation.
         """
         if self.icouple:
-            self.draws_r = np.random.normal((self.n,self.nreps))
-            self.draws_s = np.random.normal((self.n,self.nreps))
+            self.draws_r = np.random.normal(size=(self.n,self.nreps))
+            self.draws_s = np.random.normal(size=(self.n,self.nreps))
         else :
-            self.draws_r = np.random.normal((self.n,self.nreps))
+            self.draws_r = np.random.normal(size=(self.n,self.nreps))
         return
     def set_theta(self,theta):
         """Fonction permettant d'assigner les paramètres libres à l'instance pars
@@ -194,6 +218,81 @@ class behavior:
         """
         theta = self.pars.loc[self.pars.free,'value']
         return theta
+    def callback(self,x):      
+        fobj = self.loglike(x)
+        self.set_theta(x)
+        print('iter = ',self.iter_num)
+        print('parameters at iteration:')
+        print(self.pars['value'])
+        print('likelihood = ', fobj)
+        self.iter_num +=1
+    def get_prob(self,theta):
+        self.set_theta(theta)
+        # compute shifters
+        self.shifters()
+        N = self.n
+        R = self.nreps
+        if self.icouple:
+            J = self.nh_c
+            mu_r = self.data.loc[:,'mu_r'].astype('float64').values.reshape((N,1))
+            mu_s = self.data.loc[:,'mu_s'].astype('float64').values.reshape((N,1))
+            mu_c = self.pars.loc[('C','constant'),'value']
+            mu_rs = self.pars.loc[('L(r,s)','constant'),'value']
+            C = self.data[['cons_'+str(j) for j in range(self.nh_c)]].values.reshape((N,J))
+            Lmax = self.Lmax
+            Lr = np.array([Lmax-h[0] for h in self.gridh_c]).reshape((1,J))
+            Ls = np.array([Lmax-h[1] for h in self.gridh_c]).reshape((1,J))
+            V = np.zeros((2,2))
+            V[0,0] = np.exp(self.pars.loc[('L(r)','sigma'),'value'])
+            V[1,1] = np.exp(self.pars.loc[('L(s)','sigma'),'value'])
+            V[1,0] = np.tanh(self.pars.loc[('L(r,s)','rho'),'value'])*np.sqrt(V[0,0]*V[1,1])
+            V[0,1] = V[1,0]
+            Lv = cholesky(V, lower=True)
+            eta_r = self.draws_r
+            eta_s = self.draws_s
+
+            choice = self.data.loc[:,'h_choice'].astype('int64').values
+            if self.icost:
+                fcosts_r = self.pars.loc[self.pars.index.get_level_values(0)=='FC(r)','value'].values
+                fcosts_r = np.insert(fcosts_r,0,0.0)
+                fcosts_s = self.pars.loc[self.pars.index.get_level_values(0)=='FC(s)','value'].values
+                fcosts_s = np.insert(fcosts_s,0,0.0)
+                fcosts_r = np.array(np.repeat(fcosts_r,self.nh),dtype='float64').reshape((1,J))
+                fcosts_s = np.array(np.kron(np.ones(self.nh),fcosts_s),dtype='float64').reshape((1,J))
+            else :
+                fcosts_r = np.zeros(J)
+                fcosts_s = np.zeros(J)
+            utils = np.zeros((N,J))
+            pr = np.zeros((N,R))
+            for r in range(R):
+                mur = mu_r + Lv[0,0]*eta_r[:,r]
+                mus = mu_s + Lv[1,0]*eta_r[:,r] + Lv[1,1]*eta_s[:,r]
+                utils = mur @ np.log(Lr) + mus @ np.log(Ls) + mu_c * np.log(C) 
+                utils += np.ones((N,1)) @ (mu_rs*(np.log(Lr)*np.log(Ls)) +fcosts_r + fcosts_s)
+                #for j in range(J):
+                #    utils[:,j] = mur*np.log(Lr[j]) + mus*np.log(Ls[j]) + mu_c*np.log(C[:,j]) + mu_rs*np.log(Lr[j])*np.log(Ls[j]) + fcosts_r[j] + fcosts_s[j]
+                num = np.exp(utils[np.arange(N),choice])
+                den = np.sum(np.exp(utils),axis=1)
+                pr[:,r] = num/den
+                #print(np.min(np.mean(pr,axis=1)),np.max(np.mean(pr,axis=1)))
+            #pr = prob_couple(choice,mu_r,mu_s,mu_c,mu_rs,C,Lr,Ls,Lv,eta_r,eta_s,fcosts_r,fcosts_s,N,R,J)
+        else :
+            mu_r = self.data.loc[:,'mu_r'].astype('float64').values
+            mu_c = self.pars.loc[('C','constant'),'value'].values
+            C = self.data[['cons_'+str(j) for j in range(self.nh)]].values
+            Lmax = self.Lmax
+            Lr = [Lmax-h for h in self.gridh]
+            sigma = np.sqrt(np.exp(self.pars.loc[('L(r)','sigma'),'value']))
+            eta_r = self.draws_r
+            J = self.nh
+            choice = self.data.loc[:,'r_choice'].astype('int64').values
+            if self.icost:
+                fcosts = self.pars.loc[self.pars.index.get_level_values(0)=='FC','value'].values
+                fcosts = np.insert(fcosts,0,0.0)
+            else :
+                fcosts = np.zeros(J)
+            pr = prob_single(choice,mu_r,mu_c,C,Lr,sigma,eta_r,fcosts,N,R,J)
+        return np.mean(pr,axis=1)
     def loglike(self,theta):
         """Log-vraisemblance simulées
 
@@ -203,45 +302,9 @@ class behavior:
         Returns:
             [float] -- Vraisemblance simulée (moyenne)
         """
-        self.set_theta(theta)
-        # compute shifters
-        self.shifters()
-        N = self.n
-        R = self.nreps
-        if self.icouple:
-            mu_r = self.data.loc[:,'mu_r'].values
-            mu_s = self.data.loc[:,'mu_s'].values
-            mu_c = self.pars.loc[('C','constant'),'value'].values
-            mu_rs = self.pars.loc[('L(r,s)','constant'),'value']
-            C = self.data[['cons_'+str(j) for j in range(self.nh)]].values
-            Lmax = self.Lmax
-            Lr = [Lmax-h[0] for h in self.gridh]
-            Ls = [Lmax-h[1] for h in self.gridh]
-            V = np.zeros((2,2))
-            V[0,0] = np.exp(self.pars.loc[('L(r)','sigma'),'value'])
-            V[1,1] = np.exp(self.pars.loc[('L(s)','sigma'),'value'])
-            V[1,0] = np.tanh(self.pars.loc[('L(r,s)','rho'),'value'])*np.sqrt(V[0,0]*V[1,1])
-            V[0,1] = V[1,0]
-            Lv = cholesky(V, lower=True)
-            eta_r = self.draws_r
-            eta_s = self.draws_s
-            J = self.nh
-            choice = self.data.loc[:,'h_choice']
-            fcosts = self.pars.loc[self.pars.index.get_level_values(0)=='FC','value'].values
-            prob = prob_couple(choice,mu_r,mu_s,mu_c,mu_rs,C,Lr,Ls,Lv,eta_r,eta_s,fcosts,N,R,J)
-        else :
-            mu_r = self.data.loc[:,'mu_r'].values
-            mu_c = self.pars.loc[('C','constant'),'value'].values
-            C = self.data[['cons_'+str(j) for j in range(self.nh)]].values
-            Lmax = self.Lmax
-            Lr = [Lmax-h for h in self.gridh]
-            sigma = np.sqrt(np.exp(self.pars.loc[('L(r)','sigma'),'value']))
-            eta_r = self.draws_r
-            J = self.nh
-            choice = self.data.loc[:,'r_choice']
-            fcosts = self.pars.loc[self.pars.index.get_level_values(0)=='FC','value'].values
-            prob = prob_single(choice,mu_r,mu_c,C,Lr,sigma,eta_r,fcosts,N,R,J)
-        return np.mean(np.log(prob))
+
+        pr = self.get_prob(theta)
+        return np.mean(np.log(pr))
 
     def loglike_i(self,theta):
         """Contribution à la vraisemblance simulée
@@ -252,45 +315,9 @@ class behavior:
         Returns:
             [numpy.array] -- vecteur des contributions de chaque ménage à la log-vraisemblance
         """
-        self.set_theta(theta)
-        # compute shifters
-        self.shifters()
-        N = self.n
-        R = self.nreps
-        if self.icouple:
-            mu_r = self.data.loc[:,'mu_r'].values
-            mu_s = self.data.loc[:,'mu_s'].values
-            mu_c = self.pars.loc[('C','constant'),'value'].values
-            mu_rs = self.pars.loc[('L(r,s)','constant'),'value']
-            C = self.data[['cons_'+str(j) for j in range(self.nh)]].values
-            Lmax = self.Lmax
-            Lr = [Lmax-h[0] for h in self.gridh]
-            Ls = [Lmax-h[1] for h in self.gridh]
-            V = np.zeros((2,2))
-            V[0,0] = np.exp(self.pars.loc[('L(r)','sigma'),'value'])
-            V[1,1] = np.exp(self.pars.loc[('L(s)','sigma'),'value'])
-            V[1,0] = np.tanh(self.pars.loc[('L(r,s)','rho'),'value'])*np.sqrt(V[0,0]*V[1,1])
-            V[0,1] = V[1,0]
-            Lv = cholesky(V, lower=True)
-            eta_r = self.draws_r
-            eta_s = self.draws_s
-            J = self.nh
-            choice = self.data.loc[:,'h_choice']
-            fcosts = self.pars.loc[self.pars.index.get_level_values(0)=='FC','value'].values
-            prob = prob_couple(choice,mu_r,mu_s,mu_c,mu_rs,C,Lr,Ls,Lv,eta_r,eta_s,fcosts,N,R,J)
-        else :
-            mu_r = self.data.loc[:,'mu_r'].values
-            mu_c = self.pars.loc[('C','constant'),'value'].values
-            C = self.data[['cons_'+str(j) for j in range(self.nh)]].values
-            Lmax = self.Lmax
-            Lr = [Lmax-h for h in self.gridh]
-            sigma = np.sqrt(np.exp(self.pars.loc[('L(r)','sigma'),'value']))
-            eta_r = self.draws_r
-            J = self.nh
-            choice = self.data.loc[:,'r_choice']
-            fcosts = self.pars.loc[self.pars.index.get_level_values(0)=='FC','value'].values
-            prob = prob_single(choice,mu_r,mu_c,C,Lr,sigma,eta_r,fcosts,N,R,J)
-        return np.log(prob)
+
+        pr = self.get_prob(theta)
+        return np.log(pr)
 
     def estimate(self):
         """ Fonction permettant d'estimer les paramètres par maximum de vraisemblance simulée
@@ -299,8 +326,9 @@ class behavior:
 
         """
         init_theta = self.extract_theta()
-        neg_loglike = lambda x: -self.loglike(x)
-        results = minimize(neg_loglike,init_theta,method='BFGS')
+        neg_loglike = lambda q: -self.loglike(q)
+        self.iter_num = 0
+        results = minimize(neg_loglike,init_theta,method='BFGS',callback=self.callback)
         if results.success:
             print('optimizer exited successfully with ', results.nit,' iterations.')
         else :
@@ -330,9 +358,10 @@ class behavior:
             theta_up[i] += eps
             fn_up = self.loglike_i(theta_up)
             G[:,i] = (fn_up - fn_zero)/eps
-        # outer product of gradient formula
-        invcov = G.T @ G
-        cov = np.linalg.inv(invcov)/n
+        # outer product of gradient formula (OPG)
+        B = G.T @ G /n
+        # covariance matrix
+        cov = np.linalg.inv(B)/n
         # save for future reference
         self.cov_pars = cov
         # compute standard errors
@@ -343,7 +372,7 @@ class behavior:
 
 @njit(parallel=False)
 def prob_couple(choice,mu_r,mu_s,mu_c,mu_rs,
-                    C,Lr,Ls,Lv,eta_r,eta_s,fcosts,N,R,J):
+                    C,Lr,Ls,Lv,eta_r,eta_s, fcosts_r, fcosts_s, N, R, J):
     """Fonction numba pour calculer la probabilité d'observer les choix des ménages.
 
     Arguments:
@@ -358,7 +387,8 @@ def prob_couple(choice,mu_r,mu_s,mu_c,mu_rs,
         Lv {numpy.array} -- décomposition de cholesky de la matrice variance covariance des termes inobservables
         eta_r {numpy.array} -- tirages N(0,1) pour le terme inobservables du répondant (N par R)
         eta_s {numpy.array} -- tirages N(0,1) pour le terme inobservables du conjoint (N par R)
-        fcosts {numpy.array} -- paramètres de coûts fixes des J alternatives.
+        fcosts_r {numpy.array} -- paramètres de coûts fixes des alternatives (r).
+        fcosts_s {numpy.array} -- paramètres de coûts fixes des alternatives (s).
         N {int} -- nombre de ménages
         R {int} -- nombre de réplications (simulations)
         J {int} -- nombre d'alternatives
@@ -366,17 +396,17 @@ def prob_couple(choice,mu_r,mu_s,mu_c,mu_rs,
     Returns:
         [numpy.array] -- probabilités d'observer le choix de chacun des ménages (N par 1)
     """
-    pr = np.zeros((N,R))
-    u = np.zeros((N,J))
+
+    utils = np.zeros((N,J))
+    pi = np.zeros((N,R))
     for r in range(R):
         mur = mu_r + Lv[0,0]*eta_r[:,r]
         mus = mu_s + Lv[1,0]*eta_r[:,r] + Lv[1,1]*eta_s[:,r]
         for j in range(J):
-            u[:,j] = (mur*np.log(Lr[j]) + mus*np.log(Ls[j])
-                 + mu_c*np.log(C[:,j]) + mu_rs*np.log(Lr[j])*np.log(Ls[j])+ fcosts[j])
+            utils[:,j] = mur*np.log(Lr[j]) + mus*np.log(Ls[j]) + mu_c*np.log(C[:,j]) + mu_rs*np.log(Lr[j])*np.log(Ls[j]) + fcosts_r[j] + fcosts_s[j]
         for i in range(N):
-            pr[i,r] = np.exp(u[i,choice[i]])/np.sum(np.exp(u[i,:]))
-    return np.mean(pr,axis=1)
+            pi[i,r] = np.exp(utils[i,choice[i]])/np.sum(np.exp(utils[i,:]))
+    return pi
 
 @njit(parallel=False)
 def prob_single(choice,mu_r,mu_c,C,Lr,sigma,eta,fcosts,N,R,J):
@@ -397,15 +427,16 @@ def prob_single(choice,mu_r,mu_c,C,Lr,sigma,eta,fcosts,N,R,J):
     Returns:
         [numpy.array] -- probabilités d'observer le choix de chacun des ménages (N par 1)
     """
-    pr = np.zeros((N,R))
+
+    pi = np.zeros(N)
     u = np.zeros((N,J))
     for r in range(R):
         mur = mu_r + sigma*eta[:,r]
         for j in range(J):
             u[:,j] = (mur*np.log(Lr[j]) + mu_c*np.log(C[:,j]) + fcosts[j])
         for i in range(N):
-            pr[i,r] = np.exp(u[i,choice[i]])/np.sum(np.exp(u[i,:]))
-    return np.mean(pr,axis=1)
+            pi[i] += np.exp(u[i,choice[i]])/np.sum(np.exp(u[i,:]))
+    return pi/R
 
 
 

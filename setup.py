@@ -1,11 +1,13 @@
 import setuptools
+import sys
+sys.setdefaultencoding("UTF-8")
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name="srd", # Replace with your own username
-    version="0.2.0",
+    version="1.0.1",
     author="Équipe CREEi",
     author_email="pierre-carl.michaud@hec.ca",
     description="Modele de simulation du revenu disponible Quebec",

@@ -1,6 +1,7 @@
 from srd import add_params_as_attr, add_schedule_as_attr, covid
 import os
 from srd.federal import template
+from srd import ei
 module_dir = os.path.dirname(os.path.dirname(__file__))
 
 # wrapper to pick correct year
@@ -38,7 +39,7 @@ class form_2016(template):
         add_params_as_attr(self, module_dir + '/federal/params/fed_witb_qc_2016.csv')
         add_schedule_as_attr(self, module_dir + '/federal/params/schedule_2016.csv')
 
-class form_2017(template):
+class form_2017(form_2016):
     """
     Rapport d'impôt de 2017.
     """
@@ -48,7 +49,7 @@ class form_2017(template):
         add_schedule_as_attr(self, module_dir + '/federal/params/schedule_2017.csv')
         return
 
-class form_2018(template):
+class form_2018(form_2017):
     """
     Rapport d'impôt de 2018.
     """
@@ -58,7 +59,7 @@ class form_2018(template):
         add_schedule_as_attr(self, module_dir + '/federal/params/schedule_2018.csv')
         return
 
-class form_2019(template):
+class form_2019(form_2018):
     """
     Rapport d'impôt de 2019.
     """
@@ -68,7 +69,7 @@ class form_2019(template):
         add_schedule_as_attr(self, module_dir + '/federal/params/schedule_2019.csv')
         return
 
-class form_2020(template):
+class form_2020(form_2019):
     """
     Rapport d'impôt de 2020.
     """
@@ -87,16 +88,20 @@ class form_2020(template):
         # note: the measures to increase ccb and gst_credit are based on fiscal year 2019 in reality
         #       but on fiscal year 2020 in our simulator; the difference is small (<50$ in worst case)
 
-    def calc_non_refundable_tax_credits(self, p):
+    def compute_basic_amount(self, p):
         """
-        Fonction qui calcule les crédits d'impôt non-remboursable.
-
-        Cette fonction fait la somme de tous les crédits d'impôt modélisés.
+        Fonction qui calcule le montant personnel de base des crédits d'impôts non-remboursables.
+        Le calcul de ce montant change en 2020.
 
         Parameters
         ----------
         p: Person
             instance de la classe Person
+
+        Returns
+        -------
+        float:
+            montant personnel de base
         """
         br_poor, br_rich = self.l_brackets[-2:]
 
@@ -107,8 +112,42 @@ class form_2020(template):
         else:
             slope = (self.basic_amount_rich - self.basic_amount_poor) / (br_rich - br_poor)
             basic_amount = self.basic_amount_poor + (p.fed_return['net_income'] - br_poor) * slope
-        p.fed_age_cred = self.get_age_cred(p)
-        p.fed_pension_cred = self.get_pension_cred(p)
-        p.fed_disabled_cred = self.get_disabled_cred(p)
-        p.fed_return['non_refund_credits'] = self.rate_non_ref_tax_cred * (basic_amount
-            + p.fed_age_cred + p.fed_pension_cred + p.fed_disabled_cred)
+
+        return basic_amount
+
+    def calc_net_income(self, p):
+        """
+        Fonction qui calcule le revenu net au sens de l'impôt.
+
+        Cette fonction correspond au revenu net d'une personne aux fins de l'impôt. On y soustrait les déductions.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        """
+        p.fed_return['net_income'] =  max(0, p.fed_return['gross_income']
+                                          - p.fed_return['deductions_gross_inc'])
+        self.repayments_ei(p)
+
+    def repayments_ei(self, p):
+        """
+        Fonction qui calcule le montant du remboursement d'assurance-emploi,
+        ajuste le montant des bénéfices, le revenu net et le revenu brut.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+
+        Returns
+        -------
+        float
+            montant du remboursement
+        """
+        excess_net_inc = max(0, p.fed_return['net_income'] - self.ei_max_net_inc)
+        if excess_net_inc > 0:
+            repayment = self.ei_rate_repay * min(p.inc_ei, excess_net_inc)
+            p.inc_ei -= repayment
+            p.fed_return['net_income'] -= repayment
+            p.fed_return['gross_income'] -= repayment
