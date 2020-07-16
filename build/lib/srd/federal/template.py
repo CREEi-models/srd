@@ -552,8 +552,7 @@ class template:
         Prestation fiscale pour le revenu de travail (PFRT/WITB). À partir de 2019,
         cela devient l'Allocation canadienne pour les travailleurs (ACT/CWB).
 
-        Dans le cas d'un couple, la prestation est répartie au prorata
-        des revenus du travail.
+        Dans le cas d'un couple, la prestation est répartie au prorata des revenus du travail.
 
         Parameters
         ----------
@@ -589,8 +588,8 @@ class template:
         """
         Supplément pour invalidité à la prestation fiscale pour le revenu de travail
         (SIPFRT/WITBDS).
-        À partir de 2019, cela devient le supplément pour invalidité
-        à l'Allocation canadienne pour les travailleurs (ACT).
+        À partir de 2019, cela devient le supplément pour invalidité à l'Allocation canadienne pour les travailleurs (ACT).
+
 
         Parameters
         ----------
@@ -598,7 +597,6 @@ class template:
             instance de la classe Person
         hh: Hhold
             instance de la classe Hhold
-        
         Returns
         -------
         float
@@ -611,16 +609,13 @@ class template:
         claw_rate = self.witb_dis_claw_rate_qc
         if not hh.couple:
             rate = self.witb_dis_rate_single_qc
-            exemption = (self.witb_dis_exemption_single_dep_qc if hh.nkids_0_18
-                         else self.witb_dis_exemption_single_qc)
+            exemption = self.witb_dis_exemption_single_dep_qc if hh.nkids_0_18 else self.witb_dis_exemption_single_qc
         else:
             rate = self.witb_dis_rate_couple_qc
-            exemption = (self.witb_dis_exemption_couple_dep_qc if hh.nkids_0_18
-                         else self.witb_dis_exemption_couple_qc)
+            exemption = self.witb_dis_exemption_couple_dep_qc if hh.nkids_0_18 else self.witb_dis_exemption_couple_qc
             if couple_dis:
                 claw_rate = self.witb_dis_couple_claw_rate_qc
-                exemption = (self.witb_dis_exemption_couple_dep_qc if hh.nkids_0_18
-                             else self.witb_dis_exemption_couple_qc)
+                exemption = self.witb_dis_exemption_couple_dep_qc if hh.nkids_0_18 else self.witb_dis_exemption_couple_qc
 
         return self.compute_witb_witbds(p, hh, rate, self.witb_dis_base_qc,
                                         self.witb_dis_max_qc, claw_rate, exemption)
@@ -628,7 +623,7 @@ class template:
     def compute_witb_witbds(self, p, hh, rate, base, witb_max, claw_rate,
                             exemption):
         """
-        Calcul de la prestation fiscale pour le revenu de travail.
+        Calcul de la prestation fiscale pour le revenu de travail (PFRT).
 
         Parameters
         ----------

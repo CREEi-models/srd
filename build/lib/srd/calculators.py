@@ -18,7 +18,7 @@ class tax:
     ifed: boolean
         vrai si calcul de l'impôt fédéral demandé
     ioas: boolean
-        vrai si calcul des prestations de PSV et SRG est demandé
+        vrai si calcul des prestations de SV et SRG est demandé
     iprov: boolean
         vrai si calcul de l'impôt provincial est demandé
     ipayroll: boolean
@@ -159,7 +159,7 @@ class tax:
 
     def compute_oas(self, hh):
         """
-        Calcul des prestations de PSV et SRG.
+        Calcul des prestations de SV et SRG.
 
         Parameters
         ----------

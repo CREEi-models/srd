@@ -1,10 +1,10 @@
+from srd import add_params_as_attr
 import os
 module_dir = os.path.dirname(os.path.dirname(__file__))
 
-
 class template:
     """
-    Classe qui contient un template du programme OAS et GIS (tel que rencontré en 2016)
+    Classe qui contient un template du programme SV (OAS) et SRG (GIS) (tel que rencontré en 2016)
 
     """
 
@@ -12,7 +12,7 @@ class template:
         """
         Fonction pour appliquer au programme et recevoir une prestation.
 
-        Ceci calcule les prestations pour la PSV (OAS) et le SRG (GIS).
+        Ceci calcule les prestations pour la SV (OAS) et le SRG (GIS).
 
         Parameters
         ----------
@@ -21,7 +21,7 @@ class template:
         """
         for p in hh.sp:
             self.eligibility(p, hh)
-        if not [p for p in hh.sp if p.elig_oas]:  # eliminate non-eligible hholds
+        if not [p for p in hh.sp if p.elig_oas]: # eliminate non-eligible hholds
             return
 
         for p in hh.sp:
@@ -55,7 +55,7 @@ class template:
 
     def eligibility(self, p, hh):
         """
-        Evalue l'éligibilité de la personne pour l'OAS, le GIS et les allocations
+        Evalue l'éligibilité de la personne pour la SV, le SRG et les allocations
         de couple et de survivant.
 
         Parameters
@@ -74,7 +74,7 @@ class template:
 
     def compute_net_income(self, p, hh):
         """
-        Calcule le revenu net (sans la PSV).
+        Calcule le revenu net (sans la pension SV).
 
         Parameters
         ----------
@@ -83,8 +83,7 @@ class template:
         hh: Hhold
             instance de la classe Hhold
         """
-        p.fed_return = {k: 0 for k in ['gross_income', 'deductions_gross_inc',
-                                       'net_income']}
+        p.fed_return = {k: 0 for k in ['gross_income','deductions_gross_inc','net_income']}
         self.federal.calc_gross_income(p)
         self.federal.calc_deduc_gross_income(p, hh)
         self.federal.calc_net_income(p)
@@ -113,7 +112,7 @@ class template:
 
     def compute_pension(self, p, hh):
         """
-        Calcule la PSV.
+        Calcule la pension SV.
 
         Parameters
         ----------
@@ -126,7 +125,7 @@ class template:
         Returns
         -------
         float
-            récupération de la PSV
+            récupération de la pension SV
         """
         p.oas_65 = min(1, p.years_can / self.max_years_can) * self.oas_full
         p.oas = p.oas_65 * (1 + self.postpone_oas_bonus * p.oas_years_post)
@@ -134,9 +133,9 @@ class template:
 
     def pension_clawback(self, p, hh):
         """
-        Calcul la récupération de la PSV
+        Calcul la récupération de la pension SV
 
-        Basé sur le revenu net et incluant la PSV.
+        Basé sur le revenu net et incluant la pension SV.
 
         Parameters
         ----------
@@ -149,7 +148,7 @@ class template:
             return p.oas
         else:
             return max(0, (p.oas - self.oas_claw_rate
-                * (p.fed_return['net_income'] - self.oas_claw_cutoff)) / (1 + self.oas_claw_rate))
+            * (p.fed_return['net_income'] - self.oas_claw_cutoff)) / (1 + self.oas_claw_rate))
 
     def gis(self, p, hh, income, low_high):
         """
@@ -204,7 +203,7 @@ class template:
         """
         allow = self.compute_allowance(p, hh, self.gis_full_high)
         claw_bonus = self.bonus_claw_rate * max(0, hh.net_inc_exempt - self.bonus_exempt_single)
-        return max(0, allow + self.allow_surv_bonus * p.sq_factor - claw_bonus)
+        return max(0, allow + self.allow_surv_bonus *p.sq_factor - claw_bonus)
 
     def couple_allowance(self, p, hh):
         """
