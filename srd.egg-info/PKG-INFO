@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: srd
-Version: 1.0.5
+Version: 1.0.8
 Summary: Modele de simulation du revenu disponible Quebec
 Home-page: https://creei-models.github.io/srd/
 Author: Equipe CREEi
@@ -8,7 +8,7 @@ Author-email: pierre-carl.michaud@hec.ca
 License: UNKNOWN
 Description: # Simulateur de revenu disponible
         
-        Ce package contient le modele de simulation du revenu developpe par la chaire [CREEi](http://www.creei.ca). La [documentation](https://creei-models.github.io/srd/) du modele devrait etre consulte concernant l'installation et l'utilisation du modele.
+        Ce package contient le modèle de simulation du revenu developpe par la chaire [CREEi](http://www.creei.ca). La [documentation](https://creei-models.github.io/srd/) du modele devrait etre consulte concernant l'installation et l'utilisation du modele.
 Platform: UNKNOWN
 Classifier: Programming Language :: Python :: 3
 Classifier: License :: OSI Approved :: MIT License

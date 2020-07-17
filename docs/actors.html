@@ -172,7 +172,7 @@
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>age</strong> (<em>int</em>) – âge de l’individu</p></li>
-<li><p><strong>male</strong> (<em>int</em>) – 1 si individu est un homme</p></li>
+<li><p><strong>male</strong> (<em>int</em>) – 1 si l’individu est un homme</p></li>
 <li><p><strong>earn</strong> (<em>float</em>) – revenu de travail</p></li>
 <li><p><strong>rpp</strong> (<em>float</em>) – revenu de régime complémentaire de retraite (RCR)</p></li>
 <li><p><strong>cpp</strong> (<em>float</em>) – revenu de régime de rentes du Québec (RRQ)</p></li>
@@ -189,13 +189,14 @@
 <li><p><strong>union_dues</strong> (<em>float</em>) – cotisations syndicales, professionnelles ou autres</p></li>
 <li><p><strong>donation</strong> (<em>float</em>) – don de bienfaisance et autres dons</p></li>
 <li><p><strong>gift</strong> (<em>float</em>) – dons de biens culturels et écosensibles</p></li>
-<li><p><strong>years_can</strong> (<em>int</em>) – nombre d’années au Canada lorsque OAS est demandé</p></li>
+<li><p><strong>years_can</strong> (<em>int</em>) – nombre d’années au Canada
+lorsque la pension de la Sécurité de la vieillesse (SV) est demandée</p></li>
 <li><p><strong>disabled</strong> (<em>boolean</em>) – statut d’invalidité</p></li>
 <li><p><strong>cqppc</strong> (<em>float</em>) – contribution au RRQ</p></li>
 <li><p><strong>widow</strong> (<em>boolean</em>) – statut de veuf/veuve</p></li>
 <li><p><strong>med_exp</strong> (<em>float</em>) – frais médicaux</p></li>
 <li><p><strong>asset</strong> (<em>float</em>) – valeur marchande des actifs</p></li>
-<li><p><strong>oas_years_post</strong> (<em>int</em>) – nombre d’années de report pour la pension OAS (après 65 ans)</p></li>
+<li><p><strong>oas_years_post</strong> (<em>int</em>) – nombre d’années de report pour la pension SV (après 65 ans)</p></li>
 <li><p><strong>months_cerb_cesb</strong> (<em>int</em>) – nombre de mois pour lesquels la CPU(E) est demandée</p></li>
 <li><p><strong>essential_worker</strong> (<em>boolean</em>) – True si travailleur essentiel</p></li>
 <li><p><strong>dep_senior</strong> (<em>boolean</em>) – True si personne (senior) n’est pas autonome.</p></li>
@@ -255,7 +256,7 @@ pour lesquels la personne demande la prestation et si elle est aux études.</p>
 <dl class="method">
 <dt id="srd.Person.inc_non_work">
 <em class="property">property </em><code class="sig-name descname">inc_non_work</code><a class="headerlink" href="#srd.Person.inc_non_work" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui retourne le total des revenus autre que revenu du travail.</p>
+<dd><p>Fonction qui retourne le total des revenus autre que les revenus du travail.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Renvoie</dt>
 <dd class="field-odd"><p>revenu autre que travail.</p>
@@ -319,7 +320,7 @@ pour réinitialiser l’instance de la personne.</p>
 <li><p><strong>child_care</strong> (<em>float</em>) – montant des dépenses de frais de garde</p></li>
 <li><p><strong>school</strong> (<em>float</em>) – montant des dépenses de scolarité</p></li>
 <li><p><strong>home_care</strong> (<em>float</em>) – montant de l’aide à domicile</p></li>
-<li><p><strong>med_exp</strong> (<em>float</em>) – montant de dépenses en santé admissibles</p></li>
+<li><p><strong>med_exp</strong> (<em>float</em>) – montant des dépenses en santé admissibles</p></li>
 </ul>
 </dd>
 </dl>
@@ -361,7 +362,7 @@ n’est pas fourni</p>
 <dd class="field-odd"><p><strong>n_adults_in_hh</strong> (<em>float</em>) – nombre d’adultes dans le ménage s’il est fourni, None sinon</p>
 </dd>
 <dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>nombre d’adulte dans le ménage</p>
+<dd class="field-even"><p>nombre d’adultes dans le ménage</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
 <dd class="field-odd"><p>float</p>

@@ -196,7 +196,7 @@
 <dl class="class">
 <dt id="srd.oas.template">
 <em class="property">class </em><code class="sig-prename descclassname">srd.oas.</code><code class="sig-name descname">template</code><a class="headerlink" href="#srd.oas.template" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Classe qui contient un template du programme OAS et GIS (tel que rencontré en 2016)</p>
+<dd><p>Classe qui contient un template du programme SV (OAS) et SRG (GIS) (tel que rencontré en 2016)</p>
 <dl class="method">
 <dt id="srd.oas.template.compute_allowance">
 <code class="sig-name descname">compute_allowance</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em>, <em class="sig-param">supp_max</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.compute_allowance" title="Lien permanent vers cette définition">¶</a></dt>
@@ -237,7 +237,7 @@
 <dl class="method">
 <dt id="srd.oas.template.compute_net_income">
 <code class="sig-name descname">compute_net_income</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.compute_net_income" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Calcule le revenu net (sans la PSV).</p>
+<dd><p>Calcule le revenu net (sans la pension SV).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">
@@ -251,7 +251,7 @@
 <dl class="method">
 <dt id="srd.oas.template.compute_pension">
 <code class="sig-name descname">compute_pension</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.compute_pension" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Calcule la PSV.</p>
+<dd><p>Calcule la pension SV.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">
@@ -260,7 +260,7 @@
 </ul>
 </dd>
 <dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>récupération de la PSV</p>
+<dd class="field-even"><p>récupération de la pension SV</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
 <dd class="field-odd"><p>float</p>
@@ -291,7 +291,7 @@
 <dl class="method">
 <dt id="srd.oas.template.eligibility">
 <code class="sig-name descname">eligibility</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.eligibility" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Evalue l’éligibilité de la personne pour l’OAS, le GIS et les allocations
+<dd><p>Evalue l’éligibilité de la personne pour la SV, le SRG et les allocations
 de couple et de survivant.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -304,7 +304,7 @@ de couple et de survivant.</p>
 <dt id="srd.oas.template.file">
 <code class="sig-name descname">file</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.file" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction pour appliquer au programme et recevoir une prestation.</p>
-<p>Ceci calcule les prestations pour la PSV (OAS) et le SRG (GIS).</p>
+<p>Ceci calcule les prestations pour la SV (OAS) et le SRG (GIS).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe acteur Hhold</p>
@@ -337,8 +337,8 @@ de couple et de survivant.</p>
 <dl class="method">
 <dt id="srd.oas.template.pension_clawback">
 <code class="sig-name descname">pension_clawback</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.pension_clawback" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Calcul la récupération de la PSV</p>
-<p>Basé sur le revenu net et incluant la PSV.</p>
+<dd><p>Calcul la récupération de la pension SV</p>
+<p>Basé sur le revenu net et incluant la pension SV.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">

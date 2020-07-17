@@ -48,7 +48,7 @@ La fonction *compute()* calcule tous les impôts et cotisations demandées
 
 .. code:: ipython3
 
-    tax.compute(hh)
+    tax_form.compute(hh)
 
 Calcul des revenus net et disponible
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -47,7 +47,8 @@ class Person:
     gift: float
         dons de biens culturels et écosensibles
     years_can: int
-        nombre d'années au Canada lorsque la pension de la Sécurité de la vieillesse (SV) est demandée
+        nombre d'années au Canada
+        lorsque la pension de la Sécurité de la vieillesse (SV) est demandée
     disabled: boolean
         statut d'invalidité
     cqppc: float

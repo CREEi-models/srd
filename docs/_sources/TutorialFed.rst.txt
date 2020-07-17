@@ -387,8 +387,8 @@ regarder l’impôt fédéral payé si on incrémente les revenus de travail.
 .. image:: output_ex1.png
 
 
-On peut aussi faire une expérience ou on change un paramètre du système
-d’imposition. Supposons qu’on change le montant de base en l’augmentant
+On peut aussi faire une expérience dans laquelle on change un paramètre du système
+d’imposition. Supposons qu’on augmente le montant de base:
 
 .. code:: ipython3
 
