@@ -208,14 +208,14 @@ l’impôt fédéral.</p>
 revenus après impôt à l’aide des fonctions <em>compute_after_tax_inc()</em> et <em>disp_inc()</em>.
 Celles-ci viendront modifier les attributs des conjoints pour les
 variables <em>after_tax_inc</em> et <em>disp_inc</em>.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tax</span><span class="o">.</span><span class="n">disp_inc</span><span class="p">(</span><span class="n">hh</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tax_form</span><span class="o">.</span><span class="n">disp_inc</span><span class="p">(</span><span class="n">hh</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tax</span><span class="o">.</span><span class="n">compute_after_tax_inc</span><span class="p">(</span><span class="n">hh</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tax_form</span><span class="o">.</span><span class="n">compute_after_tax_inc</span><span class="p">(</span><span class="n">hh</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>On peut voir que les variables ont été modifiées.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hh</span><span class="o">.</span><span class="n">fam_tot_inc</span><span class="p">,</span> <span class="n">hh</span><span class="o">.</span><span class="n">fam_after_tax_inc</span><span class="p">,</span> <span class="n">hh</span><span class="o">.</span><span class="n">fam_disp_inc</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hh</span><span class="o">.</span><span class="n">fam_inc_tot</span><span class="p">,</span> <span class="n">hh</span><span class="o">.</span><span class="n">fam_after_tax_inc</span><span class="p">,</span> <span class="n">hh</span><span class="o">.</span><span class="n">fam_disp_inc</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mf">75000.0</span><span class="p">,</span> <span class="mf">63399.9755</span><span class="p">,</span> <span class="mf">53227.9755</span><span class="p">)</span>

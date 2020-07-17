@@ -79,10 +79,10 @@ class template:
 
         if hh.couple:
             amount += self.socass_base_couple
-            clawback = max(0, max(0, hh.fam_tot_inc - self.socass_exemption_couple)
+            clawback = max(0, max(0, hh.fam_inc_tot - self.socass_exemption_couple)
                               - contributions)
         else:
             amount += self.socass_base_single
-            clawback = max(0, max(0, hh.fam_tot_inc - self.socass_exemption_single)
+            clawback = max(0, max(0, hh.fam_inc_tot - self.socass_exemption_single)
                              - contributions)
         return max(0, amount - clawback) / (1 + hh.couple)

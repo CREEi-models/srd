@@ -389,7 +389,7 @@ class Hhold:
         return sum([s.fed_return['net_income'] for s in self.sp])
 
     @property
-    def fam_tot_inc(self):
+    def fam_inc_tot(self):
         """
         Fonction qui calcule le revenu familial total.
 

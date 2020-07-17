@@ -390,7 +390,7 @@ class Hhold:
         return sum([s.fed_return['net_income'] for s in self.sp])
 
     @property
-    def fam_tot_inc(self):
+    def fam_inc_tot(self):
         """
         Fonction qui calcule le revenu familial total.
 
@@ -411,7 +411,10 @@ class Hhold:
         float
             Revenu familial total après impôt
         """
-        return sum([p.after_tax_inc for p in self.sp])
+        try:
+            return sum([p.after_tax_inc for p in self.sp])
+        except TypeError as e:
+            print(f'{e}: need to run household through simulator to obtain fam_after_tax_inc')
 
     @property
     def fam_disp_inc(self):
@@ -425,7 +428,10 @@ class Hhold:
         float
             Revenu familial disponible après impôt et cotisations.
         """
-        return sum([p.disp_inc for p in self.sp])
+        try:
+            return sum([p.disp_inc for p in self.sp])
+        except TypeError as e:
+            print(f'{e}: need to run household through simulator to obtain fam_disp_inc')
 
     @property
     def child_care_exp(self):

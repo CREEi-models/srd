@@ -60,17 +60,17 @@ variables *after_tax_inc* et *disp_inc*.
 
 .. code:: ipython3
 
-    tax.disp_inc(hh)
+    tax_form.disp_inc(hh)
 
 .. code:: ipython3
 
-    tax.compute_after_tax_inc(hh)
+    tax_form.compute_after_tax_inc(hh)
 
 On peut voir que les variables ont été modifiées.
 
 .. code:: ipython3
 
-    hh.fam_tot_inc, hh.fam_after_tax_inc, hh.fam_disp_inc
+    hh.fam_inc_tot, hh.fam_after_tax_inc, hh.fam_disp_inc
 
 
 
