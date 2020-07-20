@@ -47,7 +47,8 @@ class Person:
     gift: float
         dons de biens culturels et écosensibles
     years_can: int
-        nombre d'années au Canada lorsque la pension de la Sécurité de la vieillesse (SV) est demandée
+        nombre d'années au Canada
+        lorsque la pension de la Sécurité de la vieillesse (SV) est demandée
     disabled: boolean
         statut d'invalidité
     cqppc: float
@@ -410,7 +411,10 @@ class Hhold:
         float
             Revenu familial total après impôt
         """
-        return sum([p.after_tax_inc for p in self.sp])
+        try:
+            return sum([p.after_tax_inc for p in self.sp])
+        except TypeError as e:
+            print(f'{e}: need to run household through simulator to obtain fam_after_tax_inc')
 
     @property
     def fam_disp_inc(self):
@@ -424,7 +428,10 @@ class Hhold:
         float
             Revenu familial disponible après impôt et cotisations.
         """
-        return sum([p.disp_inc for p in self.sp])
+        try:
+            return sum([p.disp_inc for p in self.sp])
+        except TypeError as e:
+            print(f'{e}: need to run household through simulator to obtain fam_disp_inc')
 
     @property
     def child_care_exp(self):
