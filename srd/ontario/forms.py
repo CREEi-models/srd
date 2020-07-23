@@ -39,9 +39,6 @@ class form_2016(template):
     def __init__(self):
         add_params_as_attr(self, module_dir + '/ontario/params/measures_2016.csv')
         add_schedule_as_attr(self, module_dir + '/ontario/params/schedule_2016.csv')
-        add_schedule_as_attr(self, module_dir + '/ontario/params/chcare_2016.csv')
-        add_schedule_as_attr(self, module_dir + '/ontario/params/health_contrib_2016.csv')
-
 
 class form_2017(form_2016):
     """
@@ -50,8 +47,6 @@ class form_2017(form_2016):
     def __init__(self):
         add_params_as_attr(self, module_dir + '/ontario/params/measures_2017.csv')
         add_schedule_as_attr(self, module_dir + '/ontario/params/schedule_2017.csv')
-        add_schedule_as_attr(self, module_dir + '/ontario/params/chcare_2017.csv')
-
 
 class form_2018(form_2017):
     """
@@ -60,8 +55,6 @@ class form_2018(form_2017):
     def __init__(self):
         add_params_as_attr(self, module_dir + '/ontario/params/measures_2018.csv')
         add_schedule_as_attr(self, module_dir + '/ontario/params/schedule_2018.csv')
-        add_schedule_as_attr(self, module_dir + '/ontario/params/chcare_2018.csv')
-
 
 class form_2019(form_2018):
     """
@@ -70,7 +63,6 @@ class form_2019(form_2018):
     def __init__(self):
         add_params_as_attr(self, module_dir + '/ontario/params/measures_2019.csv')
         add_schedule_as_attr(self, module_dir + '/ontario/params/schedule_2019.csv')
-        add_schedule_as_attr(self, module_dir + '/ontario/params/chcare_2019.csv')
 
 class form_2020(form_2019):
     """
@@ -79,4 +71,3 @@ class form_2020(form_2019):
     def __init__(self):
         add_params_as_attr(self, module_dir + '/ontario/params/measures_2020.csv')
         add_schedule_as_attr(self, module_dir + '/ontario/params/schedule_2020.csv')
-        add_schedule_as_attr(self, module_dir + '/ontario/params/chcare_2020.csv')
