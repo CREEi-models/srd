@@ -16,11 +16,6 @@ class template:
     """
     Gabarit pour l'impôt provincial québécois.
     """
-    def __init__(self):
-        add_params_as_attr(self, module_dir + '/quebec/params/measures_2016.csv')
-        add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2016.csv')
-        add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2016.csv')
-        add_schedule_as_attr(self, module_dir + '/quebec/params/health_contrib_2016.csv')
 
     def file(self, hh):
         """

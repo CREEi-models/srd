@@ -43,11 +43,10 @@ class payroll:
         for p in hh.sp:
             p.payroll = create_stub()
             p.payroll['ei'] = self.ei_prog.contrib(p, hh)
-            if hh.prov == 'qc':
-                p.payroll['qpip'] = self.qpip_prog.contrib(p, hh)
             base, supp = self.get_cpp_contrib(p, hh)
             p.payroll['cpp'] = base
             p.payroll['cpp_supp'] = supp
+            p.payroll['qpip'] = self.qpip_prog.contrib(p, hh)
 
     def get_cpp_contrib(self, p, hh):
         """

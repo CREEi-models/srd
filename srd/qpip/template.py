@@ -28,9 +28,8 @@ class template:
         float
             Montant de la cotisation à l'assurance parentale (annuelle)
         """
-        if p.inc_work <= self.qualifying_threshold_QPIP:
+        if p.inc_work <= self.qualifying_threshold_QPIP or hh.prov != 'qc':
             p.contrib_qpip = p.contrib_qpip_self = 0
-            return 0
         elif p.inc_earn <= self.max_QPIP_earn:
             p.contrib_qpip = self.rate_QPIP_earn * p.inc_earn
             p.contrib_qpip_self = self.rate_QPIP_self_earn * min(p.inc_self_earn,

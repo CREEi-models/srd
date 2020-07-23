@@ -1,0 +1,15 @@
+variable;value;type;definition;source ;comments
+nrtc_base;10783;float;;https://www.canada.ca/en/revenue-agency/services/tax/individuals/frequently-asked-questions-individuals/adjustment-personal-income-tax-benefit-amounts.html  https://www.canada.ca/en/revenue-agency/services/tax/individuals/frequently-asked-questions-individuals/canadian-income-tax-rates-individuals-current-previous-years.html#provincial;taux indexation 1,9%
+nrtc_age_amount;5264;float;;;
+nrtc_age;65;int;;;
+nrtc_age_claw_cutoff;39194;float;;;
+nrtc_age_claw_rate;0.15;float;;;
+nrtc_spouse_cutoff;10071;float;;;
+ntrc_spouse_max;9156;float;;;
+nrtc_pension_cred_min_age_split;65;int;;;
+nrtc_pension_cred_amount;1491;float;;;
+nrtc_disabled;8711;float;;;
+nrtc_rate;0.0505;float;;;
+ocb_amount;1461;float;;;
+ocb_cutoff;22303;float;;;
+ocb_claw_rate;0.08;float;;;

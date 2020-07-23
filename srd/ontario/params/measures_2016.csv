@@ -1,0 +1,15 @@
+variable;value;type;definition;source;comments
+nrtc_base;10011;float;;https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5006-c/5006-c-16e.pdf;
+nrtc_age_amount;4888;float;;;
+nrtc_age;65;int;;;
+nrtc_age_claw_cutoff;36387;float;;https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5006-d/5006-d-16e.pdf;
+nrtc_age_claw_rate;0.15;float;;;
+nrtc_spouse_cutoff;9350;float;;;
+ntrc_spouse_max;8500;float;;;
+nrtc_pension_cred_min_age_split;65;int;;;
+nrtc_pension_cred_amount;1384;float;;;
+nrtc_disabled;8088;float;;;
+nrtc_rate;0.0505;float;;;
+ocb_amount;1356;float;;;
+ocb_cutoff;20706;float;;;
+ocb_claw_rate;0.08;float;;;

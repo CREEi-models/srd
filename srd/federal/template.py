@@ -270,9 +270,11 @@ class template:
         -------
             Montant du crédit
         """
-        amount = self.age_cred_amount if p.age >= self.min_age_cred else 0
+        if p.age < self.min_age_cred:
+            return 0
+
         clawback = self.age_cred_claw_rate * max(0, p.fed_return['net_income'] - self.age_cred_exemption)
-        return max(0, amount - clawback)
+        return max(0, self.age_cred_amount - clawback)
 
     def get_cpp_contrib_cred(self, p):
         """

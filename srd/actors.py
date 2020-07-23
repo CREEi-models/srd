@@ -162,14 +162,21 @@ class Person:
         self_earn: float or list
             revenu de travail autonome
         """
-        if isinstance(earn, list) and isinstance(self_earn, list):
-            self.inc_work_month = earn + self_earn
+        if isinstance(earn, list):
+            earn_month = earn
             self.inc_earn = sum(earn)
+        else:
+            earn_month = [earn / 12] * 12
+            self.inc_earn = earn
+
+        if isinstance(self_earn, list):
+            self_earn_month = self_earn
             self.inc_self_earn = sum(self_earn)
         else:
-            self.inc_work_month = [(earn + self_earn) / 12] * 12
-            self.inc_earn = earn
+            self_earn_month = [self_earn / 12] * 12
             self.inc_self_earn = self_earn
+
+        self.inc_work_month = [x + y for x, y in zip(earn_month, self_earn_month)]
 
     @property
     def inc_work(self):

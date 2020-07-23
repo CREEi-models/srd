@@ -1,5 +1,5 @@
 import numpy as np
-from srd import federal, oas, quebec, payroll, assistance, covid, ei, Person, Hhold, Dependent
+from srd import federal, oas, quebec, ontario, payroll, assistance, covid, ei, Person, Hhold, Dependent
 from itertools import product
 import pandas as pd
 from multiprocessing import cpu_count, Pool
@@ -24,9 +24,10 @@ class tax:
     ipayroll: boolean
         vrai si calcul des cotisations sociales est demandé
     icovid_all: boolean
-        vrai si calcul des mesures d'urgence liées à la covid-19 est demandé (seulement en 2020)
+        vrai si calcul des mesures d'urgence liées à la covid-19 est demandé 
+        (seulement en 2020)
     """
-    def __init__(self, year, prov='qc', ifed=True, ioas=True, iprov=True,
+    def __init__(self, year, ifed=True, ioas=True, iprov=True,
                  ipayroll=True, iass=True, policy=covid.policy()):
         self.year = year
         self.ifed = ifed
@@ -45,8 +46,8 @@ class tax:
         if ifed:
             self.federal = federal.form(year, policy)
         if iprov:
-            if prov == 'qc':
-                self.prov = quebec.form(year)
+            self.prov = {'qc': quebec.form(year),
+                         'on': ontario.form(year)}
         if ioas:
             self.oas = oas.program(year, self.federal)
         if iass:
@@ -188,7 +189,10 @@ class tax:
         hh: Hhold
             instance de la classe Hhold
         """
-        self.prov.file(hh)
+        if hh.prov == 'qc':
+            self.prov['qc'].file(hh)
+        else:
+            self.prov['on'].file(hh)
 
     def compute_payroll(self, hh):
         """
@@ -234,8 +238,9 @@ class tax:
         hh: Hhold
             instance de la classe Hhold
         """
+        amount = self.ass.apply(hh)
         for p in hh.sp:
-            p.inc_social_ass = self.ass.apply(hh)
+            p.inc_social_ass = amount
 
     def compute_after_tax_inc(self, hh):
         """
