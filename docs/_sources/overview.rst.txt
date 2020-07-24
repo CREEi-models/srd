@@ -40,7 +40,7 @@ Pour invoquer SRD, il faut ajouter son adresse:
 .. code:: ipython3
 
     import sys
-    sys.path.append("C:\PATH\TO\FOLDER CONTAINING SRD")
+    sys.path.append("C:\PATH_TO_FOLDER_CONTAINING_SRD")
 
     import srd
 
