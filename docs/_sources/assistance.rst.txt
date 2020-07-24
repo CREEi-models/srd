@@ -23,7 +23,7 @@ Nous utilisons un gabarit afin de créer les programmes chaque année. Quand le 
 Nous reproduisons ici la spécification du gabarit. Il est calibré sur le programme en vigueur en 2016.
 
 .. autoclass:: template
-    :members: apply, shelter, basic
+    :members: apply, shelter, basic_qc
 
 À noter que les tests d'actifs ainsi que les suppléments pour personnes seules ne sont pas implémentés. La prestation
 pour contrainte temporaire à l'emploi non plus.

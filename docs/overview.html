@@ -180,6 +180,21 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">uninstall</span> <span class="n">srd</span>
 </pre></div>
 </div>
+<p>Si ce n’est pas possible:</p>
+<ol class="arabic simple">
+<li><p>Allez sur pypi.org, téléchargez les fichiers sources (extension .tar.gz) de srd et srpp</p></li>
+<li><p>Extrayez les fichiers .tar.gz (sur windows, utilisez winzip ou, dans une fenêtre de commande, entrez (en remplaçant les adresses et noms de fichiers): tar -xvzf C:PATHTOFILEFILE-NAME.tar.gz -C C:PATHTOFOLDEREXTRACTION</p></li>
+<li><p>Dans les dossiers qu’on vient d’extraire, <em>srd-x.x.x</em> et <em>srpp-x.x.x</em> (<em>x.x.x</em> étant le numéro de version), on trouve les répertoires <em>srd</em> et <em>srpp</em></p></li>
+<li><p>Placez <em>srd</em> et <em>srpp</em> dans le répertoire de votre choix</p></li>
+</ol>
+<p>Pour invoquer SRD, il faut ajouter son adresse:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;C:\PATH\TO\FOLDER CONTAINING SRD&quot;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">srd</span>
+</pre></div>
+</div>
+<p>Si l’on ne veut plus SRD, il suffit d’effacer les répertoires <em>srd</em> et <em>srpp</em>.</p>
 <p>En cas de questions, commentaires ou suggestions, n’hésitez pas à <a class="reference external" href="mailto:pierre-yves&#46;yanni&#37;&#52;&#48;hec&#46;ca">nous contacter</a>.</p>
 </div>
 </div>
