@@ -38,5 +38,3 @@ class template:
             p.contrib_qpip = self.rate_QPIP_earn * self.max_QPIP_earn
             p.contrib_qpip_self = 0
         return p.contrib_qpip + p.contrib_qpip_self
-
-

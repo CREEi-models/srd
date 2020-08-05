@@ -37,8 +37,9 @@ class template:
             self.calc_non_refundable_tax_credits(p, hh)
             # self.calc_div_tax_credit(p)
             # self.calc_contributions(p, hh)
-            p.prov_return['net_tax_liability'] = max(
-                0, p.prov_return['gross_tax_liability'] + p.prov_return['contributions']
+            p.prov_return['net_tax_liability'] = max(0, 
+                p.prov_return['gross_tax_liability']
+                + p.prov_return['contributions']
                 - p.prov_return['non_refund_credits'])
                 #  - p.on_div_tax_credit)
             self.calc_refundable_tax_credits(p, hh)
@@ -114,7 +115,8 @@ class template:
         if p.age < self.nrtc_age:
             return 0
 
-        clawback = self.nrtc_age_claw_rate * max(0, p.fed_return['net_income'] - self.nrtc_age_claw_cutoff)
+        clawback = (self.nrtc_age_claw_rate * max(0, p.prov_return['net_income'] 
+                    - self.nrtc_age_claw_cutoff))
         return max(0, self.nrtc_age_amount - clawback)
 
     def get_spouse_cred(self, p, hh):
@@ -139,7 +141,7 @@ class template:
             return 0
 
         other_p = hh.sp[1 - hh.sp.index(p)]
-        amount = self.nrtc_spouse_cutoff - other_p.fed_return['net_income']
+        amount = self.nrtc_spouse_cutoff - other_p.prov_return['net_income']
 
         return min(self.ntrc_spouse_max, amount) if amount > 0 else 0
 

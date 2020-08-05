@@ -142,7 +142,9 @@ class template:
         float
             Montant de la déduction
         """
-        return p.contrib_cpp_self / 2 + self.qpip_deduc_rate * p.contrib_qpip_self
+        p.qc_cpp_deduction = p.contrib_cpp_self / 2
+        p.qc_qpip_deduction = self.qpip_deduc_rate * p.contrib_qpip_self
+        return p.qc_cpp_deduction + p.qc_qpip_deduction
 
     def calc_deduc_net_income(self, p):
         """

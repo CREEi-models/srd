@@ -9,23 +9,19 @@ from srd import tax, incentives, Person, Hhold, Dependent, federal
 from srd.covid import policy
 
 
-policy = policy()
-policy.shut_all_measures()
-policy.iei = True
+tax_form = tax(2020)
 
-for year in range(2016, 2021):
+p0 = Person(earn=0, self_earn=50000, age=32)
+p1 = Person(earn=40000, age=60)
+hh = Hhold(p0, p1, prov='on')
+d1 = Dependent(age=17)
+d2 = Dependent(age=18)
+hh.add_dependent(d1, d2)
 
-    tax_form = tax(year)
+tax_form.compute(hh)
 
-    p0 = Person(earn=20000, age=32)
-    p1 = Person(earn=100000, age=40)
-    hh = Hhold(p0, p1, prov='on')
-    d1 = Dependent(age=17)
-    d2 = Dependent(age=18)
-    hh.add_dependent(d1, d2)
+print(hh.fam_disp_inc)
 
-    tax_form.compute(hh)
-    print(year, ' :', hh.fam_disp_inc)
 
 # for year in range(2016, 2021):
 

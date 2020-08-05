@@ -432,7 +432,8 @@ class template:
             Montant du crédit
         """
         tot_donation = (
-            min(self.donation_frac_net * p.fed_return['net_income'], p.donation) + p.gift)
+            min(self.donation_frac_net * p.fed_return['net_income'],
+            p.donation) + p.gift)
 
         if tot_donation <= self.donation_low_cut:
             return tot_donation * self.donation_low_rate
@@ -590,8 +591,8 @@ class template:
         """
         Supplément pour invalidité à la prestation fiscale pour le revenu de travail
         (SIPFRT/WITBDS).
-        À partir de 2019, cela devient le supplément pour invalidité à l'Allocation canadienne pour les travailleurs (ACT).
-
+        À partir de 2019, cela devient le supplément pour invalidité 
+        à l'Allocation canadienne pour les travailleurs (ACT).
 
         Parameters
         ----------
