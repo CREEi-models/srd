@@ -35,13 +35,26 @@ class template:
         for p in hh.sp:
             self.calc_tax(p)
             self.calc_non_refundable_tax_credits(p, hh)
-            # self.calc_div_tax_credit(p)
-            # self.calc_contributions(p, hh)
             p.prov_return['net_tax_liability'] = max(0, 
                 p.prov_return['gross_tax_liability']
-                + p.prov_return['contributions']
                 - p.prov_return['non_refund_credits'])
-                #  - p.on_div_tax_credit)
+            
+            self.calc_on_surtax(p)
+            self.calc_div_tax_credit(p)
+            p.prov_return['net_tax_liability'] = max(0,
+                p.prov_return['net_tax_liability'] + p.on_surtax - p.prov_div_tax_credit)
+            
+            self.calc_on_tax_reduction(p, hh)
+            p.prov_return['net_tax_liability'] = max(0,
+                p.prov_return['net_tax_liability'] - p.on_tax_reduction)
+            
+            self.calc_on_lift_credit(p, hh)
+            if hasattr(p, 'on_lift'):
+                p.prov_return['net_tax_liability'] = max(0,
+                    p.prov_return['net_tax_liability'] - p.on_lift)
+            
+            self.calc_contributions(p)
+            p.prov_return['net_tax_liability'] += p.prov_return['contributions']
             self.calc_refundable_tax_credits(p, hh)
             p.prov_return['net_tax_liability'] -= p.prov_return['refund_credits']
 
@@ -89,12 +102,16 @@ class template:
         """
         p.on_age_cred = self.get_age_cred(p)
         p.on_spouse_cred = self.get_spouse_cred(p, hh)
+        p.on_cpp_contrib_cred = self.get_cpp_contrib_cred(p)
         p.on_pension_cred = self.get_pension_cred(p, hh)
         p.on_disabled_cred = self.get_disabled_cred(p)
+        p.on_med_exp_nr_cred = self.get_med_exp_cred(p, hh)
+        p.on_donation = self.get_donations_cred(p)
 
         p.prov_return['non_refund_credits'] = (
             self.nrtc_rate * (self.nrtc_base + p.on_age_cred + p.on_spouse_cred
-                              + p.on_pension_cred + p.on_disabled_cred))
+            + p.on_cpp_contrib_cred + p.on_pension_cred + p.on_disabled_cred
+            + p.on_med_exp_nr_cred) + p.on_donation)
 
     def get_age_cred(self, p):
         """
@@ -143,7 +160,24 @@ class template:
         other_p = hh.sp[1 - hh.sp.index(p)]
         amount = self.nrtc_spouse_cutoff - other_p.prov_return['net_income']
 
-        return min(self.ntrc_spouse_max, amount) if amount > 0 else 0
+        return min(self.nrtc_spouse_max, amount) if amount > 0 else 0
+
+    def get_cpp_contrib_cred(self, p):
+        """
+        Crédit d'impôt pour contributions RPC/RRQ.
+
+        Ce crédit est non-remboursable.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+
+        Returns
+        -------
+            Montant du crédit
+        """
+        return p.contrib_cpp + p.contrib_cpp_self / 2
 
     def get_pension_cred(self, p, hh):
         """
@@ -184,9 +218,126 @@ class template:
         -------
             Montant du crédit
         """
-        return self.disability_cred_amount if p.disabled else 0
+        return self.nrtc_disabled if p.disabled else 0
         # we assume that age >= 18
         # disabled dependent not taken into account (see lines 316 and 318)
+
+    def get_med_exp_cred(self, p, hh):
+        """
+        Crédit d'impôt pour frais médicaux.
+
+        Ce crédit est non-remboursable.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+
+        Returns
+        -------
+            Montant du crédit
+        """
+        if p is not min(hh.sp, key=lambda p: p.prov_return['net_income']):
+            return 0
+
+        med_exp = sum([p.med_exp for p in hh.sp]
+                       + [d.med_exp for d in hh.dep 
+                          if d.age < self.nrtc_med_exp_age])
+        clawback = min(self.nrtc_med_exp_claw,
+                       self.nrtc_med_exp_rate * p.fed_return['net_income'])
+        med_exp_other_dep = sum([min(d.med_exp, self.nrtc_med_exp_max_dep) for d in hh.dep
+                                 if d.age >= self.nrtc_med_exp_age])
+        # rem: we assume that dependents 18 and over have zero net income (otherwise there would be a clawback)
+        return max(0, max(0, med_exp - clawback) + med_exp_other_dep)
+
+    def get_donations_cred(self, p):
+        """
+        Crédit d'impôt pour dons.
+
+        Ce crédit est non-remboursable.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+
+        Returns
+        -------
+        float
+            Montant du crédit
+        """
+        tot_donation = (
+            min(self.nrtc_donation_frac_net * p.prov_return['net_income'],
+            p.donation) + p.gift)
+
+        if tot_donation <= self.nrtc_donation_cutoff:
+            return tot_donation * self.nrtc_donation_low_rate
+        else:
+            extra_donation = tot_donation - self.nrtc_donation_cutoff
+            return (self.nrtc_donation_cutoff * self.nrtc_donation_low_rate
+                    + extra_donation * self.nrtc_donation_high_rate)
+
+    def calc_on_surtax(self, p):
+        """
+        Surtaxe de l'Ontario
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        """
+        p.on_surtax = (
+            self.surtax_low_rate * max(0, p.prov_return['net_tax_liability'] - self.surtax_low_cutoff)
+            + self.surtax_high_rate * max(0, p.prov_return['net_tax_liability'] - self.surtax_high_cutoff))
+
+    def calc_div_tax_credit(self, p):
+        """
+        Crédit d'impôt pour dividendes
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        """
+        p.prov_div_tax_credit = (
+            self.div_elig_cred_rate * self.div_elig_factor * p.div_elig
+            + self.div_other_can_cred_rate * self.div_other_can_factor * p.div_other_can)
+
+
+    def calc_on_tax_reduction(self, p, hh):
+        """
+        Réduction de l’impôt de l’Ontario.
+
+        Ce montant est non-remboursable.
+
+        Parameters
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+        """
+        if p is not max(hh.sp, key=lambda p: p.prov_return['net_income']):
+            p.on_tax_reduction = 0
+        else:
+            amount = 2 * (self.reduction_base + hh.nkids_0_18 * self.reduction_kid)
+            p.on_tax_reduction = max(0, amount - p.prov_return['net_tax_liability'])
+
+    def calc_on_lift_credit(self, p, hh):
+        """
+        Crédit d’impôt pour les personnes et les familles à faible revenu (LIFT).
+        Ce crédit entre en vigueur en 2019.
+
+        Ce crédit est non-remboursable.
+
+        Parameters
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+        """
+        pass
 
     def calc_refundable_tax_credits(self, p, hh):
         """
@@ -200,7 +351,8 @@ class template:
             instance de la classe Hhold
         """
         p.on_ocb = self.ocb(p, hh)
-        p.prov_return['refund_credits'] = p.on_ocb
+        p.on_ostc = self.ostc(p, hh)
+        p.prov_return['refund_credits'] = p.on_ocb + p.on_ostc
 
     def ocb(self, p, hh):
         """
@@ -231,3 +383,64 @@ class template:
             return max(0, amount - clawback) / 2  # same sex couples get 1/2 each
         else:
             return max(0, amount - clawback)
+
+    def ostc(self, p, hh):
+        """
+        Ontario Sales Tax Credit.
+​
+        Ce crédit est remboursable.
+​
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+
+        Returns
+        -------
+        float
+            Montant du crédit
+        """
+        if hh.sp.index(p) == 1:
+            return 0
+
+        amount = (len(hh.sp) + hh.nkids_0_18) * self.ostc_amount
+        cutoff = (self.ostc_couple_dep_cutoff if hh.couple or hh.nkids_0_18
+                  else self.ostc_single_cutoff)
+        clawback = self.ostc_claw_rate * max(0, hh.fam_net_inc_fed - cutoff)
+        return max(0, amount - clawback)
+
+    def calc_contributions(self, p):
+        """
+        Fonction qui calcule les contributions.
+
+        Cette fonction fait la somme des contributions du contribuable.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        """
+        p.prov_return['contributions'] = self.health_contrib(p)
+
+    def health_contrib(self, p):
+        """
+        Contribution santé.
+
+        Cette fonction calcule le montant dû en fonction du revenu imposable.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        """
+        tax_inc = p.prov_return['taxable_income']
+
+        if tax_inc <= self.l_health_high_brackets[-1]:
+            ind = np.searchsorted(self.l_health_high_brackets, tax_inc)
+            return (self.l_health_base[ind] 
+                    + self.l_health_rates[ind] 
+                    * max(0, tax_inc - self.l_health_low_brackets[ind]))
+        else:
+            return self.l_health_base[-1]

@@ -1,15 +1,43 @@
 variable;value;type;definition;source ;comments
+pension_cred_min_age_split;65;int;;;same as for federal
 nrtc_base;10783;float;;https://www.canada.ca/en/revenue-agency/services/tax/individuals/frequently-asked-questions-individuals/adjustment-personal-income-tax-benefit-amounts.html  https://www.canada.ca/en/revenue-agency/services/tax/individuals/frequently-asked-questions-individuals/canadian-income-tax-rates-individuals-current-previous-years.html#provincial;taux indexation 1,9%
 nrtc_age_amount;5264;float;;;
 nrtc_age;65;int;;;
 nrtc_age_claw_cutoff;39194;float;;;
 nrtc_age_claw_rate;0.15;float;;;
 nrtc_spouse_cutoff;10071;float;;;
-ntrc_spouse_max;9156;float;;;
+nrtc_spouse_max;9156;float;;;
 nrtc_pension_cred_min_age_split;65;int;;;
 nrtc_pension_cred_amount;1491;float;;;
 nrtc_disabled;8711;float;;;
+nrtc_med_exp_age;18;int;;;
+nrtc_med_exp_claw;2440;float;;;
+nrtc_med_exp_rate;0.03;float;;;
+nrtc_med_exp_max_dep;13156;float;;;
 nrtc_rate;0.0505;float;;;
+nrtc_donation_frac_net;0.75;float;;;
+nrtc_donation_cutoff;200;float;;;
+nrtc_donation_low_rate;0.0505;float;;;
+nrtc_donation_high_rate;0.1116;float;;;
+surtax_low_rate;0.20;float;;;
+surtax_low_cutoff;4830;float;;;
+surtax_high_rate;0.36;float;;;
+surtax_high_cutoff;6182;float;;;
+div_elig_factor;1.38;float;;;
+div_other_can_factor;1.17;float;;;
+div_elig_cred_rate;0.029863;float;;;
+div_other_can_cred_rate;0.10;float;;;
+reduction_base;249;float;;;
+reduction_kid;460;float;;;
+lift_rate;0.0505;float;;5006-a-19e;
+lift_max_amount;850;float;;;
+lift_claw_rate;0.10;float;;;
+lift_cutoff_single;30000;float;;;
+lift_cutoff_couple;60000;float;;;
 ocb_amount;1461;float;;;
 ocb_cutoff;22303;float;;;
 ocb_claw_rate;0.08;float;;;
+ostc_amount;313;float;;https://data.ontario.ca/dataset/personal-income-tax-rates-and-credits;
+ostc_claw_rate;0.04;float;;;
+ostc_single_cutoff;24115;float;;;
+ostc_couple_dep_cutoff;30143;float;;;

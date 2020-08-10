@@ -6,39 +6,24 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from srd import tax, incentives, Person, Hhold, Dependent, federal
-from srd.covid import policy
+from srd.covid import policy    
 
+for year in range(2016, 2021):
 
-tax_form = tax(2020)
+    print(year)
 
-p0 = Person(earn=0, self_earn=50000, age=32)
-p1 = Person(earn=40000, age=60)
-hh = Hhold(p0, p1, prov='on')
-d1 = Dependent(age=17)
-d2 = Dependent(age=18)
-hh.add_dependent(d1, d2)
+    julia = Person(age=40, earn=20e3, inc_rrsp=20e3)
+    jules = Person(age=65, self_earn=5000, donation=10000, gift=1500)
+    hh = Hhold(julia, jules, prov='on')
+    james = Dependent(age=5)
+    jean = Dependent(age=12)
+    joseph = Dependent(age=18)
+    hh.add_dependent(james, jean, joseph)
 
-tax_form.compute(hh)
+    tax_form = tax(year)
+    tax_form.compute(hh)
 
-print(hh.fam_disp_inc)
-
-
-# for year in range(2016, 2021):
-
-#     print(year)
-
-#     julia1 = Person(age=70, rpp=20e3, inc_rrsp=20e3)
-#     jules1 = Person(age=65, cpp=5000)
-#     hh = Hhold(julia1, jules1, prov='qc')
-#     james = Dependent(age=5)
-#     jean = Dependent(age=12)
-#     joseph =Dependent(age=18)
-#     hh.add_dependent(james, jean, joseph)
-
-#     tax_form = tax(year)
-#     tax_form.compute(hh)
-
-#     print(vars(hh))
+    print(vars(hh))
 
 
 

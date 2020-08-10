@@ -23,7 +23,7 @@ Les revenus familiaux totaux, disponibles et après impôts peuvent être appel�
 
 .. code:: ipython3
 
-    hh.fam_tot_inc, hh.fam_after_tax_inc, hh.fam_disp_inc
+    hh.fam_inc_tot, hh.fam_after_tax_inc, hh.fam_disp_inc
 
 
 .. parsed-literal::

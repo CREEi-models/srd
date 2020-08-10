@@ -1,0 +1,25 @@
+variable;value;type;definition;source;comments
+base_single;3000;int;;form 5000-S6;
+base_couple;3000;int;;;
+rate_single_dep;0.26;float;;;
+rate;0.26;float;;;
+rate_couple_dep;0.26;float;;;
+max_single;1381;float;;https://www.taxtips.ca/filing/canada-workers-benefit/cwb-2020.htm;
+max_single_dep;2379;float;;;
+max_couple;2379;float;;;
+max_couple_dep;2379;float;;;
+exempt_single;13064;float;;;
+exempt_single_dep;17348;float;;;
+exempt_couple;17348;float;;;
+exempt_couple_dep;17348;float;;;
+claw_rate;0.12;float;;;
+dis_base;1150;int;;;
+dis_max;713;float;;;
+dis_rate_single;0.26;float;;;
+dis_rate_couple;0.26;float;;;
+dis_exempt_single;24569;float;;;
+dis_exempt_single_dep;37176;float;;;
+dis_exempt_couple;37176;float;;;
+dis_exempt_couple_dep;37176;float;;;
+dis_claw_rate;0.12;float;;;
+dis_couple_claw_rate;0.06;float;;;both spouses disabled

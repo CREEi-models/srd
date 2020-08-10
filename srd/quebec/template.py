@@ -434,7 +434,7 @@ class template:
         float
             Montant du crédit
         """
-        if p is not max(hh.sp, key=lambda p: p.fed_return['taxable_income']):
+        if p is not max(hh.sp, key=lambda p: p.prov_return['taxable_income']):
             return 0
 
         med_exp = sum([p.med_exp for p in hh.sp] + [d.med_exp for d in hh.dep])

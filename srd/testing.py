@@ -51,6 +51,7 @@ class Testing:
         print(measure)
         self.measure = measure
         self.income = income
+        self.l_groups = l_groups
         self.by_family = by_family
         self.fam_income = family_income
         self.alpha = alpha
@@ -174,5 +175,5 @@ class Testing:
             self.ax.scatter(inc[inc_bdsps], meas[meas_bdsps], label='bdsps', marker='*',
                             alpha=alpha)
             self.ax.legend() 
-            ax.set_xlabel('net income')
+            ax.set_xlabel(self.income)
             ax.set_xlim([0, self.upper_inc])
