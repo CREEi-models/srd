@@ -1,8 +1,8 @@
 variable;value;type;definition;source ;comments
 div_elig_factor;1.38;float;;;
 div_other_can_factor;1.15;float;;;
-div_elig_cred_net_rate;0.16146;float;;;
-div_other_can_cred_net_rate;0.054855;float;;;
+div_elig_cred_net_rate;0.162564;float;;;
+div_other_can_cred_net_rate;0.063825;float;;;
 qpip_deduc_rate;0.43683;float;;;*on assume le m�me quand 2019 car taux ne varie pas bcp
 work_deduc_max;1190;float;;https://www.revenuquebec.ca/fr/entreprises/retenues-et-cotisations/trousse-employeur/principaux-changements-pour-2020/;1.72% indexation rate
 work_deduc_rate;0.06;float;;;assumed constant
@@ -36,7 +36,7 @@ ccap_kid4p_min;1000;float;;;
 ccap_kid4p_max;2515;float;;;
 chcare_young;9825;float;;;
 chcare_old;5170;float;;;
-solidarity_tvq_base;297;float;;;http://www.cqff.com/liens/solidarite.pdf;;
+solidarity_tvq_base;297;float;;;http://www.cqff.com/liens/solidarite.pdf
 solidarity_housing_kid;123;float;;;
 solidarity_tvq_couple;297;float;;;
 solidarity_housing_not_alone;699;float;;;

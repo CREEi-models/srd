@@ -27,10 +27,10 @@ Pour désinstaller SRD, il suffit d'utiliser pip::
 
 Si ce n'est pas possible:
 
-1. Allez sur pypi.org, téléchargez les fichiers sources (extension .tar.gz) de srd et srpp
-2. Extrayez les fichiers .tar.gz; sur windows, utilisez winzip ou, dans une fenêtre de commande, entrez (en remplaçant les adresses et noms de fichiers)::
+1. Allez sur `pypi.org <https://www.pypi.org>`_, téléchargez les fichiers sources (extension .tar.gz) de srd et srpp
+2. Extrayez les fichiers .tar.gz. Sur windows, ouvrez les fichiers avec 7-zip ou winzip ou, dans une fenêtre de commande, entrez (en remplaçant les adresses et noms de fichiers)::
 
-  tar -xvzf C:\\PATH_TO_FILE\\FILE_NAME.tar.gz -C C:\\PATH_TO_FOLDER_EXTRACTION
+  tar -xvzf C:\\SENTIER_VERS_FICHIER\\FICHIER.tar.gz -C C:\\SENTIER_VERS_RÉPERTOIRE_EXTRACTION
 
 3. Dans les dossiers qu’on vient d’extraire, *srd-x.x.x* et *srpp-x.x.x* (*x.x.x* étant le numéro de version), on trouve les répertoires *srd* et *srpp*
 4. Placez *srd* et *srpp* dans le répertoire de votre choix
@@ -40,7 +40,7 @@ Pour invoquer SRD, il faut ajouter son adresse:
 .. code:: ipython3
 
     import sys
-    sys.path.append("C:\PATH_TO_FOLDER_CONTAINING_SRD")
+    sys.path.append("C:\SENTIER VERS RÉPERTOIRE_CONTENANT_SRD_ET_SRPP")
 
     import srd
 

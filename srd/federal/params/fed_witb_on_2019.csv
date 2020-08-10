@@ -1,0 +1,25 @@
+variable;value;type;definition;source;comments
+base_single;3000;int;;form 5000-S6;
+base_couple;3000;int;;;
+rate_single_dep;0.26;float;;;
+rate;0.26;float;;;
+rate_couple_dep;0.26;float;;;
+max_single;1355;float;;;
+max_single_dep;2335;float;;;
+max_couple;2335;float;;;
+max_couple_dep;2335;float;;;
+exempt_single;12820;float;;;
+exempt_single_dep;17025;float;;;
+exempt_couple;17025;float;;;
+exempt_couple_dep;17025;float;;;
+claw_rate;0.12;float;;;
+dis_base;1150;int;;;
+dis_max;700.00;float;;;
+dis_rate_single;0.26;float;;;
+dis_rate_couple;0.26;float;;;
+dis_exempt_single;24111;float;;;
+dis_exempt_single_dep;36483;float;;;
+dis_exempt_couple;36483;float;;;
+dis_exempt_couple_dep;36483;float;;;
+dis_claw_rate;0.12;float;;;
+dis_couple_claw_rate;0.06;float;;;both spouses disabled
