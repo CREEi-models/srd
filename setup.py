@@ -5,7 +5,7 @@ with open("README.md", "r", encoding='utf-8') as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="srd", # Replace with your own username
+    name="srd",  # Replace with your own username
     version="1.1.0",
     author="Equipe CREEi",
     author_email="pierre-carl.michaud@hec.ca",
