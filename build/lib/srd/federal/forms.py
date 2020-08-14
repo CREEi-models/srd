@@ -1,4 +1,4 @@
-from srd import add_params_as_attr, add_schedule_as_attr, covid
+from srd import add_params_as_attr, get_params, add_schedule_as_attr, covid
 import os
 from srd.federal import template
 from srd import ei
@@ -36,18 +36,24 @@ class form_2016(template):
     """
     def __init__(self):
         add_params_as_attr(self, module_dir + '/federal/params/federal_2016.csv')
-        add_params_as_attr(self, module_dir + '/federal/params/fed_witb_qc_2016.csv')
         add_schedule_as_attr(self, module_dir + '/federal/params/schedule_2016.csv')
+        self.witb_params = {}
+        for prov in ['on', 'qc']:
+            self.witb_params[prov] = get_params(
+                module_dir + f'/federal/params/fed_witb_{prov}_2016.csv')
 
 class form_2017(form_2016):
     """
     Rapport d'impôt de 2017.
     """
     def __init__(self):
-        add_params_as_attr(self,module_dir+'/federal/params/federal_2017.csv')
+        add_params_as_attr(self, module_dir+'/federal/params/federal_2017.csv')
         add_params_as_attr(self, module_dir + '/federal/params/fed_witb_qc_2017.csv')
         add_schedule_as_attr(self, module_dir + '/federal/params/schedule_2017.csv')
-        return
+        self.witb_params = {}
+        for prov in ['on', 'qc']:
+            self.witb_params[prov] = get_params(
+                module_dir + f'/federal/params/fed_witb_{prov}_2017.csv')
 
 class form_2018(form_2017):
     """
@@ -57,7 +63,10 @@ class form_2018(form_2017):
         add_params_as_attr(self,module_dir+'/federal/params/federal_2018.csv')
         add_params_as_attr(self, module_dir + '/federal/params/fed_witb_qc_2018.csv')
         add_schedule_as_attr(self, module_dir + '/federal/params/schedule_2018.csv')
-        return
+        self.witb_params = {}
+        for prov in ['on', 'qc']:
+            self.witb_params[prov] = get_params(
+                module_dir + f'/federal/params/fed_witb_{prov}_2018.csv')
 
 class form_2019(form_2018):
     """
@@ -67,7 +76,10 @@ class form_2019(form_2018):
         add_params_as_attr(self,module_dir+'/federal/params/federal_2019.csv')
         add_params_as_attr(self, module_dir + '/federal/params/fed_witb_qc_2019.csv')
         add_schedule_as_attr(self, module_dir + '/federal/params/schedule_2019.csv')
-        return
+        self.witb_params = {}
+        for prov in ['on', 'qc']:
+            self.witb_params[prov] = get_params(
+                module_dir + f'/federal/params/fed_witb_{prov}_2019.csv')
 
 class form_2020(form_2019):
     """
@@ -77,6 +89,10 @@ class form_2020(form_2019):
         add_params_as_attr(self,module_dir+'/federal/params/federal_2020.csv')
         add_params_as_attr(self, module_dir + '/federal/params/fed_witb_qc_2020.csv')
         add_schedule_as_attr(self, module_dir + '/federal/params/schedule_2020.csv')
+        self.witb_params = {}
+        for prov in ['on', 'qc']:
+            self.witb_params[prov] = get_params(
+                module_dir + f'/federal/params/fed_witb_{prov}_2020.csv')
 
         self.policy = policy
         if policy.icovid_ccb:

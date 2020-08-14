@@ -1,8 +1,21 @@
 variable;value;type;definition;source;comments
-socass_assets_couple;2500;float;;http://legisquebec.gouv.qc.ca/fr/pdf/cr/A-13.1.1,%20R.%201.pdf;liquid assets not considered
-socass_assets_single;1500;float;;;
-socass_base_single;8280;float;;;Inclut ajustement a la prestation de base de 35 dollars
-socass_base_couple;12588;float;;;
-socass_reductionrate;1;float;;;
-socass_exemption_single;2400;float;;;
-socass_exemption_couple;3600;float;;https://cdn-contenu.quebec.ca/cdn-contenu/adm/min/travail-emploi-solidarite-sociale/publications-adm/autres/FI_indexation_aide_sociale_VF.pdf?1576871495;
+socass_qc_assets_couple;2500;float;;http://legisquebec.gouv.qc.ca/fr/pdf/cr/A-13.1.1,%20R.%201.pdf;liquid assets not considered
+socass_qc_assets_single;1500;float;;;
+socass_qc_base_single;8280;float;;;Inclut ajustement a la prestation de base de 35 dollars
+socass_qc_base_couple;12588;float;;;
+socass_qc_reductionrate;1;float;;;
+socass_qc_exemption_single;2400;float;;;
+socass_qc_exemption_couple;3600;float;;https://cdn-contenu.quebec.ca/cdn-contenu/adm/min/travail-emploi-solidarite-sociale/publications-adm/autres/FI_indexation_aide_sociale_VF.pdf?1576871495;
+socass_on_assets_couple;10000;float;;https://www.mcss.gov.on.ca/en/mcss/programs/social/directives/index.aspx;
+socass_on_assets_single;15000;float;;;
+socass_on_assets_kid;500;float;;;
+socass_on_exempt;2400;float;;;
+socass_on_exempt_rate;0.5;float;;;
+socass_on_couple_no_dep18;6096;float;;https://www.ontario.ca/laws/regulation/980134/v107;2019 numbers indexé 1,9%
+socass_on_couple_1dep18;8046;float;;;
+socass_on_couple_2dep18;10192;float;;;
+socass_on_add_dep18;178;float;;;
+socass_on_single_no_dep18_kid;4237;float;;;
+socass_on_single_no_dep18;4445;float;;;
+socass_on_single_1dep18;7691;float;;;
+socass_on_single_2dep18;9642;float;;;

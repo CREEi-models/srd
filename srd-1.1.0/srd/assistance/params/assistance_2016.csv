@@ -1,0 +1,20 @@
+variable;value;type;definition;source;comments
+socass_qc_assets_couple;2500;float;;https://www.canlii.org/fr/qc/legis/regl/rlrq-c-a-13.1.1-r-1/123587/rlrq-c-a-13.1.1-r-1.html;liquid assets not considered
+socass_qc_assets_single;1500;float;;https://www.emploiquebec.gouv.qc.ca/publications/pdf/SR_dep_montant_prestations.pdf;
+socass_qc_base_single;7476;float;;;
+socass_qc_base_couple;11580;float;;;
+socass_qc_exemption_single;2400;float;;;
+socass_qc_exemption_couple;3600;float;;;
+socass_on_assets_couple;2500;float;;https://www.mcss.gov.on.ca/en/mcss/programs/social/directives/index.aspx;
+socass_on_assets_single;5000;float;;;
+socass_on_assets_kid;500;float;;;
+socass_on_exempt;2400;float;;;
+socass_on_exempt_rate;0.5;float;;;
+socass_on_couple_no_dep18;5664;float;;https://www.ontario.ca/laws/regulation/980134/v107;july 2016-june2017
+socass_on_couple_1dep18;7458;float;;;
+socass_on_couple_2dep18;9444;float;;;
+socass_on_add_dep18;165;float;;;
+socass_on_single_no_dep18_kid;3810;float;;;
+socass_on_single_no_dep18;4134;float;;;
+socass_on_single_1dep18;7128;float;;;
+socass_on_single_2dep18;8922;float;;;

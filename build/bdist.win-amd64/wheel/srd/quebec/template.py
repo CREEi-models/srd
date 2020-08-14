@@ -16,11 +16,6 @@ class template:
     """
     Gabarit pour l'impôt provincial québécois.
     """
-    def __init__(self):
-        add_params_as_attr(self, module_dir + '/quebec/params/measures_2016.csv')
-        add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2016.csv')
-        add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2016.csv')
-        add_schedule_as_attr(self, module_dir + '/quebec/params/health_contrib_2016.csv')
 
     def file(self, hh):
         """
@@ -44,7 +39,7 @@ class template:
         for p in hh.sp:
             self.calc_tax(p)
             self.calc_non_refundable_tax_credits(p, hh)
-            self.calc_div_tax_credit(p)
+            self.div_tax_credit(p)
             self.calc_contributions(p, hh)
             p.prov_return['net_tax_liability'] = max(0,
                 p.prov_return['gross_tax_liability'] + p.prov_return['contributions']
@@ -147,7 +142,9 @@ class template:
         float
             Montant de la déduction
         """
-        return p.contrib_cpp_self / 2 + self.qpip_deduc_rate * p.contrib_qpip_self
+        p.qc_cpp_deduction = p.contrib_cpp_self / 2
+        p.qc_qpip_deduction = self.qpip_deduc_rate * p.contrib_qpip_self
+        return p.qc_cpp_deduction + p.qc_qpip_deduction
 
     def calc_deduc_net_income(self, p):
         """
@@ -320,7 +317,7 @@ class template:
 
         def calc_amount(max_work_inc, min_amount=0):
             """
-            Calcule le crédit.
+            Calcule le montant du crédit d'impôt pour les travailleurs d'expérience.
 
             Parameters
             ----------
@@ -437,13 +434,13 @@ class template:
         float
             Montant du crédit
         """
-        if p is not max(hh.sp, key=lambda p: p.fed_return['taxable_income']):
+        if p is not max(hh.sp, key=lambda p: p.prov_return['taxable_income']):
             return 0
 
         med_exp = sum([p.med_exp for p in hh.sp] + [d.med_exp for d in hh.dep])
         return max(0, med_exp - self.nrtc_med_exp_rate * hh.fam_net_inc_prov)
 
-    def calc_div_tax_credit(self, p):
+    def div_tax_credit(self, p):
         """
         Crédit d'impôt pour dividendes
 
@@ -520,7 +517,7 @@ class template:
         else:
             return net_amount
 
-    def witb(self,p,hh):
+    def witb(self, p, hh):
         """
         Prime au travail.
 

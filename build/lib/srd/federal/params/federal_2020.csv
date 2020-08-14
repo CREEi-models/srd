@@ -1,20 +1,20 @@
 variable;value;type;definition;source;comments
 div_elig_factor;1.38;float;;;
-div_other_can_factor;1.15;float;;;*aucune annonce de changement � date
+div_other_can_factor;1.15;float;;;*aucune annonce de changement 
 div_elig_cred_rate;0.150198;float;;;
-div_other_can_cred_rate;0.090313 ;float;;;
+div_other_can_cred_rate;0.090313;float;;;
 qpip_deduc_rate;0.43683;float;;;*assume qu'il reste stable puisque change peu d'ann�e en ann�e
 basic_amount_poor;13229;float;;;
 basic_amount_rich;12298;float;;;
 age_cred_amount;7637;float;;;
 min_age_cred;65;int;;;
-age_cred_exemption;38508;float;;;
+age_cred_exempt;38508;float;;;
 age_cred_claw_rate;0.15;float;;;
 empl_cred_max;1245.36;float;;;
 pension_cred_amount;2000;float;;;could not find it but hasn't changed since 2016
 pension_cred_min_age_split;65;int;;;
 disability_cred_amount;8576;float;;;
-med_exp_nr_cred_max_age;16;int;;;
+med_exp_nr_cred_max_age;18;int;;;
 med_exp_nr_cred_max_claw;2397;float;;https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/foire-questions-particuliers/rajustement-montants-fonction-indexation-impot-particuliers-prestations.html;
 med_exp_nr_cred_rate;0.03;float;;;
 donation_frac_net;0.75;float;;;
@@ -25,7 +25,7 @@ donation_med_rate;0.29;float;;;
 donation_high_rate;0.33;float;;;
 rate_non_ref_tax_cred;0.15;float;;;
 rate_abatment_qc;0.165;float;;;
-ccb_young;6765;float;;;https://www.canada.ca/en/revenue-agency/services/tax/individuals/frequently-asked-questions-individuals/adjustment-personal-income-tax-benefit-amounts.html;
+ccb_young;6765;float;;;https://www.canada.ca/en/revenue-agency/services/tax/individuals/frequently-asked-questions-individuals/adjustment-personal-income-tax-benefit-amounts.html
 ccb_old;5708;float;;;
 ccb_covid_supp;300;float;;https://www.canada.ca/fr/ministere-finances/plan-intervention-economique.html;
 ccb_max_num_ch;4;int;;;

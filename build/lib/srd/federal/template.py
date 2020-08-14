@@ -37,7 +37,7 @@ class template:
         for p in hh.sp:
             self.calc_tax(p)
             self.calc_non_refundable_tax_credits(p, hh)
-            self.calc_div_tax_credit(p)
+            self.div_tax_credit(p)
             p.fed_return['net_tax_liability'] = max(0,
                 p.fed_return['gross_tax_liability'] - p.fed_return['non_refund_credits']
                 - p.fed_div_tax_credit)
@@ -236,7 +236,8 @@ class template:
             * (self.compute_basic_amount(p) + p.fed_age_cred
                + p.fed_cpp_contrib_cred + p.fed_qpip_cred +
                + p.fed_qpip_self_cred + p.fed_empl_cred + p.fed_pension_cred
-               + p.fed_disabled_cred + p.fed_med_exp_nr_cred + p.donation_cred))
+               + p.fed_disabled_cred + p.fed_med_exp_nr_cred)
+               + p.donation_cred)
 
     def compute_basic_amount(self, p):
         """
@@ -270,9 +271,11 @@ class template:
         -------
             Montant du crédit
         """
-        amount = self.age_cred_amount if p.age >= self.min_age_cred else 0
-        clawback = self.age_cred_claw_rate * max(0, p.fed_return['net_income'] - self.age_cred_exemption)
-        return max(0, amount - clawback)
+        if p.age < self.min_age_cred:
+            return 0
+
+        clawback = self.age_cred_claw_rate * max(0, p.fed_return['net_income'] - self.age_cred_exempt)
+        return max(0, self.age_cred_amount - clawback)
 
     def get_cpp_contrib_cred(self, p):
         """
@@ -405,12 +408,13 @@ class template:
             return 0
 
         med_exp = sum([p.med_exp for p in hh.sp]
-            + [d.med_exp for d in hh.dep if d.age <= self.med_exp_nr_cred_max_age])
+                       + [d.med_exp for d in hh.dep 
+                          if d.age < self.med_exp_nr_cred_max_age])
         clawback = min(self.med_exp_nr_cred_max_claw,
                        self.med_exp_nr_cred_rate * p.fed_return['net_income'])
         med_exp_other_dep = sum([d.med_exp for d in hh.dep
-                                 if d.age > self.med_exp_nr_cred_max_age])
-        # rem: we assume that dependents over 16 have zero net income (otherwise there would be a clawback)
+                                 if d.age >= self.med_exp_nr_cred_max_age])
+        # rem: we assume that dependents 18 and over have zero net income (otherwise there would be a clawback)
         return max(0, max(0, med_exp - clawback) + med_exp_other_dep)
 
     def get_donations_cred(self, p):
@@ -430,7 +434,8 @@ class template:
             Montant du crédit
         """
         tot_donation = (
-            min(self.donation_frac_net * p.fed_return['net_income'], p.donation) + p.gift)
+            min(self.donation_frac_net * p.fed_return['net_income'],
+            p.donation) + p.gift)
 
         if tot_donation <= self.donation_low_cut:
             return tot_donation * self.donation_low_rate
@@ -444,7 +449,7 @@ class template:
                     + donation_high_inc * self.donation_high_rate
                     + donation_low_inc * self.donation_med_rate)
 
-    def calc_div_tax_credit(self, p):
+    def div_tax_credit(self, p):
         """
         Crédit d'impôt pour dividendes
 
@@ -470,8 +475,8 @@ class template:
         """
         p.fed_abatment_qc = self.abatment(p, hh)
         p.fed_ccb = self.ccb(p, hh)
-        p.fed_witb = self.witb(p, hh)
-        p.fed_witbds = self.witbds(p, hh)
+        p.fed_witb = self.get_witb(p, hh)
+        p.fed_witbds = self.get_witbds(p, hh)
         p.fed_med_exp = self.med_exp(p, hh)
         p.fed_gst_hst_credit = self.gst_hst_credit(p, hh)
 
@@ -547,7 +552,7 @@ class template:
             else:
                 return max(0, amount - clawback)
 
-    def witb(self, p, hh):
+    def get_witb(self, p, hh):
         """
         Prestation fiscale pour le revenu de travail (PFRT/WITB). À partir de 2019,
         cela devient l'Allocation canadienne pour les travailleurs (ACT/CWB).
@@ -565,31 +570,33 @@ class template:
         float
             Montant de la PFRT (WITB)
         """
+        self.witb = self.witb_params[hh.prov]
+
         if not hh.couple:
-            base = self.witb_base_single_qc
-            rate = self.witb_rate_single_dep_qc if hh.nkids_0_18 else self.witb_rate_qc
-            witb_max = self.witb_max_single_dep_qc if hh.nkids_0_18 else self.witb_max_single_qc
-            exemption = self.witb_exemption_single_dep_qc if hh.nkids_0_18 else self.witb_exemption_single_qc
+            base = self.witb['base_single']
+            rate = self.witb['rate_single_dep'] if hh.nkids_0_18 else self.witb['rate']
+            witb_max = self.witb['max_single_dep'] if hh.nkids_0_18 else self.witb['max_single']
+            exemption = self.witb['exempt_single_dep'] if hh.nkids_0_18 else self.witb['exempt_single']
             factor = 1
         else:
-            base = self.witb_base_couple_qc
-            rate = self.witb_rate_couple_dep_qc if hh.nkids_0_18 else self.witb_rate_qc
-            witb_max = self.witb_max_couple_dep_qc if hh.nkids_0_18 else self.witb_max_couple_qc
-            exemption = self.witb_exemption_couple_dep_qc if hh.nkids_0_18 else self.witb_exemption_couple_qc
+            base = self.witb['base_couple']
+            rate = self.witb['rate_couple_dep'] if hh.nkids_0_18 else self.witb['rate']
+            witb_max = self.witb['max_couple_dep'] if hh.nkids_0_18 else self.witb['max_couple']
+            exemption = self.witb['exempt_couple_dep'] if hh.nkids_0_18 else self.witb['exempt_couple']
             if hh.fam_inc_work > 0:
                 factor = p.inc_work / hh.fam_inc_work
             else:
                 factor = 1/2
 
         return factor * self.compute_witb_witbds(p, hh, rate, base, witb_max,
-                                                 self.witb_claw_rate_qc, exemption)
+                                                 self.witb['claw_rate'], exemption)
 
-    def witbds(self, p, hh):
+    def get_witbds(self, p, hh):
         """
         Supplément pour invalidité à la prestation fiscale pour le revenu de travail
         (SIPFRT/WITBDS).
-        À partir de 2019, cela devient le supplément pour invalidité à l'Allocation canadienne pour les travailleurs (ACT).
-
+        À partir de 2019, cela devient le supplément pour invalidité 
+        à l'Allocation canadienne pour les travailleurs (ACT).
 
         Parameters
         ----------
@@ -606,19 +613,19 @@ class template:
             return 0
 
         couple_dis = sum([p.disabled for p in hh.sp]) == 2
-        claw_rate = self.witb_dis_claw_rate_qc
+        claw_rate = self.witb['dis_claw_rate']
         if not hh.couple:
-            rate = self.witb_dis_rate_single_qc
-            exemption = self.witb_dis_exemption_single_dep_qc if hh.nkids_0_18 else self.witb_dis_exemption_single_qc
+            rate = self.witb['dis_rate_single']
+            exemption = self.witb['dis_exempt_single_dep'] if hh.nkids_0_18 else self.witb['dis_exempt_single']
         else:
-            rate = self.witb_dis_rate_couple_qc
-            exemption = self.witb_dis_exemption_couple_dep_qc if hh.nkids_0_18 else self.witb_dis_exemption_couple_qc
+            rate = self.witb['dis_rate_couple']
+            exemption = self.witb['dis_exempt_couple_dep'] if hh.nkids_0_18 else self.witb['dis_exempt_couple']
             if couple_dis:
-                claw_rate = self.witb_dis_couple_claw_rate_qc
-                exemption = self.witb_dis_exemption_couple_dep_qc if hh.nkids_0_18 else self.witb_dis_exemption_couple_qc
+                claw_rate = self.witb['dis_couple_claw_rate']
+                exemption = self.witb['dis_exempt_couple_dep'] if hh.nkids_0_18 else self.witb['dis_exempt_couple']
 
-        return self.compute_witb_witbds(p, hh, rate, self.witb_dis_base_qc,
-                                        self.witb_dis_max_qc, claw_rate, exemption)
+        return self.compute_witb_witbds(p, hh, rate, self.witb['dis_base'],
+                                        self.witb['dis_max'], claw_rate, exemption)
 
     def compute_witb_witbds(self, p, hh, rate, base, witb_max, claw_rate,
                             exemption):

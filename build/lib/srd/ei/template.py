@@ -10,8 +10,6 @@ class template:
     Ce gabarit sert pour l'instant à calculer les cotisations à l'assurance emploi.
 
     """
-    def __init__(self):
-        add_params_as_attr(self, module_dir + '/ei/params/parameters_2016.csv')
 
     def contrib(self, p, hh):
         """
