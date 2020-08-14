@@ -27,6 +27,8 @@ Il permet, pour tout type de ménage, de calculer le revenu disponible ainsi que
    calculators.rst
    TutorialFed.rst
    TutorialCalculator.rst
+   TutorialChangeParameters.rst
+   
    credits.rst
 
 

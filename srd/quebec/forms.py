@@ -109,7 +109,22 @@ class form_2018(form_2017):
         add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2018.csv')
 
     def senior_assist(self, p, hh):
-        # see docstring in template
+        """
+        Crédit remboursable pour support aux ainés.
+        En vigueur à partir de 2018.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+
+        Returns
+        -------
+        float
+            Montant du crédit
+        """
         if max([p.age for p in hh.sp]) < self.senior_assist_min_age:
             return 0
 

@@ -4,7 +4,6 @@
 
 build/
 dist/
-docs/
 srd.egg-info
 
 main.py
