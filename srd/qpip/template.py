@@ -9,9 +9,6 @@ class template:
     Ce gabarit sert pour l'instant à calculer les cotisations au programme québécois d'assurance parentale.
 
     """
-    def __init__(self):
-        add_params_as_attr(self,module_dir+'/qpip/params/parameters_2016.csv')
-        return
     def contrib(self, p, hh):
         """
         Fonction pour calculer les contributions à l'assurance parentale.

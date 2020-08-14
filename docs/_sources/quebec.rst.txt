@@ -22,12 +22,12 @@ Nous reproduisons ici la spécification du gabarit. Il est calqué sur le rappor
 
 .. autoclass:: template
     :members: file, calc_gross_income, calc_net_income, calc_taxable_income,
-              work_deduc, cpp_qpip_deduction, calc_deduc_net_income, calc_tax,
-              calc_non_refundable_tax_credits, get_nrtcred_clawback,
-              get_age_cred, get_living_alone_cred, get_pension_cred,
-              get_exp_worker_cred, calc_amount, get_donations_cred,
+              calc_deduc_gross_income, work_deduc, cpp_qpip_deduction,
+              calc_deduc_net_income, calc_tax, calc_non_refundable_tax_credits,
+              get_nrtcred_clawback, get_age_cred, get_living_alone_cred,
+              get_pension_cred, get_exp_worker_cred, calc_amount, get_donations_cred,
               get_union_dues_cred, get_disabled_cred, get_med_exp_cred,
-              calc_div_tax_credit, calc_refundable_tax_credits, chcare, witb,
+              div_tax_credit, calc_refundable_tax_credits, chcare, witb,
               calc_witb, home_support, senior_assist, med_exp, ccap,
               calc_contributions, health_contrib, add_contrib_subsid_chcare,
               solidarity

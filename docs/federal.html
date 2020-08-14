@@ -92,6 +92,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="quebec.html">Impôt du Québec</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ontario.html">Impôt de l’Ontario</a></li>
 <li class="toctree-l1"><a class="reference internal" href="oas.html">Pension de la sécurité de la vieillesse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="payroll.html">Cotisations sociales</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ei.html">Programme d’assurance emploi</a></li>
@@ -101,6 +102,7 @@
 <li class="toctree-l1"><a class="reference internal" href="calculators.html">Calculateur de revenu disponible</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialFed.html">Exemple de calcul de l’impôt fédéral</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialCalculator.html">Exemple de calcul du revenu disponible</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits.html">Contributeurs</a></li>
 </ul>
 
             
@@ -239,17 +241,6 @@
 - Pertes en capital net des autres années.
 - Déduction pour gain en capital exonéré.</p>
 <p>Permet une déduction maximale égale aux gains en capitaux taxables nets.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="srd.federal.template.calc_div_tax_credit">
-<code class="sig-name descname">calc_div_tax_credit</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_div_tax_credit" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Crédit d’impôt pour dividendes</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
@@ -415,6 +406,17 @@ est reçu par le conjoint qui a le revenu le moins élevé.</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
 <dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.federal.template.div_tax_credit">
+<code class="sig-name descname">div_tax_credit</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.div_tax_credit" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Crédit d’impôt pour dividendes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
 </dd>
 </dl>
 </dd></dl>
@@ -593,6 +595,51 @@ les crédits non-remboursables et remboursables et les impôts nets.</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
 <dd class="field-odd"><p>Montant du crédit</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.federal.template.get_witb">
+<code class="sig-name descname">get_witb</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_witb" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Prestation fiscale pour le revenu de travail (PFRT/WITB). À partir de 2019,
+cela devient l’Allocation canadienne pour les travailleurs (ACT/CWB).</p>
+<p>Dans le cas d’un couple, la prestation est répartie au prorata des revenus du travail.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant de la PFRT (WITB)</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.federal.template.get_witbds">
+<code class="sig-name descname">get_witbds</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_witbds" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Supplément pour invalidité à la prestation fiscale pour le revenu de travail
+(SIPFRT/WITBDS).
+À partir de 2019, cela devient le supplément pour invalidité
+à l’Allocation canadienne pour les travailleurs (ACT).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant de la SIPFRT (WITBDS)</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
 </dd>
 </dl>
 </dd></dl>

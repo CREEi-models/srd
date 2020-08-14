@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Recherche" href="search.html" />
-    <link rel="next" title="Pension de la sécurité de la vieillesse" href="oas.html" />
+    <link rel="next" title="Impôt de l’Ontario" href="ontario.html" />
     <link rel="prev" title="Impôt fédéral" href="federal.html" /> 
 </head>
 
@@ -92,6 +92,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="ontario.html">Impôt de l’Ontario</a></li>
 <li class="toctree-l1"><a class="reference internal" href="oas.html">Pension de la sécurité de la vieillesse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="payroll.html">Cotisations sociales</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ei.html">Programme d’assurance emploi</a></li>
@@ -101,6 +102,7 @@
 <li class="toctree-l1"><a class="reference internal" href="calculators.html">Calculateur de revenu disponible</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialFed.html">Exemple de calcul de l’impôt fédéral</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialCalculator.html">Exemple de calcul du revenu disponible</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits.html">Contributeurs</a></li>
 </ul>
 
             
@@ -235,12 +237,10 @@ La contribution additionnelle pour les services de garde éducatifs
 </dd></dl>
 
 <dl class="method">
-<dt id="srd.quebec.template.calc_deduc_net_income">
-<code class="sig-name descname">calc_deduc_net_income</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.calc_deduc_net_income" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui calcule les déductions suivantes:
-- Pertes en capital net des autres années.
-- Déduction pour gain en capital exonéré.</p>
-<p>Permet une déduction maximale égale aux gains en capitaux taxables nets.</p>
+<dt id="srd.quebec.template.calc_deduc_gross_income">
+<code class="sig-name descname">calc_deduc_gross_income</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.calc_deduc_gross_income" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule les déductions.</p>
+<p>Cette fonction fait la somme des différentes déductions du contribuable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
@@ -249,9 +249,12 @@ La contribution additionnelle pour les services de garde éducatifs
 </dd></dl>
 
 <dl class="method">
-<dt id="srd.quebec.template.calc_div_tax_credit">
-<code class="sig-name descname">calc_div_tax_credit</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.calc_div_tax_credit" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Crédit d’impôt pour dividendes</p>
+<dt id="srd.quebec.template.calc_deduc_net_income">
+<code class="sig-name descname">calc_deduc_net_income</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.calc_deduc_net_income" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule les déductions suivantes:
+- Pertes en capital net des autres années.
+- Déduction pour gain en capital exonéré.</p>
+<p>Permet une déduction maximale égale aux gains en capitaux taxables nets.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
@@ -395,6 +398,17 @@ de la situation familiale (couple/monoparental) et du revenu.</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
 <dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.quebec.template.div_tax_credit">
+<code class="sig-name descname">div_tax_credit</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.div_tax_credit" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Crédit d’impôt pour dividendes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
 </dd>
 </dl>
 </dd></dl>
@@ -843,7 +857,7 @@ est abolie en 2019.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="oas.html" class="btn btn-neutral float-right" title="Pension de la sécurité de la vieillesse" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="ontario.html" class="btn btn-neutral float-right" title="Impôt de l’Ontario" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="federal.html" class="btn btn-neutral float-left" title="Impôt fédéral" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

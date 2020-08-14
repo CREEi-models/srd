@@ -39,7 +39,7 @@ class template:
         for p in hh.sp:
             self.calc_tax(p)
             self.calc_non_refundable_tax_credits(p, hh)
-            self.calc_div_tax_credit(p)
+            self.div_tax_credit(p)
             self.calc_contributions(p, hh)
             p.prov_return['net_tax_liability'] = max(0,
                 p.prov_return['gross_tax_liability'] + p.prov_return['contributions']
@@ -317,7 +317,7 @@ class template:
 
         def calc_amount(max_work_inc, min_amount=0):
             """
-            Calcule le crédit.
+            Calcule le montant du crédit d'impôt pour les travailleurs d'expérience.
 
             Parameters
             ----------
@@ -440,7 +440,7 @@ class template:
         med_exp = sum([p.med_exp for p in hh.sp] + [d.med_exp for d in hh.dep])
         return max(0, med_exp - self.nrtc_med_exp_rate * hh.fam_net_inc_prov)
 
-    def calc_div_tax_credit(self, p):
+    def div_tax_credit(self, p):
         """
         Crédit d'impôt pour dividendes
 
@@ -517,7 +517,7 @@ class template:
         else:
             return net_amount
 
-    def witb(self,p,hh):
+    def witb(self, p, hh):
         """
         Prime au travail.
 

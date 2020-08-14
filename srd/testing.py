@@ -47,7 +47,7 @@ class Testing:
 
     def plot_compare_net_inc(self, measure, income, l_groups=['all'],
                              by_family=False, family_income=False, alpha=1,
-                             upper_inc=50e3):
+                             upper_inc=50e3, max_y=None):
         print(measure)
         self.measure = measure
         self.income = income
@@ -56,6 +56,7 @@ class Testing:
         self.fam_income = family_income
         self.alpha = alpha
         self.upper_inc = upper_inc
+        self.max_y = max_y
 
         fig, ax = plt.subplots(1, 1, figsize=(8, 6))
         self.compare_net_inc(ax)
@@ -171,9 +172,11 @@ class Testing:
                 meas = self.df[[meas_srd, meas_bdsps]]
 
             self.ax.scatter(inc[inc_srd], meas[meas_srd], label='srd', marker='o',
-                            alpha=alpha)
+                            alpha=self.alpha)
             self.ax.scatter(inc[inc_bdsps], meas[meas_bdsps], label='bdsps', marker='*',
-                            alpha=alpha)
+                            alpha=self.alpha)
             self.ax.legend() 
             ax.set_xlabel(self.income)
             ax.set_xlim([0, self.upper_inc])
+            if self.max_y:
+                ax.set_ylim([0, self.max_y])

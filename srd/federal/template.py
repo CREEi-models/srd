@@ -37,7 +37,7 @@ class template:
         for p in hh.sp:
             self.calc_tax(p)
             self.calc_non_refundable_tax_credits(p, hh)
-            self.calc_div_tax_credit(p)
+            self.div_tax_credit(p)
             p.fed_return['net_tax_liability'] = max(0,
                 p.fed_return['gross_tax_liability'] - p.fed_return['non_refund_credits']
                 - p.fed_div_tax_credit)
@@ -449,7 +449,7 @@ class template:
                     + donation_high_inc * self.donation_high_rate
                     + donation_low_inc * self.donation_med_rate)
 
-    def calc_div_tax_credit(self, p):
+    def div_tax_credit(self, p):
         """
         Crédit d'impôt pour dividendes
 

@@ -68,19 +68,8 @@ class form_2019(form_2018):
         add_schedule_as_attr(self, module_dir + '/ontario/params/schedule_2019.csv')
         add_schedule_as_attr(self, module_dir + '/ontario/params/health_contrib_2019.csv')
 
-
-    def calc_on_lift_credit(self, p, hh):
-        """
-        Crédit d’impôt pour les personnes et les familles à faible revenu (LIFT).
-
-        Ce crédit est non-remboursable.
-
-        Parameters
-        p: Person
-            instance de la classe Person
-        hh: Hhold
-            instance de la classe Hhold
-        """
+    def lift_credit(self, p, hh):
+        # docstring in template #
         if p.inc_work == 0:
             p.on_lift = 0
 
