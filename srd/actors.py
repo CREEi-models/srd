@@ -19,13 +19,13 @@ class Person:
     rpp: float
         revenu de régime complémentaire de retraite (RCR)
     cpp: float
-        revenu de régime de rentes du Québec (RRQ)
+        revenu de régime de rentes du Québec (RRQ) ou du régime de pension du Canada (RPC)
     cap_gains: float
         gains en capitaux taxables nets de l'année (50% * max(0, gains - pertes))
     cap_losses: float
         pertes en capital d'autres années
     cap_gains_exempt: float
-        exonération des gains en capitaux demandée
+        exonération des gains en capitaux demandée (sur gains en capitaux nets)
     othtax: float
         autre revenu imposable
     othntax: float
@@ -72,8 +72,8 @@ class Person:
     """
     def __init__(self, age=50, male=True, earn=0, rpp=0, cpp=0, cap_gains=0,
                  cap_losses=0, cap_gains_exempt=0, othtax=0, othntax=0,
-                 inc_rrsp=0, self_earn=0, div_elig=0, div_other_can=0, con_rrsp=0,
-                 con_rpp=0, union_dues=0, donation=0, gift=0,
+                 inc_rrsp=0, self_earn=0, div_elig=0, div_other_can=0,
+                 con_rrsp=0, con_rpp=0, union_dues=0, donation=0, gift=0,
                  years_can=None, disabled=False, cqppc=None, widow=False,
                  med_exp=0, ndays_chcare_k1=0, ndays_chcare_k2=0, asset=0,
                  oas_years_post=0, months_cerb_cesb=0, student=False,
@@ -86,8 +86,8 @@ class Person:
         self.inc_rpp = rpp
         self.inc_cpp = cpp
         self.cap_gains = max(0, cap_gains)  # or should we just trust user?
-        self.cap_losses = cap_losses
-        self.cap_gains_exempt = cap_gains_exempt
+        self.cap_losses = cap_losses  
+        self.cap_gains_exempt = cap_gains_exempt  # for example for small businesses
         self.inc_othtax = othtax
         self.inc_othntax = othntax
         self.div_elig = div_elig
@@ -217,7 +217,6 @@ class Person:
 
         Returns
         -------
-
         float
             revenu total.
         """
