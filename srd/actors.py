@@ -51,8 +51,6 @@ class Person:
         lorsque la pension de la Sécurité de la vieillesse (SV) est demandée
     disabled: boolean
         statut d'invalidité
-    cqppc: float
-        contribution au RRQ
     widow: boolean
         statut de veuf/veuve
     med_exp: float
@@ -74,8 +72,8 @@ class Person:
                  cap_losses=0, cap_gains_exempt=0, othtax=0, othntax=0,
                  inc_rrsp=0, self_earn=0, div_elig=0, div_other_can=0,
                  con_rrsp=0, con_rpp=0, union_dues=0, donation=0, gift=0,
-                 years_can=None, disabled=False, cqppc=None, widow=False,
-                 med_exp=0, ndays_chcare_k1=0, ndays_chcare_k2=0, asset=0,
+                 years_can=None, disabled=False, widow=False, med_exp=0,
+                 ndays_chcare_k1=0, ndays_chcare_k2=0, asset=0,
                  oas_years_post=0, months_cerb_cesb=0, student=False,
                  essential_worker=False, hours_month=None, prev_inc_work=None,
                  dep_senior=False, home_support_cost=0):
@@ -86,7 +84,7 @@ class Person:
         self.inc_rpp = rpp
         self.inc_cpp = cpp
         self.cap_gains = max(0, cap_gains)  # or should we just trust user?
-        self.cap_losses = cap_losses  
+        self.cap_losses = cap_losses
         self.cap_gains_exempt = cap_gains_exempt  # for example for small businesses
         self.inc_othtax = othtax
         self.inc_othntax = othntax
@@ -100,7 +98,6 @@ class Person:
         self.gift = gift
         self.years_can = age if years_can is None else years_can  # number of years in Canada (max = 40)
         self.disabled = disabled
-        self.cqppc = cqppc
         self.widow = widow
         self.med_exp = med_exp
         self.ndays_chcare_k1 = ndays_chcare_k1  # should be the kid with the most days,
