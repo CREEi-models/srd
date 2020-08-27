@@ -570,7 +570,7 @@ class template:
         float
             Montant de la PFRT (WITB)
         """
-        self.witb = self.witb_params[hh.prov]
+        self.witb = self.witb_params['qc'] if hh.prov == 'qc' else self.witb_params['on']
 
         if not hh.couple:
             base = self.witb['base_single']
