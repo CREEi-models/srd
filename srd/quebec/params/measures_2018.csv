@@ -1,8 +1,9 @@
 variable;value;type;definition;source ;comments
 div_elig_factor;1.38;float;;;
 div_other_can_factor;1.16;float;;;
-div_elig_cred_net_rate;0.163806;float;0,163806;;1/4 * le taux de 2018 pour janvier � mars et 3/4 * le taux de mars � d�cembre
-div_other_can_cred_net_rate;0.07525725;float;0,07525725;;1/4 * le taux de 2018 pour janvier � mars et 3/4 * le taux de mars � d�cembre
+div_elig_cred_net_rate;0.163806;float;;;1/4 * le taux de 2018 pour janvier � mars et 3/4 * le taux de mars � d�cembre
+div_other_can_cred_net_rate;0.07525725;float;;;1/4 * le taux de 2018 pour janvier � mars et 3/4 * le taux de mars � d�cembre
+cap_gains_rate;0.5;float;;;
 qpip_deduc_rate;0.43679;float;;annexe R;
 work_deduc_max;1150;float;;;
 work_deduc_rate;0.06;float;;;

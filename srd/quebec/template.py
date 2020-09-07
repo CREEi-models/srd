@@ -60,11 +60,12 @@ class template:
         """
         p.taxable_div = (self.div_elig_factor * p.div_elig
                          + self.div_other_can_factor * p.div_other_can)
+        p.taxable_cap_gains = self.cap_gains_rate * max(0, p.net_cap_gains)
         p.prov_return['gross_income'] = (p.inc_work + p.inc_ei + p.inc_oas
                                          + p.inc_gis + p.inc_cpp + p.inc_rpp
-                                         + p.pension_split_qc + p.cap_gains
-                                         + p.inc_othtax + p.taxable_div
-                                         + p.inc_rrsp)
+                                         + p.pension_split_qc + p.taxable_div
+                                         + p.taxable_cap_gains
+                                         + p.inc_othtax + p.inc_rrsp)
 
     def calc_net_income(self, p):
         """
@@ -159,8 +160,8 @@ class template:
         p: Person
             instance de la classe Person
         """
-        p.prov_return['deductions_net_inc'] = min(p.cap_gains,
-                                                  p.cap_losses + p.cap_gains_exempt)
+        p.fed_return['deductions_net_inc'] = min(p.taxable_cap_gains, 
+            p.prev_cap_losses + self.cap_gains_rate * p.cap_gains_exempt)
 
     def calc_tax(self, p):
         """

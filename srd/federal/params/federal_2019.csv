@@ -2,7 +2,8 @@ variable;value;type;definition;source ;comments
 div_elig_factor;1.38;float;;;
 div_other_can_factor;1.15;float;;;
 div_elig_cred_rate;0.150198;float;;;
-div_other_can_cred_rate;0.090313 ;float;;;
+div_other_can_cred_rate;0.090313;float;;;
+cap_gains_rate;0.5;float;;;
 qpip_deduc_rate;0.43683;float;;;
 basic_amount;12069;float;;Income Tax and Benefit Return 2019;
 age_cred_amount;7494;float;;;

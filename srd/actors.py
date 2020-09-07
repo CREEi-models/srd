@@ -20,12 +20,12 @@ class Person:
         revenu de régime complémentaire de retraite (RCR)
     cpp: float
         revenu de régime de rentes du Québec (RRQ) ou du régime de pension du Canada (RPC)
-    cap_gains: float
-        gains en capitaux taxables nets de l'année (50% * max(0, gains - pertes))
-    cap_losses: float
-        pertes en capital d'autres années
+    net_cap_gains: float
+        gains (ou pertes si négatif) nets en capital réalisés
+    prev_cap_losses: float
+        pertes en capital nettes d'autres années (facteur d'inclusion déjà appliqué)
     cap_gains_exempt: float
-        exonération des gains en capitaux demandée (sur gains en capitaux nets)
+        exonération des gains en capital demandée (sur gains en capital nets)
     othtax: float
         autre revenu imposable
     othntax: float
@@ -40,6 +40,8 @@ class Person:
         montant réel des dividendes ordinaires (canadiens)
     con_rrsp: float
         contribution REER
+    con_non_rrsp: float
+        contribution autre que REER
     union_dues: float
         cotisations syndicales, professionnelles ou autres
     donation: float
@@ -68,14 +70,15 @@ class Person:
     home_support_cost: float
         coût du maintien à domicile
     """
-    def __init__(self, age=50, male=True, earn=0, rpp=0, cpp=0, cap_gains=0,
-                 cap_losses=0, cap_gains_exempt=0, othtax=0, othntax=0,
-                 inc_rrsp=0, self_earn=0, div_elig=0, div_other_can=0,
-                 con_rrsp=0, con_rpp=0, union_dues=0, donation=0, gift=0,
-                 years_can=None, disabled=False, widow=False, med_exp=0,
-                 ndays_chcare_k1=0, ndays_chcare_k2=0, asset=0,
-                 oas_years_post=0, months_cerb_cesb=0, student=False,
-                 essential_worker=False, hours_month=None, prev_inc_work=None,
+    def __init__(self, age=50, male=True, earn=0, rpp=0, cpp=0,
+                 net_cap_gains=0, prev_cap_losses=0, cap_gains_exempt=0,
+                 othtax=0, othntax=0, inc_rrsp=0, self_earn=0, div_elig=0,
+                 div_other_can=0, con_rrsp=0, con_rpp=0, con_non_rrsp=0, 
+                 union_dues=0, donation=0, gift=0, years_can=None,
+                 disabled=False, widow=False, med_exp=0, ndays_chcare_k1=0,
+                 ndays_chcare_k2=0, asset=0, oas_years_post=0,
+                 months_cerb_cesb=0, student=False, essential_worker=False,
+                 hours_month=None, prev_inc_work=None,
                  dep_senior=False, home_support_cost=0):
         self.age = age
         self.male = male
@@ -83,8 +86,8 @@ class Person:
         self.attach_prev_work_inc(prev_inc_work)
         self.inc_rpp = rpp
         self.inc_cpp = cpp
-        self.cap_gains = max(0, cap_gains)  # or should we just trust user?
-        self.cap_losses = cap_losses
+        self.net_cap_gains = net_cap_gains
+        self.prev_cap_losses = prev_cap_losses
         self.cap_gains_exempt = cap_gains_exempt  # for example for small businesses
         self.inc_othtax = othtax
         self.inc_othntax = othntax
@@ -92,6 +95,7 @@ class Person:
         self.div_other_can = div_other_can
         self.inc_rrsp = inc_rrsp
         self.con_rrsp = con_rrsp
+        self.con_non_rrsp = con_non_rrsp
         self.con_rpp = con_rpp
         self.union_dues = union_dues
         self.donation = donation
@@ -219,8 +223,8 @@ class Person:
         """
         return (self.inc_work + self.inc_rpp + self.inc_cpp + self.inc_othtax
                 + self.inc_othntax + self.inc_rrsp + self.inc_oas
-                + self.inc_gis + self.inc_ei + self.div_elig
-                + self.div_other_can)
+                + self.inc_gis + self.inc_ei + self.net_cap_gains
+                + self.div_elig + self.div_other_can)
 
     def compute_months_cerb_cesb(self, months_cerb_cesb, student):
         """

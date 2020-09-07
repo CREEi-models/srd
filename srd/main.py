@@ -19,7 +19,6 @@ hh = Hhold(julia, prov='qc')
 # hh.add_dependent(james, jean, joseph)
 
 
-
 tax_form = tax(year)
 
 print(vars(tax_form.prov['qc']))
