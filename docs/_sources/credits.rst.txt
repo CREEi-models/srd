@@ -5,11 +5,10 @@ Principaux
 **********
 David Boisclair, Raquel Fonseca, Pierre-Carl Michaud, Pierre-Yves Yanni
 
-Année 2020
-**********
+Pour l'année 2020
+*****************
 Marianne Laurin, Paul Ouimet, Gaëlle Simard-Duplain
 
-Personne de contact
-*******************
+Personne-contact
+****************
 `Pierre-Yves Yanni <pierre-yves.yanni@hec.ca>`_
-

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Simulateur de revenu disponible Canada &mdash; Documentation Simulateur de revenu disponible </title>
+  <title>Simulateur de revenu disponible &mdash; Documentation Simulateur de revenu disponible </title>
   
 
   
@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Recherche" href="search.html" />
-    <link rel="next" title="Premier pas avec le SRD" href="overview.html" /> 
+    <link rel="next" title="Premiers pas avec le SRD" href="overview.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -82,17 +82,17 @@
             
               <p class="caption"><span class="caption-text">Menu:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Premier pas avec le SRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Premiers pas avec le SRD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="actors.html">Les acteurs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="federal.html">Impôt fédéral</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quebec.html">Impôt du Québec</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ontario.html">Impôt de l’Ontario</a></li>
 <li class="toctree-l1"><a class="reference internal" href="oas.html">Pension de la sécurité de la vieillesse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="payroll.html">Cotisations sociales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ei.html">Programme d’assurance emploi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ei.html">Assurance emploi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="qpip.html">Régime québécois d’assurance parentale</a></li>
 <li class="toctree-l1"><a class="reference internal" href="assistance.html">Aide sociale</a></li>
-<li class="toctree-l1"><a class="reference internal" href="covid.html">Prestations liées à la covid-19</a></li>
+<li class="toctree-l1"><a class="reference internal" href="covid.html">Prestations liées à la COVID-19</a></li>
 <li class="toctree-l1"><a class="reference internal" href="calculators.html">Calculateur de revenu disponible</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialFed.html">Exemple de calcul de l’impôt fédéral</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialCalculator.html">Exemple de calcul du revenu disponible</a></li>
@@ -143,7 +143,7 @@
     
       <li><a href="#">Docs</a> &raquo;</li>
         
-      <li>Simulateur de revenu disponible Canada</li>
+      <li>Simulateur de revenu disponible</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -162,14 +162,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="simulateur-de-revenu-disponible-canada">
-<h1>Simulateur de revenu disponible Canada<a class="headerlink" href="#simulateur-de-revenu-disponible-canada" title="Lien permanent vers ce titre">¶</a></h1>
-<p>Le Simulateur de revenu disponible (SRD) a été mis au point par l’équipe de la <a class="reference external" href="https://www.creei.ca">chaire sur les enjeux économiques intergénérationels</a>, une chaire conjointe HEC Montréal-ESG UQAM.
-Il permet, pour tout type de ménage, de calculer le revenu disponible ainsi que les impôts payés, les déductions, les crédits d’impôts et les principaux transferts obtenus, autant au fédéral qu’au provincial (Québec et Ontario), pour les années 2016 à 2020. Pour l’année 2020, les mesures d’urgence liées à la COVID-19 ont également été intégrées. Par rapport aux autres outils existants, le SRD offre une très grande flexibilité et une transparence inégalée. En effet, tout ménage – quelles que soient sa composition et ses caractéristiques socio-économiques–  peut être simulé dans le SRD, ce qui permet à l’utilisateur de simuler la base de données de son choix. De plus, le code du simulateur est public et modifiable, ce qui permet d’évaluer les effets de différents scénarios et de modifier les valeurs des paramètres et la structure du simulateur.</p>
+  <div class="section" id="simulateur-de-revenu-disponible">
+<h1>Simulateur de revenu disponible<a class="headerlink" href="#simulateur-de-revenu-disponible" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Le Simulateur de revenu disponible (SRD) a été mis au point par l’équipe de la <a class="reference external" href="https://www.creei.ca">Chaire de recherche sur les enjeux économiques intergénérationnels</a>, une chaire conjointe HEC Montréal-ESG UQAM.
+Il permet, pour tout ménage, de calculer le revenu disponible ainsi que les impôts payés, les déductions, les crédits d’impôts et les principaux transferts obtenus, autant au fédéral qu’au provincial (Québec et Ontario), pour les années 2016 à 2020. Pour l’année 2020, les mesures d’urgence liées à la COVID-19 ont également été intégrées. Par rapport aux autres outils existants, le SRD offre une très grande flexibilité et une transparence inégalée. En effet, tout ménage – quelles que soient sa composition et ses caractéristiques socio-économiques – peut être simulé dans le SRD, ce qui permet à l’utilisateur de simuler la base de données de son choix. De plus, le code du simulateur est public et modifiable, ce qui permet d’évaluer les effets de différents scénarios et de modifier les valeurs des paramètres et la structure du simulateur.</p>
+<p>Le SRD est écrit en langage Python, un langage simple, rapide et moderne. Afin de pouvoir l’utiliser, il faut s’assurer d’avoir au préalable installé une distribution à jour de Python, par exemple à l’aide d’Anaconda. Bien que ce ne soit pas essentiel pour utiliser le SRD, il sera également utile de se familiariser un minimum, au préalable, avec le fonctionnement des environnements Python et avec le vocabulaire utilisé dans la présente documentation (p.ex. fonction, classe, instance, profil).</p>
+<p>Le SRD est fourni sous licence MIT (« MIT License »): A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code.</p>
+<p>Les conditions de la licence sont les suivantes:
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the « Software »), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+<p>The copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED « AS IS », WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</p>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Menu:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Premier pas avec le SRD</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Premiers pas avec le SRD</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="overview.html#installation-du-srd">Installation du SRD</a></li>
 </ul>
 </li>
@@ -199,7 +211,7 @@ Il permet, pour tout type de ménage, de calculer le revenu disponible ainsi que
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="payroll.html">Cotisations sociales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ei.html">Programme d’assurance emploi</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="ei.html">Assurance emploi</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="ei.html#survol">Survol</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ei.html#gabarit-du-programme">Gabarit du programme</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ei.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
@@ -217,7 +229,7 @@ Il permet, pour tout type de ménage, de calculer le revenu disponible ainsi que
 <li class="toctree-l2"><a class="reference internal" href="assistance.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="covid.html">Prestations liées à la covid-19</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="covid.html">Prestations liées à la COVID-19</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="covid.html#survol">Survol</a></li>
 <li class="toctree-l2"><a class="reference internal" href="covid.html#gabarit-du-programme">Gabarit du programme</a></li>
 </ul>
@@ -243,8 +255,8 @@ Il permet, pour tout type de ménage, de calculer le revenu disponible ainsi que
 <li class="toctree-l1"><a class="reference internal" href="TutorialChangeParameters.html">Exemple de changement de paramètre</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Contributeurs</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="credits.html#principaux">Principaux</a></li>
-<li class="toctree-l2"><a class="reference internal" href="credits.html#annee-2020">Année 2020</a></li>
-<li class="toctree-l2"><a class="reference internal" href="credits.html#personne-de-contact">Personne de contact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="credits.html#pour-l-annee-2020">Pour l’année 2020</a></li>
+<li class="toctree-l2"><a class="reference internal" href="credits.html#personne-contact">Personne-contact</a></li>
 </ul>
 </li>
 </ul>
@@ -267,7 +279,7 @@ Il permet, pour tout type de ménage, de calculer le revenu disponible ainsi que
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="overview.html" class="btn btn-neutral float-right" title="Premier pas avec le SRD" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="overview.html" class="btn btn-neutral float-right" title="Premiers pas avec le SRD" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>

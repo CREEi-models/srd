@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Recherche" href="search.html" />
-    <link rel="next" title="Programme d’assurance emploi" href="ei.html" />
+    <link rel="next" title="Assurance emploi" href="ei.html" />
     <link rel="prev" title="Pension de la sécurité de la vieillesse" href="oas.html" /> 
 </head>
 
@@ -83,19 +83,22 @@
             
               <p class="caption"><span class="caption-text">Menu:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Premier pas avec le SRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Premiers pas avec le SRD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="actors.html">Les acteurs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="federal.html">Impôt fédéral</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quebec.html">Impôt du Québec</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ontario.html">Impôt de l’Ontario</a></li>
 <li class="toctree-l1"><a class="reference internal" href="oas.html">Pension de la sécurité de la vieillesse</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Cotisations sociales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ei.html">Programme d’assurance emploi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ei.html">Assurance emploi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="qpip.html">Régime québécois d’assurance parentale</a></li>
 <li class="toctree-l1"><a class="reference internal" href="assistance.html">Aide sociale</a></li>
-<li class="toctree-l1"><a class="reference internal" href="covid.html">Prestations liées à la covid-19</a></li>
+<li class="toctree-l1"><a class="reference internal" href="covid.html">Prestations liées à la COVID-19</a></li>
 <li class="toctree-l1"><a class="reference internal" href="calculators.html">Calculateur de revenu disponible</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialFed.html">Exemple de calcul de l’impôt fédéral</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialCalculator.html">Exemple de calcul du revenu disponible</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TutorialChangeParameters.html">Exemple de changement de paramètre</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits.html">Contributeurs</a></li>
 </ul>
 
             
@@ -162,8 +165,8 @@
             
   <div class="section" id="cotisations-sociales">
 <h1>Cotisations sociales<a class="headerlink" href="#cotisations-sociales" title="Lien permanent vers ce titre">¶</a></h1>
-<p>Les cotisations sociales sont prises en charge par la classe <em>payroll</em>. Cette classe prend en charge les cotisations provenant du régime québécois d’assurance parentale (RQAP) (Québec), l’assurance-emploi ainsi que du régime des rentes du Québec (RRQ) et du régime de pensions du Canada (RPC). Pour ces dernières, le module <em>cpp</em> de la chaire est utilisé et une fonction de la classe <em>payroll</em> (<em>get_cpp_contrib</em>) ira chercher les contributions à l’intérieur de ce module.</p>
-<p>La classe <em>payroll</em> attachera à chaque membre d’un couple un rapport de cotisations qui contiendra toutes ces contributions. Pour le RRQ et RPC, les cotisations aux prestations de base du régime ainsi que les suppléments provenant de l’expansion du programme en 2016 sont séparés puisque leur traitement fiscal est différent.</p>
+<p>Les cotisations sociales sont prises en charge par la classe <em>payroll</em>. Cette classe prend en charge les cotisations au Régime québécois d’assurance parentale (RQAP), à l’assurance-emploi, au Régime de rentes du Québec (RRQ) et au Régime de pensions du Canada (RPC). Pour ces dernières, le module <em>srpp</em> de la chaire est utilisé et une fonction de la classe <em>payroll</em> (<em>get_cpp_contrib</em>) ira chercher les contributions à l’intérieur de ce module.</p>
+<p>La classe <em>payroll</em> attachera à chaque membre d’un couple un rapport de cotisations qui contiendra toutes les sommes cotisées. Pour le RRQ et le RPC, les cotisations aux régimes de base et celles aux régimes supplémentaires découlant de l’expansion débutée en 2019 sont séparées, car leur traitement fiscal est différent.</p>
 <dl class="class">
 <dt id="srd.payroll">
 <em class="property">class </em><code class="sig-prename descclassname">srd.</code><code class="sig-name descname">payroll</code><span class="sig-paren">(</span><em class="sig-param">year</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.payroll" title="Lien permanent vers cette définition">¶</a></dt>
@@ -218,7 +221,7 @@ le RQAP (Québec), le RRQ (Québec) ainsi que le RPC.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="ei.html" class="btn btn-neutral float-right" title="Programme d’assurance emploi" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="ei.html" class="btn btn-neutral float-right" title="Assurance emploi" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="oas.html" class="btn btn-neutral float-left" title="Pension de la sécurité de la vieillesse" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Programme d’assurance emploi &mdash; Documentation Simulateur de revenu disponible </title>
+  <title>Assurance emploi &mdash; Documentation Simulateur de revenu disponible </title>
   
 
   
@@ -83,13 +83,14 @@
             
               <p class="caption"><span class="caption-text">Menu:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Premier pas avec le SRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Premiers pas avec le SRD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="actors.html">Les acteurs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="federal.html">Impôt fédéral</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quebec.html">Impôt du Québec</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ontario.html">Impôt de l’Ontario</a></li>
 <li class="toctree-l1"><a class="reference internal" href="oas.html">Pension de la sécurité de la vieillesse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="payroll.html">Cotisations sociales</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Programme d’assurance emploi</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Assurance emploi</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#survol">Survol</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gabarit-du-programme">Gabarit du programme</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
@@ -97,10 +98,11 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="qpip.html">Régime québécois d’assurance parentale</a></li>
 <li class="toctree-l1"><a class="reference internal" href="assistance.html">Aide sociale</a></li>
-<li class="toctree-l1"><a class="reference internal" href="covid.html">Prestations liées à la covid-19</a></li>
+<li class="toctree-l1"><a class="reference internal" href="covid.html">Prestations liées à la COVID-19</a></li>
 <li class="toctree-l1"><a class="reference internal" href="calculators.html">Calculateur de revenu disponible</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialFed.html">Exemple de calcul de l’impôt fédéral</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialCalculator.html">Exemple de calcul du revenu disponible</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TutorialChangeParameters.html">Exemple de changement de paramètre</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Contributeurs</a></li>
 </ul>
 
@@ -147,7 +149,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Programme d’assurance emploi</li>
+      <li>Assurance emploi</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -166,11 +168,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="programme-d-assurance-emploi">
-<h1>Programme d’assurance emploi<a class="headerlink" href="#programme-d-assurance-emploi" title="Lien permanent vers ce titre">¶</a></h1>
+  <div class="section" id="assurance-emploi">
+<h1>Assurance emploi<a class="headerlink" href="#assurance-emploi" title="Lien permanent vers ce titre">¶</a></h1>
 <div class="section" id="survol">
 <h2>Survol<a class="headerlink" href="#survol" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Le programme d’assurance-emploi est pris en charge par le module <em>ei</em>. Ce module contient un gabarit que nous documentons ci-dessous ainsi que des classes dérivées spécifiques chaque année.</p>
+<p>Le programme d’assurance-emploi est pris en charge par le module <em>ei</em>. Ce module contient un gabarit que nous documentons ci-dessous ainsi que des classes dérivées spécifiques pour chaque année.</p>
 <p>La fonction <em>program</em> permet de choisir l’année du programme et ira tirer une instance du programme pour cette année. L’instance est retournée par la fonction.</p>
 <dl class="function">
 <dt id="srd.ei.program">
@@ -189,11 +191,11 @@
 </dl>
 </dd></dl>
 
-<p>Pour le moment, le programme ne permet que de calculer les contributions.</p>
+<p>Pour le moment, le programme permet uniquement de calculer les cotisations.</p>
 </div>
 <div class="section" id="gabarit-du-programme">
 <h2>Gabarit du programme<a class="headerlink" href="#gabarit-du-programme" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Nous utilisons un gabarit afin de créer les programmes chaque année. Quand le programme change seulement au niveau des paramètres d’une année à l’autre, nous irons chercher seulement les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou en rajouter). L’avantage des classes dérivées est de ne pas avoir à répéter toutes les fonctions d’une année à l’autre si elles n’ont pas changé.</p>
+<p>Nous utilisons un gabarit afin de créer les programmes chaque année. Quand le programme change seulement au niveau des paramètres d’une année à l’autre, nous irons chercher seulement les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou à en ajouter de nouvelles). L’avantage des classes dérivées est de ne pas avoir à répéter toutes les fonctions d’une année à l’autre si celles-ci n’ont pas changé.</p>
 <p>Nous reproduisons ici la spécification du gabarit. Il est calibré sur le programme en vigueur en 2016.</p>
 <dl class="class">
 <dt id="srd.ei.template">

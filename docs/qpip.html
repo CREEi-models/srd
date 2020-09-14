@@ -37,7 +37,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Recherche" href="search.html" />
     <link rel="next" title="Aide sociale" href="assistance.html" />
-    <link rel="prev" title="Programme d’assurance emploi" href="ei.html" /> 
+    <link rel="prev" title="Assurance emploi" href="ei.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -83,13 +83,14 @@
             
               <p class="caption"><span class="caption-text">Menu:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Premier pas avec le SRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Premiers pas avec le SRD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="actors.html">Les acteurs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="federal.html">Impôt fédéral</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quebec.html">Impôt du Québec</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ontario.html">Impôt de l’Ontario</a></li>
 <li class="toctree-l1"><a class="reference internal" href="oas.html">Pension de la sécurité de la vieillesse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="payroll.html">Cotisations sociales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ei.html">Programme d’assurance emploi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ei.html">Assurance emploi</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Régime québécois d’assurance parentale</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#survol">Survol</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gabarit-du-programme">Gabarit du programme</a></li>
@@ -97,10 +98,11 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="assistance.html">Aide sociale</a></li>
-<li class="toctree-l1"><a class="reference internal" href="covid.html">Prestations liées à la covid-19</a></li>
+<li class="toctree-l1"><a class="reference internal" href="covid.html">Prestations liées à la COVID-19</a></li>
 <li class="toctree-l1"><a class="reference internal" href="calculators.html">Calculateur de revenu disponible</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialFed.html">Exemple de calcul de l’impôt fédéral</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialCalculator.html">Exemple de calcul du revenu disponible</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TutorialChangeParameters.html">Exemple de changement de paramètre</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Contributeurs</a></li>
 </ul>
 
@@ -170,7 +172,7 @@
 <h1>Régime québécois d’assurance parentale<a class="headerlink" href="#regime-quebecois-d-assurance-parentale" title="Lien permanent vers ce titre">¶</a></h1>
 <div class="section" id="survol">
 <h2>Survol<a class="headerlink" href="#survol" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Le programme d’assurance parentale au Québec est pris en charge par le module <em>qpip</em>. Ce module contient un gabarit que nous documentons ci-dessous, ainsi que des classes dérivées spécifiques chaque année.</p>
+<p>Le programme d’assurance parentale au Québec est pris en charge par le module <em>qpip</em>. Ce module contient un gabarit que nous documentons ci-dessous, ainsi que des classes dérivées spécifiques pour chaque année.</p>
 <p>La fonction <em>program</em> permet de choisir l’année du programme et ira tirer une instance du programme pour cette année. L’instance est retournée par la fonction.</p>
 <dl class="function">
 <dt id="srd.qpip.program">
@@ -189,11 +191,11 @@
 </dl>
 </dd></dl>
 
-<p>Pour le moment, le programme ne permet que de calculer les contributions.</p>
+<p>Pour le moment, le programme permet uniquement de calculer les cotisations.</p>
 </div>
 <div class="section" id="gabarit-du-programme">
 <h2>Gabarit du programme<a class="headerlink" href="#gabarit-du-programme" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Nous utilisons un gabarit afin de créer les programmes chaque année. Quand le programme change seulement au niveau des paramètres d’une année à l’autre, nous irons chercher seulement les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou en rajouter). L’avantage des classes dérivées est de ne pas avoir à répéter toutes les fonctions d’une année à l’autre si elles n’ont pas changé.</p>
+<p>Nous utilisons un gabarit afin de créer les programmes chaque année. Quand le programme change seulement au niveau des paramètres d’une année à l’autre, nous irons chercher seulement les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou à en ajouter de nouvelles). L’avantage des classes dérivées est de ne pas avoir à répéter toutes les fonctions d’une année à l’autre si celles-ci n’ont pas changé.</p>
 <p>Nous reproduisons ici la spécification du gabarit. Il est calibré sur le programme en vigueur en 2016.</p>
 <dl class="class">
 <dt id="srd.qpip.template">
@@ -269,7 +271,7 @@
         <a href="assistance.html" class="btn btn-neutral float-right" title="Aide sociale" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="ei.html" class="btn btn-neutral float-left" title="Programme d’assurance emploi" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="ei.html" class="btn btn-neutral float-left" title="Assurance emploi" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

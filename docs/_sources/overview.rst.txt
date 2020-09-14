@@ -1,8 +1,8 @@
 .. _overview:
 
-***********************
-Premier pas avec le SRD
-***********************
+************************
+Premiers pas avec le SRD
+************************
 
 .. _installing-docdir:
 
@@ -13,26 +13,28 @@ On peut installer facilement le SRD en utilisant pip::
 
   pip install srd
 
-Le SRD dépend d'un autre package produit par la chaire, le SRPP, qui permet de simuler les revenus de pensions publiques (RPC et RRQ). Celui ci est installé automatiquement en installant le SRD.
+Le SRD dépend d'un autre package produit par la chaire, le SRPP, qui permet de simuler les revenus de pensions publiques (RPC et RRQ). Celui-ci est installé automatiquement en installant le SRD.
 
-Dans un notebook ou un projet, on invoque SRD en ajoutant la commande suivante:
+Dans un notebook ou un projet, on invoque le SRD en ajoutant la commande suivante:
 
 .. code:: ipython3
 
     import srd
 
-Pour désinstaller SRD, il suffit d'utiliser pip::
+Pour désinstaller le SRD, il suffit d'utiliser pip::
 
   pip uninstall srd
 
-Si ce n'est pas possible:
+Si l'utilisation de pip n'est pas possible:
 
-1. Allez sur `pypi.org <https://www.pypi.org>`_, téléchargez les fichiers sources (extension .tar.gz) de srd et srpp
-2. Extrayez les fichiers .tar.gz. Sur windows, ouvrez les fichiers avec 7-zip ou winzip ou, dans une fenêtre de commande, entrez (en remplaçant les adresses et noms de fichiers)::
+1. Allez sur `pypi.org <https://www.pypi.org>`_, téléchargez les fichiers sources (extension .tar.gz) du SRD et du SRPP
 
-  tar -xvzf C:\\SENTIER_VERS_FICHIER\\FICHIER.tar.gz -C C:\\SENTIER_VERS_RÉPERTOIRE_EXTRACTION
+2. Extrayez les fichiers .tar.gz. Sous Windows, ouvrez les fichiers avec 7-zip ou Winzip ou, dans une fenêtre de commande, entrez (en remplaçant les adresses et noms de fichiers)::
+
+    tar -xvzf C:\\SENTIER_VERS_FICHIER\\FICHIER.tar.gz -C C:\\SENTIER_VERS_RÉPERTOIRE_EXTRACTION
 
 3. Dans les dossiers qu’on vient d’extraire, *srd-x.x.x* et *srpp-x.x.x* (*x.x.x* étant le numéro de version), on trouve les répertoires *srd* et *srpp*
+
 4. Placez *srd* et *srpp* dans le répertoire de votre choix
 
 Pour invoquer SRD, il faut ajouter son adresse:
@@ -44,11 +46,7 @@ Pour invoquer SRD, il faut ajouter son adresse:
 
     import srd
 
-Si l'on ne veut plus SRD, il suffit d'effacer les répertoires *srd* et *srpp*.
-
-
-
-
+Si l'on ne veut plus le SRD, il suffit d'effacer les répertoires *srd* et *srpp*.
 
 En cas de questions, commentaires ou suggestions, n'hésitez pas à `nous contacter`_.
 

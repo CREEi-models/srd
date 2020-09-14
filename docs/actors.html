@@ -37,7 +37,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Recherche" href="search.html" />
     <link rel="next" title="Impôt fédéral" href="federal.html" />
-    <link rel="prev" title="Premier pas avec le SRD" href="overview.html" /> 
+    <link rel="prev" title="Premiers pas avec le SRD" href="overview.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -83,19 +83,22 @@
             
               <p class="caption"><span class="caption-text">Menu:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Premier pas avec le SRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Premiers pas avec le SRD</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Les acteurs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="federal.html">Impôt fédéral</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quebec.html">Impôt du Québec</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ontario.html">Impôt de l’Ontario</a></li>
 <li class="toctree-l1"><a class="reference internal" href="oas.html">Pension de la sécurité de la vieillesse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="payroll.html">Cotisations sociales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ei.html">Programme d’assurance emploi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ei.html">Assurance emploi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="qpip.html">Régime québécois d’assurance parentale</a></li>
 <li class="toctree-l1"><a class="reference internal" href="assistance.html">Aide sociale</a></li>
-<li class="toctree-l1"><a class="reference internal" href="covid.html">Prestations liées à la covid-19</a></li>
+<li class="toctree-l1"><a class="reference internal" href="covid.html">Prestations liées à la COVID-19</a></li>
 <li class="toctree-l1"><a class="reference internal" href="calculators.html">Calculateur de revenu disponible</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialFed.html">Exemple de calcul de l’impôt fédéral</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialCalculator.html">Exemple de calcul du revenu disponible</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TutorialChangeParameters.html">Exemple de changement de paramètre</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits.html">Contributeurs</a></li>
 </ul>
 
             
@@ -165,7 +168,7 @@
 <p>Les fonctions d’acteurs permettent de déclarer des profils.</p>
 <dl class="class">
 <dt id="srd.Person">
-<em class="property">class </em><code class="sig-prename descclassname">srd.</code><code class="sig-name descname">Person</code><span class="sig-paren">(</span><em class="sig-param">age=50</em>, <em class="sig-param">male=True</em>, <em class="sig-param">earn=0</em>, <em class="sig-param">rpp=0</em>, <em class="sig-param">cpp=0</em>, <em class="sig-param">cap_gains=0</em>, <em class="sig-param">cap_losses=0</em>, <em class="sig-param">cap_gains_exempt=0</em>, <em class="sig-param">othtax=0</em>, <em class="sig-param">othntax=0</em>, <em class="sig-param">inc_rrsp=0</em>, <em class="sig-param">self_earn=0</em>, <em class="sig-param">div_elig=0</em>, <em class="sig-param">div_other_can=0</em>, <em class="sig-param">con_rrsp=0</em>, <em class="sig-param">con_rpp=0</em>, <em class="sig-param">union_dues=0</em>, <em class="sig-param">donation=0</em>, <em class="sig-param">gift=0</em>, <em class="sig-param">years_can=None</em>, <em class="sig-param">disabled=False</em>, <em class="sig-param">cqppc=None</em>, <em class="sig-param">widow=False</em>, <em class="sig-param">med_exp=0</em>, <em class="sig-param">ndays_chcare_k1=0</em>, <em class="sig-param">ndays_chcare_k2=0</em>, <em class="sig-param">asset=0</em>, <em class="sig-param">oas_years_post=0</em>, <em class="sig-param">months_cerb_cesb=0</em>, <em class="sig-param">student=False</em>, <em class="sig-param">essential_worker=False</em>, <em class="sig-param">hours_month=None</em>, <em class="sig-param">prev_inc_work=None</em>, <em class="sig-param">dep_senior=False</em>, <em class="sig-param">home_support_cost=0</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Person" title="Lien permanent vers cette définition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">srd.</code><code class="sig-name descname">Person</code><span class="sig-paren">(</span><em class="sig-param">age=50</em>, <em class="sig-param">male=True</em>, <em class="sig-param">earn=0</em>, <em class="sig-param">rpp=0</em>, <em class="sig-param">cpp=0</em>, <em class="sig-param">net_cap_gains=0</em>, <em class="sig-param">prev_cap_losses=0</em>, <em class="sig-param">cap_gains_exempt=0</em>, <em class="sig-param">othtax=0</em>, <em class="sig-param">othntax=0</em>, <em class="sig-param">inc_rrsp=0</em>, <em class="sig-param">self_earn=0</em>, <em class="sig-param">div_elig=0</em>, <em class="sig-param">div_other_can=0</em>, <em class="sig-param">con_rrsp=0</em>, <em class="sig-param">con_rpp=0</em>, <em class="sig-param">con_non_rrsp=0</em>, <em class="sig-param">union_dues=0</em>, <em class="sig-param">donation=0</em>, <em class="sig-param">gift=0</em>, <em class="sig-param">years_can=None</em>, <em class="sig-param">disabled=False</em>, <em class="sig-param">widow=False</em>, <em class="sig-param">med_exp=0</em>, <em class="sig-param">ndays_chcare_k1=0</em>, <em class="sig-param">ndays_chcare_k2=0</em>, <em class="sig-param">asset=0</em>, <em class="sig-param">oas_years_post=0</em>, <em class="sig-param">months_cerb_cesb=0</em>, <em class="sig-param">student=False</em>, <em class="sig-param">essential_worker=False</em>, <em class="sig-param">hours_month=None</em>, <em class="sig-param">prev_inc_work=None</em>, <em class="sig-param">dep_senior=False</em>, <em class="sig-param">home_support_cost=0</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Person" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Classe pour définir une personne.</p>
 <p>Ceci définit une personne et son profil en terme de revenus et actifs.</p>
 <dl class="field-list simple">
@@ -175,10 +178,10 @@
 <li><p><strong>male</strong> (<em>int</em>) – 1 si l’individu est un homme</p></li>
 <li><p><strong>earn</strong> (<em>float</em>) – revenu de travail</p></li>
 <li><p><strong>rpp</strong> (<em>float</em>) – revenu de régime complémentaire de retraite (RCR)</p></li>
-<li><p><strong>cpp</strong> (<em>float</em>) – revenu de régime de rentes du Québec (RRQ)</p></li>
-<li><p><strong>cap_gains</strong> (<em>float</em>) – gains en capitaux taxables nets de l’année (50% * max(0, gains - pertes))</p></li>
-<li><p><strong>cap_losses</strong> (<em>float</em>) – pertes en capital d’autres années</p></li>
-<li><p><strong>cap_gains_exempt</strong> (<em>float</em>) – exonération des gains en capitaux demandée</p></li>
+<li><p><strong>cpp</strong> (<em>float</em>) – revenu de régime de rentes du Québec (RRQ) ou du régime de pension du Canada (RPC)</p></li>
+<li><p><strong>net_cap_gains</strong> (<em>float</em>) – gains (ou pertes si négatif) nets en capital réalisés</p></li>
+<li><p><strong>prev_cap_losses</strong> (<em>float</em>) – pertes en capital nettes d’autres années (facteur d’inclusion déjà appliqué)</p></li>
+<li><p><strong>cap_gains_exempt</strong> (<em>float</em>) – exonération des gains en capital demandée (sur gains en capital nets)</p></li>
 <li><p><strong>othtax</strong> (<em>float</em>) – autre revenu imposable</p></li>
 <li><p><strong>othntax</strong> (<em>float</em>) – autre revenu non-imposable</p></li>
 <li><p><strong>inc_rrsp</strong> (<em>float</em>) – revenu de REER (sortie)</p></li>
@@ -186,13 +189,13 @@
 <li><p><strong>div_elig</strong> (<em>float</em>) – montant réel des dividendes déterminés (canadiens)</p></li>
 <li><p><strong>div_other_can</strong> (<em>float</em>) – montant réel des dividendes ordinaires (canadiens)</p></li>
 <li><p><strong>con_rrsp</strong> (<em>float</em>) – contribution REER</p></li>
+<li><p><strong>con_non_rrsp</strong> (<em>float</em>) – contribution autre que REER</p></li>
 <li><p><strong>union_dues</strong> (<em>float</em>) – cotisations syndicales, professionnelles ou autres</p></li>
 <li><p><strong>donation</strong> (<em>float</em>) – don de bienfaisance et autres dons</p></li>
 <li><p><strong>gift</strong> (<em>float</em>) – dons de biens culturels et écosensibles</p></li>
 <li><p><strong>years_can</strong> (<em>int</em>) – nombre d’années au Canada
 lorsque la pension de la Sécurité de la vieillesse (SV) est demandée</p></li>
 <li><p><strong>disabled</strong> (<em>boolean</em>) – statut d’invalidité</p></li>
-<li><p><strong>cqppc</strong> (<em>float</em>) – contribution au RRQ</p></li>
 <li><p><strong>widow</strong> (<em>boolean</em>) – statut de veuf/veuve</p></li>
 <li><p><strong>med_exp</strong> (<em>float</em>) – frais médicaux</p></li>
 <li><p><strong>asset</strong> (<em>float</em>) – valeur marchande des actifs</p></li>
@@ -519,7 +522,7 @@ pour réinitialiser l’instance du ménage.</p>
         <a href="federal.html" class="btn btn-neutral float-right" title="Impôt fédéral" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="overview.html" class="btn btn-neutral float-left" title="Premier pas avec le SRD" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="overview.html" class="btn btn-neutral float-left" title="Premiers pas avec le SRD" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

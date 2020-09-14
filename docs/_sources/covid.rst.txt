@@ -1,12 +1,12 @@
 
-Prestations liées à la covid-19
+Prestations liées à la COVID-19
 -------------------------------
 
 Survol
 ^^^^^^
 
-Les mesures d’urgence pour soutenir la population canadiennes durant la pandémie de covid-19 sont prises en charge par la classe *covid*. Au niveau fédéral, cette classe permet l’inclusion de la prestation canadienne d’urgence (PCU) ainsi que la prestation canadienne d’urgence pour étudiants (PCUE). Pour le Québec, cette classe permet le calcul du programme incitatif pour la rétention des travailleurs essentiels (PIRTE).
-Les prestations de la PCU, PCUE et PIRTE sont considérées comme revenus du travail, mais n'affectent pas les cotisations à l'assurance emploi, au régime québécois d'assurance parentale et au CPP/QPP.
+Les mesures d’urgence pour soutenir la population canadienne durant la pandémie de COVID-19 sont prises en charge par la classe *covid*. Au niveau fédéral, cette classe permet l’inclusion de la Prestation canadienne d’urgence (PCU) et de la Prestation canadienne d’urgence pour étudiants (PCUE). Pour le Québec, cette classe permet le calcul du Programme incitatif pour la rétention des travailleurs essentiels (PIRTE).
+Les prestations de PCU, de PCUE et de PIRTE sont considérées comme des revenus du travail, mais n'affectent pas les cotisations à l'assurance emploi, au Régime québécois d'assurance parentale et au RPC/RRQ.
 
 .. currentmodule:: srd.covid
 
@@ -15,11 +15,10 @@ La classe *policy* permet de définir quels programmes on désire inclure dans l
 .. autoclass:: policy
     :members: shut_all_measures, some_measures
 
-
 Gabarit du programme
 ^^^^^^^^^^^^^^^^^^^^
 
-Une instance de la classe *policy* est ensuite entrée dans la classe *programs* et seuls les programmes qui ont été séléctionnés sont appliqués.
+Une instance de la classe *policy* est ensuite entrée dans la classe *programs* et seuls les programmes qui ont été sélectionnés sont appliqués.
 
 .. autoclass:: programs
     :members: compute, compute_cerb, compute_cesb, compute_monthly_cesb,

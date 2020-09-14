@@ -204,8 +204,9 @@ class Person:
         float
             revenu autre que travail.
         """
-        return (self.inc_rpp + self.inc_cpp + self.inc_othtax + self.inc_othntax
-                + self.inc_rrsp + self.inc_oas + self.inc_gis + self.inc_ei
+        return (self.inc_rpp + self.inc_cpp + self.inc_othtax 
+                + self.inc_othntax + self.inc_rrsp + self.inc_oas 
+                + self.inc_gis + self.inc_ei + self.net_cap_gains
                 + self.div_elig + self.div_other_can)
 
     @property
@@ -221,10 +222,7 @@ class Person:
         float
             revenu total.
         """
-        return (self.inc_work + self.inc_rpp + self.inc_cpp + self.inc_othtax
-                + self.inc_othntax + self.inc_rrsp + self.inc_oas
-                + self.inc_gis + self.inc_ei + self.net_cap_gains
-                + self.div_elig + self.div_other_can)
+        return self.inc_work + self.inc_non_work
 
     def compute_months_cerb_cesb(self, months_cerb_cesb, student):
         """

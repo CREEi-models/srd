@@ -83,7 +83,7 @@
             
               <p class="caption"><span class="caption-text">Menu:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Premier pas avec le SRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Premiers pas avec le SRD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="actors.html">Les acteurs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="federal.html">Impôt fédéral</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quebec.html">Impôt du Québec</a></li>
@@ -95,13 +95,14 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="oas.html">Pension de la sécurité de la vieillesse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="payroll.html">Cotisations sociales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ei.html">Programme d’assurance emploi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ei.html">Assurance emploi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="qpip.html">Régime québécois d’assurance parentale</a></li>
 <li class="toctree-l1"><a class="reference internal" href="assistance.html">Aide sociale</a></li>
-<li class="toctree-l1"><a class="reference internal" href="covid.html">Prestations liées à la covid-19</a></li>
+<li class="toctree-l1"><a class="reference internal" href="covid.html">Prestations liées à la COVID-19</a></li>
 <li class="toctree-l1"><a class="reference internal" href="calculators.html">Calculateur de revenu disponible</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialFed.html">Exemple de calcul de l’impôt fédéral</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialCalculator.html">Exemple de calcul du revenu disponible</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TutorialChangeParameters.html">Exemple de changement de paramètre</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Contributeurs</a></li>
 </ul>
 
@@ -171,8 +172,8 @@
 <h1>Impôt de l’Ontario<a class="headerlink" href="#impot-de-l-ontario" title="Lien permanent vers ce titre">¶</a></h1>
 <div class="section" id="survol">
 <h2>Survol<a class="headerlink" href="#survol" title="Lien permanent vers ce titre">¶</a></h2>
-<p>L’impôt de l’Ontario est pris en charge par le module <em>ontario</em>. Ce module contient un gabarit que nous documentons ci-dessous ainsi que des classes spécifiques chaque année.</p>
-<p>La fonction <em>form</em> permet de choisir l’année du rapport d’impôt et ira tirer une instance du rapport pour cette année. L’instance est retournée par la fonction.</p>
+<p>L’impôt de l’Ontario est pris en charge par le module <em>ontario</em>. Ce module contient un gabarit que nous documentons ci-dessous ainsi que des classes spécifiques pour chaque année.</p>
+<p>La fonction <em>form</em> permet de choisir l’année de la déclaration de revenus et ira tirer une instance du rapport pour cette année. L’instance est retournée par la fonction.</p>
 <dl class="function">
 <dt id="srd.ontario.form">
 <code class="sig-prename descclassname">srd.ontario.</code><code class="sig-name descname">form</code><span class="sig-paren">(</span><em class="sig-param">year</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.form" title="Lien permanent vers cette définition">¶</a></dt>
@@ -193,7 +194,7 @@
 </div>
 <div class="section" id="gabarit-du-rapport">
 <h2>Gabarit du rapport<a class="headerlink" href="#gabarit-du-rapport" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Nous utilisons un gabarit afin de créer les rapports chaque année. Quand le programme change seulement dans ces paramètres, le rapport ira seulement chercher les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou en rajouter). Toutes modifications de fonction survenues après l’année 2016 sont indiquées ci-dessous.</p>
+<p>Nous utilisons un gabarit afin de créer les rapports chaque année. Quand l’impôt change seulement au niveau des paramètres d’une année à l’autre, le rapport ira seulement chercher les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou à en ajouter de nouvelles). Toutes les modifications de fonction survenues après l’année 2016 sont indiquées ci-dessous.</p>
 <p>Nous reproduisons ici la spécification du gabarit. Il est calqué sur le rapport de 2016.</p>
 <dl class="class">
 <dt id="srd.ontario.template">
@@ -531,7 +532,7 @@ les crédits non-remboursables et remboursables et les impôts nets.</p>
 
 </dd></dl>
 
-<p>Le gabarit collecte les résultats sur un rapport d’impôt qui sera rattaché à la personne sous la forme d’un dictionnaire python. Ceci permet de différencier les attributs d’une personne qui font partie de son profil et les variables générées par l’impôt. C’est la fonction <em>create_return()</em> qui fait ce travail.</p>
+<p>Le gabarit collige les résultats dans un formulaire d’impôt qui sera rattaché à la personne sous la forme d’un dictionnaire Python. Cette procédure permet de différencier les attributs d’une personne qui font partie de son profil des variables générées par l’impôt. C’est la fonction create_return() qui fait ce travail.</p>
 <dl class="function">
 <dt id="srd.ontario.create_return">
 <code class="sig-prename descclassname">srd.ontario.</code><code class="sig-name descname">create_return</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.create_return" title="Lien permanent vers cette définition">¶</a></dt>
