@@ -4,8 +4,8 @@ Exemple de calcul du revenu disponible
 Construction du ménage
 ~~~~~~~~~~~~~~~~~~~~~~
 
-On construit un ménage où les deux conjoints ont 45 ans, les revenus de
-travail sont respectivement 50000$ et 25000$ et Jean contribue 5000$ à
+On construit un ménage où les deux conjoints ont 45 ans, les revenus de
+travail sont respectivement 50 000 $ et 25 000 $ et Jean contribue 5 000 $ à
 son REER.
 
 .. code:: ipython3
@@ -48,8 +48,8 @@ La fonction *compute()* calcule tous les impôts et cotisations demandés.
 
     tax_form.compute(hh)
 
-Calcul des revenus net et disponible
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Calcul du revenu après impôts et du revenu disponible
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Après avoir fait les calculs, on peut aussi calculer différents concepts de revenu après impôts à l’aide des fonctions *compute_after_tax_inc()* et *disp_inc()*. Celles-ci viendront modifier les attributs des conjoints pour les variables *after_tax_inc* et *disp_inc*.
 

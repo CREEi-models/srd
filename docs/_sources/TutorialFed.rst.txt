@@ -12,8 +12,8 @@ Initialisation d’un ménage
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 On doit d’abord initialiser un ménage. Ici nous supposerons un couple
-avec deux membres ayant tous les deux 45 ans et des revenus de travail de
-50,000$ et 25,000$ respectivement.
+avec deux membres ayant tous les deux 45 ans et des revenus de travail de
+50 000 $ et 25 000 $ respectivement.
 
 .. code:: ipython3
 

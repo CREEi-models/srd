@@ -99,7 +99,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Exemple de calcul du revenu disponible</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#construction-du-menage">Construction du ménage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#le-calculateur">Le calculateur</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#calcul-des-revenus-net-et-disponible">Calcul des revenus net et disponible</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#calcul-du-revenu-apres-impots-et-du-revenu-disponible">Calcul du revenu après impôts et du revenu disponible</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialChangeParameters.html">Exemple de changement de paramètre</a></li>
@@ -172,8 +172,8 @@
 <h1>Exemple de calcul du revenu disponible<a class="headerlink" href="#exemple-de-calcul-du-revenu-disponible" title="Lien permanent vers ce titre">¶</a></h1>
 <div class="section" id="construction-du-menage">
 <h2>Construction du ménage<a class="headerlink" href="#construction-du-menage" title="Lien permanent vers ce titre">¶</a></h2>
-<p>On construit un ménage où les deux conjoints ont 45 ans, les revenus de
-travail sont respectivement 50000$ et 25000$ et Jean contribue 5000$ à
+<p>On construit un ménage où les deux conjoints ont 45 ans, les revenus de
+travail sont respectivement 50 000 $ et 25 000 $ et Jean contribue 5 000 $ à
 son REER.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">srd</span>
 </pre></div>
@@ -204,8 +204,8 @@ l’impôt fédéral.</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="calcul-des-revenus-net-et-disponible">
-<h2>Calcul des revenus net et disponible<a class="headerlink" href="#calcul-des-revenus-net-et-disponible" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="section" id="calcul-du-revenu-apres-impots-et-du-revenu-disponible">
+<h2>Calcul du revenu après impôts et du revenu disponible<a class="headerlink" href="#calcul-du-revenu-apres-impots-et-du-revenu-disponible" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Après avoir fait les calculs, on peut aussi calculer différents concepts de revenu après impôts à l’aide des fonctions <em>compute_after_tax_inc()</em> et <em>disp_inc()</em>. Celles-ci viendront modifier les attributs des conjoints pour les variables <em>after_tax_inc</em> et <em>disp_inc</em>.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tax_form</span><span class="o">.</span><span class="n">disp_inc</span><span class="p">(</span><span class="n">hh</span><span class="p">)</span>
 </pre></div>
