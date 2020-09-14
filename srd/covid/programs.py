@@ -65,8 +65,8 @@ class programs:
     Calcul des prestations d'urgence liées à la covid-19.
 
     Calcul de la prestation canadienne d'urgence (PCU), prestation canadienne
-    d'urgence pour les étudiants (PCUE)
-    et programme incitatif pour la rétention des travailleurs essentiels (PIRTE)
+    d'urgence pour les étudiants (PCUE) et
+    programme incitatif pour la rétention des travailleurs essentiels (PIRTE)
 
     Parameters
     ----------

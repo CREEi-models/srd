@@ -14,17 +14,17 @@ class tax:
     year: int
         année pour le calcul
     prov: str
-        province (pour le moment seulement Québec, par défaut)
+        province (pour le moment seulement Québec et Ontario)
     ifed: boolean
-        vrai si calcul de l'impôt fédéral demandé
+        vrai si le calcul de l'impôt fédéral est demandé
     ioas: boolean
-        vrai si calcul des prestations de SV et SRG est demandé
+        vrai si le calcul des prestations de PSV, SRG, Allocation et Allocation au survivant est demandé
     iprov: boolean
-        vrai si calcul de l'impôt provincial est demandé
+        vrai si le calcul de l'impôt provincial est demandé
     ipayroll: boolean
-        vrai si calcul des cotisations sociales est demandé
+        vrai si le calcul des cotisations sociales est demandé
     icovid_all: boolean
-        vrai si calcul des mesures d'urgence liées à la covid-19 est demandé 
+        vrai si le calcul des mesures d'urgence liées à la COVID-19 est demandé 
         (seulement en 2020)
     """
     def __init__(self, year, ifed=True, ioas=True, iprov=True,
@@ -55,7 +55,7 @@ class tax:
 
     def compute(self, hh, n_points=1):
         """
-        Cette fonction transfère des revenus de pensions pour les couples éligibles
+        Cette fonction transfère des revenus de pensions pour les couples admissibles
         et retient la solution qui maximise le revenu disponible familial.
         Si n_points=0, pas de fractionnement des revenus de pensions. Par défaut
         (n_points=1), les revenus bruts sont égalisés dans la mesure des transferts
@@ -160,7 +160,7 @@ class tax:
 
     def compute_oas(self, hh):
         """
-        Calcul des prestations de SV et SRG.
+        Calcul des prestations de PSV, SRG, Allocation et Allocation au survivant.
 
         Parameters
         ----------
@@ -207,8 +207,8 @@ class tax:
 
     def compute_covid(self, hh):
         """
-        Calcul des prestations canadiennes d'urgences (PCU et PCUE)
-        et du programme incitatif pour la rétention des travailleurs essentiels (PIRTE).
+        Calcul des prestations canadiennes d'urgence (PCU et PCUE)
+        et du Programme incitatif pour la rétention des travailleurs essentiels (PIRTE).
 
         Parameters
         ----------
@@ -231,7 +231,7 @@ class tax:
 
     def compute_ass(self, hh):
         """
-        Calcul de l'aide sociale.
+        Calcul des prestations d'aide sociale.
 
         Parameters
         ----------
@@ -258,7 +258,7 @@ class tax:
 
     def disp_inc(self, hh):
         """
-        Calcul du revenu disponible après impôt, cotisations (sociale et REER) et aide sociale.
+        Calcul du revenu disponible après impôts, cotisations sociales, épargne (positive ou négative) et prestations.
 
         Calcul fait au niveau individuel et ensuite rattaché à la personne.
 

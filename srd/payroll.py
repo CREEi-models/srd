@@ -33,7 +33,8 @@ class payroll:
 
     def compute(self, hh):
         """
-        Fonction qui fait le calcul et crée le rapport de cotisations.
+        Fonction qui appelle *ei*, *qpip* et *srpp* afin de calculer
+        les cotisations d'assurance-emploi, d'assurance parentale et RRQ/RPC.
 
         Parameters
         ----------
