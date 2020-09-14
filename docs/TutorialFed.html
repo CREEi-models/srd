@@ -186,7 +186,7 @@ avec deux membres ayant tous les deux 45 ans et des revenus de travail de
 <span class="n">pauline</span> <span class="o">=</span> <span class="n">srd</span><span class="o">.</span><span class="n">Person</span><span class="p">(</span><span class="n">age</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span><span class="n">earn</span><span class="o">=</span><span class="mf">25e3</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>On les insère dans un ménage vivant au Québec</p>
+<p>On les insère dans un ménage vivant au Québec.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hh</span> <span class="o">=</span> <span class="n">srd</span><span class="o">.</span><span class="n">Hhold</span><span class="p">(</span><span class="n">jean</span><span class="p">,</span><span class="n">pauline</span><span class="p">,</span><span class="n">prov</span><span class="o">=</span><span class="s1">&#39;qc&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -267,13 +267,13 @@ avec deux membres ayant tous les deux 45 ans et des revenus de travail de
 </div>
 <div class="section" id="calcul-de-limpot-federal">
 <h2>Calcul de l’impôt fédéral<a class="headerlink" href="#calcul-de-limpot-federal" title="Lien permanent vers ce titre">¶</a></h2>
-<p>On doit d’abord créer un rapport d’impôt pour une année en particulier.</p>
+<p>On doit d’abord créer un formulaire d’impôt pour une année en particulier.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">srd</span> <span class="kn">import</span> <span class="n">federal</span>
 <span class="n">fed_form</span> <span class="o">=</span> <span class="n">federal</span><span class="o">.</span><span class="n">form</span><span class="p">(</span><span class="mi">2020</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>On peut voir les différents paramètres du système fiscal en utilisant
-encore <em>vars()</em></p>
+encore <em>vars()</em>:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">vars</span><span class="p">(</span><span class="n">fed_form</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -370,14 +370,13 @@ encore <em>vars()</em></p>
  <span class="s1">&#39;policy&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">srd</span><span class="o">.</span><span class="n">covid</span><span class="o">.</span><span class="n">programs</span><span class="o">.</span><span class="n">policy</span> <span class="n">at</span> <span class="mh">0x1af00603b48</span><span class="o">&gt;</span><span class="p">}</span>
 </pre></div>
 </div>
-<p>On remplit le rapport d’impôt à l’aide de la fonction <em>tax()</em>.</p>
+<p>On remplit le formulaire d’impôt à l’aide de la fonction <em>tax()</em>.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">srd</span> <span class="kn">import</span> <span class="n">tax</span>
 <span class="n">tax_form</span> <span class="o">=</span> <span class="n">tax</span><span class="p">(</span><span class="mi">2020</span><span class="p">)</span>
 <span class="n">tax_form</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">hh</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>On peut visualiser un rapport d’impôt sommaire qui est rattaché à chaque
-personne</p>
+<p>On peut visualiser un formulaire d’impôt sommaire qui est rattaché à chaque personne :</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">jean</span><span class="o">.</span><span class="n">fed_return</span>
 </pre></div>
 </div>
@@ -406,13 +405,13 @@ personne</p>
  <span class="s1">&#39;net_tax_liability&#39;</span><span class="p">:</span> <span class="mf">1172.9211599999999</span><span class="p">}</span>
 </pre></div>
 </div>
-<p>On peut ajouter des enfants au ménage à l’aide de la fonction <em>add_dependent()</em></p>
+<p>On peut ajouter des enfants au ménage à l’aide de la fonction <em>add_dependent()</em>.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">emma</span> <span class="o">=</span> <span class="n">srd</span><span class="o">.</span><span class="n">Dependent</span><span class="p">(</span><span class="n">age</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">child_care</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">med_exp</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
 <span class="n">alex</span> <span class="o">=</span> <span class="n">srd</span><span class="o">.</span><span class="n">Dependent</span><span class="p">(</span><span class="n">age</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">school</span><span class="o">=</span><span class="mi">4000</span><span class="p">)</span>
 <span class="n">hh</span><span class="o">.</span><span class="n">add_dependent</span><span class="p">(</span><span class="n">emma</span><span class="p">,</span><span class="n">alex</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>On peut ensuite calculer le nouveau rapport d’impôt pour les deux adultes de la famille.</p>
+<p>On peut ensuite calculer le nouveau formulaire d’impôt pour les deux adultes de la famille.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tax_form</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">hh</span><span class="p">)</span>
 <span class="n">jean</span><span class="o">.</span><span class="n">fed_return</span>
 </pre></div>
@@ -442,7 +441,7 @@ personne</p>
  <span class="s1">&#39;net_tax_liability&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">2994.4593399999994</span><span class="p">}</span>
 </pre></div>
 </div>
-<p>On peut voir les différents attributs du ménage en utilisant encore <em>vars()</em></p>
+<p>On peut voir les différents attributs du ménage en utilisant encore <em>vars()</em>:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">vars</span><span class="p">(</span><span class="n">hh</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -465,8 +464,7 @@ personne</p>
 </div>
 <div class="section" id="experience">
 <h2>Expérience<a class="headerlink" href="#experience" title="Lien permanent vers ce titre">¶</a></h2>
-<p>On peut faire des expériences assez complexes. La première serait de
-regarder l’impôt fédéral payé si on incrémente les revenus de travail.</p>
+<p>On peut faire des expériences assez complexes. Une première serait consisterait par exemple à regarder l’impôt fédéral payé si on augmente les revenus de travail par petites tranches.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
@@ -486,8 +484,7 @@ regarder l’impôt fédéral payé si on incrémente les revenus de travail.</p
 </pre></div>
 </div>
 <img alt="_images/output_ex1.png" src="_images/output_ex1.png" />
-<p>On peut aussi faire une expérience dans laquelle on change un paramètre du système
-d’imposition. Supposons qu’on augmente le montant de base:</p>
+<p>On peut aussi faire une expérience dans laquelle on change un paramètre du système d’imposition. Supposons par exemple qu’on augmente le montant de base :</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">base</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">atrs</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">bases</span> <span class="o">=</span> <span class="p">[]</span>

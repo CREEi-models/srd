@@ -18,8 +18,7 @@ son REER.
     pauline = srd.Person(age=45,earn=25e3)
     hh = srd.Hhold(jean,pauline,prov='qc')
 
-Les revenus familiaux totaux, disponibles et après impôts peuvent être appelés.
-À ce stade, le revenus après impôts et disponible ne sont pas encore calculés.
+Le revenu familial total, disponible et après impôts peuvent être appelés. À ce stade, le revenu après impôts et le revenu disponible ne sont pas encore calculés.
 
 .. code:: ipython3
 
@@ -36,15 +35,14 @@ Le calculateur
 ~~~~~~~~~~~~~~
 
 On invoque une instance du calculateur en spécifiant l’année. Il existe
-aussi des indicateurs pour spécifier si on veut ou non le calcul de
-différents impôts. L’exemple ici utilisera seulement le calcul de
+aussi des indicateurs pour spécifier si on veut ou non obtenir le calcul de différents impôts. L’exemple ici utilisera seulement le calcul de
 l’impôt fédéral.
 
 .. code:: ipython3
 
     tax_form = srd.tax(2016)
 
-La fonction *compute()* calcule tous les impôts et cotisations demandées
+La fonction *compute()* calcule tous les impôts et cotisations demandés.
 
 .. code:: ipython3
 
@@ -53,10 +51,7 @@ La fonction *compute()* calcule tous les impôts et cotisations demandées
 Calcul des revenus net et disponible
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Après avoir fait les calculs, on peut calculer différents concepts de
-revenus après impôt à l’aide des fonctions *compute_after_tax_inc()* et *disp_inc()*.
-Celles-ci viendront modifier les attributs des conjoints pour les
-variables *after_tax_inc* et *disp_inc*.
+Après avoir fait les calculs, on peut aussi calculer différents concepts de revenu après impôts à l’aide des fonctions *compute_after_tax_inc()* et *disp_inc()*. Celles-ci viendront modifier les attributs des conjoints pour les variables *after_tax_inc* et *disp_inc*.
 
 .. code:: ipython3
 

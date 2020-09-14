@@ -170,20 +170,20 @@
 <span id="overview"></span><h1>Premiers pas avec le SRD<a class="headerlink" href="#premiers-pas-avec-le-srd" title="Lien permanent vers ce titre">¶</a></h1>
 <div class="section" id="installation-du-srd">
 <span id="installing-docdir"></span><h2>Installation du SRD<a class="headerlink" href="#installation-du-srd" title="Lien permanent vers ce titre">¶</a></h2>
-<p>On peut installer facilement le SRD en utilisant pip:</p>
+<p>On peut installer facilement le SRD en utilisant pip :</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">srd</span>
 </pre></div>
 </div>
 <p>Le SRD dépend d’un autre package produit par la chaire, le SRPP, qui permet de simuler les revenus de pensions publiques (RPC et RRQ). Celui-ci est installé automatiquement en installant le SRD.</p>
-<p>Dans un notebook ou un projet, on invoque le SRD en ajoutant la commande suivante:</p>
+<p>Dans un notebook ou un projet, on invoque le SRD en ajoutant la commande suivante :</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">srd</span>
 </pre></div>
 </div>
-<p>Pour désinstaller le SRD, il suffit d’utiliser pip:</p>
+<p>Pour désinstaller le SRD, il suffit d’utiliser pip :</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">uninstall</span> <span class="n">srd</span>
 </pre></div>
 </div>
-<p>Si l’utilisation de pip n’est pas possible:</p>
+<p>Si l’utilisation de pip n’est pas possible :</p>
 <ol class="arabic">
 <li><p>Allez sur <a class="reference external" href="https://www.pypi.org">pypi.org</a>, téléchargez les fichiers sources (extension .tar.gz) du SRD et du SRPP</p></li>
 <li><p>Extrayez les fichiers .tar.gz. Sous Windows, ouvrez les fichiers avec 7-zip ou Winzip ou, dans une fenêtre de commande, entrez (en remplaçant les adresses et noms de fichiers):</p>
@@ -194,7 +194,7 @@
 <li><p>Dans les dossiers qu’on vient d’extraire, <em>srd-x.x.x</em> et <em>srpp-x.x.x</em> (<em>x.x.x</em> étant le numéro de version), on trouve les répertoires <em>srd</em> et <em>srpp</em></p></li>
 <li><p>Placez <em>srd</em> et <em>srpp</em> dans le répertoire de votre choix</p></li>
 </ol>
-<p>Pour invoquer SRD, il faut ajouter son adresse:</p>
+<p>Pour invoquer SRD, il faut ajouter son adresse :</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;C:\SENTIER VERS RÉPERTOIRE_CONTENANT_SRD_ET_SRPP&quot;</span><span class="p">)</span>
 

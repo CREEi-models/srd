@@ -183,8 +183,7 @@ son REER.</p>
 <span class="n">hh</span> <span class="o">=</span> <span class="n">srd</span><span class="o">.</span><span class="n">Hhold</span><span class="p">(</span><span class="n">jean</span><span class="p">,</span><span class="n">pauline</span><span class="p">,</span><span class="n">prov</span><span class="o">=</span><span class="s1">&#39;qc&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Les revenus familiaux totaux, disponibles et après impôts peuvent être appelés.
-À ce stade, le revenus après impôts et disponible ne sont pas encore calculés.</p>
+<p>Le revenu familial total, disponible et après impôts peuvent être appelés. À ce stade, le revenu après impôts et le revenu disponible ne sont pas encore calculés.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hh</span><span class="o">.</span><span class="n">fam_inc_tot</span><span class="p">,</span> <span class="n">hh</span><span class="o">.</span><span class="n">fam_after_tax_inc</span><span class="p">,</span> <span class="n">hh</span><span class="o">.</span><span class="n">fam_disp_inc</span>
 </pre></div>
 </div>
@@ -195,23 +194,19 @@ son REER.</p>
 <div class="section" id="le-calculateur">
 <h2>Le calculateur<a class="headerlink" href="#le-calculateur" title="Lien permanent vers ce titre">¶</a></h2>
 <p>On invoque une instance du calculateur en spécifiant l’année. Il existe
-aussi des indicateurs pour spécifier si on veut ou non le calcul de
-différents impôts. L’exemple ici utilisera seulement le calcul de
+aussi des indicateurs pour spécifier si on veut ou non obtenir le calcul de différents impôts. L’exemple ici utilisera seulement le calcul de
 l’impôt fédéral.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tax_form</span> <span class="o">=</span> <span class="n">srd</span><span class="o">.</span><span class="n">tax</span><span class="p">(</span><span class="mi">2016</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>La fonction <em>compute()</em> calcule tous les impôts et cotisations demandées</p>
+<p>La fonction <em>compute()</em> calcule tous les impôts et cotisations demandés.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tax_form</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">hh</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="calcul-des-revenus-net-et-disponible">
 <h2>Calcul des revenus net et disponible<a class="headerlink" href="#calcul-des-revenus-net-et-disponible" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Après avoir fait les calculs, on peut calculer différents concepts de
-revenus après impôt à l’aide des fonctions <em>compute_after_tax_inc()</em> et <em>disp_inc()</em>.
-Celles-ci viendront modifier les attributs des conjoints pour les
-variables <em>after_tax_inc</em> et <em>disp_inc</em>.</p>
+<p>Après avoir fait les calculs, on peut aussi calculer différents concepts de revenu après impôts à l’aide des fonctions <em>compute_after_tax_inc()</em> et <em>disp_inc()</em>. Celles-ci viendront modifier les attributs des conjoints pour les variables <em>after_tax_inc</em> et <em>disp_inc</em>.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tax_form</span><span class="o">.</span><span class="n">disp_inc</span><span class="p">(</span><span class="n">hh</span><span class="p">)</span>
 </pre></div>
 </div>

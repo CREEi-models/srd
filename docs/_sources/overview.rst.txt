@@ -9,23 +9,23 @@ Premiers pas avec le SRD
 Installation du SRD
 ======================
 
-On peut installer facilement le SRD en utilisant pip::
+On peut installer facilement le SRD en utilisant pip ::
 
   pip install srd
 
 Le SRD dépend d'un autre package produit par la chaire, le SRPP, qui permet de simuler les revenus de pensions publiques (RPC et RRQ). Celui-ci est installé automatiquement en installant le SRD.
 
-Dans un notebook ou un projet, on invoque le SRD en ajoutant la commande suivante:
+Dans un notebook ou un projet, on invoque le SRD en ajoutant la commande suivante :
 
 .. code:: ipython3
 
     import srd
 
-Pour désinstaller le SRD, il suffit d'utiliser pip::
+Pour désinstaller le SRD, il suffit d'utiliser pip ::
 
   pip uninstall srd
 
-Si l'utilisation de pip n'est pas possible:
+Si l'utilisation de pip n'est pas possible :
 
 1. Allez sur `pypi.org <https://www.pypi.org>`_, téléchargez les fichiers sources (extension .tar.gz) du SRD et du SRPP
 
@@ -37,7 +37,7 @@ Si l'utilisation de pip n'est pas possible:
 
 4. Placez *srd* et *srpp* dans le répertoire de votre choix
 
-Pour invoquer SRD, il faut ajouter son adresse:
+Pour invoquer SRD, il faut ajouter son adresse :
 
 .. code:: ipython3
 

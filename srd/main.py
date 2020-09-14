@@ -8,18 +8,15 @@ import matplotlib.pyplot as plt
 from srd import tax, incentives, Person, Hhold, Dependent, federal
 from srd.covid import policy    
 
-year=2018
-earn=10000
+jean = Person(age=45, earn=40000)
+jacques = Person(age=40, earn=50000)
+jeanne = Dependent(age=4, child_care=10000)
+joaquim = Dependent(age=8, child_care=8000)
 
-julia = Person(age=40, earn=earn, div_elig=100, div_other_can=200,
-               net_cap_gains=100)
-hh = Hhold(julia, prov='qc')
-# james = Dependent(age=5)
-# jean = Dependent(age=12)
-# joseph = Dependent(age=18)
-# hh.add_dependent(james, jean, joseph)
+hh = Hhold(jean, jacques, prov='qc')
+hh.add_dependent(jeanne, joaquim)
 
 
-tax_form = tax(year)
+tax_form = tax(2020)
 
-print(vars(tax_form.prov['qc']))
+

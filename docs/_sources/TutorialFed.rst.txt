@@ -20,7 +20,7 @@ avec deux membres ayant tous les deux 45 ans et des revenus de travail de
     jean = srd.Person(age=45,earn=50e3)
     pauline = srd.Person(age=45,earn=25e3)
 
-On les insère dans un ménage vivant au Québec
+On les insère dans un ménage vivant au Québec.
 
 .. code:: ipython3
 
@@ -110,7 +110,7 @@ On peut voir le profil de chacun des membres du ménage en utilisant
 Calcul de l’impôt fédéral
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-On doit d’abord créer un rapport d’impôt pour une année en particulier.
+On doit d’abord créer un formulaire d’impôt pour une année en particulier.
 
 .. code:: ipython3
 
@@ -118,7 +118,7 @@ On doit d’abord créer un rapport d’impôt pour une année en particulier.
     fed_form = federal.form(2020)
 
 On peut voir les différents paramètres du système fiscal en utilisant
-encore *vars()*
+encore *vars()*:
 
 .. code:: ipython3
 
@@ -223,7 +223,7 @@ encore *vars()*
 
 
 
-On remplit le rapport d’impôt à l’aide de la fonction *tax()*.
+On remplit le formulaire d’impôt à l’aide de la fonction *tax()*.
 
 .. code:: ipython3
 
@@ -231,8 +231,7 @@ On remplit le rapport d’impôt à l’aide de la fonction *tax()*.
     tax_form = tax(2020)
     tax_form.compute(hh)
 
-On peut visualiser un rapport d’impôt sommaire qui est rattaché à chaque
-personne
+On peut visualiser un formulaire d’impôt sommaire qui est rattaché à chaque personne :
 
 .. code:: ipython3
 
@@ -276,7 +275,7 @@ personne
 
 
 
-On peut ajouter des enfants au ménage à l'aide de la fonction *add_dependent()*
+On peut ajouter des enfants au ménage à l'aide de la fonction *add_dependent()*.
 
 .. code:: ipython3
 
@@ -285,7 +284,7 @@ On peut ajouter des enfants au ménage à l'aide de la fonction *add_dependent()
     hh.add_dependent(emma,alex)
 
 
-On peut ensuite calculer le nouveau rapport d’impôt pour les deux adultes de la famille.
+On peut ensuite calculer le nouveau formulaire d’impôt pour les deux adultes de la famille.
 
 .. code:: ipython3
 
@@ -329,7 +328,7 @@ On peut ensuite calculer le nouveau rapport d’impôt pour les deux adultes de 
      'net_tax_liability': -2994.4593399999994}
 
 
-On peut voir les différents attributs du ménage en utilisant encore *vars()*
+On peut voir les différents attributs du ménage en utilisant encore *vars()*:
 
 
 .. code:: ipython3
@@ -361,8 +360,7 @@ On peut voir les différents attributs du ménage en utilisant encore *vars()*
 Expérience
 ^^^^^^^^^^
 
-On peut faire des expériences assez complexes. La première serait de
-regarder l’impôt fédéral payé si on incrémente les revenus de travail.
+On peut faire des expériences assez complexes. Une première serait consisterait par exemple à regarder l’impôt fédéral payé si on augmente les revenus de travail par petites tranches.
 
 .. code:: ipython3
 
@@ -387,8 +385,7 @@ regarder l’impôt fédéral payé si on incrémente les revenus de travail.
 .. image:: output_ex1.png
 
 
-On peut aussi faire une expérience dans laquelle on change un paramètre du système
-d’imposition. Supposons qu’on augmente le montant de base:
+On peut aussi faire une expérience dans laquelle on change un paramètre du système d’imposition. Supposons par exemple qu’on augmente le montant de base :
 
 .. code:: ipython3
 
@@ -412,5 +409,3 @@ d’imposition. Supposons qu’on augmente le montant de base:
 
 
 .. image:: output_ex2.png
-
-
