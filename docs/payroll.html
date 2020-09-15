@@ -165,7 +165,7 @@
             
   <div class="section" id="cotisations-sociales">
 <h1>Cotisations sociales<a class="headerlink" href="#cotisations-sociales" title="Lien permanent vers ce titre">¶</a></h1>
-<p>Les cotisations sociales sont prises en charge par la classe <em>payroll</em>. Cette classe prend en charge les cotisations au Régime québécois d’assurance parentale (RQAP), à l’assurance-emploi, au Régime de rentes du Québec (RRQ) et au Régime de pensions du Canada (RPC). Pour ces dernières, le module <em>srpp</em> de la chaire est utilisé et une fonction de la classe <em>payroll</em> (<em>get_cpp_contrib</em>) ira chercher les contributions à l’intérieur de ce module.</p>
+<p>Les cotisations sociales sont prises en charge par la classe <em>payroll</em>. Cette classe prend en charge les cotisations à l’assurance-emploi, au Régime québécois d’assurance parentale (RQAP), au Régime de rentes du Québec (RRQ) et au Régime de pensions du Canada (RPC). Pour ces dernières, le module <em>srpp</em> de la chaire est utilisé et une fonction de la classe <em>payroll</em> (<em>get_cpp_contrib</em>) ira chercher les contributions à l’intérieur de ce module.</p>
 <p>La classe <em>payroll</em> attachera à chaque membre d’un couple un rapport de cotisations qui contiendra toutes les sommes cotisées. Pour le RRQ et le RPC, les cotisations aux régimes de base et celles aux régimes supplémentaires découlant de l’expansion débutée en 2019 sont séparées, car leur traitement fiscal est différent.</p>
 <dl class="class">
 <dt id="srd.payroll">
@@ -181,7 +181,8 @@ le RQAP (Québec), le RRQ (Québec) ainsi que le RPC.</p>
 <dl class="method">
 <dt id="srd.payroll.compute">
 <code class="sig-name descname">compute</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.payroll.compute" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui fait le calcul et crée le rapport de cotisations.</p>
+<dd><p>Fonction qui appelle <em>ei</em>, <em>qpip</em> et <em>srpp</em> afin de calculer
+les cotisations d’assurance-emploi, d’assurance parentale et RRQ/RPC.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>

@@ -17,4 +17,4 @@ Le calculateur  contient les fonctions suivantes:
 .. autoclass:: tax
     :members: compute, compute_with_transfer, compute_all, compute_oas,
               compute_federal, compute_prov, compute_payroll, compute_covid,
-              compute_ei, compute_ass, compute_after_tax_inc, disp_inc
+              compute_ass, compute_after_tax_inc, disp_inc

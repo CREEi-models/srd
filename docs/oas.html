@@ -195,27 +195,45 @@
 <div class="section" id="gabarit-du-programme">
 <h2>Gabarit du programme<a class="headerlink" href="#gabarit-du-programme" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Nous utilisons un gabarit afin de créer les programmes chaque année. Quand le programme change seulement au niveau des paramètres d’une année à l’autre, nous irons chercher seulement les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou à en ajouter de nouvelles). L’avantage des classes dérivées est de ne pas avoir à répéter toutes les fonctions d’une année à l’autre si celles-ci n’ont pas changé.</p>
-<p>Nous reproduisons ici la spécification du gabarit. Il est calibré sur le programme en vigueur en 2016.</p>
+<p>Nous reproduisons ici la spécification du gabarit. Il est basé sur le programme en vigueur en 2016.</p>
 <dl class="class">
 <dt id="srd.oas.template">
 <em class="property">class </em><code class="sig-prename descclassname">srd.oas.</code><code class="sig-name descname">template</code><a class="headerlink" href="#srd.oas.template" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Classe qui contient un template du programme SV (OAS) et SRG (GIS) (tel que rencontré en 2016)</p>
 <dl class="method">
-<dt id="srd.oas.template.compute_allowance">
-<code class="sig-name descname">compute_allowance</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em>, <em class="sig-param">supp_max</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.compute_allowance" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Calcul de base de l’allocation du survivant ou de couple.</p>
+<dt id="srd.oas.template.file">
+<code class="sig-name descname">file</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.file" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction pour appliquer au programme et recevoir une prestation.</p>
+<p>Ceci calcule les prestations pour la SV (OAS) et le SRG (GIS).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe acteur Hhold</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.oas.template.eligibility">
+<code class="sig-name descname">eligibility</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.eligibility" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Evalue l’éligibilité de la personne pour la SV, le SRG et les allocations
+de couple et de survivant.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe acteur Person</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.oas.template.compute_net_income">
+<code class="sig-name descname">compute_net_income</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.compute_net_income" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Calcule le revenu net (sans la pension SV).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe acteur Person</p></li>
-<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe acteur Hhold</p></li>
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
 </ul>
-</dd>
-<dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>Allocation du survivant ou de couple de base.</p>
-</dd>
-<dt class="field-odd">Type renvoyé</dt>
-<dd class="field-odd"><p>float</p>
 </dd>
 </dl>
 </dd></dl>
@@ -238,20 +256,6 @@
 </dd></dl>
 
 <dl class="method">
-<dt id="srd.oas.template.compute_net_income">
-<code class="sig-name descname">compute_net_income</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.compute_net_income" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Calcule le revenu net (sans la pension SV).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
-<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
 <dt id="srd.oas.template.compute_pension">
 <code class="sig-name descname">compute_pension</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.compute_pension" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Calcule la pension SV.</p>
@@ -264,6 +268,63 @@
 </dd>
 <dt class="field-even">Renvoie</dt>
 <dd class="field-even"><p>récupération de la pension SV</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.oas.template.pension_clawback">
+<code class="sig-name descname">pension_clawback</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.pension_clawback" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Calcul la récupération de la pension SV</p>
+<p>Basé sur le revenu net et incluant la pension SV.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.oas.template.gis">
+<code class="sig-name descname">gis</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em>, <em class="sig-param">income</em>, <em class="sig-param">low_high</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.gis" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Calcul du Supplément de revenu garanti.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe acteur Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe acteur Hhold</p></li>
+<li><p><strong>income</strong> (<em>float</em>) – revenu pour fin du calcul de la récupération du SRG</p></li>
+<li><p><strong>low_high</strong> (<em>string</em>) – “low”/”high” pour prime et bonus bas/élevé</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant du SRG (après récupération)</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.oas.template.survivor_allowance">
+<code class="sig-name descname">survivor_allowance</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.survivor_allowance" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Calcul de l’allocation du survivant incluant la récupération.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe acteur Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe acteur Hhold</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Allocation du survivant, incluant bonus et récupération.</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
 <dd class="field-odd"><p>float</p>
@@ -292,70 +353,9 @@
 </dd></dl>
 
 <dl class="method">
-<dt id="srd.oas.template.eligibility">
-<code class="sig-name descname">eligibility</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.eligibility" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Evalue l’éligibilité de la personne pour la SV, le SRG et les allocations
-de couple et de survivant.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe acteur Person</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="srd.oas.template.file">
-<code class="sig-name descname">file</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.file" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction pour appliquer au programme et recevoir une prestation.</p>
-<p>Ceci calcule les prestations pour la SV (OAS) et le SRG (GIS).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe acteur Hhold</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="srd.oas.template.gis">
-<code class="sig-name descname">gis</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em>, <em class="sig-param">income</em>, <em class="sig-param">low_high</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.gis" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Calcul du Supplément de revenu garanti.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe acteur Person</p></li>
-<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe acteur Hhold</p></li>
-<li><p><strong>income</strong> (<em>float</em>) – revenu pour fin du calcul de la récupération du SRG</p></li>
-<li><p><strong>low_high</strong> (<em>string</em>) – “low”/”high” pour prime et bonus bas/élevé</p></li>
-</ul>
-</dd>
-<dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>Montant du SRG (après récupération)</p>
-</dd>
-<dt class="field-odd">Type renvoyé</dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="srd.oas.template.pension_clawback">
-<code class="sig-name descname">pension_clawback</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.pension_clawback" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Calcul la récupération de la pension SV</p>
-<p>Basé sur le revenu net et incluant la pension SV.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
-<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="srd.oas.template.survivor_allowance">
-<code class="sig-name descname">survivor_allowance</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.survivor_allowance" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Calcul de l’allocation du survivant incluant la récupération.</p>
+<dt id="srd.oas.template.compute_allowance">
+<code class="sig-name descname">compute_allowance</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em>, <em class="sig-param">supp_max</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.compute_allowance" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Calcul de base de l’allocation du survivant ou de couple.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">
@@ -364,7 +364,7 @@ de couple et de survivant.</p>
 </ul>
 </dd>
 <dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>Allocation du survivant, incluant bonus et récupération.</p>
+<dd class="field-even"><p>Allocation du survivant ou de couple de base.</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
 <dd class="field-odd"><p>float</p>

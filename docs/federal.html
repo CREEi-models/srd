@@ -172,7 +172,7 @@
 <h1>Impôt fédéral<a class="headerlink" href="#impot-federal" title="Lien permanent vers ce titre">¶</a></h1>
 <div class="section" id="survol">
 <h2>Survol<a class="headerlink" href="#survol" title="Lien permanent vers ce titre">¶</a></h2>
-<p>L’impôt fédéral est pris en charge par le module <em>federal</em>. Ce module contient un gabarit que nous documentons ci-dessous ainsi que des classes spécifiques pour chaque année.</p>
+<p>L’impôt fédéral est pris en charge par le module <em>federal</em>. Ce module contient un gabarit que nous documentons ci-dessous ainsi que des classes dérivées spécifiques pour chaque année.</p>
 <p>La fonction <em>form</em> permet de choisir l’année de la déclaration de revenus et ira tirer une instance du rapport pour cette année. L’instance est retournée par la fonction.</p>
 <dl class="function">
 <dt id="srd.federal.form">
@@ -195,56 +195,20 @@
 <div class="section" id="gabarit-du-rapport">
 <h2>Gabarit du rapport<a class="headerlink" href="#gabarit-du-rapport" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Nous utilisons un gabarit afin de créer les rapports chaque année. Quand l’impôt change seulement au niveau des paramètres d’une année à l’autre, le rapport ira seulement chercher les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou à en ajouter de nouvelles). Toutes les modifications de fonction survenues après l’année 2016 sont indiquées ci-dessous.</p>
-<p>Nous reproduisons ici la spécification du gabarit. Il est calqué sur le rapport de 2016.</p>
+<p>Nous reproduisons ici la spécification du gabarit. Il est basé sur le rapport de 2016.</p>
 <dl class="class">
 <dt id="srd.federal.template">
 <em class="property">class </em><code class="sig-prename descclassname">srd.federal.</code><code class="sig-name descname">template</code><a class="headerlink" href="#srd.federal.template" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Gabarit pour l’impôt fédéral.</p>
 <dl class="method">
-<dt id="srd.federal.template.abatment">
-<code class="sig-name descname">abatment</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.abatment" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Abattement du Québec à l’impôt fédéral.</p>
+<dt id="srd.federal.template.file">
+<code class="sig-name descname">file</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.file" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui permet de calculer les impôts.</p>
+<p>Cette fonction est celle qui calcule les déductions,
+les crédits non-remboursables et remboursables et les impôts nets.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
-<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
-</ul>
-</dd>
-<dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>Montant de l’abattement</p>
-</dd>
-<dt class="field-odd">Type renvoyé</dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="srd.federal.template.calc_deduc_gross_income">
-<code class="sig-name descname">calc_deduc_gross_income</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_deduc_gross_income" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui calcule les déductions.</p>
-<p>Cette fonction fait la somme des différentes déductions du contribuable.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
-<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="srd.federal.template.calc_deduc_net_income">
-<code class="sig-name descname">calc_deduc_net_income</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_deduc_net_income" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui calcule les déductions suivantes:
-- Pertes en capital net des autres années.
-- Déduction pour gain en capital exonéré.</p>
-<p>Permet une déduction maximale égale aux gains en capitaux taxables nets.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
+<dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
 </dd>
 </dl>
 </dd></dl>
@@ -274,44 +238,6 @@
 </dd></dl>
 
 <dl class="method">
-<dt id="srd.federal.template.calc_non_refundable_tax_credits">
-<code class="sig-name descname">calc_non_refundable_tax_credits</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_non_refundable_tax_credits" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui calcule les crédits d’impôt non-remboursables.</p>
-<p>Cette fonction fait la somme de tous les crédits d’impôt modélisés.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="srd.federal.template.calc_refundable_tax_credits">
-<code class="sig-name descname">calc_refundable_tax_credits</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_refundable_tax_credits" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui fait la somme des crédits remboursables.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
-<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="srd.federal.template.calc_tax">
-<code class="sig-name descname">calc_tax</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_tax" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui calcule l’impôt à payer selon la table d’impôt.</p>
-<p>Cette fonction utilise la table d’impôt de l’année en cours.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
 <dt id="srd.federal.template.calc_taxable_income">
 <code class="sig-name descname">calc_taxable_income</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_taxable_income" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le revenu imposable au sens de l’impôt.</p>
@@ -325,22 +251,16 @@ On y soustrait une portion des gains en capitaux.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="srd.federal.template.ccb">
-<code class="sig-name descname">ccb</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em>, <em class="sig-param">iclaw=True</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.ccb" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Allocation canadienne pour enfants (ACE/CCB).</p>
+<dt id="srd.federal.template.calc_deduc_gross_income">
+<code class="sig-name descname">calc_deduc_gross_income</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_deduc_gross_income" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule les déductions.</p>
+<p>Cette fonction fait la somme des différentes déductions du contribuable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
 <li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
-<li><p><strong>iclaw</strong> (<em>boolean</em>) – récupération des prestations si True, pas de récupération si False</p></li>
 </ul>
-</dd>
-<dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>Montant de l’ACE (CCB)</p>
-</dd>
-<dt class="field-odd">Type renvoyé</dt>
-<dd class="field-odd"><p>float</p>
 </dd>
 </dl>
 </dd></dl>
@@ -370,31 +290,6 @@ est reçu par le conjoint qui a le revenu le moins élevé.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="srd.federal.template.compute_witb_witbds">
-<code class="sig-name descname">compute_witb_witbds</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em>, <em class="sig-param">rate</em>, <em class="sig-param">base</em>, <em class="sig-param">witb_max</em>, <em class="sig-param">claw_rate</em>, <em class="sig-param">exemption</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.compute_witb_witbds" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Calcul de la prestation fiscale pour le revenu de travail (PFRT).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
-<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
-<li><p><strong>rate</strong> (<em>float</em>) – Taux appliqué au revenu du travail</p></li>
-<li><p><strong>base</strong> (<em>float</em>) – Montant de base</p></li>
-<li><p><strong>witb_max</strong> (<em>float</em>) – Montant maximal</p></li>
-<li><p><strong>claw_rate</strong> – Taux de réduction</p></li>
-<li><p><strong>exemption</strong> (<em>float</em>) – Exemption</p></li>
-</ul>
-</dd>
-<dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>Montant de la PFRT (WITB) / SIPFRT (WITBDS)</p>
-</dd>
-<dt class="field-odd">Type renvoyé</dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
 <dt id="srd.federal.template.cpp_deduction">
 <code class="sig-name descname">cpp_deduction</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.cpp_deduction" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Déduction pour les cotisations RPC/RRQ pour les travailleurs autonomes.</p>
@@ -412,9 +307,29 @@ est reçu par le conjoint qui a le revenu le moins élevé.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="srd.federal.template.div_tax_credit">
-<code class="sig-name descname">div_tax_credit</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.div_tax_credit" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Crédit d’impôt pour dividendes</p>
+<dt id="srd.federal.template.qpip_deduction">
+<code class="sig-name descname">qpip_deduction</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.qpip_deduction" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Déduction pour les cotisations RQAP pour les travailleurs autonomes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant de la déduction</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.federal.template.calc_deduc_net_income">
+<code class="sig-name descname">calc_deduc_net_income</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_deduc_net_income" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule les déductions suivantes:
+- Pertes en capital net des autres années.
+- Déduction pour gain en capital exonéré.</p>
+<p>Permet une déduction maximale égale aux gains en capitaux taxables nets.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
@@ -423,14 +338,25 @@ est reçu par le conjoint qui a le revenu le moins élevé.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="srd.federal.template.file">
-<code class="sig-name descname">file</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.file" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui permet de calculer les impôts.</p>
-<p>Cette fonction est celle qui calcule les déductions,
-les crédits non-remboursables et remboursables et les impôts nets.</p>
+<dt id="srd.federal.template.calc_tax">
+<code class="sig-name descname">calc_tax</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_tax" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule l’impôt à payer selon la table d’impôt.</p>
+<p>Cette fonction utilise la table d’impôt de l’année en cours.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.federal.template.calc_non_refundable_tax_credits">
+<code class="sig-name descname">calc_non_refundable_tax_credits</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_non_refundable_tax_credits" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule les crédits d’impôt non-remboursables.</p>
+<p>Cette fonction fait la somme de tous les crédits d’impôt modélisés.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
 </dd>
 </dl>
 </dd></dl>
@@ -457,99 +383,6 @@ les crédits non-remboursables et remboursables et les impôts nets.</p>
 <dt id="srd.federal.template.get_cpp_contrib_cred">
 <code class="sig-name descname">get_cpp_contrib_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_cpp_contrib_cred" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Crédit d’impôt pour contributions RPC/RRQ.</p>
-<p>Ce crédit est non-remboursable.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
-</dd>
-<dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>Montant du crédit</p>
-</dd>
-<dt class="field-odd">Type renvoyé</dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="srd.federal.template.get_disabled_cred">
-<code class="sig-name descname">get_disabled_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_disabled_cred" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Crédit d’impôt pour invalidité.</p>
-<p>Ce crédit est non-remboursable.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
-</dd>
-<dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>Montant du crédit</p>
-</dd>
-<dt class="field-odd">Type renvoyé</dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="srd.federal.template.get_donations_cred">
-<code class="sig-name descname">get_donations_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_donations_cred" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Crédit d’impôt pour dons.</p>
-<p>Ce crédit est non-remboursable.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
-</dd>
-<dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>Montant du crédit</p>
-</dd>
-<dt class="field-odd">Type renvoyé</dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="srd.federal.template.get_empl_cred">
-<code class="sig-name descname">get_empl_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_empl_cred" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Montant canadien pour emploi.</p>
-<p>Ce crédit est non-remboursable.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
-</dd>
-<dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>Montant du crédit</p>
-</dd>
-<dt class="field-odd">Type renvoyé</dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="srd.federal.template.get_med_exp_nr_cred">
-<code class="sig-name descname">get_med_exp_nr_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_med_exp_nr_cred" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Crédit d’impôt pour frais médicaux.</p>
-<p>Ce crédit est non-remboursable.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
-<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
-</ul>
-</dd>
-<dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>Montant du crédit</p>
-</dd>
-<dt class="field-odd">Type renvoyé</dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="srd.federal.template.get_pension_cred">
-<code class="sig-name descname">get_pension_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_pension_cred" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Crédit d’impôt pour revenu de retraite.</p>
 <p>Ce crédit est non-remboursable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -593,6 +426,165 @@ les crédits non-remboursables et remboursables et les impôts nets.</p>
 </dd>
 <dt class="field-even">Renvoie</dt>
 <dd class="field-even"><p>Montant du crédit</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.federal.template.get_empl_cred">
+<code class="sig-name descname">get_empl_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_empl_cred" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Montant canadien pour emploi.</p>
+<p>Ce crédit est non-remboursable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant du crédit</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.federal.template.get_pension_cred">
+<code class="sig-name descname">get_pension_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_pension_cred" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Crédit d’impôt pour revenu de retraite.</p>
+<p>Ce crédit est non-remboursable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant du crédit</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.federal.template.get_disabled_cred">
+<code class="sig-name descname">get_disabled_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_disabled_cred" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Crédit d’impôt pour invalidité.</p>
+<p>Ce crédit est non-remboursable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant du crédit</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.federal.template.get_med_exp_nr_cred">
+<code class="sig-name descname">get_med_exp_nr_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_med_exp_nr_cred" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Crédit d’impôt pour frais médicaux.</p>
+<p>Ce crédit est non-remboursable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant du crédit</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.federal.template.get_donations_cred">
+<code class="sig-name descname">get_donations_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_donations_cred" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Crédit d’impôt pour dons.</p>
+<p>Ce crédit est non-remboursable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant du crédit</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.federal.template.div_tax_credit">
+<code class="sig-name descname">div_tax_credit</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.div_tax_credit" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Crédit d’impôt pour dividendes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.federal.template.calc_refundable_tax_credits">
+<code class="sig-name descname">calc_refundable_tax_credits</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_refundable_tax_credits" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui fait la somme des crédits remboursables.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.federal.template.abatment">
+<code class="sig-name descname">abatment</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.abatment" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Abattement du Québec à l’impôt fédéral.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant de l’abattement</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.federal.template.ccb">
+<code class="sig-name descname">ccb</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em>, <em class="sig-param">iclaw=True</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.ccb" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Allocation canadienne pour enfants (ACE/CCB).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+<li><p><strong>iclaw</strong> (<em>boolean</em>) – récupération des prestations si True, pas de récupération si False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant de l’ACE (CCB)</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
 <dd class="field-odd"><p>float</p>
@@ -646,19 +638,23 @@ cela devient l’Allocation canadienne pour les travailleurs (ACT/CWB).</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="srd.federal.template.gst_hst_credit">
-<code class="sig-name descname">gst_hst_credit</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.gst_hst_credit" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Crédit pour la taxe sur les produits et services/taxe de vente harmonisée (TPS/TVH).
-Le montant du crédit est reçu par le conjoint au revenu imposable le plus élevé.</p>
+<dt id="srd.federal.template.compute_witb_witbds">
+<code class="sig-name descname">compute_witb_witbds</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em>, <em class="sig-param">rate</em>, <em class="sig-param">base</em>, <em class="sig-param">witb_max</em>, <em class="sig-param">claw_rate</em>, <em class="sig-param">exemption</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.compute_witb_witbds" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Calcul de la prestation fiscale pour le revenu de travail (PFRT).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
 <li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+<li><p><strong>rate</strong> (<em>float</em>) – Taux appliqué au revenu du travail</p></li>
+<li><p><strong>base</strong> (<em>float</em>) – Montant de base</p></li>
+<li><p><strong>witb_max</strong> (<em>float</em>) – Montant maximal</p></li>
+<li><p><strong>claw_rate</strong> – Taux de réduction</p></li>
+<li><p><strong>exemption</strong> (<em>float</em>) – Exemption</p></li>
 </ul>
 </dd>
 <dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>Montant du crédit</p>
+<dd class="field-even"><p>Montant de la PFRT (WITB) / SIPFRT (WITBDS)</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
 <dd class="field-odd"><p>float</p>
@@ -687,15 +683,19 @@ Le montant du crédit est reçu par le conjoint au revenu imposable le plus éle
 </dd></dl>
 
 <dl class="method">
-<dt id="srd.federal.template.qpip_deduction">
-<code class="sig-name descname">qpip_deduction</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.qpip_deduction" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Déduction pour les cotisations RQAP pour les travailleurs autonomes.</p>
+<dt id="srd.federal.template.gst_hst_credit">
+<code class="sig-name descname">gst_hst_credit</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.gst_hst_credit" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Crédit pour la taxe sur les produits et services/taxe de vente harmonisée (TPS/TVH).
+Le montant du crédit est reçu par le conjoint au revenu imposable le plus élevé.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
 </dd>
 <dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>Montant de la déduction</p>
+<dd class="field-even"><p>Montant du crédit</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
 <dd class="field-odd"><p>float</p>
@@ -755,18 +755,6 @@ Le montant du crédit est reçu par le conjoint au revenu imposable le plus éle
 </dd></dl>
 
 <dl class="method">
-<dt id="srd.federal.form_2020.calc_non_refundable_tax_credits">
-<code class="sig-name descname">calc_non_refundable_tax_credits</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2020.calc_non_refundable_tax_credits" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui calcule les crédits d’impôt non-remboursables.</p>
-<p>Cette fonction fait la somme de tous les crédits d’impôt modélisés.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
 <dt id="srd.federal.form_2020.repayments_ei">
 <code class="sig-name descname">repayments_ei</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2020.repayments_ei" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le montant du remboursement d’assurance-emploi et qui
@@ -780,6 +768,18 @@ ajuste le montant des bénéfices, le revenu net et le revenu brut.</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
 <dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.federal.form_2020.calc_non_refundable_tax_credits">
+<code class="sig-name descname">calc_non_refundable_tax_credits</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2020.calc_non_refundable_tax_credits" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule les crédits d’impôt non-remboursables.</p>
+<p>Cette fonction fait la somme de tous les crédits d’impôt modélisés.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
 </dd>
 </dl>
 </dd></dl>

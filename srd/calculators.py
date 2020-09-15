@@ -189,10 +189,8 @@ class tax:
         hh: Hhold
             instance de la classe Hhold
         """
-        if hh.prov == 'qc':
-            self.prov['qc'].file(hh)
-        else:
-            self.prov['on'].file(hh)
+        self.prov[hh.prov].file(hh)
+
 
     def compute_payroll(self, hh):
         """

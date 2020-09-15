@@ -196,7 +196,7 @@
 <div class="section" id="gabarit-du-programme">
 <h2>Gabarit du programme<a class="headerlink" href="#gabarit-du-programme" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Nous utilisons un gabarit afin de créer les programmes chaque année. Quand le programme change seulement au niveau des paramètres d’une année à l’autre, nous irons chercher seulement les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou à en ajouter de nouvelles). L’avantage des classes dérivées est de ne pas avoir à répéter toutes les fonctions d’une année à l’autre si celles-ci n’ont pas changé.</p>
-<p>Nous reproduisons ici la spécification du gabarit. Il est calibré sur le programme en vigueur en 2016.</p>
+<p>Nous reproduisons ici la spécification du gabarit. Il est basé sur le programme en vigueur en 2016.</p>
 <dl class="class">
 <dt id="srd.assistance.template">
 <em class="property">class </em><code class="sig-prename descclassname">srd.assistance.</code><code class="sig-name descname">template</code><a class="headerlink" href="#srd.assistance.template" title="Lien permanent vers cette définition">¶</a></dt>
@@ -221,24 +221,6 @@
 </dd></dl>
 
 <dl class="method">
-<dt id="srd.assistance.template.basic_qc">
-<code class="sig-name descname">basic_qc</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.assistance.template.basic_qc" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Composante de base et supplément enfant (dénuement ACE).</p>
-<p>À noter que le test de ressources n’est pas appliqué.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
-</dd>
-<dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>Montant de la composante de base et supplément enfant.</p>
-</dd>
-<dt class="field-odd">Type renvoyé</dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
 <dt id="srd.assistance.template.shelter">
 <code class="sig-name descname">shelter</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.assistance.template.shelter" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Composante logement.</p>
@@ -249,6 +231,24 @@
 </dd>
 <dt class="field-even">Renvoie</dt>
 <dd class="field-even"><p>Montant de la composante logement</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.assistance.template.basic_qc">
+<code class="sig-name descname">basic_qc</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.assistance.template.basic_qc" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Composante de base et supplément enfant (dénuement ACE).</p>
+<p>À noter que le test de ressources n’est pas appliqué.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant de la composante de base et supplément enfant.</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
 <dd class="field-odd"><p>float</p>

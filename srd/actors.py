@@ -310,8 +310,7 @@ class Hhold:
     n_adults_in_hh: int
         nombre d'adultes dans le ménage (18 ans et plus)
     """
-    def __init__(self, first, second=None, prov='qc',
-                 n_adults_in_hh=None):
+    def __init__(self, first, second=None, prov='qc', n_adults_in_hh=None):
         self.sp = [first]
         self.couple = bool(second)
         if self.couple:

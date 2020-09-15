@@ -208,6 +208,18 @@ lorsque la pension de la Sécurité de la vieillesse (SV) est demandée</p></li>
 </dd>
 </dl>
 <dl class="method">
+<dt id="srd.Person.attach_prev_work_inc">
+<code class="sig-name descname">attach_prev_work_inc</code><span class="sig-paren">(</span><em class="sig-param">prev_work_inc</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Person.attach_prev_work_inc" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui ajoute le revenu du travail de l’an passé s’il est disponible
+ou l’approxime avec le revenu du travail actuel sinon.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>prev_work_inc</strong> (<em>float</em>) – revenu de travail de l’année précédente</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
 <dt id="srd.Person.attach_inc_work_month">
 <code class="sig-name descname">attach_inc_work_month</code><span class="sig-paren">(</span><em class="sig-param">earn</em>, <em class="sig-param">self_earn</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Person.attach_inc_work_month" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui convertit le revenu du travail annuel en revenu mensuel et vice-versa.</p>
@@ -224,36 +236,18 @@ et le revenu du travail annuel et mensuel deviennent des attributs de la personn
 </dd></dl>
 
 <dl class="method">
-<dt id="srd.Person.attach_prev_work_inc">
-<code class="sig-name descname">attach_prev_work_inc</code><span class="sig-paren">(</span><em class="sig-param">prev_work_inc</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Person.attach_prev_work_inc" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui ajoute le revenu du travail de l’an passé s’il est disponible
-ou l’approxime avec le revenu du travail actuel sinon.</p>
+<dt id="srd.Person.inc_work">
+<em class="property">property </em><code class="sig-name descname">inc_work</code><a class="headerlink" href="#srd.Person.inc_work" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui retourne le revenu de travail.</p>
+<p>Inclut le revenu de travailleur autonome.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>prev_work_inc</strong> (<em>float</em>) – revenu de travail de l’année précédente</p>
+<dt class="field-odd">Renvoie</dt>
+<dd class="field-odd"><p>revenu de travail.</p>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p>float</p>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="srd.Person.compute_months_cerb_cesb">
-<code class="sig-name descname">compute_months_cerb_cesb</code><span class="sig-paren">(</span><em class="sig-param">months_cerb_cesb</em>, <em class="sig-param">student</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Person.compute_months_cerb_cesb" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui établit le nombre de mois de PCU ou PCUE selon le nombre de mois
-pour lesquels la personne demande la prestation et si elle est aux études.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>months_cerb_cesb</strong> (<em>int</em>) – Nombre de mois pour lesquels la prestation est demandée</p></li>
-<li><p><strong>student</strong> (<em>boolean</em>) – True si la personne est étudiante (ou l’était en décembre 2019)</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="srd.Person.copy">
-<code class="sig-name descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.Person.copy" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui produit une copie des attributs de la personne.</p>
 </dd></dl>
 
 <dl class="method">
@@ -287,18 +281,24 @@ canadiennes (et not les montants imposables).</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="srd.Person.inc_work">
-<em class="property">property </em><code class="sig-name descname">inc_work</code><a class="headerlink" href="#srd.Person.inc_work" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui retourne le revenu de travail.</p>
-<p>Inclut le revenu de travailleur autonome.</p>
+<dt id="srd.Person.compute_months_cerb_cesb">
+<code class="sig-name descname">compute_months_cerb_cesb</code><span class="sig-paren">(</span><em class="sig-param">months_cerb_cesb</em>, <em class="sig-param">student</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Person.compute_months_cerb_cesb" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui établit le nombre de mois de PCU ou PCUE selon le nombre de mois
+pour lesquels la personne demande la prestation et si elle est aux études.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Renvoie</dt>
-<dd class="field-odd"><p>revenu de travail.</p>
-</dd>
-<dt class="field-even">Type renvoyé</dt>
-<dd class="field-even"><p>float</p>
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>months_cerb_cesb</strong> (<em>int</em>) – Nombre de mois pour lesquels la prestation est demandée</p></li>
+<li><p><strong>student</strong> (<em>boolean</em>) – True si la personne est étudiante (ou l’était en décembre 2019)</p></li>
+</ul>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.Person.copy">
+<code class="sig-name descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.Person.copy" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui produit une copie des attributs de la personne.</p>
 </dd></dl>
 
 <dl class="method">
@@ -345,17 +345,6 @@ pour réinitialiser l’instance de la personne.</p>
 </dd>
 </dl>
 <dl class="method">
-<dt id="srd.Hhold.add_dependent">
-<code class="sig-name descname">add_dependent</code><span class="sig-paren">(</span><em class="sig-param">*dependents</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.add_dependent" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction pour ajouter un ou plusieurs dépendant(s).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>dependent</strong> (<a class="reference internal" href="#srd.Dependent" title="srd.Dependent"><em>Dependent</em></a>) – instance de la classe Dependent ou liste d’instances de la classe Dependent</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
 <dt id="srd.Hhold.adjust_n_adults">
 <code class="sig-name descname">adjust_n_adults</code><span class="sig-paren">(</span><em class="sig-param">n_adults_in_hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.adjust_n_adults" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le nombre d’adultes dans le ménage si celui-ci
@@ -374,31 +363,73 @@ n’est pas fourni</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="srd.Hhold.assess_elig_split">
-<code class="sig-name descname">assess_elig_split</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.assess_elig_split" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui établit si le ménage est éligible pour le fractionnement
-de pension (et l’attache au ménage: attribut <em>elig_split</em>).</p>
+<dt id="srd.Hhold.fam_inc_work">
+<em class="property">property </em><code class="sig-name descname">fam_inc_work</code><a class="headerlink" href="#srd.Hhold.fam_inc_work" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule le revenu familial de travail.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Renvoie</dt>
+<dd class="field-odd"><p>Revenu familial de travail</p>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
-<dt id="srd.Hhold.compute_max_split">
-<code class="sig-name descname">compute_max_split</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.compute_max_split" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui calcule le montant max de revenu de pension
-pouvant être fractionné
-(et l’attache à chaque conjoint du ménage: attribut <em>max_split</em>).</p>
+<dt id="srd.Hhold.fam_inc_non_work">
+<code class="sig-name descname">fam_inc_non_work</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.fam_inc_non_work" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule le revenu familial autre que travail.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Renvoie</dt>
+<dd class="field-odd"><p>Revenu familial autre que travail</p>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
-<dt id="srd.Hhold.copy">
-<code class="sig-name descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.copy" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui produit une copie des attributs du ménage
-et des personnes dans le ménage.</p>
+<dt id="srd.Hhold.fam_net_inc_prov">
+<em class="property">property </em><code class="sig-name descname">fam_net_inc_prov</code><a class="headerlink" href="#srd.Hhold.fam_net_inc_prov" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule le revenu familial net provincial.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Renvoie</dt>
+<dd class="field-odd"><p>Revenu familial net provincial</p>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
-<dt id="srd.Hhold.count">
-<code class="sig-name descname">count</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.count" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction pour calculer le nombre d’enfants dans différentes catégories d’âge.</p>
+<dt id="srd.Hhold.fam_net_inc_fed">
+<em class="property">property </em><code class="sig-name descname">fam_net_inc_fed</code><a class="headerlink" href="#srd.Hhold.fam_net_inc_fed" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule le revenu familial net fédéral.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Renvoie</dt>
+<dd class="field-odd"><p>Revenu familial net fédéral</p>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.Hhold.fam_inc_tot">
+<em class="property">property </em><code class="sig-name descname">fam_inc_tot</code><a class="headerlink" href="#srd.Hhold.fam_inc_tot" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule le revenu familial total.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Renvoie</dt>
+<dd class="field-odd"><p>Revenu familial total</p>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
@@ -431,73 +462,42 @@ et des personnes dans le ménage.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="srd.Hhold.fam_inc_non_work">
-<code class="sig-name descname">fam_inc_non_work</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.fam_inc_non_work" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui calcule le revenu familial autre que travail.</p>
+<dt id="srd.Hhold.add_dependent">
+<code class="sig-name descname">add_dependent</code><span class="sig-paren">(</span><em class="sig-param">*dependents</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.add_dependent" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction pour ajouter un ou plusieurs dépendant(s).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Renvoie</dt>
-<dd class="field-odd"><p>Revenu familial autre que travail</p>
-</dd>
-<dt class="field-even">Type renvoyé</dt>
-<dd class="field-even"><p>float</p>
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>dependent</strong> (<a class="reference internal" href="#srd.Dependent" title="srd.Dependent"><em>Dependent</em></a>) – instance de la classe Dependent ou liste d’instances de la classe Dependent</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
-<dt id="srd.Hhold.fam_inc_tot">
-<em class="property">property </em><code class="sig-name descname">fam_inc_tot</code><a class="headerlink" href="#srd.Hhold.fam_inc_tot" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui calcule le revenu familial total.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Renvoie</dt>
-<dd class="field-odd"><p>Revenu familial total</p>
-</dd>
-<dt class="field-even">Type renvoyé</dt>
-<dd class="field-even"><p>float</p>
-</dd>
-</dl>
+<dt id="srd.Hhold.count">
+<code class="sig-name descname">count</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.count" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction pour calculer le nombre d’enfants dans différentes catégories d’âge.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="srd.Hhold.fam_inc_work">
-<em class="property">property </em><code class="sig-name descname">fam_inc_work</code><a class="headerlink" href="#srd.Hhold.fam_inc_work" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui calcule le revenu familial de travail.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Renvoie</dt>
-<dd class="field-odd"><p>Revenu familial de travail</p>
-</dd>
-<dt class="field-even">Type renvoyé</dt>
-<dd class="field-even"><p>float</p>
-</dd>
-</dl>
+<dt id="srd.Hhold.compute_max_split">
+<code class="sig-name descname">compute_max_split</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.compute_max_split" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule le montant max de revenu de pension
+pouvant être fractionné
+(et l’attache à chaque conjoint du ménage: attribut <em>max_split</em>).</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="srd.Hhold.fam_net_inc_fed">
-<em class="property">property </em><code class="sig-name descname">fam_net_inc_fed</code><a class="headerlink" href="#srd.Hhold.fam_net_inc_fed" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui calcule le revenu familial net fédéral.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Renvoie</dt>
-<dd class="field-odd"><p>Revenu familial net fédéral</p>
-</dd>
-<dt class="field-even">Type renvoyé</dt>
-<dd class="field-even"><p>float</p>
-</dd>
-</dl>
+<dt id="srd.Hhold.assess_elig_split">
+<code class="sig-name descname">assess_elig_split</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.assess_elig_split" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui établit si le ménage est éligible pour le fractionnement
+de pension (et l’attache au ménage: attribut <em>elig_split</em>).</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="srd.Hhold.fam_net_inc_prov">
-<em class="property">property </em><code class="sig-name descname">fam_net_inc_prov</code><a class="headerlink" href="#srd.Hhold.fam_net_inc_prov" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui calcule le revenu familial net provincial.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Renvoie</dt>
-<dd class="field-odd"><p>Revenu familial net provincial</p>
-</dd>
-<dt class="field-even">Type renvoyé</dt>
-<dd class="field-even"><p>float</p>
-</dd>
-</dl>
+<dt id="srd.Hhold.copy">
+<code class="sig-name descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.copy" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui produit une copie des attributs du ménage
+et des personnes dans le ménage.</p>
 </dd></dl>
 
 <dl class="method">

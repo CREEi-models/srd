@@ -184,12 +184,12 @@
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>year</strong> (<em>int</em>) – année pour le calcul</p></li>
-<li><p><strong>prov</strong> (<em>str</em>) – province (pour le moment seulement Québec, par défaut)</p></li>
-<li><p><strong>ifed</strong> (<em>boolean</em>) – vrai si calcul de l’impôt fédéral demandé</p></li>
-<li><p><strong>ioas</strong> (<em>boolean</em>) – vrai si calcul des prestations de SV et SRG est demandé</p></li>
-<li><p><strong>iprov</strong> (<em>boolean</em>) – vrai si calcul de l’impôt provincial est demandé</p></li>
-<li><p><strong>ipayroll</strong> (<em>boolean</em>) – vrai si calcul des cotisations sociales est demandé</p></li>
-<li><p><strong>icovid_all</strong> (<em>boolean</em>) – vrai si calcul des mesures d’urgence liées à la covid-19 est demandé
+<li><p><strong>prov</strong> (<em>str</em>) – province (pour le moment seulement Québec et Ontario)</p></li>
+<li><p><strong>ifed</strong> (<em>boolean</em>) – vrai si le calcul de l’impôt fédéral est demandé</p></li>
+<li><p><strong>ioas</strong> (<em>boolean</em>) – vrai si le calcul des prestations de PSV, SRG, Allocation et Allocation au survivant est demandé</p></li>
+<li><p><strong>iprov</strong> (<em>boolean</em>) – vrai si le calcul de l’impôt provincial est demandé</p></li>
+<li><p><strong>ipayroll</strong> (<em>boolean</em>) – vrai si le calcul des cotisations sociales est demandé</p></li>
+<li><p><strong>icovid_all</strong> (<em>boolean</em>) – vrai si le calcul des mesures d’urgence liées à la COVID-19 est demandé
 (seulement en 2020)</p></li>
 </ul>
 </dd>
@@ -197,7 +197,7 @@
 <dl class="method">
 <dt id="srd.tax.compute">
 <code class="sig-name descname">compute</code><span class="sig-paren">(</span><em class="sig-param">hh</em>, <em class="sig-param">n_points=1</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Cette fonction transfère des revenus de pensions pour les couples éligibles
+<dd><p>Cette fonction transfère des revenus de pensions pour les couples admissibles
 et retient la solution qui maximise le revenu disponible familial.
 Si n_points=0, pas de fractionnement des revenus de pensions. Par défaut
 (n_points=1), les revenus bruts sont égalisés dans la mesure des transferts
@@ -222,10 +222,18 @@ pension.</p></li>
 </dd></dl>
 
 <dl class="method">
-<dt id="srd.tax.compute_after_tax_inc">
-<code class="sig-name descname">compute_after_tax_inc</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute_after_tax_inc" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Calcul du revenu après impôt fédéral et provincial.</p>
-<p>Calcul fait au niveau individuel et ensuite rattaché à la personne. Un calcul au niveau du ménage est aussi effectué.</p>
+<dt id="srd.tax.compute_with_transfer">
+<code class="sig-name descname">compute_with_transfer</code><span class="sig-paren">(</span><em class="sig-param">hh</em>, <em class="sig-param">transfer</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute_with_transfer" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Cette fonction effectue les transferts de revenus de pension et appelle
+la fonction qui simule le ménage.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>hh</strong> (<em>Hold</em>) – instance de la classe Hhold</p></li>
+<li><p><strong>transfer</strong> (<em>float</em>) – transfert du premier au second conjoint (du second au premier si négatif)</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
@@ -240,32 +248,9 @@ pension.</p></li>
 </dd></dl>
 
 <dl class="method">
-<dt id="srd.tax.compute_ass">
-<code class="sig-name descname">compute_ass</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute_ass" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Calcul de l’aide sociale.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="srd.tax.compute_covid">
-<code class="sig-name descname">compute_covid</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute_covid" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Calcul des prestations canadiennes d’urgences (PCU et PCUE)
-et du programme incitatif pour la rétention des travailleurs essentiels (PIRTE).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="srd.tax.compute_ei">
-<code class="sig-name descname">compute_ei</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute_ei" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Calcul des prestations de l’assurance emploi qui remplaceraient la PCU (contrefactuel).</p>
+<dt id="srd.tax.compute_oas">
+<code class="sig-name descname">compute_oas</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute_oas" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Calcul des prestations de PSV, SRG, Allocation et Allocation au survivant.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
@@ -285,9 +270,9 @@ et du programme incitatif pour la rétention des travailleurs essentiels (PIRTE)
 </dd></dl>
 
 <dl class="method">
-<dt id="srd.tax.compute_oas">
-<code class="sig-name descname">compute_oas</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute_oas" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Calcul des prestations de SV et SRG.</p>
+<dt id="srd.tax.compute_prov">
+<code class="sig-name descname">compute_prov</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute_prov" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Calcul de l’impôt provincial.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
@@ -307,9 +292,10 @@ et du programme incitatif pour la rétention des travailleurs essentiels (PIRTE)
 </dd></dl>
 
 <dl class="method">
-<dt id="srd.tax.compute_prov">
-<code class="sig-name descname">compute_prov</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute_prov" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Calcul de l’impôt provincial.</p>
+<dt id="srd.tax.compute_covid">
+<code class="sig-name descname">compute_covid</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute_covid" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Calcul des prestations canadiennes d’urgence (PCU et PCUE)
+et du Programme incitatif pour la rétention des travailleurs essentiels (PIRTE).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
@@ -318,24 +304,27 @@ et du programme incitatif pour la rétention des travailleurs essentiels (PIRTE)
 </dd></dl>
 
 <dl class="method">
-<dt id="srd.tax.compute_with_transfer">
-<code class="sig-name descname">compute_with_transfer</code><span class="sig-paren">(</span><em class="sig-param">hh</em>, <em class="sig-param">transfer</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute_with_transfer" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Cette fonction effectue les transferts de revenus de pension et appelle
-la fonction qui simule le ménage.</p>
+<dt id="srd.tax.compute_ass">
+<code class="sig-name descname">compute_ass</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute_ass" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Calcul des prestations d’aide sociale.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>hh</strong> (<em>Hold</em>) – instance de la classe Hhold</p></li>
-<li><p><strong>transfer</strong> (<em>float</em>) – transfert du premier au second conjoint (du second au premier si négatif)</p></li>
-</ul>
+<dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
+<dt id="srd.tax.compute_after_tax_inc">
+<code class="sig-name descname">compute_after_tax_inc</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute_after_tax_inc" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Calcul du revenu après impôt fédéral et provincial.</p>
+<p>Calcul fait au niveau individuel et ensuite rattaché à la personne. Un calcul au niveau du ménage est aussi effectué.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="srd.tax.disp_inc">
 <code class="sig-name descname">disp_inc</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.disp_inc" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Calcul du revenu disponible après impôt, cotisations (sociale et REER) et aide sociale.</p>
+<dd><p>Calcul du revenu disponible après impôts, cotisations sociales, épargne (positive ou négative) et prestations.</p>
 <p>Calcul fait au niveau individuel et ensuite rattaché à la personne.</p>
 </dd></dl>
 
