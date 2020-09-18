@@ -7,14 +7,12 @@ from multiprocessing import cpu_count, Pool
 
 class tax:
     """
-    Classe générale pour le calcul des impôts, contributions et prestations.
+    Classe générale pour le calcul des impôts, cotisations et prestations.
 
     Parameters
     ----------
     year: int
         année pour le calcul
-    prov: str
-        province (pour le moment seulement Québec et Ontario)
     ifed: boolean
         vrai si le calcul de l'impôt fédéral est demandé
     ioas: boolean
@@ -23,9 +21,10 @@ class tax:
         vrai si le calcul de l'impôt provincial est demandé
     ipayroll: boolean
         vrai si le calcul des cotisations sociales est demandé
-    icovid_all: boolean
-        vrai si le calcul des mesures d'urgence liées à la COVID-19 est demandé 
-        (seulement en 2020)
+    iass: boolean
+        vrai si le calcul des prestations d'aide sociale est demandé
+    policy: policy
+        instance de la classe *policy* du module *covid*
     """
     def __init__(self, year, ifed=True, ioas=True, iprov=True,
                  ipayroll=True, iass=True, policy=covid.policy()):
@@ -55,9 +54,9 @@ class tax:
 
     def compute(self, hh, n_points=1):
         """
-        Cette fonction transfère des revenus de pensions pour les couples admissibles
+        Cette fonction transfère des revenus de pension pour les couples admissibles
         et retient la solution qui maximise le revenu disponible familial.
-        Si n_points=0, pas de fractionnement des revenus de pensions. Par défaut
+        Si n_points=0, pas de fractionnement des revenus de pension. Par défaut
         (n_points=1), les revenus bruts sont égalisés dans la mesure des transferts
         possibles. Pour n>1, une simulation est faite pour chaque point de la grille.
         À noter que lorsque n augmente, les solutions avec n inférieur (notamment n=0)
@@ -68,12 +67,8 @@ class tax:
         hh: Hhold
             instance de la classe Hhold
         n_points: int
-            nombre de points utilisés pour optimiser le transfert de revenus de
-            pension.
-        Returns
-        -------
-        Hhold
-            instance de la classe Hhold
+            nombre de points utilisés pour optimiser le fractionnement de revenus de
+            pension
         """
         if not hh.elig_split or (n_points == 0):
             self.compute_all(hh)
@@ -205,8 +200,7 @@ class tax:
 
     def compute_covid(self, hh):
         """
-        Calcul des prestations canadiennes d'urgence (PCU et PCUE)
-        et du Programme incitatif pour la rétention des travailleurs essentiels (PIRTE).
+        Calcul de la PCU, de la PCUE et du PIRTE (pour 2020).
 
         Parameters
         ----------
@@ -244,7 +238,7 @@ class tax:
         """
         Calcul du revenu après impôt fédéral et provincial.
 
-        Calcul fait au niveau individuel et ensuite rattaché à la personne. Un calcul au niveau du ménage est aussi effectué.
+        Calcul fait au niveau individuel et ensuite rattaché à la personne; le résultat au niveau du ménage est aussi disponible.
         """
         for p in hh.sp:
             after_tax_inc = p.inc_tot
@@ -258,7 +252,7 @@ class tax:
         """
         Calcul du revenu disponible après impôts, cotisations sociales, épargne (positive ou négative) et prestations.
 
-        Calcul fait au niveau individuel et ensuite rattaché à la personne.
+        Calcul fait au niveau individuel et ensuite rattaché à la personne; le résultat au niveau du ménage est aussi disponible.
 
         """
         self.compute_after_tax_inc(hh)

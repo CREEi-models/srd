@@ -4,14 +4,14 @@ module_dir = os.path.dirname(os.path.dirname(__file__))
 
 class template:
     """
-    Programme québécois d'assurance parentale.
+    Régime québécois d'assurance parentale (RQAP).
 
-    Ce gabarit sert pour l'instant à calculer les cotisations au programme québécois d'assurance parentale.
+    Ce gabarit sert pour l'instant à calculer les cotisations au RQAP.
 
     """
     def contrib(self, p, hh):
         """
-        Fonction pour calculer les contributions à l'assurance parentale.
+        Fonction pour calculer les cotisations à l'assurance parentale.
 
         Parameters
         ----------
@@ -23,7 +23,7 @@ class template:
         Returns
         -------
         float
-            Montant de la cotisation à l'assurance parentale (annuelle)
+            Montant de la cotisation à l'assurance parentale (annuelle).
         """
         if p.inc_work <= self.qualifying_threshold_QPIP or hh.prov != 'qc':
             p.contrib_qpip = p.contrib_qpip_self = 0

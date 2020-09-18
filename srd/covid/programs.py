@@ -11,25 +11,24 @@ def create_stub():
 
 class policy:
     """
-    Mesures liées à la covid-19.
+    Mesures liées à la COVID-19.
 
     Permet de choisir quelles mesures sont appliquées dans le simulateur.
 
     Parameters
     ----------
     icerb: boolean
-        PCU est appliquée
+        la PCU est appliquée
     icesb: boolean
-        PCUE est appliquée
+        la PCUE est appliquée
     iiprew: boolean
-        PIRTE est appliquée
+        le PIRTE est appliqué au Québec
     icovid_gst: boolean
-        majoration du crédit pour la taxe sur les produits
-        et services/taxe de vente harmonisée (TPS/TVH)
+        La majoration du crédit pour la TPS/TVH est appliquée
     icovid_ccb: boolean
-        majoration de l'allocation canadienne pour enfants (ACE/CCB)
+        La majoration de l'Allocation canadienne pour enfants (ACE) est appliquée
     iei: boolean
-        Assurance emploi d'urgence
+        Assurance emploi d'urgence: scénario d'AE alternative à la PCU utilisé dans certaines analyses de la CREEi
     """
     def __init__(self, icerb=True, icesb=True, iiprew=True, icovid_gst=True,
                  icovid_ccb=True, iei=False):
@@ -42,7 +41,7 @@ class policy:
 
     def shut_all_measures(self):
         """
-        Ne tient pas compte des mesures spéciales covid-19 dans la simulation.
+        Ne tient pas compte des mesures spéciales COVID-19 dans la simulation.
         """
         for var in vars(self):
             setattr(self, var, False)
@@ -50,23 +49,19 @@ class policy:
     @property
     def some_measures(self):
         """
-        Au moins une mesure spéciale covid-19.
+        Indique qu'au moins une mesure spéciale COVID-19 est incluse.
 
         Returns
         -------
         boolean
-            True s'il y a au moins une mesure, False sinon.
+            True s'il y a au moins une mesure d'incluse, False sinon.
         """
         return any(v is True for k, v in vars(self).items() if k != 'iei')
 
 
 class programs:
     """
-    Calcul des prestations d'urgence liées à la covid-19.
-
-    Calcul de la prestation canadienne d'urgence (PCU), prestation canadienne
-    d'urgence pour les étudiants (PCUE) et
-    programme incitatif pour la rétention des travailleurs essentiels (PIRTE)
+    Calcul des prestations d'urgence liées à la COVID-19: la Prestation canadienne d'urgence (PCU), la Prestation canadienne d'urgence pour les étudiants (PCUE) et le Programme incitatif pour la rétention des travailleurs essentiels (PIRTE).
 
     Parameters
     ----------
@@ -102,8 +97,7 @@ class programs:
         """
         Fonction pour le calcul de la PCU.
 
-        Calcule la PCU en fonction du nombre de blocs de 4 semaines (mois)
-        durant laquelle la prestation est demandée.
+        Calcule la PCU en fonction du nombre de blocs de 4 semaines (mois) pour lesquels la prestation est demandée.
 
         Parameters
         ----------
@@ -113,7 +107,7 @@ class programs:
         Returns
         -------
         float
-            Le montant de la PCU.
+            Montant de la PCU.
         """
         if p.months_cerb == 0 or p.prev_inc_work < self.cerb_min_inc_work:
             return 0
@@ -127,8 +121,7 @@ class programs:
         """
         Fonction pour le calcul de la PCUE.
 
-        Calcule la PCUE en fonction de la prestation mensuelle à laquelle l'individu
-        a droit et du nombre de blocs de 4 semaines (mois) durant lequel la prestation est demandée.
+        Calcule la PCUE en fonction de la prestation mensuelle à laquelle l'individu a droit et du nombre de blocs de 4 semaines (mois) pour lesquels la prestation est demandée.
 
         Parameters
         ----------
@@ -140,7 +133,7 @@ class programs:
         Returns
         -------
         float
-            Le montant de la PCUE.
+            Montant de la PCUE.
         """
         if p.months_cesb == 0:
             return 0
@@ -153,7 +146,7 @@ class programs:
 
     def compute_monthly_cesb(self, p, hh):
         """
-        Calcule le montant mensuelle de la PCUE en fonction du statut (invalidité, dépendents)
+        Calcule le montant mensuel de la PCUE en fonction du statut (invalidité, dépendants).
 
         Parameters
         ----------
@@ -161,7 +154,7 @@ class programs:
         Returns
         -------
         float
-            La prestation mensuelle
+            Prestation mensuelle de PCUE.
         """
 
         dep = len(hh.dep) > 0
@@ -181,9 +174,9 @@ class programs:
 
     def compute_iprew(self, p):
         """
-        Fonction pour le calcul de la PIRTE.
+        Fonction pour le calcul du PIRTE.
 
-        Calcule la PIRTE pour la période de 16 semaines (4 mois) si le travailleur est éligible.
+        Calcule la PIRTE pour la période de 16 semaines (4 mois) si le travailleur est admissible.
 
         Parameters
         ----------
@@ -193,7 +186,7 @@ class programs:
         Returns
         -------
         float
-            Le montant de la PIRTE pour les 16 semaines.
+            Montant de PIRTE pour les 16 semaines.
         """
         if (not p.essential_worker or p.inc_work < self.iprew_min_inc_work or
             p.inc_tot > self.iprew_max_inc_tot):

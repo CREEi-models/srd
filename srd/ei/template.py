@@ -13,7 +13,7 @@ class template:
 
     def contrib(self, p, hh):
         """
-        Fonction pour calculer les contributions à l'assurance emploi.
+        Fonction pour calculer les cotisations à l'assurance emploi.
 
         Parameters
         ----------
@@ -25,7 +25,7 @@ class template:
         Returns
         -------
         float
-            montant de la cotisation à l'assurance emploi (annuelle)
+            Montant de la cotisation à l'assurance emploi (annuelle).
         """
         rate = self.rate_EI_qc if hh.prov == 'qc' else self.rate_EI
         if p.inc_earn > self.min_earn_EI:

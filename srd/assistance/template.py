@@ -4,14 +4,13 @@ module_dir = os.path.dirname(os.path.dirname(__file__))
 
 class template:
     """
-    Classe qui contient un template du programme d'aide sociale
-    (tel que rencontré en 2016)
+    Classe qui contient un gabarit du programme d'aide sociale (tel qu'il existait en 2016).
 
     """
 
     def apply(self, hh):
         """
-        Fonction pour appliquer au programme et recevoir une prestation.
+        Fonction pour faire une demande au programme et recevoir une prestation.
 
         Ceci calcule une prestation intégrée d'aide sociale.
 
@@ -23,7 +22,7 @@ class template:
         Returns
         -------
         float
-            Montant de l'aide sociale.
+            Montant de l'aide sociale
         """
         if hh.prov == 'qc':
             return self.basic_qc(hh)
@@ -34,7 +33,7 @@ class template:
         """
         Composante logement.
 
-        N'est pas implémentée pour l'instant.
+        N'est pas mise en œuvre pour l'instant.
 
         Parameters
         ----------
@@ -52,7 +51,7 @@ class template:
         """
         Composante de base et supplément enfant (dénuement ACE).
 
-        À noter que le test de ressources n'est pas appliqué.
+        À noter que le test d'acifs n'est pas appliqué.
 
         Parameters
         ----------
@@ -62,7 +61,7 @@ class template:
         Returns
         -------
         float
-            Montant de la composante de base et supplément enfant.
+            Montant combiné de la composante de base et supplément enfant.
         """
         # assets test: test de ressources? voir docstring
         assets = sum([s.asset for s in hh.sp])
@@ -90,7 +89,7 @@ class template:
         """
         Composante de base et supplément enfant.
 
-        À noter que le test de ressources n'est pas appliqué.
+        À noter que le test d'actifs n'est pas appliqué.
 
         Parameters
         ----------
@@ -100,7 +99,7 @@ class template:
         Returns
         -------
         float
-            Montant de la composante de base et supplément enfant.
+            Montant combiné de la composante de base et supplément enfant.
         """
         # assets test
         assets = sum([s.asset for s in hh.sp])

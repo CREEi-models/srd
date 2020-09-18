@@ -14,10 +14,7 @@ def create_stub():
 
 class payroll:
     """
-    Calcul des cotisations sociales.
-
-    Calcul des cotisations sociales provenant de l'assurance emploi,
-    le RQAP (Québec), le RRQ (Québec) ainsi que le RPC.
+    Calcul des cotisations sociales: à l'assurance emploi, au RQAP (Québec), au RRQ (Québec) ainsi qu'au RPC (provinces autres que le Québec).
 
     Parameters
     ----------
@@ -33,8 +30,7 @@ class payroll:
 
     def compute(self, hh):
         """
-        Fonction qui appelle *ei*, *qpip* et *srpp* afin de calculer
-        les cotisations d'assurance-emploi, d'assurance parentale et RRQ/RPC.
+        Fonction qui appelle *ei*, *qpip* et la fonction *get_cpp_contrib* afin de calculer respectivement les cotisations à l'assurance-emploi, à l'assurance parentale (RQAP) et au RRQ/RPC.
 
         Parameters
         ----------
@@ -51,7 +47,7 @@ class payroll:
 
     def get_cpp_contrib(self, p, hh):
         """
-        Fonction pour le calcul des cotisations RPC et RRQ.
+        Fonction pour le calcul des cotisations au RPC et au RRQ, qui appelle le module *srpp*.
 
         Parameters
         ----------
@@ -62,8 +58,8 @@ class payroll:
 
         Returns
         -------
-        list de float
-            Les montants des prestations de base et le supplément RRQ/RRQ
+        liste de floats
+            Montants des cotisations aux régimes de base et supplémentaire du RRQ et du RPC.
         """
         rules = self.qpp_rules if hh.prov == 'qc' else self.cpp_rules
         if (p.age < 18) | (p.age > 69):
