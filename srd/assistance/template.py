@@ -17,7 +17,7 @@ class template:
         Parameters
         ----------
         hh: Hhold
-            instance de la classe acteur Hhold
+            instance de la classe Hhold
 
         Returns
         -------
@@ -43,15 +43,15 @@ class template:
         Returns
         -------
         float
-            Montant de la composante logement
+            Montant de la composante logement.
         """
         return 0
 
     def basic_qc(self, hh):
         """
-        Composante de base et supplément enfant (dénuement ACE).
+        Composante de base et supplément pour enfant (en cas de prestation d'ACE réduite) pour le Québec.
 
-        À noter que le test d'acifs n'est pas appliqué.
+        À noter que seul un test d'actifs simplifié est appliqué, à un volet; les actifs liquides (argent comptant et comptes courants) ne sont pas considérés.
 
         Parameters
         ----------
@@ -61,7 +61,7 @@ class template:
         Returns
         -------
         float
-            Montant combiné de la composante de base et supplément enfant.
+            Montant combiné de la composante de base et du supplément pour enfant.
         """
         # assets test: test de ressources? voir docstring
         assets = sum([s.asset for s in hh.sp])
@@ -87,9 +87,9 @@ class template:
 
     def basic_on(self, hh):
         """
-        Composante de base et supplément enfant.
+        Composante de base et supplément pour enfant pour l'Ontario.
 
-        À noter que le test d'actifs n'est pas appliqué.
+        À noter que seul un test d'actifs simplifié est appliqué, à un volet; les actifs liquides (argent comptant et comptes courants) ne sont pas considérés.
 
         Parameters
         ----------
@@ -99,7 +99,7 @@ class template:
         Returns
         -------
         float
-            Montant combiné de la composante de base et supplément enfant.
+            Montant combiné de la composante de base et du supplément pour enfant.
         """
         # assets test
         assets = sum([s.asset for s in hh.sp])

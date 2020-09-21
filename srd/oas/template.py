@@ -4,20 +4,20 @@ module_dir = os.path.dirname(os.path.dirname(__file__))
 
 class template:
     """
-    Classe qui contient un template du programme SV (OAS) et SRG (GIS) (tel que rencontré en 2016)
+    Classe qui contient un gabarit du programme de la Sécurité de la vieillesse (PSV, SRG, Allocation et Allocation au survivant), tel qu'il existait en 2016.
 
     """
 
     def file(self, hh):
         """
-        Fonction pour appliquer au programme et recevoir une prestation.
+        Fonction pour faire une demande au programme et recevoir une prestation.
 
-        Ceci calcule les prestations pour la SV (OAS) et le SRG (GIS).
+        Ceci calcule les prestations pour la PSV, le SRG, l'Allocation et l'Allocation au survivant.
 
         Parameters
         ----------
         hh: Hhold
-            instance de la classe acteur Hhold
+            instance de la classe Hhold
         """
         for p in hh.sp:
             self.eligibility(p, hh)
@@ -55,13 +55,14 @@ class template:
 
     def eligibility(self, p, hh):
         """
-        Evalue l'éligibilité de la personne pour la SV, le SRG et les allocations
-        de couple et de survivant.
+        Fonction qui évalue l'admissibilité de la personne à chacun des 4 volets du programme.
 
         Parameters
         ----------
         p: Person
-            instance de la classe acteur Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
         """
         if p.age < self.min_age_allow or p.years_can < self.min_years_can:
             p.elig_oas = False
@@ -74,7 +75,7 @@ class template:
 
     def compute_net_income(self, p, hh):
         """
-        Calcule le revenu net (sans la pension SV).
+        Fonction qui calcule le revenu net (sans la PSV).
 
         Parameters
         ----------
@@ -90,7 +91,9 @@ class template:
 
     def compute_net_inc_exemption(self, hh):
         """
-        Calcule le revenu net incluant l'exemption sur les revenus du travail salarié
+        Fonction qui calcule le revenu en sus de l'exemption aux fins du SRG sur les revenus du travail salarié.
+
+        À partir de 2020-2021, les revenus de travail autonome bénéficient également de l'exemption. Les revenus du travail entre 5 000 $ et 10 000 $ bénéficient d'une nouvelle exemption partielle de 50%.
 
         Parameters
         ----------
@@ -100,7 +103,7 @@ class template:
         Returns
         -------
         float
-            Revenu net de l'exemption sur les revenus du travail
+            Revenu en sus de l'exemption sur les revenus du travail aux fins du SRG.
         """
         net_inc_exempt = 0
         for p in hh.sp:
@@ -112,7 +115,7 @@ class template:
 
     def compute_pension(self, p, hh):
         """
-        Calcule la pension SV.
+        Fonction qui calcule la prestation de PSV.
 
         Parameters
         ----------
@@ -125,7 +128,7 @@ class template:
         Returns
         -------
         float
-            récupération de la pension SV
+            Montant de la PSV.
         """
         p.oas_65 = min(1, p.years_can / self.max_years_can) * self.oas_full
         p.oas = p.oas_65 * (1 + self.postpone_oas_bonus * p.oas_years_post)
@@ -133,9 +136,7 @@ class template:
 
     def pension_clawback(self, p, hh):
         """
-        Calcul la récupération de la pension SV
-
-        Basé sur le revenu net et incluant la pension SV.
+        Fonction qui calcule la récupération de la PSV, basée sur le revenu net qui inclut la PSV.
 
         Parameters
         ----------
@@ -143,6 +144,11 @@ class template:
             instance de la classe Person
         hh: Hhold
             instance de la classe Hhold
+
+        Returns
+        -------
+        float
+            Montant de la récupération de la PSV.
         """
         if p.fed_return['net_income'] + self.oas_full <= self.oas_claw_cutoff:
             return p.oas
@@ -152,23 +158,23 @@ class template:
 
     def gis(self, p, hh, income, low_high):
         """
-        Calcul du Supplément de revenu garanti.
+        Fonction qui calcule la prestation de Supplément de revenu garanti.
 
         Parameters
         ----------
         p: Person
-            instance de la classe acteur Person
+            instance de la classe Person
         hh: Hhold
-            instance de la classe acteur Hhold
+            instance de la classe Hhold
         income: float
-            revenu pour fin du calcul de la récupération du SRG
+            revenu aux fins du calcul de la récupération du SRG
         low_high: string
-            'low'/'high' pour prime et bonus bas/élevé
+            'low'/'high' pour calcul du bonus de SRG pour très faible revenu
 
         Returns
         -------
         float
-            Montant du SRG (après récupération)
+            Montant du SRG (après récupération).
         """
         if low_high == 'low':
             gis_full, gis_bonus = self.gis_full_low, self.gis_bonus_low
@@ -185,59 +191,24 @@ class template:
         bonus = gis_bonus * p.sq_factor
         claw_bonus = self.bonus_claw_rate * max(0, hh.net_inc_exempt - bonus_exempt) / (1+hh.couple)
         return max(0, gis - claw_gis) + max(0, bonus - claw_bonus)
-
-    def survivor_allowance(self, p, hh):
-        """
-        Calcul de l'allocation du survivant incluant la récupération.
-
-        Parameters
-        ----------
-        p: Person
-            instance de la classe acteur Person
-        hh: Hhold
-            instance de la classe acteur Hhold
-        Returns
-        -------
-        float
-            Allocation du survivant, incluant bonus et récupération.
-        """
-        allow = self.compute_allowance(p, hh, self.gis_full_high)
-        claw_bonus = self.bonus_claw_rate * max(0, hh.net_inc_exempt - self.bonus_exempt_single)
-        return max(0, allow + self.allow_surv_bonus *p.sq_factor - claw_bonus)
-
-    def couple_allowance(self, p, hh):
-        """
-        Calcul de l'allocation pour conjoint.
-
-        Parameters
-        ----------
-        p: Person
-            instance de la classe acteur Person
-        hh: Hhold
-            instance de la classe acteur Hhold
-        Returns
-        -------
-        float
-            Allocation du conjoint.
-        """
-        allow = self.compute_allowance(p, hh, self.gis_full_low)
-        claw_bonus = self.bonus_claw_rate * 1/2 * max(0, hh.net_inc_exempt - self.bonus_exempt_couple)
-        return max(0, allow + self.allow_couple_bonus * p.sq_factor - claw_bonus)
-
+    
     def compute_allowance(self, p, hh, supp_max):
         """
-        Calcul de base de l'allocation du survivant ou de couple.
+        Fonction qui calcule le montant maximal de l'Allocation au survivant ou de l'Allocation au conjoint.
 
         Parameters
         ----------
         p: Person
-            instance de la classe acteur Person
+            instance de la classe Person
         hh: Hhold
-            instance de la classe acteur Hhold
+            instance de la classe Hhold
+        supp_max: float
+            prestation maximale de SRG
+
         Returns
         -------
         float
-            Allocation du survivant ou de couple de base.
+            Montant maximal de l'Allocation.
         """
         cutoff = self.rate_high_inc * self.oas_full * p.sq_factor
         allow = supp_max * p.sq_factor
@@ -246,3 +217,43 @@ class template:
         else:
             allow -= self.rate_allow_high_inc * 1/(1+hh.couple) * (hh.net_inc_exempt - cutoff)
         return allow
+
+    def survivor_allowance(self, p, hh):
+        """
+        Fonction qui calcule l'Allocation au survivant, incluant la récupération.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+
+        Returns
+        -------
+        float
+            Prestation d'Allocation au survivant, incluant bonus et récupération.
+        """
+        allow = self.compute_allowance(p, hh, self.gis_full_high)
+        claw_bonus = self.bonus_claw_rate * max(0, hh.net_inc_exempt - self.bonus_exempt_single)
+        return max(0, allow + self.allow_surv_bonus *p.sq_factor - claw_bonus)
+
+    def couple_allowance(self, p, hh):
+        """
+        Fonction qui calcule l'Allocation au conjoint.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+        Returns
+        -------
+        float
+            Prestation d'Allocation au conjoint.
+        """
+        allow = self.compute_allowance(p, hh, self.gis_full_low)
+        claw_bonus = self.bonus_claw_rate * 1/2 * max(0, hh.net_inc_exempt - self.bonus_exempt_couple)
+        return max(0, allow + self.allow_couple_bonus * p.sq_factor - claw_bonus)
+

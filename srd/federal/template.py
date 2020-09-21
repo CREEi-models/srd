@@ -118,7 +118,7 @@ class template:
 
     def chcare(self, p, hh):
         """
-        Déduction pour frais de garde.
+        Fonction qui calcule la déduction fédérale pour frais de garde.
 
         Parameters
         ----------
@@ -129,7 +129,7 @@ class template:
         Returns
         -------
         float
-            Montant de la déduction pour frais de garde
+            Montant de la déduction pour frais de garde.
 
             Cette fonction calcule le montant reçu en fonction des frais de garde,
             de l'âge des enfants et du revenu le moins élevé du couple. Le montant
@@ -148,7 +148,7 @@ class template:
 
     def cpp_deduction(self, p):
         """
-        Déduction pour les cotisations RPC/RRQ pour les travailleurs autonomes.
+        Fonction qui calcule la déduction pour les cotisations au RRQ / RPC pour les travailleurs autonomes.
 
         Parameters
         ----------
@@ -158,7 +158,7 @@ class template:
         Returns
         -------
         float
-            Montant de la déduction
+            Montant de la déduction.
         """
         try:
             return p.contrib_cpp_self / 2
@@ -168,7 +168,7 @@ class template:
 
     def qpip_deduction(self, p):
         """
-        Déduction pour les cotisations RQAP pour les travailleurs autonomes.
+        Fonction qui calcule la déduction pour les cotisations au RQAP pour les travailleurs autonomes.
 
         Parameters
         ----------
@@ -178,24 +178,24 @@ class template:
         Returns
         -------
         float
-            Montant de la déduction
+            Montant de la déduction.
         """
         return self.qpip_deduc_rate * p.contrib_qpip_self
 
     def calc_deduc_net_income(self, p):
         """
         Fonction qui calcule les déductions suivantes:
-        - Pertes en capital net des autres années.
-        - Déduction pour gain en capital exonéré.
+        1. Pertes en capital net des autres années;
+        2. Déduction pour gain en capital exonéré.
 
-        Permet une déduction maximale égale aux gains en capitaux taxables nets.
+        Permet une déduction maximale égale aux gains en capital taxables nets.
 
         Parameters
         ----------
         p: Person
             instance de la classe Person
         """
-        p.fed_return['deductions_net_inc'] = min(p.taxable_cap_gains, 
+        p.fed_return['deductions_net_inc'] = min(p.taxable_cap_gains,
             p.prev_cap_losses + self.cap_gains_rate * p.cap_gains_exempt)
 
     def calc_tax(self, p):
@@ -217,7 +217,7 @@ class template:
         """
         Fonction qui calcule les crédits d'impôt non-remboursables.
 
-        Cette fonction fait la somme de tous les crédits d'impôt modélisés.
+        Cette fonction fait la somme de tous les crédits modélisés en appelant les fonctions *compute_basic_amount*, *get_age_cred*, *get_cpp_contrib_cred*, *get_qpip_cred*,, *get_qpip_self_cred*, *get_empl_cred*, *get_pension_cred*, *get_disabled_cred*, *get_med_exp_nr_cred*, et *get_donations_cred*. Celles-ci sont définies ci-après.
 
         Parameters
         ----------
@@ -243,7 +243,8 @@ class template:
 
     def compute_basic_amount(self, p):
         """
-        Fonction qui calcule le montant personnel de base des crédits d'impôts non-remboursables.
+        Fonction qui calcule le montant personnel de base.
+
         Le calcul de ce montant change en 2020.
 
         Parameters
@@ -260,9 +261,7 @@ class template:
 
     def get_age_cred(self, p):
         """
-        Crédit d'impôt selon l'âge.
-
-        Ce crédit est non-remboursable.
+        Fonction qui calcule le crédit d'impôt non-remboursable en raison de l'âge.
 
         Parameters
         ----------
@@ -272,7 +271,7 @@ class template:
         Returns
         -------
         float:
-            Montant du crédit
+            Montant du crédit.
         """
         if p.age < self.min_age_cred:
             return 0
@@ -282,9 +281,7 @@ class template:
 
     def get_cpp_contrib_cred(self, p):
         """
-        Crédit d'impôt pour contributions RPC/RRQ.
-
-        Ce crédit est non-remboursable.
+        Fonction qui calcule le crédit d'impôt non-remboursable pour cotisations au RRQ / RPC.
 
         Parameters
         ----------
@@ -294,15 +291,13 @@ class template:
         Returns
         -------
         float:
-            Montant du crédit
+            Montant du crédit.
         """
         return p.contrib_cpp + p.contrib_cpp_self / 2
 
     def get_qpip_cred(self, p):
         """
-        Crédit d'impôt pour contributions RQAP pour travailleur salarié.
-
-        Ce crédit est non-remboursable.
+        Fonction qui calcule le crédit d'impôt non-remboursable pour cotisations au RQAP de travailleur salarié.
 
         Parameters
         ----------
@@ -312,15 +307,13 @@ class template:
         Returns
         -------
         float:
-            Montant du crédit
+            Montant du crédit.
         """
         return p.contrib_qpip
 
     def get_qpip_self_cred(self, p):
         """
-        Crédit d'impôt pour contributions RQAP pour travailleur autonome.
-
-        Ce crédit est non-remboursable.
+        Crédit d'impôt non-remboursable pour cotisations au RQAP de travailleur autonome.
 
         Parameters
         ----------
@@ -330,7 +323,7 @@ class template:
         Returns
         -------
         float:
-            Montant du crédit
+            Montant du crédit.
         """
         return p.contrib_qpip_self - p.fed_qpip_deduction
 
@@ -348,15 +341,13 @@ class template:
         Returns
         -------
         float:
-            Montant du crédit
+            Montant du crédit.
         """
         return min(self.empl_cred_max, p.inc_earn)
 
     def get_pension_cred(self, p, hh):
         """
-        Crédit d'impôt pour revenu de retraite.
-
-        Ce crédit est non-remboursable.
+        Crédit d'impôt non-remboursable pour revenu de retraite.
 
         Parameters
         ----------
@@ -366,7 +357,7 @@ class template:
         Returns
         -------
         float:
-            Montant du crédit
+            Montant du crédit.
         """
         if hh.elig_split and (p.age < self.pension_cred_min_age_split):
             other_p = hh.sp[1 - hh.sp.index(p)]
@@ -418,7 +409,7 @@ class template:
             return 0
 
         med_exp = sum([p.med_exp for p in hh.sp]
-                       + [d.med_exp for d in hh.dep 
+                       + [d.med_exp for d in hh.dep
                           if d.age < self.med_exp_nr_cred_max_age])
         clawback = min(self.med_exp_nr_cred_max_claw,
                        self.med_exp_nr_cred_rate * p.fed_return['net_income'])
@@ -605,7 +596,7 @@ class template:
         """
         Supplément pour invalidité à la prestation fiscale pour le revenu de travail
         (SIPFRT/WITBDS).
-        À partir de 2019, cela devient le supplément pour invalidité 
+        À partir de 2019, cela devient le supplément pour invalidité
         à l'Allocation canadienne pour les travailleurs (ACT).
 
         Parameters
@@ -614,7 +605,7 @@ class template:
             instance de la classe Person
         hh: Hhold
             instance de la classe Hhold
-        
+
         Returns
         -------
         float

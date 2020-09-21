@@ -13,6 +13,8 @@ def program(year, federal):
     ----------
     year: int
         année (présentement entre 2016 et 2020)
+    federal: federal.form
+        instance de la classe form du module Federal
     Returns
     -------
     class instance
@@ -89,9 +91,7 @@ class program_2020(program_2019):
         """
         Calcule le revenu net incluant l'exemption sur les revenus du travail salarié.
 
-        À partir de 2020-2021:
-        les revenus de travail autonome bénéficient également de l'exemption.
-        Les revenus du travail entre 5000$ et 1000$ bénéficient d'une nouvelle exemption partielle de 0.5.
+        À partir de 2020-2021, les revenus de travail autonome bénéficient également de l'exemption. Les revenus du travail entre 5 000 $ et 10 000 $ bénéficient d'une nouvelle exemption partielle de 50%.
 
         Parameters
         ----------
@@ -101,7 +101,7 @@ class program_2020(program_2019):
         Returns
         -------
         float
-            Revenu net de l'exemption sur les revenus du travail
+            Revenu net de l'exemption sur les revenus du travail.
         """
         net_inc_exempt = 0
         for p in hh.sp:

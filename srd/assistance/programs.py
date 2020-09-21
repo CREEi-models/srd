@@ -13,6 +13,7 @@ def program(year):
     ----------
     year: int
         année (présentement entre 2016 et 2020)
+
     Returns
     -------
     class instance

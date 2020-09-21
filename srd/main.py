@@ -13,7 +13,8 @@ jacques = Person(age=40, earn=50000)
 jeanne = Dependent(age=4, child_care=10000)
 joaquim = Dependent(age=8, child_care=8000)
 
-hh = Hhold(jean, jacques, prov='ab')
+hh = Hhold(jean, jacques, prov='on')
+
 hh.add_dependent(jeanne, joaquim)
 
 

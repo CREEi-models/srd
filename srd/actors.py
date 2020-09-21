@@ -6,42 +6,44 @@ class Person:
     """
     Classe pour définir une personne.
 
-    Ceci définit une personne et son profil en terme de revenus et actifs.
+    Ceci définit une personne et son profil en termes de revenus et d'actifs.
 
     Parameters
     ----------
     age: int
         âge de l'individu
     male: int
-        1 si l'individu est un homme
+        prend la valeur 1 si l'individu est un homme
     earn: float
         revenu de travail
     rpp: float
         revenu de régime complémentaire de retraite (RCR)
     cpp: float
-        revenu de régime de rentes du Québec (RRQ) ou du régime de pension du Canada (RPC)
+        revenu du Régime de rentes du Québec (RRQ) ou du Régime de pensions du Canada (RPC)
     net_cap_gains: float
-        gains (ou pertes si négatif) nets en capital réalisés
+        gains (ou pertes si valeur négative) nets en capital réalisés dans l'année
     prev_cap_losses: float
-        pertes en capital nettes d'autres années (facteur d'inclusion déjà appliqué)
+        pertes en capital nettes d'autres années (avec facteur d'inclusion partielle déjà appliqué)
     cap_gains_exempt: float
-        exonération des gains en capital demandée (sur gains en capital nets)
+        exonération des gains en capital admissibiles demandée (sur gains en capital nets); soumis à un plafond à vie
     othtax: float
         autre revenu imposable
     othntax: float
         autre revenu non-imposable
     inc_rrsp: float
-        revenu de REER (sortie)
+        revenu de REER (retrait de fonds)
     self_earn: float
-        revenu de travailleur autonome
+        revenu de travail autonome
     div_elig: float
         montant réel des dividendes déterminés (canadiens)
     div_other_can: float
         montant réel des dividendes ordinaires (canadiens)
     con_rrsp: float
-        contribution REER
+        cotisation REER
     con_non_rrsp: float
-        contribution autre que REER
+        contisation autre que REER (p.ex. à un CELI ou à des comptes non enregistrés)
+    con_rpp: float
+        cotisation à un régime de pension agréé (RPA)
     union_dues: float
         cotisations syndicales, professionnelles ou autres
     donation: float
@@ -49,31 +51,40 @@ class Person:
     gift: float
         dons de biens culturels et écosensibles
     years_can: int
-        nombre d'années au Canada
-        lorsque la pension de la Sécurité de la vieillesse (SV) est demandée
+        nombre d'années vécues au Canada lorsque la Pension de la sécurité de la vieillesse (PSV) est demandée
     disabled: boolean
         statut d'invalidité
     widow: boolean
         statut de veuf/veuve
     med_exp: float
-        frais médicaux
+        montant des dépenses en santé admissibles
+    ndays_chcare_k1: float
+        nombre de jours de garde du premier enfant
+    ndays_chcare_k2: float
+        nombre de jours de garde du second enfant
     asset: float
-        valeur marchande des actifs
+        valeur marchande des actifs (illiquides)
     oas_years_post: int
-        nombre d'années de report pour la pension SV (après 65 ans)
+        nombre d'années de report pour la PSV (après 65 ans)
     months_cerb_cesb: int
-        nombre de mois pour lesquels la CPU(E) est demandée
+        nombre de mois pour lesquels la PCU ou la PCUE est demandée
+    student: boolean
+        statut d'étudiant ou fin des études après décembre 2019 (pour PCUE)
     essential_worker: boolean
-        True si travailleur essentiel
+        True si travailleur essentiel (au Québec seulement)
+    hours_month: float
+        nombre d'heures travaillées par mois
+    prev_inc_work: float
+        revenu du travail de l'année précédente
     dep_senior: boolean
-        True si personne (senior) n'est pas autonome.
+        True si la personne aînée n'est pas autonome
     home_support_cost: float
         coût du maintien à domicile
     """
     def __init__(self, age=50, male=True, earn=0, rpp=0, cpp=0,
                  net_cap_gains=0, prev_cap_losses=0, cap_gains_exempt=0,
                  othtax=0, othntax=0, inc_rrsp=0, self_earn=0, div_elig=0,
-                 div_other_can=0, con_rrsp=0, con_rpp=0, con_non_rrsp=0, 
+                 div_other_can=0, con_rrsp=0, con_non_rrsp=0, con_rpp=0,
                  union_dues=0, donation=0, gift=0, years_can=None,
                  disabled=False, widow=False, med_exp=0, ndays_chcare_k1=0,
                  ndays_chcare_k2=0, asset=0, oas_years_post=0,
@@ -136,8 +147,8 @@ class Person:
 
     def attach_prev_work_inc(self, prev_work_inc):
         """
-        Fonction qui ajoute le revenu du travail de l'an passé s'il est disponible
-        ou l'approxime avec le revenu du travail actuel sinon.
+        Fonction qui ajoute le revenu du travail de l'an passé s'il est disponible,
+        ou l'approxime avec le revenu du travail de l'année courante sinon.
 
         Parameters
         ----------
@@ -151,10 +162,10 @@ class Person:
 
     def attach_inc_work_month(self, earn, self_earn):
         """
-        Fonction qui convertit le revenu du travail annuel en revenu mensuel et vice-versa.
+        Fonction qui convertit le revenu de travail annuel en revenu mensuel et vice versa.
 
-        On entre le revenu du travail annuel ou mensuel (liste avec 12 éléments)
-        et le revenu du travail annuel et mensuel deviennent des attributs de la personne.
+        On entre le revenu de travail annuel ou mensuel (liste avec 12 éléments)
+        et le revenu de travail annuel et mensuel deviennent des attributs de la personne.
 
         Parameters
         ----------
@@ -184,12 +195,12 @@ class Person:
         """
         Fonction qui retourne le revenu de travail.
 
-        Inclut le revenu de travailleur autonome.
+        Inclut le revenu de travail autonome.
 
         Returns
         -------
         float
-            revenu de travail.
+            Revenu de travail.
         """
         return self.inc_earn + self.inc_self_earn \
             + self.inc_cerb + self.inc_cesb + self.inc_iprew
@@ -197,15 +208,15 @@ class Person:
     @property
     def inc_non_work(self):
         """
-        Fonction qui retourne le total des revenus autre que les revenus du travail.
+        Fonction qui retourne le total des revenus autres que les revenus du travail.
 
         Returns
         -------
         float
-            revenu autre que travail.
+            Revenu provenant de sources autres que le travail.
         """
-        return (self.inc_rpp + self.inc_cpp + self.inc_othtax 
-                + self.inc_othntax + self.inc_rrsp + self.inc_oas 
+        return (self.inc_rpp + self.inc_cpp + self.inc_othtax
+                + self.inc_othntax + self.inc_rrsp + self.inc_oas
                 + self.inc_gis + self.inc_ei + self.net_cap_gains
                 + self.div_elig + self.div_other_can)
 
@@ -215,24 +226,24 @@ class Person:
         Fonction qui retourne le revenu total.
 
         Ce revenu total contient les montants réels des dividendes de sociétés
-        canadiennes (et not les montants imposables).
+        canadiennes (et non les montants imposables).
 
         Returns
         -------
         float
-            revenu total.
+            Revenu total.
         """
         return self.inc_work + self.inc_non_work
 
     def compute_months_cerb_cesb(self, months_cerb_cesb, student):
         """
-        Fonction qui établit le nombre de mois de PCU ou PCUE selon le nombre de mois
-        pour lesquels la personne demande la prestation et si elle est aux études.
+        Fonction qui établit le nombre de mois de PCU ou de PCUE selon le nombre de mois
+        pour lesquels la personne demande la prestation et selon son statut d'étudiant.
 
         Parameters
         ----------
         months_cerb_cesb: int
-            Nombre de mois pour lesquels la prestation est demandée
+            nombre de mois pour lesquels la prestation est demandée
         student: boolean
             True si la personne est étudiante (ou l'était en décembre 2019)
         """
@@ -274,7 +285,7 @@ class Dependent:
     disa: boolean
         statut d'invalidité
     child_care: float
-        montant des dépenses de frais de garde
+        montant des dépenses réelles de frais de garde
     school: float
         montant des dépenses de scolarité
     home_care: float
@@ -302,13 +313,13 @@ class Hhold:
     Parameters
     ----------
     first: Person
-        instance Person du premier membre du couple
+        instance Person du 1er membre du couple
     second: Person
-        instance Person du 2e membre (si 2e membre)
+        instance Person du 2e membre du couple, s'il y a lieu
     prov: str
-        province (qc = quebec)
+        province (qc = Québec)
     n_adults_in_hh: int
-        nombre d'adultes dans le ménage (18 ans et plus)
+        nombre d'adultes (18 ans et plus) dans le ménage
     """
     def __init__(self, first, second=None, prov='qc', n_adults_in_hh=None):
         self.sp = [first]
@@ -328,7 +339,7 @@ class Hhold:
     def adjust_n_adults(self, n_adults_in_hh):
         """
         Fonction qui calcule le nombre d'adultes dans le ménage si celui-ci
-        n'est pas fourni
+        n'est pas fourni.
 
         Parameters
         ----------
@@ -338,7 +349,7 @@ class Hhold:
         Returns
         -------
         float
-            nombre d'adultes dans le ménage
+            Nombre d'adultes dans le ménage.
         """
         if n_adults_in_hh:
             return n_adults_in_hh
@@ -349,47 +360,47 @@ class Hhold:
     @property
     def fam_inc_work(self):
         """
-        Fonction qui calcule le revenu familial de travail.
+        Fonction qui calcule le revenu de travail du ménage.
 
         Returns
         -------
         float
-            Revenu familial de travail
+            Revenu de travail du ménage.
         """
         return sum([p.inc_work for p in self.sp])
 
     def fam_inc_non_work(self):
         """
-        Fonction qui calcule le revenu familial autre que travail.
+        Fonction qui calcule le revenu familial de sources autres que le travail.
 
         Returns
         -------
         float
-            Revenu familial autre que travail
+            Revenu familial de sources autres que le travail.
         """
         return sum([p.inc_non_work for p in self.sp])
 
     @property
     def fam_net_inc_prov(self):
         """
-        Fonction qui calcule le revenu familial net provincial.
+        Fonction qui calcule le revenu familial net pour l'impôt et les programmes provinciaux.
 
         Returns
         -------
         float
-            Revenu familial net provincial
+            Revenu familial net provincial.
         """
         return sum([s.prov_return['net_income'] for s in self.sp])
 
     @property
     def fam_net_inc_fed(self):
         """
-        Fonction qui calcule le revenu familial net fédéral.
+        Fonction qui calcule le revenu familial net pour l'impôt et les programmes fédéraux.
 
         Returns
         -------
         float
-            Revenu familial net fédéral
+            Revenu familial net fédéral.
         """
         return sum([s.fed_return['net_income'] for s in self.sp])
 
@@ -401,19 +412,19 @@ class Hhold:
         Returns
         -------
         float
-            Revenu familial total
+            Revenu familial total.
         """
         return sum([p.inc_tot for p in self.sp])
 
     @property
     def fam_after_tax_inc(self):
         """
-        Fonction qui calcule le revenu familial après impôt.
+        Fonction qui calcule le revenu familial après impôts.
 
         Returns
         -------
         float
-            Revenu familial total après impôt
+            Revenu familial après impôts.
         """
         try:
             return sum([p.after_tax_inc for p in self.sp])
@@ -423,14 +434,14 @@ class Hhold:
     @property
     def fam_disp_inc(self):
         """
-        Fonction qui calcule le revenu familial disponible.
-
-        Il s'agit du revenu après impôt, cotisations sociales et REER.
+        Fonction qui additionne les revenus disponibles du conjoint pour obtenir le revenu disponible familial.
+        
+        Il s'agit du revenu disponible après impôts, cotisations sociales, épargne (positive ou négative) et prestations.
 
         Returns
         -------
         float
-            Revenu familial disponible après impôt et cotisations.
+            Revenu familial disponible, après impôts et cotisations.
         """
         try:
             return sum([p.disp_inc for p in self.sp])
@@ -458,8 +469,8 @@ class Hhold:
         dependent: Dependent
             instance de la classe Dependent ou liste d'instances de la classe Dependent
         """
-        for d in dependents:
-            self.dep.append(d)
+        for s in dependents:
+            self.dep.append(s)
         self.count()
 
     def count(self):
@@ -475,9 +486,7 @@ class Hhold:
 
     def compute_max_split(self):
         """
-        Fonction qui calcule le montant max de revenu de pension
-        pouvant être fractionné
-        (et l'attache à chaque conjoint du ménage: attribut *max_split*).
+        Fonction qui calcule le montant maximal de revenu de pension pouvant être fractionné, et qui l'attache à chaque conjoint du ménage dans l'attribut *max_split*.
         """
         if not self.couple:
             self.sp[0].max_split = 0
@@ -489,8 +498,8 @@ class Hhold:
 
     def assess_elig_split(self):
         """
-        Fonction qui établit si le ménage est éligible pour le fractionnement
-        de pension (et l'attache au ménage: attribut *elig_split*).
+        Fonction qui établit si le ménage est admissible pour le fractionnement du revenu
+        de pension, et qui l'attache au ménage dans l'attribut *elig_split*.
         """
         self.elig_split = len([p for p in self.sp if p.max_split > 0]) > 0
 
