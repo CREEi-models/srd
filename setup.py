@@ -6,7 +6,7 @@ with open("README.md", "r", encoding='utf-8') as fh:
 
 setuptools.setup(
     name="srd",  # Replace with your own username
-    version="1.1.1",
+    version="1.1.2",
     author="Equipe CREEi",
     author_email="pierre-carl.michaud@hec.ca",
     description="Modele de simulation du revenu disponible Quebec",

@@ -1,7 +1,7 @@
-path_py = '/Users/pyann/Dropbox (CEDIA)/srd/Model'
+# path_py = '/Users/pyann/Dropbox (CEDIA)/srd/Model'
 
-import sys
-sys.path.append(path_py)
+# import sys
+# sys.path.append(path_py)
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -17,8 +17,9 @@ hh = Hhold(jean, jacques, prov='on')
 
 hh.add_dependent(jeanne, joaquim)
 
+for year in range(2016, 2021):
 
-tax_form = tax(2020)
-tax_form.compute(hh)
+    tax_form = tax(year)
+    tax_form.compute(hh)
 
-print(hh.fam_disp_inc)
+    print(year, hh.fam_disp_inc)
