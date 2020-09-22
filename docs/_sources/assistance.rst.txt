@@ -1,0 +1,41 @@
+
+Aide sociale
+------------
+
+Survol
+^^^^^^
+
+Le programme de l'aide sociale est pris en charge par le module *assistance*. Ce module contient un gabarit que nous documentons ci-dessous ainsi que des classes dérivées spécifiques à chaque année.
+
+.. currentmodule:: srd.assistance
+
+La fonction *program* permet de choisir l'année du programme et ira tirer une instance du programme pour cette année. L'instance est retournée par la fonction.
+
+.. autofunction:: program
+
+Seules la prestation de base au Québec et en Ontario sont modélisées pour l'instant.
+
+Gabarit du programme
+^^^^^^^^^^^^^^^^^^^^
+
+Nous utilisons un gabarit afin de créer les programmes chaque année. Quand le programme change seulement au niveau des paramètres d'une année à l'autre, nous irons chercher seulement les nouveaux paramètres. Quand des fonctions changent, l'utilisateur n'a qu'à modifier les fonctions touchées (ou à en ajouter de nouvelles). L'avantage des classes dérivées est de ne pas avoir à répéter toutes les fonctions d'une année à l'autre si celles-ci n'ont pas changé.
+
+Nous reproduisons ici la spécification du gabarit. Il est basé sur le programme en vigueur en 2016.
+
+.. autoclass:: template
+    :members: apply, shelter, basic_qc, basic_on
+
+À noter que seul un test d'actifs simplifié est appliqué, à un volet; les actifs liquides (argent comptant et comptes courants) ne sont pas considérés. Par ailleurs les suppléments pour personnes seules ne sont pas mis en œuvre; la prestation pour contrainte temporaire à l'emploi non plus.
+
+Fonctions spécifiques ou modifiées par année
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: srd.assistance.programs.program_2016
+
+.. autoclass:: srd.assistance.programs.program_2017
+
+.. autoclass:: srd.assistance.programs.program_2018
+
+.. autoclass:: srd.assistance.programs.program_2019
+
+.. autoclass:: srd.assistance.programs.program_2020

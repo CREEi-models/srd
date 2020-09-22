@@ -1,0 +1,49 @@
+
+Impôt fédéral
+-------------
+
+Survol
+^^^^^^
+
+L'impôt fédéral est pris en charge par le module *federal*. Ce module contient un gabarit que nous documentons ci-dessous ainsi que des classes dérivées spécifiques pour chaque année.
+
+.. currentmodule:: srd.federal
+
+La fonction *form* permet de choisir l'année de la déclaration de revenus et ira tirer une instance du rapport pour cette année. L'instance est retournée par la fonction.
+
+.. autofunction:: form
+
+Gabarit du rapport
+^^^^^^^^^^^^^^^^^^^^
+
+Nous utilisons un gabarit afin de créer les rapports chaque année. Quand l'impôt change seulement au niveau des paramètres d'une année à l'autre, le rapport ira seulement chercher les nouveaux paramètres. Quand des fonctions changent, l'utilisateur n'a qu'à modifier les fonctions touchées (ou à en ajouter de nouvelles). Toutes les modifications de fonction survenues après l'année 2016 sont indiquées ci-dessous.
+
+Nous reproduisons ici la spécification du gabarit. Il est basé sur le rapport de 2016.
+
+.. autoclass:: template
+    :members: file, calc_gross_income, calc_net_income, calc_taxable_income,
+              calc_deduc_gross_income, chcare, cpp_deduction, qpip_deduction,
+              calc_deduc_net_income, calc_tax, calc_non_refundable_tax_credits,
+              get_age_cred, get_cpp_contrib_cred, get_qpip_cred,
+              get_qpip_self_cred, get_empl_cred, get_pension_cred,
+              get_disabled_cred, get_med_exp_nr_cred, get_donations_cred,
+              div_tax_credit, calc_refundable_tax_credits, abatment, ccb,
+              get_witb, get_witbds, compute_witb_witbds, med_exp, gst_hst_credit
+
+Le gabarit collige les résultats dans un formulaire d'impôt qui sera rattaché à la personne sous la forme d'un dictionnaire Python. Cette procédure permet de différencier les variables générées par l'impôt des attributs d'une personne qui font partie de son profil. C'est la fonction *create_return()* qui fait ce travail.
+
+.. autofunction:: create_return
+
+Fonctions spécifiques ou modifiées par année
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: srd.federal.form_2016
+
+.. autoclass:: srd.federal.form_2017
+
+.. autoclass:: srd.federal.form_2018
+
+.. autoclass:: srd.federal.form_2019
+
+.. autoclass:: srd.federal.form_2020
+    :members: compute_basic_amount, calc_net_income, repayments_ei

@@ -1,0 +1,97 @@
+
+Cotisations sociales
+====================
+
+Les cotisations sociales sont prises en charge par la classe *payroll*. Cette classe prend en charge les cotisations à l'assurance-emploi, au Régime québécois d'assurance parentale (RQAP), au Régime de rentes du Québec (RRQ) et au Régime de pensions du Canada (RPC). Pour ces dernières, le module *srpp* de la chaire est utilisé et une fonction de la classe *payroll* (*get_cpp_contrib*) ira chercher les cotisations à l'intérieur de ce module.
+
+La classe *payroll* attachera à chaque membre d'un couple un rapport de cotisations qui contiendra toutes les sommes cotisées. Pour le RRQ et le RPC, les cotisations aux régimes de base et celles aux régimes supplémentaires découlant de l'expansion débutée en 2019 sont séparées, car leur traitement fiscal est différent.
+
+.. currentmodule:: srd
+
+.. autoclass:: payroll
+    :members: compute, get_cpp_contrib
+
+
+Assurance emploi
+----------------
+
+Survol
+^^^^^^
+
+Le programme d'assurance-emploi est pris en charge par le module *ei*. Ce module contient un gabarit que nous documentons ci-dessous ainsi que des classes dérivées spécifiques pour chaque année.
+
+.. currentmodule:: srd.ei
+
+La fonction *program* permet de choisir l'année du programme et ira tirer une instance du programme pour cette année. L'instance est retournée par la fonction.
+
+.. autofunction:: program
+
+Pour le moment, le programme permet uniquement de calculer les cotisations.
+
+Gabarit du programme
+^^^^^^^^^^^^^^^^^^^^
+
+Nous utilisons un gabarit afin de créer les programmes chaque année. Quand le programme change seulement au niveau des paramètres d'une année à l'autre, nous irons chercher seulement les nouveaux paramètres. Quand des fonctions changent, l'utilisateur n'a qu'à modifier les fonctions touchées (ou à en ajouter de nouvelles). L'avantage des classes dérivées est de ne pas avoir à répéter toutes les fonctions d'une année à l'autre si celles-ci n'ont pas changé.
+
+Nous reproduisons ici la spécification du gabarit. Il est basé sur le programme en vigueur en 2016.
+
+.. autoclass:: template
+    :members: contrib
+
+
+Fonctions spécifiques ou modifiées par année
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: srd.ei.programs.program_2016
+
+.. autoclass:: srd.ei.programs.program_2017
+
+.. autoclass:: srd.ei.programs.program_2018
+
+.. autoclass:: srd.ei.programs.program_2019
+
+.. autoclass:: srd.ei.programs.program_2020
+
+
+
+Régime québécois d'assurance parentale
+--------------------------------------
+
+Survol
+^^^^^^
+
+Le Régime québécois d'assurance parentale existant au Québec est pris en charge par le module *qpip*. Ce module contient un gabarit que nous documentons ci-dessous, ainsi que des classes dérivées spécifiques pour chaque année.
+
+.. currentmodule:: srd.qpip
+
+La fonction *program* permet de choisir l'année du programme et ira tirer une instance du programme pour cette année. L'instance est retournée par la fonction.
+
+.. autofunction:: program
+
+Pour le moment, le programme permet uniquement de calculer les cotisations.
+
+Gabarit du programme
+^^^^^^^^^^^^^^^^^^^^
+
+Nous utilisons un gabarit afin de créer les programmes chaque année. Quand le programme change seulement au niveau des paramètres d'une année à l'autre, nous irons chercher seulement les nouveaux paramètres. Quand des fonctions changent, l'utilisateur n'a qu'à modifier les fonctions touchées (ou à en ajouter de nouvelles). L'avantage des classes dérivées est de ne pas avoir à répéter toutes les fonctions d'une année à l'autre si celles-ci n'ont pas changé.
+
+Nous reproduisons ici la spécification du gabarit. Il est basé sur le programme en vigueur en 2016.
+
+.. autoclass:: template
+    :members: contrib
+
+
+Fonctions spécifiques ou modifiées par année
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: srd.qpip.programs.program_2016
+
+.. autoclass:: srd.qpip.programs.program_2017
+
+.. autoclass:: srd.qpip.programs.program_2018
+
+.. autoclass:: srd.qpip.programs.program_2019
+
+.. autoclass:: srd.qpip.programs.program_2020
+
+
