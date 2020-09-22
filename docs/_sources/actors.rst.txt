@@ -1,0 +1,23 @@
+
+.. automodule:: srd
+
+
+Les acteurs
+-----------
+
+Les fonctions d'acteurs permettent de déclarer des profils.
+
+.. currentmodule:: srd
+
+.. autoclass:: Person
+    :members: attach_prev_work_inc, attach_inc_work_month, inc_work,
+              inc_non_work, inc_tot, compute_months_cerb_cesb, copy, reset
+
+.. autoclass:: Dependent
+    :members:
+
+.. autoclass:: Hhold
+    :members: adjust_n_adults, fam_inc_work, fam_inc_non_work, fam_inc_tot,
+              fam_after_tax_inc, fam_disp_inc, child_care_exp,
+              fam_net_inc_prov, fam_net_inc_fed, add_dependent, count,
+              compute_max_split, assess_elig_split, copy, reset

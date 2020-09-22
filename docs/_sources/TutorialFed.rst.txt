@@ -1,0 +1,407 @@
+Exemple de calcul de l'impôt fédéral
+------------------------------------
+
+Importation du package
+^^^^^^^^^^^^^^^^^^^^^^ 
+
+.. code:: ipython3
+
+    import srd
+
+Initialisation d’un ménage
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+On doit d’abord initialiser un ménage. Ici nous supposerons un couple avec deux membres ayant tous les deux 45 ans et des revenus de travail de 50 000 $ et 25 000 $, respectivement.
+
+.. code:: ipython3
+
+    jean = srd.Person(age=45,earn=50e3)
+    pauline = srd.Person(age=45,earn=25e3)
+
+On les insère dans un ménage vivant au Québec.
+
+.. code:: ipython3
+
+    hh = srd.Hhold(jean,pauline,prov='qc')
+
+On peut voir le profil de chacun des membres du ménage en utilisant *vars()*:
+
+.. code:: ipython3
+
+    vars(jean)
+
+
+
+
+.. parsed-literal::
+
+    {'age': 45,
+     'male': True,
+     'inc_earn_month':
+     [4166.666666666667,
+      4166.666666666667,
+      4166.666666666667,
+      4166.666666666667,
+      4166.666666666667,
+      4166.666666666667,
+      4166.666666666667,
+      4166.666666666667,
+      4166.666666666667,
+      4166.666666666667,
+      4166.666666666667,
+      4166.666666666667],
+     'inc_earn': 50000.0,
+     'inc_rpp': 0,
+     'inc_cpp': 0,
+     'cap_gains': 0,
+     'cap_losses': 0,
+     'cap_gains_exempt': 0,
+     'inc_othtax': 0,
+     'inc_othntax': 0,
+     'div_elig': 0,
+     'div_other_can': 0,
+     'inc_rrsp': 0,
+     'con_rrsp': 0,
+     'con_rpp': 0,
+     'union_dues': 0,
+     'donation': 0,
+     'gift': 0,
+     'years_can': 45,
+     'inc_self_earn': 0,
+     'disabled': False,
+     'cqppc': None,
+     'widow': False,
+     'ndays_chcare_k1': 0,
+     'ndays_chcare_k2': 0,
+     'asset': 0,
+     'oas_years_post': 0,
+     'months_cesb': 0,
+     'months_cerb': 0,
+     'student': False,
+     'essential_worker': False,
+     'hours_month': None,
+     'dep_senior': False,
+     'home_support_cost': 0,
+     'pension_split': 0,
+     'pension_split_qc': 0,
+     'pension_deduction': 0,
+     'pension_deduction_qc': 0,
+     'inc_oas': 0,
+     'inc_gis': 0,
+     'inc_ei': 0,
+     'inc_social_ass': 0,
+     'allow_couple': 0,
+     'allow_surv': 0,
+     'inc_cerb': 0,
+     'inc_cesb': 0,
+     'inc_iprew': 0,
+     'covid': None,
+     'after_tax_inc': None,
+     'disp_inc': None,
+     'fed_return': None,
+     'prov_return': None,
+     'payroll': None
+     'max_split': 0.0}
+
+
+Calcul de l’impôt fédéral
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+On doit d’abord créer un formulaire d’impôt pour une année en particulier.
+
+.. code:: ipython3
+
+    from srd import federal
+    fed_form = federal.form(2020)
+
+On peut voir les différents paramètres du système fiscal en utilisant encore *vars()*:
+
+.. code:: ipython3
+
+    vars(fed_form)
+
+
+
+
+.. parsed-literal::
+
+    {'div_elig_factor': 1.38,
+     'div_other_can_factor': 1.15,
+     'div_elig_cred_rate': 0.150198,
+     'div_other_can_cred_rate': 0.090313,
+     'qpip_deduc_rate': 0.43683,
+     'basic_amount_poor': 13229.0,
+     'basic_amount_rich': 12298.0,
+     'age_cred_amount': 7637.0,
+     'min_age_cred': 65,
+     'age_cred_exemption': 38508.0,
+     'age_cred_claw_rate': 0.15,
+     'pension_cred_amount': 2000.0,
+     'pension_cred_min_age_split': 65,
+     'disability_cred_amount': 8576.0,
+     'med_exp_nr_cred_max_age': 16,
+     'med_exp_nr_cred_max_claw': 2397.0,
+     'med_exp_nr_cred_rate': 0.03,
+     'donation_frac_net': 0.75,
+     'donation_low_cut': 200.0,
+     'donation_high_cut': 214368.0,
+     'donation_low_rate': 0.15,
+     'donation_med_rate': 0.29,
+     'donation_high_rate': 0.33,
+     'rate_non_ref_tax_cred': 0.15,
+     'rate_abatment_qc': 0.165,
+     'ccb_young_max_age': 5,
+     'ccb_old_max_age': 17,
+     'ccb_young': 7065.0,
+     'ccb_old': 6008.0,
+     'ccb_covid_supp': 300.0,
+     'ccb_max_num_ch': 4,
+     'ccb_cutoff_1': 31711.0,
+     'ccb_cutoff_2': 68708.0,
+     'ccb_rate_1_1ch': 0.07,
+     'ccb_rate_1_2ch': 0.135,
+     'ccb_rate_1_3ch': 0.19,
+     'ccb_rate_1_4ch': 0.23,
+     'ccb_rate_2_1ch': 0.032,
+     'ccb_rate_2_2ch': 0.057,
+     'ccb_rate_2_3ch': 0.08,
+     'ccb_rate_2_4ch': 0.095,
+     'med_exp_rate': 0.25,
+     'med_exp_claw_rate': 0.05,
+     'med_exp_claw_cutoff': 28164.0,
+     'med_exp_max': 1272.0,
+     'med_exp_min_work_inc': 3714.0,
+     'gst_cred_kids_max_age': 18,
+     'gst_cred_claw_rate': 0.05,
+     'gst_cred_claw_cutoff': 38507.0,
+     'gst_cred_base': 592.0,
+     'gst_cred_other': 312.0,
+     'gst_cred_rate': 0.02,
+     'gst_cred_base_amount': 9591.0,
+     'gst_covid_single': 400.0,
+     'gst_covid_couple': 600.0,
+     'chcare_max_age_young': 6,
+     'chcare_max_age_old': 16,
+     'chcare_young': 8000.0,
+     'chcare_old': 5000.0,
+     'chcare_rate_inc': 0.66666,
+     'ei_max_net_inc': 67636.0,
+     'ei_rate_repay': 0.3,
+     'witb_max_age_dep': 18,
+     'witb_base_single_qc': 2400,
+     'witb_base_couple_qc': 3600,
+     'witb_rate_single_dep_qc': 0.15,
+     'witb_rate_qc': 0.274,
+     'witb_rate_couple_dep_qc': 0.14,
+     'witb_max_single_qc': 2318.89,
+     'witb_max_single_dep_qc': 1269.47,
+     'witb_max_couple_qc': 3618.81,
+     'witb_max_couple_dep_qc': 1849.03,
+     'witb_exemption_single_qc': 12267.43,
+     'witb_exemption_single_dep_qc': 12272.52,
+     'witb_exemption_couple_qc': 18838.54,
+     'witb_exemption_couple_dep_qc': 18858.89,
+     'witb_claw_rate_qc': 0.2,
+     'witb_dis_base_qc': 1200,
+     'witb_dis_max_qc': 712.04,
+     'witb_dis_rate_single_qc': 0.4,
+     'witb_dis_rate_couple_qc': 0.2,
+     'witb_dis_exemption_single_qc': 23861.88,
+     'witb_dis_exemption_single_dep_qc': 18619.87,
+     'witb_dis_exemption_couple_qc': 36932.59,
+     'witb_dis_exemption_couple_dep_qc': 28104.04,
+     'witb_dis_claw_rate_qc': 0.2,
+     'witb_dis_couple_claw_rate_qc': 0.1,
+     'l_brackets': [0.0, 48535.0, 97069.0, 150473.0, 214368.0],
+     'l_rates': [0.15, 0.205, 0.26, 0.29, 0.33],
+     'l_constant': [0.0, 7280.0, 17230.0, 31115.0, 49645.0],
+     'policy': <srd.covid.programs.policy at 0x1af00603b48>}
+
+
+
+On remplit le formulaire d’impôt à l’aide de la fonction *tax()*.
+
+.. code:: ipython3
+
+    from srd import tax
+    tax_form = tax(2020)
+    tax_form.compute(hh)
+
+On peut visualiser un formulaire d’impôt sommaire qui est rattaché à chaque personne:
+
+.. code:: ipython3
+
+    jean.fed_return
+
+
+
+
+.. parsed-literal::
+
+    {'gross_income': 50000.0,
+     'deductions_gross_inc': 0,
+     'net_income': 50000.0,
+     'deductions_net_inc': 0,
+     'taxable_income': 50000.0,
+     'gross_tax_liability': 7580.325,
+     'non_refund_credits': 2547.804,
+     'refund_credits': 830.365965,
+     'net_tax_liability': 4202.155035}
+
+
+
+.. code:: ipython3
+
+    pauline.fed_return
+
+
+
+
+.. parsed-literal::
+
+    {'gross_income': 25000.0,
+     'deductions_gross_inc': 0,
+     'net_income': 25000.0,
+     'deductions_net_inc': 0,
+     'taxable_income':25000.0,
+     'gross_tax_liability': 3750.0,
+     'non_refund_credits': 2345.304,
+     'refund_credits': 231.77483999999998,
+     'net_tax_liability': 1172.9211599999999}
+
+
+
+On peut ajouter des enfants au ménage à l'aide de la fonction *add_dependent()*.
+
+.. code:: ipython3
+
+    emma = srd.Dependent(age=4, child_care=2000, med_exp=500)
+    alex = srd.Dependent(age=14, school=4000)
+    hh.add_dependent(emma,alex)
+
+
+On peut ensuite calculer le nouveau formulaire d’impôt pour les deux adultes de la famille.
+
+.. code:: ipython3
+
+    tax_form.compute(hh)
+    jean.fed_return
+
+
+
+
+.. parsed-literal::
+
+    {'gross_income': 50000.0,
+     'deductions_gross_inc': 0,
+     'net_income': 50000.0,
+     'deductions_net_inc': 0,
+     'taxable_income': 50000.0,
+     'gross_tax_liability': 7580.325,
+     'non_refund_credits': 2547.804,
+     'refund_credits': 4830.5964650000005,
+     'net_tax_liability': 201.9245349999992}
+
+
+
+.. code:: ipython3
+
+    pauline.fed_return
+
+
+
+
+.. parsed-literal::
+
+    {'gross_income': 25000.0,
+     'deductions_gross_inc': 2000.0,
+     'net_income': 23000.0,
+     'deductions_net_inc': 0,
+     'taxable_income':23000.0,
+     'gross_tax_liability': 3450.0,
+     'non_refund_credits': 2345.304,
+     'refund_credits': 4099.155339999999,
+     'net_tax_liability': -2994.4593399999994}
+
+
+On peut voir les différents attributs du ménage en utilisant encore *vars()*:
+
+
+.. code:: ipython3
+
+    vars(hh)
+
+
+
+
+.. parsed-literal::
+
+    {'sp': [<srd.actors.Person at 0x1afccbfb608>,
+      <srd.actors.Person at 0x1afccbfb5c8>],
+     'couple': True,
+     'prov': 'qc',
+     'dep': [<srd.actors.Dependent at 0x1afccd81d08>,
+      <srd.actors.Dependent at 0x1afccd99548>],
+     'nkids_0_6': 1,
+     'nkids_7_16': 1,
+     'nkids_0_17': 2,
+     'nkids_0_18': 2,
+     'n_adults_in_hh': 2,
+     'elig_split': False
+     'nkids_0_5': 1,
+     'nkids_6_17': 1}
+
+
+
+Expérience
+^^^^^^^^^^
+
+On peut faire des expériences assez complexes. Une première consisterait par exemple à regarder l’impôt fédéral payé si on augmente les revenus de travail par petites tranches.
+
+.. code:: ipython3
+
+    import numpy as np
+    from matplotlib import pyplot as plt
+
+    earns = np.linspace(10e3,200e3,100)
+    atrs = []
+    for earn in earns:
+        jean = srd.Person(age=45,earn=earn)
+        hh = srd.Hhold(jean, prov='qc')
+        tax_form.compute(hh)
+        atrs.append(jean.fed_return['net_tax_liability']/jean.fed_return['gross_income'])
+
+    plt.figure()
+    plt.plot(earns,atrs)
+    plt.xlabel('niveau de revenu de travail')
+    plt.ylabel('taux moyen imposition effectif')
+    plt.show()
+
+
+.. image:: output_ex1.png
+
+
+On peut aussi faire une expérience dans laquelle on change un paramètre du système d’imposition. Supposons par exemple qu’on augmente le montant de base:
+
+.. code:: ipython3
+
+    base = np.linspace(1.0,1.5,10)
+    atrs = []
+    bases = []
+    jean.inc_earn = 50e3
+    base_amount = tax_form.federal.basic_amount_poor
+    for b in base:
+        tax_form.federal.basic_amount_poor = base_amount * b
+        bases.append(tax_form.federal.basic_amount_poor)
+        tax_form.compute(hh)
+        atrs.append(jean.fed_return['net_tax_liability']/jean.fed_return['gross_income'])
+
+    plt.figure()
+    plt.plot(bases,atrs)
+    plt.xlabel('montant de base')
+    plt.ylabel('taux moyen imposition effectif')
+    plt.show()
+
+
+
+.. image:: output_ex2.png
