@@ -76,6 +76,7 @@
 
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
+    
             
             
               
@@ -90,8 +91,6 @@
 <li class="toctree-l1"><a class="reference internal" href="ontario.html">Impôt de l’Ontario</a></li>
 <li class="toctree-l1"><a class="reference internal" href="oas.html">Pension de la sécurité de la vieillesse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="payroll.html">Cotisations sociales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ei.html">Assurance emploi</a></li>
-<li class="toctree-l1"><a class="reference internal" href="qpip.html">Régime québécois d’assurance parentale</a></li>
 <li class="toctree-l1"><a class="reference internal" href="assistance.html">Aide sociale</a></li>
 <li class="toctree-l1"><a class="reference internal" href="covid.html">Prestations liées à la COVID-19</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Calculateur de revenu disponible</a><ul>
@@ -102,11 +101,13 @@
 <li class="toctree-l1"><a class="reference internal" href="TutorialFed.html">Exemple de calcul de l’impôt fédéral</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialCalculator.html">Exemple de calcul du revenu disponible</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialChangeParameters.html">Exemple de changement de paramètre</a></li>
-<li class="toctree-l1"><a class="reference internal" href="credits.html">Contributeurs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits.html">Contacts et utilisation</a></li>
 </ul>
 
             
           
+    <a href="genindex.html">Index</a>
+  
         </div>
       </div>
     </nav>
@@ -175,31 +176,30 @@
 </div>
 <div class="section" id="les-fonctions-du-calculateur">
 <h2>Les fonctions du calculateur<a class="headerlink" href="#les-fonctions-du-calculateur" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Le calculateur  contient les fonctions suivantes:</p>
+<p>Le calculateur contient les fonctions indiquées sous la description de la classe principale.</p>
 <dl class="class">
 <dt id="srd.tax">
 <em class="property">class </em><code class="sig-prename descclassname">srd.</code><code class="sig-name descname">tax</code><span class="sig-paren">(</span><em class="sig-param">year</em>, <em class="sig-param">ifed=True</em>, <em class="sig-param">ioas=True</em>, <em class="sig-param">iprov=True</em>, <em class="sig-param">ipayroll=True</em>, <em class="sig-param">iass=True</em>, <em class="sig-param">policy=&lt;srd.covid.programs.policy object&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Classe générale pour le calcul des impôts, contributions et prestations.</p>
+<dd><p>Classe générale pour le calcul des impôts, cotisations et prestations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>year</strong> (<em>int</em>) – année pour le calcul</p></li>
-<li><p><strong>prov</strong> (<em>str</em>) – province (pour le moment seulement Québec et Ontario)</p></li>
 <li><p><strong>ifed</strong> (<em>boolean</em>) – vrai si le calcul de l’impôt fédéral est demandé</p></li>
 <li><p><strong>ioas</strong> (<em>boolean</em>) – vrai si le calcul des prestations de PSV, SRG, Allocation et Allocation au survivant est demandé</p></li>
 <li><p><strong>iprov</strong> (<em>boolean</em>) – vrai si le calcul de l’impôt provincial est demandé</p></li>
 <li><p><strong>ipayroll</strong> (<em>boolean</em>) – vrai si le calcul des cotisations sociales est demandé</p></li>
-<li><p><strong>icovid_all</strong> (<em>boolean</em>) – vrai si le calcul des mesures d’urgence liées à la COVID-19 est demandé
-(seulement en 2020)</p></li>
+<li><p><strong>iass</strong> (<em>boolean</em>) – vrai si le calcul des prestations d’aide sociale est demandé</p></li>
+<li><p><strong>policy</strong> (<a class="reference internal" href="covid.html#srd.covid.policy" title="srd.covid.policy"><em>policy</em></a>) – instance de la classe <em>policy</em> du module <em>covid</em></p></li>
 </ul>
 </dd>
 </dl>
 <dl class="method">
 <dt id="srd.tax.compute">
 <code class="sig-name descname">compute</code><span class="sig-paren">(</span><em class="sig-param">hh</em>, <em class="sig-param">n_points=1</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Cette fonction transfère des revenus de pensions pour les couples admissibles
+<dd><p>Cette fonction transfère des revenus de pension pour les couples admissibles
 et retient la solution qui maximise le revenu disponible familial.
-Si n_points=0, pas de fractionnement des revenus de pensions. Par défaut
+Si n_points=0, pas de fractionnement des revenus de pension. Par défaut
 (n_points=1), les revenus bruts sont égalisés dans la mesure des transferts
 possibles. Pour n&gt;1, une simulation est faite pour chaque point de la grille.
 À noter que lorsque n augmente, les solutions avec n inférieur (notamment n=0)
@@ -208,15 +208,9 @@ sont aussi considérées.</p>
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
-<li><p><strong>n_points</strong> (<em>int</em>) – nombre de points utilisés pour optimiser le transfert de revenus de
-pension.</p></li>
+<li><p><strong>n_points</strong> (<em>int</em>) – nombre de points utilisés pour optimiser le fractionnement de revenus de
+pension</p></li>
 </ul>
-</dd>
-<dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>instance de la classe Hhold</p>
-</dd>
-<dt class="field-odd">Type renvoyé</dt>
-<dd class="field-odd"><p><a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold">Hhold</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -294,8 +288,7 @@ la fonction qui simule le ménage.</p>
 <dl class="method">
 <dt id="srd.tax.compute_covid">
 <code class="sig-name descname">compute_covid</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute_covid" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Calcul des prestations canadiennes d’urgence (PCU et PCUE)
-et du Programme incitatif pour la rétention des travailleurs essentiels (PIRTE).</p>
+<dd><p>Calcul de la PCU, de la PCUE et du PIRTE (pour 2020).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
@@ -318,14 +311,14 @@ et du Programme incitatif pour la rétention des travailleurs essentiels (PIRTE)
 <dt id="srd.tax.compute_after_tax_inc">
 <code class="sig-name descname">compute_after_tax_inc</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute_after_tax_inc" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Calcul du revenu après impôt fédéral et provincial.</p>
-<p>Calcul fait au niveau individuel et ensuite rattaché à la personne. Un calcul au niveau du ménage est aussi effectué.</p>
+<p>Calcul fait au niveau individuel et ensuite rattaché à la personne; le résultat au niveau du ménage est aussi disponible.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="srd.tax.disp_inc">
 <code class="sig-name descname">disp_inc</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.disp_inc" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Calcul du revenu disponible après impôts, cotisations sociales, épargne (positive ou négative) et prestations.</p>
-<p>Calcul fait au niveau individuel et ensuite rattaché à la personne.</p>
+<p>Calcul fait au niveau individuel et ensuite rattaché à la personne; le résultat au niveau du ménage est aussi disponible.</p>
 </dd></dl>
 
 </dd></dl>
