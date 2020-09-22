@@ -76,6 +76,7 @@
 
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
+    
             
             
               
@@ -95,19 +96,19 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="oas.html">Pension de la sécurité de la vieillesse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="payroll.html">Cotisations sociales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ei.html">Assurance emploi</a></li>
-<li class="toctree-l1"><a class="reference internal" href="qpip.html">Régime québécois d’assurance parentale</a></li>
 <li class="toctree-l1"><a class="reference internal" href="assistance.html">Aide sociale</a></li>
 <li class="toctree-l1"><a class="reference internal" href="covid.html">Prestations liées à la COVID-19</a></li>
 <li class="toctree-l1"><a class="reference internal" href="calculators.html">Calculateur de revenu disponible</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialFed.html">Exemple de calcul de l’impôt fédéral</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialCalculator.html">Exemple de calcul du revenu disponible</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialChangeParameters.html">Exemple de changement de paramètre</a></li>
-<li class="toctree-l1"><a class="reference internal" href="credits.html">Contributeurs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits.html">Contacts et utilisation</a></li>
 </ul>
 
             
           
+    <a href="genindex.html">Index</a>
+  
         </div>
       </div>
     </nav>
@@ -204,8 +205,7 @@
 <dt id="srd.ontario.template.file">
 <code class="sig-name descname">file</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.file" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui permet de calculer les impôts.</p>
-<p>Cette fonction est celle qui calcule les déductions,
-les crédits non-remboursables et remboursables et les impôts nets.</p>
+<p>Cette fonction est celle qui calcule les déductions, les crédits non-remboursables et remboursables et les impôts nets.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
@@ -216,8 +216,7 @@ les crédits non-remboursables et remboursables et les impôts nets.</p>
 <dl class="method">
 <dt id="srd.ontario.template.copy_fed_return">
 <code class="sig-name descname">copy_fed_return</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.copy_fed_return" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui copie le revenu brut, les déductions,
-ainsi que les revenus nets et imposables du fédéral.</p>
+<dd><p>Fonction qui copie le revenu brut, les déductions, ainsi que les revenus nets et imposables du formulaire fédéral.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
@@ -240,8 +239,7 @@ ainsi que les revenus nets et imposables du fédéral.</p>
 <dl class="method">
 <dt id="srd.ontario.template.calc_non_refundable_tax_credits">
 <code class="sig-name descname">calc_non_refundable_tax_credits</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.calc_non_refundable_tax_credits" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui calcule les crédits d’impôt non-remboursables.</p>
-<p>Cette fonction fait la somme de tous les crédits d’impôt modélisés.</p>
+<dd><p>Fonction qui fait la somme de tous les crédits d’impôt non-remboursables modélisés.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">
@@ -255,9 +253,7 @@ ainsi que les revenus nets et imposables du fédéral.</p>
 <dl class="method">
 <dt id="srd.ontario.template.get_age_cred">
 <code class="sig-name descname">get_age_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.get_age_cred" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Age amount.</p>
-<p>Crédit d’impôt selon l’âge.</p>
-<p>Ce crédit est non-remboursable.</p>
+<dd><p>Fonction qui calcule le crédit d’impôt non-remboursable provincial en raison de l’âge.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
@@ -274,8 +270,7 @@ ainsi que les revenus nets et imposables du fédéral.</p>
 <dl class="method">
 <dt id="srd.ontario.template.get_spouse_cred">
 <code class="sig-name descname">get_spouse_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.get_spouse_cred" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Spouse or common-law amount</p>
-<p>Montant pour époux ou conjoint de fait.</p>
+<dd><p>Fonction qui calcule le montant pour époux ou conjoint de fait.</p>
 <p>Ce crédit est non-remboursable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -285,7 +280,7 @@ ainsi que les revenus nets et imposables du fédéral.</p>
 </ul>
 </dd>
 <dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>Montant du crédit</p>
+<dd class="field-even"><p>Montant du crédit.</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
 <dd class="field-odd"><p>float</p>
@@ -296,18 +291,16 @@ ainsi que les revenus nets et imposables du fédéral.</p>
 <dl class="method">
 <dt id="srd.ontario.template.get_cpp_contrib_cred">
 <code class="sig-name descname">get_cpp_contrib_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.get_cpp_contrib_cred" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>CPP or QPP contributions credit.</p>
-<p>Crédit d’impôt pour contributions RPC/RRQ.</p>
-<p>Ce crédit est non-remboursable.</p>
+<dd><p>Fonction qui calcule le crédit d’impôt non-remboursable pour cotisations au RRQ / RPC.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
 </dd>
 <dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>Montant du crédit.</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
-<dd class="field-odd"><p>Montant du crédit</p>
+<dd class="field-odd"><p>float</p>
 </dd>
 </dl>
 </dd></dl>
@@ -315,18 +308,19 @@ ainsi que les revenus nets et imposables du fédéral.</p>
 <dl class="method">
 <dt id="srd.ontario.template.get_pension_cred">
 <code class="sig-name descname">get_pension_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.get_pension_cred" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Pension income amount.</p>
-<p>Crédit d’impôt pour revenu de retraite.</p>
-<p>Ce crédit est non-remboursable.</p>
+<dd><p>Fonction qui calcule le crédit d’impôt non-remboursable pour revenu de retraite.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la class Hhold</p></li>
+</ul>
 </dd>
 <dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>Montant du crédit.</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
-<dd class="field-odd"><p>Montant du crédit</p>
+<dd class="field-odd"><p>float</p>
 </dd>
 </dl>
 </dd></dl>
@@ -334,18 +328,17 @@ ainsi que les revenus nets et imposables du fédéral.</p>
 <dl class="method">
 <dt id="srd.ontario.template.get_disabled_cred">
 <code class="sig-name descname">get_disabled_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.get_disabled_cred" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Disability amount.</p>
-<p>Crédit d’impôt pour invalidité.</p>
-<p>Ce crédit est non-remboursable.</p>
+<dd><p>Fonction qui calcule le crédit d’impôt non-remboursable pour invalidité.</p>
+<p>Seule la portion pour le contribuable majeur lui-même est modélisée.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
 </dd>
 <dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>Montant du crédit.</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
-<dd class="field-odd"><p>Montant du crédit</p>
+<dd class="field-odd"><p>float</p>
 </dd>
 </dl>
 </dd></dl>
@@ -353,9 +346,7 @@ ainsi que les revenus nets et imposables du fédéral.</p>
 <dl class="method">
 <dt id="srd.ontario.template.get_med_exp_cred">
 <code class="sig-name descname">get_med_exp_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.get_med_exp_cred" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Medical expenses credit.</p>
-<p>Crédit d’impôt pour frais médicaux.</p>
-<p>Ce crédit est non-remboursable.</p>
+<dd><p>Fonction qui calcule le crédit d’impôt non-remboursable pour frais médicaux.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">
@@ -364,10 +355,10 @@ ainsi que les revenus nets et imposables du fédéral.</p>
 </ul>
 </dd>
 <dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>Montant du crédit.</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
-<dd class="field-odd"><p>Montant du crédit</p>
+<dd class="field-odd"><p>float</p>
 </dd>
 </dl>
 </dd></dl>
@@ -375,15 +366,13 @@ ainsi que les revenus nets et imposables du fédéral.</p>
 <dl class="method">
 <dt id="srd.ontario.template.get_donations_cred">
 <code class="sig-name descname">get_donations_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.get_donations_cred" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Ontario donations and gifts credit.</p>
-<p>Crédit d’impôt pour dons.</p>
-<p>Ce crédit est non-remboursable.</p>
+<dd><p>Fonction qui calcule le crédit d’impôt non-remboursable pour dons de l’Ontario.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
 </dd>
 <dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>Montant du crédit</p>
+<dd class="field-even"><p>Montant du crédit.</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
 <dd class="field-odd"><p>float</p>
@@ -394,8 +383,7 @@ ainsi que les revenus nets et imposables du fédéral.</p>
 <dl class="method">
 <dt id="srd.ontario.template.surtax">
 <code class="sig-name descname">surtax</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.surtax" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Additional tax for minimum tax purposes.</p>
-<p>Surtaxe de l’Ontario.</p>
+<dd><p>Fonction qui calcule la surtaxe de l’Ontario.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
@@ -406,8 +394,7 @@ ainsi que les revenus nets et imposables du fédéral.</p>
 <dl class="method">
 <dt id="srd.ontario.template.div_tax_credit">
 <code class="sig-name descname">div_tax_credit</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.div_tax_credit" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Ontario dividend tax credit.</p>
-<p>Crédit d’impôt pour dividendes de l’Ontario.</p>
+<dd><p>Fonction qui calcule le crédit d’impôt pour dividendes de l’Ontario.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
@@ -418,26 +405,8 @@ ainsi que les revenus nets et imposables du fédéral.</p>
 <dl class="method">
 <dt id="srd.ontario.template.tax_reduction">
 <code class="sig-name descname">tax_reduction</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.tax_reduction" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Ontario tax reduction.</p>
-<p>Réduction de l’impôt de l’Ontario.</p>
+<dd><p>Fonction qui calcule la réduction de l’impôt de l’Ontario.</p>
 <p>Ce montant est non-remboursable.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
-<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="srd.ontario.template.lift_credit">
-<code class="sig-name descname">lift_credit</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.lift_credit" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Low-income individuals and families tax credit.</p>
-<p>Crédit d’impôt pour les personnes et les familles à faible revenu (LIFT).</p>
-<p>Ce crédit entre en vigueur en 2019.</p>
-<p>Ce crédit est non-remboursable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">
@@ -465,8 +434,7 @@ ainsi que les revenus nets et imposables du fédéral.</p>
 <dl class="method">
 <dt id="srd.ontario.template.ocb">
 <code class="sig-name descname">ocb</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.ocb" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Ontario Child Benefit (OCB).</p>
-<p>Allocation ontarienne pour enfants.</p>
+<dd><p>Fonction qui calcule l’Allocation ontarienne pour enfants.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">
@@ -475,7 +443,7 @@ ainsi que les revenus nets et imposables du fédéral.</p>
 </ul>
 </dd>
 <dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>Montant de l’ACE (CCB)</p>
+<dd class="field-even"><p>Montant de l’Allocation ontarienne pour enfants.</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
 <dd class="field-odd"><p>float</p>
@@ -486,8 +454,7 @@ ainsi que les revenus nets et imposables du fédéral.</p>
 <dl class="method">
 <dt id="srd.ontario.template.ostc">
 <code class="sig-name descname">ostc</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.ostc" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Ontario Sales Tax Credit (OSTC).</p>
-<p>Crédit de taxe de vente de l’Ontario.</p>
+<dd><p>Crédit de taxe de vente de l’Ontario.</p>
 <p>Ce crédit est remboursable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -497,7 +464,7 @@ ainsi que les revenus nets et imposables du fédéral.</p>
 </ul>
 </dd>
 <dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>Montant du crédit</p>
+<dd class="field-even"><p>Montant du crédit.</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
 <dd class="field-odd"><p>float</p>
@@ -508,8 +475,7 @@ ainsi que les revenus nets et imposables du fédéral.</p>
 <dl class="method">
 <dt id="srd.ontario.template.calc_contributions">
 <code class="sig-name descname">calc_contributions</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.calc_contributions" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui calcule les contributions.</p>
-<p>Cette fonction fait la somme des contributions du contribuable.</p>
+<dd><p>Fonction qui fait la somme des contributions du contribuable (actuellement, seule la contribution santé est incluse).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
@@ -520,8 +486,7 @@ ainsi que les revenus nets et imposables du fédéral.</p>
 <dl class="method">
 <dt id="srd.ontario.template.health_contrib">
 <code class="sig-name descname">health_contrib</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.health_contrib" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Ontario health premium.</p>
-<p>Contribution santé de l’Ontario.</p>
+<dd><p>Contribution santé de l’Ontario (Ontario health premium).</p>
 <p>Cette fonction calcule le montant dû en fonction du revenu imposable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -544,32 +509,30 @@ ainsi que les revenus nets et imposables du fédéral.</p>
 <dl class="class">
 <dt id="srd.ontario.form_2016">
 <em class="property">class </em><code class="sig-prename descclassname">srd.ontario.</code><code class="sig-name descname">form_2016</code><a class="headerlink" href="#srd.ontario.form_2016" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Rapport d’impôt de 2016.</p>
+<dd><p>Formulaire d’impôt de 2016.</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="srd.ontario.form_2017">
 <em class="property">class </em><code class="sig-prename descclassname">srd.ontario.</code><code class="sig-name descname">form_2017</code><a class="headerlink" href="#srd.ontario.form_2017" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Rapport d’impôt de 2017.</p>
+<dd><p>Formulaire d’impôt de 2017.</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="srd.ontario.form_2018">
 <em class="property">class </em><code class="sig-prename descclassname">srd.ontario.</code><code class="sig-name descname">form_2018</code><a class="headerlink" href="#srd.ontario.form_2018" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Rapport d’impôt de 2018.</p>
+<dd><p>Formulaire d’impôt de 2018.</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="srd.ontario.form_2019">
 <em class="property">class </em><code class="sig-prename descclassname">srd.ontario.</code><code class="sig-name descname">form_2019</code><a class="headerlink" href="#srd.ontario.form_2019" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Rapport d’impôt de 2019.</p>
+<dd><p>Formulaire d’impôt de 2019.</p>
 <dl class="method">
 <dt id="srd.ontario.form_2019.lift_credit">
 <code class="sig-name descname">lift_credit</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.form_2019.lift_credit" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Low-income individuals and families tax credit.</p>
-<p>Crédit d’impôt pour les personnes et les familles à faible revenu (LIFT).</p>
-<p>Ce crédit entre en vigueur en 2019.</p>
-<p>Ce crédit est non-remboursable.</p>
+<dd><p>Crédit d’impôt pour les personnes et les familles à faible revenu (Low-income individuals and families tax credit: LIFT).</p>
+<p>Ce crédit entre en vigueur en 2019. Il est non-remboursable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">
@@ -585,7 +548,7 @@ ainsi que les revenus nets et imposables du fédéral.</p>
 <dl class="class">
 <dt id="srd.ontario.form_2020">
 <em class="property">class </em><code class="sig-prename descclassname">srd.ontario.</code><code class="sig-name descname">form_2020</code><a class="headerlink" href="#srd.ontario.form_2020" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Rapport d’impôt de 2020.</p>
+<dd><p>Formulaire d’impôt de 2020.</p>
 </dd></dl>
 
 </div>

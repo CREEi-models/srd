@@ -12,7 +12,7 @@ La classe principale du simulateur est *tax* qui permet de faire différents cal
 Les fonctions du calculateur
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Le calculateur  contient les fonctions suivantes:
+Le calculateur contient les fonctions indiquées sous la description de la classe principale.
 
 .. autoclass:: tax
     :members: compute, compute_with_transfer, compute_all, compute_oas,

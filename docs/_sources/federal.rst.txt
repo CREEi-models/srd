@@ -30,7 +30,7 @@ Nous reproduisons ici la spécification du gabarit. Il est basé sur le rapport 
               div_tax_credit, calc_refundable_tax_credits, abatment, ccb,
               get_witb, get_witbds, compute_witb_witbds, med_exp, gst_hst_credit
 
-Le gabarit collige les résultats dans un formulaire d'impôt qui sera rattaché à la personne sous la forme d'un dictionnaire Python. Cette procédure permet de différencier les attributs d'une personne qui font partie de son profil des variables générées par l'impôt. C'est la fonction create_return() qui fait ce travail.
+Le gabarit collige les résultats dans un formulaire d'impôt qui sera rattaché à la personne sous la forme d'un dictionnaire Python. Cette procédure permet de différencier les variables générées par l'impôt des attributs d'une personne qui font partie de son profil. C'est la fonction *create_return()* qui fait ce travail.
 
 .. autofunction:: create_return
 
@@ -46,4 +46,4 @@ Fonctions spécifiques ou modifiées par année
 .. autoclass:: srd.federal.form_2019
 
 .. autoclass:: srd.federal.form_2020
-    :members: calc_non_refundable_tax_credits, calc_net_income, repayments_ei
+    :members: compute_basic_amount, calc_net_income, repayments_ei

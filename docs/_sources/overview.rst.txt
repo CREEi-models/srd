@@ -21,9 +21,9 @@ Dans un notebook ou un projet, on invoque le SRD en ajoutant la commande suivant
 
     import srd
 
-Pour désinstaller le SRD, il suffit d'utiliser pip ::
+Pour désinstaller le SRD et SRPP, il suffit d'utiliser pip ::
 
-  pip uninstall srd
+  pip uninstall srd srpp
 
 Si l'utilisation de pip n'est pas possible :
 

@@ -24,8 +24,6 @@ Le SRD est écrit en langage Python, un langage simple, rapide et moderne. Afin 
    ontario.rst
    oas.rst
    payroll.rst
-   ei.rst
-   qpip.rst
    assistance.rst
    covid.rst
    calculators.rst

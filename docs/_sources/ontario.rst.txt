@@ -25,8 +25,8 @@ Nous reproduisons ici la spécification du gabarit. Il est basé sur le rapport 
               get_age_cred, get_spouse_cred, get_cpp_contrib_cred,
               get_pension_cred, get_disabled_cred, get_med_exp_cred,
               get_donations_cred, surtax, div_tax_credit, tax_reduction,
-              lift_credit, calc_refundable_tax_credits, ocb, ostc,
-              calc_contributions, health_contrib
+              calc_refundable_tax_credits, ocb, ostc, calc_contributions,
+              health_contrib
 
 Le gabarit collige les résultats dans un formulaire d'impôt qui sera rattaché à la personne sous la forme d'un dictionnaire Python. Cette procédure permet de différencier les attributs d'une personne qui font partie de son profil des variables générées par l'impôt. C'est la fonction create_return() qui fait ce travail.
 

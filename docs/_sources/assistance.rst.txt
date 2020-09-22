@@ -23,10 +23,9 @@ Nous utilisons un gabarit afin de créer les programmes chaque année. Quand le 
 Nous reproduisons ici la spécification du gabarit. Il est basé sur le programme en vigueur en 2016.
 
 .. autoclass:: template
-    :members: apply, shelter, basic_qc
+    :members: apply, shelter, basic_qc, basic_on
 
-À noter que les tests d'actifs ainsi que les suppléments pour personnes seules ne sont pas mis en œuvre; la prestation
-pour contrainte temporaire à l'emploi non plus.
+À noter que seul un test d'actifs simplifié est appliqué, à un volet; les actifs liquides (argent comptant et comptes courants) ne sont pas considérés. Par ailleurs les suppléments pour personnes seules ne sont pas mis en œuvre; la prestation pour contrainte temporaire à l'emploi non plus.
 
 Fonctions spécifiques ou modifiées par année
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -1,8 +1,8 @@
 Exemple de calcul de l'impôt fédéral
 ------------------------------------
 
-Importation du module
-^^^^^^^^^^^^^^^^^^^^^
+Importation du package
+^^^^^^^^^^^^^^^^^^^^^^ 
 
 .. code:: ipython3
 
@@ -11,9 +11,7 @@ Importation du module
 Initialisation d’un ménage
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-On doit d’abord initialiser un ménage. Ici nous supposerons un couple
-avec deux membres ayant tous les deux 45 ans et des revenus de travail de
-50 000 $ et 25 000 $ respectivement.
+On doit d’abord initialiser un ménage. Ici nous supposerons un couple avec deux membres ayant tous les deux 45 ans et des revenus de travail de 50 000 $ et 25 000 $, respectivement.
 
 .. code:: ipython3
 
@@ -26,8 +24,7 @@ On les insère dans un ménage vivant au Québec.
 
     hh = srd.Hhold(jean,pauline,prov='qc')
 
-On peut voir le profil de chacun des membres du ménage en utilisant
-*vars()*:
+On peut voir le profil de chacun des membres du ménage en utilisant *vars()*:
 
 .. code:: ipython3
 
@@ -117,8 +114,7 @@ On doit d’abord créer un formulaire d’impôt pour une année en particulier
     from srd import federal
     fed_form = federal.form(2020)
 
-On peut voir les différents paramètres du système fiscal en utilisant
-encore *vars()*:
+On peut voir les différents paramètres du système fiscal en utilisant encore *vars()*:
 
 .. code:: ipython3
 
@@ -231,7 +227,7 @@ On remplit le formulaire d’impôt à l’aide de la fonction *tax()*.
     tax_form = tax(2020)
     tax_form.compute(hh)
 
-On peut visualiser un formulaire d’impôt sommaire qui est rattaché à chaque personne :
+On peut visualiser un formulaire d’impôt sommaire qui est rattaché à chaque personne:
 
 .. code:: ipython3
 
@@ -360,7 +356,7 @@ On peut voir les différents attributs du ménage en utilisant encore *vars()*:
 Expérience
 ^^^^^^^^^^
 
-On peut faire des expériences assez complexes. Une première serait consisterait par exemple à regarder l’impôt fédéral payé si on augmente les revenus de travail par petites tranches.
+On peut faire des expériences assez complexes. Une première consisterait par exemple à regarder l’impôt fédéral payé si on augmente les revenus de travail par petites tranches.
 
 .. code:: ipython3
 
@@ -385,7 +381,7 @@ On peut faire des expériences assez complexes. Une première serait consisterai
 .. image:: output_ex1.png
 
 
-On peut aussi faire une expérience dans laquelle on change un paramètre du système d’imposition. Supposons par exemple qu’on augmente le montant de base :
+On peut aussi faire une expérience dans laquelle on change un paramètre du système d’imposition. Supposons par exemple qu’on augmente le montant de base:
 
 .. code:: ipython3
 

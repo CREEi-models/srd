@@ -37,7 +37,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Recherche" href="search.html" />
     <link rel="next" title="Prestations liées à la COVID-19" href="covid.html" />
-    <link rel="prev" title="Régime québécois d’assurance parentale" href="qpip.html" /> 
+    <link rel="prev" title="Cotisations sociales" href="payroll.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -76,6 +76,7 @@
 
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
+    
             
             
               
@@ -90,8 +91,6 @@
 <li class="toctree-l1"><a class="reference internal" href="ontario.html">Impôt de l’Ontario</a></li>
 <li class="toctree-l1"><a class="reference internal" href="oas.html">Pension de la sécurité de la vieillesse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="payroll.html">Cotisations sociales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ei.html">Assurance emploi</a></li>
-<li class="toctree-l1"><a class="reference internal" href="qpip.html">Régime québécois d’assurance parentale</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Aide sociale</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#survol">Survol</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gabarit-du-programme">Gabarit du programme</a></li>
@@ -103,11 +102,13 @@
 <li class="toctree-l1"><a class="reference internal" href="TutorialFed.html">Exemple de calcul de l’impôt fédéral</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialCalculator.html">Exemple de calcul du revenu disponible</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialChangeParameters.html">Exemple de changement de paramètre</a></li>
-<li class="toctree-l1"><a class="reference internal" href="credits.html">Contributeurs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits.html">Contacts et utilisation</a></li>
 </ul>
 
             
           
+    <a href="genindex.html">Index</a>
+  
         </div>
       </div>
     </nav>
@@ -200,19 +201,18 @@
 <dl class="class">
 <dt id="srd.assistance.template">
 <em class="property">class </em><code class="sig-prename descclassname">srd.assistance.</code><code class="sig-name descname">template</code><a class="headerlink" href="#srd.assistance.template" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Classe qui contient un template du programme d’aide sociale
-(tel que rencontré en 2016)</p>
+<dd><p>Classe qui contient un gabarit du programme d’aide sociale (tel qu’il existait en 2016).</p>
 <dl class="method">
 <dt id="srd.assistance.template.apply">
 <code class="sig-name descname">apply</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.assistance.template.apply" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction pour appliquer au programme et recevoir une prestation.</p>
+<dd><p>Fonction pour faire une demande au programme et recevoir une prestation.</p>
 <p>Ceci calcule une prestation intégrée d’aide sociale.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe acteur Hhold</p>
+<dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
 </dd>
 <dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>Montant de l’aide sociale.</p>
+<dd class="field-even"><p>Montant de l’aide sociale</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
 <dd class="field-odd"><p>float</p>
@@ -224,13 +224,13 @@
 <dt id="srd.assistance.template.shelter">
 <code class="sig-name descname">shelter</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.assistance.template.shelter" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Composante logement.</p>
-<p>N’est pas implémentée pour l’instant.</p>
+<p>N’est pas mise en œuvre pour l’instant.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
 </dd>
 <dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>Montant de la composante logement</p>
+<dd class="field-even"><p>Montant de la composante logement.</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
 <dd class="field-odd"><p>float</p>
@@ -241,14 +241,32 @@
 <dl class="method">
 <dt id="srd.assistance.template.basic_qc">
 <code class="sig-name descname">basic_qc</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.assistance.template.basic_qc" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Composante de base et supplément enfant (dénuement ACE).</p>
-<p>À noter que le test de ressources n’est pas appliqué.</p>
+<dd><p>Composante de base et supplément pour enfant (en cas de prestation d’ACE réduite) pour le Québec.</p>
+<p>À noter que seul un test d’actifs simplifié est appliqué, à un volet; les actifs liquides (argent comptant et comptes courants) ne sont pas considérés.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
 </dd>
 <dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>Montant de la composante de base et supplément enfant.</p>
+<dd class="field-even"><p>Montant combiné de la composante de base et du supplément pour enfant.</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="srd.assistance.template.basic_on">
+<code class="sig-name descname">basic_on</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.assistance.template.basic_on" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Composante de base et supplément pour enfant pour l’Ontario.</p>
+<p>À noter que seul un test d’actifs simplifié est appliqué, à un volet; les actifs liquides (argent comptant et comptes courants) ne sont pas considérés.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant combiné de la composante de base et du supplément pour enfant.</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
 <dd class="field-odd"><p>float</p>
@@ -258,8 +276,7 @@
 
 </dd></dl>
 
-<p>À noter que les tests d’actifs ainsi que les suppléments pour personnes seules ne sont pas mis en œuvre; la prestation
-pour contrainte temporaire à l’emploi non plus.</p>
+<p>À noter que seul un test d’actifs simplifié est appliqué, à un volet; les actifs liquides (argent comptant et comptes courants) ne sont pas considérés. Par ailleurs les suppléments pour personnes seules ne sont pas mis en œuvre; la prestation pour contrainte temporaire à l’emploi non plus.</p>
 </div>
 <div class="section" id="fonctions-specifiques-ou-modifiees-par-annee">
 <h2>Fonctions spécifiques ou modifiées par année<a class="headerlink" href="#fonctions-specifiques-ou-modifiees-par-annee" title="Lien permanent vers ce titre">¶</a></h2>
@@ -307,7 +324,7 @@ pour contrainte temporaire à l’emploi non plus.</p>
         <a href="covid.html" class="btn btn-neutral float-right" title="Prestations liées à la COVID-19" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="qpip.html" class="btn btn-neutral float-left" title="Régime québécois d’assurance parentale" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="payroll.html" class="btn btn-neutral float-left" title="Cotisations sociales" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
