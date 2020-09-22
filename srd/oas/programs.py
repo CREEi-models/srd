@@ -13,8 +13,8 @@ def program(year, federal):
     ----------
     year: int
         année (présentement entre 2016 et 2020)
-    federal: federal.form
-        instance de la classe form du module Federal
+    federal: {srd.federal.form_2016, ..., srd.federal.form_2020}
+        instance de la classe srd.federal.form_xxxx (pour l'année xxxx) du module Federal
     Returns
     -------
     class instance
@@ -38,6 +38,11 @@ def program(year, federal):
 class program_2016(template):
     """
     Version du programme de 2016.
+    
+    Parameters
+    ----------
+    federal: srd.federal.form_2016
+        instance de la classe srd.federal.form_2016 du module Federal
     """
     def __init__(self, federal):
         add_params_as_attr(self, module_dir + '/oas/params/old_age_sec_2016.csv')
@@ -49,6 +54,11 @@ class program_2016(template):
 class program_2017(program_2016):
     """
     Version du programme de 2017.
+    
+    Parameters
+    ----------
+    federal: srd.federal.form_2017
+        instance de la classe srd.federal.form_2017 du module Federal
     """
     def __init__(self, federal):
         add_params_as_attr(self, module_dir + '/oas/params/old_age_sec_2017.csv')
@@ -60,6 +70,11 @@ class program_2017(program_2016):
 class program_2018(program_2017):
     """
     Version du programme de 2018.
+    
+    Parameters
+    ----------
+    federal: srd.federal.form_2018
+        instance de la classe srd.federal.form_2018 du module Federal
     """
     def __init__(self, federal):
         add_params_as_attr(self, module_dir + '/oas/params/old_age_sec_2018.csv')
@@ -71,6 +86,11 @@ class program_2018(program_2017):
 class program_2019(program_2018):
     """
     Version du programme de 2019.
+    
+    Parameters
+    ----------
+    federal: srd.federal.form_2019
+        instance de la classe srd.federal.form_2019 du module Federal
     """
     def __init__(self, federal):
         add_params_as_attr(self, module_dir + '/oas/params/old_age_sec_2019.csv')
@@ -82,6 +102,11 @@ class program_2019(program_2018):
 class program_2020(program_2019):
     """
     Version du programme de 2020.
+    
+    Parameters
+    ----------
+    federal: srd.federal.form_2020
+        instance de la classe srd.federal.form_2020 du module Federal
     """
     def __init__(self, federal):
         add_params_as_attr(self, module_dir + '/oas/params/old_age_sec_2020.csv')
@@ -89,7 +114,7 @@ class program_2020(program_2019):
 
     def compute_net_inc_exemption(self, hh):
         """
-        Calcule le revenu net incluant l'exemption sur les revenus du travail salarié.
+        Fonction qui remplace dans le gabarit (classe *srd.oas.template*) la fonction du même nom, et calcule le revenu net incluant l'exemption sur les revenus du travail salarié.
 
         À partir de 2020-2021, les revenus de travail autonome bénéficient également de l'exemption. Les revenus du travail entre 5 000 $ et 10 000 $ bénéficient d'une nouvelle exemption partielle de 50%.
 

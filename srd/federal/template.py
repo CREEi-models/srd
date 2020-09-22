@@ -68,8 +68,6 @@ class template:
         """
         Fonction qui calcule le revenu net au sens de l'impôt.
 
-        Cette fonction correspond au revenu net d'une personne aux fins de l'impôt. On y soustrait les déductions.
-
         Parameters
         ----------
         p: Person
@@ -81,9 +79,6 @@ class template:
     def calc_taxable_income(self, p):
         """
         Fonction qui calcule le revenu imposable au sens de l'impôt.
-
-        Cette fonction correspond au revenu imposable d'une personne aux fins de l'impôt.
-        On y soustrait une portion des gains en capitaux.
 
         Parameters
         ----------
@@ -217,12 +212,15 @@ class template:
         """
         Fonction qui calcule les crédits d'impôt non-remboursables.
 
-        Cette fonction fait la somme de tous les crédits modélisés en appelant les fonctions *compute_basic_amount*, *get_age_cred*, *get_cpp_contrib_cred*, *get_qpip_cred*,, *get_qpip_self_cred*, *get_empl_cred*, *get_pension_cred*, *get_disabled_cred*, *get_med_exp_nr_cred*, et *get_donations_cred*. Celles-ci sont définies ci-après.
+        Cette fonction fait la somme de tous les crédits modélisés
+        en appelant les fonctions définies ci-après.
 
         Parameters
         ----------
         p: Person
             instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
         """
         p.fed_age_cred = self.get_age_cred(p)
         p.fed_cpp_contrib_cred = self.get_cpp_contrib_cred(p)
@@ -254,7 +252,7 @@ class template:
 
         Returns
         -------
-        float:
+        float
             Montant personnel de base
         """
         return self.basic_amount
@@ -270,7 +268,7 @@ class template:
 
         Returns
         -------
-        float:
+        float
             Montant du crédit.
         """
         if p.age < self.min_age_cred:
@@ -290,14 +288,15 @@ class template:
 
         Returns
         -------
-        float:
+        float
             Montant du crédit.
         """
         return p.contrib_cpp + p.contrib_cpp_self / 2
 
     def get_qpip_cred(self, p):
         """
-        Fonction qui calcule le crédit d'impôt non-remboursable pour cotisations au RQAP de travailleur salarié.
+        Fonction qui calcule le crédit d'impôt non-remboursable pour cotisations
+        au RQAP de travailleur salarié.
 
         Parameters
         ----------
@@ -306,14 +305,15 @@ class template:
 
         Returns
         -------
-        float:
+        float
             Montant du crédit.
         """
         return p.contrib_qpip
 
     def get_qpip_self_cred(self, p):
         """
-        Crédit d'impôt non-remboursable pour cotisations au RQAP de travailleur autonome.
+        Fonction qui calcule le crédit d'impôt non-remboursable
+        pour cotisations au RQAP de travailleur autonome.
 
         Parameters
         ----------
@@ -322,14 +322,14 @@ class template:
 
         Returns
         -------
-        float:
+        float
             Montant du crédit.
         """
         return p.contrib_qpip_self - p.fed_qpip_deduction
 
     def get_empl_cred(self, p):
         """
-        Montant canadien pour emploi.
+        Fonction qui calcule le montant canadien pour emploi.
 
         Ce crédit est non-remboursable.
 
@@ -340,23 +340,25 @@ class template:
 
         Returns
         -------
-        float:
+        float
             Montant du crédit.
         """
         return min(self.empl_cred_max, p.inc_earn)
 
     def get_pension_cred(self, p, hh):
         """
-        Crédit d'impôt non-remboursable pour revenu de retraite.
+        Fonction qui calcule le crédit d'impôt non-remboursable pour revenu de retraite.
 
         Parameters
         ----------
         p: Person
             instance de la classe Person
+        hh: Hhold
+            instance de la class Hhold
 
         Returns
         -------
-        float:
+        float
             Montant du crédit.
         """
         if hh.elig_split and (p.age < self.pension_cred_min_age_split):
@@ -370,9 +372,7 @@ class template:
 
     def get_disabled_cred(self, p):
         """
-        Crédit d'impôt pour invalidité.
-
-        Ce crédit est non-remboursable.
+        Fonction qui calcule le crédit d'impôt non-remboursable pour invalidité.
 
         Parameters
         ----------
@@ -381,17 +381,15 @@ class template:
 
         Returns
         -------
-        float:
-            Montant du crédit
+        float
+            Montant du crédit.
         """
         return self.disability_cred_amount if p.disabled else 0
         # disabled dependent not taken into account (see lines 316 and 318)
 
     def get_med_exp_nr_cred(self, p, hh):
         """
-        Crédit d'impôt pour frais médicaux.
-
-        Ce crédit est non-remboursable.
+        Fonction qui calcule le crédit d'impôt non-remboursable pour frais médicaux.
 
         Parameters
         ----------
@@ -402,8 +400,8 @@ class template:
 
         Returns
         -------
-        float:
-            Montant du crédit
+        float
+            Montant du crédit.
         """
         if p is not min(hh.sp, key=lambda p: p.fed_return['net_income']):
             return 0
@@ -420,9 +418,7 @@ class template:
 
     def get_donations_cred(self, p):
         """
-        Crédit d'impôt pour dons.
-
-        Ce crédit est non-remboursable.
+        Fonction qui calcule le crédit d'impôt non-remboursable pour dons.
 
         Parameters
         ----------
@@ -432,7 +428,7 @@ class template:
         Returns
         -------
         float
-            Montant du crédit
+            Montant du crédit.
         """
         tot_donation = (
             min(self.donation_frac_net * p.fed_return['net_income'],
@@ -452,7 +448,7 @@ class template:
 
     def div_tax_credit(self, p):
         """
-        Crédit d'impôt pour dividendes
+        Fonction qui calcule le crédit d'impôt pour dividendes.
 
         Parameters
         ----------
@@ -465,7 +461,7 @@ class template:
 
     def calc_refundable_tax_credits(self, p, hh):
         """
-        Fonction qui fait la somme des crédits remboursables.
+        Fonction qui fait la somme des crédits remboursables, en appelant les fonctions suivantes, décrites ci-après: *abatment*, *ccb*, *get_witb*, *get_witbds*, *med_exp*, *gst_hst_credit*.
 
         Parameters
         ----------
@@ -487,7 +483,7 @@ class template:
 
     def abatment(self, p, hh):
         """
-        Abattement du Québec à l'impôt fédéral.
+        Fonction qui calcule l'abattement du Québec à l'impôt fédéral.
 
         Parameters
         ----------
@@ -498,7 +494,7 @@ class template:
         Returns
         -------
         float
-            Montant de l'abattement
+            Montant de l'abattement.
         """
         if hh.prov == 'qc':
             return p.fed_return['net_tax_liability'] * self.rate_abatment_qc
@@ -507,7 +503,7 @@ class template:
 
     def ccb(self, p, hh, iclaw=True):
         """
-        Allocation canadienne pour enfants (ACE/CCB).
+        Fonction qui calcule l'Allocation canadienne pour enfants (ACE).
 
         Parameters
         ----------
@@ -516,12 +512,12 @@ class template:
         hh: Hhold
             instance de la classe Hhold
         iclaw: boolean
-            récupération des prestations si True, pas de récupération si False
+            récupération des prestations si True; pas de récupération si False
 
         Returns
         -------
         float
-            Montant de l'ACE (CCB)
+            Montant de l'ACE.
         """
         if hh.nkids_0_17 == 0:
             return 0
@@ -555,10 +551,11 @@ class template:
 
     def get_witb(self, p, hh):
         """
-        Prestation fiscale pour le revenu de travail (PFRT/WITB). À partir de 2019,
-        cela devient l'Allocation canadienne pour les travailleurs (ACT/CWB).
+        Fonction qui calcule l'Allocation canadienne pour les travailleurs (ACT).
+        
+        Avant 2019, celle-ci était appelée la Prestation fiscale pour le revenu de travail (PFRT).
 
-        Dans le cas d'un couple, la prestation est répartie au prorata des revenus du travail.
+        Dans le cas d'un couple, la prestation est répartie au prorata des revenus de travail.
 
         Parameters
         ----------
@@ -569,7 +566,7 @@ class template:
         Returns
         -------
         float
-            Montant de la PFRT (WITB)
+            Montant de la PFRT.
         """
         self.witb = self.witb_params['qc'] if hh.prov == 'qc' else self.witb_params['on']
 
@@ -594,10 +591,9 @@ class template:
 
     def get_witbds(self, p, hh):
         """
-        Supplément pour invalidité à la prestation fiscale pour le revenu de travail
-        (SIPFRT/WITBDS).
-        À partir de 2019, cela devient le supplément pour invalidité
-        à l'Allocation canadienne pour les travailleurs (ACT).
+        Fonction qui calcule le supplément pour invalidité à la Prestation fiscale pour le revenu de travail (SIPFRT).
+
+        À partir de 2019, le SIPFRT devient le supplément pour invalidité à l'Allocation canadienne pour les travailleurs (ACT).
 
         Parameters
         ----------
@@ -609,7 +605,7 @@ class template:
         Returns
         -------
         float
-            Montant de la SIPFRT (WITBDS)
+            Montant du SIPFRT.
         """
         if not p.disabled:
             return 0
@@ -632,7 +628,8 @@ class template:
     def compute_witb_witbds(self, p, hh, rate, base, witb_max, claw_rate,
                             exemption):
         """
-        Calcul de la prestation fiscale pour le revenu de travail (PFRT).
+        Fonction appelée par *get_witb* et *get_witbds* pour calculer 
+        le montant de la PFRT et du SIPFRT.
 
         Parameters
         ----------
@@ -641,20 +638,20 @@ class template:
         hh: Hhold
             instance de la classe Hhold
         rate: float
-            Taux appliqué au revenu du travail
+            taux appliqué au revenu du travail
         base: float
-            Montant de base
+            montant de base de la PFRT
         witb_max: float
-            Montant maximal
+            montant maximal de la PFRT
         claw_rate:
-            Taux de réduction
+            taux de réduction
         exemption: float
-            Exemption
+            exemption
 
         Returns
         -------
         float
-            Montant de la PFRT (WITB) / SIPFRT (WITBDS)
+            Montant de la PFRT ou du SIPFRT.
         """
         amount = rate * max(0, hh.fam_inc_work - base)
         adj_amount = min(witb_max, amount)
@@ -663,7 +660,7 @@ class template:
 
     def med_exp(self, p, hh):
         """
-        Crédit remboursable pour frais médicaux.
+        Fonction qui calcule le crédit remboursable pour frais médicaux.
 
         Parameters
         ----------
@@ -675,7 +672,7 @@ class template:
         Returns
         -------
         float
-            Montant du crédit
+            Montant du crédit.
         """
         if p is not min(hh.sp, key=lambda p: p.fed_return['net_income']):
             return 0
@@ -688,7 +685,8 @@ class template:
 
     def gst_hst_credit(self, p, hh):
         """
-        Crédit pour la taxe sur les produits et services/taxe de vente harmonisée (TPS/TVH).
+        Fonction qui calcule le crédit pour la taxe sur les produits et services/taxe de vente harmonisée (TPS/TVH).
+
         Le montant du crédit est reçu par le conjoint au revenu imposable le plus élevé.
 
         Parameters
@@ -700,7 +698,7 @@ class template:
         Returns
         -------
         float
-            Montant du crédit
+            Montant du crédit.
         """
         if p is not max(hh.sp, key=lambda p: p.fed_return['taxable_income']):
             return 0

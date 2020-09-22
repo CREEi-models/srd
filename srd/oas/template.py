@@ -10,7 +10,7 @@ class template:
 
     def file(self, hh):
         """
-        Fonction pour faire une demande au programme et recevoir une prestation.
+        Fonction pour faire une demande au programme et recevoir une prestation, en faisant appel à toutes les fonctions qui suivent.
 
         Ceci calcule les prestations pour la PSV, le SRG, l'Allocation et l'Allocation au survivant.
 
@@ -92,8 +92,6 @@ class template:
     def compute_net_inc_exemption(self, hh):
         """
         Fonction qui calcule le revenu en sus de l'exemption aux fins du SRG sur les revenus du travail salarié.
-
-        À partir de 2020-2021, les revenus de travail autonome bénéficient également de l'exemption. Les revenus du travail entre 5 000 $ et 10 000 $ bénéficient d'une nouvelle exemption partielle de 50%.
 
         Parameters
         ----------
@@ -191,7 +189,7 @@ class template:
         bonus = gis_bonus * p.sq_factor
         claw_bonus = self.bonus_claw_rate * max(0, hh.net_inc_exempt - bonus_exempt) / (1+hh.couple)
         return max(0, gis - claw_gis) + max(0, bonus - claw_bonus)
-    
+
     def compute_allowance(self, p, hh, supp_max):
         """
         Fonction qui calcule le montant maximal de l'Allocation au survivant ou de l'Allocation au conjoint.
@@ -220,7 +218,7 @@ class template:
 
     def survivor_allowance(self, p, hh):
         """
-        Fonction qui calcule l'Allocation au survivant, incluant la récupération.
+        Fonction qui calcule la prestation effective d'Allocation au survivant, incluant la récupération.
 
         Parameters
         ----------
@@ -232,7 +230,7 @@ class template:
         Returns
         -------
         float
-            Prestation d'Allocation au survivant, incluant bonus et récupération.
+            Prestation effective d'Allocation au survivant, incluant bonus et récupération.
         """
         allow = self.compute_allowance(p, hh, self.gis_full_high)
         claw_bonus = self.bonus_claw_rate * max(0, hh.net_inc_exempt - self.bonus_exempt_single)
@@ -240,7 +238,7 @@ class template:
 
     def couple_allowance(self, p, hh):
         """
-        Fonction qui calcule l'Allocation au conjoint.
+        Fonction qui calcule la prestation effective d'Allocation au conjoint, en tenant compte du revenu.
 
         Parameters
         ----------
@@ -251,9 +249,8 @@ class template:
         Returns
         -------
         float
-            Prestation d'Allocation au conjoint.
+            Prestation effective d'Allocation au conjoint, ajustée en fonction du revenu.
         """
         allow = self.compute_allowance(p, hh, self.gis_full_low)
         claw_bonus = self.bonus_claw_rate * 1/2 * max(0, hh.net_inc_exempt - self.bonus_exempt_couple)
         return max(0, allow + self.allow_couple_bonus * p.sq_factor - claw_bonus)
-

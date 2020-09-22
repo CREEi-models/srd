@@ -34,7 +34,7 @@ def form(year):
 
 class form_2016(template):
     """
-    Rapport d'impôt de 2016.
+    Formulaire d'impôt de 2016.
     """
     def __init__(self):
         add_params_as_attr(self, module_dir + '/ontario/params/measures_2016.csv')
@@ -43,7 +43,7 @@ class form_2016(template):
 
 class form_2017(form_2016):
     """
-    Rapport d'impôt de 2017.
+    Formulaire d'impôt de 2017.
     """
     def __init__(self):
         add_params_as_attr(self, module_dir + '/ontario/params/measures_2017.csv')
@@ -52,7 +52,7 @@ class form_2017(form_2016):
 
 class form_2018(form_2017):
     """
-    Rapport d'impôt de 2018.
+    Formulaire d'impôt de 2018.
     """
     def __init__(self):
         add_params_as_attr(self, module_dir + '/ontario/params/measures_2018.csv')
@@ -61,7 +61,7 @@ class form_2018(form_2017):
 
 class form_2019(form_2018):
     """
-    Rapport d'impôt de 2019.
+    Formulaire d'impôt de 2019.
     """
     def __init__(self):
         add_params_as_attr(self, module_dir + '/ontario/params/measures_2019.csv')
@@ -69,15 +69,26 @@ class form_2019(form_2018):
         add_schedule_as_attr(self, module_dir + '/ontario/params/health_contrib_2019.csv')
 
     def lift_credit(self, p, hh):
-        # docstring in template #
+        """
+        Crédit d’impôt pour les personnes et les familles à faible revenu (Low-income individuals and families tax credit: LIFT).
+
+        Ce crédit entre en vigueur en 2019. Il est non-remboursable.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+        """
         if p.inc_work == 0:
             p.on_lift = 0
 
         amount = min(self.lift_rate * p.inc_work, self.lift_max_amount)
-        clawback = (self.lift_claw_rate 
+        clawback = (self.lift_claw_rate
                     * max(0, p.fed_return['net_income'] - self.lift_cutoff_single))
         if hh.couple:
-            couple_clawback = (self.lift_claw_rate 
+            couple_clawback = (self.lift_claw_rate
                                * max(0, hh.fam_net_inc_fed - self.lift_cutoff_couple))
             clawback = max(clawback, couple_clawback)
 
@@ -85,7 +96,7 @@ class form_2019(form_2018):
 
 class form_2020(form_2019):
     """
-    Rapport d'impôt de 2020.
+    Formulaire d'impôt de 2020.
     """
     def __init__(self):
         add_params_as_attr(self, module_dir + '/ontario/params/measures_2020.csv')

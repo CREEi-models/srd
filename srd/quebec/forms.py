@@ -34,7 +34,7 @@ def form(year):
 
 class form_2016(template):
     """
-    Rapport d'impôt de 2016.
+    Formulaire d'impôt de 2016.
     """
     def __init__(self):
         add_params_as_attr(self, module_dir + '/quebec/params/measures_2016.csv')
@@ -45,7 +45,7 @@ class form_2016(template):
 
 class form_2017(form_2016):
     """
-    Rapport d'impôt de 2017.
+    Formulaire d'impôt de 2017.
     """
     def __init__(self):
         add_params_as_attr(self, module_dir + '/quebec/params/measures_2017.csv')
@@ -54,10 +54,9 @@ class form_2017(form_2016):
 
     def calc_contributions(self, p, hh):
         """
-        Fonction qui calcule les contributions.
+        Fonction qui remplace dans le gabarit (classe *srd.quebec.template*) la fonction du même nom, et calcule les contributions.
 
-        Cette fonction fait la somme des contributions du contribuable.
-        La contribution santé est abolie en 2017.
+        Cette fonction fait la somme des contributions du contribuable. La contribution santé est abolie en 2017.
 
         Parameters
         ----------
@@ -70,9 +69,7 @@ class form_2017(form_2016):
 
     def get_donations_cred(self, p):
         """
-        Crédit d'impôt pour dons.
-
-        Ce crédit est non-remboursable.
+        Fonction qui remplace dans le gabarit (classe *srd.quebec.template*) la fonction du même nom, et calcule le crédit d'impôt non-remboursable pour dons.
 
         Parameters
         ----------
@@ -101,7 +98,7 @@ class form_2017(form_2016):
 
 class form_2018(form_2017):
     """
-    Rapport d'impôt de 2018.
+    Formulaire d'impôt de 2018.
     """
     def __init__(self):
         add_params_as_attr(self, module_dir + '/quebec/params/measures_2018.csv')
@@ -110,8 +107,7 @@ class form_2018(form_2017):
 
     def senior_assist(self, p, hh):
         """
-        Crédit remboursable pour support aux ainés.
-        En vigueur à partir de 2018.
+        Fonction qui remplace dans le gabarit (classe *srd.quebec.template*) la fonction du même nom, et calcule le crédit remboursable pour support aux ainés. En vigueur à partir de 2018.
 
         Parameters
         ----------
@@ -144,7 +140,7 @@ class form_2018(form_2017):
 
 class form_2019(form_2018):
     """
-    Rapport d'impôt de 2019.
+    Formulaire d'impôt de 2019.
     """
     def __init__(self):
         add_params_as_attr(self, module_dir + '/quebec/params/measures_2019.csv')
@@ -153,11 +149,9 @@ class form_2019(form_2018):
 
     def calc_contributions(self, p, hh):
         """
-        Fonction qui calcule les contributions.
+        Fonction qui remplace la fonction antérieure du même nom, et calcule les contributions.
 
-        Cette fonction fait la somme des contributions du contribuable.
-        La contribution additionnelle pour service de garde éducatifs à l'enfance subventionnés
-        est abolie en 2019.
+        Cette fonction fait la somme des contributions du contribuable. La contribution additionnelle pour service de garde éducatifs à l'enfance subventionnés est abolie en 2019.
 
         Parameters
         ----------
@@ -170,7 +164,7 @@ class form_2019(form_2018):
 
 class form_2020(form_2019):
     """
-    Rapport d'impôt de 2020.
+    Formulaire d'impôt de 2020.
     """
     def __init__(self):
         add_params_as_attr(self, module_dir + '/quebec/params/measures_2020.csv')

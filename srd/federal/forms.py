@@ -13,6 +13,8 @@ def form(year, policy=covid.policy()):
     ----------
     year: int
         année (présentement entre 2016 et 2020)
+    policy: policy
+        instance de la classe policy
     Returns
     -------
     class instance
@@ -32,7 +34,7 @@ def form(year, policy=covid.policy()):
 
 class form_2016(template):
     """
-    Rapport d'impôt de 2016.
+    Formulaire d'impôt de 2016.
     """
     def __init__(self):
         add_params_as_attr(self, module_dir + '/federal/params/federal_2016.csv')
@@ -44,7 +46,7 @@ class form_2016(template):
 
 class form_2017(form_2016):
     """
-    Rapport d'impôt de 2017.
+    Formulaire d'impôt de 2017.
     """
     def __init__(self):
         add_params_as_attr(self, module_dir+'/federal/params/federal_2017.csv')
@@ -57,7 +59,7 @@ class form_2017(form_2016):
 
 class form_2018(form_2017):
     """
-    Rapport d'impôt de 2018.
+    Formulaire d'impôt de 2018.
     """
     def __init__(self):
         add_params_as_attr(self,module_dir+'/federal/params/federal_2018.csv')
@@ -70,7 +72,7 @@ class form_2018(form_2017):
 
 class form_2019(form_2018):
     """
-    Rapport d'impôt de 2019.
+    Formulaire d'impôt de 2019.
     """
     def __init__(self):
         add_params_as_attr(self,module_dir+'/federal/params/federal_2019.csv')
@@ -83,7 +85,12 @@ class form_2019(form_2018):
 
 class form_2020(form_2019):
     """
-    Rapport d'impôt de 2020.
+    Formulaire d'impôt de 2020.
+    
+    Parameters
+    ----------
+    policy: policy
+        instance de la classe policy
     """
     def __init__(self, policy):
         add_params_as_attr(self,module_dir+'/federal/params/federal_2020.csv')
@@ -106,7 +113,8 @@ class form_2020(form_2019):
 
     def compute_basic_amount(self, p):
         """
-        Fonction qui calcule le montant personnel de base des crédits d'impôts non-remboursables.
+        Fonction qui calcule le montant personnel de base.
+
         Le calcul de ce montant change en 2020.
 
         Parameters
@@ -116,8 +124,8 @@ class form_2020(form_2019):
 
         Returns
         -------
-        float:
-            montant personnel de base
+        float
+            Montant personnel de base.
         """
         br_poor, br_rich = self.l_brackets[-2:]
 
@@ -134,8 +142,6 @@ class form_2020(form_2019):
     def calc_net_income(self, p):
         """
         Fonction qui calcule le revenu net au sens de l'impôt.
-
-        Cette fonction correspond au revenu net d'une personne aux fins de l'impôt. On y soustrait les déductions.
 
         Parameters
         ----------

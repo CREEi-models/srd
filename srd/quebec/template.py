@@ -85,9 +85,6 @@ class template:
         """
         Fonction qui calcule le revenu imposable au sens de l'impôt.
 
-        Cette fonction correspond au revenu imposable d'une personne aux fins de l'impôt.
-        On y soustrait une portion des gains en capitaux.
-
         Parameters
         ----------
         p: Person
@@ -122,6 +119,11 @@ class template:
         ----------
         p: Person
             instance de la classe Person
+        
+        Returns
+        -------
+        float
+            Montant de la déduction
         """
         work_earn = p.inc_work
         if p.inc_work > 0:
@@ -131,7 +133,7 @@ class template:
 
     def cpp_qpip_deduction(self, p):
         """
-        Déduction pour les cotisations RPC/RRQ et RQAP pour les travailleurs autonomes.
+        Déduction pour les cotisations RRQ / RPC et au RQAP pour le travail autonome.
 
         Parameters
         ----------
@@ -141,7 +143,7 @@ class template:
         Returns
         -------
         float
-            Montant de la déduction
+            Montant de la déduction.
         """
         p.qc_cpp_deduction = p.contrib_cpp_self / 2
         p.qc_qpip_deduction = self.qpip_deduc_rate * p.contrib_qpip_self
@@ -150,17 +152,17 @@ class template:
     def calc_deduc_net_income(self, p):
         """
         Fonction qui calcule les déductions suivantes:
-        - Pertes en capital net des autres années.
-        - Déduction pour gain en capital exonéré.
+        1. Pertes en capital net des autres années;
+        2. Déduction pour gain en capital exonéré.
 
-        Permet une déduction maximale égale aux gains en capitaux taxables nets.
+        Permet une déduction maximale égale aux gains en capital taxables nets.
 
         Parameters
         ----------
         p: Person
             instance de la classe Person
         """
-        p.fed_return['deductions_net_inc'] = min(p.taxable_cap_gains, 
+        p.fed_return['deductions_net_inc'] = min(p.taxable_cap_gains,
             p.prev_cap_losses + self.cap_gains_rate * p.cap_gains_exempt)
 
     def calc_tax(self, p):
@@ -208,9 +210,62 @@ class template:
                               + p.qc_disabled_cred + p.qc_med_exp_nr_cred)
                               + p.qc_exp_worker_cred + p.qc_union_dues_cred)
 
+    def get_age_cred(self, p):
+        """
+        Fonction qui calcule le crédit d'impôt non-remboursable en raison de l'âge.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+
+        Returns
+        -------
+        float
+            Montant du crédit.
+        """
+        return self.nrtc_age_max if p.age >= self.nrtc_age else 0
+
+    def get_living_alone_cred(self, p, hh):
+        """
+        Fonction qui calcule le crédit d'impôt non-remboursable pour personne vivant seule.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+
+        Returns
+        -------
+        float
+            Montant du crédit.
+        """
+        return self.nrtc_living_alone if hh.n_adults_in_hh == 1 else 0
+
+    def get_pension_cred(self, p):
+        """
+        Fonction qui calcule le crédit d'impôt non-remboursable pour revenu de retraite.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+
+        Returns
+        -------
+        float
+            Montant du crédit.
+        """
+        pension_split_cred = (p.inc_rpp + p.inc_rrsp - p.pension_deduction_qc
+                              + p.pension_split_qc)
+        return min(self.nrtc_pension_max,
+                   pension_split_cred * self.nrtc_pension_factor)
+        
     def get_nrtcred_clawback(self, p, hh):
         """
-        Fonction qui calcule la récupération des montants en raison de l'âge, vivant seule et revenu de retraite.
+        Fonction qui calcule la récupération de la somme des crédits non-remboursables 1. en raison de l'âge; 2. pour personne vivant seule; et 3. pour revenu de retraite.
 
         Cette fonction utilise le revenu net du ménage.
 
@@ -224,80 +279,15 @@ class template:
         Returns
         -------
         float
-            Montant du recouvrement
+            Montant de la récupération.
         """
         return max(0, self.nrtc_claw_rate*(hh.fam_net_inc_prov - self.nrtc_claw_cutoff))
 
-    def get_age_cred(self, p):
-        """
-        Crédit d'impôt selon l'âge.
-
-        Ce crédit est non-remboursable.
-
-        Parameters
-        ----------
-        p: Person
-            instance de la classe Person
-
-        Returns
-        -------
-        float
-            Montant du crédit
-        """
-        return self.nrtc_age_max if p.age >= self.nrtc_age else 0
-
-    def get_living_alone_cred(self, p, hh):
-        """
-        Crédit pour personne vivant seule
-
-        Ce crédit est non-remboursable.
-
-        Parameters
-        ----------
-        p: Person
-            instance de la classe Person
-        hh: Hhold
-            instance de la classe Hhold
-
-        Returns
-        -------
-        float
-            Montant du crédit
-        """
-        return self.nrtc_living_alone if hh.n_adults_in_hh == 1 else 0
-
-    def get_pension_cred(self, p):
-        """
-        Crédit d'impôt pour revenu de retraite.
-
-        Ce crédit est non-remboursable.
-
-        Parameters
-        ----------
-        p: Person
-            instance de la classe Person
-        hh: Hhold
-            instance de la classe Hhold
-
-        Returns
-        -------
-        float
-            Montant du crédit
-        """
-        pension_split_cred = (p.inc_rpp + p.inc_rrsp - p.pension_deduction_qc
-                              + p.pension_split_qc)
-        return min(self.nrtc_pension_max,
-                   pension_split_cred * self.nrtc_pension_factor)
-
     def get_exp_worker_cred(self, p):
         """
-        Crédit d'impôt pour les travailleurs d'expérience.
-        Depuis 2019, renommé crédit d'impôt pour la prolongation de carrière.
+        Fonction qui calcule le crédit d'impôt non-remboursable pour les travailleurs d'expérience. Depuis 2019, renommé crédit d'impôt pour la prolongation de carrière.
 
-        Ce crédit est non-remboursable. Nous avons fait l'hypothèse que les travailleurs
-        de 65 ans sont nés le 1er janvier (dans l'année en cours, les revenus avant
-        et après le 65ème anniversaire sont soumis à des traitements différents,
-        ce qui complique beaucoup le modèle mais change peu les résultats).
+        On fait l'hypothèse que les travailleurs de 65 ans sont nés le 1er janvier de l'année en cours. (En réalité, les revenus gagnés avant et après le 65e anniversaire sont soumis à des traitements différents, ce qui complique beaucoup le modèle mais change peu les résultats.)
 
         Parameters
         ----------
@@ -307,7 +297,7 @@ class template:
         Returns
         -------
         float
-            Montant du crédit
+            Montant du crédit.
         """
         if p.age < self.exp_work_min_age:
             return 0
@@ -325,12 +315,12 @@ class template:
             max_work_inc: float
                 montant maximal de revenu de travail admissible
             min_amount: float
-                montant minimal du crédit d'impôt (env. 15% de 4000 pour les individus nés avant 1951)
+                montant minimal du crédit d'impôt (en 2016, environ 15% de 4 000 $ pour les individus nés avant 1951)
 
             Returns
             -------
             float
-                Montant du crédit
+                Montant du crédit.
             """
             base = max(0, self.exp_work_rate * min(max_work_inc,
                                                    p.inc_work - self.exp_work_min_inc))
@@ -360,9 +350,7 @@ class template:
 
     def get_donations_cred(self, p):
         """
-        Crédit d'impôt pour dons.
-
-        Ce crédit est non-remboursable.
+        Fonction qui calcule le crédit d'impôt non-remboursable pour dons.
 
         Parameters
         ----------
@@ -372,7 +360,7 @@ class template:
         Returns
         -------
         float
-            Montant du crédit
+            Montant du crédit.
         """
         tot_donation = p.donation + p.gift
 
@@ -384,9 +372,7 @@ class template:
 
     def get_union_dues_cred(self, p):
         """
-        Crédit d’impôt pour cotisations syndicales et professionnelles
-
-        Ce crédit est non-remboursable.
+        Fonction qui calcule le crédit d’impôt non-remboursable pour cotisations syndicales et professionnelles.
 
         Parameters
         ----------
@@ -396,15 +382,13 @@ class template:
         Returns
         -------
         float
-            Montant du crédit
+            Montant du crédit.
         """
         return self.nrtc_union_dues_rate * p.union_dues
 
     def get_disabled_cred(self, p):
         """
-        Crédit d'impôt pour invalidité.
-
-        Ce crédit est non-remboursable.
+        Fonction qui calcule le crédit d'impôt pour invalidité.
 
         Parameters
         ----------
@@ -414,15 +398,13 @@ class template:
         Returns
         -------
         float
-            Montant du crédit
+            Montant du crédit.
         """
         return self.nrtc_disabled if p.disabled else 0
 
     def get_med_exp_cred(self, p, hh):
         """
-        Crédit d'impôt pour frais médicaux.
-
-        Ce crédit est non-remboursable.
+        Fonction qui calcule le crédit d'impôt non-remboursable pour frais médicaux.
 
         Parameters
         ----------
@@ -433,7 +415,7 @@ class template:
         Returns
         -------
         float
-            Montant du crédit
+            Montant du crédit.
         """
         if p is not max(hh.sp, key=lambda p: p.prov_return['taxable_income']):
             return 0
@@ -443,7 +425,7 @@ class template:
 
     def div_tax_credit(self, p):
         """
-        Crédit d'impôt pour dividendes
+        Fonction qui calcule le crédit d'impôt pour dividendes.
 
         Parameters
         ----------
@@ -483,7 +465,7 @@ class template:
 
     def chcare(self, p, hh):
         """
-        Crédit pour frais de garde.
+        Fonction qui calcule le crédit d'impôt remboursable pour frais de garde.
 
         Parameters
         ----------
@@ -491,10 +473,11 @@ class template:
             instance de la classe Person
         hh: Hhold
             instance de la classe Hhold
+
         Returns
         -------
         float
-            Montant du crédit pour frais de garde
+            Montant du crédit pour frais de garde.
 
             Cette fonction calcule le montant reçu en fonction du nombre d'enfants,
             de la situation familiale (couple/monoparental) et du revenu.
@@ -520,13 +503,13 @@ class template:
 
     def witb(self, p, hh):
         """
-        Prime au travail.
+        Fonction qui calcule la prime au travail.
 
-        Cette fonction calcule la prime au travail en tenant compte du revenu
-        du travail, du revenu pour le ménage et de la présence d'un enfant à charge.
-        Pour les couples, la prime est partagée au pro-rata des revenus du travail.
-        Le supplément à la prime au travail et la prime au travail adaptée
-        ne sont pas calculés.
+        Le calcul est fait en tenant compte du revenu de travail,
+        du revenu du ménage et de la présence d'un enfant à charge.
+        Pour les couples, la prime est partagée au prorata des revenus de travail.
+
+        Notes: le supplément à la prime au travail et la prime au travail adaptée ne sont pas calculés.
 
         Parameters
         ----------
@@ -537,7 +520,7 @@ class template:
         Returns
         -------
         float
-            Montant de la prime au travail par individu
+            Montant de la prime au travail par individu.
         """
         if hh.fam_inc_work < self.witb_cut_inc_low_single:
             return 0
@@ -546,21 +529,20 @@ class template:
             """
             Calcul de la prime au travail.
 
-            Cette fonction calcule la prime au travail pour les couples et les
-            individus seuls.
+            Cette fonction calcule la prime au travail pour les couples et les individus seuls.
 
             Parameters
             ----------
             rate: float
-                taux qui multiplie le revenu du travail
+                taux qui multiplie le revenu de travail
             cut_inc_low: float
-                revenu minimal du travail pour bénéficier de la prime
+                revenu de travail minimal requis pour bénéficier de la prime
             cut_inc_high: float
                 revenu maximal pris en compte dans le calcul de la prime
             Returns
             -------
             float
-                Montant de la Prime au travail par ménage
+                Montant de la prime au travail par ménage.
             """
             amount = rate * max(0, min(cut_inc_high, hh.fam_inc_work) - cut_inc_low)
             clawback = self.witb_claw_rate * max(0, hh.fam_net_inc_prov - cut_inc_high)
@@ -578,7 +560,7 @@ class template:
 
     def home_support(self, p, hh):
         """
-        Crédit d’impôt pour maintien à domicile des aînés.
+        Fonction qui calcule le crédit d’impôt pour maintien à domicile des aînés.
 
         Parameters
         ----------
@@ -590,7 +572,7 @@ class template:
         Returns
         -------
         float
-            Montant du crédit
+            Montant du crédit.
         """
         if p.age < 70:
             return 0
@@ -610,7 +592,8 @@ class template:
 
     def senior_assist(self, p, hh):
         """
-        Crédit remboursable pour support aux ainés.
+        Fonction qui calcule le crédit remboursable pour soutien aux ainés.
+
         En vigueur à partir de 2018.
 
         Parameters
@@ -623,13 +606,13 @@ class template:
         Returns
         -------
         float
-            Montant du crédit
+            Montant du crédit.
         """
         pass
 
     def med_exp(self, p, hh):
         """
-        Crédit remboursable pour frais médicaux.
+        Fonction qui calcule le crédit remboursable pour frais médicaux.
 
         Parameters
         ----------
@@ -641,7 +624,7 @@ class template:
         Returns
         -------
         float
-            Montant du crédit
+            Montant du crédit.
         """
         if p is not max(hh.sp, key=lambda p: p.fed_return['taxable_income']):
             return 0
@@ -654,10 +637,9 @@ class template:
 
     def ccap(self, p, hh):
         """
-        Allocation familiale.
+        Fonction qui calcule l'Allocation famille (qui s'appelait le Soutien aux enfants avant 2019).
 
-        Cette fonction calcule le montant reçu en fonction du nombre d'enfants,
-        de la situation familiale (couple/monoparental) et du revenu.
+        Cette fonction calcule le montant reçu en fonction du nombre d'enfants, de la situation familiale (couple/monoparental) et du revenu.
 
         Parameters
         ----------
@@ -668,7 +650,7 @@ class template:
         Returns
         -------
         float
-            Montant de l'allocation familiale
+            Montant de l'Allocation famille.
         """
         if hh.couple and p.male and hh.sp[0].male != hh.sp[1].male:
             return 0 # heterosexual couple: mother receives benefit
@@ -708,12 +690,7 @@ class template:
 
     def calc_contributions(self, p, hh):
         """
-        Fonction qui calcule les contributions.
-
-        Cette fonction fait la somme des contributions du contribuable.
-        La contribution santé est abolie en 2017.
-        La contribution additionnelle pour les services de garde éducatifs
-        à l'enfance subventionnés est abolie en 2019.
+        Fonction fait la somme des contributions du contribuable. La contribution santé a été abolie en 2017; la contribution additionnelle pour les services de garde éducatifs à l'enfance subventionnés a été abolie en 2019.
 
         Parameters
         ----------
@@ -727,10 +704,9 @@ class template:
 
     def health_contrib(self, p, hh):
         """
-        Contribution santé.
+        Fonction qui calcule la contribution santé.
 
-        Cette fonction calcule le montant dû en fonction du revenu net.
-        Abolie en 2017.
+        Cette fonction calcule le montant dû en fonction du revenu net. La contribution santé a été abolie en 2017.
 
         Parameters
         ----------
@@ -772,13 +748,9 @@ class template:
 
     def add_contrib_subsid_chcare(self, p, hh):
         """
-        Contribution additionnelle pour les services de garde éducatifs
-        à l'enfance subventionnés.
+        Contribution additionnelle pour les services de garde éducatifs à l'enfance subventionnés.
 
-        Cette fonction calcule le montant dû en fonction
-        du nombre de jours de garde et du revenu familial. Chaque conjoint paie
-        en fonction du nombre de jours de garde sur son relevé 30.
-        La contribution est abolie en 2019.
+        Cette fonction calcule le montant dû en fonction du nombre de jours de garde et du revenu familial. Chaque conjoint paie en fonction du nombre de jours de garde sur son relevé 30. La contribution a été abolie en 2019.
 
         Parameters
         ----------
@@ -803,8 +775,7 @@ class template:
         """
         Fonction qui calcule le crédit d'impôt pour solidarité.
 
-        Cette fonction calcule le montant reçu par chacun des conjoints en fonction
-        du revenu familial de l'année fiscale courante (cela devrait être l'année précédente).
+        Cette fonction calcule le montant reçu par chacun des conjoints en fonction du revenu familial de l'année fiscale courante (en réalité, le calcul est basé sur le revenu de l'année précédente).
 
         Parameters
         ----------
@@ -812,6 +783,11 @@ class template:
             instance de la classe Person
         hh: Hhold
             instance de la classe Hhold
+        
+        Returns
+        -------
+        float
+            Montant du crédit.
         """
         amount_tvq = self.solidarity_tvq_base
         if hh.couple:

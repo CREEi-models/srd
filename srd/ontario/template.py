@@ -20,8 +20,7 @@ class template:
         """
         Fonction qui permet de calculer les impôts.
 
-        Cette fonction est celle qui calcule les déductions,
-        les crédits non-remboursables et remboursables et les impôts nets.
+        Cette fonction est celle qui calcule les déductions, les crédits non-remboursables et remboursables et les impôts nets.
 
         Parameters
         ----------
@@ -35,10 +34,10 @@ class template:
         for p in hh.sp:
             self.calc_tax(p)
             self.calc_non_refundable_tax_credits(p, hh)
-            p.prov_return['net_tax_liability'] = max(0, 
+            p.prov_return['net_tax_liability'] = max(0,
                 p.prov_return['gross_tax_liability']
                 - p.prov_return['non_refund_credits'])
-            
+
             self.surtax(p)
             self.div_tax_credit(p)
             p.prov_return['net_tax_liability'] = max(0,
@@ -47,12 +46,12 @@ class template:
             self.tax_reduction(p, hh)
             p.prov_return['net_tax_liability'] = max(0,
                 p.prov_return['net_tax_liability'] - p.on_tax_reduction)
-            
+
             self.lift_credit(p, hh)
             if hasattr(p, 'on_lift'):
                 p.prov_return['net_tax_liability'] = max(0,
                     p.prov_return['net_tax_liability'] - p.on_lift)
-            
+
             self.calc_contributions(p)
             p.prov_return['net_tax_liability'] += p.prov_return['contributions']
             self.calc_refundable_tax_credits(p, hh)
@@ -60,8 +59,7 @@ class template:
 
     def copy_fed_return(self, p):
         """
-        Fonction qui copie le revenu brut, les déductions,
-        ainsi que les revenus nets et imposables du fédéral.
+        Fonction qui copie le revenu brut, les déductions, ainsi que les revenus nets et imposables du formulaire fédéral.
 
         Parameters
         ----------
@@ -89,9 +87,7 @@ class template:
 
     def calc_non_refundable_tax_credits(self, p, hh):
         """
-        Fonction qui calcule les crédits d'impôt non-remboursables.
-
-        Cette fonction fait la somme de tous les crédits d'impôt modélisés.
+        Fonction qui fait la somme de tous les crédits d'impôt non-remboursables modélisés.
 
         Parameters
         ----------
@@ -115,11 +111,7 @@ class template:
 
     def get_age_cred(self, p):
         """
-        Age amount.
-        
-        Crédit d'impôt selon l'âge.
-
-        Ce crédit est non-remboursable.
+        Fonction qui calcule le crédit d'impôt non-remboursable provincial en raison de l'âge.
 
         Parameters
         ----------
@@ -134,15 +126,13 @@ class template:
         if p.age < self.nrtc_age:
             return 0
 
-        clawback = (self.nrtc_age_claw_rate * max(0, p.prov_return['net_income'] 
+        clawback = (self.nrtc_age_claw_rate * max(0, p.prov_return['net_income']
                     - self.nrtc_age_claw_cutoff))
         return max(0, self.nrtc_age_amount - clawback)
 
     def get_spouse_cred(self, p, hh):
         """
-        Spouse or common-law amount
-        
-        Montant pour époux ou conjoint de fait.
+        Fonction qui calcule le montant pour époux ou conjoint de fait.
 
         Ce crédit est non-remboursable.
 
@@ -156,7 +146,7 @@ class template:
         Returns
         -------
         float
-            Montant du crédit
+            Montant du crédit.
         """
         if not hh.couple:
             return 0
@@ -168,11 +158,7 @@ class template:
 
     def get_cpp_contrib_cred(self, p):
         """
-        CPP or QPP contributions credit.
-        
-        Crédit d'impôt pour contributions RPC/RRQ.
-
-        Ce crédit est non-remboursable.
+        Fonction qui calcule le crédit d'impôt non-remboursable pour cotisations au RRQ / RPC.
 
         Parameters
         ----------
@@ -181,26 +167,26 @@ class template:
 
         Returns
         -------
-            Montant du crédit
+        float
+            Montant du crédit.
         """
         return p.contrib_cpp + p.contrib_cpp_self / 2
 
     def get_pension_cred(self, p, hh):
         """
-        Pension income amount.
-
-        Crédit d'impôt pour revenu de retraite.
-
-        Ce crédit est non-remboursable.
+        Fonction qui calcule le crédit d'impôt non-remboursable pour revenu de retraite.
 
         Parameters
         ----------
         p: Person
             instance de la classe Person
+        hh: Hhold
+            instance de la class Hhold
 
         Returns
         -------
-            Montant du crédit
+        float
+            Montant du crédit.
         """
         if hh.elig_split and (p.age < self.pension_cred_min_age_split):
             other_p = hh.sp[1 - hh.sp.index(p)]
@@ -213,11 +199,9 @@ class template:
 
     def get_disabled_cred(self, p):
         """
-        Disability amount.
+        Fonction qui calcule le crédit d'impôt non-remboursable pour invalidité.
 
-        Crédit d'impôt pour invalidité.
-
-        Ce crédit est non-remboursable.
+        Seule la portion pour le contribuable majeur lui-même est modélisée.
 
         Parameters
         ----------
@@ -226,7 +210,8 @@ class template:
 
         Returns
         -------
-            Montant du crédit
+        float
+            Montant du crédit.
         """
         return self.nrtc_disabled if p.disabled else 0
         # we assume that age >= 18
@@ -234,11 +219,7 @@ class template:
 
     def get_med_exp_cred(self, p, hh):
         """
-        Medical expenses credit.
-
-        Crédit d'impôt pour frais médicaux.
-
-        Ce crédit est non-remboursable.
+        Fonction qui calcule le crédit d'impôt non-remboursable pour frais médicaux.
 
         Parameters
         ----------
@@ -249,13 +230,14 @@ class template:
 
         Returns
         -------
-            Montant du crédit
+        float
+            Montant du crédit.
         """
         if p is not min(hh.sp, key=lambda p: p.prov_return['net_income']):
             return 0
 
         med_exp = sum([p.med_exp for p in hh.sp]
-                       + [d.med_exp for d in hh.dep 
+                       + [d.med_exp for d in hh.dep
                           if d.age < self.nrtc_med_exp_age])
         clawback = min(self.nrtc_med_exp_claw,
                        self.nrtc_med_exp_rate * p.prov_return['net_income'])
@@ -266,11 +248,7 @@ class template:
 
     def get_donations_cred(self, p):
         """
-        Ontario donations and gifts credit.
-
-        Crédit d'impôt pour dons.
-
-        Ce crédit est non-remboursable.
+        Fonction qui calcule le crédit d'impôt non-remboursable pour dons de l'Ontario.
 
         Parameters
         ----------
@@ -280,7 +258,7 @@ class template:
         Returns
         -------
         float
-            Montant du crédit
+            Montant du crédit.
         """
         tot_donation = (
             min(self.nrtc_donation_frac_net * p.prov_return['net_income'],
@@ -295,9 +273,7 @@ class template:
 
     def surtax(self, p):
         """
-        Additional tax for minimum tax purposes.
-        
-        Surtaxe de l'Ontario.
+        Fonction qui calcule la surtaxe de l'Ontario.
 
         Parameters
         ----------
@@ -310,9 +286,7 @@ class template:
 
     def div_tax_credit(self, p):
         """
-        Ontario dividend tax credit.
-
-        Crédit d'impôt pour dividendes de l'Ontario.
+        Fonction qui calcule le crédit d'impôt pour dividendes de l'Ontario.
 
         Parameters
         ----------
@@ -325,9 +299,7 @@ class template:
 
     def tax_reduction(self, p, hh):
         """
-        Ontario tax reduction.
-
-        Réduction de l’impôt de l’Ontario.
+        Fonction qui calcule la réduction de l’impôt de l’Ontario.
 
         Ce montant est non-remboursable.
 
@@ -347,13 +319,9 @@ class template:
 
     def lift_credit(self, p, hh):
         """
-        Low-income individuals and families tax credit.
+        Crédit d’impôt pour les personnes et les familles à faible revenu (Low-income individuals and families tax credit: LIFT).
 
-        Crédit d’impôt pour les personnes et les familles à faible revenu (LIFT).
-        
-        Ce crédit entre en vigueur en 2019.
-
-        Ce crédit est non-remboursable.
+        Ce crédit entre en vigueur en 2019. Il est non-remboursable.
 
         Parameters
         ----------
@@ -381,9 +349,7 @@ class template:
 
     def ocb(self, p, hh):
         """
-        Ontario Child Benefit (OCB).
-        
-        Allocation ontarienne pour enfants.
+        Fonction qui calcule l'Allocation ontarienne pour enfants.
 
         Parameters
         ----------
@@ -395,7 +361,7 @@ class template:
         Returns
         -------
         float
-            Montant de l'ACE (CCB)
+            Montant de l'Allocation ontarienne pour enfants.
         """
         if hh.nkids_0_17 == 0:
             return 0
@@ -412,8 +378,6 @@ class template:
 
     def ostc(self, p, hh):
         """
-        Ontario Sales Tax Credit (OSTC).
-
         Crédit de taxe de vente de l'Ontario.
 
         Ce crédit est remboursable.
@@ -424,19 +388,18 @@ class template:
             instance de la classe Person
         hh: Hhold
             instance de la classe Hhold
-        
+
         Returns
         -------
         float
-            Montant du crédit
-
+            Montant du crédit.
         """
         if hh.sp.index(p) == 1:
             return 0
 
         amount = (len(hh.sp) + hh.nkids_0_18) * self.ostc_amount
         if hh.couple or hh.nkids_0_18:
-            cutoff = self.ostc_couple_dep_cutoff 
+            cutoff = self.ostc_couple_dep_cutoff
         else:
             cutoff = self.ostc_single_cutoff
         clawback = self.ostc_claw_rate * max(0, hh.fam_net_inc_prov - cutoff)
@@ -444,9 +407,7 @@ class template:
 
     def calc_contributions(self, p):
         """
-        Fonction qui calcule les contributions.
-
-        Cette fonction fait la somme des contributions du contribuable.
+        Fonction qui fait la somme des contributions du contribuable (actuellement, seule la contribution santé est incluse).
 
         Parameters
         ----------
@@ -457,9 +418,7 @@ class template:
 
     def health_contrib(self, p):
         """
-        Ontario health premium.
-        
-        Contribution santé de l'Ontario.
+        Contribution santé de l'Ontario (Ontario health premium).
 
         Cette fonction calcule le montant dû en fonction du revenu imposable.
 
@@ -472,8 +431,8 @@ class template:
 
         if tax_inc <= self.l_health_high_brackets[-1]:
             ind = np.searchsorted(self.l_health_high_brackets, tax_inc)
-            return (self.l_health_base[ind] 
-                    + self.l_health_rates[ind] 
+            return (self.l_health_base[ind]
+                    + self.l_health_rates[ind]
                     * max(0, tax_inc - self.l_health_low_brackets[ind]))
         else:
             return self.l_health_base[-1]
