@@ -1,21 +1,23 @@
 Contacts et utilisation
 =======================
 
-List d'envoi
-************
-TBA
+Liste d'envoi
+*************
+Pour rester informé.e des mises à jour du SRD (environ 1 à 2 fois par an), inscrivez-vous à `notre liste d'envoi dédiée <https://hec.us19.list-manage.com/subscribe/post?u=60a9aba3241bb4eede99b8352&amp;id=6925ec5b2d>`_.
 
-Principaux
-**********
-David Boisclair, Raquel Fonseca, Pierre-Carl Michaud, Pierre-Yves Yanni
-
-Pour l'année 2020
-*****************
-Marianne Laurin, Paul Ouimet, Gaëlle Simard-Duplain
+.. _nous_contacter:
 
 Personne-contact
 ****************
 `Pierre-Yves Yanni <pierre-yves.yanni@hec.ca>`_
+
+Principaux contributeurs
+************************
+David Boisclair, Raquel Fonseca, Pierre-Carl Michaud, Pierre-Yves Yanni
+
+Contributeurs pour l'année 2020
+*******************************
+Marianne Laurin, Paul Ouimet, Gaëlle Simard-Duplain
 
 Droits d'utilisation
 ********************
