@@ -48,6 +48,6 @@ Pour invoquer le SRD, il faut ajouter son adresse:
 
 Si l'on ne veut plus le SRD, il suffit d'effacer les répertoires *srd* et *srpp*.
 
-En cas de questions, commentaires ou suggestions, n'hésitez pas à nous contacter: :ref:`nous_contacter`.
+En cas de questions, commentaires ou suggestions, n'hésitez pas à nous contacter (:ref:`nous_contacter`).
 
 
