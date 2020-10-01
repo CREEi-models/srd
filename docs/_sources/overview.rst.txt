@@ -13,7 +13,7 @@ On peut installer facilement le SRD en utilisant pip::
 
   pip install srd
 
-Le SRD dépend d'un autre package produit par la chaire, le SRPP, qui permet de simuler les revenus de pensions publiques (RPC et RRQ). Celui-ci est installé automatiquement en installant le SRD.
+Le SRD dépend d'un autre package, `le SRPP <https://creei-models.github.io/srpp/>`_, qui permet de simuler les revenus de pensions publiques (RPC et RRQ) et les cotisations à ces régimes. Ce package est installé automatiquement en installant le SRD.
 
 Dans un notebook ou un projet, on invoque le SRD en ajoutant la commande suivante:
 
@@ -49,5 +49,3 @@ Pour invoquer le SRD, il faut ajouter son adresse:
 Si l'on ne veut plus le SRD, il suffit d'effacer les répertoires *srd* et *srpp*.
 
 En cas de questions, commentaires ou suggestions, n'hésitez pas à nous contacter (:ref:`nous_contacter`).
-
-

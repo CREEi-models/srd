@@ -13,7 +13,7 @@ class policy:
     """
     Mesures liées à la COVID-19.
 
-    Permet de choisir quelles mesures sont appliquées dans le simulateur.
+    Permet de choisir quelles mesures sont appliquées dans le simulateur. Par défaut, les 5 premières mesures ci-dessous sont appliquées (PCU, PCUE, PIRTE, majorations au crédit de TPS/TVH et à l'ACE).
 
     Parameters
     ----------
