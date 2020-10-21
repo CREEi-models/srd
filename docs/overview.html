@@ -85,7 +85,10 @@
               <p class="caption"><span class="caption-text">Menu:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Premiers pas avec le SRD</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#installation-du-srd">Installation du SRD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-du-srd">Installation du SRD</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installation-alternative">Installation alternative</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="actors.html">Les acteurs</a></li>
@@ -184,26 +187,12 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">uninstall</span> <span class="n">srd</span> <span class="n">srpp</span>
 </pre></div>
 </div>
-<p>Si l’utilisation de pip n’est pas possible :</p>
-<ol class="arabic">
-<li><p>Allez sur <a class="reference external" href="https://www.pypi.org">pypi.org</a> et téléchargez les fichiers sources (extension .tar.gz) du SRD et du SRPP</p></li>
-<li><p>Extrayez les fichiers .tar.gz. Sous Windows, ouvrez les fichiers avec 7-zip ou Winzip ou, dans une fenêtre de commande, entrez (en remplaçant les adresses et noms de fichiers):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tar</span> <span class="o">-</span><span class="n">xvzf</span> <span class="n">C</span><span class="p">:</span>\\<span class="n">SENTIER_VERS_FICHIER</span>\\<span class="n">FICHIER</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span> <span class="o">-</span><span class="n">C</span> <span class="n">C</span><span class="p">:</span>\\<span class="n">SENTIER_VERS_RÉPERTOIRE_EXTRACTION</span>
-</pre></div>
-</div>
-</li>
-<li><p>Dans les dossiers qu’on vient d’extraire, <em>srd-x.x.x</em> et <em>srpp-x.x.x</em> (<em>x.x.x</em> étant le numéro de version), on trouve les répertoires <em>srd</em> et <em>srpp</em></p></li>
-<li><p>Placez <em>srd</em> et <em>srpp</em> dans le répertoire de votre choix</p></li>
-</ol>
-<p>Pour invoquer le SRD, il faut ajouter son adresse:</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;C:\SENTIER VERS RÉPERTOIRE_CONTENANT_SRD_ET_SRPP&quot;</span><span class="p">)</span>
-
-<span class="kn">import</span> <span class="nn">srd</span>
-</pre></div>
-</div>
-<p>Si l’on ne veut plus le SRD, il suffit d’effacer les répertoires <em>srd</em> et <em>srpp</em>.</p>
+<div class="section" id="installation-alternative">
+<h3>Installation alternative<a class="headerlink" href="#installation-alternative" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Si l’utilisation de pip n’est pas possible, un fichier zip avec le SRD et sa dépendence, SRPP, peut être téléchargé de <a class="reference external" href="https://github.com/rsi-models/srd/releases">Github</a> (choisissez le fichier SRD_with_dep.zip dans le dernier « release »). Pour utiliser le SRD, il suffit d’extraire les fichiers du zip dans le répertoire de son choix et de travailler de ce dernier ou d’ajouter ce répertoire au chemin d’accès (par exemple en utilisant le module <em>sys</em>). Des tutoriaux ont également été inclus dans le fichier zip. Si l’on ne veut plus le SRD, il suffit d’effacer les répertoires <em>srd</em> et <em>srpp</em>.</p>
+<p>Le SRD est fourni « tel quel », sous une <a class="reference external" href="https://rsi-models.github.io/CPR/credits.html#licence">licence MIT</a>.</p>
 <p>En cas de questions, commentaires ou suggestions, n’hésitez pas à nous contacter (<a class="reference internal" href="credits.html#nous-contacter"><span class="std std-ref">Personne-contact</span></a>).</p>
+</div>
 </div>
 </div>
 
