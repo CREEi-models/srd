@@ -38,3 +38,9 @@ Index
 ==================
 
 * :ref:`genindex`
+
+
+Documentation SRD en PDF
+==============================
+
+Documentation :download:`pdf <../build/latex/SRD.pdf>`
