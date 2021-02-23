@@ -12,8 +12,8 @@ class Person:
     ----------
     age: int
         âge de l'individu
-    male: int
-        prend la valeur 1 si l'individu est un homme
+    male: bool
+        prend la valeur True si l'individu est un homme
     earn: float
         revenu de travail
     rpp: float
@@ -25,7 +25,7 @@ class Person:
     prev_cap_losses: float
         pertes en capital nettes d'autres années (avec facteur d'inclusion partielle déjà appliqué)
     cap_gains_exempt: float
-        exonération des gains en capital admissibiles demandée (sur gains en capital nets); soumis à un plafond à vie
+        exonération des gains en capital admissibles demandée (sur gains en capital nets); soumis à un plafond à vie
     othtax: float
         autre revenu imposable
     othntax: float
@@ -41,7 +41,7 @@ class Person:
     con_rrsp: float
         cotisation REER
     con_non_rrsp: float
-        contisation autre que REER (p.ex. à un CELI ou à des comptes non enregistrés)
+        cotisation autre que REER (p.ex. à un CELI ou à des comptes non enregistrés)
     con_rpp: float
         cotisation à un régime de pension agréé (RPA)
     union_dues: float
