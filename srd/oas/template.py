@@ -21,7 +21,7 @@ class template:
         """
         for p in hh.sp:
             self.eligibility(p, hh)
-        if not [p for p in hh.sp if p.elig_oas]: # eliminate non-eligible hholds
+        if not [p for p in hh.sp if p.elig_oas]:  # eliminate non-eligible hholds
             return
 
         for p in hh.sp:
@@ -234,7 +234,7 @@ class template:
         """
         allow = self.compute_allowance(p, hh, self.gis_full_high)
         claw_bonus = self.bonus_claw_rate * max(0, hh.net_inc_exempt - self.bonus_exempt_single)
-        return max(0, allow + self.allow_surv_bonus *p.sq_factor - claw_bonus)
+        return max(0, allow + self.allow_surv_bonus * p.sq_factor - claw_bonus)
 
     def couple_allowance(self, p, hh):
         """

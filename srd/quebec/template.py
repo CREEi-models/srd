@@ -62,7 +62,8 @@ class template:
                          + self.div_other_can_factor * p.div_other_can)
         p.taxable_cap_gains = self.cap_gains_rate * max(0, p.net_cap_gains)
         p.prov_return['gross_income'] = (p.inc_work + p.inc_ei + p.inc_oas
-                                         + p.inc_gis + p.inc_cpp + p.inc_rpp
+                                         + p.inc_gis + p.allow_couple
+                                         + p.allow_surv + p.inc_cpp + p.inc_rpp
                                          + p.pension_split_qc + p.taxable_div
                                          + p.taxable_cap_gains
                                          + p.inc_othtax + p.inc_rrsp)
@@ -107,7 +108,7 @@ class template:
         p.qc_work_deduc = self.work_deduc(p)
         p.qc_cpp_qpip_deduction = self.cpp_qpip_deduction(p)
         p.prov_return['deductions_gross_inc'] = (p.con_rrsp + p.con_rpp
-                                                 + p.inc_gis + p.qc_work_deduc
+                                                 + p.qc_work_deduc
                                                  + p.pension_deduction_qc
                                                  + p.qc_cpp_qpip_deduction)
 
@@ -162,8 +163,10 @@ class template:
         p: Person
             instance de la classe Person
         """
-        p.fed_return['deductions_net_inc'] = min(p.taxable_cap_gains,
-            p.prev_cap_losses + self.cap_gains_rate * p.cap_gains_exempt)
+        p.fed_return['deductions_net_inc'] = min(
+            p.taxable_cap_gains,
+            p.inc_gis + p.allow_couple + p.allow_surv 
+            + p.prev_cap_losses + self.cap_gains_rate * p.cap_gains_exempt)
 
     def calc_tax(self, p):
         """

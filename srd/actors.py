@@ -217,7 +217,8 @@ class Person:
         """
         return (self.inc_rpp + self.inc_cpp + self.inc_othtax
                 + self.inc_othntax + self.inc_rrsp + self.inc_oas
-                + self.inc_gis + self.inc_ei + self.net_cap_gains
+                + self.inc_gis + self.allow_couple + self.allow_surv
+                + self.inc_ei + self.net_cap_gains
                 + self.div_elig + self.div_other_can)
 
     @property
