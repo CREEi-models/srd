@@ -131,7 +131,7 @@ class form_2020(form_2019):
 
         if p.fed_return['net_income'] <= br_poor:
             basic_amount = self.basic_amount_poor
-        elif p.fed_return['net_income'] > br_rich:
+        elif p.fed_return['net_income'] >= br_rich:
             basic_amount = self.basic_amount_rich
         else:
             slope = (self.basic_amount_rich - self.basic_amount_poor) / (br_rich - br_poor)
