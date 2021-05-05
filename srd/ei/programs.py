@@ -28,6 +28,8 @@ def program(year):
         p = program_2019()
     if year == 2020:
         p = program_2020()
+    if year == 2021:
+        p = program_2021()
     return p
 
 
@@ -110,3 +112,13 @@ class program_2020(template):
                                        - self.perc_cutoff_high * inc_work_ei)
                     clawback += self.claw_rate_high * add_amount
                     p.inc_ei += max(0, self.rate_benefits * inc_work_ei - clawback)
+
+class program_2021(template):
+    """
+    Version du programme de 2021.
+
+    Covid to add later
+    """
+
+    def __init__(self):
+        add_params_as_attr(self, module_dir + "/ei/params/parameters_2021.csv")
