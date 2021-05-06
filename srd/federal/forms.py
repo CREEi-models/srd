@@ -30,6 +30,8 @@ def form(year, policy=covid.policy()):
         p = form_2019()
     if year==2020:
         p = form_2020(policy)
+    if year == 2021:
+        p = form_2021(policy)
     return p
 
 class form_2016(template):
@@ -173,3 +175,24 @@ class form_2020(form_2019):
             p.inc_ei -= repayment
             p.fed_return['net_income'] -= repayment
             p.fed_return['gross_income'] -= repayment
+
+
+class form_2021(form_2020):
+    """
+    Formulaire d'impôt de 2021.
+
+    Parameters
+    ----------
+    policy: policy
+        instance de la classe policy
+    """
+
+    def __init__(self, policy):
+        add_params_as_attr(self, module_dir + "/federal/params/federal_2021.csv")
+        add_params_as_attr(self, module_dir + "/federal/params/fed_witb_qc_2021.csv")
+        add_schedule_as_attr(self, module_dir + "/federal/params/schedule_2021.csv")
+        self.witb_params = {}
+        for prov in ["on", "qc"]:
+            self.witb_params[prov] = get_params(
+                module_dir + f"/federal/params/fed_witb_{prov}_2021.csv"
+            )
