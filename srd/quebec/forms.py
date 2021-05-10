@@ -181,3 +181,4 @@ class form_2021(form_2020):
         add_params_as_attr(self, module_dir + '/quebec/params/measures_2021.csv')
         add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2021.csv')
         add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2021.csv')
+        
