@@ -12,8 +12,8 @@ def program(year, federal):
     Parameters
     ----------
     year: int
-        année (présentement entre 2016 et 2020)
-    federal: {srd.federal.form_2016, ..., srd.federal.form_2020}
+        année (présentement entre 2016 et 2021)
+    federal: {srd.federal.form_2016, ..., srd.federal.form_2021}
         instance de la classe srd.federal.form_xxxx (pour l'année xxxx) du module Federal
     Returns
     -------
@@ -30,6 +30,8 @@ def program(year, federal):
         p = program_2019(federal)
     if year == 2020:
         p = program_2020(federal)
+    if year == 2021:
+        p = program_2021(federal)
     return p
 
 
@@ -110,6 +112,46 @@ class program_2020(program_2019):
     """
     def __init__(self, federal):
         add_params_as_attr(self, module_dir + '/oas/params/old_age_sec_2020.csv')
+        self.federal = federal
+
+    def compute_net_inc_exemption(self, hh):
+        """
+        Fonction qui remplace dans le gabarit (classe *srd.oas.template*) la fonction du même nom, et calcule le revenu net incluant l'exemption sur les revenus du travail salarié.
+
+        À partir de 2020-2021, les revenus de travail autonome bénéficient également de l'exemption. Les revenus du travail entre 5 000 $ et 10 000 $ bénéficient d'une nouvelle exemption partielle de 50%.
+
+        Parameters
+        ----------
+        hh: Hhold
+            instance de la classe Hhold
+
+        Returns
+        -------
+        float
+            Revenu net de l'exemption sur les revenus du travail.
+        """
+        net_inc_exempt = 0
+        for p in hh.sp:
+            exempted_inc = min(p.inc_work, self.work_exempt)
+            if p.inc_work > self.work_exempt:
+                exempted_inc += 0.5 * (min(p.inc_work, self.max_work_exempt)
+                                       - self.work_exempt)
+            payroll = p.payroll['cpp'] + p.payroll['cpp_supp'] + p.payroll['ei']
+            net_inc_exempt += max(0, p.fed_return['net_income'] - exempted_inc
+                                    - payroll)
+        return net_inc_exempt
+
+class program_2021(program_2020):
+    """
+    Version du programme de 2021.
+    
+    Parameters
+    ----------
+    federal: srd.federal.form_2021
+        instance de la classe srd.federal.form_2021 du module Federal
+    """
+    def __init__(self, federal):
+        add_params_as_attr(self, module_dir + '/oas/params/old_age_sec_2021.csv')
         self.federal = federal
 
     def compute_net_inc_exemption(self, hh):
