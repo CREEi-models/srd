@@ -13,7 +13,7 @@ def form(year):
     Parameters
     ----------
     year: int
-        année (présentement entre 2016 et 2020)
+        année (présentement entre 2016 et 2021)
     Returns
     -------
     class instance
@@ -29,6 +29,8 @@ def form(year):
         p = form_2019()
     if year == 2020:
         p = form_2020()
+    if year == 2021:
+        p = form_2021()
     return p
 
 
@@ -170,3 +172,13 @@ class form_2020(form_2019):
         add_params_as_attr(self, module_dir + '/quebec/params/measures_2020.csv')
         add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2020.csv')
         add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2020.csv')
+
+class form_2021(form_2020):
+    """
+    Formulaire d'impôt de 2021.
+    """
+    def __init__(self):
+        add_params_as_attr(self, module_dir + '/quebec/params/measures_2021.csv')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2021.csv')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2021.csv')
+        
