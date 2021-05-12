@@ -1,0 +1,43 @@
+variable;value;type;definition;source ;comments
+pension_cred_min_age_split;65;int;;;same as for federal ok
+nrtc_base;10880;float;;https://www.canada.ca/en/revenue-agency/services/tax/individuals/frequently-asked-questions-individuals/adjustment-personal-income-tax-benefit-amounts.html  https://www.canada.ca/en/revenue-agency/services/tax/individuals/frequently-asked-questions-individuals/canadian-income-tax-rates-individuals-current-previous-years.html#provincial;taux indexation 1,9%
+nrtc_age_amount;5312;float;;https://www.taxtips.ca/taxrates/on.htm; index 0,9% ok
+nrtc_age;65;int;;; ok
+nrtc_age_claw_cutoff;39547;float;;;index 0,9% ok
+nrtc_age_claw_rate;0.15;float;;; ok
+nrtc_spouse_cutoff;10162;float;;; ok
+nrtc_spouse_max;9238;float;;; ok
+nrtc_pension_cred_min_age_split;65;int;;; ok
+nrtc_pension_cred_amount;1504;float;;; ok
+nrtc_disabled;8790;float;;;ok
+nrtc_med_exp_age;18;int;;; ok
+nrtc_med_exp_claw;2462;float;;; ok
+nrtc_med_exp_rate;0.03;float;;; ok
+nrtc_med_exp_max_dep;13274;float;;; ok
+nrtc_rate;0.0505;float;;; ok
+nrtc_donation_frac_net;0.75;float;;; ok
+nrtc_donation_cutoff;200;float;;; ok
+nrtc_donation_low_rate;0.0505;float;;; ok
+nrtc_donation_high_rate;0.1116;float;;; ok
+surtax_low_rate;0.20;float;;https://www.taxtips.ca/taxrates/on.htm; ok
+surtax_low_cutoff;4874;float;;; index 0,9% ok
+surtax_high_rate;0.36;float;;; à vérifié
+surtax_high_cutoff;6237;float;;; ok
+div_elig_factor;1.38;float;;; ok
+div_other_can_factor;1.15;float;;; ok
+div_other_can_cred_rate;0.029863;float;;; ok
+div_elig_cred_rate;0.10;float;;; ok
+reduction_base;251;float;;; ok
+reduction_kid;464;float;;; ok
+lift_rate;0.0505;float;;5006-a-19e; ok
+lift_max_amount;850;float;;; ok
+lift_claw_rate;0.10;float;;; ok
+lift_cutoff_single;30000;float;;; ok
+lift_cutoff_couple;60000;float;;; ok
+ocb_amount;1474;float;;https://www.canada.ca/fr/agence-revenu/services/prestations-enfants-familles/programmes-provinciaux-territoriaux/province-ontario.html#cb; ok
+ocb_cutoff;22504;float;;; ok
+ocb_claw_rate;0.08;float;;; ok
+ostc_amount;316;float;;hhttps://www.ontario.ca/page/ontario-trillium-benefit#section-3; ok
+ostc_claw_rate;0.04;float;;; ok
+ostc_single_cutoff;24332;float;;; ok
+ostc_couple_dep_cutoff;30415;float;;; ok
