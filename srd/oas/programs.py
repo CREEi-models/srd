@@ -1,6 +1,7 @@
 from srd import add_params_as_attr
 import os
 from srd.oas import template
+
 module_dir = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -12,8 +13,8 @@ def program(year, federal):
     Parameters
     ----------
     year: int
-        année (présentement entre 2016 et 2020)
-    federal: {srd.federal.form_2016, ..., srd.federal.form_2020}
+        année (présentement entre 2016 et 2021)
+    federal: {srd.federal.form_2016, ..., srd.federal.form_2021}
         instance de la classe srd.federal.form_xxxx (pour l'année xxxx) du module Federal
     Returns
     -------
@@ -30,6 +31,8 @@ def program(year, federal):
         p = program_2019(federal)
     if year == 2020:
         p = program_2020(federal)
+    if year == 2021:
+        p = program_2021(federal)
     return p
 
 
@@ -38,14 +41,15 @@ def program(year, federal):
 class program_2016(template):
     """
     Version du programme de 2016.
-    
+
     Parameters
     ----------
     federal: srd.federal.form_2016
         instance de la classe srd.federal.form_2016 du module Federal
     """
+
     def __init__(self, federal):
-        add_params_as_attr(self, module_dir + '/oas/params/old_age_sec_2016.csv')
+        add_params_as_attr(self, module_dir + "/oas/params/old_age_sec_2016.csv")
         self.federal = federal
 
 
@@ -54,14 +58,15 @@ class program_2016(template):
 class program_2017(program_2016):
     """
     Version du programme de 2017.
-    
+
     Parameters
     ----------
     federal: srd.federal.form_2017
         instance de la classe srd.federal.form_2017 du module Federal
     """
+
     def __init__(self, federal):
-        add_params_as_attr(self, module_dir + '/oas/params/old_age_sec_2017.csv')
+        add_params_as_attr(self, module_dir + "/oas/params/old_age_sec_2017.csv")
         self.federal = federal
 
 
@@ -70,14 +75,15 @@ class program_2017(program_2016):
 class program_2018(program_2017):
     """
     Version du programme de 2018.
-    
+
     Parameters
     ----------
     federal: srd.federal.form_2018
         instance de la classe srd.federal.form_2018 du module Federal
     """
+
     def __init__(self, federal):
-        add_params_as_attr(self, module_dir + '/oas/params/old_age_sec_2018.csv')
+        add_params_as_attr(self, module_dir + "/oas/params/old_age_sec_2018.csv")
         self.federal = federal
 
 
@@ -86,14 +92,15 @@ class program_2018(program_2017):
 class program_2019(program_2018):
     """
     Version du programme de 2019.
-    
+
     Parameters
     ----------
     federal: srd.federal.form_2019
         instance de la classe srd.federal.form_2019 du module Federal
     """
+
     def __init__(self, federal):
-        add_params_as_attr(self, module_dir + '/oas/params/old_age_sec_2019.csv')
+        add_params_as_attr(self, module_dir + "/oas/params/old_age_sec_2019.csv")
         self.federal = federal
 
 
@@ -102,14 +109,15 @@ class program_2019(program_2018):
 class program_2020(program_2019):
     """
     Version du programme de 2020.
-    
+
     Parameters
     ----------
     federal: srd.federal.form_2020
         instance de la classe srd.federal.form_2020 du module Federal
     """
+
     def __init__(self, federal):
-        add_params_as_attr(self, module_dir + '/oas/params/old_age_sec_2020.csv')
+        add_params_as_attr(self, module_dir + "/oas/params/old_age_sec_2020.csv")
         self.federal = federal
 
     def compute_net_inc_exemption(self, hh):
@@ -132,9 +140,26 @@ class program_2020(program_2019):
         for p in hh.sp:
             exempted_inc = min(p.inc_work, self.work_exempt)
             if p.inc_work > self.work_exempt:
-                exempted_inc += 0.5 * (min(p.inc_work, self.max_work_exempt)
-                                       - self.work_exempt)
-            payroll = p.payroll['cpp'] + p.payroll['cpp_supp'] + p.payroll['ei']
-            net_inc_exempt += max(0, p.fed_return['net_income'] - exempted_inc
-                                    - payroll)
+                exempted_inc += 0.5 * (
+                    min(p.inc_work, self.max_work_exempt) - self.work_exempt
+                )
+            payroll = p.payroll["cpp"] + p.payroll["cpp_supp"] + p.payroll["ei"]
+            net_inc_exempt += max(
+                0, p.fed_return["net_income"] - exempted_inc - payroll
+            )
         return net_inc_exempt
+
+
+class program_2021(program_2020):
+    """
+    Version du programme de 2021.
+
+    Parameters
+    ----------
+    federal: srd.federal.form_2021
+        instance de la classe srd.federal.form_2021 du module Federal
+    """
+
+    def __init__(self, federal):
+        add_params_as_attr(self, module_dir + "/oas/params/old_age_sec_2021.csv")
+        self.federal = federal
