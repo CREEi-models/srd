@@ -58,7 +58,7 @@ home_supp_min_age;70;int;;; ok
 home_supp_max_dep;25500;float;;; ok
 home_supp_max_non_dep;19500;float;;; ok
 home_supp_claw_rate;0.03;float;;; ok
-home_supp_cutoff;60895;float;indexation de 1.26% pour passer de 2020 a 2021;; ok
+home_supp_cutoff;60135;float;indexation de 1.26% pour passer de 2020 a 2021;; ok
 home_supp_rate;0.35;float;;; ok
 senior_assist_min_age;70;int;;; ok
 senior_assist_amount;209;float;;http://www.finances.gouv.qc.ca/documents/Autres/fr/AUTFR_RegimeImpot2021.pdf; ok
