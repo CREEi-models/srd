@@ -158,7 +158,9 @@ class template:
             Montant de la déduction.
         """
         try:
-            return p.contrib_cpp_self / 2
+            p.contrib_cpp_deduc = p.contrib_cpp_self / 2
+            p.contrib_cpp_deduc += min(p.contrib_cpp * 0.052632, (p.inc_earn - 3500 ) * 0.0030)
+            return p.contrib_cpp_deduc
         except AttributeError as e:
             msg = 'le ménage doit être passé dans payroll pour obtenir les contributions cpp/rrq et rqap'
             raise Exception(msg) from e
