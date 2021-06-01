@@ -147,6 +147,7 @@ class template:
             Montant de la déduction.
         """
         p.qc_cpp_deduction = p.contrib_cpp_self / 2
+        p.qc_cpp_deduction += min(p.contrib_cpp * 0.052632, (p.inc_earn - 3500)* 0.0030)
         p.qc_qpip_deduction = self.qpip_deduc_rate * p.contrib_qpip_self
         return p.qc_cpp_deduction + p.qc_qpip_deduction
 
