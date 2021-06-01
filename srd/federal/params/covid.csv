@@ -1,0 +1,8 @@
+variable;value;type;definition;source;comments
+begin_april;3;int;;;programs begin in april 2020 (march 15th in reality)
+cerb_base;2000;float;;https://www.canada.ca/en/revenue-agency/services/benefits/apply-for-cerb-with-cra.html;
+cerb_min_inc_work;5000;float;;;
+cerb_max_earn;1000;float;;;max monthly earnings allowed
+cesb_base;1250;float;;https://www.canada.ca/en/employment-social-development/news/2020/04/government-of-canada-introduces-legislation-to-support-students-in-need.html;
+cesb_supp;750;float;;;
+cesb_max_earn;1000;float;;;max monthly earnings allowed

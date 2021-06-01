@@ -1,5 +1,9 @@
 import numpy as np
-from srd import federal, oas, quebec, ontario, payroll, assistance, covid, ei, Person, Hhold, Dependent
+from srd import federal, oas, quebec, ontario, payroll, assistance, ei, Person, Hhold, Dependent
+from srd.federal import covidfed
+from srd.quebec import covidqc
+
+
 from itertools import product
 import pandas as pd
 from multiprocessing import cpu_count, Pool
@@ -23,29 +27,33 @@ class tax:
         vrai si le calcul des cotisations sociales est demandé
     iass: boolean
         vrai si le calcul des prestations d'aide sociale est demandé
-    policy: policy
-        instance de la classe *policy* du module *covid*
+    policyqc: policy
+        instance de la classe *policyqc* du module *covid*    
+    policyfed: policy
+        instance de la classe *policyfed* du module *covid*
     """
     def __init__(self, year, ifed=True, ioas=True, iprov=True,
-                 ipayroll=True, iass=True, policy=covid.policy()):
+                 ipayroll=True, iass=True, policyqc=covidqc.policyqc(), policyfed=covidfed.policyfed()):
         self.year = year
         self.ifed = ifed
         self.iprov = iprov
         self.ipayroll = ipayroll
         self.ioas = ioas
         self.iass = iass
-        self.policy = policy
+        self.policyqc = policyqc 
+        self.policyfed = policyfed
 
         if ipayroll:
             self.payroll = payroll(year)
-        if policy.some_measures and year == 2020:
-            self.covid = covid.programs(policy)
-        if policy.iei and year == 2020:
+        if (policyqc.some_measures or policyfed.some_measures) and year == 2020:
+            self.covidqc = covidqc.programs(policyqc)
+            self.covidfed = covidfed.programs(policyfed)
+        if policyfed.iei and year == 2020:
             self.ei = ei.program(year)
         if ifed:
-            self.federal = federal.form(year, policy)
+            self.federal = federal.form(year, policyfed)
         if iprov:
-            self.prov = {'qc': quebec.form(year),
+            self.prov = {'qc': quebec.form(year, policyqc),
                          'on': ontario.form(year)}
         if ioas:
             self.oas = oas.program(year, self.federal)
@@ -141,9 +149,9 @@ class tax:
             self.compute_payroll(hh)  # put payroll before oas
         if self.ioas:
             self.compute_oas(hh)
-        if self.policy.some_measures and self.year == 2020:
+        if (self.policyfed.some_measures or self.policyqc.some_measures) and self.year == 2020:
             self.compute_covid(hh)
-        if self.policy.iei and self.year == 2020:
+        if self.policyfed.iei and self.year == 2020:
             self.compute_ei(hh)
         if self.ifed:
             self.compute_federal(hh)
@@ -207,7 +215,8 @@ class tax:
         hh: Hhold
             instance de la classe Hhold
         """
-        self.covid.compute(hh)
+        self.covidfed.compute(hh)
+        self.covidqc.compute(hh)
 
     def compute_ei(self, hh):
         """

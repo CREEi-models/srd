@@ -1,19 +1,21 @@
-from srd import add_params_as_attr, get_params, add_schedule_as_attr, covid
+from srd import add_params_as_attr, get_params, add_schedule_as_attr
+from srd.federal import covidfed
 import os
+import numpy as np
 from srd.federal import template
 from srd import ei
 module_dir = os.path.dirname(os.path.dirname(__file__))
 
 # wrapper to pick correct year
-def form(year, policy=covid.policy()):
+def form(year, policyfed=covidfed.policyfed()):
     """
     Fonction qui permet de sélectionner le formulaire d'impôt fédéral par année.
 
     Parameters
     ----------
     year: int
-        année (présentement entre 2016 et 2020)
-    policy: policy
+        année (présentement entre 2016 et 2021)
+    policyfed: policy
         instance de la classe policy
     Returns
     -------
@@ -29,9 +31,9 @@ def form(year, policy=covid.policy()):
     if year==2019:
         p = form_2019()
     if year==2020:
-        p = form_2020(policy)
+        p = form_2020(policyfed)
     if year == 2021:
-        p = form_2021(policy)
+        p = form_2021(policyfed)
     return p
 
 class form_2016(template):
@@ -94,7 +96,7 @@ class form_2020(form_2019):
     policy: policy
         instance de la classe policy
     """
-    def __init__(self, policy):
+    def __init__(self, policyfed):
         add_params_as_attr(self,module_dir+'/federal/params/federal_2020.csv')
         add_params_as_attr(self, module_dir + '/federal/params/fed_witb_qc_2020.csv')
         add_schedule_as_attr(self, module_dir + '/federal/params/schedule_2020.csv')
@@ -103,11 +105,11 @@ class form_2020(form_2019):
             self.witb_params[prov] = get_params(
                 module_dir + f'/federal/params/fed_witb_{prov}_2020.csv')
 
-        self.policy = policy
-        if policy.icovid_ccb:
+        self.policyfed = policyfed
+        if policyfed.icovid_ccb:
             self.ccb_young += self.ccb_covid_supp
             self.ccb_old += self.ccb_covid_supp
-        if policy.icovid_gst:
+        if policyfed.icovid_gst:
             self.gst_cred_base *= 2
             self.gst_cred_other *= 2
         # note: the measures to increase ccb and gst_credit are based on fiscal year 2019 in reality
@@ -187,7 +189,7 @@ class form_2021(form_2020):
         instance de la classe policy
     """
 
-    def __init__(self, policy):
+    def __init__(self, policyfed):
         add_params_as_attr(self, module_dir + "/federal/params/federal_2021.csv")
         add_params_as_attr(self, module_dir + "/federal/params/fed_witb_qc_2021.csv")
         add_schedule_as_attr(self, module_dir + "/federal/params/schedule_2021.csv")

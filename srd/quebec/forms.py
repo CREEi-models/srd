@@ -1,12 +1,13 @@
 import os
 from srd import add_params_as_attr, add_schedule_as_attr
 from srd.quebec import template
+from srd.quebec import covidqc
 
 module_dir = os.path.dirname(os.path.dirname(__file__))
 
 
 # wrapper to pick correct year
-def form(year):
+def form(year, policyqc=covidqc.policyqc()):
     """
     Fonction qui permet de sélectionner le formulaire d'impôt provincial par année.
 
@@ -14,6 +15,8 @@ def form(year):
     ----------
     year: int
         année (présentement entre 2016 et 2021)
+    policyqc: policy
+        instance de la classe policy
     Returns
     -------
     class instance
@@ -28,9 +31,9 @@ def form(year):
     if year == 2019:
         p = form_2019()
     if year == 2020:
-        p = form_2020()
+        p = form_2020(policyqc)
     if year == 2021:
-        p = form_2021()
+        p = form_2021(policyqc)
     return p
 
 
@@ -167,17 +170,29 @@ class form_2019(form_2018):
 class form_2020(form_2019):
     """
     Formulaire d'impôt de 2020.
+
+    Parameters
+    ----------
+    policy: policy
+        instance de la classe policy
     """
-    def __init__(self):
+    def __init__(self, policyqc):
         add_params_as_attr(self, module_dir + '/quebec/params/measures_2020.csv')
         add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2020.csv')
         add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2020.csv')
+        
+        self.policyqc = policyqc
 
 class form_2021(form_2020):
     """
     Formulaire d'impôt de 2021.
+    
+    Parameters
+    ----------
+    policy: policy
+        instance de la classe policy
     """
-    def __init__(self):
+    def __init__(self, policyqc):
         add_params_as_attr(self, module_dir + '/quebec/params/measures_2021.csv')
         add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2021.csv')
         add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2021.csv')

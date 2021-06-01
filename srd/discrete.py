@@ -1,5 +1,6 @@
 from srd import tax
-from srd import covid
+from srd.federal import covidfed
+from srd.quebec import covidqc
 import numpy as np
 import pandas as pd
 from numba import njit, prange
@@ -80,9 +81,13 @@ class behavior:
             self.data = self.data.merge(budget,left_index=True,right_index=True)
         else:
             data = self.data.copy()
-            cov = covid.policy()
-            cov.shut_all_measures()
-            self.tax = tax(year,policy=cov)
+            covfed = covidfed.policy()
+            covqc = covidqc.policy()
+            
+            covfed.shut_all_measures()
+            covqc.shut_all_measures()
+
+            self.tax = tax(year,policyqc=covqc,policyfed=covfed)
             for j,h in enumerate(self.gridh_c):
                 f = partial(self.dispinc,hours=h)
                 self.data['cons_'+str(j)] = data.swifter.apply(f,axis=1)
