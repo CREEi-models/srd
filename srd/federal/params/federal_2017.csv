@@ -52,3 +52,6 @@ gst_cred_base_amount;9073;float;;;
 chcare_young;8000;float;;;
 chcare_old;5000;float;;;
 chcare_rate_inc;0.66666;float;;;
+ded_qpp_rate;0.052632;float;;; ok
+ded_qpp_exempt;0;int;;; ok
+ded_qpp_claw_rate;0;float;;; ok

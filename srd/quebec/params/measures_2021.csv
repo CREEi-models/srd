@@ -83,3 +83,7 @@ exp_work_max_work_inc_64;10000;float;;; assumed constant ok
 exp_work_max_work_inc_65;11000;float;;; assumed constant ok
 exp_work_age_born_bef51;70;int;;; ok
 exp_work_min_amount_born_51;600;float;;; ok
+ded_qpp_rate;0.052632;float;;; ok
+ded_qpp_exempt;3500;int;;; ok
+ded_qpp_claw_rate;0.03;float;;; ok
+
