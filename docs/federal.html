@@ -1,23 +1,31 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="fr" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="fr" > <!--<![endif]-->
+<html class="writer-html5" lang="fr" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Impôt fédéral &mdash; Documentation SRD </title>
   
 
   
-  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -30,10 +38,6 @@
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Recherche" href="search.html" />
     <link rel="next" title="Impôt du Québec" href="quebec.html" />
@@ -65,7 +69,7 @@
           
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Rechercher docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -74,6 +78,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
     
@@ -110,6 +115,7 @@
     <a href="genindex.html">Index</a>
   
         </div>
+        
       </div>
     </nav>
 
@@ -144,19 +150,21 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html">Docs</a> &raquo;</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>Impôt fédéral</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
-            
-            <a href="_sources/federal.rst.txt" rel="nofollow"> View page source</a>
+          
+            <a href="_sources/federal.rst.txt" rel="nofollow"> Afficher la source de la page</a>
           
         
       </li>
@@ -175,7 +183,7 @@
 <h2>Survol<a class="headerlink" href="#survol" title="Lien permanent vers ce titre">¶</a></h2>
 <p>L’impôt fédéral est pris en charge par le module <em>federal</em>. Ce module contient un gabarit que nous documentons ci-dessous ainsi que des classes dérivées spécifiques pour chaque année.</p>
 <p>La fonction <em>form</em> permet de choisir l’année de la déclaration de revenus et ira tirer une instance du rapport pour cette année. L’instance est retournée par la fonction.</p>
-<dl class="function">
+<dl class="py function">
 <dt id="srd.federal.form">
 <code class="sig-prename descclassname">srd.federal.</code><code class="sig-name descname">form</code><span class="sig-paren">(</span><em class="sig-param">year</em>, <em class="sig-param">policy=&lt;srd.covid.programs.policy object&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui permet de sélectionner le formulaire d’impôt fédéral par année.</p>
@@ -200,13 +208,13 @@
 <h2>Gabarit du rapport<a class="headerlink" href="#gabarit-du-rapport" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Nous utilisons un gabarit afin de créer les rapports chaque année. Quand l’impôt change seulement au niveau des paramètres d’une année à l’autre, le rapport ira seulement chercher les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou à en ajouter de nouvelles). Toutes les modifications de fonction survenues après l’année 2016 sont indiquées ci-dessous.</p>
 <p>Nous reproduisons ici la spécification du gabarit. Il est basé sur le rapport de 2016.</p>
-<dl class="class">
+<dl class="py class">
 <dt id="srd.federal.template">
 <em class="property">class </em><code class="sig-prename descclassname">srd.federal.</code><code class="sig-name descname">template</code><a class="headerlink" href="#srd.federal.template" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Gabarit pour l’impôt fédéral.</p>
-<dl class="method">
+<dl class="py method">
 <dt id="srd.federal.template.file">
-<code class="sig-name descname">file</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.file" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.file" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui permet de calculer les impôts.</p>
 <p>Cette fonction est celle qui calcule les déductions,
 les crédits non-remboursables et remboursables et les impôts nets.</p>
@@ -217,9 +225,9 @@ les crédits non-remboursables et remboursables et les impôts nets.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.federal.template.calc_gross_income">
-<code class="sig-name descname">calc_gross_income</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_gross_income" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">calc_gross_income</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_gross_income" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le revenu total (brut).</p>
 <p>Cette fonction correspond au revenu total d’une personne aux fins de l’impôt.</p>
 <dl class="field-list simple">
@@ -229,9 +237,9 @@ les crédits non-remboursables et remboursables et les impôts nets.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.federal.template.calc_net_income">
-<code class="sig-name descname">calc_net_income</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_net_income" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">calc_net_income</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_net_income" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le revenu net au sens de l’impôt.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -240,9 +248,9 @@ les crédits non-remboursables et remboursables et les impôts nets.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.federal.template.calc_taxable_income">
-<code class="sig-name descname">calc_taxable_income</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_taxable_income" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">calc_taxable_income</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_taxable_income" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le revenu imposable au sens de l’impôt.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -251,9 +259,9 @@ les crédits non-remboursables et remboursables et les impôts nets.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.federal.template.calc_deduc_gross_income">
-<code class="sig-name descname">calc_deduc_gross_income</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_deduc_gross_income" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">calc_deduc_gross_income</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_deduc_gross_income" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule les déductions.</p>
 <p>Cette fonction fait la somme des différentes déductions du contribuable.</p>
 <dl class="field-list simple">
@@ -266,9 +274,9 @@ les crédits non-remboursables et remboursables et les impôts nets.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.federal.template.chcare">
-<code class="sig-name descname">chcare</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.chcare" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">chcare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.chcare" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule la déduction fédérale pour frais de garde.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -290,9 +298,9 @@ est reçu par le conjoint qui a le revenu le moins élevé.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.federal.template.cpp_deduction">
-<code class="sig-name descname">cpp_deduction</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.cpp_deduction" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">cpp_deduction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.cpp_deduction" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule la déduction pour les cotisations au RRQ / RPC pour les travailleurs autonomes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -307,9 +315,9 @@ est reçu par le conjoint qui a le revenu le moins élevé.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.federal.template.qpip_deduction">
-<code class="sig-name descname">qpip_deduction</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.qpip_deduction" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">qpip_deduction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.qpip_deduction" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule la déduction pour les cotisations au RQAP pour les travailleurs autonomes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -324,9 +332,9 @@ est reçu par le conjoint qui a le revenu le moins élevé.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.federal.template.calc_deduc_net_income">
-<code class="sig-name descname">calc_deduc_net_income</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_deduc_net_income" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">calc_deduc_net_income</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_deduc_net_income" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule les déductions suivantes:
 1. Pertes en capital net des autres années;
 2. Déduction pour gain en capital exonéré.</p>
@@ -338,9 +346,9 @@ est reçu par le conjoint qui a le revenu le moins élevé.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.federal.template.calc_tax">
-<code class="sig-name descname">calc_tax</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_tax" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">calc_tax</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_tax" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule l’impôt à payer selon la table d’impôt.</p>
 <p>Cette fonction utilise la table d’impôt de l’année en cours.</p>
 <dl class="field-list simple">
@@ -350,9 +358,9 @@ est reçu par le conjoint qui a le revenu le moins élevé.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.federal.template.calc_non_refundable_tax_credits">
-<code class="sig-name descname">calc_non_refundable_tax_credits</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_non_refundable_tax_credits" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">calc_non_refundable_tax_credits</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_non_refundable_tax_credits" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule les crédits d’impôt non-remboursables.</p>
 <p>Cette fonction fait la somme de tous les crédits modélisés
 en appelant les fonctions définies ci-après.</p>
@@ -366,9 +374,9 @@ en appelant les fonctions définies ci-après.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.federal.template.get_age_cred">
-<code class="sig-name descname">get_age_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_age_cred" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">get_age_cred</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_age_cred" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit d’impôt non-remboursable en raison de l’âge.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -383,9 +391,9 @@ en appelant les fonctions définies ci-après.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.federal.template.get_cpp_contrib_cred">
-<code class="sig-name descname">get_cpp_contrib_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_cpp_contrib_cred" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">get_cpp_contrib_cred</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_cpp_contrib_cred" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit d’impôt non-remboursable pour cotisations au RRQ / RPC.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -400,9 +408,9 @@ en appelant les fonctions définies ci-après.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.federal.template.get_qpip_cred">
-<code class="sig-name descname">get_qpip_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_qpip_cred" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">get_qpip_cred</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_qpip_cred" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit d’impôt non-remboursable pour cotisations
 au RQAP de travailleur salarié.</p>
 <dl class="field-list simple">
@@ -418,9 +426,9 @@ au RQAP de travailleur salarié.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.federal.template.get_qpip_self_cred">
-<code class="sig-name descname">get_qpip_self_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_qpip_self_cred" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">get_qpip_self_cred</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_qpip_self_cred" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit d’impôt non-remboursable
 pour cotisations au RQAP de travailleur autonome.</p>
 <dl class="field-list simple">
@@ -436,9 +444,9 @@ pour cotisations au RQAP de travailleur autonome.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.federal.template.get_empl_cred">
-<code class="sig-name descname">get_empl_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_empl_cred" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">get_empl_cred</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_empl_cred" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le montant canadien pour emploi.</p>
 <p>Ce crédit est non-remboursable.</p>
 <dl class="field-list simple">
@@ -454,9 +462,9 @@ pour cotisations au RQAP de travailleur autonome.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.federal.template.get_pension_cred">
-<code class="sig-name descname">get_pension_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_pension_cred" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">get_pension_cred</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_pension_cred" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit d’impôt non-remboursable pour revenu de retraite.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -474,9 +482,9 @@ pour cotisations au RQAP de travailleur autonome.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.federal.template.get_disabled_cred">
-<code class="sig-name descname">get_disabled_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_disabled_cred" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">get_disabled_cred</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_disabled_cred" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit d’impôt non-remboursable pour invalidité.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -491,9 +499,9 @@ pour cotisations au RQAP de travailleur autonome.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.federal.template.get_med_exp_nr_cred">
-<code class="sig-name descname">get_med_exp_nr_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_med_exp_nr_cred" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">get_med_exp_nr_cred</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_med_exp_nr_cred" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit d’impôt non-remboursable pour frais médicaux.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -511,9 +519,9 @@ pour cotisations au RQAP de travailleur autonome.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.federal.template.get_donations_cred">
-<code class="sig-name descname">get_donations_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_donations_cred" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">get_donations_cred</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_donations_cred" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit d’impôt non-remboursable pour dons.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -528,9 +536,9 @@ pour cotisations au RQAP de travailleur autonome.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.federal.template.div_tax_credit">
-<code class="sig-name descname">div_tax_credit</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.div_tax_credit" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">div_tax_credit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.div_tax_credit" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit d’impôt pour dividendes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -539,9 +547,9 @@ pour cotisations au RQAP de travailleur autonome.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.federal.template.calc_refundable_tax_credits">
-<code class="sig-name descname">calc_refundable_tax_credits</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_refundable_tax_credits" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">calc_refundable_tax_credits</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_refundable_tax_credits" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui fait la somme des crédits remboursables, en appelant les fonctions suivantes, décrites ci-après: <em>abatment</em>, <em>ccb</em>, <em>get_witb</em>, <em>get_witbds</em>, <em>med_exp</em>, <em>gst_hst_credit</em>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -553,9 +561,9 @@ pour cotisations au RQAP de travailleur autonome.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.federal.template.abatment">
-<code class="sig-name descname">abatment</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.abatment" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">abatment</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.abatment" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule l’abattement du Québec à l’impôt fédéral.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -573,9 +581,9 @@ pour cotisations au RQAP de travailleur autonome.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.federal.template.ccb">
-<code class="sig-name descname">ccb</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em>, <em class="sig-param">iclaw=True</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.ccb" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">ccb</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em>, <em class="sig-param"><span class="n">iclaw</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.ccb" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule l’Allocation canadienne pour enfants (ACE).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -594,9 +602,9 @@ pour cotisations au RQAP de travailleur autonome.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.federal.template.get_witb">
-<code class="sig-name descname">get_witb</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_witb" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">get_witb</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_witb" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule l’Allocation canadienne pour les travailleurs (ACT).</p>
 <p>Avant 2019, celle-ci était appelée la Prestation fiscale pour le revenu de travail (PFRT).</p>
 <p>Dans le cas d’un couple, la prestation est répartie au prorata des revenus de travail.</p>
@@ -616,9 +624,9 @@ pour cotisations au RQAP de travailleur autonome.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.federal.template.get_witbds">
-<code class="sig-name descname">get_witbds</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_witbds" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">get_witbds</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_witbds" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le supplément pour invalidité à la Prestation fiscale pour le revenu de travail (SIPFRT).</p>
 <p>À partir de 2019, le SIPFRT devient le supplément pour invalidité à l’Allocation canadienne pour les travailleurs (ACT).</p>
 <dl class="field-list simple">
@@ -637,9 +645,9 @@ pour cotisations au RQAP de travailleur autonome.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.federal.template.compute_witb_witbds">
-<code class="sig-name descname">compute_witb_witbds</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em>, <em class="sig-param">rate</em>, <em class="sig-param">base</em>, <em class="sig-param">witb_max</em>, <em class="sig-param">claw_rate</em>, <em class="sig-param">exemption</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.compute_witb_witbds" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">compute_witb_witbds</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em>, <em class="sig-param"><span class="n">rate</span></em>, <em class="sig-param"><span class="n">base</span></em>, <em class="sig-param"><span class="n">witb_max</span></em>, <em class="sig-param"><span class="n">claw_rate</span></em>, <em class="sig-param"><span class="n">exemption</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.compute_witb_witbds" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction appelée par <em>get_witb</em> et <em>get_witbds</em> pour calculer
 le montant de la PFRT et du SIPFRT.</p>
 <dl class="field-list simple">
@@ -663,9 +671,9 @@ le montant de la PFRT et du SIPFRT.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.federal.template.med_exp">
-<code class="sig-name descname">med_exp</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.med_exp" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">med_exp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.med_exp" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit remboursable pour frais médicaux.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -683,9 +691,9 @@ le montant de la PFRT et du SIPFRT.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.federal.template.gst_hst_credit">
-<code class="sig-name descname">gst_hst_credit</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.gst_hst_credit" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">gst_hst_credit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.gst_hst_credit" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit pour la taxe sur les produits et services/taxe de vente harmonisée (TPS/TVH).</p>
 <p>Le montant du crédit est reçu par le conjoint au revenu imposable le plus élevé.</p>
 <dl class="field-list simple">
@@ -707,7 +715,7 @@ le montant de la PFRT et du SIPFRT.</p>
 </dd></dl>
 
 <p>Le gabarit collige les résultats dans un formulaire d’impôt qui sera rattaché à la personne sous la forme d’un dictionnaire Python. Cette procédure permet de différencier les variables générées par l’impôt des attributs d’une personne qui font partie de son profil. C’est la fonction <em>create_return()</em> qui fait ce travail.</p>
-<dl class="function">
+<dl class="py function">
 <dt id="srd.federal.create_return">
 <code class="sig-prename descclassname">srd.federal.</code><code class="sig-name descname">create_return</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.create_return" title="Lien permanent vers cette définition">¶</a></dt>
 <dd></dd></dl>
@@ -715,42 +723,42 @@ le montant de la PFRT et du SIPFRT.</p>
 </div>
 <div class="section" id="fonctions-specifiques-ou-modifiees-par-annee">
 <h2>Fonctions spécifiques ou modifiées par année<a class="headerlink" href="#fonctions-specifiques-ou-modifiees-par-annee" title="Lien permanent vers ce titre">¶</a></h2>
-<dl class="class">
+<dl class="py class">
 <dt id="srd.federal.form_2016">
 <em class="property">class </em><code class="sig-prename descclassname">srd.federal.</code><code class="sig-name descname">form_2016</code><a class="headerlink" href="#srd.federal.form_2016" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Formulaire d’impôt de 2016.</p>
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="srd.federal.form_2017">
 <em class="property">class </em><code class="sig-prename descclassname">srd.federal.</code><code class="sig-name descname">form_2017</code><a class="headerlink" href="#srd.federal.form_2017" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Formulaire d’impôt de 2017.</p>
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="srd.federal.form_2018">
 <em class="property">class </em><code class="sig-prename descclassname">srd.federal.</code><code class="sig-name descname">form_2018</code><a class="headerlink" href="#srd.federal.form_2018" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Formulaire d’impôt de 2018.</p>
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="srd.federal.form_2019">
 <em class="property">class </em><code class="sig-prename descclassname">srd.federal.</code><code class="sig-name descname">form_2019</code><a class="headerlink" href="#srd.federal.form_2019" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Formulaire d’impôt de 2019.</p>
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="srd.federal.form_2020">
-<em class="property">class </em><code class="sig-prename descclassname">srd.federal.</code><code class="sig-name descname">form_2020</code><span class="sig-paren">(</span><em class="sig-param">policy</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2020" title="Lien permanent vers cette définition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">srd.federal.</code><code class="sig-name descname">form_2020</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">policy</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2020" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Formulaire d’impôt de 2020.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>policy</strong> (<a class="reference internal" href="covid.html#srd.covid.policy" title="srd.covid.policy"><em>policy</em></a>) – instance de la classe policy</p>
 </dd>
 </dl>
-<dl class="method">
+<dl class="py method">
 <dt id="srd.federal.form_2020.compute_basic_amount">
-<code class="sig-name descname">compute_basic_amount</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2020.compute_basic_amount" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">compute_basic_amount</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2020.compute_basic_amount" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le montant personnel de base.</p>
 <p>Le calcul de ce montant change en 2020.</p>
 <dl class="field-list simple">
@@ -766,9 +774,9 @@ le montant de la PFRT et du SIPFRT.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.federal.form_2020.calc_net_income">
-<code class="sig-name descname">calc_net_income</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2020.calc_net_income" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">calc_net_income</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2020.calc_net_income" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le revenu net au sens de l’impôt.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -777,9 +785,9 @@ le montant de la PFRT et du SIPFRT.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.federal.form_2020.repayments_ei">
-<code class="sig-name descname">repayments_ei</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2020.repayments_ei" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">repayments_ei</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2020.repayments_ei" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le montant du remboursement d’assurance-emploi et qui
 ajuste le montant des bénéfices, le revenu net et le revenu brut.</p>
 <dl class="field-list simple">
@@ -805,29 +813,29 @@ ajuste le montant des bénéfices, le revenu net et le revenu brut.</p>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="quebec.html" class="btn btn-neutral float-right" title="Impôt du Québec" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="actors.html" class="btn btn-neutral float-left" title="Les acteurs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="quebec.html" class="btn btn-neutral float-right" title="Impôt du Québec" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="actors.html" class="btn btn-neutral float-left" title="Les acteurs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2020, Équipe CREEi
+        &#169; Copyright 2020, Équipe CREEi.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -835,7 +843,6 @@ ajuste le montant des bénéfices, le revenu net et le revenu brut.</p>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

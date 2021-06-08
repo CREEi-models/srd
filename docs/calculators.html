@@ -1,23 +1,31 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="fr" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="fr" > <!--<![endif]-->
+<html class="writer-html5" lang="fr" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Calculateur de revenu disponible &mdash; Documentation SRD </title>
   
 
   
-  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -30,10 +38,6 @@
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Recherche" href="search.html" />
     <link rel="next" title="Exemple de calcul de l’impôt fédéral" href="TutorialFed.html" />
@@ -65,7 +69,7 @@
           
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Rechercher docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -74,6 +78,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
     
@@ -109,6 +114,7 @@
     <a href="genindex.html">Index</a>
   
         </div>
+        
       </div>
     </nav>
 
@@ -143,19 +149,21 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html">Docs</a> &raquo;</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>Calculateur de revenu disponible</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
-            
-            <a href="_sources/calculators.rst.txt" rel="nofollow"> View page source</a>
+          
+            <a href="_sources/calculators.rst.txt" rel="nofollow"> Afficher la source de la page</a>
           
         
       </li>
@@ -177,7 +185,7 @@
 <div class="section" id="les-fonctions-du-calculateur">
 <h2>Les fonctions du calculateur<a class="headerlink" href="#les-fonctions-du-calculateur" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Le calculateur contient les fonctions indiquées sous la description de la classe principale.</p>
-<dl class="class">
+<dl class="py class">
 <dt id="srd.tax">
 <em class="property">class </em><code class="sig-prename descclassname">srd.</code><code class="sig-name descname">tax</code><span class="sig-paren">(</span><em class="sig-param">year</em>, <em class="sig-param">ifed=True</em>, <em class="sig-param">ioas=True</em>, <em class="sig-param">iprov=True</em>, <em class="sig-param">ipayroll=True</em>, <em class="sig-param">iass=True</em>, <em class="sig-param">policy=&lt;srd.covid.programs.policy object&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Classe générale pour le calcul des impôts, cotisations et prestations.</p>
@@ -194,9 +202,9 @@
 </ul>
 </dd>
 </dl>
-<dl class="method">
+<dl class="py method">
 <dt id="srd.tax.compute">
-<code class="sig-name descname">compute</code><span class="sig-paren">(</span><em class="sig-param">hh</em>, <em class="sig-param">n_points=1</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">compute</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hh</span></em>, <em class="sig-param"><span class="n">n_points</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Cette fonction transfère des revenus de pension pour les couples admissibles
 et retient la solution qui maximise le revenu disponible familial.
 Si n_points=0, pas de fractionnement des revenus de pension. Par défaut
@@ -215,9 +223,9 @@ pension</p></li>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.tax.compute_with_transfer">
-<code class="sig-name descname">compute_with_transfer</code><span class="sig-paren">(</span><em class="sig-param">hh</em>, <em class="sig-param">transfer</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute_with_transfer" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">compute_with_transfer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hh</span></em>, <em class="sig-param"><span class="n">transfer</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute_with_transfer" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Cette fonction effectue les transferts de revenus de pension et appelle
 la fonction qui simule le ménage.</p>
 <dl class="field-list simple">
@@ -230,9 +238,9 @@ la fonction qui simule le ménage.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.tax.compute_all">
-<code class="sig-name descname">compute_all</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute_all" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">compute_all</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute_all" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Calcule tous les éléments demandés.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -241,9 +249,9 @@ la fonction qui simule le ménage.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.tax.compute_oas">
-<code class="sig-name descname">compute_oas</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute_oas" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">compute_oas</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute_oas" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Calcul des prestations de PSV, SRG, Allocation et Allocation au survivant.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -252,9 +260,9 @@ la fonction qui simule le ménage.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.tax.compute_federal">
-<code class="sig-name descname">compute_federal</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute_federal" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">compute_federal</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute_federal" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Calcul de l’impôt fédéral.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -263,9 +271,9 @@ la fonction qui simule le ménage.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.tax.compute_prov">
-<code class="sig-name descname">compute_prov</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute_prov" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">compute_prov</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute_prov" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Calcul de l’impôt provincial.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -274,9 +282,9 @@ la fonction qui simule le ménage.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.tax.compute_payroll">
-<code class="sig-name descname">compute_payroll</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute_payroll" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">compute_payroll</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute_payroll" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Calcul des cotisations sociales.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -285,9 +293,9 @@ la fonction qui simule le ménage.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.tax.compute_covid">
-<code class="sig-name descname">compute_covid</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute_covid" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">compute_covid</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute_covid" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Calcul de la PCU, de la PCUE et du PIRTE (pour 2020).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -296,9 +304,9 @@ la fonction qui simule le ménage.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.tax.compute_ass">
-<code class="sig-name descname">compute_ass</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute_ass" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">compute_ass</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute_ass" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Calcul des prestations d’aide sociale.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -307,16 +315,16 @@ la fonction qui simule le ménage.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.tax.compute_after_tax_inc">
-<code class="sig-name descname">compute_after_tax_inc</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute_after_tax_inc" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">compute_after_tax_inc</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.compute_after_tax_inc" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Calcul du revenu après impôt fédéral et provincial.</p>
 <p>Calcul fait au niveau individuel et ensuite rattaché à la personne; le résultat au niveau du ménage est aussi disponible.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.tax.disp_inc">
-<code class="sig-name descname">disp_inc</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.disp_inc" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">disp_inc</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.tax.disp_inc" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Calcul du revenu disponible après impôts, cotisations sociales, épargne (positive ou négative) et prestations.</p>
 <p>Calcul fait au niveau individuel et ensuite rattaché à la personne; le résultat au niveau du ménage est aussi disponible.</p>
 </dd></dl>
@@ -331,29 +339,29 @@ la fonction qui simule le ménage.</p>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="TutorialFed.html" class="btn btn-neutral float-right" title="Exemple de calcul de l’impôt fédéral" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="covid.html" class="btn btn-neutral float-left" title="Prestations liées à la COVID-19" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="TutorialFed.html" class="btn btn-neutral float-right" title="Exemple de calcul de l’impôt fédéral" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="covid.html" class="btn btn-neutral float-left" title="Prestations liées à la COVID-19" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2020, Équipe CREEi
+        &#169; Copyright 2020, Équipe CREEi.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -361,7 +369,6 @@ la fonction qui simule le ménage.</p>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

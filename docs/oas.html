@@ -1,23 +1,31 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="fr" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="fr" > <!--<![endif]-->
+<html class="writer-html5" lang="fr" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Pension de la sécurité de la vieillesse &mdash; Documentation SRD </title>
   
 
   
-  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -30,10 +38,6 @@
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Recherche" href="search.html" />
     <link rel="next" title="Cotisations sociales" href="payroll.html" />
@@ -65,7 +69,7 @@
           
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Rechercher docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -74,6 +78,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
     
@@ -110,6 +115,7 @@
     <a href="genindex.html">Index</a>
   
         </div>
+        
       </div>
     </nav>
 
@@ -144,19 +150,21 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html">Docs</a> &raquo;</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>Pension de la sécurité de la vieillesse</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
-            
-            <a href="_sources/oas.rst.txt" rel="nofollow"> View page source</a>
+          
+            <a href="_sources/oas.rst.txt" rel="nofollow"> Afficher la source de la page</a>
           
         
       </li>
@@ -176,9 +184,9 @@
 <p>Le programme de la Sécurité à la vieillesse est pris en charge par le module <em>oas</em> et comprend la Pension de la sécurité à la vieillesse (PSV), le Supplément de revenu garanti (SRG), l’Allocation au conjoint et l’Allocation au survivant. Ce module contient un gabarit que nous documentons ci-dessous ainsi que des classes dérivées spécifiques pour chaque année.</p>
 <p>La fonction <em>program</em> permet de choisir l’année du programme et ira tirer une instance du programme pour cette année. L’instance est retournée par la fonction.</p>
 <blockquote>
-<div><dl class="function">
+<div><dl class="py function">
 <dt id="srd.oas.program">
-<code class="sig-prename descclassname">srd.oas.</code><code class="sig-name descname">program</code><span class="sig-paren">(</span><em class="sig-param">year</em>, <em class="sig-param">federal</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.program" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-prename descclassname">srd.oas.</code><code class="sig-name descname">program</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">year</span></em>, <em class="sig-param"><span class="n">federal</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.program" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui permet de sélectionner le programme par année.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -202,13 +210,13 @@
 <h2>Gabarit du programme<a class="headerlink" href="#gabarit-du-programme" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Nous utilisons un gabarit afin de créer les programmes chaque année. Quand le programme change seulement au niveau des paramètres d’une année à l’autre, nous irons chercher seulement les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou à en ajouter de nouvelles). L’avantage des classes dérivées est de ne pas avoir à répéter toutes les fonctions d’une année à l’autre si celles-ci n’ont pas changé.</p>
 <p>Nous reproduisons ici la spécification du gabarit. Il est basé sur le programme en vigueur en 2016.</p>
-<dl class="class">
+<dl class="py class">
 <dt id="srd.oas.template">
 <em class="property">class </em><code class="sig-prename descclassname">srd.oas.</code><code class="sig-name descname">template</code><a class="headerlink" href="#srd.oas.template" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Classe qui contient un gabarit du programme de la Sécurité de la vieillesse (PSV, SRG, Allocation et Allocation au survivant), tel qu’il existait en 2016.</p>
-<dl class="method">
+<dl class="py method">
 <dt id="srd.oas.template.file">
-<code class="sig-name descname">file</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.file" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.file" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction pour faire une demande au programme et recevoir une prestation, en faisant appel à toutes les fonctions qui suivent.</p>
 <p>Ceci calcule les prestations pour la PSV, le SRG, l’Allocation et l’Allocation au survivant.</p>
 <dl class="field-list simple">
@@ -218,9 +226,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.oas.template.eligibility">
-<code class="sig-name descname">eligibility</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.eligibility" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">eligibility</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.eligibility" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui évalue l’admissibilité de la personne à chacun des 4 volets du programme.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -232,9 +240,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.oas.template.compute_net_income">
-<code class="sig-name descname">compute_net_income</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.compute_net_income" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">compute_net_income</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.compute_net_income" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le revenu net (sans la PSV).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -246,9 +254,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.oas.template.compute_net_inc_exemption">
-<code class="sig-name descname">compute_net_inc_exemption</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.compute_net_inc_exemption" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">compute_net_inc_exemption</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.compute_net_inc_exemption" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le revenu en sus de l’exemption aux fins du SRG sur les revenus du travail salarié.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -263,9 +271,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.oas.template.compute_pension">
-<code class="sig-name descname">compute_pension</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.compute_pension" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">compute_pension</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.compute_pension" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule la prestation de PSV.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -283,9 +291,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.oas.template.pension_clawback">
-<code class="sig-name descname">pension_clawback</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.pension_clawback" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">pension_clawback</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.pension_clawback" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule la récupération de la PSV, basée sur le revenu net qui inclut la PSV.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -303,9 +311,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.oas.template.gis">
-<code class="sig-name descname">gis</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em>, <em class="sig-param">income</em>, <em class="sig-param">low_high</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.gis" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">gis</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em>, <em class="sig-param"><span class="n">income</span></em>, <em class="sig-param"><span class="n">low_high</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.gis" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule la prestation de Supplément de revenu garanti.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -325,9 +333,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.oas.template.compute_allowance">
-<code class="sig-name descname">compute_allowance</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em>, <em class="sig-param">supp_max</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.compute_allowance" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">compute_allowance</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em>, <em class="sig-param"><span class="n">supp_max</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.compute_allowance" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le montant maximal de l’Allocation au survivant ou de l’Allocation au conjoint.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -346,9 +354,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.oas.template.survivor_allowance">
-<code class="sig-name descname">survivor_allowance</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.survivor_allowance" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">survivor_allowance</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.survivor_allowance" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule la prestation effective d’Allocation au survivant, incluant la récupération.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -366,9 +374,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.oas.template.couple_allowance">
-<code class="sig-name descname">couple_allowance</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.couple_allowance" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">couple_allowance</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.couple_allowance" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule la prestation effective d’Allocation au conjoint, en tenant compte du revenu.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -391,9 +399,9 @@
 </div>
 <div class="section" id="fonctions-specifiques-ou-modifiees-par-annee">
 <h2>Fonctions spécifiques ou modifiées par année<a class="headerlink" href="#fonctions-specifiques-ou-modifiees-par-annee" title="Lien permanent vers ce titre">¶</a></h2>
-<dl class="class">
+<dl class="py class">
 <dt id="srd.oas.programs.program_2016">
-<em class="property">class </em><code class="sig-prename descclassname">srd.oas.programs.</code><code class="sig-name descname">program_2016</code><span class="sig-paren">(</span><em class="sig-param">federal</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2016" title="Lien permanent vers cette définition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">srd.oas.programs.</code><code class="sig-name descname">program_2016</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">federal</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2016" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Version du programme de 2016.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -402,9 +410,9 @@
 </dl>
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="srd.oas.programs.program_2017">
-<em class="property">class </em><code class="sig-prename descclassname">srd.oas.programs.</code><code class="sig-name descname">program_2017</code><span class="sig-paren">(</span><em class="sig-param">federal</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2017" title="Lien permanent vers cette définition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">srd.oas.programs.</code><code class="sig-name descname">program_2017</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">federal</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2017" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Version du programme de 2017.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -413,9 +421,9 @@
 </dl>
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="srd.oas.programs.program_2018">
-<em class="property">class </em><code class="sig-prename descclassname">srd.oas.programs.</code><code class="sig-name descname">program_2018</code><span class="sig-paren">(</span><em class="sig-param">federal</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2018" title="Lien permanent vers cette définition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">srd.oas.programs.</code><code class="sig-name descname">program_2018</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">federal</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2018" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Version du programme de 2018.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -424,9 +432,9 @@
 </dl>
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="srd.oas.programs.program_2019">
-<em class="property">class </em><code class="sig-prename descclassname">srd.oas.programs.</code><code class="sig-name descname">program_2019</code><span class="sig-paren">(</span><em class="sig-param">federal</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2019" title="Lien permanent vers cette définition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">srd.oas.programs.</code><code class="sig-name descname">program_2019</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">federal</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2019" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Version du programme de 2019.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -435,18 +443,18 @@
 </dl>
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="srd.oas.programs.program_2020">
-<em class="property">class </em><code class="sig-prename descclassname">srd.oas.programs.</code><code class="sig-name descname">program_2020</code><span class="sig-paren">(</span><em class="sig-param">federal</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2020" title="Lien permanent vers cette définition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">srd.oas.programs.</code><code class="sig-name descname">program_2020</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">federal</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2020" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Version du programme de 2020.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>federal</strong> (<a class="reference internal" href="federal.html#srd.federal.form_2020" title="srd.federal.form_2020"><em>srd.federal.form_2020</em></a>) – instance de la classe srd.federal.form_2020 du module Federal</p>
 </dd>
 </dl>
-<dl class="method">
+<dl class="py method">
 <dt id="srd.oas.programs.program_2020.compute_net_inc_exemption">
-<code class="sig-name descname">compute_net_inc_exemption</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2020.compute_net_inc_exemption" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">compute_net_inc_exemption</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2020.compute_net_inc_exemption" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui remplace dans le gabarit (classe <em>srd.oas.template</em>) la fonction du même nom, et calcule le revenu net incluant l’exemption sur les revenus du travail salarié.</p>
 <p>À partir de 2020-2021, les revenus de travail autonome bénéficient également de l’exemption. Les revenus du travail entre 5 000 $ et 10 000 $ bénéficient d’une nouvelle exemption partielle de 50%.</p>
 <dl class="field-list simple">
@@ -472,29 +480,29 @@
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="payroll.html" class="btn btn-neutral float-right" title="Cotisations sociales" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="ontario.html" class="btn btn-neutral float-left" title="Impôt de l’Ontario" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="payroll.html" class="btn btn-neutral float-right" title="Cotisations sociales" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="ontario.html" class="btn btn-neutral float-left" title="Impôt de l’Ontario" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2020, Équipe CREEi
+        &#169; Copyright 2020, Équipe CREEi.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -502,7 +510,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

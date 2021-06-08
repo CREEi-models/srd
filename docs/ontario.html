@@ -1,23 +1,31 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="fr" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="fr" > <!--<![endif]-->
+<html class="writer-html5" lang="fr" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Impôt de l’Ontario &mdash; Documentation SRD </title>
   
 
   
-  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -30,10 +38,6 @@
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Recherche" href="search.html" />
     <link rel="next" title="Pension de la sécurité de la vieillesse" href="oas.html" />
@@ -65,7 +69,7 @@
           
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Rechercher docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -74,6 +78,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
     
@@ -110,6 +115,7 @@
     <a href="genindex.html">Index</a>
   
         </div>
+        
       </div>
     </nav>
 
@@ -144,19 +150,21 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html">Docs</a> &raquo;</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>Impôt de l’Ontario</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
-            
-            <a href="_sources/ontario.rst.txt" rel="nofollow"> View page source</a>
+          
+            <a href="_sources/ontario.rst.txt" rel="nofollow"> Afficher la source de la page</a>
           
         
       </li>
@@ -175,9 +183,9 @@
 <h2>Survol<a class="headerlink" href="#survol" title="Lien permanent vers ce titre">¶</a></h2>
 <p>L’impôt de l’Ontario est pris en charge par le module <em>ontario</em>. Ce module contient un gabarit que nous documentons ci-dessous ainsi que des classes dérivées spécifiques pour chaque année.</p>
 <p>La fonction <em>form</em> permet de choisir l’année de la déclaration de revenus et ira tirer une instance du rapport pour cette année. L’instance est retournée par la fonction.</p>
-<dl class="function">
+<dl class="py function">
 <dt id="srd.ontario.form">
-<code class="sig-prename descclassname">srd.ontario.</code><code class="sig-name descname">form</code><span class="sig-paren">(</span><em class="sig-param">year</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.form" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-prename descclassname">srd.ontario.</code><code class="sig-name descname">form</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">year</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.form" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui permet de sélectionner le formulaire d’impôt provincial par année.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -197,13 +205,13 @@
 <h2>Gabarit du rapport<a class="headerlink" href="#gabarit-du-rapport" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Nous utilisons un gabarit afin de créer les rapports chaque année. Quand l’impôt change seulement au niveau des paramètres d’une année à l’autre, le rapport ira seulement chercher les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou à en ajouter de nouvelles). Toutes les modifications de fonction survenues après l’année 2016 sont indiquées ci-dessous.</p>
 <p>Nous reproduisons ici la spécification du gabarit. Il est basé sur le rapport de 2016.</p>
-<dl class="class">
+<dl class="py class">
 <dt id="srd.ontario.template">
 <em class="property">class </em><code class="sig-prename descclassname">srd.ontario.</code><code class="sig-name descname">template</code><a class="headerlink" href="#srd.ontario.template" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Gabarit pour l’impôt provincial ontarien.</p>
-<dl class="method">
+<dl class="py method">
 <dt id="srd.ontario.template.file">
-<code class="sig-name descname">file</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.file" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.file" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui permet de calculer les impôts.</p>
 <p>Cette fonction est celle qui calcule les déductions, les crédits non-remboursables et remboursables et les impôts nets.</p>
 <dl class="field-list simple">
@@ -213,9 +221,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.ontario.template.copy_fed_return">
-<code class="sig-name descname">copy_fed_return</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.copy_fed_return" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">copy_fed_return</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.copy_fed_return" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui copie le revenu brut, les déductions, ainsi que les revenus nets et imposables du formulaire fédéral.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -224,9 +232,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.ontario.template.calc_tax">
-<code class="sig-name descname">calc_tax</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.calc_tax" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">calc_tax</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.calc_tax" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule l’impôt à payer selon la table d’impôt.</p>
 <p>Cette fonction utilise la table d’impôt de l’année en cours.</p>
 <dl class="field-list simple">
@@ -236,9 +244,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.ontario.template.calc_non_refundable_tax_credits">
-<code class="sig-name descname">calc_non_refundable_tax_credits</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.calc_non_refundable_tax_credits" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">calc_non_refundable_tax_credits</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.calc_non_refundable_tax_credits" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui fait la somme de tous les crédits d’impôt non-remboursables modélisés.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -250,9 +258,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.ontario.template.get_age_cred">
-<code class="sig-name descname">get_age_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.get_age_cred" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">get_age_cred</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.get_age_cred" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit d’impôt non-remboursable provincial en raison de l’âge.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -267,9 +275,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.ontario.template.get_spouse_cred">
-<code class="sig-name descname">get_spouse_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.get_spouse_cred" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">get_spouse_cred</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.get_spouse_cred" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le montant pour époux ou conjoint de fait.</p>
 <p>Ce crédit est non-remboursable.</p>
 <dl class="field-list simple">
@@ -288,9 +296,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.ontario.template.get_cpp_contrib_cred">
-<code class="sig-name descname">get_cpp_contrib_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.get_cpp_contrib_cred" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">get_cpp_contrib_cred</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.get_cpp_contrib_cred" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit d’impôt non-remboursable pour cotisations au RRQ / RPC.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -305,9 +313,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.ontario.template.get_pension_cred">
-<code class="sig-name descname">get_pension_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.get_pension_cred" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">get_pension_cred</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.get_pension_cred" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit d’impôt non-remboursable pour revenu de retraite.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -325,9 +333,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.ontario.template.get_disabled_cred">
-<code class="sig-name descname">get_disabled_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.get_disabled_cred" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">get_disabled_cred</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.get_disabled_cred" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit d’impôt non-remboursable pour invalidité.</p>
 <p>Seule la portion pour le contribuable majeur lui-même est modélisée.</p>
 <dl class="field-list simple">
@@ -343,9 +351,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.ontario.template.get_med_exp_cred">
-<code class="sig-name descname">get_med_exp_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.get_med_exp_cred" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">get_med_exp_cred</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.get_med_exp_cred" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit d’impôt non-remboursable pour frais médicaux.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -363,9 +371,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.ontario.template.get_donations_cred">
-<code class="sig-name descname">get_donations_cred</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.get_donations_cred" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">get_donations_cred</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.get_donations_cred" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit d’impôt non-remboursable pour dons de l’Ontario.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -380,9 +388,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.ontario.template.surtax">
-<code class="sig-name descname">surtax</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.surtax" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">surtax</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.surtax" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule la surtaxe de l’Ontario.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -391,9 +399,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.ontario.template.div_tax_credit">
-<code class="sig-name descname">div_tax_credit</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.div_tax_credit" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">div_tax_credit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.div_tax_credit" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit d’impôt pour dividendes de l’Ontario.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -402,9 +410,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.ontario.template.tax_reduction">
-<code class="sig-name descname">tax_reduction</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.tax_reduction" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">tax_reduction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.tax_reduction" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule la réduction de l’impôt de l’Ontario.</p>
 <p>Ce montant est non-remboursable.</p>
 <dl class="field-list simple">
@@ -417,9 +425,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.ontario.template.calc_refundable_tax_credits">
-<code class="sig-name descname">calc_refundable_tax_credits</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.calc_refundable_tax_credits" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">calc_refundable_tax_credits</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.calc_refundable_tax_credits" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui fait la somme des crédits remboursables.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -431,9 +439,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.ontario.template.ocb">
-<code class="sig-name descname">ocb</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.ocb" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">ocb</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.ocb" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule l’Allocation ontarienne pour enfants.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -451,9 +459,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.ontario.template.ostc">
-<code class="sig-name descname">ostc</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.ostc" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">ostc</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.ostc" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Crédit de taxe de vente de l’Ontario.</p>
 <p>Ce crédit est remboursable.</p>
 <dl class="field-list simple">
@@ -472,9 +480,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.ontario.template.calc_contributions">
-<code class="sig-name descname">calc_contributions</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.calc_contributions" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">calc_contributions</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.calc_contributions" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui fait la somme des contributions du contribuable (actuellement, seule la contribution santé est incluse).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -483,9 +491,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.ontario.template.health_contrib">
-<code class="sig-name descname">health_contrib</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.health_contrib" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">health_contrib</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.template.health_contrib" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Contribution santé de l’Ontario (Ontario health premium).</p>
 <p>Cette fonction calcule le montant dû en fonction du revenu imposable.</p>
 <dl class="field-list simple">
@@ -498,7 +506,7 @@
 </dd></dl>
 
 <p>Le gabarit collige les résultats dans un formulaire d’impôt qui sera rattaché à la personne sous la forme d’un dictionnaire Python. Cette procédure permet de différencier les attributs d’une personne qui font partie de son profil des variables générées par l’impôt. C’est la fonction create_return() qui fait ce travail.</p>
-<dl class="function">
+<dl class="py function">
 <dt id="srd.ontario.create_return">
 <code class="sig-prename descclassname">srd.ontario.</code><code class="sig-name descname">create_return</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.create_return" title="Lien permanent vers cette définition">¶</a></dt>
 <dd></dd></dl>
@@ -506,31 +514,31 @@
 </div>
 <div class="section" id="fonctions-specifiques-ou-modifiees-par-annee">
 <h2>Fonctions spécifiques ou modifiées par année<a class="headerlink" href="#fonctions-specifiques-ou-modifiees-par-annee" title="Lien permanent vers ce titre">¶</a></h2>
-<dl class="class">
+<dl class="py class">
 <dt id="srd.ontario.form_2016">
 <em class="property">class </em><code class="sig-prename descclassname">srd.ontario.</code><code class="sig-name descname">form_2016</code><a class="headerlink" href="#srd.ontario.form_2016" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Formulaire d’impôt de 2016.</p>
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="srd.ontario.form_2017">
 <em class="property">class </em><code class="sig-prename descclassname">srd.ontario.</code><code class="sig-name descname">form_2017</code><a class="headerlink" href="#srd.ontario.form_2017" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Formulaire d’impôt de 2017.</p>
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="srd.ontario.form_2018">
 <em class="property">class </em><code class="sig-prename descclassname">srd.ontario.</code><code class="sig-name descname">form_2018</code><a class="headerlink" href="#srd.ontario.form_2018" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Formulaire d’impôt de 2018.</p>
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="srd.ontario.form_2019">
 <em class="property">class </em><code class="sig-prename descclassname">srd.ontario.</code><code class="sig-name descname">form_2019</code><a class="headerlink" href="#srd.ontario.form_2019" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Formulaire d’impôt de 2019.</p>
-<dl class="method">
+<dl class="py method">
 <dt id="srd.ontario.form_2019.lift_credit">
-<code class="sig-name descname">lift_credit</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.form_2019.lift_credit" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">lift_credit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ontario.form_2019.lift_credit" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Crédit d’impôt pour les personnes et les familles à faible revenu (Low-income individuals and families tax credit: LIFT).</p>
 <p>Ce crédit entre en vigueur en 2019. Il est non-remboursable.</p>
 <dl class="field-list simple">
@@ -545,7 +553,7 @@
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="srd.ontario.form_2020">
 <em class="property">class </em><code class="sig-prename descclassname">srd.ontario.</code><code class="sig-name descname">form_2020</code><a class="headerlink" href="#srd.ontario.form_2020" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Formulaire d’impôt de 2020.</p>
@@ -559,29 +567,29 @@
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="oas.html" class="btn btn-neutral float-right" title="Pension de la sécurité de la vieillesse" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="quebec.html" class="btn btn-neutral float-left" title="Impôt du Québec" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="oas.html" class="btn btn-neutral float-right" title="Pension de la sécurité de la vieillesse" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="quebec.html" class="btn btn-neutral float-left" title="Impôt du Québec" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2020, Équipe CREEi
+        &#169; Copyright 2020, Équipe CREEi.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -589,7 +597,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

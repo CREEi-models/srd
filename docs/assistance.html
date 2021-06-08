@@ -1,23 +1,31 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="fr" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="fr" > <!--<![endif]-->
+<html class="writer-html5" lang="fr" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Aide sociale &mdash; Documentation SRD </title>
   
 
   
-  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -30,10 +38,6 @@
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Recherche" href="search.html" />
     <link rel="next" title="Prestations liées à la COVID-19" href="covid.html" />
@@ -65,7 +69,7 @@
           
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Rechercher docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -74,6 +78,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
     
@@ -110,6 +115,7 @@
     <a href="genindex.html">Index</a>
   
         </div>
+        
       </div>
     </nav>
 
@@ -144,19 +150,21 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html">Docs</a> &raquo;</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>Aide sociale</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
-            
-            <a href="_sources/assistance.rst.txt" rel="nofollow"> View page source</a>
+          
+            <a href="_sources/assistance.rst.txt" rel="nofollow"> Afficher la source de la page</a>
           
         
       </li>
@@ -175,9 +183,9 @@
 <h2>Survol<a class="headerlink" href="#survol" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Le programme de l’aide sociale est pris en charge par le module <em>assistance</em>. Ce module contient un gabarit que nous documentons ci-dessous ainsi que des classes dérivées spécifiques à chaque année.</p>
 <p>La fonction <em>program</em> permet de choisir l’année du programme et ira tirer une instance du programme pour cette année. L’instance est retournée par la fonction.</p>
-<dl class="function">
+<dl class="py function">
 <dt id="srd.assistance.program">
-<code class="sig-prename descclassname">srd.assistance.</code><code class="sig-name descname">program</code><span class="sig-paren">(</span><em class="sig-param">year</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.assistance.program" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-prename descclassname">srd.assistance.</code><code class="sig-name descname">program</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">year</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.assistance.program" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui permet de sélectionner le programme par année.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -199,13 +207,13 @@
 <p>Nous utilisons un gabarit afin de créer les programmes chaque année. Quand le programme change seulement au niveau des paramètres d’une année à l’autre, nous irons chercher seulement les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou à en ajouter de nouvelles). L’avantage des classes dérivées est de ne pas avoir à répéter toutes les fonctions d’une année à l’autre si celles-ci n’ont pas changé.</p>
 <p>Nous reproduisons ici la spécification du gabarit. Il est basé sur le programme en vigueur en 2016.</p>
 <p>À noter que seul un test d’actifs simplifié est appliqué, à un volet; les actifs liquides (argent comptant et comptes courants) ne sont pas considérés. Par ailleurs les suppléments pour personnes seules ne sont pas mis en œuvre; la prestation pour contrainte temporaire à l’emploi non plus.</p>
-<dl class="class">
+<dl class="py class">
 <dt id="srd.assistance.template">
 <em class="property">class </em><code class="sig-prename descclassname">srd.assistance.</code><code class="sig-name descname">template</code><a class="headerlink" href="#srd.assistance.template" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Classe qui contient un gabarit du programme d’aide sociale (tel qu’il existait en 2016).</p>
-<dl class="method">
+<dl class="py method">
 <dt id="srd.assistance.template.apply">
-<code class="sig-name descname">apply</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.assistance.template.apply" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">apply</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.assistance.template.apply" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction pour faire une demande au programme et recevoir une prestation.</p>
 <p>Ceci calcule une prestation intégrée d’aide sociale.</p>
 <dl class="field-list simple">
@@ -221,9 +229,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.assistance.template.shelter">
-<code class="sig-name descname">shelter</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.assistance.template.shelter" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">shelter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.assistance.template.shelter" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Composante logement.</p>
 <p>N’est pas mise en œuvre pour l’instant.</p>
 <dl class="field-list simple">
@@ -239,9 +247,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.assistance.template.basic_qc">
-<code class="sig-name descname">basic_qc</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.assistance.template.basic_qc" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">basic_qc</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.assistance.template.basic_qc" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Composante de base et supplément pour enfant (en cas de prestation d’ACE réduite) pour le Québec.</p>
 <p>À noter que seul un test d’actifs simplifié est appliqué, à un volet; les actifs liquides (argent comptant et comptes courants) ne sont pas considérés.</p>
 <dl class="field-list simple">
@@ -257,9 +265,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="srd.assistance.template.basic_on">
-<code class="sig-name descname">basic_on</code><span class="sig-paren">(</span><em class="sig-param">hh</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.assistance.template.basic_on" title="Lien permanent vers cette définition">¶</a></dt>
+<code class="sig-name descname">basic_on</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.assistance.template.basic_on" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Composante de base et supplément pour enfant pour l’Ontario.</p>
 <p>À noter que seul un test d’actifs simplifié est appliqué, à un volet; les actifs liquides (argent comptant et comptes courants) ne sont pas considérés.</p>
 <dl class="field-list simple">
@@ -280,31 +288,31 @@
 </div>
 <div class="section" id="fonctions-specifiques-ou-modifiees-par-annee">
 <h2>Fonctions spécifiques ou modifiées par année<a class="headerlink" href="#fonctions-specifiques-ou-modifiees-par-annee" title="Lien permanent vers ce titre">¶</a></h2>
-<dl class="class">
+<dl class="py class">
 <dt id="srd.assistance.programs.program_2016">
 <em class="property">class </em><code class="sig-prename descclassname">srd.assistance.programs.</code><code class="sig-name descname">program_2016</code><a class="headerlink" href="#srd.assistance.programs.program_2016" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Version du programme de 2016.</p>
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="srd.assistance.programs.program_2017">
 <em class="property">class </em><code class="sig-prename descclassname">srd.assistance.programs.</code><code class="sig-name descname">program_2017</code><a class="headerlink" href="#srd.assistance.programs.program_2017" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Version du programme de 2017.</p>
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="srd.assistance.programs.program_2018">
 <em class="property">class </em><code class="sig-prename descclassname">srd.assistance.programs.</code><code class="sig-name descname">program_2018</code><a class="headerlink" href="#srd.assistance.programs.program_2018" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Version du programme de 2018.</p>
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="srd.assistance.programs.program_2019">
 <em class="property">class </em><code class="sig-prename descclassname">srd.assistance.programs.</code><code class="sig-name descname">program_2019</code><a class="headerlink" href="#srd.assistance.programs.program_2019" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Version du programme de 2019.</p>
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="srd.assistance.programs.program_2020">
 <em class="property">class </em><code class="sig-prename descclassname">srd.assistance.programs.</code><code class="sig-name descname">program_2020</code><a class="headerlink" href="#srd.assistance.programs.program_2020" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Version du programme de 2020.</p>
@@ -318,29 +326,29 @@
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="covid.html" class="btn btn-neutral float-right" title="Prestations liées à la COVID-19" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="payroll.html" class="btn btn-neutral float-left" title="Cotisations sociales" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="covid.html" class="btn btn-neutral float-right" title="Prestations liées à la COVID-19" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="payroll.html" class="btn btn-neutral float-left" title="Cotisations sociales" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2020, Équipe CREEi
+        &#169; Copyright 2020, Équipe CREEi.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -348,7 +356,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
