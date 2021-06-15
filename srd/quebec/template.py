@@ -7,7 +7,7 @@ module_dir = os.path.dirname(os.path.dirname(__file__))
 def create_return():
     lines = ['gross_income', 'deductions_gross_inc', 'net_income',
              'deductions_net_inc', 'taxable_income', 'gross_tax_liability',
-             'contributions', 'non_refund_credits', 'refund_credits',
+             'contributions', 'non_refund_credits', 'refund_credits', 'premium_qpdip',
              'net_tax_liability']
     return dict(zip(lines, np.zeros(len(lines))))
 
@@ -17,7 +17,7 @@ class template:
     Gabarit pour l'impôt provincial québécois.
     """
 
-    def file(self, hh):
+    def file(self, hh, qpdip):
         """
         Fonction qui permet de calculer les impôts.
 
@@ -44,8 +44,71 @@ class template:
             p.prov_return['net_tax_liability'] = max(0,
                 p.prov_return['gross_tax_liability'] + p.prov_return['contributions']
                 - p.prov_return['non_refund_credits'] - p.qc_div_tax_credit)
-            self.calc_refundable_tax_credits(p, hh)
-            p.prov_return['net_tax_liability'] -= p.prov_return['refund_credits']
+            self.qpdip = qpdip
+            if self.qpdip:
+                self.calc_qpdip(p, hh)
+                p.prov_return['net_tax_liability'] += p.prov_return['premium_qpdip']
+                self.calc_refundable_tax_credits(p, hh)
+                p.prov_return['net_tax_liability'] -= p.prov_return['refund_credits']
+            else:
+                self.calc_refundable_tax_credits(p, hh)
+                p.prov_return['net_tax_liability'] -= p.prov_return['refund_credits']
+    
+
+
+
+    def calc_qpdip(self, p, hh):
+        """
+        Fonction sert à calculer la cotisation au régime d’assurance médicaments du Québec.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+        """
+        p.prime = hh.fam_net_inc_prov
+
+        if hh.couple:
+            if hh.nkids_0_18==1:
+                p.prime -= self.qpdip_couple_kid1
+            elif hh.nkids_0_18>1:
+                p.prime -= self.qpdip_couple_kid123
+            else:
+                p.prime -= self.qpdip_couple
+        else:
+            if hh.nkids_0_18==1:
+                p.prime -= self.qpdip_single_kid1
+            elif hh.nkids_0_18>1:
+                p.prime -= self.qpdip_single_kid123
+            else:
+                p.prime -= self.qpdip_single
+
+
+
+
+        if p.prime<0:
+            p.prime=0
+            return p.prov_return['premium_qpdip'] * p.prime
+        
+        elif p.prime <= self.qpdip_amount_low_cut:
+            if hh.couple:
+                p.prov_return['premium_qpdip'] = min(self.qpdip_amount_cutoff_couple,p.prime* self.qpdip_claw_rate_couple1)
+                return p.prov_return['premium_qpdip']
+            else:
+                p.prov_return['premium_qpdip'] = min(self.qpdip_amount_cutoff_single,p.prime * self.qpdip_claw_rate_single1)
+                return p.prov_return['premium_qpdip']
+        elif (p.prime > self.qpdip_amount_low_cut) and (p.prime <= self.qpdip_amount_max_cut):
+            if hh.couple:
+                p.prov_return['premium_qpdip'] = min(self.qpdip_cutoff,(p.prime * self.qpdip_claw_rate_couple2) + self.qpdip_amount_cutoff_couple)
+                return p.prov_return['premium_qpdip']
+            else:
+                p.prov_return['premium_qpdip'] = min(self.qpdip_cutoff,(p.prime * self.qpdip_claw_rate_single2) + self.qpdip_amount_cutoff_single)
+                return p.prov_return['premium_qpdip']
+        else:
+            p.prov_return['premium_qpdip'] = self.qpdip_cutoff
+
 
     def calc_gross_income(self, p):
         """
