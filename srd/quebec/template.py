@@ -7,7 +7,7 @@ module_dir = os.path.dirname(os.path.dirname(__file__))
 def create_return():
     lines = ['gross_income', 'deductions_gross_inc', 'net_income',
              'deductions_net_inc', 'taxable_income', 'gross_tax_liability',
-             'contributions', 'non_refund_credits', 'refund_credits', 'premium_qpdip',
+             'contributions', 'non_refund_credits', 'refund_credits',
              'net_tax_liability']
     return dict(zip(lines, np.zeros(len(lines))))
 
@@ -17,7 +17,7 @@ class template:
     Gabarit pour l'impôt provincial québécois.
     """
 
-    def file(self, hh, qpdip):
+    def file(self, hh):
         """
         Fonction qui permet de calculer les impôts.
 
@@ -42,72 +42,15 @@ class template:
             self.div_tax_credit(p)
             self.calc_contributions(p, hh)
             p.prov_return['net_tax_liability'] = max(0,
-                p.prov_return['gross_tax_liability'] + p.prov_return['contributions']
+                p.prov_return['gross_tax_liability'] + p.prov_return['contributions'] 
                 - p.prov_return['non_refund_credits'] - p.qc_div_tax_credit)
-            self.qpdip = qpdip
-            if self.qpdip:
-                self.calc_qpdip(p, hh)
-                p.prov_return['net_tax_liability'] += p.prov_return['premium_qpdip']
-                self.calc_refundable_tax_credits(p, hh)
-                p.prov_return['net_tax_liability'] -= p.prov_return['refund_credits']
-            else:
-                self.calc_refundable_tax_credits(p, hh)
-                p.prov_return['net_tax_liability'] -= p.prov_return['refund_credits']
+            
+            self.calc_refundable_tax_credits(p, hh)
+            p.prov_return['net_tax_liability'] -= p.prov_return['refund_credits']
+            
+
     
 
-
-
-    def calc_qpdip(self, p, hh):
-        """
-        Fonction sert à calculer la cotisation au régime d’assurance médicaments du Québec.
-
-        Parameters
-        ----------
-        p: Person
-            instance de la classe Person
-        hh: Hhold
-            instance de la classe Hhold
-        """
-        p.prime = hh.fam_net_inc_prov
-
-        if hh.couple:
-            if hh.nkids_0_18==1:
-                p.prime -= self.qpdip_couple_kid1
-            elif hh.nkids_0_18>1:
-                p.prime -= self.qpdip_couple_kid123
-            else:
-                p.prime -= self.qpdip_couple
-        else:
-            if hh.nkids_0_18==1:
-                p.prime -= self.qpdip_single_kid1
-            elif hh.nkids_0_18>1:
-                p.prime -= self.qpdip_single_kid123
-            else:
-                p.prime -= self.qpdip_single
-
-
-
-
-        if p.prime<0:
-            p.prime=0
-            return p.prov_return['premium_qpdip'] * p.prime
-        
-        elif p.prime <= self.qpdip_amount_low_cut:
-            if hh.couple:
-                p.prov_return['premium_qpdip'] = min(self.qpdip_amount_cutoff_couple,p.prime* self.qpdip_claw_rate_couple1)
-                return p.prov_return['premium_qpdip']
-            else:
-                p.prov_return['premium_qpdip'] = min(self.qpdip_amount_cutoff_single,p.prime * self.qpdip_claw_rate_single1)
-                return p.prov_return['premium_qpdip']
-        elif (p.prime > self.qpdip_amount_low_cut) and (p.prime <= self.qpdip_amount_max_cut):
-            if hh.couple:
-                p.prov_return['premium_qpdip'] = min(self.qpdip_cutoff,(p.prime * self.qpdip_claw_rate_couple2) + self.qpdip_amount_cutoff_couple)
-                return p.prov_return['premium_qpdip']
-            else:
-                p.prov_return['premium_qpdip'] = min(self.qpdip_cutoff,(p.prime * self.qpdip_claw_rate_single2) + self.qpdip_amount_cutoff_single)
-                return p.prov_return['premium_qpdip']
-        else:
-            p.prov_return['premium_qpdip'] = self.qpdip_cutoff
 
 
     def calc_gross_income(self, p):
@@ -766,8 +709,13 @@ class template:
         hh: Hhold
             instance de la classe Hhold
         """
+                
         p.prov_return['contributions'] = self.add_contrib_subsid_chcare(p, hh) \
                                          + self.health_contrib(p, hh)
+
+        if p.pub_drug_insurance:
+            p.prov_return['contributions'] += self.drug_insurance_contrib(hh)
+                                    
 
     def health_contrib(self, p, hh):
         """
@@ -838,6 +786,47 @@ class template:
 
         return p.ndays_chcare_k1 * contrib_k1 + p.ndays_chcare_k2 * contrib_k1 / 2
 
+    def drug_insurance_contrib(self, hh):
+        """
+        Fonction qui sert à calculer la cotisation au régime d’assurance médicaments du Québec.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+        """       
+        net_inc_used = hh.fam_net_inc_prov
+
+        if hh.couple:
+            if hh.nkids_0_18==1:
+                net_inc_used-= self.pdip_couple_kid1
+            elif hh.nkids_0_18>1:
+                net_inc_used -= self.pdip_couple_kid2p
+            else:
+                net_inc_used -= self.pdip_couple
+        else:
+            if hh.nkids_0_18==1:
+                net_inc_used -= self.pdip_single_kid1
+            elif hh.nkids_0_18>1:
+                net_inc_used -= self.pdip_single_kid2p
+            else:
+                net_inc_used -= self.pdip_single
+
+        if net_inc_used<=0:
+            return 0
+        
+        ind = np.searchsorted(self.l_pdip_brackets, net_inc_used, 'right') - 1
+
+        if hh.couple:
+            return min(self.l_pdip_max[ind], self.l_pdip_constant_couple[ind] + \
+                self.l_health_rates_couple[ind] * (net_inc_used - self.l_pdip_brackets[ind]))
+        else:
+            return min(self.l_pdip_max[ind], self.l_pdip_constant_single[ind] + \
+                self.l_pdip_rates_single[ind] * (net_inc_used - self.l_pdip_brackets[ind]))
+
+
     def solidarity(self, p, hh):
         """
         Fonction qui calcule le crédit d'impôt pour solidarité.
@@ -875,3 +864,5 @@ class template:
         net_amount_tvq = max(0, amount_tvq - self.solidarity_rate_tvq * base_claw)
         net_amount = max(net_amount_total, net_amount_tvq)
         return net_amount / (1 + hh.couple)
+
+    

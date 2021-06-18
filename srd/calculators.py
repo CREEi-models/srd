@@ -52,7 +52,7 @@ class tax:
         if iass:
             self.ass = assistance.program(year)
 
-    def compute(self, hh, n_points=1, qpdip = True):
+    def compute(self, hh, n_points=1):
         """
         Cette fonction transfère des revenus de pension pour les couples admissibles
         et retient la solution qui maximise le revenu disponible familial.
@@ -71,11 +71,11 @@ class tax:
             pension
         """
         if not hh.elig_split or (n_points == 0):
-            self.compute_all(hh, qpdip)
+            self.compute_all(hh)
             return hh
 
         hh.copy()
-        self.compute_all(hh, qpdip)
+        self.compute_all(hh)
 
         if hh.elig_split and n_points > 0:
             fam_disp_inc_max, transfer_max = hh.fam_disp_inc, 0
@@ -99,7 +99,7 @@ class tax:
             if transfer != transfer_max:
                 self.compute_with_transfer(hh, transfer_max)
 
-    def compute_with_transfer(self, hh, transfer, qpdip):
+    def compute_with_transfer(self, hh, transfer):
         """
         Cette fonction effectue les transferts de revenus de pension et appelle
         la fonction qui simule le ménage.
@@ -126,9 +126,9 @@ class tax:
                 p1.pension_split_qc = p1.pension_split
                 p0.pension_deduction_qc = p0.pension_deduction
 
-        self.compute_all(hh, qpdip)
+        self.compute_all(hh)
 
-    def compute_all(self, hh, qpdip):
+    def compute_all(self, hh):
         """
         Calcule tous les éléments demandés.
 
@@ -148,7 +148,7 @@ class tax:
         if self.ifed:
             self.compute_federal(hh)
         if self.iprov:
-            self.compute_prov(hh, qpdip)
+            self.compute_prov(hh)
         if self.iass:
             self.compute_ass(hh)
         self.disp_inc(hh)
@@ -175,7 +175,7 @@ class tax:
         """
         self.federal.file(hh)
 
-    def compute_prov(self, hh, qpdip):
+    def compute_prov(self, hh):
         """
         Calcul de l'impôt provincial.
 
@@ -184,7 +184,7 @@ class tax:
         hh: Hhold
             instance de la classe Hhold
         """
-        self.prov[hh.prov].file(hh, qpdip)
+        self.prov[hh.prov].file(hh)
 
 
     def compute_payroll(self, hh):

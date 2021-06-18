@@ -67,7 +67,10 @@ class form_2017(form_2016):
         hh: Hhold
             instance de la classe Hhold
         """
-        p.prov_return['contributions'] += self.add_contrib_subsid_chcare(p, hh)
+        p.prov_return['contributions'] = self.add_contrib_subsid_chcare(p, hh)
+
+        if p.pub_drug_insurance:
+            p.prov_return['contributions'] += self.drug_insurance_contrib(hh)
 
     def get_donations_cred(self, p):
         """
@@ -162,7 +165,9 @@ class form_2019(form_2018):
         hh: Hhold
             instance de la classe Hhold
         """
-        pass
+        if p.pub_drug_insurance:
+            p.prov_return['contributions'] = self.drug_insurance_contrib(hh)
+
 
 class form_2020(form_2019):
     """
