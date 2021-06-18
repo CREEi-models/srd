@@ -40,13 +40,12 @@ class template:
             self.calc_tax(p)
             self.calc_non_refundable_tax_credits(p, hh)
             self.div_tax_credit(p)
-            self.calc_contributions(p, hh)
             p.prov_return['net_tax_liability'] = max(0,
-                p.prov_return['gross_tax_liability'] + p.prov_return['contributions'] 
-                - p.prov_return['non_refund_credits'] - p.qc_div_tax_credit)
-            
+                p.prov_return['gross_tax_liability'] - p.prov_return['non_refund_credits'] - p.qc_div_tax_credit)
             self.calc_refundable_tax_credits(p, hh)
             p.prov_return['net_tax_liability'] -= p.prov_return['refund_credits']
+            self.calc_contributions(p, hh)
+            p.prov_return['net_tax_liability'] += p.prov_return['contributions'] 
             
 
     
@@ -821,7 +820,7 @@ class template:
 
         if hh.couple:
             return min(self.l_pdip_max[ind], self.l_pdip_constant_couple[ind] + \
-                self.l_health_rates_couple[ind] * (net_inc_used - self.l_pdip_brackets[ind]))
+                self.l_pdip_rates_couple[ind] * (net_inc_used - self.l_pdip_brackets[ind]))
         else:
             return min(self.l_pdip_max[ind], self.l_pdip_constant_single[ind] + \
                 self.l_pdip_rates_single[ind] * (net_inc_used - self.l_pdip_brackets[ind]))
