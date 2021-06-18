@@ -94,6 +94,3 @@ health_cutoff_29;5397;float;;;
 health_cutoff_31;8669;float;;;
 health_age_high;65;int;;;
 health_age_low;60;int;;;
-ded_qpp_rate;0;float;;; ok
-ded_qpp_exempt;3500;int;;; ok
-ded_qpp_claw_rate;0;float;;; ok

@@ -85,6 +85,27 @@ class form_2019(form_2018):
             self.witb_params[prov] = get_params(
                 module_dir + f'/federal/params/fed_witb_{prov}_2019.csv')
 
+    def cpp_deduction(self, p):
+        """
+        Fonction qui calcule la déduction pour les cotisations au RRQ / RPC pour les travailleurs autonomes et le régime supplémentaire du RRQ/RPC.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+
+        Returns
+        -------
+        float
+            Montant de la déduction.
+        """
+        try:
+            p.contrib_cpp_deduc = p.contrib_cpp_self / 2 + p.payroll['cpp_supp']
+            return p.contrib_cpp_deduc
+        except AttributeError as e:
+            msg = 'le ménage doit être passé dans payroll pour obtenir les contributions cpp/rrq et rqap'
+            raise Exception(msg) from e
+
 class form_2020(form_2019):
     """
     Formulaire d'impôt de 2020.

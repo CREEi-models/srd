@@ -164,6 +164,24 @@ class form_2019(form_2018):
         """
         pass
 
+    def cpp_qpip_deduction(self, p):
+        """
+        Déduction pour les cotisations RRQ / RPC et au RQAP pour le travail autonome.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+
+        Returns
+        -------
+        float
+            Montant de la déduction.
+        """
+        p.qc_cpp_deduction = p.contrib_cpp_self / 2 + p.payroll['cpp_supp']
+        p.qc_qpip_deduction = self.qpip_deduc_rate * p.contrib_qpip_self
+        return p.qc_cpp_deduction + p.qc_qpip_deduction
+
 class form_2020(form_2019):
     """
     Formulaire d'impôt de 2020.
@@ -172,7 +190,7 @@ class form_2020(form_2019):
         add_params_as_attr(self, module_dir + '/quebec/params/measures_2020.csv')
         add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2020.csv')
         add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2020.csv')
-
+        
 class form_2021(form_2020):
     """
     Formulaire d'impôt de 2021.

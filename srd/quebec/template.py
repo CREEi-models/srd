@@ -146,8 +146,7 @@ class template:
         float
             Montant de la déduction.
         """
-        p.qc_cpp_deduction = p.contrib_cpp_self / 2
-        p.qc_cpp_deduction += min(p.contrib_cpp * self.ded_qpp_rate, (p.inc_earn - self.ded_qpp_exempt)* self.ded_qpp_claw_rate)
+        p.qc_cpp_deduction = p.contrib_cpp_self / 2 + p.payroll['cpp_supp']
         p.qc_qpip_deduction = self.qpip_deduc_rate * p.contrib_qpip_self
         return p.qc_cpp_deduction + p.qc_qpip_deduction
 
