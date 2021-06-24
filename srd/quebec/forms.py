@@ -43,6 +43,7 @@ class form_2016(template):
         add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2016.csv')
         add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2016.csv')
         add_schedule_as_attr(self, module_dir + '/quebec/params/health_contrib_2016.csv')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/drug_insurance_contrib_2016.csv')
 
 
 class form_2017(form_2016):
@@ -53,6 +54,7 @@ class form_2017(form_2016):
         add_params_as_attr(self, module_dir + '/quebec/params/measures_2017.csv')
         add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2017.csv')
         add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2017.csv')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/drug_insurance_contrib_2017.csv')
 
     def calc_contributions(self, p, hh):
         """
@@ -109,6 +111,7 @@ class form_2018(form_2017):
         add_params_as_attr(self, module_dir + '/quebec/params/measures_2018.csv')
         add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2018.csv')
         add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2018.csv')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/drug_insurance_contrib_2018.csv')
 
     def senior_assist(self, p, hh):
         """
@@ -151,6 +154,7 @@ class form_2019(form_2018):
         add_params_as_attr(self, module_dir + '/quebec/params/measures_2019.csv')
         add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2019.csv')
         add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2019.csv')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/drug_insurance_contrib_2019.csv')
 
     def calc_contributions(self, p, hh):
         """
@@ -177,6 +181,7 @@ class form_2020(form_2019):
         add_params_as_attr(self, module_dir + '/quebec/params/measures_2020.csv')
         add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2020.csv')
         add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2020.csv')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/drug_insurance_contrib_2020.csv')
 
 class form_2021(form_2020):
     """
@@ -186,4 +191,5 @@ class form_2021(form_2020):
         add_params_as_attr(self, module_dir + '/quebec/params/measures_2021.csv')
         add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2021.csv')
         add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2021.csv')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/drug_insurance_contrib_2021.csv')
         
