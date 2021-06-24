@@ -43,15 +43,6 @@ pdip_couple_kid1;3530;float;;;
 pdip_single_kid1;10350;float;;;
 pdip_couple_kid2p;6790;float;;;
 pdip_single_kid2p;13880;float;;;
-pdip_amount_low_cut;5000;float;;;
-pdip_amount_max_cut;14601;float;;;
-pdip_claw_rate_single1;0.0665;float;;;
-pdip_claw_rate_couple1;0.0334;float;;;
-pdip_claw_rate_single2;0.0999;float;;;
-pdip_claw_rate_couple2;0.0501;float;;;
-pdip_amount_cutoff_single;332.5;float;;;
-pdip_amount_cutoff_couple;167;float;;;
-pdip_cutoff;648;float;;;
 solidarity_tvq_base;297;float;;;http://www.cqff.com/liens/solidarite.pdf
 solidarity_housing_kid;123;float;;;
 solidarity_tvq_couple;297;float;;;
