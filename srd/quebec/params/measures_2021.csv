@@ -43,6 +43,7 @@ pdip_couple_kid1;3575;float;;;
 pdip_single_kid1;10480;float;;;
 pdip_couple_kid2p;6875;float;;;
 pdip_single_kid2p;14055;float;;;
+pdip_cutoff;648;float;;Montant de cotisation annuelle maximale case 87;
 solidarity_tvq_base;301;float;;;http://www.cqff.com/liens/solidarite.pdf ok
 solidarity_housing_kid;125;float;;; ok
 solidarity_tvq_couple;301;float;;https://cffp.recherche.usherbrooke.ca/outils-ressources/guide-mesures-fiscales/; ok

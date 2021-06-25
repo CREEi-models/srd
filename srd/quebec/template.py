@@ -819,11 +819,13 @@ class template:
         ind = np.searchsorted(self.l_pdip_brackets, net_inc_used, 'right') - 1
 
         if hh.couple:
-            return min(self.l_pdip_max[ind], self.l_pdip_constant_couple[ind] + \
+            amount = min(self.l_pdip_max[ind], self.l_pdip_constant_couple[ind] + \
                 self.l_pdip_rates_couple[ind] * (net_inc_used - self.l_pdip_brackets[ind]))
         else:
-            return min(self.l_pdip_max[ind], self.l_pdip_constant_single[ind] + \
+            amount = min(self.l_pdip_max[ind], self.l_pdip_constant_single[ind] + \
                 self.l_pdip_rates_single[ind] * (net_inc_used - self.l_pdip_brackets[ind]))
+        amount = min(self.pdip_cutoff, amount)
+        return amount
 
 
     def solidarity(self, p, hh):
