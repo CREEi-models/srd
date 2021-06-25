@@ -44,7 +44,6 @@ pdip_couple_kid2p;6455;float;;;
 pdip_single_kid2p;13015;float;;;
 pdip_cutoff;650;float;;Montant de cotisation annuelle maximale case 87;
 add_chcare_min_contrib;0.70;float;;;
-pdip_cutoff;626;float;;Montant de contisation annuel maximal;
 add_chcare_cutoff_income;75820;float;;;
 add_chcare_max_extra_contrib;12.45;float;;;
 add_chcare_ndays_year;260;float;;;
