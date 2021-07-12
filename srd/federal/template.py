@@ -230,6 +230,7 @@ class template:
         """
         p.fed_age_cred = self.get_age_cred(p)
         p.fed_cpp_contrib_cred = self.get_cpp_contrib_cred(p)
+        p.fed_ei_contrib_cred = self.get_ei_contrib_cred(p)
         p.fed_qpip_cred = self.get_qpip_cred(p)
         p.fed_qpip_self_cred = self.get_qpip_self_cred(p)
         p.fed_empl_cred = self.get_empl_cred(p)
@@ -240,8 +241,8 @@ class template:
 
         p.fed_return['non_refund_credits'] = (self.rate_non_ref_tax_cred
             * (self.compute_basic_amount(p) + p.fed_age_cred
-               + p.fed_cpp_contrib_cred + p.fed_qpip_cred +
-               + p.fed_qpip_self_cred + p.fed_empl_cred + p.fed_pension_cred
+               + p.fed_cpp_contrib_cred + p.fed_ei_contrib_cred + p.fed_qpip_cred +
+               + p.fed_qpip_self_cred + p.fed_empl_cred  + p.fed_pension_cred
                + p.fed_disabled_cred + p.fed_med_exp_nr_cred)
                + p.donation_cred)
 
@@ -282,6 +283,22 @@ class template:
 
         clawback = self.age_cred_claw_rate * max(0, p.fed_return['net_income'] - self.age_cred_exempt)
         return max(0, self.age_cred_amount - clawback)
+    
+    def get_ei_contrib_cred(self, p):
+        """
+        Fonction qui calcule la déduction pour cotisations à l'assurance emploi.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+
+        Returns
+        -------
+        float
+            Montant du crédit.
+        """
+        return p.contrib_ei
 
     def get_cpp_contrib_cred(self, p):
         """
