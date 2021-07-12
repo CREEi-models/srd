@@ -156,6 +156,24 @@ class form_2019(form_2018):
         add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2019.csv')
         add_schedule_as_attr(self, module_dir + '/quebec/params/drug_insurance_contrib_2019.csv')
 
+    def cpp_qpip_deduction(self, p):
+        """
+        Déduction pour les cotisations RRQ / RPC et au RQAP pour le travail autonome.
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        Returns
+        -------
+        float
+            Montant de la déduction.
+        """
+        p.qc_cpp_deduction = p.contrib_cpp_self / 2
+        p.qc_cpp_deduction += p.payroll['cpp_supp']
+        
+        p.qc_qpip_deduction = self.qpip_deduc_rate * p.contrib_qpip_self
+        return p.qc_cpp_deduction + p.qc_qpip_deduction
+    
     def calc_contributions(self, p, hh):
         """
         Fonction qui remplace la fonction antérieure du même nom, et calcule les contributions.
