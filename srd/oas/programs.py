@@ -153,51 +153,62 @@ class program_2020(program_2019):
     """
     Pour l'année 2020, le gouvernement a versé un montant non imposable de 300$ aux bénéficiaires de la sécurité de la vieillesse. Les bénéficiaires du supplément de revenu garanti ont aussi eu droit à un montant additionnel de 200$.
     """
-    def file(self, hh):
+    def compute_pension(self, p, hh):
         """
-        Version programme 2020
-        
-        Fonction qui remplace dans le gabarit (classe *srd.oas.template*) la fonction du même nom, et calcule les prestations pour la PSV, le SRG, l'Allocation et l'Allocation au survivant en y ajoutant les bonus non imposable de 300$ de la sécurité de la vieillesse et 200$ additionnel au motant de sécurité de revenu garanti.
+        Fonction qui calcule la prestation de PSV avec bonus.
 
         Parameters
         ----------
+
+        p: Person
+            instance de la classe Person
         hh: Hhold
             instance de la classe Hhold
-        """
-        for p in hh.sp:
-            self.eligibility(p, hh)
-        if not [p for p in hh.sp if p.elig_oas]:  # eliminate non-eligible hholds
-            return
 
-        for p in hh.sp:
-            self.compute_net_income(p, hh)
-        hh.net_inc_exempt = self.compute_net_inc_exemption(hh)
-        for p in hh.sp:
-            if not p.elig_oas:
-                continue
-            p.sq_factor = min(1, p.years_can / self.min_years_can)
-            # < 1 if less than 10 years in CAN; seems relevant only in very uncommon cases
-            if not hh.couple:
-                if p.elig_oas == 'pension':
-                    p.inc_oas = self.compute_pension(p, hh)
-                    p.inc_gis = (self.gis(p, hh, hh.net_inc_exempt, 'high') + self.gis_add)
-                elif p.elig_oas == 'allowance':
-                    p.allow_surv = self.survivor_allowance(p, hh)
-            else:
-                spouse = hh.sp[1-hh.sp.index(p)]
-                if p.elig_oas == 'pension':
-                    p.inc_oas = self.compute_pension(p, hh)
-                    p.inc_gis = self.gis_add
-                    if spouse.elig_oas == 'pension':
-                        p.inc_gis += self.gis(p, hh, hh.net_inc_exempt, 'low')
-                    elif spouse.elig_oas == 'allowance':
-                        income = hh.net_inc_exempt - self.rate_high_inc * self.oas_full * p.sq_factor
-                        p.inc_gis += self.gis(p, hh, income, 'low')
-                    else:
-                        income = hh.net_inc_exempt - self.oas_full * p.sq_factor
-                        p.inc_gis = self.gis(p, hh, income, 'high')
-                elif p.elig_oas == 'allowance' and spouse.elig_oas == 'pension':
-                    p.allow_couple = self.couple_allowance(p, hh)
+        Returns
+        -------
+        float
+            Montant de la PSV.
+        """
+        p.oas_65 = min(1, p.years_can / self.max_years_can) * self.oas_full
+        p.oas = p.oas_65 * (1 + self.postpone_oas_bonus * p.oas_years_post)
+        return self.pension_clawback(p, hh)+ self.oas_covid_bonus
+
+    def gis(self, p, hh, income, low_high):
+        """
+        Fonction qui calcule la prestation de Supplément de revenu garanti avec bonus.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+        income: float
+            revenu aux fins du calcul de la récupération du SRG
+        low_high: string
+            'low'/'high' pour calcul du bonus de SRG pour très faible revenu
+
+        Returns
+        -------
+        float
+            Montant du SRG (après récupération).
+        """
+        if low_high == 'low':
+            gis_full, gis_bonus = self.gis_full_low, self.gis_bonus_low
+        else:
+            gis_full, gis_bonus = self.gis_full_high, self.gis_bonus_high
+
+        if hh.couple:
+            bonus_exempt = self.bonus_exempt_couple
+        else:
+            bonus_exempt = self.bonus_exempt_single
+
+        gis = (gis_full + self.oas_full - p.oas_65) * p.sq_factor
+        claw_gis = self.gis_claw_rate * income / (1+hh.couple)
+        bonus = gis_bonus * p.sq_factor
+        claw_bonus = self.bonus_claw_rate * max(0, hh.net_inc_exempt - bonus_exempt) / (1+hh.couple)
+        return max(0, gis - claw_gis) + max(0, bonus - claw_bonus)+ self.gis_covid_bonus
 
 
 class program_2021(program_2020):
@@ -213,3 +224,60 @@ class program_2021(program_2020):
     def __init__(self, federal):
         add_params_as_attr(self, module_dir + "/oas/params/old_age_sec_2021.csv")
         self.federal = federal
+        
+    def compute_pension(self, p, hh):
+        """
+        Fonction qui calcule la prestation de PSV.
+
+        Parameters
+        ----------
+
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+
+        Returns
+        -------
+        float
+            Montant de la PSV.
+        """
+        p.oas_65 = min(1, p.years_can / self.max_years_can) * self.oas_full
+        p.oas = p.oas_65 * (1 + self.postpone_oas_bonus * p.oas_years_post)
+        return self.pension_clawback(p, hh)
+    
+    def gis(self, p, hh, income, low_high):
+        """
+        Fonction qui calcule la prestation de Supplément de revenu garanti.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+        income: float
+            revenu aux fins du calcul de la récupération du SRG
+        low_high: string
+            'low'/'high' pour calcul du bonus de SRG pour très faible revenu
+
+        Returns
+        -------
+        float
+            Montant du SRG (après récupération).
+        """
+        if low_high == 'low':
+            gis_full, gis_bonus = self.gis_full_low, self.gis_bonus_low
+        else:
+            gis_full, gis_bonus = self.gis_full_high, self.gis_bonus_high
+
+        if hh.couple:
+            bonus_exempt = self.bonus_exempt_couple
+        else:
+            bonus_exempt = self.bonus_exempt_single
+
+        gis = (gis_full + self.oas_full - p.oas_65) * p.sq_factor
+        claw_gis = self.gis_claw_rate * income / (1+hh.couple)
+        bonus = gis_bonus * p.sq_factor
+        claw_bonus = self.bonus_claw_rate * max(0, hh.net_inc_exempt - bonus_exempt) / (1+hh.couple)
+        return max(0, gis - claw_gis) + max(0, bonus - claw_bonus)
