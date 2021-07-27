@@ -106,7 +106,8 @@ class program_2019(program_2018):
 
 # program for 2020, derived from template, only requires modify
 # functions that change
-class program_2020(program_2019):
+class program_2020(program_2019):    
+    
     """
     Version du programme de 2020.
 
@@ -148,6 +149,55 @@ class program_2020(program_2019):
                 0, p.fed_return["net_income"] - exempted_inc - payroll
             )
         return net_inc_exempt
+    
+    """
+    Pour l'année 2020, le gouvernement a versé un montant non imposable de 300$ aux bénéficiaires de la sécurité de la vieillesse. Les bénéficiaires du supplément de revenu garanti ont aussi eu droit à un montant additionnel de 200$.
+    """
+    def file(self, hh):
+        """
+        Version programme 2020
+        
+        Fonction qui remplace dans le gabarit (classe *srd.oas.template*) la fonction du même nom, et calcule les prestations pour la PSV, le SRG, l'Allocation et l'Allocation au survivant en y ajoutant les bonus non imposable de 300$ de la sécurité de la vieillesse et 200$ additionnel au motant de sécurité de revenu garanti.
+
+        Parameters
+        ----------
+        hh: Hhold
+            instance de la classe Hhold
+        """
+        for p in hh.sp:
+            self.eligibility(p, hh)
+        if not [p for p in hh.sp if p.elig_oas]:  # eliminate non-eligible hholds
+            return
+
+        for p in hh.sp:
+            self.compute_net_income(p, hh)
+        hh.net_inc_exempt = self.compute_net_inc_exemption(hh)
+        for p in hh.sp:
+            if not p.elig_oas:
+                continue
+            p.sq_factor = min(1, p.years_can / self.min_years_can)
+            # < 1 if less than 10 years in CAN; seems relevant only in very uncommon cases
+            if not hh.couple:
+                if p.elig_oas == 'pension':
+                    p.inc_oas = self.compute_pension(p, hh)
+                    p.inc_gis = (self.gis(p, hh, hh.net_inc_exempt, 'high') + self.gis_add)
+                elif p.elig_oas == 'allowance':
+                    p.allow_surv = self.survivor_allowance(p, hh)
+            else:
+                spouse = hh.sp[1-hh.sp.index(p)]
+                if p.elig_oas == 'pension':
+                    p.inc_oas = self.compute_pension(p, hh)
+                    p.inc_gis = self.gis_add
+                    if spouse.elig_oas == 'pension':
+                        p.inc_gis += self.gis(p, hh, hh.net_inc_exempt, 'low')
+                    elif spouse.elig_oas == 'allowance':
+                        income = hh.net_inc_exempt - self.rate_high_inc * self.oas_full * p.sq_factor
+                        p.inc_gis += self.gis(p, hh, income, 'low')
+                    else:
+                        income = hh.net_inc_exempt - self.oas_full * p.sq_factor
+                        p.inc_gis = self.gis(p, hh, income, 'high')
+                elif p.elig_oas == 'allowance' and spouse.elig_oas == 'pension':
+                    p.allow_couple = self.couple_allowance(p, hh)
 
 
 class program_2021(program_2020):

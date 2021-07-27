@@ -8,12 +8,11 @@ def create_stub():
     lines = ['cerb', 'cesb', 'iprew']
     return dict(zip(lines, np.zeros(len(lines))))
 
-
-class policy:
+class programs:
     """
-    Mesures liées à la COVID-19.
-
-    Permet de choisir quelles mesures sont appliquées dans le simulateur. Par défaut, les 5 premières mesures ci-dessous sont appliquées (PCU, PCUE, PIRTE, majorations au crédit de TPS/TVH et à l'ACE).
+    Calcul des prestations d'urgence liées à la COVID-19: la Prestation canadienne d'urgence (PCU), la Prestation canadienne d'urgence pour les étudiants (PCUE) et le Programme incitatif pour la rétention des travailleurs essentiels (PIRTE).
+ 
+    Permet de choisir quelles mesures liées à la COVID-19 qui sont appliquées dans le simulateur. Par défaut, les 5 premières mesures ci-dessous sont appliquées (PCU, PCUE, PIRTE, majorations au crédit de TPS/TVH et à l'ACE).
 
     Parameters
     ----------
@@ -29,48 +28,17 @@ class policy:
         La majoration de l'Allocation canadienne pour enfants (ACE) est appliquée
     iei: boolean
         Assurance emploi d'urgence: scénario d'AE alternative à la PCU utilisé dans certaines analyses de la CREEi
+
     """
     def __init__(self, icerb=True, icesb=True, iiprew=True, icovid_gst=True,
                  icovid_ccb=True, iei=False):
+        add_params_as_attr(self, module_dir + '/covid/covid.csv')
         self.icerb = icerb
         self.icesb = icesb
         self.iiprew = iiprew
         self.icovid_gst = icovid_gst
         self.icovid_ccb = icovid_ccb
         self.iei = iei
-
-    def shut_all_measures(self):
-        """
-        Ne tient pas compte des mesures spéciales COVID-19 dans la simulation.
-        """
-        for var in vars(self):
-            setattr(self, var, False)
-
-    @property
-    def some_measures(self):
-        """
-        Indique qu'au moins une mesure spéciale COVID-19 est incluse.
-
-        Returns
-        -------
-        boolean
-            True s'il y a au moins une mesure d'incluse, False sinon.
-        """
-        return any(v is True for k, v in vars(self).items() if k != 'iei')
-
-
-class programs:
-    """
-    Calcul des prestations d'urgence liées à la COVID-19: la Prestation canadienne d'urgence (PCU), la Prestation canadienne d'urgence pour les étudiants (PCUE) et le Programme incitatif pour la rétention des travailleurs essentiels (PIRTE).
-
-    Parameters
-    ----------
-    policy: policy
-        instance de la classe policy
-    """
-    def __init__(self, policy):
-        add_params_as_attr(self, module_dir + '/covid/covid.csv')
-        self.policy = policy
 
     def compute(self, hh):
         """
@@ -83,13 +51,13 @@ class programs:
         """
         for p in hh.sp:
             p.covid = create_stub()
-            if self.policy.icerb:
+            if self.icerb:
                 p.inc_cerb = self.compute_cerb(p)
                 p.covid['cerb'] = p.inc_cerb
-            if self.policy.icesb:
+            if self.icesb:
                 p.inc_cesb = self.compute_cesb(p, hh)
                 p.covid['cesb'] = p.inc_cesb
-            if self.policy.iiprew and hh.prov == 'qc':
+            if self.iiprew and hh.prov == 'qc':
                 p.inc_iprew = self.compute_iprew(p)
                 p.covid['iprew'] = p.inc_iprew
 

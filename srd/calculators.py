@@ -24,10 +24,10 @@ class tax:
     iass: boolean
         vrai si le calcul des prestations d'aide sociale est demandé
     policy: policy
-        instance de la classe *policy* du module *covid*
+        instance de la classe *programs* du module *covid*
     """
     def __init__(self, year, ifed=True, ioas=True, iprov=True,
-                 ipayroll=True, iass=True, policy=covid.policy()):
+                 ipayroll=True, iass=True, policy=covid.programs()):
         self.year = year
         self.ifed = ifed
         self.iprov = iprov
@@ -38,8 +38,8 @@ class tax:
 
         if ipayroll:
             self.payroll = payroll(year)
-        if policy.some_measures and year == 2020:
-            self.covid = covid.programs(policy)
+        if year == 2020:
+            self.covid = covid.programs()
         if policy.iei and year == 2020:
             self.ei = ei.program(year)
         if ifed:
@@ -141,7 +141,7 @@ class tax:
             self.compute_payroll(hh)  # put payroll before oas
         if self.ioas:
             self.compute_oas(hh)
-        if self.policy.some_measures and self.year == 2020:
+        if self.year == 2020:
             self.compute_covid(hh)
         if self.policy.iei and self.year == 2020:
             self.compute_ei(hh)

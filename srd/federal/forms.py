@@ -5,7 +5,7 @@ from srd import ei
 module_dir = os.path.dirname(os.path.dirname(__file__))
 
 # wrapper to pick correct year
-def form(year, policy=covid.policy()):
+def form(year, policy=covid.programs()):
     """
     Fonction qui permet de sélectionner le formulaire d'impôt fédéral par année.
 
@@ -14,7 +14,7 @@ def form(year, policy=covid.policy()):
     year: int
         année (présentement entre 2016 et 2020)
     policy: policy
-        instance de la classe policy
+        instance de la classe programs
     Returns
     -------
     class instance
@@ -112,7 +112,7 @@ class form_2020(form_2019):
     Parameters
     ----------
     policy: policy
-        instance de la classe policy
+        instance de la classe program
     """
     def __init__(self, policy):
         add_params_as_attr(self,module_dir+'/federal/params/federal_2020.csv')
@@ -204,7 +204,7 @@ class form_2021(form_2020):
     Parameters
     ----------
     policy: policy
-        instance de la classe policy
+        instance de la classe programs
     """
 
     def __init__(self, policy):
