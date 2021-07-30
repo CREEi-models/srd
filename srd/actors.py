@@ -92,7 +92,7 @@ class Person:
                  ndays_chcare_k2=0, asset=0, oas_years_post=0,
                  months_cerb_cesb=0, student=False, essential_worker=False,
                  hours_month=None, prev_inc_work=None,
-                 dep_senior=False, home_support_cost=0, pub_drug_insurance=False):
+                 dep_senior=False, home_support_cost=0,months_ei=0, pub_drug_insurance=False):
         self.age = age
         self.male = male
         self.attach_inc_work_month(earn, self_earn)
@@ -120,6 +120,7 @@ class Person:
         self.ndays_chcare_k1 = ndays_chcare_k1  # should be the kid with the most days,
         self.ndays_chcare_k2 = ndays_chcare_k2  # second kid with most days, in same order for both spouses
         self.asset = asset
+        self.months_ei = months_ei
         self.oas_years_post = oas_years_post
         self.compute_months_cerb_cesb(months_cerb_cesb, student)
         self.pub_drug_insurance = pub_drug_insurance

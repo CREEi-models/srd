@@ -23,27 +23,23 @@ class tax:
         vrai si le calcul des cotisations sociales est demandé
     iass: boolean
         vrai si le calcul des prestations d'aide sociale est demandé
-    policy: policy
-        instance de la classe *programs* du module *covid*
     """
     def __init__(self, year, ifed=True, ioas=True, iprov=True,
-                 ipayroll=True, iass=True, policy=covid.programs()):
+                 ipayroll=True, iass=True):
         self.year = year
         self.ifed = ifed
         self.iprov = iprov
         self.ipayroll = ipayroll
         self.ioas = ioas
         self.iass = iass
-        self.policy = policy
 
         if ipayroll:
             self.payroll = payroll(year)
         if year == 2020:
             self.covid = covid.programs()
-        if policy.iei and year == 2020:
             self.ei = ei.program(year)
         if ifed:
-            self.federal = federal.form(year, policy)
+            self.federal = federal.form(year)
         if iprov:
             self.prov = {'qc': quebec.form(year),
                          'on': ontario.form(year)}
@@ -143,7 +139,6 @@ class tax:
             self.compute_oas(hh)
         if self.year == 2020:
             self.compute_covid(hh)
-        if self.policy.iei and self.year == 2020:
             self.compute_ei(hh)
         if self.ifed:
             self.compute_federal(hh)

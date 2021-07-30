@@ -11,34 +11,10 @@ def create_stub():
 class programs:
     """
     Calcul des prestations d'urgence liées à la COVID-19: la Prestation canadienne d'urgence (PCU), la Prestation canadienne d'urgence pour les étudiants (PCUE) et le Programme incitatif pour la rétention des travailleurs essentiels (PIRTE).
- 
-    Permet de choisir quelles mesures liées à la COVID-19 qui sont appliquées dans le simulateur. Par défaut, les 5 premières mesures ci-dessous sont appliquées (PCU, PCUE, PIRTE, majorations au crédit de TPS/TVH et à l'ACE).
-
-    Parameters
-    ----------
-    icerb: boolean
-        la PCU est appliquée
-    icesb: boolean
-        la PCUE est appliquée
-    iiprew: boolean
-        le PIRTE est appliqué au Québec
-    icovid_gst: boolean
-        La majoration du crédit pour la TPS/TVH est appliquée
-    icovid_ccb: boolean
-        La majoration de l'Allocation canadienne pour enfants (ACE) est appliquée
-    iei: boolean
-        Assurance emploi d'urgence: scénario d'AE alternative à la PCU utilisé dans certaines analyses de la CREEi
 
     """
-    def __init__(self, icerb=True, icesb=True, iiprew=True, icovid_gst=True,
-                 icovid_ccb=True, iei=False):
+    def __init__(self):
         add_params_as_attr(self, module_dir + '/covid/covid.csv')
-        self.icerb = icerb
-        self.icesb = icesb
-        self.iiprew = iiprew
-        self.icovid_gst = icovid_gst
-        self.icovid_ccb = icovid_ccb
-        self.iei = iei
 
     def compute(self, hh):
         """
@@ -51,13 +27,11 @@ class programs:
         """
         for p in hh.sp:
             p.covid = create_stub()
-            if self.icerb:
-                p.inc_cerb = self.compute_cerb(p)
-                p.covid['cerb'] = p.inc_cerb
-            if self.icesb:
-                p.inc_cesb = self.compute_cesb(p, hh)
-                p.covid['cesb'] = p.inc_cesb
-            if self.iiprew and hh.prov == 'qc':
+            p.inc_cerb = self.compute_cerb(p)
+            p.covid['cerb'] = p.inc_cerb
+            p.inc_cesb = self.compute_cesb(p, hh)
+            p.covid['cesb'] = p.inc_cesb
+            if hh.prov == 'qc':
                 p.inc_iprew = self.compute_iprew(p)
                 p.covid['iprew'] = p.inc_iprew
 
@@ -81,7 +55,7 @@ class programs:
             return 0
         else:
             l_cerb = [self.cerb_base for month
-                      in range(self.begin_april, self.begin_april + p.months_cerb)
+                      in range(self.begin_april, self.begin_april + min(p.months_cerb, self.cerb_max_months))
                       if p.inc_work_month[month] <= self.cerb_max_earn]
             return sum(l_cerb)
 
@@ -108,7 +82,7 @@ class programs:
         else:
             monthly_cesb = self.compute_monthly_cesb(p, hh)
             l_cesb = [monthly_cesb for month
-                      in range(self.begin_april, self.begin_april + p.months_cesb)
+                      in range(self.begin_april, self.begin_april + min(p.months_cesb, self.cesb_max_months))
                       if p.inc_work_month[month] <= self.cesb_max_earn]
             return sum(l_cesb)
 

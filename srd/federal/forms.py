@@ -5,16 +5,10 @@ from srd import ei
 module_dir = os.path.dirname(os.path.dirname(__file__))
 
 # wrapper to pick correct year
-def form(year, policy=covid.programs()):
+def form(year):
     """
     Fonction qui permet de sélectionner le formulaire d'impôt fédéral par année.
 
-    Parameters
-    ----------
-    year: int
-        année (présentement entre 2016 et 2020)
-    policy: policy
-        instance de la classe programs
     Returns
     -------
     class instance
@@ -29,9 +23,9 @@ def form(year, policy=covid.programs()):
     if year==2019:
         p = form_2019()
     if year==2020:
-        p = form_2020(policy)
+        p = form_2020()
     if year == 2021:
-        p = form_2021(policy)
+        p = form_2021()
     return p
 
 class form_2016(template):
@@ -108,13 +102,9 @@ class form_2019(form_2018):
 class form_2020(form_2019):
     """
     Formulaire d'impôt de 2020.
-    
-    Parameters
-    ----------
-    policy: policy
-        instance de la classe program
+
     """
-    def __init__(self, policy):
+    def __init__(self):
         add_params_as_attr(self,module_dir+'/federal/params/federal_2020.csv')
         add_params_as_attr(self, module_dir + '/federal/params/fed_witb_qc_2020.csv')
         add_schedule_as_attr(self, module_dir + '/federal/params/schedule_2020.csv')
@@ -123,13 +113,12 @@ class form_2020(form_2019):
             self.witb_params[prov] = get_params(
                 module_dir + f'/federal/params/fed_witb_{prov}_2020.csv')
 
-        self.policy = policy
-        if policy.icovid_ccb:
-            self.ccb_young += self.ccb_covid_supp
-            self.ccb_old += self.ccb_covid_supp
-        if policy.icovid_gst:
-            self.gst_cred_base *= 2
-            self.gst_cred_other *= 2
+       
+        self.ccb_young += self.ccb_covid_supp
+        self.ccb_old += self.ccb_covid_supp
+
+        self.gst_cred_base *= 2
+        self.gst_cred_other *= 2
         # note: the measures to increase ccb and gst_credit are based on fiscal year 2019 in reality
         #       but on fiscal year 2020 in our simulator; the difference is small (<50$ in worst case)
 
@@ -200,14 +189,9 @@ class form_2020(form_2019):
 class form_2021(form_2020):
     """
     Formulaire d'impôt de 2021.
-
-    Parameters
-    ----------
-    policy: policy
-        instance de la classe programs
     """
 
-    def __init__(self, policy):
+    def __init__(self):
         add_params_as_attr(self, module_dir + "/federal/params/federal_2021.csv")
         add_params_as_attr(self, module_dir + "/federal/params/fed_witb_qc_2021.csv")
         add_schedule_as_attr(self, module_dir + "/federal/params/schedule_2021.csv")
