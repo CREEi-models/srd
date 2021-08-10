@@ -1,0 +1,9 @@
+variable;value;type;definition;source;comments
+begin_months;9;int;;; programs begin in october 12th (september 25th 2020 in reality)
+crb_min_inc_work;5000;float;;;
+crb_base_original;2000;float;;; i.e 1000*2 pour un mois
+crb_base_reduced;1000;float;;; i.e 2 semaines
+crb_clawback;38000;float;;;
+crb_rate;0.5;float;;;
+crb_months_clawback;3;int;;;
+crb_max_months;4;int;;;

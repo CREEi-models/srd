@@ -1,1 +1,2 @@
-from .programs import programs
+from .template import template
+from .programs import program, program_2020, program_2021

@@ -92,7 +92,7 @@ class Person:
                  ndays_chcare_k2=0, asset=0, oas_years_post=0,
                  months_cerb_cesb=0, student=False, essential_worker=False,
                  hours_month=None, prev_inc_work=None,
-                 dep_senior=False, home_support_cost=0,months_ei=0, pub_drug_insurance=False):
+                 dep_senior=False, home_support_cost=0,months_ei=0, months_crb =0, pub_drug_insurance=False):
         self.age = age
         self.male = male
         self.attach_inc_work_month(earn, self_earn)
@@ -120,6 +120,7 @@ class Person:
         self.ndays_chcare_k1 = ndays_chcare_k1  # should be the kid with the most days,
         self.ndays_chcare_k2 = ndays_chcare_k2  # second kid with most days, in same order for both spouses
         self.asset = asset
+        self.months_crb = months_crb
         self.months_ei = months_ei
         self.oas_years_post = oas_years_post
         self.compute_months_cerb_cesb(months_cerb_cesb, student)
@@ -141,6 +142,7 @@ class Person:
         self.allow_surv = 0
         self.inc_cerb = 0
         self.inc_cesb = 0
+        self.inc_crb = 0
         self.inc_iprew = 0
         self.covid = None
         self.after_tax_inc = None
@@ -207,7 +209,7 @@ class Person:
             Revenu de travail.
         """
         return self.inc_earn + self.inc_self_earn \
-            + self.inc_cerb + self.inc_cesb + self.inc_iprew
+            + self.inc_cerb + self.inc_cesb + self.inc_iprew + self.inc_crb
 
     @property
     def inc_non_work(self):
