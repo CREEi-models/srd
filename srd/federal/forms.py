@@ -229,9 +229,9 @@ class form_2021(form_2020):
             adj_fam_net_inc = sum([p.fed_return['net_income'] for p in hh.sp])
             
             if adj_fam_net_inc < self.ccb_ccbycs_cutoff:
-                amount_ccbycs = self.ccb_ccbycs_1 * ( hh.nkids_0_5+ hh.nkids_6_17)
+                amount_ccbycs = self.ccb_ccbycs_1 * hh.nkids_0_5
             else:
-                amount_ccbycs = self.ccb_ccbycs_2 * ( hh.nkids_0_5+ hh.nkids_6_17)
+                amount_ccbycs = self.ccb_ccbycs_2 * hh.nkids_0_5
 
             l_rates_1 = [self.ccb_rate_1_1ch, self.ccb_rate_1_2ch,
                          self.ccb_rate_1_3ch, self.ccb_rate_1_4ch]
