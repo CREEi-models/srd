@@ -121,3 +121,21 @@ class program_2021(template):
 
     def __init__(self):
         add_params_as_attr(self, module_dir + "/ei/params/parameters_2021.csv")
+    def compute_benefits_covid(self, p, hh):
+        """
+        Fonction pour calculer les prestations de l'assurance emploi
+        qui remplaceraient la PCU (contrefactuel).
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+
+        Returns
+        -------
+        float
+            montant de la prestation
+        """
+        pass

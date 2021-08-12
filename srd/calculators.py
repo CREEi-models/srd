@@ -35,8 +35,8 @@ class tax:
 
         if ipayroll:
             self.payroll = payroll(year)
-        if year == 2020:
-            self.covid = covid.programs()
+        if year == 2020 or year == 2021:
+            self.covid = covid.program(year)
             self.ei = ei.program(year)
         if ifed:
             self.federal = federal.form(year)
@@ -137,7 +137,7 @@ class tax:
             self.compute_payroll(hh)  # put payroll before oas
         if self.ioas:
             self.compute_oas(hh)
-        if self.year == 2020:
+        if self.year == 2020 or self.year == 2021:
             self.compute_covid(hh)
             self.compute_ei(hh)
         if self.ifed:

@@ -21,4 +21,4 @@ rate_allow_high_inc;0.5;float;;;;
 gis_bonus_high;1731.58;float;;;Indexation 1%;
 gis_bonus_low;490.86;float;;;Indexation 1%;
 allow_surv_bonus;1731.58;float;;;Indexation 1%;
-allow_couple_bonus;490.86;int;;;Indexation 1%;
+allow_couple_bonus;490.86;float;;;Indexation 1%;

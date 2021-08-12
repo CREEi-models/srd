@@ -200,3 +200,56 @@ class form_2021(form_2020):
             self.witb_params[prov] = get_params(
                 module_dir + f"/federal/params/fed_witb_{prov}_2021.csv"
             )
+
+    def ccb(self, p, hh, iclaw=True):
+        """
+        Fonction qui calcule l'Allocation canadienne pour enfants (ACE) avec l’ACE supplément pour jeunes enfants (ACESJE) pour 2021 i.e moins de 6 ans.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+        iclaw: boolean
+            récupération des prestations si True; pas de récupération si False
+
+        Returns
+        -------
+        float
+            Montant de l'ACE.
+        """
+        if hh.nkids_0_17 == 0:
+            return 0
+        if hh.couple and p.male and hh.sp[0].male != hh.sp[1].male:
+            return 0  # heterosexual couple: mother receives benefit
+        else:
+            amount = hh.nkids_0_5 * self.ccb_young + hh.nkids_6_17 * self.ccb_old
+            claw_num_ch = min(hh.nkids_0_5 + hh.nkids_6_17, self.ccb_max_num_ch)
+            adj_fam_net_inc = sum([p.fed_return['net_income'] for p in hh.sp])
+            
+            if adj_fam_net_inc < self.ccb_ccbycs_cutoff:
+                amount_ccbycs = self.ccb_ccbycs_1 * hh.nkids_0_5
+            else:
+                amount_ccbycs = self.ccb_ccbycs_2 * hh.nkids_0_5
+
+            l_rates_1 = [self.ccb_rate_1_1ch, self.ccb_rate_1_2ch,
+                         self.ccb_rate_1_3ch, self.ccb_rate_1_4ch]
+            d_rates_1 = {k+1: v for k, v in enumerate(l_rates_1)}
+            l_rates_2 = [self.ccb_rate_2_1ch, self.ccb_rate_2_2ch,
+                         self.ccb_rate_2_3ch, self.ccb_rate_2_4ch]
+            d_rates_2 = {k+1: v for k, v in enumerate(l_rates_2)}
+            if iclaw:
+                if adj_fam_net_inc > self.ccb_cutoff_2:
+                    clawback = (d_rates_2[claw_num_ch] * (adj_fam_net_inc - self.ccb_cutoff_2) +
+                                d_rates_1[claw_num_ch] * (self.ccb_cutoff_2 - self.ccb_cutoff_1))
+                elif adj_fam_net_inc > self.ccb_cutoff_1:
+                    clawback = d_rates_1[claw_num_ch] * (adj_fam_net_inc - self.ccb_cutoff_1)
+                else:
+                    clawback = 0
+            else:
+                clawback = 0                       
+            if hh.couple and hh.sp[0].male == hh.sp[1].male:
+                return max(0, amount + amount_ccbycs - clawback) / 2  # same sex couples get 1/2 each
+            else:
+                return max(0, amount + amount_ccbycs - clawback)
