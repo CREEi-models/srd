@@ -3,11 +3,13 @@ max_years_can;40;int;;;; ok
 min_age_oas;65;int;;;; ok
 min_years_can;10;int;;;; ok
 min_age_allow;60;int;;;; ok
+min_age_covid_bonus;75;int;;;;
 work_exempt;5000;float;;https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/guaranteed-income-supplement/benefit-amount.html; ok augmented to 5000 starting july 2020;a new partial exemption of 50% to apply on up to $10000 of annual employment and self-employment income beyond the new $5000 threshold for each GIS or Allowance recipient as well as their spouse or common-law partner
 max_work_exempt;10000;float;;;ok;
 oas_full;7421.4;float;;;ok;
 oas_claw_cutoff;79054;int;;;didn't change for July 2021 to June 2022 pay period;  
 oas_claw_rate;0.15;float;;https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/repayment.html;ok;
+oas_covid_bonus;500;float;;https://www.canada.ca/fr/services/prestations/pensionspubliques/rpc/securite-vieillesse/paiement-unique-aines-plus-ages.html;oas grant payment;
 postpone_oas_bonus;0.072;float;;;0.6% per month postponed ok;
 gis_full_high;11112.34;float;;;projection inflation 0.5% as between the first and second quarter of 2021;
 gis_full_low;6689.21;float;;;projection inflation 0.5% as between the first and second quarter of 2021;

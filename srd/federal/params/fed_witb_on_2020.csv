@@ -17,9 +17,9 @@ dis_base;1150;int;;;
 dis_max;713;float;;;
 dis_rate_single;0.26;float;;;
 dis_rate_couple;0.26;float;;;
-dis_exempt_single;24569;float;;;
-dis_exempt_single_dep;37176;float;;;
-dis_exempt_couple;37176;float;;;
-dis_exempt_couple_dep;37176;float;;;
+dis_exempt_single;24573;float;;;
+dis_exempt_single_dep;37173;float;;https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-workers-benefit/calculation-sheets.html;
+dis_exempt_couple;37173;float;;;
+dis_exempt_couple_dep;37173;float;;;
 dis_claw_rate;0.12;float;;;
 dis_couple_claw_rate;0.06;float;;;both spouses disabled
