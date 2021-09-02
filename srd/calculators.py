@@ -134,12 +134,12 @@ class tax:
             instance de la classe Hhold
         """
         if self.ipayroll:
-            self.compute_payroll(hh)  # put payroll before oas
-        if self.ioas:
-            self.compute_oas(hh)
+            self.compute_payroll(hh)  # put payroll before oas            
         if self.year == 2020 or self.year == 2021:
             self.compute_covid(hh)
             self.compute_ei(hh)
+        if self.ioas:
+            self.compute_oas(hh)
         if self.ifed:
             self.compute_federal(hh)
         if self.iprov:

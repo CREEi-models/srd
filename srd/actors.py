@@ -208,8 +208,8 @@ class Person:
         float
             Revenu de travail.
         """
-        return self.inc_earn + self.inc_self_earn \
-            + self.inc_cerb + self.inc_cesb + self.inc_iprew + self.inc_crb
+        return self.inc_earn + self.inc_self_earn
+            
 
     @property
     def inc_non_work(self):
@@ -225,7 +225,7 @@ class Person:
                 + self.inc_othntax + self.inc_rrsp + self.inc_oas
                 + self.inc_gis + self.allow_couple + self.allow_surv
                 + self.inc_ei + self.net_cap_gains
-                + self.div_elig + self.div_other_can)
+                + self.div_elig + self.div_other_can + self.inc_cerb + self.inc_cesb + self.inc_iprew + self.inc_crb)
 
     @property
     def inc_tot(self):
