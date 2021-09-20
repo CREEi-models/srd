@@ -799,31 +799,35 @@ class template:
         net_inc_used = hh.fam_net_inc_prov
 
         if hh.couple:
+            net_inc_used -= self.pdip_couple
             if hh.nkids_0_18==1:
                 net_inc_used-= self.pdip_couple_kid1
             elif hh.nkids_0_18>1:
-                net_inc_used -= self.pdip_couple_kid2p
-            else:
-                net_inc_used -= self.pdip_couple
+                net_inc_used -= self.pdip_couple_kid2p   
         else:
+            net_inc_used -= self.pdip_single
             if hh.nkids_0_18==1:
                 net_inc_used -= self.pdip_single_kid1
             elif hh.nkids_0_18>1:
-                net_inc_used -= self.pdip_single_kid2p
-            else:
-                net_inc_used -= self.pdip_single
+                net_inc_used -= self.pdip_single_kid2p               
 
         if net_inc_used<=0:
             return 0
         
         ind = np.searchsorted(self.l_pdip_brackets, net_inc_used, 'right') - 1
 
-        if hh.couple:
-            amount = min(self.l_pdip_max[ind], self.l_pdip_constant_couple[ind] + \
-                self.l_pdip_rates_couple[ind] * (net_inc_used - self.l_pdip_brackets[ind]))
+        if net_inc_used <= self.l_pdip_brackets[ind]:
+            if hh.couple:
+                amount = net_inc_used * self.l_pdip_rates_couple[ind]
+            else:
+                amount = net_inc_used * self.l_pdip_rates_couple[ind]
         else:
-            amount = min(self.l_pdip_max[ind], self.l_pdip_constant_single[ind] + \
-                self.l_pdip_rates_single[ind] * (net_inc_used - self.l_pdip_brackets[ind]))
+            if hh.couple:
+                amount = min(self.l_pdip_max[ind], self.l_pdip_constant_couple[ind] + \
+                    self.l_pdip_rates_couple[ind] * (net_inc_used - self.l_pdip_brackets[ind]))
+            else:
+                amount = min(self.l_pdip_max[ind], self.l_pdip_constant_single[ind] + \
+                    self.l_pdip_rates_single[ind] * (net_inc_used - self.l_pdip_brackets[ind]))
         amount = min(self.pdip_cutoff, amount)
         return amount
 
