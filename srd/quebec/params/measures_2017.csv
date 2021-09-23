@@ -91,3 +91,4 @@ exp_work_max_work_inc_64;6000;float;;;
 exp_work_max_work_inc_65;8000;float;;;
 exp_work_age_born_bef51;66;int;;;
 exp_work_min_amount_born_51;600;float;;;
+supp_furnitures;100;int;;;
