@@ -104,9 +104,9 @@ class form_2017(form_2016):
 
     def ccap(self, p, hh):
         """
-        Fonction qui calcule l'Allocation famille (qui s'appelait le Soutien aux enfants avant 2019).
-
-        Cette fonction calcule le montant reçu en fonction du nombre d'enfants, de la situation familiale (couple/monoparental) et du revenu.
+        Fonction qui calcule le crédit d’impôt remboursable accordant une allocation aux familles (CIRAAF) (qui s'appelait le Soutien aux enfants avant 2019). Seules les composantes suivantes sont modélisées : l'allocation famille et le supplément pour l'achat de fournitures scolaires.
+   
+        Cette fonction calcule le montant reçu selon le nombre d'enfants, la situation familiale (couple/monoparental) et le revenu.
 
         Parameters
         ----------
@@ -117,7 +117,7 @@ class form_2017(form_2016):
         Returns
         -------
         float
-            Montant de l'Allocation famille.
+            Montant du crédit d’impôt remboursable accordant une allocation aux familles (CIRAAF).
         """
         if hh.couple and p.male and hh.sp[0].male != hh.sp[1].male:
             return 0 # heterosexual couple: mother receives benefit
@@ -138,26 +138,29 @@ class form_2017(form_2016):
             add_amount_max = self.ccap_amount_single_max
 
         if hh.nkids_0_17 == 1:
-            amount = max(add_amount_min + self.ccap_kid1_min,
+            amount_family = max(add_amount_min + self.ccap_kid1_min,
                          add_amount_max + self.ccap_kid1_max - clawback)
         elif hh.nkids_0_17 < 4:
-            amount = max(add_amount_min + self.ccap_kid1_min + (hh.nkids_0_17 - 1) * self.ccap_kid23_min,
+            amount_family = max(add_amount_min + self.ccap_kid1_min + (hh.nkids_0_17 - 1) * self.ccap_kid23_min,
                          add_amount_max + self.ccap_kid1_max
                          + (hh.nkids_0_17 - 1) * self.ccap_kid23_max - clawback)
         else:
-            amount = max(add_amount_min + self.ccap_kid1_min + 2 * self.ccap_kid23_min
+            amount_family = max(add_amount_min + self.ccap_kid1_min + 2 * self.ccap_kid23_min
                          + (hh.nkids_0_17 - 3) * self.ccap_kid4p_min,
                          add_amount_max + self.ccap_kid1_max + 2 * self.ccap_kid23_max
                          + (hh.nkids_0_17 - 3) * self.ccap_kid4p_max - clawback)
 
-        if hh.couple and hh.sp[0].male == hh.sp[1].male:
-            amount = amount / 2  # same sex couples get 1/2 each
-        for d in hh.dep: # ajout du supplément pour achat de fournitures scolaires
+        kid_eligible = 0
+        for d in hh.dep:
             if (d.age >=4 and d.age<=16) or (d.disa==True and (d.age >=4 and d.age<=17)):
-                p.qc_supp_furnitures = self.supp_furnitures
-                return amount + p.qc_supp_furnitures
-            else:
-                return amount
+                kid_eligible += 1 
+
+        amount_furnitures = max(0, kid_eligible*self.supp_furnitures)
+
+        if hh.couple and hh.sp[0].male == hh.sp[1].male:
+            return (amount_furnitures + amount_family) / 2  # same sex couples get 1/2 each
+        else:
+            return amount_furnitures + amount_family
 
 class form_2018(form_2017):
     """

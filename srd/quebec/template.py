@@ -646,9 +646,9 @@ class template:
 
     def ccap(self, p, hh):
         """
-        Fonction qui calcule l'Allocation famille (qui s'appelait le Soutien aux enfants avant 2019).
+        Fonction qui calcule le crédit d’impôt remboursable accordant une allocation aux familles (CIRAAF) (qui s'appelait le Soutien aux enfants avant 2019).
 
-        Cette fonction calcule le montant reçu en fonction du nombre d'enfants, de la situation familiale (couple/monoparental) et du revenu.
+        Cette fonction calcule le montant reçu selon le nombre d'enfants, la situation familiale (couple/monoparental) et le revenu.
 
         Parameters
         ----------
