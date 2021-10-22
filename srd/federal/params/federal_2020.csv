@@ -61,3 +61,5 @@ ei_rate_repay;0.3;float;;;
 ded_qpp_rate;0.052632;float;;; ok
 ded_qpp_exempt;3500;int;;; ok
 ded_qpp_claw_rate;0.03;float;;; ok
+nrtc_spouse_dis;2273;int;;;
+dep_disa_amount;2273;int;;;

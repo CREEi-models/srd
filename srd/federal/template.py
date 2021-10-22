@@ -237,9 +237,12 @@ class template:
         p.fed_disabled_cred = self.get_disabled_cred(p)
         p.fed_med_exp_nr_cred = self.get_med_exp_nr_cred(p, hh)
         p.donation_cred = self.get_donations_cred(p)
+        p.fed_dep_cred = self.get_dep_cred(p, hh)
+        p.fed_spouse_cred = self.get_spouses_cred(p, hh)
+        
 
         p.fed_return['non_refund_credits'] = (self.rate_non_ref_tax_cred
-            * (self.compute_basic_amount(p) + p.fed_age_cred
+            * (self.compute_basic_amount(p)+ p.fed_dep_cred + p.fed_spouse_cred + p.fed_age_cred
                + p.fed_cpp_contrib_cred + p.fed_ei_contrib_cred + p.fed_qpip_cred +
                + p.fed_qpip_self_cred + p.fed_empl_cred  + p.fed_pension_cred
                + p.fed_disabled_cred + p.fed_med_exp_nr_cred)
@@ -735,3 +738,87 @@ class template:
                           self.gst_cred_rate * max(0, hh.fam_net_inc_fed - self.gst_cred_base_amount))
 
         return max(0, amount - clawback)
+    
+    def get_dep_cred(self, p , hh):
+        """
+        Fonction qui calcule le crédit pour personne à charge admissible.
+
+        Ce crédit est non-remboursable.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+
+        Returns
+        -------
+        float
+            Montant du crédit.
+        """
+        if hh.couple:
+            return 0
+
+        amount = amount_dis = nchild_dis = nchild = 0
+        nchild += len(hh.dep)
+        if nchild == 0:
+            return 0
+        else:
+            amount += self.compute_basic_amount(p)
+            for d in hh.dep:
+                if d.disa:
+                    nchild_dis +=1
+            if nchild_dis >= 1:
+                amount_dis += self.dep_disa_amount
+            return amount + amount_dis
+
+    def get_spouses_cred(self, p, hh):
+        """
+        Fonction qui calcule le montant pour époux ou conjoint de fait.
+
+        Ce crédit est non-remboursable.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+
+        Returns
+        -------
+        float
+            Montant du crédit.
+        """
+        if hh.couple:
+            higher_inc, equal_inc = 0,0
+            if hh.sp[0].fed_return['net_income'] > hh.sp[1].fed_return['net_income']:
+                higher_inc = hh.sp[0].fed_return['net_income']
+            elif hh.sp[1].fed_return['net_income'] > hh.sp[0].fed_return['net_income']:
+                higher_inc = hh.sp[1].fed_return['net_income']
+            else:
+                equal_inc = hh.sp[1].fed_return['net_income']
+        elif not hh.couple or (p.fed_dep_cred != 0):
+            return 0
+        
+        amount = 0
+        if p.fed_return['net_income'] == higher_inc :
+            amount += self.compute_basic_amount(p)
+            spouse = hh.sp[1 - hh.sp.index(p)]
+            if spouse.disabled:
+                amount += self.nrtc_spouse_dis 
+            amount-= spouse.fed_return['net_income']
+            return max(0, amount)
+        elif p.fed_return['net_income'] == equal_inc:
+            amount += self.compute_basic_amount(p)
+            spouse = hh.sp[1 - hh.sp.index(p)]
+            if spouse.disabled:
+                amount += self.nrtc_spouse_dis 
+            amount-= spouse.fed_return['net_income']
+            spouse.fed_spouse_cred = 0
+            return max(0, amount)
+        else:
+            return max(0, amount)
+        
+        

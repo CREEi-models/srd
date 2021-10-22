@@ -55,3 +55,5 @@ chcare_rate_inc;0.66666;float;;;
 ded_qpp_rate;0;float;;; ok
 ded_qpp_exempt;3500;int;;; ok
 ded_qpp_claw_rate;0;float;;; ok
+nrtc_spouse_dis;2182;int;;;
+dep_disa_amount;2182;int;;;

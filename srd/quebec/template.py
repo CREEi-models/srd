@@ -710,7 +710,7 @@ class template:
         """
                 
         p.prov_return['contributions'] = self.add_contrib_subsid_chcare(p, hh) \
-                                         + self.health_contrib(p, hh)
+                                         + self.health_contrib(p, hh) + self.contrib_hsf(p)
 
         if p.pub_drug_insurance:
             p.prov_return['contributions'] += self.drug_insurance_contrib(hh)
@@ -791,8 +791,6 @@ class template:
 
         Parameters
         ----------
-        p: Person
-            instance de la classe Person
         hh: Hhold
             instance de la classe Hhold
         """       
@@ -870,4 +868,18 @@ class template:
         net_amount = max(net_amount_total, net_amount_tvq)
         return net_amount / (1 + hh.couple)
 
-    
+    def contrib_hsf(self, p):
+        """
+        Fonction qui calcule la cotisation au Fonds des services de santé (FSS).
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        """
+        amount = p.inc_self_earn + p.inc_rpp + p.inc_cpp + p.pension_split_qc + p.taxable_cap_gains + p.inc_othtax + p.inc_rrsp - p.contrib_qpip_self
+        if amount < self.hsf_high_inc:
+            p.qc_contrib_hsf= min(self.hsf_low_cutoff, max(0,(amount - self.hsf_low_inc))*self.hsf_rate)
+        else:
+            p.qc_contrib_hsf = min(self.hsf_high_cutoff, max(0,(amount - self.hsf_high_inc))*self.hsf_rate + self.hsf_low_cutoff)
+        return p.qc_contrib_hsf

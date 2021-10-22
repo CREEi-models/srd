@@ -24,6 +24,11 @@ nrtc_donation_low_rate;0.20;float;;; ok
 nrtc_donation_med_rate;0.24;float;;; ok
 nrtc_donation_high_rate;0.2575;float;;; ok
 nrtc_union_dues_rate;0.10;float;;; assumed constant ok
+hsf_high_inc;53410;int;;; indexé par 1.0126
+hsf_low_inc;15360;int;;; indexé par 1.0126
+hsf_low_cutoff;150;int;;;
+hsf_high_cutoff;1000;int;;;
+hsf_rate;0.01;float;;;
 ccap_claw_rate;0.04;float;;; ok
 ccap_claw_cutoff_couple;50521;float;;http://www.finances.gouv.qc.ca/documents/Autres/fr/AUTFR_RegimeImpot2021.pdf; ok
 ccap_claw_cutoff_single;36728;float;;http://www.finances.gouv.qc.ca/documents/Autres/fr/AUTFR_RegimeImpot2021.pdf; ok 
