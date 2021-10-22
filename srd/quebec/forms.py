@@ -69,7 +69,7 @@ class form_2017(form_2016):
         hh: Hhold
             instance de la classe Hhold
         """
-        p.prov_return['contributions'] = self.add_contrib_subsid_chcare(p, hh) + self.contrib_health_service_fund(p)
+        p.prov_return['contributions'] = self.add_contrib_subsid_chcare(p, hh) + self.contrib_hsf(p)
 
         if p.pub_drug_insurance:
             p.prov_return['contributions'] += self.drug_insurance_contrib(hh)
@@ -246,7 +246,7 @@ class form_2019(form_2018):
         hh: Hhold
             instance de la classe Hhold
         """
-        p.prov_return['contributions'] = self.contrib_health_service_fund(p)
+        p.prov_return['contributions'] = self.contrib_hsf(p)
 
         if p.pub_drug_insurance:
             p.prov_return['contributions'] += self.drug_insurance_contrib(hh)
