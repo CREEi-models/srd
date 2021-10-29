@@ -185,35 +185,28 @@ class form_2020(form_2019):
             p.fed_return['net_income'] -= repayment
             p.fed_return['gross_income'] -= repayment
 
-    def file(self, hh):
+    def calc_refundable_tax_credits(self, p, hh):
         """
-        Fonction qui permet de calculer les impôts.
-
-        Cette fonction est celle qui calcule les déductions,
-        les crédits non-remboursables et remboursables et les impôts nets.
+        Fonction qui fait la somme des crédits remboursables, en appelant les fonctions suivantes, décrites ci-après: *abatment*, *ccb*, *get_witb*, *get_witbds*, *med_exp*, *gst_hst_credit*.
 
         Parameters
         ----------
+        p: Person
+            instance de la classe Person
         hh: Hhold
             instance de la classe Hhold
         """
-        for p in hh.sp:
-            p.fed_return = create_return()
-            self.calc_gross_income(p)
-            self.calc_deduc_gross_income(p, hh)
-            self.calc_net_income(p)
-            self.calc_deduc_net_income(p)
-            self.calc_taxable_income(p)
-        for p in hh.sp:
-            self.calc_tax(p)
-            self.calc_non_refundable_tax_credits(p, hh)
-            self.div_tax_credit(p)
-            p.fed_return['net_tax_liability'] = max(0,
-                p.fed_return['gross_tax_liability'] - p.fed_return['non_refund_credits']
-                - p.fed_div_tax_credit)
-            self.calc_refundable_tax_credits(p, hh)
-            self.oas_gis_covid_bonus(p)
-            p.fed_return['net_tax_liability'] -= p.fed_return['refund_credits']
+        p.fed_abatment_qc = self.abatment(p, hh)
+        p.fed_ccb = self.ccb(p, hh)
+        p.fed_witb = self.get_witb(p, hh)
+        p.fed_witbds = self.get_witbds(p, hh)
+        p.fed_med_exp = self.med_exp(p, hh)
+        p.fed_gst_hst_credit = self.gst_hst_credit(p, hh)
+        self.oas_gis_covid_bonus(p)
+
+        p.fed_return['refund_credits'] = (
+            p.fed_abatment_qc + p.fed_ccb + p.fed_witb + p.fed_witbds
+            + p.fed_med_exp + p.fed_gst_hst_credit)
     
     def oas_gis_covid_bonus(self, p):
         """
@@ -256,34 +249,27 @@ class form_2021(form_2020):
                 module_dir + f"/federal/params/fed_witb_{prov}_2021.csv"
             )
 
-    def file(self, hh):
+    def calc_refundable_tax_credits(self, p, hh):
         """
-        Fonction qui permet de calculer les impôts.
-
-        Cette fonction est celle qui calcule les déductions,
-        les crédits non-remboursables et remboursables et les impôts nets.
+        Fonction qui fait la somme des crédits remboursables, en appelant les fonctions suivantes, décrites ci-après: *abatment*, *ccb*, *get_witb*, *get_witbds*, *med_exp*, *gst_hst_credit*.
 
         Parameters
         ----------
+        p: Person
+            instance de la classe Person
         hh: Hhold
             instance de la classe Hhold
         """
-        for p in hh.sp:
-            p.fed_return = create_return()
-            self.calc_gross_income(p)
-            self.calc_deduc_gross_income(p, hh)
-            self.calc_net_income(p)
-            self.calc_deduc_net_income(p)
-            self.calc_taxable_income(p)
-        for p in hh.sp:
-            self.calc_tax(p)
-            self.calc_non_refundable_tax_credits(p, hh)
-            self.div_tax_credit(p)
-            p.fed_return['net_tax_liability'] = max(0,
-                p.fed_return['gross_tax_liability'] - p.fed_return['non_refund_credits']
-                - p.fed_div_tax_credit)
-            self.calc_refundable_tax_credits(p, hh)
-            p.fed_return['net_tax_liability'] -= p.fed_return['refund_credits']
+        p.fed_abatment_qc = self.abatment(p, hh)
+        p.fed_ccb = self.ccb(p, hh)
+        p.fed_witb = self.get_witb(p, hh)
+        p.fed_witbds = self.get_witbds(p, hh)
+        p.fed_med_exp = self.med_exp(p, hh)
+        p.fed_gst_hst_credit = self.gst_hst_credit(p, hh)
+
+        p.fed_return['refund_credits'] = (
+            p.fed_abatment_qc + p.fed_ccb + p.fed_witb + p.fed_witbds
+            + p.fed_med_exp + p.fed_gst_hst_credit)
     
     def ccb(self, p, hh, iclaw=True):
         """
