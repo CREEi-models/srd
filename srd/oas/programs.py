@@ -150,66 +150,6 @@ class program_2020(program_2019):
             )
         return net_inc_exempt
     
-    """
-    Pour l'année 2020, le gouvernement a versé un montant non imposable de 300$ aux bénéficiaires de la sécurité de la vieillesse. Les bénéficiaires du supplément de revenu garanti ont aussi eu droit à un montant additionnel de 200$.
-    """
-    def compute_pension(self, p, hh):
-        """
-        Fonction qui calcule la prestation de PSV avec bonus.
-
-        Parameters
-        ----------
-
-        p: Person
-            instance de la classe Person
-        hh: Hhold
-            instance de la classe Hhold
-
-        Returns
-        -------
-        float
-            Montant de la PSV.
-        """
-        p.oas_65 = min(1, p.years_can / self.max_years_can) * self.oas_full
-        p.oas = p.oas_65 * (1 + self.postpone_oas_bonus * p.oas_years_post)
-        return self.pension_clawback(p, hh)+ self.oas_covid_bonus
-
-    def gis(self, p, hh, income, low_high):
-        """
-        Fonction qui calcule la prestation de Supplément de revenu garanti avec bonus.
-
-        Parameters
-        ----------
-        p: Person
-            instance de la classe Person
-        hh: Hhold
-            instance de la classe Hhold
-        income: float
-            revenu aux fins du calcul de la récupération du SRG
-        low_high: string
-            'low'/'high' pour calcul du bonus de SRG pour très faible revenu
-
-        Returns
-        -------
-        float
-            Montant du SRG (après récupération).
-        """
-        if low_high == 'low':
-            gis_full, gis_bonus = self.gis_full_low, self.gis_bonus_low
-        else:
-            gis_full, gis_bonus = self.gis_full_high, self.gis_bonus_high
-
-        if hh.couple:
-            bonus_exempt = self.bonus_exempt_couple
-        else:
-            bonus_exempt = self.bonus_exempt_single
-
-        gis = (gis_full + self.oas_full - p.oas_65) * p.sq_factor
-        claw_gis = self.gis_claw_rate * income / (1+hh.couple)
-        bonus = gis_bonus * p.sq_factor
-        claw_bonus = self.bonus_claw_rate * max(0, hh.net_inc_exempt - bonus_exempt) / (1+hh.couple)
-        return max(0, gis - claw_gis) + max(0, bonus - claw_bonus)+ self.gis_covid_bonus
-
 
 class program_2021(program_2020):
     """

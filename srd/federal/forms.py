@@ -185,6 +185,61 @@ class form_2020(form_2019):
             p.fed_return['net_income'] -= repayment
             p.fed_return['gross_income'] -= repayment
 
+    def file(self, hh):
+        """
+        Fonction qui permet de calculer les impôts.
+
+        Cette fonction est celle qui calcule les déductions,
+        les crédits non-remboursables et remboursables et les impôts nets.
+
+        Parameters
+        ----------
+        hh: Hhold
+            instance de la classe Hhold
+        """
+        for p in hh.sp:
+            p.fed_return = create_return()
+            self.calc_gross_income(p)
+            self.calc_deduc_gross_income(p, hh)
+            self.calc_net_income(p)
+            self.calc_deduc_net_income(p)
+            self.calc_taxable_income(p)
+        for p in hh.sp:
+            self.calc_tax(p)
+            self.calc_non_refundable_tax_credits(p, hh)
+            self.div_tax_credit(p)
+            p.fed_return['net_tax_liability'] = max(0,
+                p.fed_return['gross_tax_liability'] - p.fed_return['non_refund_credits']
+                - p.fed_div_tax_credit)
+            self.calc_refundable_tax_credits(p, hh)
+            self.oas_gis_covid_bonus(p)
+            p.fed_return['net_tax_liability'] -= p.fed_return['refund_credits']
+    
+    def oas_gis_covid_bonus(self, p):
+        """
+        Fonction qui calcule le montant unique de Sécurité de vieillesse (SV) et de supplément de revenu garanti (SRG). Pour l'année 2020, le gouvernement a versé un montant non imposable de 300$ aux bénéficiaires de la sécurité de la vieillesse. Les bénéficiaires du supplément de revenu garanti ont aussi eu droit à un montant additionnel de 200$.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+
+        Returns
+        -------
+        float
+            Montant du paiement unique de SV et de SRG.
+        """
+
+        if p.elig_oas!=False:
+            p.inc_oas += self.oas_covid_bonus
+
+            if p.inc_gis>0:
+                p.inc_gis += self.gis_covid_bonus
+
+        return
+
 
 class form_2021(form_2020):
     """
@@ -201,6 +256,35 @@ class form_2021(form_2020):
                 module_dir + f"/federal/params/fed_witb_{prov}_2021.csv"
             )
 
+    def file(self, hh):
+        """
+        Fonction qui permet de calculer les impôts.
+
+        Cette fonction est celle qui calcule les déductions,
+        les crédits non-remboursables et remboursables et les impôts nets.
+
+        Parameters
+        ----------
+        hh: Hhold
+            instance de la classe Hhold
+        """
+        for p in hh.sp:
+            p.fed_return = create_return()
+            self.calc_gross_income(p)
+            self.calc_deduc_gross_income(p, hh)
+            self.calc_net_income(p)
+            self.calc_deduc_net_income(p)
+            self.calc_taxable_income(p)
+        for p in hh.sp:
+            self.calc_tax(p)
+            self.calc_non_refundable_tax_credits(p, hh)
+            self.div_tax_credit(p)
+            p.fed_return['net_tax_liability'] = max(0,
+                p.fed_return['gross_tax_liability'] - p.fed_return['non_refund_credits']
+                - p.fed_div_tax_credit)
+            self.calc_refundable_tax_credits(p, hh)
+            p.fed_return['net_tax_liability'] -= p.fed_return['refund_credits']
+    
     def ccb(self, p, hh, iclaw=True):
         """
         Fonction qui calcule l'Allocation canadienne pour enfants (ACE) avec l’ACE supplément pour jeunes enfants (ACESJE) pour 2021 i.e moins de 6 ans.

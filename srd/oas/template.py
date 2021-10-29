@@ -148,11 +148,11 @@ class template:
         float
             Montant de la récupération de la PSV.
         """
-        if p.fed_return['net_income'] + self.oas_full <= self.oas_claw_cutoff:
+        
+        if p.fed_return['net_income'] + p.oas <= self.oas_claw_cutoff:
             return p.oas
         else:
-            return max(0, (p.oas - self.oas_claw_rate
-            * (p.fed_return['net_income'] - self.oas_claw_cutoff)) / (1 + self.oas_claw_rate))
+            return max(0, (p.oas - self.oas_claw_rate * (p.fed_return['net_income'] + p.oas - self.oas_claw_cutoff)))
 
     def gis(self, p, hh, income, low_high):
         """
