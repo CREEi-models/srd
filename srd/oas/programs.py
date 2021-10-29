@@ -184,10 +184,10 @@ class program_2021(program_2020):
         """
         p.oas_65 = min(1, p.years_can / self.max_years_can) * self.oas_full
         p.oas = p.oas_65 * (1 + self.postpone_oas_bonus * p.oas_years_post)
-        grant_payment = 0
+
         if p.age >= self.min_age_covid_bonus:
-            grant_payment = self.oas_covid_bonus
-        return self.pension_clawback(p, hh) + grant_payment
+            p.oas += self.oas_covid_bonus
+        return self.pension_clawback(p, hh)
     
     def gis(self, p, hh, income, low_high):
         """
