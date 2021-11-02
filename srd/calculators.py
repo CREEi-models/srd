@@ -94,6 +94,7 @@ class tax:
 
             if transfer != transfer_max:
                 self.compute_with_transfer(hh, transfer_max)
+            return hh
 
     def compute_with_transfer(self, hh, transfer):
         """
