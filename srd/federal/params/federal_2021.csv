@@ -4,7 +4,7 @@ div_other_can_factor;1.15;float;;;
 div_elig_cred_rate;0.150198;float;;;
 div_other_can_cred_rate;0.090313;float;;;
 cap_gains_rate;0.5;float;;;
-qpip_deduc_rate;0.43683;float;;;*assume qu'il reste stable puisque change peu d'annee en annee  #ZBO not sure, I think it should be more like 0.00494?
+qpip_deduc_rate;0.43786;float;;;*assume qu'il reste stable puisque change peu d'annee en annee  #ZBO not sure, I think it should be more like 0.00494?
 basic_amount_poor;13808;float;;;
 basic_amount_rich;12421;float;;;
 age_cred_amount;7713;float;;;
