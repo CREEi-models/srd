@@ -225,7 +225,7 @@ class form_2020(form_2019):
             Montant du paiement unique de SV et de SRG.
         """
 
-        if p.elig_oas!=False:
+        if p.elig_oas!=False and p.inc_oas>0:
             p.inc_oas += self.oas_covid_bonus
 
             if p.inc_gis>0:
