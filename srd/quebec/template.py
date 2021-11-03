@@ -639,6 +639,8 @@ class template:
             return 0
         if p.inc_work < self.med_exp_min_work_inc:
             return 0
+        if hh.fam_net_inc_prov>self.med_exp_max_fam_inc:
+            return 0
 
         base = min(self.med_exp_max, self.med_exp_rate * p.qc_med_exp_nr_cred)
         clawback = self.med_exp_claw_rate * max(0, hh.fam_net_inc_prov - self.med_exp_claw_cutoff)

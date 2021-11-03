@@ -82,6 +82,7 @@ med_exp_claw_rate;0.05;float;;;
 med_exp_claw_cutoff;23300;float;;;
 med_exp_max;1205;float;;;
 med_exp_min_work_inc;3080;float;;;
+med_exp_max_fam_inc;47400;float;;;
 exp_work_min_age;60;int;;;
 exp_work_claw_rate;0.05;float;;;
 exp_work_cut_inc;34610;float;;;
