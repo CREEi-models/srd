@@ -262,6 +262,26 @@ class form_2020(form_2019):
         add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2020.csv')
         add_schedule_as_attr(self, module_dir + '/quebec/params/drug_insurance_contrib_2020.csv')
 
+    def calc_deduc_gross_income(self, p):
+        """
+        Fonction qui calcule les déductions.
+
+        Cette fonction fait la somme des différentes déductions du contribuable.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        """
+        p.qc_work_deduc = self.work_deduc(p)
+        p.qc_cpp_qpip_deduction = self.cpp_qpip_deduction(p)
+        p.prov_return['deductions_gross_inc'] = (p.con_rrsp + p.con_rpp
+                                                 + p.qc_work_deduc
+                                                 + p.pension_deduction_qc
+                                                 + p.qc_cpp_qpip_deduction)
+        if p.inc_oas>0:
+            p.prov_return['deductions_gross_inc'] += self.oas_covid_bonus
+
 class form_2021(form_2020):
     """
     Formulaire d'impôt de 2021.
@@ -271,4 +291,22 @@ class form_2021(form_2020):
         add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2021.csv')
         add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2021.csv')
         add_schedule_as_attr(self, module_dir + '/quebec/params/drug_insurance_contrib_2021.csv')
+
+    def calc_deduc_gross_income(self, p):
+        """
+        Fonction qui calcule les déductions.
+
+        Cette fonction fait la somme des différentes déductions du contribuable.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        """
+        p.qc_work_deduc = self.work_deduc(p)
+        p.qc_cpp_qpip_deduction = self.cpp_qpip_deduction(p)
+        p.prov_return['deductions_gross_inc'] = (p.con_rrsp + p.con_rpp
+                                                 + p.qc_work_deduc
+                                                 + p.pension_deduction_qc
+                                                 + p.qc_cpp_qpip_deduction)
         
