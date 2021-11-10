@@ -40,8 +40,9 @@ class template:
             self.calc_tax(p)
             self.calc_non_refundable_tax_credits(p, hh)
             self.div_tax_credit(p)
-            p.prov_return['net_tax_liability'] = max(0,
-                p.prov_return['gross_tax_liability'] - p.prov_return['non_refund_credits'] - p.qc_div_tax_credit)
+        for p in hh.sp:
+            p.prov_return['net_tax_liability'] = max(0, p.prov_return['gross_tax_liability'] - p.prov_return['non_refund_credits']\
+                 + self.get_spouse_transfer(p, hh) - p.qc_div_tax_credit)
             self.calc_refundable_tax_credits(p, hh)
             p.prov_return['net_tax_liability'] -= p.prov_return['refund_credits']
             self.calc_contributions(p, hh)
@@ -443,6 +444,25 @@ class template:
         """
         p.qc_div_tax_credit = (self.div_elig_cred_net_rate * p.div_elig
                                + self.div_other_can_cred_net_rate * p.div_other_can)
+
+    def get_spouse_transfer(self, p, hh):
+        """
+        Fonction récupère le surplus des crédits non rembousables tranferables au conjoint (s'il y lieu).
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        """
+        if not hh.couple:
+            return 0
+        
+        spouse = hh.sp[1 - hh.sp.index(p)]
+        transfer = spouse.prov_return['gross_tax_liability'] - spouse.prov_return['non_refund_credits']
+        if transfer < 0:
+            return transfer
+        else:
+            return 0
 
     def calc_refundable_tax_credits(self, p, hh):
         """
