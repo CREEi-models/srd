@@ -39,7 +39,7 @@ class template:
             self.calc_non_refundable_tax_credits(p, hh)
             self.div_tax_credit(p)
         for p in hh.sp:
-            p.fed_return['net_tax_liability'] = max(0, p.fed_return['gross_tax_liability'] - p.fed_return['non_refund_credits']\
+            p.fed_return['net_tax_liability'] = max(0, p.fed_return['gross_tax_liability'] - p.fed_return['non_refund_credits']
                  - self.get_spouse_transfer(p, hh) - p.fed_div_tax_credit)
             self.calc_refundable_tax_credits(p, hh)
             p.fed_return['net_tax_liability'] -= p.fed_return['refund_credits']
@@ -473,7 +473,7 @@ class template:
 
     def get_spouse_transfer(self, p, hh):
         """
-        Fonction récupère le surplus des crédits non rembousables tranferables au conjoint (s'il y lieu).
+        Fonction récupère qui le surplus des crédits non rembousables tranferables au conjoint (s'il y lieu).
 
         Parameters
         ----------
@@ -487,17 +487,17 @@ class template:
 
         spouse = hh.sp[1 - hh.sp.index(p)]
         first_cred = spouse.fed_age_cred + spouse.fed_pension_cred 
-        if spouse.fed_return['taxable_income'] < self.l_brackets[1]:
+        if spouse.fed_return['taxable_income'] <= self.l_brackets[1]:
             taxable_inc = spouse.fed_return['taxable_income']
         else:
             taxable_inc = spouse.fed_return['gross_tax_liability']/ self.l_rates[0]
         
-        
-        non_refundable_cred = self.compute_basic_amount(spouse) + spouse.fed_cpp_contrib_cred + spouse.fed_qpip_self_cred \
-        + spouse.fed_ei_contrib_cred + spouse.inc_self_earn + spouse.fed_qpip_cred+ spouse.fed_qpip_self_cred + spouse.fed_empl_cred
+        income_deduction = self.compute_basic_amount(spouse) + spouse.contrib_cpp + spouse.contrib_cpp_self + spouse.contrib_qpip \
+        + spouse.contrib_qpip_self + spouse.contrib_ei + spouse.fed_empl_cred
 
-        amount = max(0, taxable_inc - non_refundable_cred)
-        transfer = max(0, first_cred - amount)
+        net_inc = max(0, taxable_inc - income_deduction)
+        transfer = max(0, first_cred - net_inc)
+        
         return self.l_rates[0] * transfer
         
 
