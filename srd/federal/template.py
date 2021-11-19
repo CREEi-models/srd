@@ -473,7 +473,7 @@ class template:
 
     def get_spouse_transfer(self, p, hh):
         """
-        Fonction récupère qui le surplus des crédits non rembousables tranferables au conjoint (s'il y lieu).
+        Fonction qui récupère le surplus des crédits non rembousables tranferables au conjoint (s'il y lieu).
 
         Parameters
         ----------

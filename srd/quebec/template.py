@@ -203,11 +203,25 @@ class template:
         hh: Hhold
             instance de la classe Hhold
         """
-        p.qc_age_cred = self.get_age_cred(p)
-        p.qc_living_alone_cred = self.get_living_alone_cred(p, hh)
-        p.qc_pension_cred = self.get_pension_cred(p)
-        cred_amount = p.qc_age_cred + p.qc_living_alone_cred + p.qc_pension_cred
-        p.qc_age_alone_pension = max(0, cred_amount - self.get_nrtcred_clawback(p, hh))
+        if hh.sp.index(p)==0:
+            for d in hh.sp:
+                d.qc_age_cred = self.get_pension_cred(d)
+                d.qc_age_cred = self.get_age_cred(d)
+
+        if hh.couple==True and p.prov_return['net_income']>(0.5*hh.fam_net_inc_prov):
+            cred_amount = hh.sp[0].qc_age_cred + hh.sp[1].qc_age_cred + hh.sp[0].qc_pension_cred + hh.sp[1].qc_pension_cred
+            p.qc_age_alone_pension = max(0, cred_amount - self.get_nrtcred_clawback(p, hh))
+        elif hh.couple==True and p.prov_return['net_income']<(0.5*hh.fam_net_inc_prov):
+            p.qc_age_alone_pension = 0
+        elif hh.couple==True and p.prov_return['net_income']==(0.5*hh.fam_net_inc_prov):
+            cred_amount = hh.sp[0].qc_age_cred + hh.sp[1].qc_age_cred + hh.sp[0].qc_pension_cred + hh.sp[1].qc_pension_cred
+            hh.sp[0].qc_age_alone_pension = max(0, cred_amount - self.get_nrtcred_clawback(p, hh))
+            hh.sp[1].qc_age_alone_pension = 0
+        elif hh.couple==False:
+            p.qc_living_alone_cred = self.get_living_alone_cred(p, hh)
+
+            cred_amount = p.qc_age_cred + p.qc_pension_cred + p.qc_living_alone_cred 
+            p.qc_age_alone_pension = max(0, cred_amount - self.get_nrtcred_clawback(p, hh))
 
         p.qc_disabled_cred = self.get_disabled_cred(p)
         p.qc_med_exp_nr_cred = self.get_med_exp_cred(p, hh)
@@ -270,8 +284,9 @@ class template:
         """
         pension_split_cred = (p.inc_rpp + p.inc_rrsp - p.pension_deduction_qc
                               + p.pension_split_qc)
-        return min(self.nrtc_pension_max,
-                   pension_split_cred * self.nrtc_pension_factor)
+
+        p.qc_pension_cred = min(self.nrtc_pension_max, pension_split_cred * self.nrtc_pension_factor)
+        return p.qc_pension_cred
         
     def get_nrtcred_clawback(self, p, hh):
         """
