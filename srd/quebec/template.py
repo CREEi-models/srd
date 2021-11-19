@@ -40,8 +40,9 @@ class template:
             self.calc_tax(p)
             self.calc_non_refundable_tax_credits(p, hh)
             self.div_tax_credit(p)
-            p.prov_return['net_tax_liability'] = max(0,
-                p.prov_return['gross_tax_liability'] - p.prov_return['non_refund_credits'] - p.qc_div_tax_credit)
+        for p in hh.sp:
+            p.prov_return['net_tax_liability'] = max(0, p.prov_return['gross_tax_liability'] - p.prov_return['non_refund_credits']
+                 + self.get_spouse_transfer(p, hh) - p.qc_div_tax_credit)
             self.calc_refundable_tax_credits(p, hh)
             p.prov_return['net_tax_liability'] -= p.prov_return['refund_credits']
             self.calc_contributions(p, hh)
@@ -202,11 +203,25 @@ class template:
         hh: Hhold
             instance de la classe Hhold
         """
-        p.qc_age_cred = self.get_age_cred(p)
-        p.qc_living_alone_cred = self.get_living_alone_cred(p, hh)
-        p.qc_pension_cred = self.get_pension_cred(p)
-        cred_amount = p.qc_age_cred + p.qc_living_alone_cred + p.qc_pension_cred
-        p.qc_age_alone_pension = max(0, cred_amount - self.get_nrtcred_clawback(p, hh))
+        if hh.sp.index(p)==0:
+            for d in hh.sp:
+                d.qc_age_cred = self.get_pension_cred(d)
+                d.qc_age_cred = self.get_age_cred(d)
+
+        if hh.couple==True and p.prov_return['net_income']>(0.5*hh.fam_net_inc_prov):
+            cred_amount = hh.sp[0].qc_age_cred + hh.sp[1].qc_age_cred + hh.sp[0].qc_pension_cred + hh.sp[1].qc_pension_cred
+            p.qc_age_alone_pension = max(0, cred_amount - self.get_nrtcred_clawback(p, hh))
+        elif hh.couple==True and p.prov_return['net_income']<(0.5*hh.fam_net_inc_prov):
+            p.qc_age_alone_pension = 0
+        elif hh.couple==True and p.prov_return['net_income']==(0.5*hh.fam_net_inc_prov):
+            cred_amount = hh.sp[0].qc_age_cred + hh.sp[1].qc_age_cred + hh.sp[0].qc_pension_cred + hh.sp[1].qc_pension_cred
+            hh.sp[0].qc_age_alone_pension = max(0, cred_amount - self.get_nrtcred_clawback(p, hh))
+            hh.sp[1].qc_age_alone_pension = 0
+        elif hh.couple==False:
+            p.qc_living_alone_cred = self.get_living_alone_cred(p, hh)
+
+            cred_amount = p.qc_age_cred + p.qc_pension_cred + p.qc_living_alone_cred 
+            p.qc_age_alone_pension = max(0, cred_amount - self.get_nrtcred_clawback(p, hh))
 
         p.qc_disabled_cred = self.get_disabled_cred(p)
         p.qc_med_exp_nr_cred = self.get_med_exp_cred(p, hh)
@@ -269,8 +284,9 @@ class template:
         """
         pension_split_cred = (p.inc_rpp + p.inc_rrsp - p.pension_deduction_qc
                               + p.pension_split_qc)
-        return min(self.nrtc_pension_max,
-                   pension_split_cred * self.nrtc_pension_factor)
+
+        p.qc_pension_cred = min(self.nrtc_pension_max, pension_split_cred * self.nrtc_pension_factor)
+        return p.qc_pension_cred
         
     def get_nrtcred_clawback(self, p, hh):
         """
@@ -443,6 +459,25 @@ class template:
         """
         p.qc_div_tax_credit = (self.div_elig_cred_net_rate * p.div_elig
                                + self.div_other_can_cred_net_rate * p.div_other_can)
+
+    def get_spouse_transfer(self, p, hh):
+        """
+        Fonction qui récupère le surplus des crédits non rembousables tranferables au conjoint (s'il y lieu).
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        """
+        if not hh.couple:
+            return 0
+        
+        spouse = hh.sp[1 - hh.sp.index(p)]
+        transfer = spouse.prov_return['gross_tax_liability'] - spouse.prov_return['non_refund_credits'] - spouse.qc_div_tax_credit
+        if transfer < 0:
+            return transfer
+        else:
+            return 0
 
     def calc_refundable_tax_credits(self, p, hh):
         """

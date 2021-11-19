@@ -38,9 +38,9 @@ class template:
             self.calc_tax(p)
             self.calc_non_refundable_tax_credits(p, hh)
             self.div_tax_credit(p)
-            p.fed_return['net_tax_liability'] = max(0,
-                p.fed_return['gross_tax_liability'] - p.fed_return['non_refund_credits']
-                - p.fed_div_tax_credit)
+        for p in hh.sp:
+            p.fed_return['net_tax_liability'] = max(0, p.fed_return['gross_tax_liability'] - p.fed_return['non_refund_credits']
+                 - self.get_spouse_transfer(p, hh) - p.fed_div_tax_credit)
             self.calc_refundable_tax_credits(p, hh)
             p.fed_return['net_tax_liability'] -= p.fed_return['refund_credits']
 
@@ -470,6 +470,36 @@ class template:
             return (self.donation_low_cut * self.donation_low_rate
                     + donation_high_inc * self.donation_high_rate
                     + donation_low_inc * self.donation_med_rate)
+
+    def get_spouse_transfer(self, p, hh):
+        """
+        Fonction qui récupère le surplus des crédits non rembousables tranferables au conjoint (s'il y lieu).
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+        """
+        if not hh.couple:
+            return 0
+
+        spouse = hh.sp[1 - hh.sp.index(p)]
+        first_cred = spouse.fed_age_cred + spouse.fed_pension_cred 
+        if spouse.fed_return['taxable_income'] <= self.l_brackets[1]:
+            taxable_inc = spouse.fed_return['taxable_income']
+        else:
+            taxable_inc = spouse.fed_return['gross_tax_liability']/ self.l_rates[0]
+        
+        income_deduction = self.compute_basic_amount(spouse) + spouse.contrib_cpp + spouse.contrib_cpp_self + spouse.contrib_qpip \
+        + spouse.contrib_qpip_self + spouse.contrib_ei + spouse.fed_empl_cred
+
+        net_inc = max(0, taxable_inc - income_deduction)
+        transfer = max(0, first_cred - net_inc)
+        
+        return self.l_rates[0] * transfer
+        
 
     def div_tax_credit(self, p):
         """
