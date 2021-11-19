@@ -207,6 +207,7 @@ class template:
             for d in hh.sp:
                 d.qc_age_cred = self.get_pension_cred(d)
                 d.qc_age_cred = self.get_age_cred(d)
+                d.qc_living_alone_cred = self.get_living_alone_cred(p, hh)
 
         if hh.couple==True and p.prov_return['net_income']>(0.5*hh.fam_net_inc_prov):
             cred_amount = hh.sp[0].qc_age_cred + hh.sp[1].qc_age_cred + hh.sp[0].qc_pension_cred + hh.sp[1].qc_pension_cred
@@ -218,8 +219,6 @@ class template:
             hh.sp[0].qc_age_alone_pension = max(0, cred_amount - self.get_nrtcred_clawback(p, hh))
             hh.sp[1].qc_age_alone_pension = 0
         elif hh.couple==False:
-            p.qc_living_alone_cred = self.get_living_alone_cred(p, hh)
-
             cred_amount = p.qc_age_cred + p.qc_pension_cred + p.qc_living_alone_cred 
             p.qc_age_alone_pension = max(0, cred_amount - self.get_nrtcred_clawback(p, hh))
 
