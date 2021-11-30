@@ -61,7 +61,7 @@ class template:
         Returns
         -------
         float
-            Montant combiné de la composante de base et du supplément pour enfant.
+            Montant combiné de la composante de base et du supplément pour enfant. 
         """
         # assets test: test de ressources? voir docstring
         assets = sum([s.asset for s in hh.sp])
@@ -75,12 +75,23 @@ class template:
         ccb_max = sum([self.fed.ccb(s, hh, iclaw=False) for s in hh.sp])
         amount = max(0, ccb_max - ccb_real)
 
+        #get number of adult eligible for allowance temporary constraints
+        p1 =  len([s for s in hh.sp if s.age in range(58,65)])
+        p2 =  len([s for s in hh.sp if s.age >=65])
+        dep = len([s for s in hh.dep if s.age <= 4])
+
         if hh.couple:
             amount += self.socass_qc_base_couple
+            if hh.social_temp_ass and p1==2:
+                amount += self.socass_qc_temp_constraint_couple
+            elif  hh.social_temp_ass and (p1==1 and p2==0):
+                amount += self.socass_qc_temp_constraint_single
             clawback = max(0, max(0, hh.fam_inc_tot - self.socass_qc_exemption_couple)
                            - contributions)
         else:
             amount += self.socass_qc_base_single
+            if hh.social_temp_ass and (p1 != 0 or (dep !=0 and p2==0)):
+                amount += self.socass_qc_temp_constraint_single
             clawback = max(0, max(0, hh.fam_inc_tot - self.socass_qc_exemption_single)
                            - contributions)
         return max(0, amount - clawback) / (1 + hh.couple)
