@@ -142,11 +142,11 @@ class tax:
         if self.ioas:
             self.compute_oas(hh)
         if self.ifed:
-            self.compute_federal(hh)
+            self.compute_fed(hh)
         if self.iprov:
             self.compute_prov(hh)
         if self.iass:
-            self.compute_ass(hh)
+            self.compute_sa(hh)
         self.disp_inc(hh)
 
     def compute_oas(self, hh):
@@ -160,7 +160,7 @@ class tax:
         """
         self.oas.file(hh)
 
-    def compute_federal(self, hh):
+    def compute_fed(self, hh):
         """
         Calcul de l'impôt fédéral.
 
@@ -217,7 +217,7 @@ class tax:
         for p in hh.sp:
             self.ei.compute_benefits_covid(p, hh)
 
-    def compute_ass(self, hh):
+    def compute_sa(self, hh):
         """
         Calcul des prestations d'aide sociale.
 
@@ -226,9 +226,8 @@ class tax:
         hh: Hhold
             instance de la classe Hhold
         """
-        amount = self.ass.apply(hh)
-        for p in hh.sp:
-            p.inc_social_ass = amount
+        self.ass.file(hh)
+
 
     def compute_after_tax_inc(self, hh):
         """
@@ -257,7 +256,7 @@ class tax:
             if self.ipayroll:
                 disp_inc -= sum(list(p.payroll.values()))
             if self.iass:
-                disp_inc += p.inc_social_ass
+                disp_inc += p.inc_sa
             disp_inc -= p.con_rrsp + p.con_non_rrsp
             p.disp_inc = disp_inc
 
