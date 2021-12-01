@@ -226,9 +226,8 @@ class tax:
         hh: Hhold
             instance de la classe Hhold
         """
-        amount = self.ass.apply(hh)
-        for p in hh.sp:
-            p.inc_sa = amount
+        self.ass.file(hh)
+
 
     def compute_after_tax_inc(self, hh):
         """

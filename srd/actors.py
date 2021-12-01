@@ -91,7 +91,7 @@ class Person:
                  disabled=False, widow=False, med_exp=0, ndays_chcare_k1=0,
                  ndays_chcare_k2=0, asset=0, oas_years_post=0,
                  months_cerb_cesb=0, student=False, essential_worker=False,
-                 hours_month=None, prev_inc_work=None, 
+                 emp_temp_constraints=False, hours_month=None, prev_inc_work=None, 
                  dep_senior=False, home_support_cost=0,months_ei=0, months_crb =0, pub_drug_insurance=False):
         self.age = age
         self.male = male
@@ -127,6 +127,7 @@ class Person:
         self.pub_drug_insurance = pub_drug_insurance
         self.student = student
         self.essential_worker = essential_worker
+        self.emp_temp_constraints = emp_temp_constraints 
         self.hours_month = hours_month  # could enter list of hours for ei
         self.dep_senior = dep_senior
         self.home_support_cost = home_support_cost
@@ -137,7 +138,7 @@ class Person:
         self.inc_oas = 0
         self.inc_gis = 0
         self.inc_ei = 0
-        self.inc_social_ass = 0
+        self.inc_sa = 0
         self.allow_couple = 0
         self.allow_surv = 0
         self.inc_cerb = 0
@@ -328,7 +329,7 @@ class Hhold:
     n_adults_in_hh: int
         nombre d'adultes (18 ans et plus) dans le ménage
     """
-    def __init__(self, first, second=None, prov='qc',social_temp_ass=True, n_adults_in_hh=None):
+    def __init__(self, first, second=None, prov='qc', n_adults_in_hh=None):
         self.sp = [first]
         self.couple = bool(second)
         if self.couple:
@@ -339,7 +340,6 @@ class Hhold:
         self.nkids_7_16 = 0
         self.nkids_0_17 = 0
         self.nkids_0_18 = 0
-        self.social_temp_ass = social_temp_ass        
         self.n_adults_in_hh = self.adjust_n_adults(n_adults_in_hh)
         self.compute_max_split()
         self.assess_elig_split()
