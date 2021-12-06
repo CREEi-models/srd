@@ -116,7 +116,7 @@ class template:
         Parameters
         ----------
         p: Person
-            instance de la classe Person
+            instance de la classe Person 
         hh: Hhold
             instance de la classe Hhold
         """
@@ -128,13 +128,13 @@ class template:
         if assets > cutoff:
             hh.sa_elig_asset = False
 
-        dep = len([s for s in hh.dep if s.age <= 4])
+        dep = len([s for s in hh.dep if s.age <= self.socass_qc_temp_child_age])
 
         for p in hh.sp:
             
             if hh.sa_elig_asset and p.emp_temp_constraints:
                 p.sa_elig = 'temporary constraints'
-            elif hh.sa_elig_asset and p.age>=58 and p.age<65:
+            elif hh.sa_elig_asset and p.age>=self.socass_qc_temp_min_age:
                 p.sa_elig = 'temporary constraints'
             elif hh.sa_elig_asset and hh.couple==False and dep>0:
                 p.sa_elig = 'temporary constraints'

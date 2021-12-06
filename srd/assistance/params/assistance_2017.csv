@@ -5,6 +5,8 @@ socass_qc_base_single;7536;float;;https://www.emploiquebec.gouv.qc.ca/uploads/tx
 socass_qc_base_couple;11664;float;;;
 socass_qc_temp_constraint_single;1596;float;;;
 socass_qc_temp_constraint_couple;2748;float;;;
+socass_qc_temp_chid_age;4;float;;;
+socass_qc_temp_min_age;58;float;;;
 socass_qc_reductionrate;1;float;;;
 socass_qc_exemption_single;2400;float;;;
 socass_qc_exemption_couple;3600;float;;;
