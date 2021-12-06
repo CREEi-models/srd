@@ -5,7 +5,7 @@ socass_qc_base_single;7476;float;;;
 socass_qc_base_couple;11580;float;;;
 socass_qc_temp_constraint_single;1584;float;;;
 socass_qc_temp_constraint_couple;2724;float;;;
-socass_qc_temp_chid_age;4;float;;;
+socass_qc_temp_child_age;4;float;;;
 socass_qc_temp_min_age;58;float;;;
 socass_qc_exemption_single;2400;float;;;
 socass_qc_exemption_couple;3600;float;;;
