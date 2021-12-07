@@ -89,16 +89,16 @@ class template:
             basic_amount += self.socass_qc_base_couple
             
             if nb_temp_constraints==2:
-                temp_amount = self.socass_qc_temp_constraint_couple
+                temp_amount = self.socass_qc_temp_couple
             elif  nb_temp_constraints==1:
-                temp_amount = self.socass_qc_temp_constraint_single
+                temp_amount = self.socass_qc_temp_single
             
             clawback = max(0, max(0, hh.fam_inc_tot - self.socass_qc_exemption_couple)
                            - contributions)
         else:
             basic_amount += self.socass_qc_base_single
             if hh.sp[0].sa_elig=='temporary constraints':
-                temp_amount = self.socass_qc_temp_constraint_single
+                temp_amount = self.socass_qc_temp_single
             
             clawback = max(0, max(0, hh.fam_inc_tot - self.socass_qc_exemption_single)
                            - contributions)
@@ -134,7 +134,7 @@ class template:
             
             if hh.sa_elig_asset and p.emp_temp_constraints:
                 p.sa_elig = 'temporary constraints'
-            elif hh.sa_elig_asset and p.age>=self.socass_qc_temp_min_age:
+            elif hh.sa_elig_asset and p.age>=self.socass_qc_temp_elder_age:
                 p.sa_elig = 'temporary constraints'
             elif hh.sa_elig_asset and hh.couple==False and dep>0:
                 p.sa_elig = 'temporary constraints'
