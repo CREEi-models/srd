@@ -82,32 +82,73 @@ class template:
         ccb_real = sum([self.fed.ccb(s, hh, iclaw=True) for s in hh.sp])
         ccb_max = sum([self.fed.ccb(s, hh, iclaw=False) for s in hh.sp])
         #basic amount
-        basic_amount = max(0, ccb_max - ccb_real)
-        #temporary constraints amount
+        basic_amount = max(0, ccb_max - ccb_real) + self.child_ajustments(hh)
+
         temp_amount = 0
         if hh.couple:
             basic_amount += self.socass_qc_base_couple
-            
+
             if nb_temp_constraints==2:
                 temp_amount = self.socass_qc_temp_couple
             elif  nb_temp_constraints==1:
                 temp_amount = self.socass_qc_temp_single
-            
-            clawback = max(0, max(0, hh.fam_inc_tot - self.socass_qc_exemption_couple)
-                           - contributions)
+
+            clawback = max(0, max(0, hh.fam_inc_tot - self.socass_qc_exemption_couple) - contributions)
         else:
             basic_amount += self.socass_qc_base_single
             if hh.sp[0].sa_elig=='temporary constraints':
                 temp_amount = self.socass_qc_temp_single
-            
-            clawback = max(0, max(0, hh.fam_inc_tot - self.socass_qc_exemption_single)
-                           - contributions)
-        
+            else:
+                if not hh.dep:
+                    basic_amount += self.socass_qc_ajust_single
+
+            clawback = max(0, max(0, hh.fam_inc_tot - self.socass_qc_exemption_single) - contributions)
+
         amount = max(0, basic_amount + temp_amount - clawback) / (1 + hh.couple)
 
         for p in hh.sp:
             p.inc_sa = amount
         
+
+    def child_ajustments(self, hh):
+        """
+        Fonction qui calcul l'ajustement des prestation d'aide sociale selon les caractéristiques des enfants du ménage.
+
+        Parameters
+        ----------
+        hh: Hhold
+            instance de la classe Hhold
+        """
+        ccap,ccb = 0,0
+        for p in hh.sp:
+            ccap += p.qc_ccap
+            ccb += p.fed_ccb
+
+
+        if not hh.nkids_0_17 > 0:
+            return 0
+        #ajustement article 68 et 69
+        amount_68_69 = hh.nkids_0_17 * self.socass_qc_ajust_kid
+        if not hh.couple:
+            amount_68_69 += hh.nkids_0_17 * self.socass_qc_ajust_single_kid
+        base = max(0,amount_68_69 - ccap)
+
+        #ajustement article 70
+        amount_70 = self.socass_qc_ajust_kid1
+        if hh.nkids_0_17 > 1:
+            amount_70 += self.socass_qc_ajust_kid2
+
+        if hh.nkids_0_17 > 2:
+            amount_70 += (hh.nkids_0_17 - 2) * self.socass_qc_ajust_kid3
+        base += max(0,amount_70 - ccb)
+
+        #ajustement article 73
+        nkids_12p = len([d for d in hh.dep if 12<= d.age < 18])
+        if 0 < nkids_12p <=2 :
+            base += nkids_12p * self.socass_qc_ajust_kid12_12yp
+
+        return base
+
 
     def eligibility_qc(self, hh):
         """
