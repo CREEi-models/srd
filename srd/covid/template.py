@@ -9,14 +9,14 @@ def create_stub():
 
 class template:
     """
-    Programme d'assurance emploi.
+    Programme COVID-19.
 
-    Ce gabarit sert pour l'instant à calculer les cotisations à l'assurance emploi.
+    Ce gabarit sert à calculer les programmes associé à la COVID-19.
 
     """
     def compute(self, hh):
         """
-        Fonction qui fait le calcul et crée le rapport de cotisations.
+        Fonction qui fait le calcul de chaque programme COVID-19.
         Parameters
         ----------
         p: Person
