@@ -28,7 +28,9 @@ class template:
             Montant de la cotisation à l'assurance emploi (annuelle).
         """
         rate = self.rate_EI_qc if hh.prov == 'qc' else self.rate_EI
+        p.contrib_ei = 0
         if p.inc_earn > self.min_earn_EI:
-            return rate * min(p.inc_earn, self.max_earn_EI)
+            p.contrib_ei = rate * min(p.inc_earn, self.max_earn_EI)
+            return p.contrib_ei
         else:
             return 0

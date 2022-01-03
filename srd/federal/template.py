@@ -38,9 +38,9 @@ class template:
             self.calc_tax(p)
             self.calc_non_refundable_tax_credits(p, hh)
             self.div_tax_credit(p)
-            p.fed_return['net_tax_liability'] = max(0,
-                p.fed_return['gross_tax_liability'] - p.fed_return['non_refund_credits']
-                - p.fed_div_tax_credit)
+        for p in hh.sp:
+            p.fed_return['net_tax_liability'] = max(0, p.fed_return['gross_tax_liability'] - p.fed_return['non_refund_credits']
+                 - self.get_spouse_transfer(p, hh) - p.fed_div_tax_credit)
             self.calc_refundable_tax_credits(p, hh)
             p.fed_return['net_tax_liability'] -= p.fed_return['refund_credits']
 
@@ -158,7 +158,8 @@ class template:
             Montant de la déduction.
         """
         try:
-            return p.contrib_cpp_self / 2
+            p.contrib_cpp_deduc = p.contrib_cpp_self / 2
+            return p.contrib_cpp_deduc
         except AttributeError as e:
             msg = 'le ménage doit être passé dans payroll pour obtenir les contributions cpp/rrq et rqap'
             raise Exception(msg) from e
@@ -228,6 +229,7 @@ class template:
         """
         p.fed_age_cred = self.get_age_cred(p)
         p.fed_cpp_contrib_cred = self.get_cpp_contrib_cred(p)
+        p.fed_ei_contrib_cred = self.get_ei_contrib_cred(p)
         p.fed_qpip_cred = self.get_qpip_cred(p)
         p.fed_qpip_self_cred = self.get_qpip_self_cred(p)
         p.fed_empl_cred = self.get_empl_cred(p)
@@ -235,11 +237,14 @@ class template:
         p.fed_disabled_cred = self.get_disabled_cred(p)
         p.fed_med_exp_nr_cred = self.get_med_exp_nr_cred(p, hh)
         p.donation_cred = self.get_donations_cred(p)
+        p.fed_dep_cred = self.get_dep_cred(p, hh)
+        p.fed_spouse_cred = self.get_spouses_cred(p, hh)
+        
 
         p.fed_return['non_refund_credits'] = (self.rate_non_ref_tax_cred
-            * (self.compute_basic_amount(p) + p.fed_age_cred
-               + p.fed_cpp_contrib_cred + p.fed_qpip_cred +
-               + p.fed_qpip_self_cred + p.fed_empl_cred + p.fed_pension_cred
+            * (self.compute_basic_amount(p)+ p.fed_dep_cred + p.fed_spouse_cred + p.fed_age_cred
+               + p.fed_cpp_contrib_cred + p.fed_ei_contrib_cred + p.fed_qpip_cred +
+               + p.fed_qpip_self_cred + p.fed_empl_cred  + p.fed_pension_cred
                + p.fed_disabled_cred + p.fed_med_exp_nr_cred)
                + p.donation_cred)
 
@@ -280,6 +285,22 @@ class template:
 
         clawback = self.age_cred_claw_rate * max(0, p.fed_return['net_income'] - self.age_cred_exempt)
         return max(0, self.age_cred_amount - clawback)
+    
+    def get_ei_contrib_cred(self, p):
+        """
+        Fonction qui calcule la déduction pour cotisations à l'assurance emploi.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+
+        Returns
+        -------
+        float
+            Montant du crédit.
+        """
+        return p.contrib_ei
 
     def get_cpp_contrib_cred(self, p):
         """
@@ -449,6 +470,36 @@ class template:
             return (self.donation_low_cut * self.donation_low_rate
                     + donation_high_inc * self.donation_high_rate
                     + donation_low_inc * self.donation_med_rate)
+
+    def get_spouse_transfer(self, p, hh):
+        """
+        Fonction qui récupère le surplus des crédits non rembousables tranferables au conjoint (s'il y lieu).
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+        """
+        if not hh.couple:
+            return 0
+
+        spouse = hh.sp[1 - hh.sp.index(p)]
+        first_cred = spouse.fed_age_cred + spouse.fed_pension_cred 
+        if spouse.fed_return['taxable_income'] <= self.l_brackets[1]:
+            taxable_inc = spouse.fed_return['taxable_income']
+        else:
+            taxable_inc = spouse.fed_return['gross_tax_liability']/ self.l_rates[0]
+        
+        income_deduction = self.compute_basic_amount(spouse) + spouse.contrib_cpp + spouse.contrib_cpp_self + spouse.contrib_qpip \
+        + spouse.contrib_qpip_self + spouse.contrib_ei + spouse.fed_empl_cred
+
+        net_inc = max(0, taxable_inc - income_deduction)
+        transfer = max(0, first_cred - net_inc)
+        
+        return self.l_rates[0] * transfer
+        
 
     def div_tax_credit(self, p):
         """
@@ -717,3 +768,87 @@ class template:
                           self.gst_cred_rate * max(0, hh.fam_net_inc_fed - self.gst_cred_base_amount))
 
         return max(0, amount - clawback)
+    
+    def get_dep_cred(self, p , hh):
+        """
+        Fonction qui calcule le crédit pour personne à charge admissible.
+
+        Ce crédit est non-remboursable.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+
+        Returns
+        -------
+        float
+            Montant du crédit.
+        """
+        if hh.couple:
+            return 0
+
+        amount = amount_dis = nchild_dis = nchild = 0
+        nchild += len(hh.dep)
+        if nchild == 0:
+            return 0
+        else:
+            amount += self.compute_basic_amount(p)
+            for d in hh.dep:
+                if d.disa:
+                    nchild_dis +=1
+            if nchild_dis >= 1:
+                amount_dis += self.dep_disa_amount
+            return amount + amount_dis
+
+    def get_spouses_cred(self, p, hh):
+        """
+        Fonction qui calcule le montant pour époux ou conjoint de fait.
+
+        Ce crédit est non-remboursable.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+
+        Returns
+        -------
+        float
+            Montant du crédit.
+        """
+        if hh.couple:
+            higher_inc, equal_inc = 0,0
+            if hh.sp[0].fed_return['net_income'] > hh.sp[1].fed_return['net_income']:
+                higher_inc = hh.sp[0].fed_return['net_income']
+            elif hh.sp[1].fed_return['net_income'] > hh.sp[0].fed_return['net_income']:
+                higher_inc = hh.sp[1].fed_return['net_income']
+            else:
+                equal_inc = hh.sp[1].fed_return['net_income']
+        elif not hh.couple or (p.fed_dep_cred != 0):
+            return 0
+        
+        amount = 0
+        if p.fed_return['net_income'] == higher_inc :
+            amount += self.compute_basic_amount(p)
+            spouse = hh.sp[1 - hh.sp.index(p)]
+            if spouse.disabled:
+                amount += self.nrtc_spouse_dis 
+            amount-= spouse.fed_return['net_income']
+            return max(0, amount)
+        elif p.fed_return['net_income'] == equal_inc:
+            amount += self.compute_basic_amount(p)
+            spouse = hh.sp[1 - hh.sp.index(p)]
+            if spouse.disabled:
+                amount += self.nrtc_spouse_dis 
+            amount-= spouse.fed_return['net_income']
+            spouse.fed_spouse_cred = 0
+            return max(0, amount)
+        else:
+            return max(0, amount)
+        
+        

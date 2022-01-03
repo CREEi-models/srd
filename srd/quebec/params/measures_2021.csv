@@ -1,0 +1,99 @@
+variable;value;type;definition;source;comments
+div_elig_factor;1.38;float;;;ok
+div_other_can_factor;1.15;float;;;ok
+div_elig_cred_net_rate;0.16146;float;;https://cffp.recherche.usherbrooke.ca/outils-ressources/guide-mesures-fiscales/credit-impot-dividendes/;
+div_other_can_cred_net_rate;0.054855;float;;;
+cap_gains_rate;0.5;float;;; ok
+qpip_deduc_rate;0.43736;float;;;*on assume le meme quand 2020 car taux ne varie pas bcp ok
+work_deduc_max;1205;float;;https://www.revenuquebec.ca/fr/entreprises/retenues-et-cotisations/trousse-employeur/principaux-changements-pour-2020/;1.26% indexation rate ok
+work_deduc_rate;0.06;float;;;assumed constant ok
+nrtc_age_max;3308;float;;http://www.finances.gouv.qc.ca/documents/Autres/fr/AUTFR_RegimeImpot2021.pdf; ok (avec indexation)
+nrtc_age;65;int;;;assumed constant ok
+nrtc_living_alone;1802;float;;http://www.finances.gouv.qc.ca/documents/Autres/fr/AUTFR_RegimeImpot2021.pdf; ok (avec indexation)
+nrtc_pension_max;2939;float;;http://www.finances.gouv.qc.ca/documents/Autres/fr/AUTFR_RegimeImpot2021.pdf; ok (avec indexation)
+nrtc_pension_factor;1.25;float;;;assumed constant ok
+nrtc_claw_rate;0.1875;float;;;assumed constant ok
+nrtc_claw_cutoff;35650;float;;; ok
+nrtc_rate;0.15;float;;;assumed constant ok
+nrtc_base;15728;float;;http://www.finances.gouv.qc.ca/documents/Autres/fr/AUTFR_RegimeImpot2021.pdf; ok (avec indexation)
+nrtc_disabled;3492;float;;http://www.finances.gouv.qc.ca/documents/Autres/fr/AUTFR_RegimeImpot2021.pdf; ok (avec indexation)
+nrtc_med_exp_rate;0.03;float;;; assumed constant ok
+nrtc_donation_low_cut;200;float;;; ok
+nrtc_donation_high_cut;109754;float;montant de 2020 ajuste avec le taux d'indexation de 2020;;108 388$  * (1.0126)
+nrtc_donation_low_rate;0.20;float;;; ok
+nrtc_donation_med_rate;0.24;float;;; ok
+nrtc_donation_high_rate;0.2575;float;;; ok
+nrtc_union_dues_rate;0.10;float;;; assumed constant ok
+hsf_high_inc;53410;int;;; indexé par 1.0126
+hsf_low_inc;15360;int;;; indexé par 1.0126
+hsf_low_cutoff;150;int;;;
+hsf_high_cutoff;1000;int;;;
+hsf_rate;0.01;float;;;
+ccap_claw_rate;0.04;float;;; ok
+ccap_claw_cutoff_couple;50521;float;;http://www.finances.gouv.qc.ca/documents/Autres/fr/AUTFR_RegimeImpot2021.pdf; ok
+ccap_claw_cutoff_single;36728;float;;http://www.finances.gouv.qc.ca/documents/Autres/fr/AUTFR_RegimeImpot2021.pdf; ok 
+ccap_amount_single_min;356;float;;http://www.finances.gouv.qc.ca/documents/Autres/fr/AUTFR_RegimeImpot2021.pdf; ok
+ccap_amount_single_max;893;float;;http://www.finances.gouv.qc.ca/documents/Autres/fr/AUTFR_RegimeImpot2021.pdf; ok
+ccap_kid1_min;1013;float;;http://www.finances.gouv.qc.ca/documents/Autres/fr/AUTFR_RegimeImpot2021.pdf; ok
+ccap_kid1_max;2547;float;;http://www.finances.gouv.qc.ca/documents/Autres/fr/AUTFR_RegimeImpot2021.pdf; ok
+ccap_kid23_min;1013;float;;; ok
+ccap_kid23_max;2547;float;;;  ok
+ccap_kid4p_min;1013;float;;; ok
+ccap_kid4p_max;2547;float;;; ok
+chcare_young;9950;float;;http://www.finances.gouv.qc.ca/documents/Autres/fr/AUTFR_RegimeImpot2021.pdf; ok
+chcare_old;5235;float;;http://www.finances.gouv.qc.ca/documents/Autres/fr/AUTFR_RegimeImpot2021.pdf; ok
+pdip_couple;27350;float;;; avec indexation de 1,26%
+pdip_single;16870;float;;;
+pdip_couple_kid1;3575;float;;;
+pdip_single_kid1;10480;float;;;
+pdip_couple_kid2p;6875;float;;;
+pdip_single_kid2p;14055;float;;;
+pdip_cutoff;648;float;;Montant de cotisation annuelle maximale case 87;
+solidarity_tvq_base;301;float;;;http://www.cqff.com/liens/solidarite.pdf ok
+solidarity_housing_kid;125;float;;; ok
+solidarity_tvq_couple;301;float;;https://cffp.recherche.usherbrooke.ca/outils-ressources/guide-mesures-fiscales/; ok
+solidarity_housing_not_alone;708;float;;https://cffp.recherche.usherbrooke.ca/outils-ressources/guide-mesures-fiscales/; ok
+solidarity_tvq_single;143;float;;https://cffp.recherche.usherbrooke.ca/outils-ressources/guide-mesures-fiscales/; ok
+solidarity_housing_alone;584;float;;https://cffp.recherche.usherbrooke.ca/outils-ressources/guide-mesures-fiscales/; ok
+solidarity_cutoff;35845;float;;; ok
+solidarity_rate_total;0.06;float;;https://cffp.recherche.usherbrooke.ca/outils-ressources/guide-mesures-fiscales/; ok
+solidarity_rate_tvq;0.03;float;;; ok
+witb_rate_couple_dep;0.25;float;;; ok
+witb_rate;0.112;float;;inferred from other values; ok
+witb_cut_inc_low_couple;3600;float;;; ok
+witb_cut_inc_high_couple;17006;float;;; ok
+witb_rate_single_dep;0.30;float;;; ok
+witb_cut_inc_low_single;2400;float;;; ok
+witb_cut_inc_high_single;10982;float;;; ok
+witb_claw_rate;0.10;float;;; ok
+home_supp_min_age;70;int;;; ok
+home_supp_max_dep;25500;float;;; ok
+home_supp_max_non_dep;19500;float;;; ok
+home_supp_claw_rate;0.03;float;;; ok
+home_supp_cutoff;60135;float;indexation de 1.26% pour passer de 2020 a 2021;; ok
+home_supp_rate;0.35;float;;; ok
+senior_assist_min_age;70;int;;; ok
+senior_assist_amount;209;float;;http://www.finances.gouv.qc.ca/documents/Autres/fr/AUTFR_RegimeImpot2021.pdf; ok
+senior_assist_claw_rate;0.05;float;;; ok
+senior_assist_cutoff_couple;38340;float;;; ok
+senior_assist_cutoff_single;23575;float;;; ok
+med_exp_rate;0.25;float;TP-1.D;; ok
+med_exp_claw_rate;0.05;float;;; ok
+med_exp_claw_cutoff;24000;float;;; ok
+med_exp_max;1241;float;;; ok
+med_exp_min_work_inc;3175;float;;; ok
+med_exp_max_fam_inc;48220;float;;;
+exp_work_min_age;60;int;;; assumed constant ok
+exp_work_claw_rate;0.05;float;;; assumed constant ok
+exp_work_cut_inc;35650;float;https://www.revenuquebec.ca/fr/entreprises/retenues-et-cotisations/trousse-employeur/principaux-changements-pour-2020/;http://www.finances.gouv.qc.ca/documents/Autres/fr/AUTFR_RegimeImpot2021.pdf; ok
+exp_work_rate;0.15;float;;; assumed constant ok
+exp_work_min_inc;5000;float;;; assumed constant ok
+exp_work_max_work_inc_60;10000;float;;; assumed constant ok
+exp_work_max_work_inc_61;10000;float;;; assumed constant ok
+exp_work_max_work_inc_62;10000;float;;; assumed constant ok
+exp_work_max_work_inc_63;10000;float;;; assumed constant ok
+exp_work_max_work_inc_64;10000;float;;; assumed constant ok
+exp_work_max_work_inc_65;11000;float;;; assumed constant ok
+exp_work_age_born_bef51;70;int;;; ok
+exp_work_min_amount_born_51;600;float;;; ok
+supp_furnitures;105;int;;;

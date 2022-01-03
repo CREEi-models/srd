@@ -5,16 +5,10 @@ from srd import ei
 module_dir = os.path.dirname(os.path.dirname(__file__))
 
 # wrapper to pick correct year
-def form(year, policy=covid.policy()):
+def form(year):
     """
     Fonction qui permet de sélectionner le formulaire d'impôt fédéral par année.
 
-    Parameters
-    ----------
-    year: int
-        année (présentement entre 2016 et 2020)
-    policy: policy
-        instance de la classe policy
     Returns
     -------
     class instance
@@ -29,7 +23,9 @@ def form(year, policy=covid.policy()):
     if year==2019:
         p = form_2019()
     if year==2020:
-        p = form_2020(policy)
+        p = form_2020()
+    if year == 2021:
+        p = form_2021()
     return p
 
 class form_2016(template):
@@ -83,16 +79,32 @@ class form_2019(form_2018):
             self.witb_params[prov] = get_params(
                 module_dir + f'/federal/params/fed_witb_{prov}_2019.csv')
 
+    def cpp_deduction(self, p):
+        """
+        Fonction qui calcule la déduction pour les cotisations au RRQ / RPC pour les travailleurs autonomes et le régime supplémentaire du RRQ/RPC.
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        Returns
+        -------
+        float
+            Montant de la déduction.
+        """
+        try:
+            p.contrib_cpp_deduc = p.contrib_cpp_self / 2
+            p.contrib_cpp_deduc += p.payroll['cpp_supp']
+            return p.contrib_cpp_deduc
+        except AttributeError as e:
+            msg = 'le ménage doit être passé dans payroll pour obtenir les contributions cpp/rrq et rqap'
+            raise Exception(msg) from e
+
 class form_2020(form_2019):
     """
     Formulaire d'impôt de 2020.
-    
-    Parameters
-    ----------
-    policy: policy
-        instance de la classe policy
+
     """
-    def __init__(self, policy):
+    def __init__(self):
         add_params_as_attr(self,module_dir+'/federal/params/federal_2020.csv')
         add_params_as_attr(self, module_dir + '/federal/params/fed_witb_qc_2020.csv')
         add_schedule_as_attr(self, module_dir + '/federal/params/schedule_2020.csv')
@@ -101,13 +113,12 @@ class form_2020(form_2019):
             self.witb_params[prov] = get_params(
                 module_dir + f'/federal/params/fed_witb_{prov}_2020.csv')
 
-        self.policy = policy
-        if policy.icovid_ccb:
-            self.ccb_young += self.ccb_covid_supp
-            self.ccb_old += self.ccb_covid_supp
-        if policy.icovid_gst:
-            self.gst_cred_base *= 2
-            self.gst_cred_other *= 2
+       
+        self.ccb_young += self.ccb_covid_supp
+        self.ccb_old += self.ccb_covid_supp
+
+        self.gst_cred_base *= 2
+        self.gst_cred_other *= 2
         # note: the measures to increase ccb and gst_credit are based on fiscal year 2019 in reality
         #       but on fiscal year 2020 in our simulator; the difference is small (<50$ in worst case)
 
@@ -131,7 +142,7 @@ class form_2020(form_2019):
 
         if p.fed_return['net_income'] <= br_poor:
             basic_amount = self.basic_amount_poor
-        elif p.fed_return['net_income'] > br_rich:
+        elif p.fed_return['net_income'] >= br_rich:
             basic_amount = self.basic_amount_rich
         else:
             slope = (self.basic_amount_rich - self.basic_amount_poor) / (br_rich - br_poor)
@@ -173,3 +184,142 @@ class form_2020(form_2019):
             p.inc_ei -= repayment
             p.fed_return['net_income'] -= repayment
             p.fed_return['gross_income'] -= repayment
+
+    def calc_refundable_tax_credits(self, p, hh):
+        """
+        Fonction qui fait la somme des crédits remboursables, en appelant les fonctions suivantes, décrites ci-après: *abatment*, *ccb*, *get_witb*, *get_witbds*, *med_exp*, *gst_hst_credit*.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+        """
+        p.fed_abatment_qc = self.abatment(p, hh)
+        p.fed_ccb = self.ccb(p, hh)
+        p.fed_witb = self.get_witb(p, hh)
+        p.fed_witbds = self.get_witbds(p, hh)
+        p.fed_med_exp = self.med_exp(p, hh)
+        p.fed_gst_hst_credit = self.gst_hst_credit(p, hh)
+        self.oas_gis_covid_bonus(p)
+
+        p.fed_return['refund_credits'] = (
+            p.fed_abatment_qc + p.fed_ccb + p.fed_witb + p.fed_witbds
+            + p.fed_med_exp + p.fed_gst_hst_credit)
+    
+    def oas_gis_covid_bonus(self, p):
+        """
+        Fonction qui calcule le montant unique de Sécurité de vieillesse (SV) et de supplément de revenu garanti (SRG). Pour l'année 2020, le gouvernement a versé un montant non imposable de 300$ aux bénéficiaires de la sécurité de la vieillesse. Les bénéficiaires du supplément de revenu garanti ont aussi eu droit à un montant additionnel de 200$.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+
+        Returns
+        -------
+        float
+            Montant du paiement unique de SV et de SRG.
+        """
+
+        if p.elig_oas!=False and p.inc_oas>0:
+            p.inc_oas += self.oas_covid_bonus
+
+            if p.inc_gis>0:
+                p.inc_gis += self.gis_covid_bonus
+
+        return
+
+
+class form_2021(form_2020):
+    """
+    Formulaire d'impôt de 2021.
+    """
+
+    def __init__(self):
+        add_params_as_attr(self, module_dir + "/federal/params/federal_2021.csv")
+        add_params_as_attr(self, module_dir + "/federal/params/fed_witb_qc_2021.csv")
+        add_schedule_as_attr(self, module_dir + "/federal/params/schedule_2021.csv")
+        self.witb_params = {}
+        for prov in ["on", "qc"]:
+            self.witb_params[prov] = get_params(
+                module_dir + f"/federal/params/fed_witb_{prov}_2021.csv"
+            )
+
+    def calc_refundable_tax_credits(self, p, hh):
+        """
+        Fonction qui fait la somme des crédits remboursables, en appelant les fonctions suivantes, décrites ci-après: *abatment*, *ccb*, *get_witb*, *get_witbds*, *med_exp*, *gst_hst_credit*.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+        """
+        p.fed_abatment_qc = self.abatment(p, hh)
+        p.fed_ccb = self.ccb(p, hh)
+        p.fed_witb = self.get_witb(p, hh)
+        p.fed_witbds = self.get_witbds(p, hh)
+        p.fed_med_exp = self.med_exp(p, hh)
+        p.fed_gst_hst_credit = self.gst_hst_credit(p, hh)
+
+        p.fed_return['refund_credits'] = (
+            p.fed_abatment_qc + p.fed_ccb + p.fed_witb + p.fed_witbds
+            + p.fed_med_exp + p.fed_gst_hst_credit)
+    
+    def ccb(self, p, hh, iclaw=True):
+        """
+        Fonction qui calcule l'Allocation canadienne pour enfants (ACE) avec l’ACE supplément pour jeunes enfants (ACESJE) pour 2021 i.e moins de 6 ans.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+        iclaw: boolean
+            récupération des prestations si True; pas de récupération si False
+
+        Returns
+        -------
+        float
+            Montant de l'ACE.
+        """
+        if hh.nkids_0_17 == 0:
+            return 0
+        if hh.couple and p.male and hh.sp[0].male != hh.sp[1].male:
+            return 0  # heterosexual couple: mother receives benefit
+        else:
+            amount = hh.nkids_0_5 * self.ccb_young + hh.nkids_6_17 * self.ccb_old
+            claw_num_ch = min(hh.nkids_0_5 + hh.nkids_6_17, self.ccb_max_num_ch)
+            adj_fam_net_inc = sum([p.fed_return['net_income'] for p in hh.sp])
+            
+            if adj_fam_net_inc < self.ccb_ccbycs_cutoff:
+                amount_ccbycs = self.ccb_ccbycs_1 * hh.nkids_0_5
+            else:
+                amount_ccbycs = self.ccb_ccbycs_2 * hh.nkids_0_5
+
+            l_rates_1 = [self.ccb_rate_1_1ch, self.ccb_rate_1_2ch,
+                         self.ccb_rate_1_3ch, self.ccb_rate_1_4ch]
+            d_rates_1 = {k+1: v for k, v in enumerate(l_rates_1)}
+            l_rates_2 = [self.ccb_rate_2_1ch, self.ccb_rate_2_2ch,
+                         self.ccb_rate_2_3ch, self.ccb_rate_2_4ch]
+            d_rates_2 = {k+1: v for k, v in enumerate(l_rates_2)}
+            if iclaw:
+                if adj_fam_net_inc > self.ccb_cutoff_2:
+                    clawback = (d_rates_2[claw_num_ch] * (adj_fam_net_inc - self.ccb_cutoff_2) +
+                                d_rates_1[claw_num_ch] * (self.ccb_cutoff_2 - self.ccb_cutoff_1))
+                elif adj_fam_net_inc > self.ccb_cutoff_1:
+                    clawback = d_rates_1[claw_num_ch] * (adj_fam_net_inc - self.ccb_cutoff_1)
+                else:
+                    clawback = 0
+            else:
+                clawback = 0                       
+            if hh.couple and hh.sp[0].male == hh.sp[1].male:
+                return max(0, amount + amount_ccbycs - clawback) / 2  # same sex couples get 1/2 each
+            else:
+                return max(0, amount + amount_ccbycs - clawback)

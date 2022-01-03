@@ -1,97 +1,44 @@
-import os
-import numpy as np
 from srd import add_params_as_attr
-
+import os
+from srd.covid import template
 module_dir = os.path.dirname(os.path.dirname(__file__))
 
-def create_stub():
-    lines = ['cerb', 'cesb', 'iprew']
-    return dict(zip(lines, np.zeros(len(lines))))
-
-
-class policy:
+def program(year):
     """
-    Mesures liées à la COVID-19.
-
-    Permet de choisir quelles mesures sont appliquées dans le simulateur. Par défaut, les 5 premières mesures ci-dessous sont appliquées (PCU, PCUE, PIRTE, majorations au crédit de TPS/TVH et à l'ACE).
+    Fonction qui permet de sélectionner le programme par année.
 
     Parameters
     ----------
-    icerb: boolean
-        la PCU est appliquée
-    icesb: boolean
-        la PCUE est appliquée
-    iiprew: boolean
-        le PIRTE est appliqué au Québec
-    icovid_gst: boolean
-        La majoration du crédit pour la TPS/TVH est appliquée
-    icovid_ccb: boolean
-        La majoration de l'Allocation canadienne pour enfants (ACE) est appliquée
-    iei: boolean
-        Assurance emploi d'urgence: scénario d'AE alternative à la PCU utilisé dans certaines analyses de la CREEi
+    year: int
+        année (présentement entre 2020 et 2021)
+    Returns
+    -------
+    class instance
+        Une instance de la classe de l'année sélectionnée.
     """
-    def __init__(self, icerb=True, icesb=True, iiprew=True, icovid_gst=True,
-                 icovid_ccb=True, iei=False):
-        self.icerb = icerb
-        self.icesb = icesb
-        self.iiprew = iiprew
-        self.icovid_gst = icovid_gst
-        self.icovid_ccb = icovid_ccb
-        self.iei = iei
-
-    def shut_all_measures(self):
-        """
-        Ne tient pas compte des mesures spéciales COVID-19 dans la simulation.
-        """
-        for var in vars(self):
-            setattr(self, var, False)
-
-    @property
-    def some_measures(self):
-        """
-        Indique qu'au moins une mesure spéciale COVID-19 est incluse.
-
-        Returns
-        -------
-        boolean
-            True s'il y a au moins une mesure d'incluse, False sinon.
-        """
-        return any(v is True for k, v in vars(self).items() if k != 'iei')
-
-
-class programs:
+    if year == 2020:
+        p = program_2020()
+    if year == 2021:
+        p = program_2021()
+    return p
+class program_2020(template):
     """
-    Calcul des prestations d'urgence liées à la COVID-19: la Prestation canadienne d'urgence (PCU), la Prestation canadienne d'urgence pour les étudiants (PCUE) et le Programme incitatif pour la rétention des travailleurs essentiels (PIRTE).
+    Version du programme de 2020.
 
-    Parameters
-    ----------
-    policy: policy
-        instance de la classe policy
+    Calcul des prestations d'urgence liées à la COVID-19: la Prestation canadienne d'urgence (PCU), la Prestation canadienne d'urgence pour les étudiants (PCUE), le Programme incitatif pour la rétention des travailleurs essentiels (PIRTE) et la Prestation canadienne de la relance économique (PCRE).
+
     """
-    def __init__(self, policy):
-        add_params_as_attr(self, module_dir + '/covid/covid.csv')
-        self.policy = policy
+    def __init__(self):
+        add_params_as_attr(self, module_dir + '/covid/params/measures_2020.csv')
+class program_2021(program_2020):
+    """
+    Version du programme de 2021.
 
-    def compute(self, hh):
-        """
-        Fonction qui fait le calcul et crée le rapport de cotisations.
+    Calcule principalement la Prestation canadienne de la relance économique (PCRE)
+    """
 
-        Parameters
-        ----------
-        hh: Hhold
-            instance de la classe Hhold
-        """
-        for p in hh.sp:
-            p.covid = create_stub()
-            if self.policy.icerb:
-                p.inc_cerb = self.compute_cerb(p)
-                p.covid['cerb'] = p.inc_cerb
-            if self.policy.icesb:
-                p.inc_cesb = self.compute_cesb(p, hh)
-                p.covid['cesb'] = p.inc_cesb
-            if self.policy.iiprew and hh.prov == 'qc':
-                p.inc_iprew = self.compute_iprew(p)
-                p.covid['iprew'] = p.inc_iprew
+    def __init__(self):
+        add_params_as_attr(self, module_dir + "/covid/params/measures_2021.csv")
 
     def compute_cerb(self, p):
         """
@@ -109,13 +56,7 @@ class programs:
         float
             Montant de la PCU.
         """
-        if p.months_cerb == 0 or p.prev_inc_work < self.cerb_min_inc_work:
-            return 0
-        else:
-            l_cerb = [self.cerb_base for month
-                      in range(self.begin_april, self.begin_april + p.months_cerb)
-                      if p.inc_work_month[month] <= self.cerb_max_earn]
-            return sum(l_cerb)
+        return 0
 
     def compute_cesb(self, p, hh):
         """
@@ -135,14 +76,7 @@ class programs:
         float
             Montant de la PCUE.
         """
-        if p.months_cesb == 0:
-            return 0
-        else:
-            monthly_cesb = self.compute_monthly_cesb(p, hh)
-            l_cesb = [monthly_cesb for month
-                      in range(self.begin_april, self.begin_april + p.months_cesb)
-                      if p.inc_work_month[month] <= self.cesb_max_earn]
-            return sum(l_cesb)
+        return 0
 
     def compute_monthly_cesb(self, p, hh):
         """
@@ -157,20 +91,7 @@ class programs:
             Prestation mensuelle de PCUE.
         """
 
-        dep = len(hh.dep) > 0
-        if p.disabled:
-            return self.cesb_base + self.cesb_supp
-        if not p.disabled and not dep:
-            return self.cesb_base
-        if dep:
-            if hh.couple:
-                spouse = hh.sp[1 - hh.sp.index(p)]
-                if spouse.disabled:
-                    return self.cesb_base + self.cesb_supp
-                else:
-                    return self.cesb_base + self.cesb_supp / 2
-            else:
-                return self.cesb_base + self.cesb_supp
+        return 0
 
     def compute_iprew(self, p):
         """
@@ -188,11 +109,4 @@ class programs:
         float
             Montant de PIRTE pour les 16 semaines.
         """
-        if (not p.essential_worker or p.inc_work < self.iprew_min_inc_work or
-            p.inc_tot > self.iprew_max_inc_tot):
-            return 0
-        else:
-            l_iprew = [self.iprew_monthly_amount for month
-                       in range(self.begin_april, self.begin_april + self.iprew_max_months)
-                       if 0 < p.inc_work_month[month] <= self.iprew_max_earn]
-            return sum(l_iprew)
+        return 0

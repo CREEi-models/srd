@@ -40,12 +40,18 @@ class template:
             self.calc_tax(p)
             self.calc_non_refundable_tax_credits(p, hh)
             self.div_tax_credit(p)
-            self.calc_contributions(p, hh)
-            p.prov_return['net_tax_liability'] = max(0,
-                p.prov_return['gross_tax_liability'] + p.prov_return['contributions']
-                - p.prov_return['non_refund_credits'] - p.qc_div_tax_credit)
+        for p in hh.sp:
+            p.prov_return['net_tax_liability'] = max(0, p.prov_return['gross_tax_liability'] - p.prov_return['non_refund_credits']
+                 + self.get_spouse_transfer(p, hh) - p.qc_div_tax_credit)
             self.calc_refundable_tax_credits(p, hh)
             p.prov_return['net_tax_liability'] -= p.prov_return['refund_credits']
+            self.calc_contributions(p, hh)
+            p.prov_return['net_tax_liability'] += p.prov_return['contributions'] 
+            
+
+    
+
+
 
     def calc_gross_income(self, p):
         """
@@ -147,6 +153,7 @@ class template:
             Montant de la déduction.
         """
         p.qc_cpp_deduction = p.contrib_cpp_self / 2
+
         p.qc_qpip_deduction = self.qpip_deduc_rate * p.contrib_qpip_self
         return p.qc_cpp_deduction + p.qc_qpip_deduction
 
@@ -196,11 +203,24 @@ class template:
         hh: Hhold
             instance de la classe Hhold
         """
-        p.qc_age_cred = self.get_age_cred(p)
-        p.qc_living_alone_cred = self.get_living_alone_cred(p, hh)
-        p.qc_pension_cred = self.get_pension_cred(p)
-        cred_amount = p.qc_age_cred + p.qc_living_alone_cred + p.qc_pension_cred
-        p.qc_age_alone_pension = max(0, cred_amount - self.get_nrtcred_clawback(p, hh))
+        if hh.sp.index(p)==0:
+            for d in hh.sp:
+                d.qc_age_cred = self.get_pension_cred(d)
+                d.qc_age_cred = self.get_age_cred(d)
+                d.qc_living_alone_cred = self.get_living_alone_cred(p, hh)
+
+        if hh.couple==True and p.prov_return['net_income']>(0.5*hh.fam_net_inc_prov):
+            cred_amount = hh.sp[0].qc_age_cred + hh.sp[1].qc_age_cred + hh.sp[0].qc_pension_cred + hh.sp[1].qc_pension_cred
+            p.qc_age_alone_pension = max(0, cred_amount - self.get_nrtcred_clawback(p, hh))
+        elif hh.couple==True and p.prov_return['net_income']<(0.5*hh.fam_net_inc_prov):
+            p.qc_age_alone_pension = 0
+        elif hh.couple==True and p.prov_return['net_income']==(0.5*hh.fam_net_inc_prov):
+            cred_amount = hh.sp[0].qc_age_cred + hh.sp[1].qc_age_cred + hh.sp[0].qc_pension_cred + hh.sp[1].qc_pension_cred
+            hh.sp[0].qc_age_alone_pension = max(0, cred_amount - self.get_nrtcred_clawback(p, hh))
+            hh.sp[1].qc_age_alone_pension = 0
+        elif hh.couple==False:
+            cred_amount = p.qc_age_cred + p.qc_pension_cred + p.qc_living_alone_cred 
+            p.qc_age_alone_pension = max(0, cred_amount - self.get_nrtcred_clawback(p, hh))
 
         p.qc_disabled_cred = self.get_disabled_cred(p)
         p.qc_med_exp_nr_cred = self.get_med_exp_cred(p, hh)
@@ -263,8 +283,9 @@ class template:
         """
         pension_split_cred = (p.inc_rpp + p.inc_rrsp - p.pension_deduction_qc
                               + p.pension_split_qc)
-        return min(self.nrtc_pension_max,
-                   pension_split_cred * self.nrtc_pension_factor)
+
+        p.qc_pension_cred = min(self.nrtc_pension_max, pension_split_cred * self.nrtc_pension_factor)
+        return p.qc_pension_cred
         
     def get_nrtcred_clawback(self, p, hh):
         """
@@ -437,6 +458,25 @@ class template:
         """
         p.qc_div_tax_credit = (self.div_elig_cred_net_rate * p.div_elig
                                + self.div_other_can_cred_net_rate * p.div_other_can)
+
+    def get_spouse_transfer(self, p, hh):
+        """
+        Fonction qui récupère le surplus des crédits non rembousables tranferables au conjoint (s'il y lieu).
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        """
+        if not hh.couple:
+            return 0
+        
+        spouse = hh.sp[1 - hh.sp.index(p)]
+        transfer = spouse.prov_return['gross_tax_liability'] - spouse.prov_return['non_refund_credits'] - spouse.qc_div_tax_credit
+        if transfer < 0:
+            return transfer
+        else:
+            return 0
 
     def calc_refundable_tax_credits(self, p, hh):
         """
@@ -633,6 +673,8 @@ class template:
             return 0
         if p.inc_work < self.med_exp_min_work_inc:
             return 0
+        if hh.fam_net_inc_prov>self.med_exp_max_fam_inc:
+            return 0
 
         base = min(self.med_exp_max, self.med_exp_rate * p.qc_med_exp_nr_cred)
         clawback = self.med_exp_claw_rate * max(0, hh.fam_net_inc_prov - self.med_exp_claw_cutoff)
@@ -640,9 +682,9 @@ class template:
 
     def ccap(self, p, hh):
         """
-        Fonction qui calcule l'Allocation famille (qui s'appelait le Soutien aux enfants avant 2019).
+        Fonction qui calcule le crédit d’impôt remboursable accordant une allocation aux familles (CIRAAF) (qui s'appelait le Soutien aux enfants avant 2019).
 
-        Cette fonction calcule le montant reçu en fonction du nombre d'enfants, de la situation familiale (couple/monoparental) et du revenu.
+        Cette fonction calcule le montant reçu selon le nombre d'enfants, la situation familiale (couple/monoparental) et le revenu.
 
         Parameters
         ----------
@@ -702,8 +744,13 @@ class template:
         hh: Hhold
             instance de la classe Hhold
         """
+                
         p.prov_return['contributions'] = self.add_contrib_subsid_chcare(p, hh) \
-                                         + self.health_contrib(p, hh)
+                                         + self.health_contrib(p, hh) + self.contrib_hsf(p)
+
+        if p.pub_drug_insurance:
+            p.prov_return['contributions'] += self.drug_insurance_contrib(hh)
+                                    
 
     def health_contrib(self, p, hh):
         """
@@ -774,6 +821,51 @@ class template:
 
         return p.ndays_chcare_k1 * contrib_k1 + p.ndays_chcare_k2 * contrib_k1 / 2
 
+    def drug_insurance_contrib(self, hh):
+        """
+        Fonction qui sert à calculer la cotisation au régime d’assurance médicaments du Québec.
+
+        Parameters
+        ----------
+        hh: Hhold
+            instance de la classe Hhold
+        """       
+        net_inc_used = hh.fam_net_inc_prov
+
+        if hh.couple:
+            net_inc_used -= self.pdip_couple
+            if hh.nkids_0_18==1:
+                net_inc_used-= self.pdip_couple_kid1
+            elif hh.nkids_0_18>1:
+                net_inc_used -= self.pdip_couple_kid2p   
+        else:
+            net_inc_used -= self.pdip_single
+            if hh.nkids_0_18==1:
+                net_inc_used -= self.pdip_single_kid1
+            elif hh.nkids_0_18>1:
+                net_inc_used -= self.pdip_single_kid2p               
+
+        if net_inc_used<=0:
+            return 0
+        
+        ind = np.searchsorted(self.l_pdip_brackets, net_inc_used, 'right') - 1
+
+        if net_inc_used <= self.l_pdip_brackets[ind]:
+            if hh.couple:
+                amount = net_inc_used * self.l_pdip_rates_couple[ind]
+            else:
+                amount = net_inc_used * self.l_pdip_rates_couple[ind]
+        else:
+            if hh.couple:
+                amount = min(self.l_pdip_max[ind], self.l_pdip_constant_couple[ind] + \
+                    self.l_pdip_rates_couple[ind] * (net_inc_used - self.l_pdip_brackets[ind]))
+            else:
+                amount = min(self.l_pdip_max[ind], self.l_pdip_constant_single[ind] + \
+                    self.l_pdip_rates_single[ind] * (net_inc_used - self.l_pdip_brackets[ind]))
+        amount = min(self.pdip_cutoff, amount)
+        return amount
+
+
     def solidarity(self, p, hh):
         """
         Fonction qui calcule le crédit d'impôt pour solidarité.
@@ -811,3 +903,19 @@ class template:
         net_amount_tvq = max(0, amount_tvq - self.solidarity_rate_tvq * base_claw)
         net_amount = max(net_amount_total, net_amount_tvq)
         return net_amount / (1 + hh.couple)
+
+    def contrib_hsf(self, p):
+        """
+        Fonction qui calcule la cotisation au Fonds des services de santé (FSS).
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        """
+        amount = p.inc_self_earn + p.inc_rpp + p.inc_cpp + p.pension_split_qc + p.taxable_cap_gains + p.inc_othtax + p.inc_rrsp - p.contrib_qpip_self
+        if amount < self.hsf_high_inc:
+            p.qc_contrib_hsf= min(self.hsf_low_cutoff, max(0,(amount - self.hsf_low_inc))*self.hsf_rate)
+        else:
+            p.qc_contrib_hsf = min(self.hsf_high_cutoff, max(0,(amount - self.hsf_high_inc))*self.hsf_rate + self.hsf_low_cutoff)
+        return p.qc_contrib_hsf

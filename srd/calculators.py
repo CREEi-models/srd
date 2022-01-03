@@ -23,27 +23,23 @@ class tax:
         vrai si le calcul des cotisations sociales est demandé
     iass: boolean
         vrai si le calcul des prestations d'aide sociale est demandé
-    policy: policy
-        instance de la classe *policy* du module *covid*
     """
     def __init__(self, year, ifed=True, ioas=True, iprov=True,
-                 ipayroll=True, iass=True, policy=covid.policy()):
+                 ipayroll=True, iass=True):
         self.year = year
         self.ifed = ifed
         self.iprov = iprov
         self.ipayroll = ipayroll
         self.ioas = ioas
         self.iass = iass
-        self.policy = policy
 
         if ipayroll:
             self.payroll = payroll(year)
-        if policy.some_measures and year == 2020:
-            self.covid = covid.programs(policy)
-        if policy.iei and year == 2020:
+        if year == 2020 or year == 2021:
+            self.covid = covid.program(year)
             self.ei = ei.program(year)
         if ifed:
-            self.federal = federal.form(year, policy)
+            self.federal = federal.form(year)
         if iprov:
             self.prov = {'qc': quebec.form(year),
                          'on': ontario.form(year)}
@@ -98,6 +94,7 @@ class tax:
 
             if transfer != transfer_max:
                 self.compute_with_transfer(hh, transfer_max)
+            return hh
 
     def compute_with_transfer(self, hh, transfer):
         """
@@ -138,19 +135,18 @@ class tax:
             instance de la classe Hhold
         """
         if self.ipayroll:
-            self.compute_payroll(hh)  # put payroll before oas
+            self.compute_payroll(hh)  # put payroll before oas            
+        if self.year == 2020 or self.year == 2021:
+            self.compute_covid(hh)
+            self.compute_ei(hh)
         if self.ioas:
             self.compute_oas(hh)
-        if self.policy.some_measures and self.year == 2020:
-            self.compute_covid(hh)
-        if self.policy.iei and self.year == 2020:
-            self.compute_ei(hh)
         if self.ifed:
-            self.compute_federal(hh)
+            self.compute_fed(hh)
         if self.iprov:
             self.compute_prov(hh)
         if self.iass:
-            self.compute_ass(hh)
+            self.compute_sa(hh)
         self.disp_inc(hh)
 
     def compute_oas(self, hh):
@@ -164,7 +160,7 @@ class tax:
         """
         self.oas.file(hh)
 
-    def compute_federal(self, hh):
+    def compute_fed(self, hh):
         """
         Calcul de l'impôt fédéral.
 
@@ -221,7 +217,7 @@ class tax:
         for p in hh.sp:
             self.ei.compute_benefits_covid(p, hh)
 
-    def compute_ass(self, hh):
+    def compute_sa(self, hh):
         """
         Calcul des prestations d'aide sociale.
 
@@ -230,9 +226,8 @@ class tax:
         hh: Hhold
             instance de la classe Hhold
         """
-        amount = self.ass.apply(hh)
-        for p in hh.sp:
-            p.inc_social_ass = amount
+        self.ass.file(hh)
+
 
     def compute_after_tax_inc(self, hh):
         """
@@ -261,7 +256,7 @@ class tax:
             if self.ipayroll:
                 disp_inc -= sum(list(p.payroll.values()))
             if self.iass:
-                disp_inc += p.inc_social_ass
+                disp_inc += p.inc_sa
             disp_inc -= p.con_rrsp + p.con_non_rrsp
             p.disp_inc = disp_inc
 
