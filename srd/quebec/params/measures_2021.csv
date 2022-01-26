@@ -40,14 +40,14 @@ ccap_kid23_min;1013;float;;; ok
 ccap_kid23_max;2547;float;;;  ok
 ccap_kid4p_min;1013;float;;; ok
 ccap_kid4p_max;2547;float;;; ok
-chcare_young;9950;float;;http://www.finances.gouv.qc.ca/documents/Autres/fr/AUTFR_RegimeImpot2021.pdf; ok
+chcare_young;10400;float;;http://www.finances.gouv.qc.ca/documents/Autres/fr/AUTFR_RegimeImpot2021.pdf; ok
 chcare_old;5235;float;;http://www.finances.gouv.qc.ca/documents/Autres/fr/AUTFR_RegimeImpot2021.pdf; ok
-pdip_couple;27350;float;;; avec indexation de 1,26%
-pdip_single;16870;float;;;
+pdip_couple;27460;float;;;
+pdip_single;16940;float;;;
 pdip_couple_kid1;3575;float;;;
-pdip_single_kid1;10480;float;;;
+pdip_single_kid1;10520;float;;;
 pdip_couple_kid2p;6875;float;;;
-pdip_single_kid2p;14055;float;;;
+pdip_single_kid2p;14095;float;;;
 pdip_cutoff;648;float;;Montant de cotisation annuelle maximale case 87;
 solidarity_tvq_base;301;float;;;http://www.cqff.com/liens/solidarite.pdf ok
 solidarity_housing_kid;125;float;;; ok
@@ -73,7 +73,7 @@ home_supp_claw_rate;0.03;float;;; ok
 home_supp_cutoff;60135;float;indexation de 1.26% pour passer de 2020 a 2021;; ok
 home_supp_rate;0.35;float;;; ok
 senior_assist_min_age;70;int;;; ok
-senior_assist_amount;209;float;;http://www.finances.gouv.qc.ca/documents/Autres/fr/AUTFR_RegimeImpot2021.pdf; ok
+senior_assist_amount;400;float;;http://www.finances.gouv.qc.ca/documents/Autres/fr/AUTFR_RegimeImpot2021.pdf; ok
 senior_assist_claw_rate;0.05;float;;; ok
 senior_assist_cutoff_couple;38340;float;;; ok
 senior_assist_cutoff_single;23575;float;;; ok
@@ -97,3 +97,5 @@ exp_work_max_work_inc_65;11000;float;;; assumed constant ok
 exp_work_age_born_bef51;70;int;;; ok
 exp_work_min_amount_born_51;600;float;;; ok
 supp_furnitures;105;int;;;
+cost_of_living_not_alone;400;int;;;
+cost_of_living_alone;275;int;;;
