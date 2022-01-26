@@ -309,4 +309,26 @@ class form_2021(form_2020):
                                                  + p.qc_work_deduc
                                                  + p.pension_deduction_qc
                                                  + p.qc_cpp_qpip_deduction)
+    
+    def extra_living_allowance(self, p, hh):
+        """
+        Fonction qui calcule la prestation exceptionnelle pour le coût de la vie.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+
+        """
+        if p.qc_solidarity == 0:
+            return 0
+        
+        if hh.couple :
+            amount = self.extra_living_allowance_not_alone
+        else:
+            amount = self.extra_living_allowance_alone
+        
+        return amount / (1 + hh.couple)
         
