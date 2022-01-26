@@ -310,9 +310,11 @@ class form_2021(form_2020):
                                                  + p.pension_deduction_qc
                                                  + p.qc_cpp_qpip_deduction)
     
-    def extra_living_allowance(self, p, hh):
+    
+    
+    def cost_of_living(self, p, hh):
         """
-        Fonction qui calcule la prestation exceptionnelle pour le coût de la vie.
+        Fonction qui calcule le crédit d'impôt remboursable attribuant une prestation exceptionnelle pour pallier la hausse du coût de la vie.
 
         Parameters
         ----------
@@ -326,9 +328,9 @@ class form_2021(form_2020):
             return 0
         
         if hh.couple :
-            amount = self.extra_living_allowance_not_alone
+            amount = self.cost_of_living_not_alone
         else:
-            amount = self.extra_living_allowance_alone
+            amount = self.cost_of_living_alone
         
         return amount / (1 + hh.couple)
         

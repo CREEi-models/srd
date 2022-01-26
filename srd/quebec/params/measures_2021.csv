@@ -97,5 +97,5 @@ exp_work_max_work_inc_65;11000;float;;; assumed constant ok
 exp_work_age_born_bef51;70;int;;; ok
 exp_work_min_amount_born_51;600;float;;; ok
 supp_furnitures;105;int;;;
-extra_living_allowance_not_alone;400;int;;;
-extra_living_allowance_alone;275;int;;;
+cost_of_living_not_alone;400;int;;;
+cost_of_living_alone;275;int;;;

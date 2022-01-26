@@ -498,11 +498,11 @@ class template:
 
         p.qc_ccap = self.ccap(p, hh)
         p.qc_solidarity = self.solidarity(p, hh)
-        p.qc_extra_living_allowance = self.extra_living_allowance(p, hh)
+        p.qc_cost_of_living = self.cost_of_living(p, hh)
 
         l_all_creds = [p.qc_chcare, p.qc_witb, p.qc_home_support,
                        p.qc_senior_assist, p.qc_med_exp, p.qc_ccap,
-                       p.qc_solidarity, p.qc_extra_living_allowance]
+                       p.qc_solidarity, p.qc_cost_of_living]
         l_existing_creds = [cred for cred in l_all_creds if cred]  # removes credits not implemented
 
         p.prov_return['refund_credits'] = sum(l_existing_creds)
@@ -905,9 +905,11 @@ class template:
         net_amount = max(net_amount_total, net_amount_tvq)
         return net_amount / (1 + hh.couple)
 
-    def extra_living_allowance(self, p, hh):
+    def cost_of_living(self, p, hh):
         """
-        Fonction qui calcule la prestation exceptionnelle pour le coût de la vie.
+       Fonction qui calcule le crédit d'impôt remboursable attribuant une prestation exceptionnelle pour pallier la hausse du coût de la vie.
+
+        En vigueur en 2021 seulement.
 
         Parameters
         ----------
