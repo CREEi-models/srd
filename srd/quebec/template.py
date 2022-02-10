@@ -951,62 +951,43 @@ class template:
         hh: Hhold
             instance de la classe Hhold
         """
-        if not p.pub_tax_shield:
+        if not p.tax_shield:
             return 0
-        else:
-            for p in hh.sp:
-                p.prev_inc_work = p.inc_work - self.tax_shield_inc_variation
-        
-        prev_fam_net_inc_work = sum([self.prev_inc_work(p) for p in hh.sp])
+        if p.prev_prov_net_inc==None:
+            #AJOUTER MESSAGE D'ERREUR
+            return 0
 
-        fam_inc_work = max(0,hh.fam_net_inc_prov - prev_fam_net_inc_work) # 60
+        # REGARDER POUR INTRODUIRE REVENU FAMILIAL NET ANNÉE PRÉCÉDENTE
+        prev_fam_net_inc = sum([p.prev_prov_net_inc for p in hh.sp])
+        var_fam_net_inc = max(0,hh.fam_net_inc_prov - prev_fam_net_inc) # 60
+        modified_fam_inc = hh.fam_net_inc_prov - self.tax_shield_rate * min(sum([(min(max(0, p.prev_inc_work), self.tax_shield_max_inc_variation)) for p in hh.sp]), var_fam_net_inc) # 70
 
-        fam_inc_work_modified = hh.fam_net_inc_prov - self.tax_shield_rate * min(sum([(min(max(0, p.prev_inc_work), self.tax_shield_max_inc_variation)) for p in hh.sp]), fam_inc_work) # 70
-        # prime adapté
+        # prime au travail
+        # AJOUTER CONDITION PRIME AU TRAVAIL SUP 0      
         if hh.couple:
             rate = self.witb_rate_couple_dep if hh.nkids_0_18 > 0 else self.witb_rate
             fam_witb = rate * max(0, min(self.witb_cut_inc_high_couple, hh.fam_inc_work) - self.witb_cut_inc_low_couple)
-            amount_witb = max(0,fam_witb - (self.witb_claw_rate * max(0, fam_inc_work_modified - self.witb_cut_inc_high_couple))) # 77
+            amount_witb = max(0,fam_witb - (self.witb_claw_rate * max(0, modified_fam_inc - self.witb_cut_inc_high_couple))) # 77
             witb = (min(self.tax_shield_max_couple, amount_witb - (p.qc_witb * 2))) / (1 + hh.couple)# 81
         else:
             rate = self.witb_rate_single_dep if hh.nkids_0_18 > 0 else self.witb_rate
             fam_witb = rate * max(0, min(self.witb_cut_inc_high_single, hh.fam_inc_work) - self.witb_cut_inc_low_single)
-            amount_witb = max(0,fam_witb - (self.witb_claw_rate * max(0, fam_inc_work_modified - self.witb_cut_inc_high_single))) # 77
+            amount_witb = max(0,fam_witb - (self.witb_claw_rate * max(0, modified_fam_inc - self.witb_cut_inc_high_single))) # 77
             witb = min(self.tax_shield_max_single, amount_witb - p.qc_witb) # 81
         # frais de garde d'enfants
-        if hh.fam_inc_work < self.witb_cut_inc_low_single:
-            chcare = 0
+        # AJOUTER CONDITION CRÉDIT SUP 0 
+        if hh.child_care_exp == 0 or (hh.couple and p.male and hh.sp[0].male != hh.sp[1].male):
+            chcare = 0 # heterosexual couple: mother receives benefit
         else:
-            if hh.child_care_exp == 0 or (hh.couple and p.male and hh.sp[0].male != hh.sp[1].male):
-                chcare = 0 # heterosexual couple: mother receives benefit
-            else:
-                amount_care = min(hh.child_care_exp,
-                         hh.nkids_0_6 * self.chcare_young + hh.nkids_7_16 * self.chcare_old) # 82
-                ind = np.searchsorted(self.chcare_brack, fam_inc_work_modified, 'right') - 1
-                net_amount = self.chcare_rate[ind] * amount_care # 84
-                chcare = (net_amount/(1+hh.couple)) - p.qc_chcare # 90
-        # crédit d'impot bouclier fiscale
+            amount_care = min(hh.child_care_exp,
+                    hh.nkids_0_6 * self.chcare_young + hh.nkids_7_16 * self.chcare_old) # 82
+            ind = np.searchsorted(self.chcare_brack, modified_fam_inc, 'right') - 1
+            net_amount = self.chcare_rate[ind] * amount_care # 84
+
+            if hh.couple and hh.sp[0].male == hh.sp[1].male:
+                return net_amount / 2 # same sex couples get 1/2 each
+
+            chcare = net_amount - p.qc_chcare # 90
+        
+        # crédit d'impot bouclier fiscal
         return witb + chcare # 96
-
-    def prev_inc_work(self, p):
-        """
-        Fonction qui calcule le revenu de l'année précédente
-
-        Parameters
-        ----------
-        p: Person
-            instance de la classe Person
-        """
-        prov_return_gross_income = (p.prev_inc_work + p.inc_ei + p.inc_oas
-                                         + p.inc_gis + p.allow_couple
-                                         + p.allow_surv + p.inc_cpp + p.inc_rpp
-                                         + p.pension_split_qc + p.taxable_div
-                                         + p.taxable_cap_gains
-                                         + p.inc_othtax + p.inc_rrsp)
-        prev_qc_work_deduc = min(p.prev_inc_work * self.work_deduc_rate, self.work_deduc_max)
-        prov_return_deductions_gross_inc = (p.con_rrsp + p.con_rpp
-                                                 + prev_qc_work_deduc
-                                                 + p.pension_deduction_qc
-                                                 + p.qc_cpp_qpip_deduction)
-
-        return  max(0, prov_return_gross_income - prov_return_deductions_gross_inc)
