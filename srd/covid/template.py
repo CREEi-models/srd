@@ -17,6 +17,7 @@ class template:
     def compute(self, hh):
         """
         Fonction qui fait le calcul de chaque programme COVID-19.
+        
         Parameters
         ----------
         p: Person
@@ -145,6 +146,7 @@ class template:
         Fonction qui calcul la Prestation canadienne de la relance économique (PCRE)
 
         Calcule la PCRE pour la période de 50 semaines (13 mois) si le travailleur est admissible.
+        
         Parameters
         ----------
         p: Person

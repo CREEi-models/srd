@@ -82,6 +82,7 @@ class form_2019(form_2018):
     def cpp_deduction(self, p):
         """
         Fonction qui calcule la déduction pour les cotisations au RRQ / RPC pour les travailleurs autonomes et le régime supplémentaire du RRQ/RPC.
+        
         Parameters
         ----------
         p: Person
@@ -166,7 +167,7 @@ class form_2020(form_2019):
     def repayments_ei(self, p):
         """
         Fonction qui calcule le montant du remboursement d'assurance-emploi et qui
-        ajuste le montant des bénéfices, le revenu net et le revenu brut.
+        ajuste le montant des prestations, le revenu net et le revenu brut.
 
         Parameters
         ----------

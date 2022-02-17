@@ -174,7 +174,7 @@ class form_2018(form_2017):
 
     def senior_assist(self, p, hh):
         """
-        Fonction qui remplace dans le gabarit (classe *srd.quebec.template*) la fonction du même nom, et calcule le crédit remboursable pour support aux ainés. En vigueur à partir de 2018.
+        Fonction qui remplace dans le gabarit (classe *srd.quebec.template*) la fonction du même nom, et calcule le crédit remboursable pour soutien aux ainés. En vigueur à partir de 2018.
 
         Parameters
         ----------
@@ -218,6 +218,7 @@ class form_2019(form_2018):
     def cpp_qpip_deduction(self, p):
         """
         Déduction pour les cotisations RRQ / RPC et au RQAP pour le travail autonome.
+        
         Parameters
         ----------
         p: Person
