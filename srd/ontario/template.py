@@ -158,7 +158,7 @@ class template:
 
     def get_cpp_contrib_cred(self, p):
         """
-        Fonction qui calcule le crédit d'impôt non-remboursable pour cotisations au RRQ / RPC.
+        Fonction qui calcule le crédit d'impôt non-remboursable pour cotisations au RRQ/RPC.
 
         Parameters
         ----------

@@ -103,3 +103,7 @@ exp_work_max_work_inc_65;11000;float;;;
 exp_work_age_born_bef51;67;int;;;
 exp_work_min_amount_born_51;600;float;;;
 supp_furnitures;100;int;;;
+tax_shield_rate;0.75;float;;;
+tax_shield_max_couple;600;int;;;
+tax_shield_max_single;300;int;;;
+tax_shield_max_inc_variation;4000;int;;;

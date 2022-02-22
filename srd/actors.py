@@ -82,6 +82,8 @@ class Person:
         coût du maintien à domicile
     pub_drug_insurance: boolean
         True si la personne doit cotiser à l'Assurance médicaments du Québec (pas d'assurance médicaments privée)
+    tax_shield: boolean
+        True si la personne prend le crédit d'impôt bouclier ficscal au Québec
     """
     def __init__(self, age=50, male=True, earn=0, rpp=0, cpp=0,
                  net_cap_gains=0, prev_cap_losses=0, cap_gains_exempt=0,
@@ -91,8 +93,8 @@ class Person:
                  disabled=False, widow=False, med_exp=0, ndays_chcare_k1=0,
                  ndays_chcare_k2=0, asset=0, oas_years_post=0,
                  months_cerb_cesb=0, student=False, essential_worker=False,
-                 emp_temp_constraints=False, hours_month=None, prev_inc_work=None, 
-                 dep_senior=False, home_support_cost=0,months_ei=0, months_crb =0, pub_drug_insurance=False):
+                 emp_temp_constraints=False, hours_month=None, prev_inc_work=None,
+                 dep_senior=False, home_support_cost=0,months_ei=0, months_crb =0, pub_drug_insurance=False, tax_shield=False):
         self.age = age
         self.male = male
         self.attach_inc_work_month(earn, self_earn)
@@ -125,6 +127,7 @@ class Person:
         self.oas_years_post = oas_years_post
         self.compute_months_cerb_cesb(months_cerb_cesb, student)
         self.pub_drug_insurance = pub_drug_insurance
+        self.tax_shield = tax_shield
         self.student = student
         self.essential_worker = essential_worker
         self.emp_temp_constraints = emp_temp_constraints 
@@ -329,11 +332,12 @@ class Hhold:
     n_adults_in_hh: int
         nombre d'adultes (18 ans et plus) dans le ménage
     """
-    def __init__(self, first, second=None, prov='qc', n_adults_in_hh=None):
+    def __init__(self, first, second=None, prov='qc', n_adults_in_hh=None, prev_fam_net_inc_prov=None):
         self.sp = [first]
         self.couple = bool(second)
         if self.couple:
             self.sp.append(second)
+        self.prev_fam_net_inc_prov = prev_fam_net_inc_prov
         self.prov = prov
         self.dep = []
         self.nkids_0_6 = 0

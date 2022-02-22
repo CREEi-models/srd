@@ -304,7 +304,7 @@ class template:
 
     def get_cpp_contrib_cred(self, p):
         """
-        Fonction qui calcule le crédit d'impôt non-remboursable pour cotisations au RRQ / RPC.
+        Fonction qui calcule le crédit d'impôt non-remboursable pour cotisations au RRQ/RPC.
 
         Parameters
         ----------
@@ -473,7 +473,7 @@ class template:
 
     def get_spouse_transfer(self, p, hh):
         """
-        Fonction qui récupère le surplus des crédits non rembousables tranferables au conjoint (s'il y lieu).
+        Fonction qui récupère le surplus des crédits non-rembousables transférables au conjoint (s'il y lieu).
 
         Parameters
         ----------
@@ -771,7 +771,7 @@ class template:
     
     def get_dep_cred(self, p , hh):
         """
-        Fonction qui calcule le crédit pour personne à charge admissible.
+        Fonction qui calcule le montant pour personne à charge admissible.
 
         Ce crédit est non-remboursable.
 

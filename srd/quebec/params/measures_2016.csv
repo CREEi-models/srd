@@ -107,3 +107,7 @@ health_cutoff_29;5397;float;;;
 health_cutoff_31;8669;float;;;
 health_age_high;65;int;;;
 health_age_low;60;int;;;
+tax_shield_rate;0.75;float;;;
+tax_shield_max_couple;450;int;;;
+tax_shield_max_single;225;int;;;
+tax_shield_max_inc_variation;3000;int;;;

@@ -499,8 +499,10 @@ class template:
         p.qc_ccap = self.ccap(p, hh)
         p.qc_solidarity = self.solidarity(p, hh)
         p.qc_cost_of_living = self.cost_of_living(p, hh)
+        p.qc_tax_shield = self.tax_shield(p, hh)
 
-        l_all_creds = [p.qc_chcare, p.qc_witb, p.qc_home_support,
+
+        l_all_creds = [p.qc_chcare, p.qc_tax_shield, p.qc_witb, p.qc_home_support,
                        p.qc_senior_assist, p.qc_med_exp, p.qc_ccap,
                        p.qc_solidarity, p.qc_cost_of_living]
         l_existing_creds = [cred for cred in l_all_creds if cred]  # removes credits not implemented
@@ -937,3 +939,59 @@ class template:
         else:
             p.qc_contrib_hsf = min(self.hsf_high_cutoff, max(0,(amount - self.hsf_high_inc))*self.hsf_rate + self.hsf_low_cutoff)
         return p.qc_contrib_hsf
+
+    def tax_shield(self, p, hh):
+        """
+        Fonction qui calcule le crédit d'impôt Bouclier fiscal
+        La part de ce crédit liée à la prime au travail est partagée proportionnellement au revenu des conjoints par rapport au revenu
+        famillial.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+        """
+        if not p.tax_shield:
+            return 0
+        if p.prev_inc_work==None:
+            return 0
+        if hh.prev_fam_net_inc_prov == None:
+            return 0
+
+        var_fam_net_inc = max(0,hh.fam_net_inc_prov - hh.prev_fam_net_inc_prov) # 60
+        if var_fam_net_inc == 0:
+            # VOUS N'AVEZ PAS DROIT AU CREDIT D'IMPOT BOUCLIER FISCAL
+            return 0
+        modified_fam_inc = hh.fam_net_inc_prov - self.tax_shield_rate * min(sum([(min(max(0,p.inc_work - p.prev_inc_work), self.tax_shield_max_inc_variation)) for p in hh.sp]), var_fam_net_inc) # 70
+
+        # prime au travail
+        if p.qc_witb > 0:
+            if hh.couple:
+                rate = self.witb_rate_couple_dep if hh.nkids_0_18 > 0 else self.witb_rate
+                fam_witb = rate * max(0, min(self.witb_cut_inc_high_couple, hh.fam_inc_work) - self.witb_cut_inc_low_couple)
+                amount_witb = max(0,fam_witb - (self.witb_claw_rate * max(0, modified_fam_inc - self.witb_cut_inc_high_couple))) # 77
+                witb = min(self.tax_shield_max_couple, amount_witb - (p.qc_witb*hh.fam_inc_work /p.inc_work ))# 81
+            else:
+                rate = self.witb_rate_single_dep if hh.nkids_0_18 > 0 else self.witb_rate
+                fam_witb = rate * max(0, min(self.witb_cut_inc_high_single, hh.fam_inc_work) - self.witb_cut_inc_low_single)
+                amount_witb = max(0,fam_witb - (self.witb_claw_rate * max(0, modified_fam_inc - self.witb_cut_inc_high_single))) # 77
+                witb = min(self.tax_shield_max_single, amount_witb - p.qc_witb) # 81
+        else:
+            witb = 0
+        # frais de garde d'enfants
+        if p.qc_chcare > 0:    
+            if hh.child_care_exp == 0:
+                chcare = 0 # heterosexual couple: mother receives benefit
+            else:
+                amount_care = min(hh.child_care_exp, hh.nkids_0_6 * self.chcare_young + hh.nkids_7_16 * self.chcare_old) # 82
+                ind = np.searchsorted(self.chcare_brack, modified_fam_inc, 'right') - 1
+                net_amount = self.chcare_rate[ind] * amount_care # 84
+
+                chcare = net_amount - p.qc_chcare # 90
+        else:
+            chcare = 0
+        
+        # crédit d'impot bouclier fiscal
+        return (witb + chcare)/(1+hh.couple)  # 96
