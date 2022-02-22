@@ -76,8 +76,6 @@ class Person:
         nombre d'heures travaillées par mois
     prev_inc_work: float
         revenu du travail de l'année précédente
-    prev_prov_net_inc: float
-        revenu provincial net de l'année précédente
     dep_senior: boolean
         True si la personne aînée n'est pas autonome
     home_support_cost: float
@@ -95,13 +93,12 @@ class Person:
                  disabled=False, widow=False, med_exp=0, ndays_chcare_k1=0,
                  ndays_chcare_k2=0, asset=0, oas_years_post=0,
                  months_cerb_cesb=0, student=False, essential_worker=False,
-                 emp_temp_constraints=False, hours_month=None, prev_inc_work=None, prev_prov_net_inc=None,
+                 emp_temp_constraints=False, hours_month=None, prev_inc_work=None,
                  dep_senior=False, home_support_cost=0,months_ei=0, months_crb =0, pub_drug_insurance=False, tax_shield=False):
         self.age = age
         self.male = male
         self.attach_inc_work_month(earn, self_earn)
         self.attach_prev_work_inc(prev_inc_work)
-        self.prev_prov_net_inc = prev_prov_net_inc
         self.inc_rpp = rpp
         self.inc_cpp = cpp
         self.net_cap_gains = net_cap_gains
@@ -335,11 +332,12 @@ class Hhold:
     n_adults_in_hh: int
         nombre d'adultes (18 ans et plus) dans le ménage
     """
-    def __init__(self, first, second=None, prov='qc', n_adults_in_hh=None):
+    def __init__(self, first, second=None, prov='qc', n_adults_in_hh=None, prev_fam_net_inc_prov=None):
         self.sp = [first]
         self.couple = bool(second)
         if self.couple:
             self.sp.append(second)
+        self.prev_fam_net_inc_prov = prev_fam_net_inc_prov
         self.prov = prov
         self.dep = []
         self.nkids_0_6 = 0

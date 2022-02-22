@@ -461,7 +461,7 @@ class template:
 
     def get_spouse_transfer(self, p, hh):
         """
-        Fonction qui récupère le surplus des crédits non-rembousables transférables au conjoint (s'il y lieu).
+        Fonction qui récupère le surplus des crédits non rembousables tranferables au conjoint (s'il y lieu).
 
         Parameters
         ----------
@@ -942,7 +942,9 @@ class template:
 
     def tax_shield(self, p, hh):
         """
-       Fonction qui calcule le crédit d'impôt Bouclier fiscal 
+        Fonction qui calcule le crédit d'impôt Bouclier fiscal
+        La part de ce crédit liée à la prime au travail est partagée proportionnellement au revenu des conjoints par rapport au revenu
+        famillial.
 
         Parameters
         ----------
@@ -953,41 +955,43 @@ class template:
         """
         if not p.tax_shield:
             return 0
-        if p.prev_prov_net_inc==None:
-            #AJOUTER MESSAGE D'ERREUR
+        if p.prev_inc_work==None:
+            return 0
+        if hh.prev_fam_net_inc_prov == None:
             return 0
 
-        # REGARDER POUR INTRODUIRE REVENU FAMILIAL NET ANNÉE PRÉCÉDENTE
-        prev_fam_net_inc = sum([p.prev_prov_net_inc for p in hh.sp])
-        var_fam_net_inc = max(0,hh.fam_net_inc_prov - prev_fam_net_inc) # 60
-        modified_fam_inc = hh.fam_net_inc_prov - self.tax_shield_rate * min(sum([(min(max(0, p.prev_inc_work), self.tax_shield_max_inc_variation)) for p in hh.sp]), var_fam_net_inc) # 70
+        var_fam_net_inc = max(0,hh.fam_net_inc_prov - hh.prev_fam_net_inc_prov) # 60
+        if var_fam_net_inc == 0:
+            # VOUS N'AVEZ PAS DROIT AU CREDIT D'IMPOT BOUCLIER FISCAL
+            return 0
+        modified_fam_inc = hh.fam_net_inc_prov - self.tax_shield_rate * min(sum([(min(max(0,p.inc_work - p.prev_inc_work), self.tax_shield_max_inc_variation)) for p in hh.sp]), var_fam_net_inc) # 70
 
         # prime au travail
-        # AJOUTER CONDITION PRIME AU TRAVAIL SUP 0      
-        if hh.couple:
-            rate = self.witb_rate_couple_dep if hh.nkids_0_18 > 0 else self.witb_rate
-            fam_witb = rate * max(0, min(self.witb_cut_inc_high_couple, hh.fam_inc_work) - self.witb_cut_inc_low_couple)
-            amount_witb = max(0,fam_witb - (self.witb_claw_rate * max(0, modified_fam_inc - self.witb_cut_inc_high_couple))) # 77
-            witb = (min(self.tax_shield_max_couple, amount_witb - (p.qc_witb * 2))) / (1 + hh.couple)# 81
+        if p.qc_witb > 0:
+            if hh.couple:
+                rate = self.witb_rate_couple_dep if hh.nkids_0_18 > 0 else self.witb_rate
+                fam_witb = rate * max(0, min(self.witb_cut_inc_high_couple, hh.fam_inc_work) - self.witb_cut_inc_low_couple)
+                amount_witb = max(0,fam_witb - (self.witb_claw_rate * max(0, modified_fam_inc - self.witb_cut_inc_high_couple))) # 77
+                witb = min(self.tax_shield_max_couple, amount_witb - (p.qc_witb*hh.fam_inc_work /p.inc_work ))# 81
+            else:
+                rate = self.witb_rate_single_dep if hh.nkids_0_18 > 0 else self.witb_rate
+                fam_witb = rate * max(0, min(self.witb_cut_inc_high_single, hh.fam_inc_work) - self.witb_cut_inc_low_single)
+                amount_witb = max(0,fam_witb - (self.witb_claw_rate * max(0, modified_fam_inc - self.witb_cut_inc_high_single))) # 77
+                witb = min(self.tax_shield_max_single, amount_witb - p.qc_witb) # 81
         else:
-            rate = self.witb_rate_single_dep if hh.nkids_0_18 > 0 else self.witb_rate
-            fam_witb = rate * max(0, min(self.witb_cut_inc_high_single, hh.fam_inc_work) - self.witb_cut_inc_low_single)
-            amount_witb = max(0,fam_witb - (self.witb_claw_rate * max(0, modified_fam_inc - self.witb_cut_inc_high_single))) # 77
-            witb = min(self.tax_shield_max_single, amount_witb - p.qc_witb) # 81
+            witb = 0
         # frais de garde d'enfants
-        # AJOUTER CONDITION CRÉDIT SUP 0 
-        if hh.child_care_exp == 0 or (hh.couple and p.male and hh.sp[0].male != hh.sp[1].male):
-            chcare = 0 # heterosexual couple: mother receives benefit
+        if p.qc_chcare > 0:    
+            if hh.child_care_exp == 0:
+                chcare = 0 # heterosexual couple: mother receives benefit
+            else:
+                amount_care = min(hh.child_care_exp, hh.nkids_0_6 * self.chcare_young + hh.nkids_7_16 * self.chcare_old) # 82
+                ind = np.searchsorted(self.chcare_brack, modified_fam_inc, 'right') - 1
+                net_amount = self.chcare_rate[ind] * amount_care # 84
+
+                chcare = net_amount - p.qc_chcare # 90
         else:
-            amount_care = min(hh.child_care_exp,
-                    hh.nkids_0_6 * self.chcare_young + hh.nkids_7_16 * self.chcare_old) # 82
-            ind = np.searchsorted(self.chcare_brack, modified_fam_inc, 'right') - 1
-            net_amount = self.chcare_rate[ind] * amount_care # 84
-
-            if hh.couple and hh.sp[0].male == hh.sp[1].male:
-                return net_amount / 2 # same sex couples get 1/2 each
-
-            chcare = net_amount - p.qc_chcare # 90
+            chcare = 0
         
         # crédit d'impot bouclier fiscal
-        return witb + chcare # 96
+        return (witb + chcare)/(1+hh.couple)  # 96
