@@ -288,7 +288,7 @@ class template:
     
     def get_ei_contrib_cred(self, p):
         """
-        Fonction qui calcule la déduction pour cotisations à l'assurance emploi.
+        Fonction qui calcule le crédit d'impôt non-remboursable pour cotisations à l'assurance emploi.
 
         Parameters
         ----------

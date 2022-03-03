@@ -196,7 +196,7 @@ class tax:
 
     def compute_covid(self, hh):
         """
-        Calcul de la PCU, de la PCUE et du PIRTE (pour 2020).
+        Calcul de la PCU, de la PCRE, de la PCUE et du PIRTE.
 
         Parameters
         ----------
@@ -234,6 +234,11 @@ class tax:
         Calcul du revenu après impôt fédéral et provincial.
 
         Calcul fait au niveau individuel et ensuite rattaché à la personne; le résultat au niveau du ménage est aussi disponible.
+
+        Parameters
+        ----------
+        hh: Hhold
+            instance de la classe Hhold
         """
         for p in hh.sp:
             after_tax_inc = p.inc_tot
@@ -249,6 +254,10 @@ class tax:
 
         Calcul fait au niveau individuel et ensuite rattaché à la personne; le résultat au niveau du ménage est aussi disponible.
 
+        Parameters
+        ----------
+        hh: Hhold
+            instance de la classe Hhold
         """
         self.compute_after_tax_inc(hh)
         for p in hh.sp:
