@@ -5,15 +5,15 @@ module_dir = os.path.dirname(os.path.dirname(__file__))
 
 class template:
     """
-    Programme d'assurance emploi.
+    Programme d'assurance-emploi.
 
-    Ce gabarit sert pour l'instant à calculer les cotisations à l'assurance emploi.
+    Ce gabarit sert pour l'instant à calculer les cotisations à l'assurance-emploi.
 
     """
 
     def contrib(self, p, hh):
         """
-        Fonction pour calculer les cotisations à l'assurance emploi.
+        Fonction pour calculer les cotisations à l'assurance-emploi.
 
         Parameters
         ----------
@@ -25,7 +25,7 @@ class template:
         Returns
         -------
         float
-            Montant de la cotisation à l'assurance emploi (annuelle).
+            Montant de la cotisation à l'assurance-emploi (annuelle).
         """
         rate = self.rate_EI_qc if hh.prov == 'qc' else self.rate_EI
         p.contrib_ei = 0

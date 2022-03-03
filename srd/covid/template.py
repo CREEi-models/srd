@@ -9,15 +9,15 @@ def create_stub():
 
 class template:
     """
-    Programme COVID-19.
+    Programmes COVID-19.
 
-    Ce gabarit sert à calculer les programmes associé à la COVID-19.
+    Ce gabarit sert à calculer les programmes associés à la COVID-19.
 
     """
     def compute(self, hh):
         """
         Fonction qui fait le calcul de chaque programme COVID-19.
-        
+
         Parameters
         ----------
         p: Person
@@ -30,7 +30,7 @@ class template:
             p.inc_cerb = self.compute_cerb(p)
             p.covid['cerb'] = p.inc_cerb
             p.inc_cesb = self.compute_cesb(p, hh)
-            p.covid['cesb'] = p.inc_cesb  
+            p.covid['cesb'] = p.inc_cesb
             p.inc_crb = self.compute_crb(p)
             p.covid['crb'] = p.inc_crb
             if hh.prov == 'qc':
@@ -120,7 +120,7 @@ class template:
         """
         Fonction pour le calcul du PIRTE.
 
-        Calcule la PIRTE pour la période de 16 semaines (4 mois) si le travailleur est admissible.
+        Calcule la prestation de PIRTE pour la période de 16 semaines (4 mois) si le travailleur est admissible.
 
         Parameters
         ----------
@@ -143,10 +143,10 @@ class template:
 
     def compute_crb(self, p):
         """
-        Fonction qui calcul la Prestation canadienne de la relance économique (PCRE)
+        Fonction qui calcule la Prestation canadienne de la relance économique (PCRE).
 
-        Calcule la PCRE pour la période de 50 semaines (13 mois) si le travailleur est admissible.
-        
+        Calcule la PCRE pour la période de 54 semaines si le travailleur est admissible.
+
         Parameters
         ----------
         p: Person
@@ -159,16 +159,16 @@ class template:
         if p.months_crb == 0 or p.prev_inc_work < self.crb_min_inc_work or p.months_ei > 0:
             return 0
         clawback = p.months_crb-self.crb_months_clawback
-        
+
         if clawback >0:
             l_cerb = [self.crb_base_original for i in range(0,self.crb_months_clawback)]
             original_amount = sum(l_cerb)
             l_cerb = [self.crb_base_reduced for i in range(0,min(clawback, self.crb_max_months -self.crb_months_clawback))]
             reduced_amount = sum(l_cerb)
             amount = original_amount + reduced_amount
-        else:           
+        else:
             l_cerb = [self.crb_base_original for i in range(0,p.months_crb)]
-            amount = sum(l_cerb)  
+            amount = sum(l_cerb)
         if p.inc_work < self.crb_clawback:
             return amount
         else:

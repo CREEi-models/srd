@@ -19,10 +19,9 @@ class template:
 
     def file(self, hh):
         """
-        Fonction qui permet de calculer les impôts.
+        Fonction qui permet de calculer l'impôt.
 
-        Cette fonction est celle qui calcule les déductions,
-        les crédits non-remboursables et remboursables et les impôts nets.
+        Cette fonction est celle qui calcule les déductions, les crédits non-remboursables et remboursables et l'impôt net.
 
         Parameters
         ----------
@@ -46,10 +45,10 @@ class template:
             self.calc_refundable_tax_credits(p, hh)
             p.prov_return['net_tax_liability'] -= p.prov_return['refund_credits']
             self.calc_contributions(p, hh)
-            p.prov_return['net_tax_liability'] += p.prov_return['contributions'] 
-            
+            p.prov_return['net_tax_liability'] += p.prov_return['contributions']
 
-    
+
+
 
 
 
@@ -126,11 +125,11 @@ class template:
         ----------
         p: Person
             instance de la classe Person
-        
+
         Returns
         -------
         float
-            Montant de la déduction
+            Montant de la déduction.
         """
         work_earn = p.inc_work
         if p.inc_work > 0:
@@ -140,7 +139,7 @@ class template:
 
     def cpp_qpip_deduction(self, p):
         """
-        Déduction pour les cotisations RRQ / RPC et au RQAP pour le travail autonome.
+        Déduction pour les cotisations RRQ/RPC et au RQAP pour le travail autonome.
 
         Parameters
         ----------
@@ -160,7 +159,7 @@ class template:
     def calc_deduc_net_income(self, p):
         """
         Fonction qui calcule les déductions suivantes:
-        1. Pertes en capital net des autres années;
+        1. Pertes en capital nettes d'autres années;
         2. Déduction pour gain en capital exonéré.
 
         Permet une déduction maximale égale aux gains en capital taxables nets.
@@ -172,7 +171,7 @@ class template:
         """
         p.fed_return['deductions_net_inc'] = min(
             p.taxable_cap_gains,
-            p.inc_gis + p.allow_couple + p.allow_surv 
+            p.inc_gis + p.allow_couple + p.allow_surv
             + p.prev_cap_losses + self.cap_gains_rate * p.cap_gains_exempt)
 
     def calc_tax(self, p):
@@ -219,7 +218,7 @@ class template:
             hh.sp[0].qc_age_alone_pension = max(0, cred_amount - self.get_nrtcred_clawback(p, hh))
             hh.sp[1].qc_age_alone_pension = 0
         elif hh.couple==False:
-            cred_amount = p.qc_age_cred + p.qc_pension_cred + p.qc_living_alone_cred 
+            cred_amount = p.qc_age_cred + p.qc_pension_cred + p.qc_living_alone_cred
             p.qc_age_alone_pension = max(0, cred_amount - self.get_nrtcred_clawback(p, hh))
 
         p.qc_disabled_cred = self.get_disabled_cred(p)
@@ -286,7 +285,7 @@ class template:
 
         p.qc_pension_cred = min(self.nrtc_pension_max, pension_split_cred * self.nrtc_pension_factor)
         return p.qc_pension_cred
-        
+
     def get_nrtcred_clawback(self, p, hh):
         """
         Fonction qui calcule la récupération de la somme des crédits non-remboursables 1. en raison de l'âge; 2. pour personne vivant seule; et 3. pour revenu de retraite.
@@ -470,7 +469,7 @@ class template:
         """
         if not hh.couple:
             return 0
-        
+
         spouse = hh.sp[1 - hh.sp.index(p)]
         transfer = spouse.prov_return['gross_tax_liability'] - spouse.prov_return['non_refund_credits'] - spouse.qc_div_tax_credit
         if transfer < 0:
@@ -747,13 +746,13 @@ class template:
         hh: Hhold
             instance de la classe Hhold
         """
-                
+
         p.prov_return['contributions'] = self.add_contrib_subsid_chcare(p, hh) \
                                          + self.health_contrib(p, hh) + self.contrib_hsf(p)
 
         if p.pub_drug_insurance:
             p.prov_return['contributions'] += self.drug_insurance_contrib(hh)
-                                    
+
 
     def health_contrib(self, p, hh):
         """
@@ -832,7 +831,7 @@ class template:
         ----------
         hh: Hhold
             instance de la classe Hhold
-        """       
+        """
         net_inc_used = hh.fam_net_inc_prov
 
         if hh.couple:
@@ -840,17 +839,17 @@ class template:
             if hh.nkids_0_18==1:
                 net_inc_used-= self.pdip_couple_kid1
             elif hh.nkids_0_18>1:
-                net_inc_used -= self.pdip_couple_kid2p   
+                net_inc_used -= self.pdip_couple_kid2p
         else:
             net_inc_used -= self.pdip_single
             if hh.nkids_0_18==1:
                 net_inc_used -= self.pdip_single_kid1
             elif hh.nkids_0_18>1:
-                net_inc_used -= self.pdip_single_kid2p               
+                net_inc_used -= self.pdip_single_kid2p
 
         if net_inc_used<=0:
             return 0
-        
+
         ind = np.searchsorted(self.l_pdip_brackets, net_inc_used, 'right') - 1
 
         if net_inc_used <= self.l_pdip_brackets[ind]:
@@ -881,7 +880,7 @@ class template:
             instance de la classe Person
         hh: Hhold
             instance de la classe Hhold
-        
+
         Returns
         -------
         float
@@ -942,9 +941,9 @@ class template:
 
     def tax_shield(self, p, hh):
         """
-        Fonction qui calcule le crédit d'impôt Bouclier fiscal
-        La part de ce crédit liée à la prime au travail est partagée proportionnellement au revenu des conjoints par rapport au revenu
-        famillial.
+        Fonction qui calcule le crédit d'impôt Bouclier fiscal.
+
+        La part de ce crédit liée à la prime au travail est partagée proportionnellement au revenu des conjoints par rapport au revenu famillial.
 
         Parameters
         ----------
@@ -981,7 +980,7 @@ class template:
         else:
             witb = 0
         # frais de garde d'enfants
-        if p.qc_chcare > 0:    
+        if p.qc_chcare > 0:
             if hh.child_care_exp == 0:
                 chcare = 0 # heterosexual couple: mother receives benefit
             else:
@@ -992,6 +991,6 @@ class template:
                 chcare = net_amount - p.qc_chcare # 90
         else:
             chcare = 0
-        
+
         # crédit d'impot bouclier fiscal
         return (witb + chcare)/(1+hh.couple)  # 96

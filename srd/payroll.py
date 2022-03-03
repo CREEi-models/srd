@@ -14,7 +14,7 @@ def create_stub():
 
 class payroll:
     """
-    Calcul des cotisations sociales: à l'assurance emploi, au RQAP (Québec), au RRQ (Québec) ainsi qu'au RPC (provinces autres que le Québec).
+    Calcul des cotisations sociales: à l'assurance-emploi, au RQAP (Québec), au RRQ (Québec) ainsi qu'au RPC (provinces autres que le Québec).
 
     Parameters
     ----------
@@ -30,7 +30,7 @@ class payroll:
 
     def compute(self, hh):
         """
-        Fonction qui appelle *ei*, *qpip* et la fonction *get_cpp_contrib* afin de calculer respectivement les cotisations à l'assurance-emploi, à l'assurance parentale (RQAP) et au RRQ/RPC.
+        Fonction qui appelle *ei*, *qpip* (voir ci-après) et la fonction *get_cpp_contrib* afin de calculer respectivement les cotisations à l'assurance-emploi, à l'assurance parentale (RQAP) et au RRQ/RPC.
 
         Parameters
         ----------
@@ -70,7 +70,7 @@ class payroll:
             acc.MakeContrib(year=self.year, earn=p.inc_earn,
                             earn_aut=p.inc_self_earn)
             hist = acc.history[p.age - 18]
-            p.contrib_cpp, p.contrib_cpp_self = hist.contrib, hist.contrib_aut 
+            p.contrib_cpp, p.contrib_cpp_self = hist.contrib, hist.contrib_aut
             p.contrib_cpp_supp = hist.contrib_s1 + hist.contrib_s2 + hist.contrib_aut_s1 + hist.contrib_aut_s2
 
             return (hist.contrib + hist.contrib_aut,

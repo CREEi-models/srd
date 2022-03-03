@@ -101,7 +101,7 @@ class template:
         Returns
         -------
         float
-            Revenu en sus de l'exemption sur les revenus du travail aux fins du SRG.
+            Revenu en sus de l'exemption sur les revenus du travail aux fins du calcul du SRG.
         """
         net_inc_exempt = 0
         for p in hh.sp:
@@ -148,7 +148,7 @@ class template:
         float
             Montant de la récupération de la PSV.
         """
-        
+
         if p.fed_return['net_income'] + p.oas <= self.oas_claw_cutoff:
             return p.oas
         else:

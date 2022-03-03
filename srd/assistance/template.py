@@ -12,7 +12,7 @@ class template:
         """
         Fonction pour faire une demande au programme et recevoir une prestation.
 
-        Ceci calcule une prestation intégrée d'aide sociale.
+        Cette fonction calcule une prestation intégrée d'aide sociale.
 
         Parameters
         ----------
@@ -22,7 +22,7 @@ class template:
         Returns
         -------
         float
-            Montant de l'aide sociale
+            Montant de l'aide sociale.
         """
         if hh.prov == 'qc':
             return self.calc_sa_qc(hh)
@@ -51,8 +51,6 @@ class template:
         """
         Composante de base et supplément pour enfant (en cas de prestation d'ACE réduite) pour le Québec.
 
-        À noter que seul un test d'actifs simplifié est appliqué, à un volet; les actifs liquides (argent comptant et comptes courants) ne sont pas considérés.
-
         Parameters
         ----------
         hh: Hhold
@@ -61,9 +59,9 @@ class template:
         Returns
         -------
         float
-            Montant combiné de la composante de base et du supplément pour enfant. 
+            Montant combiné de la composante de base et du supplément pour enfant.
         """
-        
+
         # eligibility : assets test
         self.eligibility_qc(hh)
         if not [hh.sa_elig_asset]:  # eliminate non-eligible hholds
@@ -108,11 +106,11 @@ class template:
 
         for p in hh.sp:
             p.inc_sa = amount
-        
+
 
     def child_ajustments(self, hh):
         """
-        Fonction qui calcul l'ajustement des prestation d'aide sociale selon les caractéristiques des enfants du ménage.
+        Fonction qui calcule l'ajustement des prestations d'aide sociale selon les caractéristiques des enfants du ménage.
 
         Parameters
         ----------
@@ -157,7 +155,7 @@ class template:
         Parameters
         ----------
         p: Person
-            instance de la classe Person 
+            instance de la classe Person
         hh: Hhold
             instance de la classe Hhold
         """
@@ -172,7 +170,7 @@ class template:
         dep = len([s for s in hh.dep if s.age <= self.socass_qc_temp_child_age])
 
         for p in hh.sp:
-            
+
             if hh.sa_elig_asset and p.emp_temp_constraints:
                 p.sa_elig = 'temporary constraints'
             elif hh.sa_elig_asset and p.age>=self.socass_qc_temp_elder_age:
@@ -188,9 +186,7 @@ class template:
         """
         Composante de base et supplément pour enfant pour l'Ontario.
 
-        À noter que seul un test d'actifs simplifié est appliqué, à un volet; les actifs liquides (argent comptant et comptes courants) ne sont pas considérés.
-
-        Parameters
+                Parameters
         ----------
         hh: Hhold
             instance de la classe Hhold
@@ -198,7 +194,7 @@ class template:
         Returns
         -------
         float
-            Montant combiné de la composante de base et du supplément pour enfant.
+            Montant combiné de la composante de base et du supplément pour enfant pour l'Ontario.
         """
         # assets test
         assets = sum([s.asset for s in hh.sp])
@@ -237,7 +233,6 @@ class template:
                           + (ndep_18 - 2) * self.socass_on_add_dep18)
 
         amount = max(0, amount - clawback) / (1 + hh.couple)
-        
+
         for s in hh.sp:
             s.inc_sa = amount
-

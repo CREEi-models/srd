@@ -15,7 +15,7 @@ def program(year, federal):
     year: int
         année (présentement entre 2016 et 2021)
     federal: {srd.federal.form_2016, ..., srd.federal.form_2021}
-        instance de la classe srd.federal.form_xxxx (pour l'année xxxx) du module Federal
+        instance de la classe srd.federal.form_xxxx (pour l'année xxxx) du module *federal*
     Returns
     -------
     class instance
@@ -45,7 +45,7 @@ class program_2016(template):
     Parameters
     ----------
     federal: srd.federal.form_2016
-        instance de la classe srd.federal.form_2016 du module Federal
+        instance de la classe srd.federal.form_2016 du module *federal*
     """
 
     def __init__(self, federal):
@@ -62,7 +62,7 @@ class program_2017(program_2016):
     Parameters
     ----------
     federal: srd.federal.form_2017
-        instance de la classe srd.federal.form_2017 du module Federal
+        instance de la classe srd.federal.form_2017 du module *federal*
     """
 
     def __init__(self, federal):
@@ -79,7 +79,7 @@ class program_2018(program_2017):
     Parameters
     ----------
     federal: srd.federal.form_2018
-        instance de la classe srd.federal.form_2018 du module Federal
+        instance de la classe srd.federal.form_2018 du module *federal*
     """
 
     def __init__(self, federal):
@@ -96,7 +96,7 @@ class program_2019(program_2018):
     Parameters
     ----------
     federal: srd.federal.form_2019
-        instance de la classe srd.federal.form_2019 du module Federal
+        instance de la classe srd.federal.form_2019 du module *federal*
     """
 
     def __init__(self, federal):
@@ -106,15 +106,15 @@ class program_2019(program_2018):
 
 # program for 2020, derived from template, only requires modify
 # functions that change
-class program_2020(program_2019):    
-    
+class program_2020(program_2019):
+
     """
     Version du programme de 2020.
 
     Parameters
     ----------
     federal: srd.federal.form_2020
-        instance de la classe srd.federal.form_2020 du module Federal
+        instance de la classe srd.federal.form_2020 du module *federal*
     """
 
     def __init__(self, federal):
@@ -149,7 +149,7 @@ class program_2020(program_2019):
                 0, p.fed_return["net_income"] - exempted_inc - payroll
             )
         return net_inc_exempt
-    
+
 
 class program_2021(program_2020):
     """
@@ -158,13 +158,13 @@ class program_2021(program_2020):
     Parameters
     ----------
     federal: srd.federal.form_2021
-        instance de la classe srd.federal.form_2021 du module Federal
+        instance de la classe srd.federal.form_2021 du module *federal*
     """
 
     def __init__(self, federal):
         add_params_as_attr(self, module_dir + "/oas/params/old_age_sec_2021.csv")
         self.federal = federal
-        
+
     def compute_pension(self, p, hh):
         """
         Fonction qui calcule la prestation de PSV.
@@ -188,7 +188,7 @@ class program_2021(program_2020):
         if p.age >= self.min_age_covid_bonus:
             p.oas += self.oas_covid_bonus
         return self.pension_clawback(p, hh)
-    
+
     def gis(self, p, hh, income, low_high):
         """
         Fonction qui calcule la prestation de Supplément de revenu garanti.

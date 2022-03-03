@@ -105,7 +105,7 @@ class form_2017(form_2016):
     def ccap(self, p, hh):
         """
         Fonction qui calcule le crédit d’impôt remboursable accordant une allocation aux familles (CIRAAF) (qui s'appelait le Soutien aux enfants avant 2019). Seules les composantes suivantes sont modélisées : l'allocation famille et le supplément pour l'achat de fournitures scolaires.
-   
+
         Cette fonction calcule le montant reçu selon le nombre d'enfants, la situation familiale (couple/monoparental) et le revenu.
 
         Parameters
@@ -153,7 +153,7 @@ class form_2017(form_2016):
         kid_eligible = 0
         for d in hh.dep:
             if (d.age >=4 and d.age<=16) or (d.disa==True and (d.age >=4 and d.age<=17)):
-                kid_eligible += 1 
+                kid_eligible += 1
 
         amount_furnitures = max(0, kid_eligible*self.supp_furnitures)
 
@@ -186,7 +186,7 @@ class form_2018(form_2017):
         Returns
         -------
         float
-            Montant du crédit
+            Montant du crédit.
         """
         if max([p.age for p in hh.sp]) < self.senior_assist_min_age:
             return 0
@@ -217,8 +217,8 @@ class form_2019(form_2018):
 
     def cpp_qpip_deduction(self, p):
         """
-        Déduction pour les cotisations RRQ / RPC et au RQAP pour le travail autonome.
-        
+        Déduction pour les cotisations RRQ/RPC et au RQAP pour le travail autonome.
+
         Parameters
         ----------
         p: Person
@@ -230,10 +230,10 @@ class form_2019(form_2018):
         """
         p.qc_cpp_deduction = p.contrib_cpp_self / 2
         p.qc_cpp_deduction += p.payroll['cpp_supp']
-        
+
         p.qc_qpip_deduction = self.qpip_deduc_rate * p.contrib_qpip_self
         return p.qc_cpp_deduction + p.qc_qpip_deduction
-    
+
     def calc_contributions(self, p, hh):
         """
         Fonction qui remplace la fonction antérieure du même nom, et calcule les contributions.
@@ -310,9 +310,9 @@ class form_2021(form_2020):
                                                  + p.qc_work_deduc
                                                  + p.pension_deduction_qc
                                                  + p.qc_cpp_qpip_deduction)
-    
-    
-    
+
+
+
     def cost_of_living(self, p, hh):
         """
         Fonction qui calcule le crédit d'impôt remboursable attribuant une prestation exceptionnelle pour pallier la hausse du coût de la vie.
@@ -327,11 +327,10 @@ class form_2021(form_2020):
         """
         if p.qc_solidarity == 0:
             return 0
-        
+
         if hh.couple :
             amount = self.cost_of_living_not_alone
         else:
             amount = self.cost_of_living_alone
-        
+
         return amount / (1 + hh.couple)
-        

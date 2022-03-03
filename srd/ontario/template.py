@@ -18,9 +18,9 @@ class template:
 
     def file(self, hh):
         """
-        Fonction qui permet de calculer les impôts.
+        Fonction qui permet de calculer l'impôt.
 
-        Cette fonction est celle qui calcule les déductions, les crédits non-remboursables et remboursables et les impôts nets.
+        Cette fonction est celle qui calcule les déductions, les crédits non-remboursables et remboursables et l'impôt net.
 
         Parameters
         ----------
@@ -59,7 +59,7 @@ class template:
 
     def copy_fed_return(self, p):
         """
-        Fonction qui copie le revenu brut, les déductions, ainsi que les revenus nets et imposables du formulaire fédéral.
+        Fonction qui copie le revenu brut, les déductions, ainsi que les revenus net et imposable du formulaire fédéral.
 
         Parameters
         ----------

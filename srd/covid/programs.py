@@ -25,7 +25,7 @@ class program_2020(template):
     """
     Version du programme de 2020.
 
-    Calcul des prestations d'urgence liées à la COVID-19: la Prestation canadienne d'urgence (PCU), la Prestation canadienne d'urgence pour les étudiants (PCUE), le Programme incitatif pour la rétention des travailleurs essentiels (PIRTE) et la Prestation canadienne de la relance économique (PCRE).
+    Calcul des prestations liées à la COVID-19: la Prestation canadienne d'urgence (PCU), la Prestation canadienne d'urgence pour les étudiants (PCUE), le Programme incitatif pour la rétention des travailleurs essentiels (PIRTE) au Québec et la Prestation canadienne de la relance économique (PCRE).
 
     """
     def __init__(self):
@@ -34,7 +34,7 @@ class program_2021(program_2020):
     """
     Version du programme de 2021.
 
-    Calcule principalement la Prestation canadienne de la relance économique (PCRE)
+    Calcule principalement la Prestation canadienne de la relance économique (PCRE).
     """
 
     def __init__(self):
@@ -97,7 +97,7 @@ class program_2021(program_2020):
         """
         Fonction pour le calcul du PIRTE.
 
-        Calcule la PIRTE pour la période de 16 semaines (4 mois) si le travailleur est admissible.
+        Calcule la prestation de PIRTE pour la période de 16 semaines (4 mois) si le travailleur est admissible.
 
         Parameters
         ----------

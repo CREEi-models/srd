@@ -17,10 +17,9 @@ class template:
 
     def file(self, hh):
         """
-        Fonction qui permet de calculer les impôts.
+        Fonction qui permet de calculer l'impôt.
 
-        Cette fonction est celle qui calcule les déductions,
-        les crédits non-remboursables et remboursables et les impôts nets.
+        Cette fonction est celle qui calcule les déductions,les crédits non-remboursables et remboursables et l'impôt net.
 
         Parameters
         ----------
@@ -59,7 +58,7 @@ class template:
                          + self.div_other_can_factor * p.div_other_can)
         p.taxable_cap_gains = self.cap_gains_rate * max(0, p.net_cap_gains)
         p.fed_return['gross_income'] = (p.inc_work + p.inc_ei + p.inc_oas
-                                        + p.inc_gis + p.allow_couple 
+                                        + p.inc_gis + p.allow_couple
                                         + p.allow_surv
                                         + p.inc_cpp + p.inc_rpp
                                         + p.pension_split + p.taxable_div
@@ -106,7 +105,7 @@ class template:
         p.fed_chcare = self.chcare(p, hh)
         p.fed_cpp_deduction = self.cpp_deduction(p)
         p.fed_qpip_deduction = self.qpip_deduction(p)
-        p.fed_return['deductions_gross_inc'] = (p.con_rrsp + p.con_rpp 
+        p.fed_return['deductions_gross_inc'] = (p.con_rrsp + p.con_rpp
                                                 + p.fed_chcare
                                                 + p.pension_deduction
                                                 + p.union_dues
@@ -128,9 +127,7 @@ class template:
         float
             Montant de la déduction pour frais de garde.
 
-            Cette fonction calcule le montant reçu en fonction des frais de garde,
-            de l'âge des enfants et du revenu le moins élevé du couple. Le montant
-            est reçu par le conjoint qui a le revenu le moins élevé.
+            Cette fonction calcule le montant reçu en fonction des frais de garde, de l'âge des enfants et du revenu le moins élevé du couple. Le montant est reçu par le conjoint qui a le revenu le moins élevé.
         """
 
         if hh.child_care_exp == 0:
@@ -145,7 +142,7 @@ class template:
 
     def cpp_deduction(self, p):
         """
-        Fonction qui calcule la déduction pour les cotisations au RRQ / RPC pour les travailleurs autonomes.
+        Fonction qui calcule la déduction pour les cotisations au RRQ/RPC pour les travailleurs autonomes.
 
         Parameters
         ----------
@@ -183,7 +180,7 @@ class template:
     def calc_deduc_net_income(self, p):
         """
         Fonction qui calcule les déductions suivantes:
-        1. Pertes en capital net des autres années;
+        1. Pertes en capital nettes d'autres années;
         2. Déduction pour gain en capital exonéré.
 
         Permet une déduction maximale égale aux gains en capital taxables nets.
@@ -239,7 +236,7 @@ class template:
         p.donation_cred = self.get_donations_cred(p)
         p.fed_dep_cred = self.get_dep_cred(p, hh)
         p.fed_spouse_cred = self.get_spouses_cred(p, hh)
-        
+
 
         p.fed_return['non_refund_credits'] = (self.rate_non_ref_tax_cred
             * (self.compute_basic_amount(p)+ p.fed_dep_cred + p.fed_spouse_cred + p.fed_age_cred
@@ -285,7 +282,7 @@ class template:
 
         clawback = self.age_cred_claw_rate * max(0, p.fed_return['net_income'] - self.age_cred_exempt)
         return max(0, self.age_cred_amount - clawback)
-    
+
     def get_ei_contrib_cred(self, p):
         """
         Fonction qui calcule la déduction pour cotisations à l'assurance emploi.
@@ -473,7 +470,7 @@ class template:
 
     def get_spouse_transfer(self, p, hh):
         """
-        Fonction qui récupère le surplus des crédits non-rembousables transférables au conjoint (s'il y lieu).
+        Fonction qui récupère le surplus des crédits non-remboursables transférables au conjoint (s'il y lieu).
 
         Parameters
         ----------
@@ -486,20 +483,20 @@ class template:
             return 0
 
         spouse = hh.sp[1 - hh.sp.index(p)]
-        first_cred = spouse.fed_age_cred + spouse.fed_pension_cred 
+        first_cred = spouse.fed_age_cred + spouse.fed_pension_cred
         if spouse.fed_return['taxable_income'] <= self.l_brackets[1]:
             taxable_inc = spouse.fed_return['taxable_income']
         else:
             taxable_inc = spouse.fed_return['gross_tax_liability']/ self.l_rates[0]
-        
+
         income_deduction = self.compute_basic_amount(spouse) + spouse.contrib_cpp + spouse.contrib_cpp_self + spouse.contrib_qpip \
         + spouse.contrib_qpip_self + spouse.contrib_ei + spouse.fed_empl_cred
 
         net_inc = max(0, taxable_inc - income_deduction)
         transfer = max(0, first_cred - net_inc)
-        
+
         return self.l_rates[0] * transfer
-        
+
 
     def div_tax_credit(self, p):
         """
@@ -516,7 +513,7 @@ class template:
 
     def calc_refundable_tax_credits(self, p, hh):
         """
-        Fonction qui fait la somme des crédits remboursables, en appelant les fonctions suivantes, décrites ci-après: *abatment*, *ccb*, *get_witb*, *get_witbds*, *med_exp*, *gst_hst_credit*.
+        Fonction qui fait la somme des crédits remboursables, en appelant les fonctions suivantes, décrites ailleurs dans cette page: *abatment*, *ccb*, *get_witb*, *get_witbds*, *med_exp*, *gst_hst_credit*.
 
         Parameters
         ----------
@@ -607,7 +604,7 @@ class template:
     def get_witb(self, p, hh):
         """
         Fonction qui calcule l'Allocation canadienne pour les travailleurs (ACT).
-        
+
         Avant 2019, celle-ci était appelée la Prestation fiscale pour le revenu de travail (PFRT).
 
         Dans le cas d'un couple, la prestation est répartie au prorata des revenus de travail.
@@ -621,7 +618,7 @@ class template:
         Returns
         -------
         float
-            Montant de la PFRT.
+            Montant de l'ACT.
         """
         self.witb = self.witb_params['qc'] if hh.prov == 'qc' else self.witb_params['on']
 
@@ -660,7 +657,7 @@ class template:
         Returns
         -------
         float
-            Montant du SIPFRT.
+            Montant du supplépment pour invalidité.
         """
         if not p.disabled:
             return 0
@@ -683,8 +680,8 @@ class template:
     def compute_witb_witbds(self, p, hh, rate, base, witb_max, claw_rate,
                             exemption):
         """
-        Fonction appelée par *get_witb* et *get_witbds* pour calculer 
-        le montant de la PFRT et du SIPFRT.
+        Fonction appelée par *get_witb* et *get_witbds* pour calculer
+        le montant de la PFRT / l'ACT et de son supplément.
 
         Parameters
         ----------
@@ -695,9 +692,9 @@ class template:
         rate: float
             taux appliqué au revenu du travail
         base: float
-            montant de base de la PFRT
+            montant de base de la PFRT / l'ACT
         witb_max: float
-            montant maximal de la PFRT
+            montant maximal de la PFRT / l'ACT
         claw_rate:
             taux de réduction
         exemption: float
@@ -706,7 +703,7 @@ class template:
         Returns
         -------
         float
-            Montant de la PFRT ou du SIPFRT.
+            Montant de la PFRT / l'ACT ou du supplément.
         """
         amount = rate * max(0, hh.fam_inc_work - base)
         adj_amount = min(witb_max, amount)
@@ -768,7 +765,7 @@ class template:
                           self.gst_cred_rate * max(0, hh.fam_net_inc_fed - self.gst_cred_base_amount))
 
         return max(0, amount - clawback)
-    
+
     def get_dep_cred(self, p , hh):
         """
         Fonction qui calcule le montant pour personne à charge admissible.
@@ -831,24 +828,22 @@ class template:
                 equal_inc = hh.sp[1].fed_return['net_income']
         elif not hh.couple or (p.fed_dep_cred != 0):
             return 0
-        
+
         amount = 0
         if p.fed_return['net_income'] == higher_inc :
             amount += self.compute_basic_amount(p)
             spouse = hh.sp[1 - hh.sp.index(p)]
             if spouse.disabled:
-                amount += self.nrtc_spouse_dis 
+                amount += self.nrtc_spouse_dis
             amount-= spouse.fed_return['net_income']
             return max(0, amount)
         elif p.fed_return['net_income'] == equal_inc:
             amount += self.compute_basic_amount(p)
             spouse = hh.sp[1 - hh.sp.index(p)]
             if spouse.disabled:
-                amount += self.nrtc_spouse_dis 
+                amount += self.nrtc_spouse_dis
             amount-= spouse.fed_return['net_income']
             spouse.fed_spouse_cred = 0
             return max(0, amount)
         else:
             return max(0, amount)
-        
-        

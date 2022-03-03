@@ -12,7 +12,7 @@ def program(year):
     Parameters
     ----------
     year: int
-        année (présentement entre 2016 et 2020)
+        année (présentement entre 2016 et 2021)
     Returns
     -------
     class instance
@@ -114,9 +114,8 @@ class program_2020(template):
 
 class program_2021(template):
     """
-    Version du programme de 2021.
+    Version du programme de 2021 (excluant les paramètres en lien avec la COVID-19).
 
-    Covid to add later
     """
 
     def __init__(self):

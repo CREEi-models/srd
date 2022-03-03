@@ -81,8 +81,8 @@ class form_2019(form_2018):
 
     def cpp_deduction(self, p):
         """
-        Fonction qui calcule la déduction pour les cotisations au RRQ / RPC pour les travailleurs autonomes et le régime supplémentaire du RRQ/RPC.
-        
+        Fonction qui calcule la déduction pour les cotisations au RRQ/RPC de base pour les travailleurs autonomes et pour le régime supplémentaire du RRQ/RPC pour tous.
+
         Parameters
         ----------
         p: Person
@@ -114,7 +114,7 @@ class form_2020(form_2019):
             self.witb_params[prov] = get_params(
                 module_dir + f'/federal/params/fed_witb_{prov}_2020.csv')
 
-       
+
         self.ccb_young += self.ccb_covid_supp
         self.ccb_old += self.ccb_covid_supp
 
@@ -166,8 +166,7 @@ class form_2020(form_2019):
 
     def repayments_ei(self, p):
         """
-        Fonction qui calcule le montant du remboursement d'assurance-emploi et qui
-        ajuste le montant des prestations, le revenu net et le revenu brut.
+        Fonction qui calcule le montant du remboursement de prestations d'assurance-emploi et qui ajuste le montant des prestations, le revenu net et le revenu brut.
 
         Parameters
         ----------
@@ -177,7 +176,7 @@ class form_2020(form_2019):
         Returns
         -------
         float
-            montant du remboursement
+            Montant du remboursement.
         """
         excess_net_inc = max(0, p.fed_return['net_income'] - self.ei_max_net_inc)
         if excess_net_inc > 0:
@@ -188,7 +187,7 @@ class form_2020(form_2019):
 
     def calc_refundable_tax_credits(self, p, hh):
         """
-        Fonction qui fait la somme des crédits remboursables, en appelant les fonctions suivantes, décrites ci-après: *abatment*, *ccb*, *get_witb*, *get_witbds*, *med_exp*, *gst_hst_credit*.
+        Fonction qui fait la somme des crédits remboursables, en appelant les fonctions suivantes, décrites ailleurs dans cette page: *abatment*, *ccb*, *get_witb*, *get_witbds*, *med_exp*, *gst_hst_credit*.
 
         Parameters
         ----------
@@ -208,10 +207,10 @@ class form_2020(form_2019):
         p.fed_return['refund_credits'] = (
             p.fed_abatment_qc + p.fed_ccb + p.fed_witb + p.fed_witbds
             + p.fed_med_exp + p.fed_gst_hst_credit)
-    
+
     def oas_gis_covid_bonus(self, p):
         """
-        Fonction qui calcule le montant unique de Sécurité de vieillesse (SV) et de supplément de revenu garanti (SRG). Pour l'année 2020, le gouvernement a versé un montant non imposable de 300$ aux bénéficiaires de la sécurité de la vieillesse. Les bénéficiaires du supplément de revenu garanti ont aussi eu droit à un montant additionnel de 200$.
+        Fonction qui calcule le montant supplémentaire unique de Pension de sécurité de vieillesse (PSV) et de Supplément de revenu garanti (SRG). Pour l'année 2020, le gouvernement a versé une prestation unique non imposable de 300$ aux bénéficiaires de la PSV. Les bénéficiaires du SRG ont aussi eu droit à un montant additionnel de 200$.
 
         Parameters
         ----------
@@ -252,7 +251,7 @@ class form_2021(form_2020):
 
     def calc_refundable_tax_credits(self, p, hh):
         """
-        Fonction qui fait la somme des crédits remboursables, en appelant les fonctions suivantes, décrites ci-après: *abatment*, *ccb*, *get_witb*, *get_witbds*, *med_exp*, *gst_hst_credit*.
+        Fonction qui fait la somme des crédits remboursables, en appelant les fonctions suivantes, décrites ailleurs dans cette page: *abatment*, *ccb*, *get_witb*, *get_witbds*, *med_exp*, *gst_hst_credit*.
 
         Parameters
         ----------
@@ -271,10 +270,10 @@ class form_2021(form_2020):
         p.fed_return['refund_credits'] = (
             p.fed_abatment_qc + p.fed_ccb + p.fed_witb + p.fed_witbds
             + p.fed_med_exp + p.fed_gst_hst_credit)
-    
+
     def ccb(self, p, hh, iclaw=True):
         """
-        Fonction qui calcule l'Allocation canadienne pour enfants (ACE) avec l’ACE supplément pour jeunes enfants (ACESJE) pour 2021 i.e moins de 6 ans.
+        Fonction qui calcule pour 2021 l'Allocation canadienne pour enfants (ACE) avec l’ACE supplément pour jeunes enfants (ACESJE), soit de moins de 6 ans.
 
         Parameters
         ----------
@@ -298,7 +297,7 @@ class form_2021(form_2020):
             amount = hh.nkids_0_5 * self.ccb_young + hh.nkids_6_17 * self.ccb_old
             claw_num_ch = min(hh.nkids_0_5 + hh.nkids_6_17, self.ccb_max_num_ch)
             adj_fam_net_inc = sum([p.fed_return['net_income'] for p in hh.sp])
-            
+
             if adj_fam_net_inc < self.ccb_ccbycs_cutoff:
                 amount_ccbycs = self.ccb_ccbycs_1 * hh.nkids_0_5
             else:
@@ -319,7 +318,7 @@ class form_2021(form_2020):
                 else:
                     clawback = 0
             else:
-                clawback = 0                       
+                clawback = 0
             if hh.couple and hh.sp[0].male == hh.sp[1].male:
                 return max(0, amount + amount_ccbycs - clawback) / 2  # same sex couples get 1/2 each
             else:
