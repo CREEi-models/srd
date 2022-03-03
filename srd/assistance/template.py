@@ -64,8 +64,8 @@ class template:
 
         # eligibility : assets test
         self.eligibility_qc(hh)
-        if not [hh.sa_elig_asset]:  # eliminate non-eligible hholds
-            return
+        if hh.sa_elig_asset==False:  # eliminate non-eligible hholds
+            return 0
 
         nb_temp_constraints = 0
         if hh.sp[0].sa_elig=='temporary constraints':
