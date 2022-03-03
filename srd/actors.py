@@ -51,25 +51,25 @@ class Person:
     gift: float
         dons de biens culturels et écosensibles
     years_can: int
-        nombre d'années vécues au Canada lorsque la Pension de la sécurité de la vieillesse (PSV) est demandée
+        nombre d'années vécues au Canada depuis l’âge de 18 ans lorsque la Pension de la sécurité de la vieillesse (PSV) est demandée
     disabled: boolean
-        statut d'invalidité
+        statut d'invalidité selon les règles fiscales (le même statut est utilisé pour l'ensemble des mesures fiscales modélisées)
     widow: boolean
-        statut de veuf/veuve
+        statut de veuf/veuve selon le Programme de la sécurité de la vieillesse
     med_exp: float
-        montant des dépenses en santé admissibles
+        montant des dépenses en santé admissibles selon les règles fiscales (le même montant est utilisé pour tous les paliers de gouvernement)
     ndays_chcare_k1: float
         nombre de jours de garde du premier enfant
     ndays_chcare_k2: float
         nombre de jours de garde du second enfant
     asset: float
-        valeur marchande des actifs (illiquides)
+        valeur marchande des actifs (avoirs liquides) comptabilisés aux fins d'admissibilité à l'aide sociale (vérifier la définition selon la province)
     oas_years_post: int
         nombre d'années de report pour la PSV (après 65 ans)
     months_cerb_cesb: int
         nombre de mois pour lesquels la PCU ou la PCUE est demandée
     student: boolean
-        statut d'étudiant ou fin des études après décembre 2019 (pour PCUE)
+        statut d'étudiant aux fins d'admissibilité à la PCUE
     essential_worker: boolean
         True si travailleur essentiel (au Québec seulement)
     hours_month: float
@@ -77,13 +77,17 @@ class Person:
     prev_inc_work: float
         revenu du travail de l'année précédente
     dep_senior: boolean
-        True si la personne aînée n'est pas autonome
+        True si la personne aînée n'est pas autonome aux du crédit d'impôt pour maintien à domicile des aînés
     home_support_cost: float
-        coût du maintien à domicile
+        dépenses engagées pour des services de maintien à domicile rendus ou à être rendus à partir du jour du 70e anniversaire
+    months_ei: int
+        nombre de mois pour lesquels l'Assurance-Emploi sont demandée
+    months_crb: int
+        nombre de mois pour lesquels la PCRE est demandée
     pub_drug_insurance: boolean
         True si la personne doit cotiser à l'Assurance médicaments du Québec (pas d'assurance médicaments privée)
     tax_shield: boolean
-        True si la personne prend le crédit d'impôt bouclier ficscal au Québec
+        True si la personne demande le crédit d'impôt bouclier ficscal au Québec
     """
     def __init__(self, age=50, male=True, earn=0, rpp=0, cpp=0,
                  net_cap_gains=0, prev_cap_losses=0, cap_gains_exempt=0,
@@ -115,7 +119,7 @@ class Person:
         self.union_dues = union_dues
         self.donation = donation
         self.gift = gift
-        self.years_can = age if years_can is None else years_can  # number of years in Canada (max = 40)
+        self.years_can = max(0,age-18) if years_can is None else years_can  # number of years in Canada (max = 40)
         self.disabled = disabled
         self.widow = widow
         self.med_exp = med_exp
@@ -296,16 +300,16 @@ class Dependent:
     disa: boolean
         statut d'invalidité
     child_care: float
-        montant des dépenses réelles de frais de garde
+        dépenses réelles de frais de garde
     school: float
-        montant des dépenses de scolarité
+        dépenses de scolarité
     home_care: float
-        montant de l'aide à domicile
+        dépenses engagées pour des services de maintien à domicile rendus ou à être rendus à partir du jour du 70e anniversaire
     med_exp: float
-        montant des dépenses en santé admissibles
+        dépenses en santé admissibles
     """
 
-    def __init__(self, age, disa=None, child_care=0, school=None,
+    def __init__(self, age, disa=False, child_care=0, school=None,
                  home_care=None, med_exp=0):
         self.age = age
         self.disa = disa
