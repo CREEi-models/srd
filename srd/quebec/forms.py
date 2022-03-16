@@ -31,6 +31,8 @@ def form(year):
         p = form_2020()
     if year == 2021:
         p = form_2021()
+    if year == 2022:
+        p = form_2022()
     return p
 
 
@@ -335,3 +337,27 @@ class form_2021(form_2020):
         
         return amount / (1 + hh.couple)
         
+
+class form_2022(form_2021):
+    """
+    Formulaire d'impôt de 2022.
+    """
+    def __init__(self):
+        add_params_as_attr(self, module_dir + '/quebec/params/measures_2022.csv')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2022.csv')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2022.csv')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/drug_insurance_contrib_2022.csv')
+
+    def cost_of_living(self, p, hh):
+        """
+        Fonction qui calcule le crédit d'impôt remboursable attribuant une prestation exceptionnelle pour pallier la hausse du coût de la vie.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+
+        """
+        pass
