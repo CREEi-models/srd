@@ -20,6 +20,8 @@ def program(year):
         p = program_2020()
     if year == 2021:
         p = program_2021()
+    if year == 2022:
+        p = program_2022()
     return p
 class program_2020(template):
     """
@@ -110,3 +112,13 @@ class program_2021(program_2020):
             Montant de PIRTE pour les 16 semaines.
         """
         return 0
+
+class program_2022(program_2021):
+    """
+    Version du programme de 2022.
+
+    Calcule principalement la Prestation canadienne de la relance économique (PCRE)
+    """
+
+    def __init__(self):
+        add_params_as_attr(self, module_dir + "/covid/params/measures_2022.csv")

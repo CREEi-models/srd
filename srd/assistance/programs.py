@@ -31,6 +31,8 @@ def program(year):
         p = program_2020()
     if year == 2021:
         p = program_2021()
+    if year == 2022:
+        p = program_2022()
     return p
 
 
@@ -101,4 +103,14 @@ class program_2021(template):
     def __init__(self):
         add_params_as_attr(self, module_dir + "/assistance/params/assistance_2021.csv")
         self.fed = federal.form(2021)
+        return
+
+class program_2022(template):
+    """
+    Version du programme de 2022.
+    """
+
+    def __init__(self):
+        add_params_as_attr(self, module_dir + "/assistance/params/assistance_2022.csv")
+        self.fed = federal.form(2022)
         return
