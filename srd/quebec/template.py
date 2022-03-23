@@ -498,12 +498,13 @@ class template:
         p.qc_ccap = self.ccap(p, hh)
         p.qc_solidarity = self.solidarity(p, hh)
         p.qc_cost_of_living = self.cost_of_living(p, hh)
+        p.qc_support_cost_of_living = self.support_cost_of_living(p)
         p.qc_tax_shield = self.tax_shield(p, hh)
 
 
         l_all_creds = [p.qc_chcare, p.qc_tax_shield, p.qc_witb, p.qc_home_support,
                        p.qc_senior_assist, p.qc_med_exp, p.qc_ccap,
-                       p.qc_solidarity, p.qc_cost_of_living]
+                       p.qc_solidarity, p.qc_cost_of_living, p.qc_support_cost_of_living]
         l_existing_creds = [cred for cred in l_all_creds if cred]  # removes credits not implemented
 
         p.prov_return['refund_credits'] = sum(l_existing_creds)
@@ -921,6 +922,22 @@ class template:
 
         """
 
+        pass
+
+    def support_cost_of_living(self, p):
+        """
+        Fonction qui calcule le crédit d'impôt remboursable attribuant un  montant ponctuel pour pallier la hausse du coût de la vie ainsi que le crédit remboursable attribuant un montant ponctuel pour palier la hausse du coût de vie.
+
+        En vigeur en 2021.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+
+        """
         pass
 
     def contrib_hsf(self, p):

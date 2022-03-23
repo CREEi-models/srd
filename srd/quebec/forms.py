@@ -334,3 +334,19 @@ class form_2021(form_2020):
             amount = self.cost_of_living_alone
 
         return amount / (1 + hh.couple)
+    
+    def support_cost_of_living(self, p):
+        """
+        Fonction qui calcule le crédit d'impôt remboursable attribuant un  montant ponctuel pour pallier la hausse du coût de la vie ainsi que le crédit remboursable attribuant un montant ponctuel pour palier la hausse du coût de vie.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        """
+        if p.prov_return['net_income'] <= self.support_cost_of_living_inc_max:
+            amount = self.support_cost_of_living_alone
+        else:
+            amount =  max(0,self.support_cost_of_living_alone - (self.support_cost_of_living_rate * (p.prov_return['net_income'] - self.support_cost_of_living_inc_max)))
+        
+        return amount
