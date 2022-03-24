@@ -315,7 +315,7 @@ class form_2021(form_2020):
 
     def cost_of_living(self, p, hh):
         """
-        Fonction qui calcule le crédit d'impôt remboursable attribuant une prestation exceptionnelle pour pallier la hausse du coût de la vie.
+        Fonction qui calcule les crédits d'impôt remboursables attribuant une prestation exceptionnelle et un montant ponctuel pour pallier la hausse du coût de la vie.
 
         Parameters
         ----------
@@ -325,28 +325,20 @@ class form_2021(form_2020):
             instance de la classe Hhold
 
         """
+
+        # punctual amount
+        if p.prov_return['net_income'] <= self.cost_of_living_cutoff:
+            amount_punctual = self.cost_of_living_punctual
+        else:
+            amount_punctual =  max(0,self.cost_of_living_punctual - (self.cost_of_living_claw_rate * (p.prov_return['net_income'] - self.cost_of_living_cutoff)))
+
+        # exceptional amount
         if p.qc_solidarity == 0:
-            return 0
+            amount_exceptional = 0
+        if p.qc_solidarity>0 and hh.couple :
+            amount_exceptional = self.cost_of_living_not_alone
+        if p.qc_solidarity>0 and hh.couple==False :
+            amount_exceptional = self.cost_of_living_alone
 
-        if hh.couple :
-            amount = self.cost_of_living_not_alone
-        else:
-            amount = self.cost_of_living_alone
-
-        return amount / (1 + hh.couple)
+        return amount_punctual + (amount_exceptional / (1 + hh.couple))
     
-    def support_cost_of_living(self, p):
-        """
-        Fonction qui calcule le crédit d'impôt remboursable attribuant un  montant ponctuel pour pallier la hausse du coût de la vie ainsi que le crédit remboursable attribuant un montant ponctuel pour palier la hausse du coût de vie.
-
-        Parameters
-        ----------
-        p: Person
-            instance de la classe Person
-        """
-        if p.prov_return['net_income'] <= self.support_cost_of_living_inc_max:
-            amount = self.support_cost_of_living_alone
-        else:
-            amount =  max(0,self.support_cost_of_living_alone - (self.support_cost_of_living_rate * (p.prov_return['net_income'] - self.support_cost_of_living_inc_max)))
-        
-        return amount

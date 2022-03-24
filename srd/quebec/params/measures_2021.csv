@@ -99,9 +99,9 @@ exp_work_min_amount_born_51;600;float;;; ok
 supp_furnitures;105;int;;;
 cost_of_living_not_alone;400;int;;;
 cost_of_living_alone;275;int;;;
-support_cost_of_living_alone;500;int;;;
-support_cost_of_living_rate;0.1;float;;;
-support_cost_of_living_inc_max;100000;int;;;
+cost_of_living_punctual;500;int;;;
+cost_of_living_claw_rate;0.1;float;;;
+cost_of_living_cutoff;100000;int;;;
 tax_shield_rate;0.75;float;;;
 tax_shield_max_couple;600;int;;;
 tax_shield_max_single;300;int;;;
