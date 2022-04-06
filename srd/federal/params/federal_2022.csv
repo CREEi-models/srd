@@ -56,13 +56,13 @@ gst_cred_rate;0.02;float;;; assume constant ---
 gst_cred_base_amount;9919;float;;; ---
 gst_covid_single;400;float;;; ???
 gst_covid_couple;600;float;;;???
-chcare_young;8000;float;;;
-chcare_old;5000;float;;;
-chcare_rate_inc;0.66666;float;;;
+chcare_young;8000;float;;; assume constant ---
+chcare_old;5000;float;;; assume constant ---
+chcare_rate_inc;0.66666;float;;; assume constant ---
 ei_max_net_inc;70375;float;;https://www.canada.ca/en/employment-social-development/programs/ei/ei-list/reports/repayment.html;
 ei_rate_repay;0.3;float;;;
 ded_qpp_rate;0.052632;float;;;
-ded_qpp_exempt;3500;int;;;
+ded_qpp_exempt;3500;int;;; ---
 ded_qpp_claw_rate;0.03;float;;;
-nrtc_spouse_dis;2357;int;;; indexe 2.64%
+nrtc_spouse_dis;2357;int;;; indexe 2.64% ---
 dep_disa_amount;2985;int;;; ---

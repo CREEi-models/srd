@@ -42,13 +42,13 @@ ccap_kid4p_min;1013;float;;; ok
 ccap_kid4p_max;2547;float;;; ok
 chcare_young;10400;float;;http://www.finances.gouv.qc.ca/documents/Autres/fr/AUTFR_RegimeImpot2021.pdf; ok
 chcare_old;5235;float;;http://www.finances.gouv.qc.ca/documents/Autres/fr/AUTFR_RegimeImpot2021.pdf; ok
-pdip_couple;27460;float;;;
-pdip_single;16940;float;;;
-pdip_couple_kid1;3575;float;;;
-pdip_single_kid1;10520;float;;;
-pdip_couple_kid2p;6875;float;;;
-pdip_single_kid2p;14095;float;;;
-pdip_cutoff;648;float;;Montant de cotisation annuelle maximale case 87;
+pdip_couple;27460;float;;; ok
+pdip_single;16940;float;;; ok
+pdip_couple_kid1;3575;float;;; ok
+pdip_single_kid1;10520;float;;; ok
+pdip_couple_kid2p;6875;float;;; ok
+pdip_single_kid2p;14095;float;;; ok
+pdip_cutoff;686;float;;Montant de cotisation annuelle maximale case 87; ok
 solidarity_tvq_base;301;float;;;http://www.cqff.com/liens/solidarite.pdf ok
 solidarity_housing_kid;125;float;;; ok
 solidarity_tvq_couple;301;float;;https://cffp.recherche.usherbrooke.ca/outils-ressources/guide-mesures-fiscales/; ok
