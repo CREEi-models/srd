@@ -908,7 +908,7 @@ class template:
 
     def cost_of_living(self, p, hh):
         """
-       Fonction qui calcule le crédit d'impôt remboursable attribuant une prestation exceptionnelle pour pallier la hausse du coût de la vie.
+       Fonction qui calcule le crédit d'impôt remboursable attribuant une prestation exceptionnelle pour pallier la hausse du coût de la vie et le crédit d'impôt remboursable attribuant un montant ponctuel pour pallier la hausse du coût de la vie.
 
         En vigueur en 2021 seulement.
 
@@ -922,6 +922,7 @@ class template:
         """
 
         pass
+
 
     def contrib_hsf(self, p):
         """

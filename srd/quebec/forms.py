@@ -315,7 +315,7 @@ class form_2021(form_2020):
 
     def cost_of_living(self, p, hh):
         """
-        Fonction qui calcule le crédit d'impôt remboursable attribuant une prestation exceptionnelle pour pallier la hausse du coût de la vie.
+        Fonction qui calcule les crédits d'impôt remboursables attribuant une prestation exceptionnelle et un montant ponctuel pour pallier la hausse du coût de la vie.
 
         Parameters
         ----------
@@ -325,12 +325,20 @@ class form_2021(form_2020):
             instance de la classe Hhold
 
         """
-        if p.qc_solidarity == 0:
-            return 0
 
-        if hh.couple :
-            amount = self.cost_of_living_not_alone
+        # punctual amount
+        if p.prov_return['net_income'] <= self.cost_of_living_cutoff:
+            amount_punctual = self.cost_of_living_punctual
         else:
-            amount = self.cost_of_living_alone
+            amount_punctual =  max(0,self.cost_of_living_punctual - (self.cost_of_living_claw_rate * (p.prov_return['net_income'] - self.cost_of_living_cutoff)))
 
-        return amount / (1 + hh.couple)
+        # exceptional amount
+        if p.qc_solidarity == 0:
+            amount_exceptional = 0
+        if p.qc_solidarity>0 and hh.couple :
+            amount_exceptional = self.cost_of_living_not_alone
+        if p.qc_solidarity>0 and hh.couple==False :
+            amount_exceptional = self.cost_of_living_alone
+
+        return amount_punctual + (amount_exceptional / (1 + hh.couple))
+    
