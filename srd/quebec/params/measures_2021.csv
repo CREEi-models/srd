@@ -42,6 +42,9 @@ ccap_kid4p_min;1013;float;;; ok
 ccap_kid4p_max;2547;float;;; ok
 chcare_young;10400;float;;http://www.finances.gouv.qc.ca/documents/Autres/fr/AUTFR_RegimeImpot2021.pdf; ok
 chcare_old;5235;float;;http://www.finances.gouv.qc.ca/documents/Autres/fr/AUTFR_RegimeImpot2021.pdf; ok
+pdip_gis_rate_exempt;0.94;float;;;
+pdip_gis_max_high;11182.11;float;gis_full_high + gis_bonus_high;;
+pdip_gis_max_low;6732.27;float;gis_full_low + gis_bonus_low;;
 pdip_couple;27460;float;;;
 pdip_single;16940;float;;;
 pdip_couple_kid1;3575;float;;;

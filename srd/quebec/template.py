@@ -832,6 +832,15 @@ class template:
         hh: Hhold
             instance de la classe Hhold
         """
+        for p in hh.sp:
+            if p.age >= self.nrtc_age:
+                if hh.couple:
+                    if p.inc_gis >= (self.pdip_gis_rate_exempt * self.pdip_gis_max_low):
+                        return 0
+                else:
+                    if p.inc_gis >= (self.pdip_gis_rate_exempt * self.pdip_gis_max_high):
+                        return 0
+                        
         net_inc_used = hh.fam_net_inc_prov
 
         if hh.couple:

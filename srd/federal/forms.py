@@ -323,3 +323,40 @@ class form_2021(form_2020):
                 return max(0, amount + amount_ccbycs - clawback) / 2  # same sex couples get 1/2 each
             else:
                 return max(0, amount + amount_ccbycs - clawback)
+
+    def compute_witb_witbds(self, p, hh, rate, base, witb_max, claw_rate,
+                            exemption):
+        """
+        Fonction appelée par *get_witb* et *get_witbds* pour calculer
+        le montant de la PFRT / l'ACT et de son supplément.
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+        rate: float
+            taux appliqué au revenu du travail
+        base: float
+            montant de base de la PFRT / l'ACT
+        witb_max: float
+            montant maximal de la PFRT / l'ACT
+        claw_rate:
+            taux de réduction
+        exemption: float
+            exemption
+        Returns
+        -------
+        float
+            Montant de la PFRT / l'ACT ou du supplément.
+        """
+        cwb_exempt = 0
+        if hh.couple:
+            if hh.sp[0].inc_earn < hh.sp[1].inc_earn :
+                cwb_exempt = min(min(hh.sp[0].inc_earn, hh.sp[0].fed_return['net_income']), self.exempt_second_earner)
+            else:
+                cwb_exempt = min(min(hh.sp[1].inc_earn, hh.sp[1].fed_return['net_income']), self.exempt_second_earner)
+        amount = rate * max(0, hh.fam_inc_work - base)
+        adj_amount = min(witb_max, amount)
+        clawback = claw_rate * max(0, hh.fam_net_inc_fed- cwb_exempt - exemption)
+        return max(0, adj_amount - clawback)
