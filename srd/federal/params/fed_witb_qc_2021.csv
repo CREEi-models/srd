@@ -12,7 +12,7 @@ exempt_single;12385.8;float;;;
 exempt_single_dep;12402.83;float;;;
 exempt_couple;19001.73;float;;;
 exempt_couple_dep;19051.09;float;;;
-exempt_cutoff;14000;int;;;
+exempt_second_earner;14000;int;;;
 claw_rate;0.2;float;;;
 dis_base;1200;int;;;
 dis_max;721.01;float;;;

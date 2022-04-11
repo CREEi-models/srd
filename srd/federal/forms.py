@@ -353,9 +353,9 @@ class form_2021(form_2020):
         cwb_exempt = 0
         if hh.couple:
             if hh.sp[0].inc_earn < hh.sp[1].inc_earn :
-                cwb_exempt = min(min(hh.sp[0].inc_earn, hh.sp[0].fed_return['net_income']), self.exempt_cutoff)
+                cwb_exempt = min(min(hh.sp[0].inc_earn, hh.sp[0].fed_return['net_income']), self.exempt_second_earner)
             else:
-                cwb_exempt = min(min(hh.sp[1].inc_earn, hh.sp[1].fed_return['net_income']), self.exempt_cutoff)
+                cwb_exempt = min(min(hh.sp[1].inc_earn, hh.sp[1].fed_return['net_income']), self.exempt_second_earner)
         amount = rate * max(0, hh.fam_inc_work - base)
         adj_amount = min(witb_max, amount)
         clawback = claw_rate * max(0, hh.fam_net_inc_fed- cwb_exempt - exemption)
