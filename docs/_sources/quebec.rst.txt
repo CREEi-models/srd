@@ -9,45 +9,329 @@ L'impôt du Québec est pris en charge par le module *quebec*. Ce module contien
 
 .. currentmodule:: srd.quebec
 
-La fonction *form* permet de choisir l'année du rapport d'impôt et ira tirer une instance du rapport pour cette année. L'instance est retournée par la fonction.
+La fonction *form* permet de choisir l'année de la déclaration de revenus et ira tirer une instance de la déclaration pour cette année. L'instance est retournée par la fonction.
 
 .. autofunction:: form
 
-Gabarit du rapport
-^^^^^^^^^^^^^^^^^^^^
+Les mesures fiscales provinciales prises en compte dans ce module sont les suivantes:
 
-Nous utilisons un gabarit afin de créer les rapports chaque année. Quand l'impôt change seulement au niveau des paramètres d'une année à l'autre, le rapport ira seulement chercher les nouveaux paramètres. Quand des fonctions changent, l'utilisateur n'a qu'à modifier les fonctions touchées (ou à en ajouter de nouvelles). Toutes les modifications de fonction survenues après l'année 2016 sont indiquées ci-dessous.
+- L'impôt des particuliers
+- Les déductions pour les cotisations sociales (RRQ/RPC et RQAP)
+- La déduction pour travailleur
+- Les déductions pour pertes en capital nettes d'autres années et pour gain en capital exonéré
+- Le crédit d'impôt non-remboursable pour dividendes
+- Le crédit d'impôt non-remboursable en raison de l'âge, pour personne vivant seule et pour revenu de retraite
+- Le crédit d'impôt non-remboursable pour la prolongation de carrière
+- Le crédit d’impôt non-remboursable pour cotisations syndicales et professionnelles
+- Le crédit d'impôt non-remboursable pour dons
+- Le crédit d'impôt non-remboursable pour invalidité
+- Le transfert de crédits non-remboursables d'un conjoint à l'autre
+- Les crédits d'impôt pour frais médicaux (remboursable et non-remboursable)
+- Le crédit d'impôt remboursable pour solidarité
+- Le crédit d'impôt remboursable pour maintien à domicile des aînés
+- Le crédit d'impôt remboursable pour soutien aux ainés
+- Le crédit d'impôt remboursable pour frais de garde d'enfant
+- Le crédit d’impôt remboursable accordant une allocation aux familles
+- Le crédit d'impôt remboursable relatif à la prime au travail
+- La cotisation au régime d’assurance médicaments du Québec
+- La cotisation au Fonds des services de santé (FSS)
+- La contribution santé (2016)
+- La contribution additionnelle pour les services de garde éducatifs à l'enfance subventionnés (2016 à 2018)
+- Les crédits d'impôt remboursable attribuant une prestation exceptionnelle et un montant ponctuel pour pallier la hausse du coût de la vie
+- Le crédit d'impôt bouclier fiscal
 
-Nous reproduisons ici la spécification du gabarit. Il est basé sur le rapport de 2016.
 
-.. autoclass:: template
-    :members: file, calc_gross_income, calc_net_income, calc_taxable_income,
-              calc_deduc_gross_income, work_deduc, cpp_qpip_deduction,
-              calc_deduc_net_income, calc_tax, calc_non_refundable_tax_credits,
-              get_age_cred, get_living_alone_cred, get_pension_cred,
-              get_nrtcred_clawback, get_exp_worker_cred, get_donations_cred,
-              get_union_dues_cred, get_disabled_cred, get_med_exp_cred,
-              div_tax_credit, calc_refundable_tax_credits, chcare, witb,
-              home_support, med_exp, ccap,
-              calc_contributions, health_contrib, add_contrib_subsid_chcare,
-              solidarity
 
-Le gabarit collige les résultats dans un formulaire d'impôt qui sera rattaché à la personne sous la forme d'un dictionnaire Python. Cette procédure permet de différencier les attributs d'une personne qui font partie de son profil des variables générées par l'impôt. C'est la fonction create_return() qui fait ce travail.
+La liste exhaustive des éléments calculés dans le module est présentée dans la section ci-dessous.
+
+Gabarit de déclaration
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Nous utilisons un gabarit afin de créer les déclarations chaque année. Quand l'impôt change seulement au niveau des paramètres d'une année à l'autre, la déclaration ira seulement chercher les nouveaux paramètres. Quand des fonctions changent, l'utilisateur n'a qu'à modifier les fonctions touchées (ou à en ajouter de nouvelles). Toutes les modifications de fonction survenues après l'année 2016 sont indiquées ci-dessous.
+
+.. currentmodule:: srd.quebec
+
+.. autofunction:: template
+
+| Nous reproduisons ici la spécification du gabarit. Il est basé sur la déclaration de 2016.
+| (Cliquez sur le nom pour afficher les détails)
+
+.. currentmodule:: srd.quebec.form_2020
+
+.. toggle-header::
+    :header: **- file()**
+
+    .. autofunction:: file
+
+.. toggle-header::
+    :header: **- calc_gross_income()**
+
+    .. autofunction:: calc_gross_income
+
+.. toggle-header::
+    :header: **- calc_net_income()**
+
+    .. autofunction:: calc_net_income
+
+.. toggle-header::
+    :header: **- calc_taxable_income()**
+
+    .. autofunction:: calc_taxable_income
+
+.. toggle-header::
+    :header: **- calc_deduc_gross_income()**
+
+    .. autofunction:: calc_deduc_gross_income
+
+.. toggle-header::
+    :header: **-  work_deduc()**
+
+    .. autofunction::  work_deduc
+
+.. toggle-header::
+    :header: **- cpp_qpip_deduction()**
+
+    .. autofunction:: cpp_qpip_deduction
+
+.. toggle-header::
+    :header: **- calc_deduc_net_income()**
+
+    .. autofunction:: calc_deduc_net_income
+
+.. toggle-header::
+    :header: **- calc_tax()**
+
+    .. autofunction:: calc_tax
+
+.. toggle-header::
+    :header: **- calc_non_refundable_tax_credits()**
+
+    .. autofunction:: calc_non_refundable_tax_credits
+
+.. toggle-header::
+    :header: **- get_age_cred()**
+
+    .. autofunction:: get_age_cred
+
+.. toggle-header::
+    :header: **- get_living_alone_cred()**
+
+    .. autofunction:: get_living_alone_cred
+
+.. toggle-header::
+    :header: **- get_pension_cred()**
+
+    .. autofunction:: get_pension_cred
+
+.. toggle-header::
+    :header: **- get_nrtcred_clawback()**
+
+    .. autofunction:: get_nrtcred_clawback
+
+.. toggle-header::
+    :header: **- get_exp_worker_cred()**
+
+    .. autofunction:: get_exp_worker_cred
+
+.. toggle-header::
+    :header: **- get_donations_cred()**
+
+    .. autofunction:: get_donations_cred
+
+.. toggle-header::
+    :header: **- get_union_dues_cred()**
+
+    .. autofunction:: get_union_dues_cred
+
+.. toggle-header::
+    :header: **- get_disabled_cred()**
+
+    .. autofunction:: get_disabled_cred
+
+.. toggle-header::
+    :header: **- get_med_exp_cred()**
+
+    .. autofunction:: get_med_exp_cred
+
+.. toggle-header::
+    :header: **- div_tax_credit()**
+
+    .. autofunction:: div_tax_credit
+
+.. toggle-header::
+    :header: **- calc_refundable_tax_credits()**
+
+    .. autofunction:: calc_refundable_tax_credits
+
+.. toggle-header::
+    :header: **- chcare()**
+
+    .. autofunction:: chcare
+
+.. toggle-header::
+    :header: **- witb()**
+
+    .. autofunction:: witb
+
+.. toggle-header::
+    :header: **- home_support()**
+
+    .. autofunction:: home_support
+
+.. toggle-header::
+    :header: **- med_exp()**
+
+    .. autofunction:: med_exp
+
+.. toggle-header::
+    :header: **- ccap()**
+
+    .. autofunction:: ccap
+
+.. toggle-header::
+    :header: **- calc_contributions()**
+
+    .. autofunction:: calc_contributions
+
+.. toggle-header::
+    :header: **- health_contrib()**
+
+    .. autofunction:: health_contrib
+
+.. toggle-header::
+    :header: **- add_contrib_subsid_chcare()**
+
+    .. autofunction:: add_contrib_subsid_chcare
+
+.. toggle-header::
+    :header: **- solidarity()**
+
+    .. autofunction:: solidarity
+
+.. toggle-header::
+    :header: **- drug_insurance_contrib()**
+
+    .. autofunction:: drug_insurance_contrib
+
+.. toggle-header::
+    :header: **- contrib_hsf()**
+
+    .. autofunction:: contrib_hsf
+
+.. toggle-header::
+    :header: **- get_spouse_transfer()**
+
+    .. autofunction:: get_spouse_transfer
+
+.. toggle-header::
+    :header: **- cost_of_living()**
+
+    .. autofunction:: cost_of_living
+
+.. toggle-header::
+    :header: **- tax_shield()**
+
+    .. autofunction:: tax_shield
+
+|
+
+Le gabarit collige les résultats dans un formulaire d'impôt qui sera rattaché à la personne sous la forme d'un dictionnaire Python. Cette procédure permet de différencier les attributs d'une personne qui font partie de son profil des variables générées par l'impôt. C'est la fonction *create_return()* qui fait ce travail.
+
+.. currentmodule:: srd.quebec
 
 .. autofunction:: create_return
 
 Fonctions spécifiques ou modifiées par année
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+**2016**
+
 .. autoclass:: srd.quebec.form_2016
 
+**2017**
+
 .. autoclass:: srd.quebec.form_2017
-    :members: calc_contributions, get_donations_cred
+.. currentmodule:: srd.quebec.form_2017
+
+.. toggle-header::
+    :header: **- calc_contributions()**
+
+    .. autofunction:: calc_contributions
+
+.. toggle-header::
+    :header: **- get_donations_cred()**
+
+    .. autofunction:: get_donations_cred
+
+.. toggle-header::
+    :header: **- ccap()**
+
+    .. autofunction:: ccap
+
+
+|
+
+
+**2018**
 
 .. autoclass:: srd.quebec.form_2018
-    :members: senior_assist
+.. currentmodule:: srd.quebec.form_2018
+
+.. toggle-header::
+    :header: **- senior_assist()**
+
+    .. autofunction:: senior_assist
+
+
+|
+
+
+**2019**
 
 .. autoclass:: srd.quebec.form_2019
-    :members: calc_contributions
+.. currentmodule:: srd.quebec.form_2019
+
+.. toggle-header::
+    :header: **- cpp_qpip_deduction()**
+
+    .. autofunction:: cpp_qpip_deduction
+
+.. toggle-header::
+    :header: **- calc_contributions()**
+
+    .. autofunction:: calc_contributions
+
+
+|
+
+
+**2020**
 
 .. autoclass:: srd.quebec.form_2020
+.. currentmodule:: srd.quebec.form_2020
+
+.. toggle-header::
+    :header: **- calc_deduc_gross_income()**
+
+    .. autofunction:: calc_deduc_gross_income
+
+|
+
+
+**2021**
+
+.. autoclass:: srd.quebec.form_2021
+.. currentmodule:: srd.quebec.form_2021
+
+.. toggle-header::
+    :header: **- calc_deduc_gross_income()**
+
+    .. autofunction:: calc_deduc_gross_income
+
+.. toggle-header::
+    :header: **- cost_of_living()**
+
+    .. autofunction:: cost_of_living
+
+|
+

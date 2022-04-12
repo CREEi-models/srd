@@ -13,6 +13,9 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/contentui.css" type="text/css" />
 
   
   
@@ -29,11 +32,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
         <script src="_static/translations.js"></script>
+        <script src="_static/contentui.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -87,27 +91,109 @@
               
             
             
-              <p class="caption"><span class="caption-text">Menu:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Menu:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Premiers pas avec le SRD</a></li>
-<li class="toctree-l1"><a class="reference internal" href="actors.html">Les acteurs</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Impôt fédéral</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#survol">Survol</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#gabarit-du-rapport">Gabarit du rapport</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Premiers pas avec le SRD</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#installation-du-srd">Installation du SRD</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#installation-alternative">Installation alternative</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="quebec.html">Impôt du Québec</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ontario.html">Impôt de l’Ontario</a></li>
-<li class="toctree-l1"><a class="reference internal" href="oas.html">Pension de la sécurité de la vieillesse</a></li>
-<li class="toctree-l1"><a class="reference internal" href="payroll.html">Cotisations sociales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="assistance.html">Aide sociale</a></li>
-<li class="toctree-l1"><a class="reference internal" href="covid.html">Prestations liées à la COVID-19</a></li>
-<li class="toctree-l1"><a class="reference internal" href="calculators.html">Calculateur de revenu disponible</a></li>
-<li class="toctree-l1"><a class="reference internal" href="TutorialFed.html">Exemple de calcul de l’impôt fédéral</a></li>
-<li class="toctree-l1"><a class="reference internal" href="TutorialCalculator.html">Exemple de calcul du revenu disponible</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="actors.html">Les acteurs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="actors.html#personnes">Personnes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actors.html#dependants-enfant-ou-proche-a-charge">Dépendants (enfant ou proche à charge)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actors.html#menages">Ménages</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Impôt fédéral</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gabarit-de-declaration">Gabarit de déclaration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fonctions-specifiques-ou-modifiees">Fonctions spécifiques ou modifiées</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quebec.html">Impôt du Québec</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quebec.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quebec.html#gabarit-de-declaration">Gabarit de déclaration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quebec.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ontario.html">Impôt de l’Ontario</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ontario.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ontario.html#gabarit-du-rapport">Gabarit du rapport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ontario.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="oas.html">Pension de la sécurité de la vieillesse</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="oas.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oas.html#gabarit-du-programme">Gabarit du programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oas.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="payroll.html">Cotisations sociales</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="payroll.html#assurance-emploi">Assurance emploi</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#survol">Survol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#gabarit-du-programme">Gabarit du programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="payroll.html#regime-quebecois-d-assurance-parentale">Régime québécois d’assurance parentale</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#id1">Survol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#id2">Gabarit du programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#id3">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="assistance.html">Aide sociale</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="assistance.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assistance.html#gabarit-du-programme">Gabarit du programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assistance.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="covid.html">Prestations liées à la COVID-19</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="covid.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="covid.html#gabarit-du-programme">Gabarit du programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="covid.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="calculators.html">Calculateur de revenu disponible</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="calculators.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calculators.html#les-fonctions-du-calculateur">Les fonctions du calculateur</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="comparaison.html">Comparaisons avec le MFQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="comparaison.html#personne-celibataire-sans-enfant">Personne célibataire (sans enfant)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comparaison.html#personne-monoparentale">Personne monoparentale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comparaison.html#couple-sans-enfant">Couple sans enfant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comparaison.html#couple-avec-enfant">Couple avec enfant</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="TutorialFed.html">Exemple de calcul de l’impôt fédéral</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="TutorialFed.html#importation-du-package">Importation du package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TutorialFed.html#initialisation-dun-menage">Initialisation d’un ménage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TutorialFed.html#calcul-de-limpot-federal">Calcul de l’impôt fédéral</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TutorialFed.html#experiences">Expériences</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="TutorialCalculator.html">Exemple de calcul du revenu disponible</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="TutorialCalculator.html#construction-du-menage">Construction du ménage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TutorialCalculator.html#le-calculateur">Le calculateur</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TutorialCalculator.html#calcul-du-revenu-apres-impots-et-du-revenu-disponible">Calcul du revenu après impôts et du revenu disponible</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialChangeParameters.html">Exemple de changement de paramètre</a></li>
-<li class="toctree-l1"><a class="reference internal" href="credits.html">Contacts et droits d’utilisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits.html">Contacts et droits d’utilisation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="credits.html#liste-d-envoi">Liste d’envoi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="credits.html#personne-contact">Personne-contact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="credits.html#contributeurs">Contributeurs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="credits.html#principaux">Principaux</a></li>
+<li class="toctree-l3"><a class="reference internal" href="credits.html#id1">2020</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="credits.html#droits-d-utilisation">Droits d’utilisation</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -181,43 +267,70 @@
 <h1>Impôt fédéral<a class="headerlink" href="#impot-federal" title="Lien permanent vers ce titre">¶</a></h1>
 <div class="section" id="survol">
 <h2>Survol<a class="headerlink" href="#survol" title="Lien permanent vers ce titre">¶</a></h2>
-<p>L’impôt fédéral est pris en charge par le module <em>federal</em>. Ce module contient un gabarit que nous documentons ci-dessous ainsi que des classes dérivées spécifiques pour chaque année.</p>
-<p>La fonction <em>form</em> permet de choisir l’année de la déclaration de revenus et ira tirer une instance du rapport pour cette année. L’instance est retournée par la fonction.</p>
+<p>La fiscalité fédérale est prise en charge par le module <em>federal</em>. Ce module contient un gabarit que nous documentons ci-dessous ainsi que des classes dérivées spécifiques pour chaque année.</p>
+<p>La fonction <em>form</em> permet de choisir l’année de la déclaration de revenus et crée une instance de déclaration pour cette année. L’instance est retournée par la fonction suivante:</p>
 <dl class="py function">
-<dt id="srd.federal.form">
-<code class="sig-prename descclassname">srd.federal.</code><code class="sig-name descname">form</code><span class="sig-paren">(</span><em class="sig-param">year</em>, <em class="sig-param">policy=&lt;srd.covid.programs.policy object&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form" title="Lien permanent vers cette définition">¶</a></dt>
+<dt class="sig sig-object py" id="srd.federal.form">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.</span></span><span class="sig-name descname"><span class="pre">form</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">year</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui permet de sélectionner le formulaire d’impôt fédéral par année.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>year</strong> (<em>int</em>) – année (présentement entre 2016 et 2020)</p></li>
-<li><p><strong>policy</strong> (<a class="reference internal" href="covid.html#srd.covid.policy" title="srd.covid.policy"><em>policy</em></a>) – instance de la classe policy</p></li>
-</ul>
+<dt class="field-odd">Renvoie</dt>
+<dd class="field-odd"><p>Une instance du formulaire pour l’année sélectionnée.</p>
 </dd>
-<dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>Une instance du formulaire pour l’année sélectionnée.</p>
-</dd>
-<dt class="field-odd">Type renvoyé</dt>
-<dd class="field-odd"><p>class instance</p>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p>class instance</p>
 </dd>
 </dl>
 </dd></dl>
 
+<p>Voici les mesures fiscales fédérales prises en compte dans ce module:</p>
+<ul class="simple">
+<li><p>L’impôt des particuliers</p></li>
+<li><p>L’abattement du Québec à l’impôt fédéral</p></li>
+<li><p>Les déductions et crédits d’impôt pour les cotisations sociales (RRQ/RPC, AE et RQAP)</p></li>
+<li><p>Les déductions pour la perte en capital nette d’autres années et pour gain en capital exonéré</p></li>
+<li><p>La déduction fédérale pour frais de garde</p></li>
+<li><p>Le crédit d’impôt non-remboursable pour dividendes</p></li>
+<li><p>Le crédit d’impôt non-remboursable en raison de l’âge</p></li>
+<li><p>Le crédit d’impôt non-remboursable pour revenu de retraite</p></li>
+<li><p>Le crédit d’impôt non-remboursable pour invalidité</p></li>
+<li><p>Le crédit d’impôt non-remboursable pour dons de bienfaisance</p></li>
+<li><p>Le crédit d’impôt non-remboursable pour personne à charge admissible</p></li>
+<li><p>Le montant canadien pour emploi</p></li>
+<li><p>Le montant pour personne à charge admissible</p></li>
+<li><p>Le montant pour époux ou conjoint de fait</p></li>
+<li><p>Le transfert de crédits non-remboursables d’un conjoint à l’autre</p></li>
+<li><p>Les crédits d’impôt pour frais médicaux (remboursable et non-remboursable)</p></li>
+<li><p>Le crédit remboursable pour la taxe sur les produits et services/taxe de vente harmonisée (TPS/TVH)</p></li>
+<li><p>L’allocation canadienne pour les travailleurs (ACT) et son supplément pour invalidité</p></li>
+<li><p>L’allocation canadienne pour enfants (ACE) et son supplément pour jeunes enfants (ACESJE)</p></li>
+</ul>
+<p>La liste exhaustive des éléments calculés dans le module est présentée dans la section ci-dessous.</p>
 </div>
-<div class="section" id="gabarit-du-rapport">
-<h2>Gabarit du rapport<a class="headerlink" href="#gabarit-du-rapport" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Nous utilisons un gabarit afin de créer les rapports chaque année. Quand l’impôt change seulement au niveau des paramètres d’une année à l’autre, le rapport ira seulement chercher les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou à en ajouter de nouvelles). Toutes les modifications de fonction survenues après l’année 2016 sont indiquées ci-dessous.</p>
-<p>Nous reproduisons ici la spécification du gabarit. Il est basé sur le rapport de 2016.</p>
-<dl class="py class">
-<dt id="srd.federal.template">
-<em class="property">class </em><code class="sig-prename descclassname">srd.federal.</code><code class="sig-name descname">template</code><a class="headerlink" href="#srd.federal.template" title="Lien permanent vers cette définition">¶</a></dt>
+<div class="section" id="gabarit-de-declaration">
+<h2>Gabarit de déclaration<a class="headerlink" href="#gabarit-de-declaration" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Nous utilisons un gabarit afin de créer les déclarations chaque année. Quand l’impôt change seulement au niveau des paramètres d’une année à l’autre,
+la déclaration ira seulement chercher les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou à en ajouter de nouvelles).
+Toutes les modifications de fonction survenues après l’année 2016 sont indiquées dans la section suivante.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.template">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.</span></span><span class="sig-name descname"><span class="pre">template</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Gabarit pour l’impôt fédéral.</p>
-<dl class="py method">
-<dt id="srd.federal.template.file">
-<code class="sig-name descname">file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.file" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui permet de calculer les impôts.</p>
-<p>Cette fonction est celle qui calcule les déductions,
-les crédits non-remboursables et remboursables et les impôts nets.</p>
+</dd></dl>
+
+<div class="line-block">
+<div class="line">Nous présentons ici la liste des fonctions incluses dans le gabarit:</div>
+<div class="line">(Cliquez sur le nom pour afficher les détails)</div>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- file()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2016.file">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2016.</span></span><span class="sig-name descname"><span class="pre">file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2016.file" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui permet de calculer l’impôt.</p>
+<p>Cette fonction est celle qui calcule les déductions,les crédits non-remboursables et remboursables et l’impôt net.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
@@ -225,9 +338,14 @@ les crédits non-remboursables et remboursables et les impôts nets.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.federal.template.calc_gross_income">
-<code class="sig-name descname">calc_gross_income</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_gross_income" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- calc_gross_income()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2016.calc_gross_income">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2016.</span></span><span class="sig-name descname"><span class="pre">calc_gross_income</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2016.calc_gross_income" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le revenu total (brut).</p>
 <p>Cette fonction correspond au revenu total d’une personne aux fins de l’impôt.</p>
 <dl class="field-list simple">
@@ -237,9 +355,14 @@ les crédits non-remboursables et remboursables et les impôts nets.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.federal.template.calc_net_income">
-<code class="sig-name descname">calc_net_income</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_net_income" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- calc_net_income()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2016.calc_net_income">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2016.</span></span><span class="sig-name descname"><span class="pre">calc_net_income</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2016.calc_net_income" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le revenu net au sens de l’impôt.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -248,9 +371,14 @@ les crédits non-remboursables et remboursables et les impôts nets.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.federal.template.calc_taxable_income">
-<code class="sig-name descname">calc_taxable_income</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_taxable_income" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- calc_taxable_income()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2016.calc_taxable_income">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2016.</span></span><span class="sig-name descname"><span class="pre">calc_taxable_income</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2016.calc_taxable_income" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le revenu imposable au sens de l’impôt.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -259,9 +387,14 @@ les crédits non-remboursables et remboursables et les impôts nets.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.federal.template.calc_deduc_gross_income">
-<code class="sig-name descname">calc_deduc_gross_income</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_deduc_gross_income" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- calc_deduc_gross_income()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2016.calc_deduc_gross_income">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2016.</span></span><span class="sig-name descname"><span class="pre">calc_deduc_gross_income</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2016.calc_deduc_gross_income" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule les déductions.</p>
 <p>Cette fonction fait la somme des différentes déductions du contribuable.</p>
 <dl class="field-list simple">
@@ -274,9 +407,14 @@ les crédits non-remboursables et remboursables et les impôts nets.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.federal.template.chcare">
-<code class="sig-name descname">chcare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.chcare" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- chcare()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2016.chcare">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2016.</span></span><span class="sig-name descname"><span class="pre">chcare</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2016.chcare" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule la déduction fédérale pour frais de garde.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -287,9 +425,7 @@ les crédits non-remboursables et remboursables et les impôts nets.</p>
 </dd>
 <dt class="field-even">Renvoie</dt>
 <dd class="field-even"><p><p>Montant de la déduction pour frais de garde.</p>
-<p>Cette fonction calcule le montant reçu en fonction des frais de garde,
-de l’âge des enfants et du revenu le moins élevé du couple. Le montant
-est reçu par le conjoint qui a le revenu le moins élevé.</p>
+<p>Cette fonction calcule le montant reçu en fonction des frais de garde, de l’âge des enfants et du revenu le moins élevé du couple. Le montant est reçu par le conjoint qui a le revenu le moins élevé.</p>
 </p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
@@ -298,10 +434,15 @@ est reçu par le conjoint qui a le revenu le moins élevé.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.federal.template.cpp_deduction">
-<code class="sig-name descname">cpp_deduction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.cpp_deduction" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui calcule la déduction pour les cotisations au RRQ / RPC pour les travailleurs autonomes.</p>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- cpp_deduction()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2016.cpp_deduction">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2016.</span></span><span class="sig-name descname"><span class="pre">cpp_deduction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2016.cpp_deduction" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule la déduction pour les cotisations au RRQ/RPC pour les travailleurs autonomes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
@@ -315,9 +456,14 @@ est reçu par le conjoint qui a le revenu le moins élevé.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.federal.template.qpip_deduction">
-<code class="sig-name descname">qpip_deduction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.qpip_deduction" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- qpip_deduction()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2016.qpip_deduction">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2016.</span></span><span class="sig-name descname"><span class="pre">qpip_deduction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2016.qpip_deduction" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule la déduction pour les cotisations au RQAP pour les travailleurs autonomes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -332,11 +478,16 @@ est reçu par le conjoint qui a le revenu le moins élevé.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.federal.template.calc_deduc_net_income">
-<code class="sig-name descname">calc_deduc_net_income</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_deduc_net_income" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- calc_deduc_net_income()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2016.calc_deduc_net_income">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2016.</span></span><span class="sig-name descname"><span class="pre">calc_deduc_net_income</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2016.calc_deduc_net_income" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule les déductions suivantes:
-1. Pertes en capital net des autres années;
+1. Pertes en capital nettes d’autres années;
 2. Déduction pour gain en capital exonéré.</p>
 <p>Permet une déduction maximale égale aux gains en capital taxables nets.</p>
 <dl class="field-list simple">
@@ -346,9 +497,14 @@ est reçu par le conjoint qui a le revenu le moins élevé.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.federal.template.calc_tax">
-<code class="sig-name descname">calc_tax</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_tax" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- calc_tax()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2016.calc_tax">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2016.</span></span><span class="sig-name descname"><span class="pre">calc_tax</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2016.calc_tax" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule l’impôt à payer selon la table d’impôt.</p>
 <p>Cette fonction utilise la table d’impôt de l’année en cours.</p>
 <dl class="field-list simple">
@@ -358,9 +514,14 @@ est reçu par le conjoint qui a le revenu le moins élevé.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.federal.template.calc_non_refundable_tax_credits">
-<code class="sig-name descname">calc_non_refundable_tax_credits</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_non_refundable_tax_credits" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- calc_non_refundable_tax_credits()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2016.calc_non_refundable_tax_credits">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2016.</span></span><span class="sig-name descname"><span class="pre">calc_non_refundable_tax_credits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2016.calc_non_refundable_tax_credits" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule les crédits d’impôt non-remboursables.</p>
 <p>Cette fonction fait la somme de tous les crédits modélisés
 en appelant les fonctions définies ci-après.</p>
@@ -374,9 +535,14 @@ en appelant les fonctions définies ci-après.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.federal.template.get_age_cred">
-<code class="sig-name descname">get_age_cred</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_age_cred" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- get_age_cred()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2016.get_age_cred">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2016.</span></span><span class="sig-name descname"><span class="pre">get_age_cred</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2016.get_age_cred" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit d’impôt non-remboursable en raison de l’âge.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -391,10 +557,15 @@ en appelant les fonctions définies ci-après.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.federal.template.get_cpp_contrib_cred">
-<code class="sig-name descname">get_cpp_contrib_cred</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_cpp_contrib_cred" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui calcule le crédit d’impôt non-remboursable pour cotisations au RRQ / RPC.</p>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- get_cpp_contrib_cred()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2016.get_cpp_contrib_cred">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2016.</span></span><span class="sig-name descname"><span class="pre">get_cpp_contrib_cred</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2016.get_cpp_contrib_cred" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule le crédit d’impôt non-remboursable pour cotisations au RRQ/RPC.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
@@ -408,9 +579,14 @@ en appelant les fonctions définies ci-après.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.federal.template.get_qpip_cred">
-<code class="sig-name descname">get_qpip_cred</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_qpip_cred" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- get_qpip_cred()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2016.get_qpip_cred">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2016.</span></span><span class="sig-name descname"><span class="pre">get_qpip_cred</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2016.get_qpip_cred" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit d’impôt non-remboursable pour cotisations
 au RQAP de travailleur salarié.</p>
 <dl class="field-list simple">
@@ -426,9 +602,14 @@ au RQAP de travailleur salarié.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.federal.template.get_qpip_self_cred">
-<code class="sig-name descname">get_qpip_self_cred</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_qpip_self_cred" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- get_qpip_self_cred()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2016.get_qpip_self_cred">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2016.</span></span><span class="sig-name descname"><span class="pre">get_qpip_self_cred</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2016.get_qpip_self_cred" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit d’impôt non-remboursable
 pour cotisations au RQAP de travailleur autonome.</p>
 <dl class="field-list simple">
@@ -444,9 +625,14 @@ pour cotisations au RQAP de travailleur autonome.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.federal.template.get_empl_cred">
-<code class="sig-name descname">get_empl_cred</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_empl_cred" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- get_empl_cred()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2016.get_empl_cred">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2016.</span></span><span class="sig-name descname"><span class="pre">get_empl_cred</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2016.get_empl_cred" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le montant canadien pour emploi.</p>
 <p>Ce crédit est non-remboursable.</p>
 <dl class="field-list simple">
@@ -462,9 +648,14 @@ pour cotisations au RQAP de travailleur autonome.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.federal.template.get_pension_cred">
-<code class="sig-name descname">get_pension_cred</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_pension_cred" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- get_pension_cred()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2016.get_pension_cred">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2016.</span></span><span class="sig-name descname"><span class="pre">get_pension_cred</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2016.get_pension_cred" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit d’impôt non-remboursable pour revenu de retraite.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -482,9 +673,14 @@ pour cotisations au RQAP de travailleur autonome.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.federal.template.get_disabled_cred">
-<code class="sig-name descname">get_disabled_cred</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_disabled_cred" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- get_disabled_cred()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2016.get_disabled_cred">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2016.</span></span><span class="sig-name descname"><span class="pre">get_disabled_cred</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2016.get_disabled_cred" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit d’impôt non-remboursable pour invalidité.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -499,9 +695,14 @@ pour cotisations au RQAP de travailleur autonome.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.federal.template.get_med_exp_nr_cred">
-<code class="sig-name descname">get_med_exp_nr_cred</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_med_exp_nr_cred" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- get_med_exp_nr_cred()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2016.get_med_exp_nr_cred">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2016.</span></span><span class="sig-name descname"><span class="pre">get_med_exp_nr_cred</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2016.get_med_exp_nr_cred" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit d’impôt non-remboursable pour frais médicaux.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -519,9 +720,14 @@ pour cotisations au RQAP de travailleur autonome.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.federal.template.get_donations_cred">
-<code class="sig-name descname">get_donations_cred</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_donations_cred" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- get_donations_cred()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2016.get_donations_cred">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2016.</span></span><span class="sig-name descname"><span class="pre">get_donations_cred</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2016.get_donations_cred" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit d’impôt non-remboursable pour dons.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -536,9 +742,14 @@ pour cotisations au RQAP de travailleur autonome.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.federal.template.div_tax_credit">
-<code class="sig-name descname">div_tax_credit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.div_tax_credit" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- div_tax_credit()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2016.div_tax_credit">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2016.</span></span><span class="sig-name descname"><span class="pre">div_tax_credit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2016.div_tax_credit" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit d’impôt pour dividendes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -547,10 +758,15 @@ pour cotisations au RQAP de travailleur autonome.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.federal.template.calc_refundable_tax_credits">
-<code class="sig-name descname">calc_refundable_tax_credits</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.calc_refundable_tax_credits" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui fait la somme des crédits remboursables, en appelant les fonctions suivantes, décrites ci-après: <em>abatment</em>, <em>ccb</em>, <em>get_witb</em>, <em>get_witbds</em>, <em>med_exp</em>, <em>gst_hst_credit</em>.</p>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- calc_refundable_tax_credits()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2016.calc_refundable_tax_credits">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2016.</span></span><span class="sig-name descname"><span class="pre">calc_refundable_tax_credits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2016.calc_refundable_tax_credits" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui fait la somme des crédits remboursables, en appelant les fonctions suivantes, décrites ailleurs dans cette page: <em>abatment</em>, <em>ccb</em>, <em>get_witb</em>, <em>get_witbds</em>, <em>med_exp</em>, <em>gst_hst_credit</em>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">
@@ -561,9 +777,14 @@ pour cotisations au RQAP de travailleur autonome.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.federal.template.abatment">
-<code class="sig-name descname">abatment</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.abatment" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- abatment()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2016.abatment">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2016.</span></span><span class="sig-name descname"><span class="pre">abatment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2016.abatment" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule l’abattement du Québec à l’impôt fédéral.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -581,9 +802,14 @@ pour cotisations au RQAP de travailleur autonome.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.federal.template.ccb">
-<code class="sig-name descname">ccb</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em>, <em class="sig-param"><span class="n">iclaw</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.ccb" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- ccb()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2016.ccb">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2016.</span></span><span class="sig-name descname"><span class="pre">ccb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iclaw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2016.ccb" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule l’Allocation canadienne pour enfants (ACE).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -602,9 +828,14 @@ pour cotisations au RQAP de travailleur autonome.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.federal.template.get_witb">
-<code class="sig-name descname">get_witb</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_witb" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- get_witb()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2016.get_witb">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2016.</span></span><span class="sig-name descname"><span class="pre">get_witb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2016.get_witb" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule l’Allocation canadienne pour les travailleurs (ACT).</p>
 <p>Avant 2019, celle-ci était appelée la Prestation fiscale pour le revenu de travail (PFRT).</p>
 <p>Dans le cas d’un couple, la prestation est répartie au prorata des revenus de travail.</p>
@@ -616,7 +847,7 @@ pour cotisations au RQAP de travailleur autonome.</p>
 </ul>
 </dd>
 <dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>Montant de la PFRT.</p>
+<dd class="field-even"><p>Montant de l’ACT.</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
 <dd class="field-odd"><p>float</p>
@@ -624,9 +855,14 @@ pour cotisations au RQAP de travailleur autonome.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.federal.template.get_witbds">
-<code class="sig-name descname">get_witbds</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.get_witbds" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- get_witbds()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2016.get_witbds">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2016.</span></span><span class="sig-name descname"><span class="pre">get_witbds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2016.get_witbds" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le supplément pour invalidité à la Prestation fiscale pour le revenu de travail (SIPFRT).</p>
 <p>À partir de 2019, le SIPFRT devient le supplément pour invalidité à l’Allocation canadienne pour les travailleurs (ACT).</p>
 <dl class="field-list simple">
@@ -637,7 +873,7 @@ pour cotisations au RQAP de travailleur autonome.</p>
 </ul>
 </dd>
 <dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>Montant du SIPFRT.</p>
+<dd class="field-even"><p>Montant du supplépment pour invalidité.</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
 <dd class="field-odd"><p>float</p>
@@ -645,25 +881,30 @@ pour cotisations au RQAP de travailleur autonome.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.federal.template.compute_witb_witbds">
-<code class="sig-name descname">compute_witb_witbds</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em>, <em class="sig-param"><span class="n">rate</span></em>, <em class="sig-param"><span class="n">base</span></em>, <em class="sig-param"><span class="n">witb_max</span></em>, <em class="sig-param"><span class="n">claw_rate</span></em>, <em class="sig-param"><span class="n">exemption</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.compute_witb_witbds" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- compute_witb_witbds()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2016.compute_witb_witbds">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2016.</span></span><span class="sig-name descname"><span class="pre">compute_witb_witbds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">witb_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">claw_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exemption</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2016.compute_witb_witbds" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction appelée par <em>get_witb</em> et <em>get_witbds</em> pour calculer
-le montant de la PFRT et du SIPFRT.</p>
+le montant de la PFRT / l’ACT et de son supplément.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
 <li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
 <li><p><strong>rate</strong> (<em>float</em>) – taux appliqué au revenu du travail</p></li>
-<li><p><strong>base</strong> (<em>float</em>) – montant de base de la PFRT</p></li>
-<li><p><strong>witb_max</strong> (<em>float</em>) – montant maximal de la PFRT</p></li>
+<li><p><strong>base</strong> (<em>float</em>) – montant de base de la PFRT / l’ACT</p></li>
+<li><p><strong>witb_max</strong> (<em>float</em>) – montant maximal de la PFRT / l’ACT</p></li>
 <li><p><strong>claw_rate</strong> – taux de réduction</p></li>
 <li><p><strong>exemption</strong> (<em>float</em>) – exemption</p></li>
 </ul>
 </dd>
 <dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>Montant de la PFRT ou du SIPFRT.</p>
+<dd class="field-even"><p>Montant de la PFRT / l’ACT ou du supplément.</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
 <dd class="field-odd"><p>float</p>
@@ -671,9 +912,14 @@ le montant de la PFRT et du SIPFRT.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.federal.template.med_exp">
-<code class="sig-name descname">med_exp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.med_exp" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- med_exp()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2016.med_exp">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2016.</span></span><span class="sig-name descname"><span class="pre">med_exp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2016.med_exp" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit remboursable pour frais médicaux.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -691,9 +937,14 @@ le montant de la PFRT et du SIPFRT.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.federal.template.gst_hst_credit">
-<code class="sig-name descname">gst_hst_credit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template.gst_hst_credit" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- gst_hst_credit()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2016.gst_hst_credit">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2016.</span></span><span class="sig-name descname"><span class="pre">gst_hst_credit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2016.gst_hst_credit" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit pour la taxe sur les produits et services/taxe de vente harmonisée (TPS/TVH).</p>
 <p>Le montant du crédit est reçu par le conjoint au revenu imposable le plus élevé.</p>
 <dl class="field-list simple">
@@ -712,53 +963,179 @@ le montant de la PFRT et du SIPFRT.</p>
 </dl>
 </dd></dl>
 
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- get_spouses_cred()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2016.get_spouses_cred">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2016.</span></span><span class="sig-name descname"><span class="pre">get_spouses_cred</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2016.get_spouses_cred" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule le montant pour époux ou conjoint de fait.</p>
+<p>Ce crédit est non-remboursable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant du crédit.</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
 </dd></dl>
 
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- get_dep_cred()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2016.get_dep_cred">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2016.</span></span><span class="sig-name descname"><span class="pre">get_dep_cred</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2016.get_dep_cred" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule le montant pour personne à charge admissible.</p>
+<p>Ce crédit est non-remboursable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant du crédit.</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- get_spouse_transfer()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2016.get_spouse_transfer">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2016.</span></span><span class="sig-name descname"><span class="pre">get_spouse_transfer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2016.get_spouse_transfer" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui récupère le surplus des crédits non-remboursables transférables au conjoint (s’il y lieu).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- get_ei_contrib_cred()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2016.get_ei_contrib_cred">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2016.</span></span><span class="sig-name descname"><span class="pre">get_ei_contrib_cred</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2016.get_ei_contrib_cred" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule le crédit d’impôt non-remboursable pour cotisations à l’assurance emploi.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant du crédit.</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <p>Le gabarit collige les résultats dans un formulaire d’impôt qui sera rattaché à la personne sous la forme d’un dictionnaire Python. Cette procédure permet de différencier les variables générées par l’impôt des attributs d’une personne qui font partie de son profil. C’est la fonction <em>create_return()</em> qui fait ce travail.</p>
 <dl class="py function">
-<dt id="srd.federal.create_return">
-<code class="sig-prename descclassname">srd.federal.</code><code class="sig-name descname">create_return</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.create_return" title="Lien permanent vers cette définition">¶</a></dt>
+<dt class="sig sig-object py" id="srd.federal.create_return">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.</span></span><span class="sig-name descname"><span class="pre">create_return</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.create_return" title="Lien permanent vers cette définition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
-<div class="section" id="fonctions-specifiques-ou-modifiees-par-annee">
-<h2>Fonctions spécifiques ou modifiées par année<a class="headerlink" href="#fonctions-specifiques-ou-modifiees-par-annee" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="section" id="fonctions-specifiques-ou-modifiees">
+<h2>Fonctions spécifiques ou modifiées<a class="headerlink" href="#fonctions-specifiques-ou-modifiees" title="Lien permanent vers ce titre">¶</a></h2>
+<p><strong>2016</strong></p>
 <dl class="py class">
-<dt id="srd.federal.form_2016">
-<em class="property">class </em><code class="sig-prename descclassname">srd.federal.</code><code class="sig-name descname">form_2016</code><a class="headerlink" href="#srd.federal.form_2016" title="Lien permanent vers cette définition">¶</a></dt>
+<dt class="sig sig-object py" id="srd.federal.form_2016">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.federal.</span></span><span class="sig-name descname"><span class="pre">form_2016</span></span><a class="headerlink" href="#srd.federal.form_2016" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Formulaire d’impôt de 2016.</p>
 </dd></dl>
 
+<p><strong>2017</strong></p>
 <dl class="py class">
-<dt id="srd.federal.form_2017">
-<em class="property">class </em><code class="sig-prename descclassname">srd.federal.</code><code class="sig-name descname">form_2017</code><a class="headerlink" href="#srd.federal.form_2017" title="Lien permanent vers cette définition">¶</a></dt>
+<dt class="sig sig-object py" id="srd.federal.form_2017">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.federal.</span></span><span class="sig-name descname"><span class="pre">form_2017</span></span><a class="headerlink" href="#srd.federal.form_2017" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Formulaire d’impôt de 2017.</p>
 </dd></dl>
 
+<p><strong>2018</strong></p>
 <dl class="py class">
-<dt id="srd.federal.form_2018">
-<em class="property">class </em><code class="sig-prename descclassname">srd.federal.</code><code class="sig-name descname">form_2018</code><a class="headerlink" href="#srd.federal.form_2018" title="Lien permanent vers cette définition">¶</a></dt>
+<dt class="sig sig-object py" id="srd.federal.form_2018">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.federal.</span></span><span class="sig-name descname"><span class="pre">form_2018</span></span><a class="headerlink" href="#srd.federal.form_2018" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Formulaire d’impôt de 2018.</p>
 </dd></dl>
 
+<p><strong>2019</strong></p>
 <dl class="py class">
-<dt id="srd.federal.form_2019">
-<em class="property">class </em><code class="sig-prename descclassname">srd.federal.</code><code class="sig-name descname">form_2019</code><a class="headerlink" href="#srd.federal.form_2019" title="Lien permanent vers cette définition">¶</a></dt>
+<dt class="sig sig-object py" id="srd.federal.form_2019">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.federal.</span></span><span class="sig-name descname"><span class="pre">form_2019</span></span><a class="headerlink" href="#srd.federal.form_2019" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Formulaire d’impôt de 2019.</p>
 </dd></dl>
 
-<dl class="py class">
-<dt id="srd.federal.form_2020">
-<em class="property">class </em><code class="sig-prename descclassname">srd.federal.</code><code class="sig-name descname">form_2020</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">policy</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2020" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Formulaire d’impôt de 2020.</p>
+<div class="toggle-header docutils container">
+<p><strong>- cpp_deduction()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2019.cpp_deduction">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2019.</span></span><span class="sig-name descname"><span class="pre">cpp_deduction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2019.cpp_deduction" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule la déduction pour les cotisations au RRQ/RPC de base pour les travailleurs autonomes et pour le régime supplémentaire du RRQ/RPC pour tous.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>policy</strong> (<a class="reference internal" href="covid.html#srd.covid.policy" title="srd.covid.policy"><em>policy</em></a>) – instance de la classe policy</p>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant de la déduction.</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
 </dd>
 </dl>
-<dl class="py method">
-<dt id="srd.federal.form_2020.compute_basic_amount">
-<code class="sig-name descname">compute_basic_amount</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2020.compute_basic_amount" title="Lien permanent vers cette définition">¶</a></dt>
+</dd></dl>
+
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>2020</strong></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="srd.federal.form_2020">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.federal.</span></span><span class="sig-name descname"><span class="pre">form_2020</span></span><a class="headerlink" href="#srd.federal.form_2020" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Formulaire d’impôt de 2020.</p>
+</dd></dl>
+
+<div class="toggle-header docutils container">
+<p><strong>- compute_basic_amount()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2020.compute_basic_amount">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2020.</span></span><span class="sig-name descname"><span class="pre">compute_basic_amount</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2020.compute_basic_amount" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le montant personnel de base.</p>
 <p>Le calcul de ce montant change en 2020.</p>
 <dl class="field-list simple">
@@ -774,9 +1151,14 @@ le montant de la PFRT et du SIPFRT.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.federal.form_2020.calc_net_income">
-<code class="sig-name descname">calc_net_income</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2020.calc_net_income" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- calc_net_income()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2020.calc_net_income">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2020.</span></span><span class="sig-name descname"><span class="pre">calc_net_income</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2020.calc_net_income" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le revenu net au sens de l’impôt.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -785,17 +1167,21 @@ le montant de la PFRT et du SIPFRT.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.federal.form_2020.repayments_ei">
-<code class="sig-name descname">repayments_ei</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2020.repayments_ei" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui calcule le montant du remboursement d’assurance-emploi et qui
-ajuste le montant des bénéfices, le revenu net et le revenu brut.</p>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- repayments_ei()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2020.repayments_ei">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2020.</span></span><span class="sig-name descname"><span class="pre">repayments_ei</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2020.repayments_ei" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule le montant du remboursement de prestations d’assurance-emploi et qui ajuste le montant des prestations, le revenu net et le revenu brut.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
 </dd>
 <dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>montant du remboursement</p>
+<dd class="field-even"><p>Montant du remboursement.</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
 <dd class="field-odd"><p>float</p>
@@ -803,8 +1189,109 @@ ajuste le montant des bénéfices, le revenu net et le revenu brut.</p>
 </dl>
 </dd></dl>
 
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- calc_refundable_tax_credits()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2020.calc_refundable_tax_credits">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2020.</span></span><span class="sig-name descname"><span class="pre">calc_refundable_tax_credits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2020.calc_refundable_tax_credits" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui fait la somme des crédits remboursables, en appelant les fonctions suivantes, décrites ailleurs dans cette page: <em>abatment</em>, <em>ccb</em>, <em>get_witb</em>, <em>get_witbds</em>, <em>med_exp</em>, <em>gst_hst_credit</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- oas_gis_covid_bonus()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2020.oas_gis_covid_bonus">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2020.</span></span><span class="sig-name descname"><span class="pre">oas_gis_covid_bonus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2020.oas_gis_covid_bonus" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule le montant supplémentaire unique de Pension de sécurité de vieillesse (PSV) et de Supplément de revenu garanti (SRG). Pour l’année 2020, le gouvernement a versé une prestation unique non imposable de 300$ aux bénéficiaires de la PSV. Les bénéficiaires du SRG ont aussi eu droit à un montant additionnel de 200$.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant du paiement unique de SV et de SRG.</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>2021</strong></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="srd.federal.form_2021">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.federal.</span></span><span class="sig-name descname"><span class="pre">form_2021</span></span><a class="headerlink" href="#srd.federal.form_2021" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Formulaire d’impôt de 2021.</p>
+</dd></dl>
+
+<div class="toggle-header docutils container">
+<p><strong>- calc_refundable_tax_credits()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2021.calc_refundable_tax_credits">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2021.</span></span><span class="sig-name descname"><span class="pre">calc_refundable_tax_credits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2021.calc_refundable_tax_credits" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui fait la somme des crédits remboursables, en appelant les fonctions suivantes, décrites ailleurs dans cette page: <em>abatment</em>, <em>ccb</em>, <em>get_witb</em>, <em>get_witbds</em>, <em>med_exp</em>, <em>gst_hst_credit</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- ccb()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2021.ccb">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2021.</span></span><span class="sig-name descname"><span class="pre">ccb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iclaw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2021.ccb" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule pour 2021 l’Allocation canadienne pour enfants (ACE) avec l’ACE supplément pour jeunes enfants (ACESJE), soit de moins de 6 ans.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+<li><p><strong>iclaw</strong> (<em>boolean</em>) – récupération des prestations si True; pas de récupération si False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant de l’ACE.</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 </div>
 </div>
 
@@ -822,7 +1309,7 @@ ajuste le montant des bénéfices, le revenu net et le revenu brut.</p>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2020, Équipe CREEi.
+        &#169; Copyright 2022, Équipe CREEi.
 
     </p>
   </div>

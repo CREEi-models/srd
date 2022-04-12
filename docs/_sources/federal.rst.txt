@@ -5,45 +5,305 @@ Impôt fédéral
 Survol
 ^^^^^^
 
-L'impôt fédéral est pris en charge par le module *federal*. Ce module contient un gabarit que nous documentons ci-dessous ainsi que des classes dérivées spécifiques pour chaque année.
+La fiscalité fédérale est prise en charge par le module *federal*. Ce module contient un gabarit que nous documentons ci-dessous ainsi que des classes dérivées spécifiques pour chaque année.
 
 .. currentmodule:: srd.federal
 
-La fonction *form* permet de choisir l'année de la déclaration de revenus et ira tirer une instance du rapport pour cette année. L'instance est retournée par la fonction.
+La fonction *form* permet de choisir l'année de la déclaration de revenus et crée une instance de déclaration pour cette année. L'instance est retournée par la fonction suivante:
 
 .. autofunction:: form
 
-Gabarit du rapport
-^^^^^^^^^^^^^^^^^^^^
+Voici les mesures fiscales fédérales prises en compte dans ce module:
 
-Nous utilisons un gabarit afin de créer les rapports chaque année. Quand l'impôt change seulement au niveau des paramètres d'une année à l'autre, le rapport ira seulement chercher les nouveaux paramètres. Quand des fonctions changent, l'utilisateur n'a qu'à modifier les fonctions touchées (ou à en ajouter de nouvelles). Toutes les modifications de fonction survenues après l'année 2016 sont indiquées ci-dessous.
+- L'impôt des particuliers
+- L'abattement du Québec à l'impôt fédéral
+- Les déductions et crédits d'impôt pour les cotisations sociales (RRQ/RPC, AE et RQAP)
+- Les déductions pour la perte en capital nette d'autres années et pour gain en capital exonéré
+- La déduction fédérale pour frais de garde
+- Le crédit d'impôt non-remboursable pour dividendes
+- Le crédit d'impôt non-remboursable en raison de l'âge
+- Le crédit d'impôt non-remboursable pour revenu de retraite
+- Le crédit d'impôt non-remboursable pour invalidité
+- Le crédit d'impôt non-remboursable pour dons de bienfaisance
+- Le crédit d'impôt non-remboursable pour personne à charge admissible
+- Le montant canadien pour emploi
+- Le montant pour personne à charge admissible
+- Le montant pour époux ou conjoint de fait
+- Le transfert de crédits non-remboursables d'un conjoint à l'autre
+- Les crédits d'impôt pour frais médicaux (remboursable et non-remboursable)
+- Le crédit remboursable pour la taxe sur les produits et services/taxe de vente harmonisée (TPS/TVH)
+- L'allocation canadienne pour les travailleurs (ACT) et son supplément pour invalidité
+- L'allocation canadienne pour enfants (ACE) et son supplément pour jeunes enfants (ACESJE)
 
-Nous reproduisons ici la spécification du gabarit. Il est basé sur le rapport de 2016.
 
-.. autoclass:: template
-    :members: file, calc_gross_income, calc_net_income, calc_taxable_income,
-              calc_deduc_gross_income, chcare, cpp_deduction, qpip_deduction,
-              calc_deduc_net_income, calc_tax, calc_non_refundable_tax_credits,
-              get_age_cred, get_cpp_contrib_cred, get_qpip_cred,
-              get_qpip_self_cred, get_empl_cred, get_pension_cred,
-              get_disabled_cred, get_med_exp_nr_cred, get_donations_cred,
-              div_tax_credit, calc_refundable_tax_credits, abatment, ccb,
-              get_witb, get_witbds, compute_witb_witbds, med_exp, gst_hst_credit
+
+La liste exhaustive des éléments calculés dans le module est présentée dans la section ci-dessous.
+
+
+Gabarit de déclaration
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Nous utilisons un gabarit afin de créer les déclarations chaque année. Quand l'impôt change seulement au niveau des paramètres d'une année à l'autre, 
+la déclaration ira seulement chercher les nouveaux paramètres. Quand des fonctions changent, l'utilisateur n'a qu'à modifier les fonctions touchées (ou à en ajouter de nouvelles).
+Toutes les modifications de fonction survenues après l'année 2016 sont indiquées dans la section suivante.
+
+.. currentmodule:: srd.federal
+
+.. autofunction:: template
+
+| Nous présentons ici la liste des fonctions incluses dans le gabarit:
+| (Cliquez sur le nom pour afficher les détails)
+
+.. currentmodule:: srd.federal.form_2016
+
+.. toggle-header::
+    :header: **- file()**
+
+    .. autofunction:: file
+
+.. toggle-header::
+    :header: **- calc_gross_income()**
+
+    .. autofunction:: calc_gross_income
+
+.. toggle-header::
+    :header: **- calc_net_income()**
+
+    .. autofunction:: calc_net_income
+
+.. toggle-header::
+    :header: **- calc_taxable_income()**
+
+    .. autofunction:: calc_taxable_income
+
+.. toggle-header::
+    :header: **- calc_deduc_gross_income()**
+
+    .. autofunction:: calc_deduc_gross_income
+
+.. toggle-header::
+    :header: **- chcare()**
+
+    .. autofunction:: chcare
+
+.. toggle-header::
+    :header: **- cpp_deduction()**
+
+    .. autofunction:: cpp_deduction
+
+.. toggle-header::
+    :header: **- qpip_deduction()**
+
+    .. autofunction:: qpip_deduction
+
+.. toggle-header::
+    :header: **- calc_deduc_net_income()**
+
+    .. autofunction:: calc_deduc_net_income
+
+.. toggle-header::
+    :header: **- calc_tax()**
+
+    .. autofunction:: calc_tax
+
+.. toggle-header::
+    :header: **- calc_non_refundable_tax_credits()**
+
+    .. autofunction:: calc_non_refundable_tax_credits
+
+.. toggle-header::
+    :header: **- get_age_cred()**
+
+    .. autofunction:: get_age_cred
+
+.. toggle-header::
+    :header: **- get_cpp_contrib_cred()**
+
+    .. autofunction:: get_cpp_contrib_cred
+
+.. toggle-header::
+    :header: **- get_qpip_cred()**
+
+    .. autofunction:: get_qpip_cred
+
+.. toggle-header::
+    :header: **- get_qpip_self_cred()**
+
+    .. autofunction:: get_qpip_self_cred
+
+.. toggle-header::
+    :header: **- get_empl_cred()**
+
+    .. autofunction:: get_empl_cred
+
+.. toggle-header::
+    :header: **- get_pension_cred()**
+
+    .. autofunction:: get_pension_cred
+
+.. toggle-header::
+    :header: **- get_disabled_cred()**
+
+    .. autofunction:: get_disabled_cred
+
+.. toggle-header::
+    :header: **- get_med_exp_nr_cred()**
+
+    .. autofunction:: get_med_exp_nr_cred
+
+.. toggle-header::
+    :header: **- get_donations_cred()**
+
+    .. autofunction:: get_donations_cred
+
+.. toggle-header::
+    :header: **- div_tax_credit()**
+
+    .. autofunction:: div_tax_credit
+
+.. toggle-header::
+    :header: **- calc_refundable_tax_credits()**
+
+    .. autofunction:: calc_refundable_tax_credits
+
+.. toggle-header::
+    :header: **- abatment()**
+
+    .. autofunction:: abatment
+
+.. toggle-header::
+    :header: **- ccb()**
+
+    .. autofunction:: ccb
+
+.. toggle-header::
+    :header: **- get_witb()**
+
+    .. autofunction:: get_witb
+
+.. toggle-header::
+    :header: **- get_witbds()**
+
+    .. autofunction:: get_witbds
+
+.. toggle-header::
+    :header: **- compute_witb_witbds()**
+
+    .. autofunction:: compute_witb_witbds
+
+.. toggle-header::
+    :header: **- med_exp()**
+
+    .. autofunction:: med_exp
+
+.. toggle-header::
+    :header: **- gst_hst_credit()**
+
+    .. autofunction:: gst_hst_credit
+
+.. toggle-header::
+    :header: **- get_spouses_cred()**
+
+    .. autofunction:: get_spouses_cred
+
+.. toggle-header::
+    :header: **- get_dep_cred()**
+
+    .. autofunction:: get_dep_cred
+
+.. toggle-header::
+    :header: **- get_spouse_transfer()**
+
+    .. autofunction:: get_spouse_transfer
+
+.. toggle-header::
+    :header: **- get_ei_contrib_cred()**
+
+    .. autofunction:: get_ei_contrib_cred
+
+
+|
+
 
 Le gabarit collige les résultats dans un formulaire d'impôt qui sera rattaché à la personne sous la forme d'un dictionnaire Python. Cette procédure permet de différencier les variables générées par l'impôt des attributs d'une personne qui font partie de son profil. C'est la fonction *create_return()* qui fait ce travail.
 
+.. currentmodule:: srd.federal
+
 .. autofunction:: create_return
 
-Fonctions spécifiques ou modifiées par année
+Fonctions spécifiques ou modifiées
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**2016**
 
 .. autoclass:: srd.federal.form_2016
 
+**2017**
+
 .. autoclass:: srd.federal.form_2017
+
+**2018**
 
 .. autoclass:: srd.federal.form_2018
 
+**2019**
+
 .. autoclass:: srd.federal.form_2019
+.. currentmodule:: srd.federal.form_2019
+
+.. toggle-header::
+    :header: **- cpp_deduction()**
+
+    .. autofunction:: cpp_deduction
+
+|
+
+**2020**
 
 .. autoclass:: srd.federal.form_2020
-    :members: compute_basic_amount, calc_net_income, repayments_ei
+.. currentmodule:: srd.federal.form_2020
+
+.. toggle-header::
+    :header: **- compute_basic_amount()**
+
+    .. autofunction:: compute_basic_amount
+
+.. toggle-header::
+    :header: **- calc_net_income()**
+
+    .. autofunction:: calc_net_income
+
+.. toggle-header::
+    :header: **- repayments_ei()**
+
+    .. autofunction:: repayments_ei
+
+.. toggle-header::
+    :header: **- calc_refundable_tax_credits()**
+
+    .. autofunction:: calc_refundable_tax_credits
+
+.. toggle-header::
+    :header: **- oas_gis_covid_bonus()**
+
+    .. autofunction:: oas_gis_covid_bonus
+
+|
+
+**2021**
+
+.. autoclass:: srd.federal.form_2021
+.. currentmodule:: srd.federal.form_2021
+
+.. toggle-header::
+    :header: **- calc_refundable_tax_credits()**
+
+    .. autofunction:: calc_refundable_tax_credits
+
+.. toggle-header::
+    :header: **- ccb()**
+
+    .. autofunction:: ccb
+
+|
+

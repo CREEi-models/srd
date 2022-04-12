@@ -4,9 +4,7 @@ Exemple de calcul du revenu disponible
 Construction du ménage
 ~~~~~~~~~~~~~~~~~~~~~~
 
-On construit un ménage où les deux conjoints ont 45 ans, les revenus de
-travail sont respectivement 50 000 $ et 25 000 $ et Jean contribue 5 000 $ à
-son REER.
+On construit un ménage où les deux conjoints ont 45 ans, les revenus de travail sont respectivement 50 000$ et 25 000$ et Jean contribue 5000$ à son REER.
 
 .. code:: ipython3
 
@@ -34,15 +32,13 @@ Le revenu familial total, disponible et après impôts peuvent être appelés. �
 Le calculateur
 ~~~~~~~~~~~~~~
 
-On invoque une instance du calculateur en spécifiant l’année. Il existe
-aussi des indicateurs pour spécifier si on veut ou non obtenir le calcul de différents impôts. L’exemple ici utilisera seulement le calcul de
-l’impôt fédéral.
+On invoque une instance du calculateur en spécifiant l’année. Il existe aussi des indicateurs pour spécifier si on veut ou non obtenir le calcul de différents impôts. L’exemple ici utilisera seulement le calcul de l’impôt fédéral.
 
 .. code:: ipython3
 
-    tax_form = srd.tax(2016)
+    tax_form = srd.tax(2021)
 
-La fonction *compute()* calcule tous les impôts et cotisations demandés.
+La fonction *compute()* calcule tous les impôts et cotisations demandés:
 
 .. code:: ipython3
 
@@ -61,7 +57,7 @@ Après avoir fait les calculs, on peut aussi calculer différents concepts de re
 
     tax_form.compute_after_tax_inc(hh)
 
-On peut voir que les variables ont été modifiées.
+On peut voir que les variables ont été modifiées:
 
 .. code:: ipython3
 
@@ -72,7 +68,7 @@ On peut voir que les variables ont été modifiées.
 
 .. parsed-literal::
 
-    (75000.0, 63399.9755, 53227.9755)
+    (75000.0, 65298.815624999996, 55016.315624999996)
 
 
 
@@ -85,7 +81,7 @@ On peut voir que les variables ont été modifiées.
 
 .. parsed-literal::
 
-    (50000.0, 41347.33690625, 32837.21190625)
+    (50000.0, 42525.176374999995, 33934.676374999995)
 
 
 
@@ -98,4 +94,4 @@ On peut voir que les variables ont été modifiées.
 
 .. parsed-literal::
 
-    (25000.0, 22052.638593749998, 20390.763593749998)
+    (25000.0, 22773.63925, 21081.63925)

@@ -13,6 +13,9 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/contentui.css" type="text/css" />
 
   
   
@@ -29,11 +32,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
         <script src="_static/translations.js"></script>
+        <script src="_static/contentui.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -87,14 +91,45 @@
               
             
             
-              <p class="caption"><span class="caption-text">Menu:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Menu:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Premiers pas avec le SRD</a></li>
-<li class="toctree-l1"><a class="reference internal" href="actors.html">Les acteurs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="federal.html">Impôt fédéral</a></li>
-<li class="toctree-l1"><a class="reference internal" href="quebec.html">Impôt du Québec</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ontario.html">Impôt de l’Ontario</a></li>
-<li class="toctree-l1"><a class="reference internal" href="oas.html">Pension de la sécurité de la vieillesse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Premiers pas avec le SRD</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#installation-du-srd">Installation du SRD</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#installation-alternative">Installation alternative</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="actors.html">Les acteurs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="actors.html#personnes">Personnes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actors.html#dependants-enfant-ou-proche-a-charge">Dépendants (enfant ou proche à charge)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actors.html#menages">Ménages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="federal.html">Impôt fédéral</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="federal.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="federal.html#gabarit-de-declaration">Gabarit de déclaration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="federal.html#fonctions-specifiques-ou-modifiees">Fonctions spécifiques ou modifiées</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quebec.html">Impôt du Québec</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quebec.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quebec.html#gabarit-de-declaration">Gabarit de déclaration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quebec.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ontario.html">Impôt de l’Ontario</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ontario.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ontario.html#gabarit-du-rapport">Gabarit du rapport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ontario.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="oas.html">Pension de la sécurité de la vieillesse</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="oas.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oas.html#gabarit-du-programme">Gabarit du programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oas.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Cotisations sociales</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#assurance-emploi">Assurance emploi</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#survol">Survol</a></li>
@@ -110,13 +145,55 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="assistance.html">Aide sociale</a></li>
-<li class="toctree-l1"><a class="reference internal" href="covid.html">Prestations liées à la COVID-19</a></li>
-<li class="toctree-l1"><a class="reference internal" href="calculators.html">Calculateur de revenu disponible</a></li>
-<li class="toctree-l1"><a class="reference internal" href="TutorialFed.html">Exemple de calcul de l’impôt fédéral</a></li>
-<li class="toctree-l1"><a class="reference internal" href="TutorialCalculator.html">Exemple de calcul du revenu disponible</a></li>
+<li class="toctree-l1"><a class="reference internal" href="assistance.html">Aide sociale</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="assistance.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assistance.html#gabarit-du-programme">Gabarit du programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assistance.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="covid.html">Prestations liées à la COVID-19</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="covid.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="covid.html#gabarit-du-programme">Gabarit du programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="covid.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="calculators.html">Calculateur de revenu disponible</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="calculators.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calculators.html#les-fonctions-du-calculateur">Les fonctions du calculateur</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="comparaison.html">Comparaisons avec le MFQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="comparaison.html#personne-celibataire-sans-enfant">Personne célibataire (sans enfant)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comparaison.html#personne-monoparentale">Personne monoparentale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comparaison.html#couple-sans-enfant">Couple sans enfant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comparaison.html#couple-avec-enfant">Couple avec enfant</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="TutorialFed.html">Exemple de calcul de l’impôt fédéral</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="TutorialFed.html#importation-du-package">Importation du package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TutorialFed.html#initialisation-dun-menage">Initialisation d’un ménage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TutorialFed.html#calcul-de-limpot-federal">Calcul de l’impôt fédéral</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TutorialFed.html#experiences">Expériences</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="TutorialCalculator.html">Exemple de calcul du revenu disponible</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="TutorialCalculator.html#construction-du-menage">Construction du ménage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TutorialCalculator.html#le-calculateur">Le calculateur</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TutorialCalculator.html#calcul-du-revenu-apres-impots-et-du-revenu-disponible">Calcul du revenu après impôts et du revenu disponible</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialChangeParameters.html">Exemple de changement de paramètre</a></li>
-<li class="toctree-l1"><a class="reference internal" href="credits.html">Contacts et droits d’utilisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits.html">Contacts et droits d’utilisation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="credits.html#liste-d-envoi">Liste d’envoi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="credits.html#personne-contact">Personne-contact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="credits.html#contributeurs">Contributeurs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="credits.html#principaux">Principaux</a></li>
+<li class="toctree-l3"><a class="reference internal" href="credits.html#id1">2020</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="credits.html#droits-d-utilisation">Droits d’utilisation</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -188,21 +265,21 @@
             
   <div class="section" id="cotisations-sociales">
 <h1>Cotisations sociales<a class="headerlink" href="#cotisations-sociales" title="Lien permanent vers ce titre">¶</a></h1>
-<p>Les cotisations sociales sont prises en charge par la classe <em>payroll</em>. Cette classe prend en charge les cotisations à l’assurance-emploi, au Régime québécois d’assurance parentale (RQAP), au Régime de rentes du Québec (RRQ) et au Régime de pensions du Canada (RPC). Pour ces dernières, le module <em>srpp</em> de la chaire est utilisé et une fonction de la classe <em>payroll</em> (<em>get_cpp_contrib</em>) ira chercher les cotisations à l’intérieur de ce module.</p>
+<p>Les cotisations sociales sont prises en charge par la classe <em>payroll</em>. Cette classe prend en charge les cotisations à l’assurance-emploi, au Régime québécois d’assurance parentale (RQAP), au Régime de rentes du Québec (RRQ) et au Régime de pensions du Canada (RPC). Pour les deux dernières, le module <em>srpp</em> de la chaire est utilisé et une fonction de la classe <em>payroll</em> (<em>get_cpp_contrib</em>) ira chercher les cotisations à l’intérieur de ce module.</p>
 <p>La classe <em>payroll</em> attachera à chaque membre d’un couple un rapport de cotisations qui contiendra toutes les sommes cotisées. Pour le RRQ et le RPC, les cotisations aux régimes de base et celles aux régimes supplémentaires découlant de l’expansion débutée en 2019 sont séparées, car leur traitement fiscal est différent.</p>
 <dl class="py class">
-<dt id="srd.payroll">
-<em class="property">class </em><code class="sig-prename descclassname">srd.</code><code class="sig-name descname">payroll</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">year</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.payroll" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Calcul des cotisations sociales: à l’assurance emploi, au RQAP (Québec), au RRQ (Québec) ainsi qu’au RPC (provinces autres que le Québec).</p>
+<dt class="sig sig-object py" id="srd.payroll">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.</span></span><span class="sig-name descname"><span class="pre">payroll</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">year</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.payroll" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Calcul des cotisations sociales: à l’assurance-emploi, au RQAP (Québec), au RRQ (Québec) ainsi qu’au RPC (provinces autres que le Québec).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>year</strong> (<em>int</em>) – année pour le calcul</p>
 </dd>
 </dl>
 <dl class="py method">
-<dt id="srd.payroll.compute">
-<code class="sig-name descname">compute</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.payroll.compute" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui appelle <em>ei</em>, <em>qpip</em> et la fonction <em>get_cpp_contrib</em> afin de calculer respectivement les cotisations à l’assurance-emploi, à l’assurance parentale (RQAP) et au RRQ/RPC.</p>
+<dt class="sig sig-object py" id="srd.payroll.compute">
+<span class="sig-name descname"><span class="pre">compute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.payroll.compute" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui appelle <em>ei</em>, <em>qpip</em> (voir ci-après) et la fonction <em>get_cpp_contrib</em> afin de calculer respectivement les cotisations à l’assurance-emploi, à l’assurance parentale (RQAP) et au RRQ/RPC.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
@@ -211,8 +288,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt id="srd.payroll.get_cpp_contrib">
-<code class="sig-name descname">get_cpp_contrib</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.payroll.get_cpp_contrib" title="Lien permanent vers cette définition">¶</a></dt>
+<dt class="sig sig-object py" id="srd.payroll.get_cpp_contrib">
+<span class="sig-name descname"><span class="pre">get_cpp_contrib</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.payroll.get_cpp_contrib" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction pour le calcul des cotisations au RPC et au RRQ, qui appelle le module <em>srpp</em>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -239,12 +316,12 @@
 <p>Le programme d’assurance-emploi est pris en charge par le module <em>ei</em>. Ce module contient un gabarit que nous documentons ci-dessous ainsi que des classes dérivées spécifiques pour chaque année.</p>
 <p>La fonction <em>program</em> permet de choisir l’année du programme et ira tirer une instance du programme pour cette année. L’instance est retournée par la fonction.</p>
 <dl class="py function">
-<dt id="srd.ei.program">
-<code class="sig-prename descclassname">srd.ei.</code><code class="sig-name descname">program</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">year</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ei.program" title="Lien permanent vers cette définition">¶</a></dt>
+<dt class="sig sig-object py" id="srd.ei.program">
+<span class="sig-prename descclassname"><span class="pre">srd.ei.</span></span><span class="sig-name descname"><span class="pre">program</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">year</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ei.program" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui permet de sélectionner le programme par année.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>year</strong> (<em>int</em>) – année (présentement entre 2016 et 2020)</p>
+<dd class="field-odd"><p><strong>year</strong> (<em>int</em>) – année (présentement entre 2016 et 2021)</p>
 </dd>
 <dt class="field-even">Renvoie</dt>
 <dd class="field-even"><p>Une instance de la classe de l’année sélectionnée.</p>
@@ -262,14 +339,14 @@
 <p>Nous utilisons un gabarit afin de créer les programmes chaque année. Quand le programme change seulement au niveau des paramètres d’une année à l’autre, nous irons chercher seulement les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou à en ajouter de nouvelles). L’avantage des classes dérivées est de ne pas avoir à répéter toutes les fonctions d’une année à l’autre si celles-ci n’ont pas changé.</p>
 <p>Nous reproduisons ici la spécification du gabarit. Il est basé sur le programme en vigueur en 2016.</p>
 <dl class="py class">
-<dt id="srd.ei.template">
-<em class="property">class </em><code class="sig-prename descclassname">srd.ei.</code><code class="sig-name descname">template</code><a class="headerlink" href="#srd.ei.template" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Programme d’assurance emploi.</p>
-<p>Ce gabarit sert pour l’instant à calculer les cotisations à l’assurance emploi.</p>
+<dt class="sig sig-object py" id="srd.ei.template">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.ei.</span></span><span class="sig-name descname"><span class="pre">template</span></span><a class="headerlink" href="#srd.ei.template" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Programme d’assurance-emploi.</p>
+<p>Ce gabarit sert pour l’instant à calculer les cotisations à l’assurance-emploi.</p>
 <dl class="py method">
-<dt id="srd.ei.template.contrib">
-<code class="sig-name descname">contrib</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ei.template.contrib" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction pour calculer les cotisations à l’assurance emploi.</p>
+<dt class="sig sig-object py" id="srd.ei.template.contrib">
+<span class="sig-name descname"><span class="pre">contrib</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ei.template.contrib" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction pour calculer les cotisations à l’assurance-emploi.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">
@@ -278,7 +355,7 @@
 </ul>
 </dd>
 <dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>Montant de la cotisation à l’assurance emploi (annuelle).</p>
+<dd class="field-even"><p>Montant de la cotisation à l’assurance-emploi (annuelle).</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
 <dd class="field-odd"><p>float</p>
@@ -292,35 +369,70 @@
 <div class="section" id="fonctions-specifiques-ou-modifiees-par-annee">
 <h3>Fonctions spécifiques ou modifiées par année<a class="headerlink" href="#fonctions-specifiques-ou-modifiees-par-annee" title="Lien permanent vers ce titre">¶</a></h3>
 <dl class="py class">
-<dt id="srd.ei.programs.program_2016">
-<em class="property">class </em><code class="sig-prename descclassname">srd.ei.programs.</code><code class="sig-name descname">program_2016</code><a class="headerlink" href="#srd.ei.programs.program_2016" title="Lien permanent vers cette définition">¶</a></dt>
+<dt class="sig sig-object py" id="srd.ei.programs.program_2016">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.ei.programs.</span></span><span class="sig-name descname"><span class="pre">program_2016</span></span><a class="headerlink" href="#srd.ei.programs.program_2016" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Version du programme de 2016.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="srd.ei.programs.program_2017">
-<em class="property">class </em><code class="sig-prename descclassname">srd.ei.programs.</code><code class="sig-name descname">program_2017</code><a class="headerlink" href="#srd.ei.programs.program_2017" title="Lien permanent vers cette définition">¶</a></dt>
+<dt class="sig sig-object py" id="srd.ei.programs.program_2017">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.ei.programs.</span></span><span class="sig-name descname"><span class="pre">program_2017</span></span><a class="headerlink" href="#srd.ei.programs.program_2017" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Version du programme de 2017.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="srd.ei.programs.program_2018">
-<em class="property">class </em><code class="sig-prename descclassname">srd.ei.programs.</code><code class="sig-name descname">program_2018</code><a class="headerlink" href="#srd.ei.programs.program_2018" title="Lien permanent vers cette définition">¶</a></dt>
+<dt class="sig sig-object py" id="srd.ei.programs.program_2018">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.ei.programs.</span></span><span class="sig-name descname"><span class="pre">program_2018</span></span><a class="headerlink" href="#srd.ei.programs.program_2018" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Version du programme de 2018.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="srd.ei.programs.program_2019">
-<em class="property">class </em><code class="sig-prename descclassname">srd.ei.programs.</code><code class="sig-name descname">program_2019</code><a class="headerlink" href="#srd.ei.programs.program_2019" title="Lien permanent vers cette définition">¶</a></dt>
+<dt class="sig sig-object py" id="srd.ei.programs.program_2019">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.ei.programs.</span></span><span class="sig-name descname"><span class="pre">program_2019</span></span><a class="headerlink" href="#srd.ei.programs.program_2019" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Version du programme de 2019.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="srd.ei.programs.program_2020">
-<em class="property">class </em><code class="sig-prename descclassname">srd.ei.programs.</code><code class="sig-name descname">program_2020</code><a class="headerlink" href="#srd.ei.programs.program_2020" title="Lien permanent vers cette définition">¶</a></dt>
+<dt class="sig sig-object py" id="srd.ei.programs.program_2020">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.ei.programs.</span></span><span class="sig-name descname"><span class="pre">program_2020</span></span><a class="headerlink" href="#srd.ei.programs.program_2020" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Version du programme de 2020.</p>
 </dd></dl>
 
+<dl class="py class">
+<dt class="sig sig-object py" id="srd.ei.programs.program_2021">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.ei.programs.</span></span><span class="sig-name descname"><span class="pre">program_2021</span></span><a class="headerlink" href="#srd.ei.programs.program_2021" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Version du programme de 2021 (excluant les paramètres en lien avec la COVID-19).</p>
+</dd></dl>
+
+<div class="toggle-header docutils container">
+<p><strong>- compute_benefits_covid()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.ei.programs.program_2021.compute_benefits_covid">
+<span class="sig-prename descclassname"><span class="pre">srd.ei.programs.program_2021.</span></span><span class="sig-name descname"><span class="pre">compute_benefits_covid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ei.programs.program_2021.compute_benefits_covid" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction pour calculer les prestations de l’assurance emploi
+qui remplaceraient la PCU (contrefactuel).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>montant de la prestation</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 </div>
 </div>
 <div class="section" id="regime-quebecois-d-assurance-parentale">
@@ -330,12 +442,12 @@
 <p>Le Régime québécois d’assurance parentale existant au Québec est pris en charge par le module <em>qpip</em>. Ce module contient un gabarit que nous documentons ci-dessous, ainsi que des classes dérivées spécifiques pour chaque année.</p>
 <p>La fonction <em>program</em> permet de choisir l’année du programme et ira tirer une instance du programme pour cette année. L’instance est retournée par la fonction.</p>
 <dl class="py function">
-<dt id="srd.qpip.program">
-<code class="sig-prename descclassname">srd.qpip.</code><code class="sig-name descname">program</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">year</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.qpip.program" title="Lien permanent vers cette définition">¶</a></dt>
+<dt class="sig sig-object py" id="srd.qpip.program">
+<span class="sig-prename descclassname"><span class="pre">srd.qpip.</span></span><span class="sig-name descname"><span class="pre">program</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">year</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.qpip.program" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui permet de sélectionner le programme par année.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>year</strong> (<em>int</em>) – année (présentement entre 2016 et 2020)</p>
+<dd class="field-odd"><p><strong>year</strong> (<em>int</em>) – année (présentement entre 2016 et 2021)</p>
 </dd>
 <dt class="field-even">Renvoie</dt>
 <dd class="field-even"><p>Une instance de la classe de l’année sélectionnée.</p>
@@ -353,13 +465,13 @@
 <p>Nous utilisons un gabarit afin de créer les programmes chaque année. Quand le programme change seulement au niveau des paramètres d’une année à l’autre, nous irons chercher seulement les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou à en ajouter de nouvelles). L’avantage des classes dérivées est de ne pas avoir à répéter toutes les fonctions d’une année à l’autre si celles-ci n’ont pas changé.</p>
 <p>Nous reproduisons ici la spécification du gabarit. Il est basé sur le programme en vigueur en 2016.</p>
 <dl class="py class">
-<dt id="srd.qpip.template">
-<em class="property">class </em><code class="sig-prename descclassname">srd.qpip.</code><code class="sig-name descname">template</code><a class="headerlink" href="#srd.qpip.template" title="Lien permanent vers cette définition">¶</a></dt>
+<dt class="sig sig-object py" id="srd.qpip.template">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.qpip.</span></span><span class="sig-name descname"><span class="pre">template</span></span><a class="headerlink" href="#srd.qpip.template" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Régime québécois d’assurance parentale (RQAP).</p>
 <p>Ce gabarit sert pour l’instant à calculer les cotisations au RQAP.</p>
 <dl class="py method">
-<dt id="srd.qpip.template.contrib">
-<code class="sig-name descname">contrib</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.qpip.template.contrib" title="Lien permanent vers cette définition">¶</a></dt>
+<dt class="sig sig-object py" id="srd.qpip.template.contrib">
+<span class="sig-name descname"><span class="pre">contrib</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.qpip.template.contrib" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction pour calculer les cotisations à l’assurance parentale.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -383,33 +495,39 @@
 <div class="section" id="id3">
 <h3>Fonctions spécifiques ou modifiées par année<a class="headerlink" href="#id3" title="Lien permanent vers ce titre">¶</a></h3>
 <dl class="py class">
-<dt id="srd.qpip.programs.program_2016">
-<em class="property">class </em><code class="sig-prename descclassname">srd.qpip.programs.</code><code class="sig-name descname">program_2016</code><a class="headerlink" href="#srd.qpip.programs.program_2016" title="Lien permanent vers cette définition">¶</a></dt>
+<dt class="sig sig-object py" id="srd.qpip.programs.program_2016">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.qpip.programs.</span></span><span class="sig-name descname"><span class="pre">program_2016</span></span><a class="headerlink" href="#srd.qpip.programs.program_2016" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Version du programme de 2016.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="srd.qpip.programs.program_2017">
-<em class="property">class </em><code class="sig-prename descclassname">srd.qpip.programs.</code><code class="sig-name descname">program_2017</code><a class="headerlink" href="#srd.qpip.programs.program_2017" title="Lien permanent vers cette définition">¶</a></dt>
+<dt class="sig sig-object py" id="srd.qpip.programs.program_2017">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.qpip.programs.</span></span><span class="sig-name descname"><span class="pre">program_2017</span></span><a class="headerlink" href="#srd.qpip.programs.program_2017" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Version du programme de 2017.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="srd.qpip.programs.program_2018">
-<em class="property">class </em><code class="sig-prename descclassname">srd.qpip.programs.</code><code class="sig-name descname">program_2018</code><a class="headerlink" href="#srd.qpip.programs.program_2018" title="Lien permanent vers cette définition">¶</a></dt>
+<dt class="sig sig-object py" id="srd.qpip.programs.program_2018">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.qpip.programs.</span></span><span class="sig-name descname"><span class="pre">program_2018</span></span><a class="headerlink" href="#srd.qpip.programs.program_2018" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Version du programme de 2018.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="srd.qpip.programs.program_2019">
-<em class="property">class </em><code class="sig-prename descclassname">srd.qpip.programs.</code><code class="sig-name descname">program_2019</code><a class="headerlink" href="#srd.qpip.programs.program_2019" title="Lien permanent vers cette définition">¶</a></dt>
+<dt class="sig sig-object py" id="srd.qpip.programs.program_2019">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.qpip.programs.</span></span><span class="sig-name descname"><span class="pre">program_2019</span></span><a class="headerlink" href="#srd.qpip.programs.program_2019" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Version du programme de 2019.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="srd.qpip.programs.program_2020">
-<em class="property">class </em><code class="sig-prename descclassname">srd.qpip.programs.</code><code class="sig-name descname">program_2020</code><a class="headerlink" href="#srd.qpip.programs.program_2020" title="Lien permanent vers cette définition">¶</a></dt>
+<dt class="sig sig-object py" id="srd.qpip.programs.program_2020">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.qpip.programs.</span></span><span class="sig-name descname"><span class="pre">program_2020</span></span><a class="headerlink" href="#srd.qpip.programs.program_2020" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Version du programme de 2020.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="srd.qpip.programs.program_2021">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.qpip.programs.</span></span><span class="sig-name descname"><span class="pre">program_2021</span></span><a class="headerlink" href="#srd.qpip.programs.program_2021" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Version du programme de 2021.</p>
 </dd></dl>
 
 </div>
@@ -430,7 +548,7 @@
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2020, Équipe CREEi.
+        &#169; Copyright 2022, Équipe CREEi.
 
     </p>
   </div>

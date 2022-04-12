@@ -13,6 +13,9 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/contentui.css" type="text/css" />
 
   
   
@@ -29,11 +32,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
         <script src="_static/translations.js"></script>
+        <script src="_static/contentui.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -87,27 +91,109 @@
               
             
             
-              <p class="caption"><span class="caption-text">Menu:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Menu:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Premiers pas avec le SRD</a></li>
-<li class="toctree-l1"><a class="reference internal" href="actors.html">Les acteurs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="federal.html">Impôt fédéral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Premiers pas avec le SRD</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#installation-du-srd">Installation du SRD</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#installation-alternative">Installation alternative</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="actors.html">Les acteurs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="actors.html#personnes">Personnes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actors.html#dependants-enfant-ou-proche-a-charge">Dépendants (enfant ou proche à charge)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actors.html#menages">Ménages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="federal.html">Impôt fédéral</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="federal.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="federal.html#gabarit-de-declaration">Gabarit de déclaration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="federal.html#fonctions-specifiques-ou-modifiees">Fonctions spécifiques ou modifiées</a></li>
+</ul>
+</li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Impôt du Québec</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#survol">Survol</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#gabarit-du-rapport">Gabarit du rapport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gabarit-de-declaration">Gabarit de déclaration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="ontario.html">Impôt de l’Ontario</a></li>
-<li class="toctree-l1"><a class="reference internal" href="oas.html">Pension de la sécurité de la vieillesse</a></li>
-<li class="toctree-l1"><a class="reference internal" href="payroll.html">Cotisations sociales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="assistance.html">Aide sociale</a></li>
-<li class="toctree-l1"><a class="reference internal" href="covid.html">Prestations liées à la COVID-19</a></li>
-<li class="toctree-l1"><a class="reference internal" href="calculators.html">Calculateur de revenu disponible</a></li>
-<li class="toctree-l1"><a class="reference internal" href="TutorialFed.html">Exemple de calcul de l’impôt fédéral</a></li>
-<li class="toctree-l1"><a class="reference internal" href="TutorialCalculator.html">Exemple de calcul du revenu disponible</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ontario.html">Impôt de l’Ontario</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ontario.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ontario.html#gabarit-du-rapport">Gabarit du rapport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ontario.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="oas.html">Pension de la sécurité de la vieillesse</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="oas.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oas.html#gabarit-du-programme">Gabarit du programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oas.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="payroll.html">Cotisations sociales</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="payroll.html#assurance-emploi">Assurance emploi</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#survol">Survol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#gabarit-du-programme">Gabarit du programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="payroll.html#regime-quebecois-d-assurance-parentale">Régime québécois d’assurance parentale</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#id1">Survol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#id2">Gabarit du programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#id3">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="assistance.html">Aide sociale</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="assistance.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assistance.html#gabarit-du-programme">Gabarit du programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assistance.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="covid.html">Prestations liées à la COVID-19</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="covid.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="covid.html#gabarit-du-programme">Gabarit du programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="covid.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="calculators.html">Calculateur de revenu disponible</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="calculators.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calculators.html#les-fonctions-du-calculateur">Les fonctions du calculateur</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="comparaison.html">Comparaisons avec le MFQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="comparaison.html#personne-celibataire-sans-enfant">Personne célibataire (sans enfant)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comparaison.html#personne-monoparentale">Personne monoparentale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comparaison.html#couple-sans-enfant">Couple sans enfant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comparaison.html#couple-avec-enfant">Couple avec enfant</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="TutorialFed.html">Exemple de calcul de l’impôt fédéral</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="TutorialFed.html#importation-du-package">Importation du package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TutorialFed.html#initialisation-dun-menage">Initialisation d’un ménage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TutorialFed.html#calcul-de-limpot-federal">Calcul de l’impôt fédéral</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TutorialFed.html#experiences">Expériences</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="TutorialCalculator.html">Exemple de calcul du revenu disponible</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="TutorialCalculator.html#construction-du-menage">Construction du ménage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TutorialCalculator.html#le-calculateur">Le calculateur</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TutorialCalculator.html#calcul-du-revenu-apres-impots-et-du-revenu-disponible">Calcul du revenu après impôts et du revenu disponible</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialChangeParameters.html">Exemple de changement de paramètre</a></li>
-<li class="toctree-l1"><a class="reference internal" href="credits.html">Contacts et droits d’utilisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits.html">Contacts et droits d’utilisation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="credits.html#liste-d-envoi">Liste d’envoi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="credits.html#personne-contact">Personne-contact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="credits.html#contributeurs">Contributeurs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="credits.html#principaux">Principaux</a></li>
+<li class="toctree-l3"><a class="reference internal" href="credits.html#id1">2020</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="credits.html#droits-d-utilisation">Droits d’utilisation</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -182,14 +268,14 @@
 <div class="section" id="survol">
 <h2>Survol<a class="headerlink" href="#survol" title="Lien permanent vers ce titre">¶</a></h2>
 <p>L’impôt du Québec est pris en charge par le module <em>quebec</em>. Ce module contient un gabarit que nous documentons ci-dessous ainsi que des classes dérivées spécifiques pour chaque année.</p>
-<p>La fonction <em>form</em> permet de choisir l’année du rapport d’impôt et ira tirer une instance du rapport pour cette année. L’instance est retournée par la fonction.</p>
+<p>La fonction <em>form</em> permet de choisir l’année de la déclaration de revenus et ira tirer une instance de la déclaration pour cette année. L’instance est retournée par la fonction.</p>
 <dl class="py function">
-<dt id="srd.quebec.form">
-<code class="sig-prename descclassname">srd.quebec.</code><code class="sig-name descname">form</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">year</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form" title="Lien permanent vers cette définition">¶</a></dt>
+<dt class="sig sig-object py" id="srd.quebec.form">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.</span></span><span class="sig-name descname"><span class="pre">form</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">year</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui permet de sélectionner le formulaire d’impôt provincial par année.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>year</strong> (<em>int</em>) – année (présentement entre 2016 et 2020)</p>
+<dd class="field-odd"><p><strong>year</strong> (<em>int</em>) – année (présentement entre 2016 et 2021)</p>
 </dd>
 <dt class="field-even">Renvoie</dt>
 <dd class="field-even"><p>Une instance du formulaire pour l’année sélectionnée.</p>
@@ -200,21 +286,57 @@
 </dl>
 </dd></dl>
 
+<p>Les mesures fiscales provinciales prises en compte dans ce module sont les suivantes:</p>
+<ul class="simple">
+<li><p>L’impôt des particuliers</p></li>
+<li><p>Les déductions pour les cotisations sociales (RRQ/RPC et RQAP)</p></li>
+<li><p>La déduction pour travailleur</p></li>
+<li><p>Les déductions pour pertes en capital nettes d’autres années et pour gain en capital exonéré</p></li>
+<li><p>Le crédit d’impôt non-remboursable pour dividendes</p></li>
+<li><p>Le crédit d’impôt non-remboursable en raison de l’âge, pour personne vivant seule et pour revenu de retraite</p></li>
+<li><p>Le crédit d’impôt non-remboursable pour la prolongation de carrière</p></li>
+<li><p>Le crédit d’impôt non-remboursable pour cotisations syndicales et professionnelles</p></li>
+<li><p>Le crédit d’impôt non-remboursable pour dons</p></li>
+<li><p>Le crédit d’impôt non-remboursable pour invalidité</p></li>
+<li><p>Le transfert de crédits non-remboursables d’un conjoint à l’autre</p></li>
+<li><p>Les crédits d’impôt pour frais médicaux (remboursable et non-remboursable)</p></li>
+<li><p>Le crédit d’impôt remboursable pour solidarité</p></li>
+<li><p>Le crédit d’impôt remboursable pour maintien à domicile des aînés</p></li>
+<li><p>Le crédit d’impôt remboursable pour soutien aux ainés</p></li>
+<li><p>Le crédit d’impôt remboursable pour frais de garde d’enfant</p></li>
+<li><p>Le crédit d’impôt remboursable accordant une allocation aux familles</p></li>
+<li><p>Le crédit d’impôt remboursable relatif à la prime au travail</p></li>
+<li><p>La cotisation au régime d’assurance médicaments du Québec</p></li>
+<li><p>La cotisation au Fonds des services de santé (FSS)</p></li>
+<li><p>La contribution santé (2016)</p></li>
+<li><p>La contribution additionnelle pour les services de garde éducatifs à l’enfance subventionnés (2016 à 2018)</p></li>
+<li><p>Les crédits d’impôt remboursable attribuant une prestation exceptionnelle et un montant ponctuel pour pallier la hausse du coût de la vie</p></li>
+<li><p>Le crédit d’impôt bouclier fiscal</p></li>
+</ul>
+<p>La liste exhaustive des éléments calculés dans le module est présentée dans la section ci-dessous.</p>
 </div>
-<div class="section" id="gabarit-du-rapport">
-<h2>Gabarit du rapport<a class="headerlink" href="#gabarit-du-rapport" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Nous utilisons un gabarit afin de créer les rapports chaque année. Quand l’impôt change seulement au niveau des paramètres d’une année à l’autre, le rapport ira seulement chercher les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou à en ajouter de nouvelles). Toutes les modifications de fonction survenues après l’année 2016 sont indiquées ci-dessous.</p>
-<p>Nous reproduisons ici la spécification du gabarit. Il est basé sur le rapport de 2016.</p>
-<dl class="py class">
-<dt id="srd.quebec.template">
-<em class="property">class </em><code class="sig-prename descclassname">srd.quebec.</code><code class="sig-name descname">template</code><a class="headerlink" href="#srd.quebec.template" title="Lien permanent vers cette définition">¶</a></dt>
+<div class="section" id="gabarit-de-declaration">
+<h2>Gabarit de déclaration<a class="headerlink" href="#gabarit-de-declaration" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Nous utilisons un gabarit afin de créer les déclarations chaque année. Quand l’impôt change seulement au niveau des paramètres d’une année à l’autre, la déclaration ira seulement chercher les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou à en ajouter de nouvelles). Toutes les modifications de fonction survenues après l’année 2016 sont indiquées ci-dessous.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.template">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.</span></span><span class="sig-name descname"><span class="pre">template</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Gabarit pour l’impôt provincial québécois.</p>
-<dl class="py method">
-<dt id="srd.quebec.template.file">
-<code class="sig-name descname">file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.file" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui permet de calculer les impôts.</p>
-<p>Cette fonction est celle qui calcule les déductions,
-les crédits non-remboursables et remboursables et les impôts nets.</p>
+</dd></dl>
+
+<div class="line-block">
+<div class="line">Nous reproduisons ici la spécification du gabarit. Il est basé sur la déclaration de 2016.</div>
+<div class="line">(Cliquez sur le nom pour afficher les détails)</div>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- file()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2020.file">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2020.</span></span><span class="sig-name descname"><span class="pre">file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2020.file" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui permet de calculer l’impôt.</p>
+<p>Cette fonction est celle qui calcule les déductions, les crédits non-remboursables et remboursables et l’impôt net.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
@@ -222,9 +344,14 @@ les crédits non-remboursables et remboursables et les impôts nets.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.quebec.template.calc_gross_income">
-<code class="sig-name descname">calc_gross_income</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.calc_gross_income" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- calc_gross_income()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2020.calc_gross_income">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2020.</span></span><span class="sig-name descname"><span class="pre">calc_gross_income</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2020.calc_gross_income" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le revenu total (brut).</p>
 <p>Cette fonction correspond au revenu total d’une personne aux fins de l’impôt.</p>
 <dl class="field-list simple">
@@ -234,9 +361,14 @@ les crédits non-remboursables et remboursables et les impôts nets.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.quebec.template.calc_net_income">
-<code class="sig-name descname">calc_net_income</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.calc_net_income" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- calc_net_income()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2020.calc_net_income">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2020.</span></span><span class="sig-name descname"><span class="pre">calc_net_income</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2020.calc_net_income" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le revenu net au sens de l’impôt.</p>
 <p>Cette fonction correspond au revenu net d’une personne aux fins de l’impôt. On y soustrait les déductions.</p>
 <dl class="field-list simple">
@@ -246,9 +378,14 @@ les crédits non-remboursables et remboursables et les impôts nets.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.quebec.template.calc_taxable_income">
-<code class="sig-name descname">calc_taxable_income</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.calc_taxable_income" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- calc_taxable_income()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2020.calc_taxable_income">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2020.</span></span><span class="sig-name descname"><span class="pre">calc_taxable_income</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2020.calc_taxable_income" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le revenu imposable au sens de l’impôt.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -257,9 +394,14 @@ les crédits non-remboursables et remboursables et les impôts nets.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.quebec.template.calc_deduc_gross_income">
-<code class="sig-name descname">calc_deduc_gross_income</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.calc_deduc_gross_income" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- calc_deduc_gross_income()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2020.calc_deduc_gross_income">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2020.</span></span><span class="sig-name descname"><span class="pre">calc_deduc_gross_income</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2020.calc_deduc_gross_income" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule les déductions.</p>
 <p>Cette fonction fait la somme des différentes déductions du contribuable.</p>
 <dl class="field-list simple">
@@ -269,27 +411,15 @@ les crédits non-remboursables et remboursables et les impôts nets.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.quebec.template.work_deduc">
-<code class="sig-name descname">work_deduc</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.work_deduc" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>-  work_deduc()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2020.work_deduc">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2020.</span></span><span class="sig-name descname"><span class="pre">work_deduc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2020.work_deduc" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule la déduction pour travailleur.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
-</dd>
-<dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>Montant de la déduction</p>
-</dd>
-<dt class="field-odd">Type renvoyé</dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="srd.quebec.template.cpp_qpip_deduction">
-<code class="sig-name descname">cpp_qpip_deduction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.cpp_qpip_deduction" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Déduction pour les cotisations RRQ / RPC et au RQAP pour le travail autonome.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
@@ -303,11 +433,38 @@ les crédits non-remboursables et remboursables et les impôts nets.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.quebec.template.calc_deduc_net_income">
-<code class="sig-name descname">calc_deduc_net_income</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.calc_deduc_net_income" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- cpp_qpip_deduction()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2020.cpp_qpip_deduction">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2020.</span></span><span class="sig-name descname"><span class="pre">cpp_qpip_deduction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2020.cpp_qpip_deduction" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Déduction pour les cotisations RRQ/RPC et au RQAP pour le travail autonome.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant de la déduction.</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- calc_deduc_net_income()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2020.calc_deduc_net_income">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2020.</span></span><span class="sig-name descname"><span class="pre">calc_deduc_net_income</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2020.calc_deduc_net_income" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule les déductions suivantes:
-1. Pertes en capital net des autres années;
+1. Pertes en capital nettes d’autres années;
 2. Déduction pour gain en capital exonéré.</p>
 <p>Permet une déduction maximale égale aux gains en capital taxables nets.</p>
 <dl class="field-list simple">
@@ -317,9 +474,14 @@ les crédits non-remboursables et remboursables et les impôts nets.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.quebec.template.calc_tax">
-<code class="sig-name descname">calc_tax</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.calc_tax" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- calc_tax()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2020.calc_tax">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2020.</span></span><span class="sig-name descname"><span class="pre">calc_tax</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2020.calc_tax" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule l’impôt à payer selon la table d’impôt.</p>
 <p>Cette fonction utilise la table d’impôt de l’année en cours.</p>
 <dl class="field-list simple">
@@ -329,9 +491,14 @@ les crédits non-remboursables et remboursables et les impôts nets.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.quebec.template.calc_non_refundable_tax_credits">
-<code class="sig-name descname">calc_non_refundable_tax_credits</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.calc_non_refundable_tax_credits" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- calc_non_refundable_tax_credits()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2020.calc_non_refundable_tax_credits">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2020.</span></span><span class="sig-name descname"><span class="pre">calc_non_refundable_tax_credits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2020.calc_non_refundable_tax_credits" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule les crédits d’impôt non-remboursables.</p>
 <p>Cette fonction fait la somme de tous les crédits d’impôt modélisés.</p>
 <dl class="field-list simple">
@@ -344,9 +511,14 @@ les crédits non-remboursables et remboursables et les impôts nets.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.quebec.template.get_age_cred">
-<code class="sig-name descname">get_age_cred</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.get_age_cred" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- get_age_cred()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2020.get_age_cred">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2020.</span></span><span class="sig-name descname"><span class="pre">get_age_cred</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2020.get_age_cred" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit d’impôt non-remboursable en raison de l’âge.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -361,9 +533,14 @@ les crédits non-remboursables et remboursables et les impôts nets.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.quebec.template.get_living_alone_cred">
-<code class="sig-name descname">get_living_alone_cred</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.get_living_alone_cred" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- get_living_alone_cred()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2020.get_living_alone_cred">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2020.</span></span><span class="sig-name descname"><span class="pre">get_living_alone_cred</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2020.get_living_alone_cred" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit d’impôt non-remboursable pour personne vivant seule.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -381,9 +558,14 @@ les crédits non-remboursables et remboursables et les impôts nets.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.quebec.template.get_pension_cred">
-<code class="sig-name descname">get_pension_cred</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.get_pension_cred" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- get_pension_cred()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2020.get_pension_cred">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2020.</span></span><span class="sig-name descname"><span class="pre">get_pension_cred</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2020.get_pension_cred" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit d’impôt non-remboursable pour revenu de retraite.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -398,9 +580,14 @@ les crédits non-remboursables et remboursables et les impôts nets.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.quebec.template.get_nrtcred_clawback">
-<code class="sig-name descname">get_nrtcred_clawback</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.get_nrtcred_clawback" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- get_nrtcred_clawback()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2020.get_nrtcred_clawback">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2020.</span></span><span class="sig-name descname"><span class="pre">get_nrtcred_clawback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2020.get_nrtcred_clawback" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule la récupération de la somme des crédits non-remboursables 1. en raison de l’âge; 2. pour personne vivant seule; et 3. pour revenu de retraite.</p>
 <p>Cette fonction utilise le revenu net du ménage.</p>
 <dl class="field-list simple">
@@ -419,9 +606,14 @@ les crédits non-remboursables et remboursables et les impôts nets.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.quebec.template.get_exp_worker_cred">
-<code class="sig-name descname">get_exp_worker_cred</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.get_exp_worker_cred" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- get_exp_worker_cred()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2020.get_exp_worker_cred">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2020.</span></span><span class="sig-name descname"><span class="pre">get_exp_worker_cred</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2020.get_exp_worker_cred" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit d’impôt non-remboursable pour les travailleurs d’expérience. Depuis 2019, renommé crédit d’impôt pour la prolongation de carrière.</p>
 <p>On fait l’hypothèse que les travailleurs de 65 ans sont nés le 1er janvier de l’année en cours. (En réalité, les revenus gagnés avant et après le 65e anniversaire sont soumis à des traitements différents, ce qui complique beaucoup le modèle mais change peu les résultats.)</p>
 <dl class="field-list simple">
@@ -437,16 +629,21 @@ les crédits non-remboursables et remboursables et les impôts nets.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.quebec.template.get_donations_cred">
-<code class="sig-name descname">get_donations_cred</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.get_donations_cred" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui calcule le crédit d’impôt non-remboursable pour dons.</p>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- get_donations_cred()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2020.get_donations_cred">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2020.</span></span><span class="sig-name descname"><span class="pre">get_donations_cred</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2020.get_donations_cred" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui remplace dans le gabarit (classe <em>srd.quebec.template</em>) la fonction du même nom, et calcule le crédit d’impôt non-remboursable pour dons.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
 </dd>
 <dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>Montant du crédit.</p>
+<dd class="field-even"><p>Montant du crédit</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
 <dd class="field-odd"><p>float</p>
@@ -454,9 +651,14 @@ les crédits non-remboursables et remboursables et les impôts nets.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.quebec.template.get_union_dues_cred">
-<code class="sig-name descname">get_union_dues_cred</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.get_union_dues_cred" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- get_union_dues_cred()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2020.get_union_dues_cred">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2020.</span></span><span class="sig-name descname"><span class="pre">get_union_dues_cred</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2020.get_union_dues_cred" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit d’impôt non-remboursable pour cotisations syndicales et professionnelles.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -471,9 +673,14 @@ les crédits non-remboursables et remboursables et les impôts nets.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.quebec.template.get_disabled_cred">
-<code class="sig-name descname">get_disabled_cred</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.get_disabled_cred" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- get_disabled_cred()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2020.get_disabled_cred">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2020.</span></span><span class="sig-name descname"><span class="pre">get_disabled_cred</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2020.get_disabled_cred" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit d’impôt pour invalidité.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -488,9 +695,14 @@ les crédits non-remboursables et remboursables et les impôts nets.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.quebec.template.get_med_exp_cred">
-<code class="sig-name descname">get_med_exp_cred</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.get_med_exp_cred" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- get_med_exp_cred()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2020.get_med_exp_cred">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2020.</span></span><span class="sig-name descname"><span class="pre">get_med_exp_cred</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2020.get_med_exp_cred" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit d’impôt non-remboursable pour frais médicaux.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -508,9 +720,14 @@ les crédits non-remboursables et remboursables et les impôts nets.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.quebec.template.div_tax_credit">
-<code class="sig-name descname">div_tax_credit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.div_tax_credit" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- div_tax_credit()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2020.div_tax_credit">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2020.</span></span><span class="sig-name descname"><span class="pre">div_tax_credit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2020.div_tax_credit" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit d’impôt pour dividendes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -519,9 +736,14 @@ les crédits non-remboursables et remboursables et les impôts nets.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.quebec.template.calc_refundable_tax_credits">
-<code class="sig-name descname">calc_refundable_tax_credits</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.calc_refundable_tax_credits" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- calc_refundable_tax_credits()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2020.calc_refundable_tax_credits">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2020.</span></span><span class="sig-name descname"><span class="pre">calc_refundable_tax_credits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2020.calc_refundable_tax_credits" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui fait la somme des crédits remboursables.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -533,9 +755,14 @@ les crédits non-remboursables et remboursables et les impôts nets.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.quebec.template.chcare">
-<code class="sig-name descname">chcare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.chcare" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- chcare()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2020.chcare">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2020.</span></span><span class="sig-name descname"><span class="pre">chcare</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2020.chcare" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit d’impôt remboursable pour frais de garde.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -556,9 +783,14 @@ de la situation familiale (couple/monoparental) et du revenu.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.quebec.template.witb">
-<code class="sig-name descname">witb</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.witb" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- witb()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2020.witb">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2020.</span></span><span class="sig-name descname"><span class="pre">witb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2020.witb" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule la prime au travail.</p>
 <p>Le calcul est fait en tenant compte du revenu de travail,
 du revenu du ménage et de la présence d’un enfant à charge.
@@ -580,9 +812,14 @@ Pour les couples, la prime est partagée au prorata des revenus de travail.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.quebec.template.home_support">
-<code class="sig-name descname">home_support</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.home_support" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- home_support()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2020.home_support">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2020.</span></span><span class="sig-name descname"><span class="pre">home_support</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2020.home_support" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit d’impôt pour maintien à domicile des aînés.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -600,9 +837,14 @@ Pour les couples, la prime est partagée au prorata des revenus de travail.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.quebec.template.med_exp">
-<code class="sig-name descname">med_exp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.med_exp" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- med_exp()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2020.med_exp">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2020.</span></span><span class="sig-name descname"><span class="pre">med_exp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2020.med_exp" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit remboursable pour frais médicaux.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -620,11 +862,16 @@ Pour les couples, la prime est partagée au prorata des revenus de travail.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.quebec.template.ccap">
-<code class="sig-name descname">ccap</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.ccap" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui calcule l’Allocation famille (qui s’appelait le Soutien aux enfants avant 2019).</p>
-<p>Cette fonction calcule le montant reçu en fonction du nombre d’enfants, de la situation familiale (couple/monoparental) et du revenu.</p>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- ccap()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2020.ccap">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2020.</span></span><span class="sig-name descname"><span class="pre">ccap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2020.ccap" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule le crédit d’impôt remboursable accordant une allocation aux familles (CIRAAF) (qui s’appelait le Soutien aux enfants avant 2019). Seules les composantes suivantes sont modélisées : l’allocation famille et le supplément pour l’achat de fournitures scolaires.</p>
+<p>Cette fonction calcule le montant reçu selon le nombre d’enfants, la situation familiale (couple/monoparental) et le revenu.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">
@@ -633,7 +880,7 @@ Pour les couples, la prime est partagée au prorata des revenus de travail.</p>
 </ul>
 </dd>
 <dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>Montant de l’Allocation famille.</p>
+<dd class="field-even"><p>Montant du crédit d’impôt remboursable accordant une allocation aux familles (CIRAAF).</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
 <dd class="field-odd"><p>float</p>
@@ -641,10 +888,16 @@ Pour les couples, la prime est partagée au prorata des revenus de travail.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.quebec.template.calc_contributions">
-<code class="sig-name descname">calc_contributions</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.calc_contributions" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction fait la somme des contributions du contribuable. La contribution santé a été abolie en 2017; la contribution additionnelle pour les services de garde éducatifs à l’enfance subventionnés a été abolie en 2019.</p>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- calc_contributions()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2020.calc_contributions">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2020.</span></span><span class="sig-name descname"><span class="pre">calc_contributions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2020.calc_contributions" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui remplace la fonction antérieure du même nom, et calcule les contributions.</p>
+<p>Cette fonction fait la somme des contributions du contribuable. La contribution additionnelle pour service de garde éducatifs à l’enfance subventionnés est abolie en 2019.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">
@@ -655,9 +908,14 @@ Pour les couples, la prime est partagée au prorata des revenus de travail.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.quebec.template.health_contrib">
-<code class="sig-name descname">health_contrib</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.health_contrib" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- health_contrib()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2020.health_contrib">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2020.</span></span><span class="sig-name descname"><span class="pre">health_contrib</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2020.health_contrib" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule la contribution santé.</p>
 <p>Cette fonction calcule le montant dû en fonction du revenu net. La contribution santé a été abolie en 2017.</p>
 <dl class="field-list simple">
@@ -670,9 +928,14 @@ Pour les couples, la prime est partagée au prorata des revenus de travail.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.quebec.template.add_contrib_subsid_chcare">
-<code class="sig-name descname">add_contrib_subsid_chcare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.add_contrib_subsid_chcare" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- add_contrib_subsid_chcare()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2020.add_contrib_subsid_chcare">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2020.</span></span><span class="sig-name descname"><span class="pre">add_contrib_subsid_chcare</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2020.add_contrib_subsid_chcare" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Contribution additionnelle pour les services de garde éducatifs à l’enfance subventionnés.</p>
 <p>Cette fonction calcule le montant dû en fonction du nombre de jours de garde et du revenu familial. Chaque conjoint paie en fonction du nombre de jours de garde sur son relevé 30. La contribution a été abolie en 2019.</p>
 <dl class="field-list simple">
@@ -685,9 +948,14 @@ Pour les couples, la prime est partagée au prorata des revenus de travail.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.quebec.template.solidarity">
-<code class="sig-name descname">solidarity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template.solidarity" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- solidarity()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2020.solidarity">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2020.</span></span><span class="sig-name descname"><span class="pre">solidarity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2020.solidarity" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le crédit d’impôt pour solidarité.</p>
 <p>Cette fonction calcule le montant reçu par chacun des conjoints en fonction du revenu familial de l’année fiscale courante (en réalité, le calcul est basé sur le revenu de l’année précédente).</p>
 <dl class="field-list simple">
@@ -706,30 +974,128 @@ Pour les couples, la prime est partagée au prorata des revenus de travail.</p>
 </dl>
 </dd></dl>
 
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- drug_insurance_contrib()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2020.drug_insurance_contrib">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2020.</span></span><span class="sig-name descname"><span class="pre">drug_insurance_contrib</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2020.drug_insurance_contrib" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui sert à calculer la cotisation au régime d’assurance médicaments du Québec.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
+</dd>
+</dl>
 </dd></dl>
 
-<p>Le gabarit collige les résultats dans un formulaire d’impôt qui sera rattaché à la personne sous la forme d’un dictionnaire Python. Cette procédure permet de différencier les attributs d’une personne qui font partie de son profil des variables générées par l’impôt. C’est la fonction create_return() qui fait ce travail.</p>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- contrib_hsf()</strong></p>
+</div>
+<div class="toggle-content docutils container">
 <dl class="py function">
-<dt id="srd.quebec.create_return">
-<code class="sig-prename descclassname">srd.quebec.</code><code class="sig-name descname">create_return</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.create_return" title="Lien permanent vers cette définition">¶</a></dt>
+<dt class="sig sig-object py" id="srd.quebec.form_2020.contrib_hsf">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2020.</span></span><span class="sig-name descname"><span class="pre">contrib_hsf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2020.contrib_hsf" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule la cotisation au Fonds des services de santé (FSS).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- get_spouse_transfer()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2020.get_spouse_transfer">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2020.</span></span><span class="sig-name descname"><span class="pre">get_spouse_transfer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2020.get_spouse_transfer" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui récupère le surplus des crédits non rembousables tranferables au conjoint (s’il y lieu).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- cost_of_living()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2020.cost_of_living">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2020.</span></span><span class="sig-name descname"><span class="pre">cost_of_living</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2020.cost_of_living" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule le crédit d’impôt remboursable attribuant une prestation exceptionnelle pour pallier la hausse du coût de la vie et le crédit d’impôt remboursable attribuant un montant ponctuel pour pallier la hausse du coût de la vie.</p>
+<blockquote>
+<div><p>En vigueur en 2021 seulement.</p>
+<dl class="simple">
+<dt>p: Person</dt><dd><p>instance de la classe Person</p>
+</dd>
+<dt>hh: Hhold</dt><dd><p>instance de la classe Hhold</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- tax_shield()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2020.tax_shield">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2020.</span></span><span class="sig-name descname"><span class="pre">tax_shield</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2020.tax_shield" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule le crédit d’impôt Bouclier fiscal.</p>
+<p>La part de ce crédit liée à la prime au travail est partagée proportionnellement au revenu des conjoints par rapport au revenu famillial.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Le gabarit collige les résultats dans un formulaire d’impôt qui sera rattaché à la personne sous la forme d’un dictionnaire Python. Cette procédure permet de différencier les attributs d’une personne qui font partie de son profil des variables générées par l’impôt. C’est la fonction <em>create_return()</em> qui fait ce travail.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.create_return">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.</span></span><span class="sig-name descname"><span class="pre">create_return</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.create_return" title="Lien permanent vers cette définition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
 <div class="section" id="fonctions-specifiques-ou-modifiees-par-annee">
 <h2>Fonctions spécifiques ou modifiées par année<a class="headerlink" href="#fonctions-specifiques-ou-modifiees-par-annee" title="Lien permanent vers ce titre">¶</a></h2>
+<p><strong>2016</strong></p>
 <dl class="py class">
-<dt id="srd.quebec.form_2016">
-<em class="property">class </em><code class="sig-prename descclassname">srd.quebec.</code><code class="sig-name descname">form_2016</code><a class="headerlink" href="#srd.quebec.form_2016" title="Lien permanent vers cette définition">¶</a></dt>
+<dt class="sig sig-object py" id="srd.quebec.form_2016">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.quebec.</span></span><span class="sig-name descname"><span class="pre">form_2016</span></span><a class="headerlink" href="#srd.quebec.form_2016" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Formulaire d’impôt de 2016.</p>
 </dd></dl>
 
+<p><strong>2017</strong></p>
 <dl class="py class">
-<dt id="srd.quebec.form_2017">
-<em class="property">class </em><code class="sig-prename descclassname">srd.quebec.</code><code class="sig-name descname">form_2017</code><a class="headerlink" href="#srd.quebec.form_2017" title="Lien permanent vers cette définition">¶</a></dt>
+<dt class="sig sig-object py" id="srd.quebec.form_2017">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.quebec.</span></span><span class="sig-name descname"><span class="pre">form_2017</span></span><a class="headerlink" href="#srd.quebec.form_2017" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Formulaire d’impôt de 2017.</p>
-<dl class="py method">
-<dt id="srd.quebec.form_2017.calc_contributions">
-<code class="sig-name descname">calc_contributions</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2017.calc_contributions" title="Lien permanent vers cette définition">¶</a></dt>
+</dd></dl>
+
+<div class="toggle-header docutils container">
+<p><strong>- calc_contributions()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2017.calc_contributions">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2017.</span></span><span class="sig-name descname"><span class="pre">calc_contributions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2017.calc_contributions" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui remplace dans le gabarit (classe <em>srd.quebec.template</em>) la fonction du même nom, et calcule les contributions.</p>
 <p>Cette fonction fait la somme des contributions du contribuable. La contribution santé est abolie en 2017.</p>
 <dl class="field-list simple">
@@ -742,9 +1108,14 @@ Pour les couples, la prime est partagée au prorata des revenus de travail.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.quebec.form_2017.get_donations_cred">
-<code class="sig-name descname">get_donations_cred</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2017.get_donations_cred" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- get_donations_cred()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2017.get_donations_cred">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2017.</span></span><span class="sig-name descname"><span class="pre">get_donations_cred</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2017.get_donations_cred" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui remplace dans le gabarit (classe <em>srd.quebec.template</em>) la fonction du même nom, et calcule le crédit d’impôt non-remboursable pour dons.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -759,16 +1130,16 @@ Pour les couples, la prime est partagée au prorata des revenus de travail.</p>
 </dl>
 </dd></dl>
 
-</dd></dl>
-
-<dl class="py class">
-<dt id="srd.quebec.form_2018">
-<em class="property">class </em><code class="sig-prename descclassname">srd.quebec.</code><code class="sig-name descname">form_2018</code><a class="headerlink" href="#srd.quebec.form_2018" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Formulaire d’impôt de 2018.</p>
-<dl class="py method">
-<dt id="srd.quebec.form_2018.senior_assist">
-<code class="sig-name descname">senior_assist</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2018.senior_assist" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui remplace dans le gabarit (classe <em>srd.quebec.template</em>) la fonction du même nom, et calcule le crédit remboursable pour support aux ainés. En vigueur à partir de 2018.</p>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- ccap()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2017.ccap">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2017.</span></span><span class="sig-name descname"><span class="pre">ccap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2017.ccap" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule le crédit d’impôt remboursable accordant une allocation aux familles (CIRAAF) (qui s’appelait le Soutien aux enfants avant 2019). Seules les composantes suivantes sont modélisées : l’allocation famille et le supplément pour l’achat de fournitures scolaires.</p>
+<p>Cette fonction calcule le montant reçu selon le nombre d’enfants, la situation familiale (couple/monoparental) et le revenu.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">
@@ -777,7 +1148,7 @@ Pour les couples, la prime est partagée au prorata des revenus de travail.</p>
 </ul>
 </dd>
 <dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>Montant du crédit</p>
+<dd class="field-even"><p>Montant du crédit d’impôt remboursable accordant une allocation aux familles (CIRAAF).</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
 <dd class="field-odd"><p>float</p>
@@ -785,15 +1156,81 @@ Pour les couples, la prime est partagée au prorata des revenus de travail.</p>
 </dl>
 </dd></dl>
 
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>2018</strong></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="srd.quebec.form_2018">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.quebec.</span></span><span class="sig-name descname"><span class="pre">form_2018</span></span><a class="headerlink" href="#srd.quebec.form_2018" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Formulaire d’impôt de 2018.</p>
 </dd></dl>
 
+<div class="toggle-header docutils container">
+<p><strong>- senior_assist()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2018.senior_assist">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2018.</span></span><span class="sig-name descname"><span class="pre">senior_assist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2018.senior_assist" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui remplace dans le gabarit (classe <em>srd.quebec.template</em>) la fonction du même nom, et calcule le crédit remboursable pour soutien aux ainés. En vigueur à partir de 2018.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant du crédit.</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>2019</strong></p>
 <dl class="py class">
-<dt id="srd.quebec.form_2019">
-<em class="property">class </em><code class="sig-prename descclassname">srd.quebec.</code><code class="sig-name descname">form_2019</code><a class="headerlink" href="#srd.quebec.form_2019" title="Lien permanent vers cette définition">¶</a></dt>
+<dt class="sig sig-object py" id="srd.quebec.form_2019">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.quebec.</span></span><span class="sig-name descname"><span class="pre">form_2019</span></span><a class="headerlink" href="#srd.quebec.form_2019" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Formulaire d’impôt de 2019.</p>
-<dl class="py method">
-<dt id="srd.quebec.form_2019.calc_contributions">
-<code class="sig-name descname">calc_contributions</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2019.calc_contributions" title="Lien permanent vers cette définition">¶</a></dt>
+</dd></dl>
+
+<div class="toggle-header docutils container">
+<p><strong>- cpp_qpip_deduction()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2019.cpp_qpip_deduction">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2019.</span></span><span class="sig-name descname"><span class="pre">cpp_qpip_deduction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2019.cpp_qpip_deduction" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Déduction pour les cotisations RRQ/RPC et au RQAP pour le travail autonome.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant de la déduction.</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- calc_contributions()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2019.calc_contributions">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2019.</span></span><span class="sig-name descname"><span class="pre">calc_contributions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2019.calc_contributions" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui remplace la fonction antérieure du même nom, et calcule les contributions.</p>
 <p>Cette fonction fait la somme des contributions du contribuable. La contribution additionnelle pour service de garde éducatifs à l’enfance subventionnés est abolie en 2019.</p>
 <dl class="field-list simple">
@@ -806,14 +1243,83 @@ Pour les couples, la prime est partagée au prorata des revenus de travail.</p>
 </dl>
 </dd></dl>
 
-</dd></dl>
-
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>2020</strong></p>
 <dl class="py class">
-<dt id="srd.quebec.form_2020">
-<em class="property">class </em><code class="sig-prename descclassname">srd.quebec.</code><code class="sig-name descname">form_2020</code><a class="headerlink" href="#srd.quebec.form_2020" title="Lien permanent vers cette définition">¶</a></dt>
+<dt class="sig sig-object py" id="srd.quebec.form_2020">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.quebec.</span></span><span class="sig-name descname"><span class="pre">form_2020</span></span><a class="headerlink" href="#srd.quebec.form_2020" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Formulaire d’impôt de 2020.</p>
 </dd></dl>
 
+<div class="toggle-header docutils container">
+<p><strong>- calc_deduc_gross_income()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2020.</span></span><span class="sig-name descname"><span class="pre">calc_deduc_gross_income</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule les déductions.</p>
+<p>Cette fonction fait la somme des différentes déductions du contribuable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>2021</strong></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="srd.quebec.form_2021">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.quebec.</span></span><span class="sig-name descname"><span class="pre">form_2021</span></span><a class="headerlink" href="#srd.quebec.form_2021" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Formulaire d’impôt de 2021.</p>
+</dd></dl>
+
+<div class="toggle-header docutils container">
+<p><strong>- calc_deduc_gross_income()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2021.calc_deduc_gross_income">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2021.</span></span><span class="sig-name descname"><span class="pre">calc_deduc_gross_income</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2021.calc_deduc_gross_income" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule les déductions.</p>
+<p>Cette fonction fait la somme des différentes déductions du contribuable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- cost_of_living()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2021.cost_of_living">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2021.</span></span><span class="sig-name descname"><span class="pre">cost_of_living</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2021.cost_of_living" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule les crédits d’impôt remboursables attribuant une prestation exceptionnelle et un montant ponctuel pour pallier la hausse du coût de la vie.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 </div>
 </div>
 
@@ -831,7 +1337,7 @@ Pour les couples, la prime est partagée au prorata des revenus de travail.</p>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2020, Équipe CREEi.
+        &#169; Copyright 2022, Équipe CREEi.
 
     </p>
   </div>

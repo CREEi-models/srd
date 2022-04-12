@@ -13,6 +13,9 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/contentui.css" type="text/css" />
 
   
   
@@ -29,11 +32,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
         <script src="_static/translations.js"></script>
+        <script src="_static/contentui.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -41,7 +45,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Recherche" href="search.html" />
     <link rel="next" title="Exemple de calcul du revenu disponible" href="TutorialCalculator.html" />
-    <link rel="prev" title="Calculateur de revenu disponible" href="calculators.html" /> 
+    <link rel="prev" title="Comparaisons avec le MFQ" href="comparaison.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -87,28 +91,109 @@
               
             
             
-              <p class="caption"><span class="caption-text">Menu:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Menu:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Premiers pas avec le SRD</a></li>
-<li class="toctree-l1"><a class="reference internal" href="actors.html">Les acteurs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="federal.html">Impôt fédéral</a></li>
-<li class="toctree-l1"><a class="reference internal" href="quebec.html">Impôt du Québec</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ontario.html">Impôt de l’Ontario</a></li>
-<li class="toctree-l1"><a class="reference internal" href="oas.html">Pension de la sécurité de la vieillesse</a></li>
-<li class="toctree-l1"><a class="reference internal" href="payroll.html">Cotisations sociales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="assistance.html">Aide sociale</a></li>
-<li class="toctree-l1"><a class="reference internal" href="covid.html">Prestations liées à la COVID-19</a></li>
-<li class="toctree-l1"><a class="reference internal" href="calculators.html">Calculateur de revenu disponible</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Premiers pas avec le SRD</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#installation-du-srd">Installation du SRD</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#installation-alternative">Installation alternative</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="actors.html">Les acteurs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="actors.html#personnes">Personnes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actors.html#dependants-enfant-ou-proche-a-charge">Dépendants (enfant ou proche à charge)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actors.html#menages">Ménages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="federal.html">Impôt fédéral</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="federal.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="federal.html#gabarit-de-declaration">Gabarit de déclaration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="federal.html#fonctions-specifiques-ou-modifiees">Fonctions spécifiques ou modifiées</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quebec.html">Impôt du Québec</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quebec.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quebec.html#gabarit-de-declaration">Gabarit de déclaration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quebec.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ontario.html">Impôt de l’Ontario</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ontario.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ontario.html#gabarit-du-rapport">Gabarit du rapport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ontario.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="oas.html">Pension de la sécurité de la vieillesse</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="oas.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oas.html#gabarit-du-programme">Gabarit du programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oas.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="payroll.html">Cotisations sociales</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="payroll.html#assurance-emploi">Assurance emploi</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#survol">Survol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#gabarit-du-programme">Gabarit du programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="payroll.html#regime-quebecois-d-assurance-parentale">Régime québécois d’assurance parentale</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#id1">Survol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#id2">Gabarit du programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#id3">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="assistance.html">Aide sociale</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="assistance.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assistance.html#gabarit-du-programme">Gabarit du programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assistance.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="covid.html">Prestations liées à la COVID-19</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="covid.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="covid.html#gabarit-du-programme">Gabarit du programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="covid.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="calculators.html">Calculateur de revenu disponible</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="calculators.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calculators.html#les-fonctions-du-calculateur">Les fonctions du calculateur</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="comparaison.html">Comparaisons avec le MFQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="comparaison.html#personne-celibataire-sans-enfant">Personne célibataire (sans enfant)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comparaison.html#personne-monoparentale">Personne monoparentale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comparaison.html#couple-sans-enfant">Couple sans enfant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comparaison.html#couple-avec-enfant">Couple avec enfant</a></li>
+</ul>
+</li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Exemple de calcul de l’impôt fédéral</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#importation-du-package">Importation du package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#initialisation-dun-menage">Initialisation d’un ménage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#calcul-de-limpot-federal">Calcul de l’impôt fédéral</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#experience">Expérience</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#experiences">Expériences</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="TutorialCalculator.html">Exemple de calcul du revenu disponible</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TutorialCalculator.html">Exemple de calcul du revenu disponible</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="TutorialCalculator.html#construction-du-menage">Construction du ménage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TutorialCalculator.html#le-calculateur">Le calculateur</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TutorialCalculator.html#calcul-du-revenu-apres-impots-et-du-revenu-disponible">Calcul du revenu après impôts et du revenu disponible</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialChangeParameters.html">Exemple de changement de paramètre</a></li>
-<li class="toctree-l1"><a class="reference internal" href="credits.html">Contacts et droits d’utilisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits.html">Contacts et droits d’utilisation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="credits.html#liste-d-envoi">Liste d’envoi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="credits.html#personne-contact">Personne-contact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="credits.html#contributeurs">Contributeurs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="credits.html#principaux">Principaux</a></li>
+<li class="toctree-l3"><a class="reference internal" href="credits.html#id1">2020</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="credits.html#droits-d-utilisation">Droits d’utilisation</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -188,7 +273,7 @@
 </div>
 <div class="section" id="initialisation-dun-menage">
 <h2>Initialisation d’un ménage<a class="headerlink" href="#initialisation-dun-menage" title="Lien permanent vers ce titre">¶</a></h2>
-<p>On doit d’abord initialiser un ménage. Ici nous supposerons un couple avec deux membres ayant tous les deux 45 ans et des revenus de travail de 50 000 $ et 25 000 $, respectivement.</p>
+<p>On doit d’abord initialiser un ménage. Ici nous supposerons un couple avec deux membres ayant tous les deux 45 ans et des revenus de travail de 50 000$ et 25 000$, respectivement.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">jean</span> <span class="o">=</span> <span class="n">srd</span><span class="o">.</span><span class="n">Person</span><span class="p">(</span><span class="n">age</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span><span class="n">earn</span><span class="o">=</span><span class="mf">50e3</span><span class="p">)</span>
 <span class="n">pauline</span> <span class="o">=</span> <span class="n">srd</span><span class="o">.</span><span class="n">Person</span><span class="p">(</span><span class="n">age</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span><span class="n">earn</span><span class="o">=</span><span class="mf">25e3</span><span class="p">)</span>
 </pre></div>
@@ -201,73 +286,77 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">vars</span><span class="p">(</span><span class="n">jean</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">45</span><span class="p">,</span>
- <span class="s1">&#39;male&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
- <span class="s1">&#39;inc_earn_month&#39;</span><span class="p">:</span>
- <span class="p">[</span><span class="mf">4166.666666666667</span><span class="p">,</span>
-  <span class="mf">4166.666666666667</span><span class="p">,</span>
-  <span class="mf">4166.666666666667</span><span class="p">,</span>
-  <span class="mf">4166.666666666667</span><span class="p">,</span>
-  <span class="mf">4166.666666666667</span><span class="p">,</span>
-  <span class="mf">4166.666666666667</span><span class="p">,</span>
-  <span class="mf">4166.666666666667</span><span class="p">,</span>
-  <span class="mf">4166.666666666667</span><span class="p">,</span>
-  <span class="mf">4166.666666666667</span><span class="p">,</span>
-  <span class="mf">4166.666666666667</span><span class="p">,</span>
-  <span class="mf">4166.666666666667</span><span class="p">,</span>
-  <span class="mf">4166.666666666667</span><span class="p">],</span>
- <span class="s1">&#39;inc_earn&#39;</span><span class="p">:</span> <span class="mf">50000.0</span><span class="p">,</span>
- <span class="s1">&#39;inc_rpp&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;inc_cpp&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;cap_gains&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;cap_losses&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;cap_gains_exempt&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;inc_othtax&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;inc_othntax&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;div_elig&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;div_other_can&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;inc_rrsp&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;con_rrsp&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;con_rpp&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;union_dues&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;donation&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;gift&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;years_can&#39;</span><span class="p">:</span> <span class="mi">45</span><span class="p">,</span>
- <span class="s1">&#39;inc_self_earn&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;disabled&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
- <span class="s1">&#39;cqppc&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
- <span class="s1">&#39;widow&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
- <span class="s1">&#39;ndays_chcare_k1&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;ndays_chcare_k2&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;asset&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;oas_years_post&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;months_cesb&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;months_cerb&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;student&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
- <span class="s1">&#39;essential_worker&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
- <span class="s1">&#39;hours_month&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
- <span class="s1">&#39;dep_senior&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
- <span class="s1">&#39;home_support_cost&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;pension_split&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;pension_split_qc&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;pension_deduction&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;pension_deduction_qc&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;inc_oas&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;inc_gis&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;inc_ei&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;inc_social_ass&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;allow_couple&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;allow_surv&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;inc_cerb&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;inc_cesb&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;inc_iprew&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;covid&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
- <span class="s1">&#39;after_tax_inc&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
- <span class="s1">&#39;disp_inc&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
- <span class="s1">&#39;fed_return&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
- <span class="s1">&#39;prov_return&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
- <span class="s1">&#39;payroll&#39;</span><span class="p">:</span> <span class="kc">None</span>
- <span class="s1">&#39;max_split&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">}</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;inc_earn&#39;</span><span class="p">:</span> <span class="mf">50000.0</span><span class="p">,</span>
+<span class="s1">&#39;inc_self_earn&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;inc_work_month&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">4166.666666666667</span><span class="p">,</span>
+<span class="mf">4166.666666666667</span><span class="p">,</span>
+<span class="mf">4166.666666666667</span><span class="p">,</span>
+<span class="mf">4166.666666666667</span><span class="p">,</span>
+<span class="mf">4166.666666666667</span><span class="p">,</span>
+<span class="mf">4166.666666666667</span><span class="p">,</span>
+<span class="mf">4166.666666666667</span><span class="p">,</span>
+<span class="mf">4166.666666666667</span><span class="p">,</span>
+<span class="mf">4166.666666666667</span><span class="p">,</span>
+<span class="mf">4166.666666666667</span><span class="p">,</span>
+<span class="mf">4166.666666666667</span><span class="p">,</span>
+<span class="mf">4166.666666666667</span><span class="p">],</span>
+<span class="s1">&#39;prev_inc_work&#39;</span><span class="p">:</span> <span class="mf">50000.0</span><span class="p">,</span>
+<span class="s1">&#39;inc_rpp&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;inc_cpp&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;net_cap_gains&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;prev_cap_losses&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;cap_gains_exempt&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;inc_othtax&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;inc_othntax&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;div_elig&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;div_other_can&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;inc_rrsp&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;con_rrsp&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;con_non_rrsp&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;con_rpp&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;union_dues&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;donation&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;gift&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;years_can&#39;</span><span class="p">:</span> <span class="mi">45</span><span class="p">,</span>
+<span class="s1">&#39;disabled&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+<span class="s1">&#39;widow&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+<span class="s1">&#39;med_exp&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;ndays_chcare_k1&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;ndays_chcare_k2&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;asset&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;months_crb&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;months_ei&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;oas_years_post&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;months_cesb&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;months_cerb&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;pub_drug_insurance&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+<span class="s1">&#39;student&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+<span class="s1">&#39;essential_worker&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+<span class="s1">&#39;emp_temp_constraints&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+<span class="s1">&#39;hours_month&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+<span class="s1">&#39;dep_senior&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+<span class="s1">&#39;home_support_cost&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;pension_split&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;pension_split_qc&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;pension_deduction&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;pension_deduction_qc&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;inc_oas&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;inc_gis&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;inc_ei&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;inc_sa&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;allow_couple&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;allow_surv&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;inc_cerb&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;inc_cesb&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;inc_crb&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;inc_iprew&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="s1">&#39;covid&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+<span class="s1">&#39;after_tax_inc&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+<span class="s1">&#39;disp_inc&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+<span class="s1">&#39;fed_return&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+<span class="s1">&#39;prov_return&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+<span class="s1">&#39;payroll&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+<span class="s1">&#39;max_split&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -275,7 +364,7 @@
 <h2>Calcul de l’impôt fédéral<a class="headerlink" href="#calcul-de-limpot-federal" title="Lien permanent vers ce titre">¶</a></h2>
 <p>On doit d’abord créer un formulaire d’impôt pour une année en particulier.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">srd</span> <span class="kn">import</span> <span class="n">federal</span>
-<span class="n">fed_form</span> <span class="o">=</span> <span class="n">federal</span><span class="o">.</span><span class="n">form</span><span class="p">(</span><span class="mi">2020</span><span class="p">)</span>
+<span class="n">fed_form</span> <span class="o">=</span> <span class="n">federal</span><span class="o">.</span><span class="n">form</span><span class="p">(</span><span class="mi">2021</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>On peut voir les différents paramètres du système fiscal en utilisant encore <em>vars()</em>:</p>
@@ -283,101 +372,152 @@
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;div_elig_factor&#39;</span><span class="p">:</span> <span class="mf">1.38</span><span class="p">,</span>
- <span class="s1">&#39;div_other_can_factor&#39;</span><span class="p">:</span> <span class="mf">1.15</span><span class="p">,</span>
- <span class="s1">&#39;div_elig_cred_rate&#39;</span><span class="p">:</span> <span class="mf">0.150198</span><span class="p">,</span>
- <span class="s1">&#39;div_other_can_cred_rate&#39;</span><span class="p">:</span> <span class="mf">0.090313</span><span class="p">,</span>
- <span class="s1">&#39;qpip_deduc_rate&#39;</span><span class="p">:</span> <span class="mf">0.43683</span><span class="p">,</span>
- <span class="s1">&#39;basic_amount_poor&#39;</span><span class="p">:</span> <span class="mf">13229.0</span><span class="p">,</span>
- <span class="s1">&#39;basic_amount_rich&#39;</span><span class="p">:</span> <span class="mf">12298.0</span><span class="p">,</span>
- <span class="s1">&#39;age_cred_amount&#39;</span><span class="p">:</span> <span class="mf">7637.0</span><span class="p">,</span>
- <span class="s1">&#39;min_age_cred&#39;</span><span class="p">:</span> <span class="mi">65</span><span class="p">,</span>
- <span class="s1">&#39;age_cred_exemption&#39;</span><span class="p">:</span> <span class="mf">38508.0</span><span class="p">,</span>
- <span class="s1">&#39;age_cred_claw_rate&#39;</span><span class="p">:</span> <span class="mf">0.15</span><span class="p">,</span>
- <span class="s1">&#39;pension_cred_amount&#39;</span><span class="p">:</span> <span class="mf">2000.0</span><span class="p">,</span>
- <span class="s1">&#39;pension_cred_min_age_split&#39;</span><span class="p">:</span> <span class="mi">65</span><span class="p">,</span>
- <span class="s1">&#39;disability_cred_amount&#39;</span><span class="p">:</span> <span class="mf">8576.0</span><span class="p">,</span>
- <span class="s1">&#39;med_exp_nr_cred_max_age&#39;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
- <span class="s1">&#39;med_exp_nr_cred_max_claw&#39;</span><span class="p">:</span> <span class="mf">2397.0</span><span class="p">,</span>
- <span class="s1">&#39;med_exp_nr_cred_rate&#39;</span><span class="p">:</span> <span class="mf">0.03</span><span class="p">,</span>
- <span class="s1">&#39;donation_frac_net&#39;</span><span class="p">:</span> <span class="mf">0.75</span><span class="p">,</span>
- <span class="s1">&#39;donation_low_cut&#39;</span><span class="p">:</span> <span class="mf">200.0</span><span class="p">,</span>
- <span class="s1">&#39;donation_high_cut&#39;</span><span class="p">:</span> <span class="mf">214368.0</span><span class="p">,</span>
- <span class="s1">&#39;donation_low_rate&#39;</span><span class="p">:</span> <span class="mf">0.15</span><span class="p">,</span>
- <span class="s1">&#39;donation_med_rate&#39;</span><span class="p">:</span> <span class="mf">0.29</span><span class="p">,</span>
- <span class="s1">&#39;donation_high_rate&#39;</span><span class="p">:</span> <span class="mf">0.33</span><span class="p">,</span>
- <span class="s1">&#39;rate_non_ref_tax_cred&#39;</span><span class="p">:</span> <span class="mf">0.15</span><span class="p">,</span>
- <span class="s1">&#39;rate_abatment_qc&#39;</span><span class="p">:</span> <span class="mf">0.165</span><span class="p">,</span>
- <span class="s1">&#39;ccb_young_max_age&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
- <span class="s1">&#39;ccb_old_max_age&#39;</span><span class="p">:</span> <span class="mi">17</span><span class="p">,</span>
- <span class="s1">&#39;ccb_young&#39;</span><span class="p">:</span> <span class="mf">7065.0</span><span class="p">,</span>
- <span class="s1">&#39;ccb_old&#39;</span><span class="p">:</span> <span class="mf">6008.0</span><span class="p">,</span>
- <span class="s1">&#39;ccb_covid_supp&#39;</span><span class="p">:</span> <span class="mf">300.0</span><span class="p">,</span>
- <span class="s1">&#39;ccb_max_num_ch&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
- <span class="s1">&#39;ccb_cutoff_1&#39;</span><span class="p">:</span> <span class="mf">31711.0</span><span class="p">,</span>
- <span class="s1">&#39;ccb_cutoff_2&#39;</span><span class="p">:</span> <span class="mf">68708.0</span><span class="p">,</span>
- <span class="s1">&#39;ccb_rate_1_1ch&#39;</span><span class="p">:</span> <span class="mf">0.07</span><span class="p">,</span>
- <span class="s1">&#39;ccb_rate_1_2ch&#39;</span><span class="p">:</span> <span class="mf">0.135</span><span class="p">,</span>
- <span class="s1">&#39;ccb_rate_1_3ch&#39;</span><span class="p">:</span> <span class="mf">0.19</span><span class="p">,</span>
- <span class="s1">&#39;ccb_rate_1_4ch&#39;</span><span class="p">:</span> <span class="mf">0.23</span><span class="p">,</span>
- <span class="s1">&#39;ccb_rate_2_1ch&#39;</span><span class="p">:</span> <span class="mf">0.032</span><span class="p">,</span>
- <span class="s1">&#39;ccb_rate_2_2ch&#39;</span><span class="p">:</span> <span class="mf">0.057</span><span class="p">,</span>
- <span class="s1">&#39;ccb_rate_2_3ch&#39;</span><span class="p">:</span> <span class="mf">0.08</span><span class="p">,</span>
- <span class="s1">&#39;ccb_rate_2_4ch&#39;</span><span class="p">:</span> <span class="mf">0.095</span><span class="p">,</span>
- <span class="s1">&#39;med_exp_rate&#39;</span><span class="p">:</span> <span class="mf">0.25</span><span class="p">,</span>
- <span class="s1">&#39;med_exp_claw_rate&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span>
- <span class="s1">&#39;med_exp_claw_cutoff&#39;</span><span class="p">:</span> <span class="mf">28164.0</span><span class="p">,</span>
- <span class="s1">&#39;med_exp_max&#39;</span><span class="p">:</span> <span class="mf">1272.0</span><span class="p">,</span>
- <span class="s1">&#39;med_exp_min_work_inc&#39;</span><span class="p">:</span> <span class="mf">3714.0</span><span class="p">,</span>
- <span class="s1">&#39;gst_cred_kids_max_age&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">,</span>
- <span class="s1">&#39;gst_cred_claw_rate&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span>
- <span class="s1">&#39;gst_cred_claw_cutoff&#39;</span><span class="p">:</span> <span class="mf">38507.0</span><span class="p">,</span>
- <span class="s1">&#39;gst_cred_base&#39;</span><span class="p">:</span> <span class="mf">592.0</span><span class="p">,</span>
- <span class="s1">&#39;gst_cred_other&#39;</span><span class="p">:</span> <span class="mf">312.0</span><span class="p">,</span>
- <span class="s1">&#39;gst_cred_rate&#39;</span><span class="p">:</span> <span class="mf">0.02</span><span class="p">,</span>
- <span class="s1">&#39;gst_cred_base_amount&#39;</span><span class="p">:</span> <span class="mf">9591.0</span><span class="p">,</span>
- <span class="s1">&#39;gst_covid_single&#39;</span><span class="p">:</span> <span class="mf">400.0</span><span class="p">,</span>
- <span class="s1">&#39;gst_covid_couple&#39;</span><span class="p">:</span> <span class="mf">600.0</span><span class="p">,</span>
- <span class="s1">&#39;chcare_max_age_young&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
- <span class="s1">&#39;chcare_max_age_old&#39;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
- <span class="s1">&#39;chcare_young&#39;</span><span class="p">:</span> <span class="mf">8000.0</span><span class="p">,</span>
- <span class="s1">&#39;chcare_old&#39;</span><span class="p">:</span> <span class="mf">5000.0</span><span class="p">,</span>
- <span class="s1">&#39;chcare_rate_inc&#39;</span><span class="p">:</span> <span class="mf">0.66666</span><span class="p">,</span>
- <span class="s1">&#39;ei_max_net_inc&#39;</span><span class="p">:</span> <span class="mf">67636.0</span><span class="p">,</span>
- <span class="s1">&#39;ei_rate_repay&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span>
- <span class="s1">&#39;witb_max_age_dep&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">,</span>
- <span class="s1">&#39;witb_base_single_qc&#39;</span><span class="p">:</span> <span class="mi">2400</span><span class="p">,</span>
- <span class="s1">&#39;witb_base_couple_qc&#39;</span><span class="p">:</span> <span class="mi">3600</span><span class="p">,</span>
- <span class="s1">&#39;witb_rate_single_dep_qc&#39;</span><span class="p">:</span> <span class="mf">0.15</span><span class="p">,</span>
- <span class="s1">&#39;witb_rate_qc&#39;</span><span class="p">:</span> <span class="mf">0.274</span><span class="p">,</span>
- <span class="s1">&#39;witb_rate_couple_dep_qc&#39;</span><span class="p">:</span> <span class="mf">0.14</span><span class="p">,</span>
- <span class="s1">&#39;witb_max_single_qc&#39;</span><span class="p">:</span> <span class="mf">2318.89</span><span class="p">,</span>
- <span class="s1">&#39;witb_max_single_dep_qc&#39;</span><span class="p">:</span> <span class="mf">1269.47</span><span class="p">,</span>
- <span class="s1">&#39;witb_max_couple_qc&#39;</span><span class="p">:</span> <span class="mf">3618.81</span><span class="p">,</span>
- <span class="s1">&#39;witb_max_couple_dep_qc&#39;</span><span class="p">:</span> <span class="mf">1849.03</span><span class="p">,</span>
- <span class="s1">&#39;witb_exemption_single_qc&#39;</span><span class="p">:</span> <span class="mf">12267.43</span><span class="p">,</span>
- <span class="s1">&#39;witb_exemption_single_dep_qc&#39;</span><span class="p">:</span> <span class="mf">12272.52</span><span class="p">,</span>
- <span class="s1">&#39;witb_exemption_couple_qc&#39;</span><span class="p">:</span> <span class="mf">18838.54</span><span class="p">,</span>
- <span class="s1">&#39;witb_exemption_couple_dep_qc&#39;</span><span class="p">:</span> <span class="mf">18858.89</span><span class="p">,</span>
- <span class="s1">&#39;witb_claw_rate_qc&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
- <span class="s1">&#39;witb_dis_base_qc&#39;</span><span class="p">:</span> <span class="mi">1200</span><span class="p">,</span>
- <span class="s1">&#39;witb_dis_max_qc&#39;</span><span class="p">:</span> <span class="mf">712.04</span><span class="p">,</span>
- <span class="s1">&#39;witb_dis_rate_single_qc&#39;</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">,</span>
- <span class="s1">&#39;witb_dis_rate_couple_qc&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
- <span class="s1">&#39;witb_dis_exemption_single_qc&#39;</span><span class="p">:</span> <span class="mf">23861.88</span><span class="p">,</span>
- <span class="s1">&#39;witb_dis_exemption_single_dep_qc&#39;</span><span class="p">:</span> <span class="mf">18619.87</span><span class="p">,</span>
- <span class="s1">&#39;witb_dis_exemption_couple_qc&#39;</span><span class="p">:</span> <span class="mf">36932.59</span><span class="p">,</span>
- <span class="s1">&#39;witb_dis_exemption_couple_dep_qc&#39;</span><span class="p">:</span> <span class="mf">28104.04</span><span class="p">,</span>
- <span class="s1">&#39;witb_dis_claw_rate_qc&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
- <span class="s1">&#39;witb_dis_couple_claw_rate_qc&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
- <span class="s1">&#39;l_brackets&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">48535.0</span><span class="p">,</span> <span class="mf">97069.0</span><span class="p">,</span> <span class="mf">150473.0</span><span class="p">,</span> <span class="mf">214368.0</span><span class="p">],</span>
- <span class="s1">&#39;l_rates&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.205</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">,</span> <span class="mf">0.29</span><span class="p">,</span> <span class="mf">0.33</span><span class="p">],</span>
- <span class="s1">&#39;l_constant&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">7280.0</span><span class="p">,</span> <span class="mf">17230.0</span><span class="p">,</span> <span class="mf">31115.0</span><span class="p">,</span> <span class="mf">49645.0</span><span class="p">],</span>
- <span class="s1">&#39;policy&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">srd</span><span class="o">.</span><span class="n">covid</span><span class="o">.</span><span class="n">programs</span><span class="o">.</span><span class="n">policy</span> <span class="n">at</span> <span class="mh">0x1af00603b48</span><span class="o">&gt;</span><span class="p">}</span>
+<span class="s1">&#39;div_other_can_factor&#39;</span><span class="p">:</span> <span class="mf">1.15</span><span class="p">,</span>
+<span class="s1">&#39;div_elig_cred_rate&#39;</span><span class="p">:</span> <span class="mf">0.150198</span><span class="p">,</span>
+<span class="s1">&#39;div_other_can_cred_rate&#39;</span><span class="p">:</span> <span class="mf">0.090313</span><span class="p">,</span>
+<span class="s1">&#39;cap_gains_rate&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+<span class="s1">&#39;qpip_deduc_rate&#39;</span><span class="p">:</span> <span class="mf">0.43786</span><span class="p">,</span>
+<span class="s1">&#39;basic_amount_poor&#39;</span><span class="p">:</span> <span class="mf">13808.0</span><span class="p">,</span>
+<span class="s1">&#39;basic_amount_rich&#39;</span><span class="p">:</span> <span class="mf">12421.0</span><span class="p">,</span>
+<span class="s1">&#39;age_cred_amount&#39;</span><span class="p">:</span> <span class="mf">7713.0</span><span class="p">,</span>
+<span class="s1">&#39;min_age_cred&#39;</span><span class="p">:</span> <span class="mi">65</span><span class="p">,</span>
+<span class="s1">&#39;age_cred_exempt&#39;</span><span class="p">:</span> <span class="mf">38893.0</span><span class="p">,</span>
+<span class="s1">&#39;age_cred_claw_rate&#39;</span><span class="p">:</span> <span class="mf">0.15</span><span class="p">,</span>
+<span class="s1">&#39;empl_cred_max&#39;</span><span class="p">:</span> <span class="mf">1257.0</span><span class="p">,</span>
+<span class="s1">&#39;pension_cred_amount&#39;</span><span class="p">:</span> <span class="mf">2000.0</span><span class="p">,</span>
+<span class="s1">&#39;pension_cred_min_age_split&#39;</span><span class="p">:</span> <span class="mi">65</span><span class="p">,</span>
+<span class="s1">&#39;disability_cred_amount&#39;</span><span class="p">:</span> <span class="mf">8662.0</span><span class="p">,</span>
+<span class="s1">&#39;med_exp_nr_cred_max_age&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">,</span>
+<span class="s1">&#39;med_exp_nr_cred_max_claw&#39;</span><span class="p">:</span> <span class="mf">2421.0</span><span class="p">,</span>
+<span class="s1">&#39;med_exp_nr_cred_rate&#39;</span><span class="p">:</span> <span class="mf">0.03</span><span class="p">,</span>
+<span class="s1">&#39;donation_frac_net&#39;</span><span class="p">:</span> <span class="mf">0.75</span><span class="p">,</span>
+<span class="s1">&#39;donation_low_cut&#39;</span><span class="p">:</span> <span class="mf">200.0</span><span class="p">,</span>
+<span class="s1">&#39;donation_high_cut&#39;</span><span class="p">:</span> <span class="mf">216511.0</span><span class="p">,</span>
+<span class="s1">&#39;donation_low_rate&#39;</span><span class="p">:</span> <span class="mf">0.15</span><span class="p">,</span>
+<span class="s1">&#39;donation_med_rate&#39;</span><span class="p">:</span> <span class="mf">0.29</span><span class="p">,</span>
+<span class="s1">&#39;donation_high_rate&#39;</span><span class="p">:</span> <span class="mf">0.33</span><span class="p">,</span>
+<span class="s1">&#39;rate_non_ref_tax_cred&#39;</span><span class="p">:</span> <span class="mf">0.15</span><span class="p">,</span>
+<span class="s1">&#39;rate_abatment_qc&#39;</span><span class="p">:</span> <span class="mf">0.165</span><span class="p">,</span>
+<span class="s1">&#39;ccb_young&#39;</span><span class="p">:</span> <span class="mf">6833.0</span><span class="p">,</span>
+<span class="s1">&#39;ccb_old&#39;</span><span class="p">:</span> <span class="mf">5765.0</span><span class="p">,</span>
+<span class="s1">&#39;ccb_covid_supp&#39;</span><span class="p">:</span> <span class="mf">300.0</span><span class="p">,</span>
+<span class="s1">&#39;ccb_max_num_ch&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+<span class="s1">&#39;ccb_cutoff_1&#39;</span><span class="p">:</span> <span class="mf">32028.0</span><span class="p">,</span>
+<span class="s1">&#39;ccb_cutoff_2&#39;</span><span class="p">:</span> <span class="mf">69395.0</span><span class="p">,</span>
+<span class="s1">&#39;ccb_rate_1_1ch&#39;</span><span class="p">:</span> <span class="mf">0.07</span><span class="p">,</span>
+<span class="s1">&#39;ccb_rate_1_2ch&#39;</span><span class="p">:</span> <span class="mf">0.135</span><span class="p">,</span>
+<span class="s1">&#39;ccb_rate_1_3ch&#39;</span><span class="p">:</span> <span class="mf">0.19</span><span class="p">,</span>
+<span class="s1">&#39;ccb_rate_1_4ch&#39;</span><span class="p">:</span> <span class="mf">0.23</span><span class="p">,</span>
+<span class="s1">&#39;ccb_rate_2_1ch&#39;</span><span class="p">:</span> <span class="mf">0.032</span><span class="p">,</span>
+<span class="s1">&#39;ccb_rate_2_2ch&#39;</span><span class="p">:</span> <span class="mf">0.057</span><span class="p">,</span>
+<span class="s1">&#39;ccb_rate_2_3ch&#39;</span><span class="p">:</span> <span class="mf">0.08</span><span class="p">,</span>
+<span class="s1">&#39;ccb_rate_2_4ch&#39;</span><span class="p">:</span> <span class="mf">0.095</span><span class="p">,</span>
+<span class="s1">&#39;ccb_ccbycs_cutoff&#39;</span><span class="p">:</span> <span class="mf">120000.0</span><span class="p">,</span>
+<span class="s1">&#39;ccb_ccbycs_1&#39;</span><span class="p">:</span> <span class="mf">1200.0</span><span class="p">,</span>
+<span class="s1">&#39;ccb_ccbycs_2&#39;</span><span class="p">:</span> <span class="mf">600.0</span><span class="p">,</span>
+<span class="s1">&#39;med_exp_rate&#39;</span><span class="p">:</span> <span class="mf">0.25</span><span class="p">,</span>
+<span class="s1">&#39;med_exp_claw_rate&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span>
+<span class="s1">&#39;med_exp_claw_cutoff&#39;</span><span class="p">:</span> <span class="mf">28446.0</span><span class="p">,</span>
+<span class="s1">&#39;med_exp_max&#39;</span><span class="p">:</span> <span class="mf">1285.0</span><span class="p">,</span>
+<span class="s1">&#39;med_exp_min_work_inc&#39;</span><span class="p">:</span> <span class="mf">3715.0</span><span class="p">,</span>
+<span class="s1">&#39;gst_cred_claw_rate&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span>
+<span class="s1">&#39;gst_cred_claw_cutoff&#39;</span><span class="p">:</span> <span class="mf">38892.0</span><span class="p">,</span>
+<span class="s1">&#39;gst_cred_base&#39;</span><span class="p">:</span> <span class="mf">299.0</span><span class="p">,</span>
+<span class="s1">&#39;gst_cred_other&#39;</span><span class="p">:</span> <span class="mf">157.0</span><span class="p">,</span>
+<span class="s1">&#39;gst_cred_rate&#39;</span><span class="p">:</span> <span class="mf">0.02</span><span class="p">,</span>
+<span class="s1">&#39;gst_cred_base_amount&#39;</span><span class="p">:</span> <span class="mf">9686.0</span><span class="p">,</span>
+<span class="s1">&#39;gst_covid_single&#39;</span><span class="p">:</span> <span class="mf">400.0</span><span class="p">,</span>
+<span class="s1">&#39;gst_covid_couple&#39;</span><span class="p">:</span> <span class="mf">600.0</span><span class="p">,</span>
+<span class="s1">&#39;chcare_young&#39;</span><span class="p">:</span> <span class="mf">8000.0</span><span class="p">,</span>
+<span class="s1">&#39;chcare_old&#39;</span><span class="p">:</span> <span class="mf">5000.0</span><span class="p">,</span>
+<span class="s1">&#39;chcare_rate_inc&#39;</span><span class="p">:</span> <span class="mf">0.66666</span><span class="p">,</span>
+<span class="s1">&#39;ei_max_net_inc&#39;</span><span class="p">:</span> <span class="mf">70375.0</span><span class="p">,</span>
+<span class="s1">&#39;ei_rate_repay&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span>
+<span class="s1">&#39;ded_qpp_rate&#39;</span><span class="p">:</span> <span class="mf">0.052632</span><span class="p">,</span>
+<span class="s1">&#39;ded_qpp_exempt&#39;</span><span class="p">:</span> <span class="mi">3500</span><span class="p">,</span>
+<span class="s1">&#39;ded_qpp_claw_rate&#39;</span><span class="p">:</span> <span class="mf">0.03</span><span class="p">,</span>
+<span class="s1">&#39;nrtc_spouse_dis&#39;</span><span class="p">:</span> <span class="mi">2296</span><span class="p">,</span>
+<span class="s1">&#39;dep_disa_amount&#39;</span><span class="p">:</span> <span class="mi">2296</span><span class="p">,</span>
+<span class="s1">&#39;base_single&#39;</span><span class="p">:</span> <span class="mi">2400</span><span class="p">,</span>
+<span class="s1">&#39;base_couple&#39;</span><span class="p">:</span> <span class="mi">3600</span><span class="p">,</span>
+<span class="s1">&#39;rate_single_dep&#39;</span><span class="p">:</span> <span class="mf">0.15</span><span class="p">,</span>
+<span class="s1">&#39;rate&#39;</span><span class="p">:</span> <span class="mf">0.274</span><span class="p">,</span>
+<span class="s1">&#39;rate_couple_dep&#39;</span><span class="p">:</span> <span class="mf">0.14</span><span class="p">,</span>
+<span class="s1">&#39;max_single&#39;</span><span class="p">:</span> <span class="mf">2348.36</span><span class="p">,</span>
+<span class="s1">&#39;max_single_dep&#39;</span><span class="p">:</span> <span class="mf">1285.6</span><span class="p">,</span>
+<span class="s1">&#39;max_couple&#39;</span><span class="p">:</span> <span class="mf">3665.7</span><span class="p">,</span>
+<span class="s1">&#39;max_couple_dep&#39;</span><span class="p">:</span> <span class="mf">1872.99</span><span class="p">,</span>
+<span class="s1">&#39;exempt_single&#39;</span><span class="p">:</span> <span class="mf">12463.5</span><span class="p">,</span>
+<span class="s1">&#39;exempt_single_dep&#39;</span><span class="p">:</span> <span class="mf">12459.84</span><span class="p">,</span>
+<span class="s1">&#39;exempt_couple&#39;</span><span class="p">:</span> <span class="mf">19135.61</span><span class="p">,</span>
+<span class="s1">&#39;exempt_couple_dep&#39;</span><span class="p">:</span> <span class="mf">18143.56</span><span class="p">,</span>
+<span class="s1">&#39;claw_rate&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
+<span class="s1">&#39;dis_base&#39;</span><span class="p">:</span> <span class="mi">1200</span><span class="p">,</span>
+<span class="s1">&#39;dis_max&#39;</span><span class="p">:</span> <span class="mf">721.01</span><span class="p">,</span>
+<span class="s1">&#39;dis_rate_single&#39;</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">,</span>
+<span class="s1">&#39;dis_rate_couple&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
+<span class="s1">&#39;dis_exempt_single&#39;</span><span class="p">:</span> <span class="mf">24205.3</span><span class="p">,</span>
+<span class="s1">&#39;dis_exempt_single_dep&#39;</span><span class="p">:</span> <span class="mf">18887.84</span><span class="p">,</span>
+<span class="s1">&#39;dis_exempt_couple&#39;</span><span class="p">:</span> <span class="mf">37464.11</span><span class="p">,</span>
+<span class="s1">&#39;dis_exempt_couple_dep&#39;</span><span class="p">:</span> <span class="mf">28508.51</span><span class="p">,</span>
+<span class="s1">&#39;dis_claw_rate&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
+<span class="s1">&#39;dis_couple_claw_rate&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
+<span class="s1">&#39;l_brackets&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">49020.0</span><span class="p">,</span> <span class="mf">98040.0</span><span class="p">,</span> <span class="mf">151978.0</span><span class="p">,</span> <span class="mf">216511.0</span><span class="p">],</span>
+<span class="s1">&#39;l_rates&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.205</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">,</span> <span class="mf">0.29</span><span class="p">,</span> <span class="mf">0.33</span><span class="p">],</span>
+<span class="s1">&#39;l_constant&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">7353.0</span><span class="p">,</span> <span class="mf">17402.0</span><span class="p">,</span> <span class="mf">31425.0</span><span class="p">,</span> <span class="mf">50140.0</span><span class="p">],</span>
+<span class="s1">&#39;witb_params&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;on&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;base_single&#39;</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span>
+<span class="s1">&#39;base_couple&#39;</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span>
+<span class="s1">&#39;rate_single_dep&#39;</span><span class="p">:</span> <span class="mf">0.27</span><span class="p">,</span>
+<span class="s1">&#39;rate&#39;</span><span class="p">:</span> <span class="mf">0.27</span><span class="p">,</span>
+<span class="s1">&#39;rate_couple_dep&#39;</span><span class="p">:</span> <span class="mf">0.27</span><span class="p">,</span>
+<span class="s1">&#39;max_single&#39;</span><span class="p">:</span> <span class="mf">1395.0</span><span class="p">,</span>
+<span class="s1">&#39;max_single_dep&#39;</span><span class="p">:</span> <span class="mf">2403.0</span><span class="p">,</span>
+<span class="s1">&#39;max_couple&#39;</span><span class="p">:</span> <span class="mf">2403.0</span><span class="p">,</span>
+<span class="s1">&#39;max_couple_dep&#39;</span><span class="p">:</span> <span class="mf">2403.0</span><span class="p">,</span>
+<span class="s1">&#39;exempt_single&#39;</span><span class="p">:</span> <span class="mf">22944.0</span><span class="p">,</span>
+<span class="s1">&#39;exempt_single_dep&#39;</span><span class="p">:</span> <span class="mf">26177.0</span><span class="p">,</span>
+<span class="s1">&#39;exempt_couple&#39;</span><span class="p">:</span> <span class="mf">26177.0</span><span class="p">,</span>
+<span class="s1">&#39;exempt_couple_dep&#39;</span><span class="p">:</span> <span class="mf">26177.0</span><span class="p">,</span>
+<span class="s1">&#39;claw_rate&#39;</span><span class="p">:</span> <span class="mf">0.12</span><span class="p">,</span>
+<span class="s1">&#39;dis_base&#39;</span><span class="p">:</span> <span class="mi">1150</span><span class="p">,</span>
+<span class="s1">&#39;dis_max&#39;</span><span class="p">:</span> <span class="mf">720.0</span><span class="p">,</span>
+<span class="s1">&#39;dis_rate_single&#39;</span><span class="p">:</span> <span class="mf">0.27</span><span class="p">,</span>
+<span class="s1">&#39;dis_rate_couple&#39;</span><span class="p">:</span> <span class="mf">0.27</span><span class="p">,</span>
+<span class="s1">&#39;dis_exempt_single&#39;</span><span class="p">:</span> <span class="mf">32244.0</span><span class="p">,</span>
+<span class="s1">&#39;dis_exempt_single_dep&#39;</span><span class="p">:</span> <span class="mf">42197.0</span><span class="p">,</span>
+<span class="s1">&#39;dis_exempt_couple&#39;</span><span class="p">:</span> <span class="mf">42197.0</span><span class="p">,</span>
+<span class="s1">&#39;dis_exempt_couple_dep&#39;</span><span class="p">:</span> <span class="mf">42197.0</span><span class="p">,</span>
+<span class="s1">&#39;dis_claw_rate&#39;</span><span class="p">:</span> <span class="mf">0.15</span><span class="p">,</span>
+<span class="s1">&#39;dis_couple_claw_rate&#39;</span><span class="p">:</span> <span class="mf">0.075</span><span class="p">},</span>
+<span class="s1">&#39;qc&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;base_single&#39;</span><span class="p">:</span> <span class="mi">2400</span><span class="p">,</span>
+<span class="s1">&#39;base_couple&#39;</span><span class="p">:</span> <span class="mi">3600</span><span class="p">,</span>
+<span class="s1">&#39;rate_single_dep&#39;</span><span class="p">:</span> <span class="mf">0.15</span><span class="p">,</span>
+<span class="s1">&#39;rate&#39;</span><span class="p">:</span> <span class="mf">0.274</span><span class="p">,</span>
+<span class="s1">&#39;rate_couple_dep&#39;</span><span class="p">:</span> <span class="mf">0.14</span><span class="p">,</span>
+<span class="s1">&#39;max_single&#39;</span><span class="p">:</span> <span class="mf">2348.36</span><span class="p">,</span>
+<span class="s1">&#39;max_single_dep&#39;</span><span class="p">:</span> <span class="mf">1285.6</span><span class="p">,</span>
+<span class="s1">&#39;max_couple&#39;</span><span class="p">:</span> <span class="mf">3665.7</span><span class="p">,</span>
+<span class="s1">&#39;max_couple_dep&#39;</span><span class="p">:</span> <span class="mf">1872.99</span><span class="p">,</span>
+<span class="s1">&#39;exempt_single&#39;</span><span class="p">:</span> <span class="mf">12463.5</span><span class="p">,</span>
+<span class="s1">&#39;exempt_single_dep&#39;</span><span class="p">:</span> <span class="mf">12459.84</span><span class="p">,</span>
+<span class="s1">&#39;exempt_couple&#39;</span><span class="p">:</span> <span class="mf">19135.61</span><span class="p">,</span>
+<span class="s1">&#39;exempt_couple_dep&#39;</span><span class="p">:</span> <span class="mf">18143.56</span><span class="p">,</span>
+<span class="s1">&#39;claw_rate&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
+<span class="s1">&#39;dis_base&#39;</span><span class="p">:</span> <span class="mi">1200</span><span class="p">,</span>
+<span class="s1">&#39;dis_max&#39;</span><span class="p">:</span> <span class="mf">721.01</span><span class="p">,</span>
+<span class="s1">&#39;dis_rate_single&#39;</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">,</span>
+<span class="s1">&#39;dis_rate_couple&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
+<span class="s1">&#39;dis_exempt_single&#39;</span><span class="p">:</span> <span class="mf">24205.3</span><span class="p">,</span>
+<span class="s1">&#39;dis_exempt_single_dep&#39;</span><span class="p">:</span> <span class="mf">18887.84</span><span class="p">,</span>
+<span class="s1">&#39;dis_exempt_couple&#39;</span><span class="p">:</span> <span class="mf">37464.11</span><span class="p">,</span>
+<span class="s1">&#39;dis_exempt_couple_dep&#39;</span><span class="p">:</span> <span class="mf">28508.51</span><span class="p">,</span>
+<span class="s1">&#39;dis_claw_rate&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
+<span class="s1">&#39;dis_couple_claw_rate&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">}}}</span>
 </pre></div>
 </div>
 <p>On remplit le formulaire d’impôt à l’aide de la fonction <em>tax()</em>.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">srd</span> <span class="kn">import</span> <span class="n">tax</span>
-<span class="n">tax_form</span> <span class="o">=</span> <span class="n">tax</span><span class="p">(</span><span class="mi">2020</span><span class="p">)</span>
+<span class="n">tax_form</span> <span class="o">=</span> <span class="n">tax</span><span class="p">(</span><span class="mi">2021</span><span class="p">)</span>
 <span class="n">tax_form</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">hh</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -386,28 +526,28 @@
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;gross_income&#39;</span><span class="p">:</span> <span class="mf">50000.0</span><span class="p">,</span>
- <span class="s1">&#39;deductions_gross_inc&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;net_income&#39;</span><span class="p">:</span> <span class="mf">50000.0</span><span class="p">,</span>
- <span class="s1">&#39;deductions_net_inc&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;taxable_income&#39;</span><span class="p">:</span> <span class="mf">50000.0</span><span class="p">,</span>
- <span class="s1">&#39;gross_tax_liability&#39;</span><span class="p">:</span> <span class="mf">7580.325</span><span class="p">,</span>
- <span class="s1">&#39;non_refund_credits&#39;</span><span class="p">:</span> <span class="mf">2547.804</span><span class="p">,</span>
- <span class="s1">&#39;refund_credits&#39;</span><span class="p">:</span> <span class="mf">830.365965</span><span class="p">,</span>
- <span class="s1">&#39;net_tax_liability&#39;</span><span class="p">:</span> <span class="mf">4202.155035</span><span class="p">}</span>
+<span class="s1">&#39;deductions_gross_inc&#39;</span><span class="p">:</span> <span class="mf">232.5</span><span class="p">,</span>
+<span class="s1">&#39;net_income&#39;</span><span class="p">:</span> <span class="mf">49767.5</span><span class="p">,</span>
+<span class="s1">&#39;deductions_net_inc&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+<span class="s1">&#39;taxable_income&#39;</span><span class="p">:</span> <span class="mf">49767.5</span><span class="p">,</span>
+<span class="s1">&#39;gross_tax_liability&#39;</span><span class="p">:</span> <span class="mf">7506.2375</span><span class="p">,</span>
+<span class="s1">&#39;non_refund_credits&#39;</span><span class="p">:</span> <span class="mf">2763.45</span><span class="p">,</span>
+<span class="s1">&#39;refund_credits&#39;</span><span class="p">:</span> <span class="mf">782.5599375</span><span class="p">,</span>
+<span class="s1">&#39;net_tax_liability&#39;</span><span class="p">:</span> <span class="mf">3960.2275625</span><span class="p">}</span>
 </pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pauline</span><span class="o">.</span><span class="n">fed_return</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;gross_income&#39;</span><span class="p">:</span> <span class="mf">25000.0</span><span class="p">,</span>
- <span class="s1">&#39;deductions_gross_inc&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;net_income&#39;</span><span class="p">:</span> <span class="mf">25000.0</span><span class="p">,</span>
- <span class="s1">&#39;deductions_net_inc&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;taxable_income&#39;</span><span class="p">:</span><span class="mf">25000.0</span><span class="p">,</span>
- <span class="s1">&#39;gross_tax_liability&#39;</span><span class="p">:</span> <span class="mf">3750.0</span><span class="p">,</span>
- <span class="s1">&#39;non_refund_credits&#39;</span><span class="p">:</span> <span class="mf">2345.304</span><span class="p">,</span>
- <span class="s1">&#39;refund_credits&#39;</span><span class="p">:</span> <span class="mf">231.77483999999998</span><span class="p">,</span>
- <span class="s1">&#39;net_tax_liability&#39;</span><span class="p">:</span> <span class="mf">1172.9211599999999</span><span class="p">}</span>
+<span class="s1">&#39;deductions_gross_inc&#39;</span><span class="p">:</span> <span class="mf">107.5</span><span class="p">,</span>
+<span class="s1">&#39;net_income&#39;</span><span class="p">:</span> <span class="mf">24892.5</span><span class="p">,</span>
+<span class="s1">&#39;deductions_net_inc&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+<span class="s1">&#39;taxable_income&#39;</span><span class="p">:</span> <span class="mf">24892.5</span><span class="p">,</span>
+<span class="s1">&#39;gross_tax_liability&#39;</span><span class="p">:</span> <span class="mf">3733.875</span><span class="p">,</span>
+<span class="s1">&#39;non_refund_credits&#39;</span><span class="p">:</span> <span class="mf">2497.4249999999997</span><span class="p">,</span>
+<span class="s1">&#39;refund_credits&#39;</span><span class="p">:</span> <span class="mf">204.01425000000006</span><span class="p">,</span>
+<span class="s1">&#39;net_tax_liability&#39;</span><span class="p">:</span> <span class="mf">1032.43575</span><span class="p">}</span>
 </pre></div>
 </div>
 <p>On peut ajouter des enfants au ménage à l’aide de la fonction <em>add_dependent()</em>.</p>
@@ -422,53 +562,54 @@
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;gross_income&#39;</span><span class="p">:</span> <span class="mf">50000.0</span><span class="p">,</span>
- <span class="s1">&#39;deductions_gross_inc&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;net_income&#39;</span><span class="p">:</span> <span class="mf">50000.0</span><span class="p">,</span>
- <span class="s1">&#39;deductions_net_inc&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;taxable_income&#39;</span><span class="p">:</span> <span class="mf">50000.0</span><span class="p">,</span>
- <span class="s1">&#39;gross_tax_liability&#39;</span><span class="p">:</span> <span class="mf">7580.325</span><span class="p">,</span>
- <span class="s1">&#39;non_refund_credits&#39;</span><span class="p">:</span> <span class="mf">2547.804</span><span class="p">,</span>
- <span class="s1">&#39;refund_credits&#39;</span><span class="p">:</span> <span class="mf">4830.5964650000005</span><span class="p">,</span>
- <span class="s1">&#39;net_tax_liability&#39;</span><span class="p">:</span> <span class="mf">201.9245349999992</span><span class="p">}</span>
+<span class="s1">&#39;deductions_gross_inc&#39;</span><span class="p">:</span> <span class="mf">232.5</span><span class="p">,</span>
+<span class="s1">&#39;net_income&#39;</span><span class="p">:</span> <span class="mf">49767.5</span><span class="p">,</span>
+<span class="s1">&#39;deductions_net_inc&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+<span class="s1">&#39;taxable_income&#39;</span><span class="p">:</span> <span class="mf">49767.5</span><span class="p">,</span>
+<span class="s1">&#39;gross_tax_liability&#39;</span><span class="p">:</span> <span class="mf">7506.2375</span><span class="p">,</span>
+<span class="s1">&#39;non_refund_credits&#39;</span><span class="p">:</span> <span class="mf">2763.45</span><span class="p">,</span>
+<span class="s1">&#39;refund_credits&#39;</span><span class="p">:</span> <span class="mf">5066.2349375</span><span class="p">,</span>
+<span class="s1">&#39;net_tax_liability&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">323.4474375</span><span class="p">}</span>
 </pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pauline</span><span class="o">.</span><span class="n">fed_return</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;gross_income&#39;</span><span class="p">:</span> <span class="mf">25000.0</span><span class="p">,</span>
- <span class="s1">&#39;deductions_gross_inc&#39;</span><span class="p">:</span> <span class="mf">2000.0</span><span class="p">,</span>
- <span class="s1">&#39;net_income&#39;</span><span class="p">:</span> <span class="mf">23000.0</span><span class="p">,</span>
- <span class="s1">&#39;deductions_net_inc&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s1">&#39;taxable_income&#39;</span><span class="p">:</span><span class="mf">23000.0</span><span class="p">,</span>
- <span class="s1">&#39;gross_tax_liability&#39;</span><span class="p">:</span> <span class="mf">3450.0</span><span class="p">,</span>
- <span class="s1">&#39;non_refund_credits&#39;</span><span class="p">:</span> <span class="mf">2345.304</span><span class="p">,</span>
- <span class="s1">&#39;refund_credits&#39;</span><span class="p">:</span> <span class="mf">4099.155339999999</span><span class="p">,</span>
- <span class="s1">&#39;net_tax_liability&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">2994.4593399999994</span><span class="p">}</span>
+<span class="s1">&#39;deductions_gross_inc&#39;</span><span class="p">:</span> <span class="mf">2107.5</span><span class="p">,</span>
+<span class="s1">&#39;net_income&#39;</span><span class="p">:</span> <span class="mf">22892.5</span><span class="p">,</span>
+<span class="s1">&#39;deductions_net_inc&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+<span class="s1">&#39;taxable_income&#39;</span><span class="p">:</span> <span class="mf">22892.5</span><span class="p">,</span>
+<span class="s1">&#39;gross_tax_liability&#39;</span><span class="p">:</span> <span class="mf">3433.875</span><span class="p">,</span>
+<span class="s1">&#39;non_refund_credits&#39;</span><span class="p">:</span> <span class="mf">2497.4249999999997</span><span class="p">,</span>
+<span class="s1">&#39;refund_credits&#39;</span><span class="p">:</span> <span class="mf">4438.18925</span><span class="p">,</span>
+<span class="s1">&#39;net_tax_liability&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">3501.73925</span><span class="p">}</span>
 </pre></div>
 </div>
 <p>On peut voir les différents attributs du ménage en utilisant encore <em>vars()</em>:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">vars</span><span class="p">(</span><span class="n">hh</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;sp&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">srd</span><span class="o">.</span><span class="n">actors</span><span class="o">.</span><span class="n">Person</span> <span class="n">at</span> <span class="mh">0x1afccbfb608</span><span class="o">&gt;</span><span class="p">,</span>
-  <span class="o">&lt;</span><span class="n">srd</span><span class="o">.</span><span class="n">actors</span><span class="o">.</span><span class="n">Person</span> <span class="n">at</span> <span class="mh">0x1afccbfb5c8</span><span class="o">&gt;</span><span class="p">],</span>
- <span class="s1">&#39;couple&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
- <span class="s1">&#39;prov&#39;</span><span class="p">:</span> <span class="s1">&#39;qc&#39;</span><span class="p">,</span>
- <span class="s1">&#39;dep&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">srd</span><span class="o">.</span><span class="n">actors</span><span class="o">.</span><span class="n">Dependent</span> <span class="n">at</span> <span class="mh">0x1afccd81d08</span><span class="o">&gt;</span><span class="p">,</span>
-  <span class="o">&lt;</span><span class="n">srd</span><span class="o">.</span><span class="n">actors</span><span class="o">.</span><span class="n">Dependent</span> <span class="n">at</span> <span class="mh">0x1afccd99548</span><span class="o">&gt;</span><span class="p">],</span>
- <span class="s1">&#39;nkids_0_6&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
- <span class="s1">&#39;nkids_7_16&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
- <span class="s1">&#39;nkids_0_17&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
- <span class="s1">&#39;nkids_0_18&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
- <span class="s1">&#39;n_adults_in_hh&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
- <span class="s1">&#39;elig_split&#39;</span><span class="p">:</span> <span class="kc">False</span>
- <span class="s1">&#39;nkids_0_5&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
- <span class="s1">&#39;nkids_6_17&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;sp&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">srd</span><span class="o">.</span><span class="n">actors</span><span class="o">.</span><span class="n">Person</span> <span class="n">at</span> <span class="mh">0x11d555880</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="o">&lt;</span><span class="n">srd</span><span class="o">.</span><span class="n">actors</span><span class="o">.</span><span class="n">Person</span> <span class="n">at</span> <span class="mh">0x11d555b20</span><span class="o">&gt;</span><span class="p">],</span>
+<span class="s1">&#39;couple&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="s1">&#39;prov&#39;</span><span class="p">:</span> <span class="s1">&#39;qc&#39;</span><span class="p">,</span>
+<span class="s1">&#39;dep&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">srd</span><span class="o">.</span><span class="n">actors</span><span class="o">.</span><span class="n">Dependent</span> <span class="n">at</span> <span class="mh">0x11d71daf0</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="o">&lt;</span><span class="n">srd</span><span class="o">.</span><span class="n">actors</span><span class="o">.</span><span class="n">Dependent</span> <span class="n">at</span> <span class="mh">0x11d71da90</span><span class="o">&gt;</span><span class="p">],</span>
+<span class="s1">&#39;nkids_0_6&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="s1">&#39;nkids_7_16&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="s1">&#39;nkids_0_17&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+<span class="s1">&#39;nkids_0_18&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+<span class="s1">&#39;n_adults_in_hh&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+<span class="s1">&#39;elig_split&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+<span class="s1">&#39;sa_elig_asset&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="s1">&#39;nkids_0_5&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="s1">&#39;nkids_6_17&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="experience">
-<h2>Expérience<a class="headerlink" href="#experience" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="section" id="experiences">
+<h2>Expériences<a class="headerlink" href="#experiences" title="Lien permanent vers ce titre">¶</a></h2>
 <p>On peut faire des expériences assez complexes. Une première consisterait par exemple à regarder l’impôt fédéral payé si on augmente les revenus de travail par petites tranches.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
@@ -519,14 +660,14 @@
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
         <a href="TutorialCalculator.html" class="btn btn-neutral float-right" title="Exemple de calcul du revenu disponible" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="calculators.html" class="btn btn-neutral float-left" title="Calculateur de revenu disponible" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+        <a href="comparaison.html" class="btn btn-neutral float-left" title="Comparaisons avec le MFQ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2020, Équipe CREEi.
+        &#169; Copyright 2022, Équipe CREEi.
 
     </p>
   </div>

@@ -17,15 +17,11 @@ Contributeurs
 
 Principaux
 ^^^^^^^^^^^^^^^^^^^^
-David Boisclair, Nicholas-James Clavet, Raquel Fonseca, Pierre-Carl Michaud, Pierre-Yves Yanni
+David Boisclair, Nicholas-James Clavet, Roger Edindali Emone, Raquel Fonseca, Pierre-Carl Michaud, Pierre-Yves Yanni
 
 2020
 ^^^^^^^^^^^^^^^^^^^^
 Marianne Laurin, Paul Ouimet, Gaëlle Simard-Duplain
-
-2021
-^^^^^^^^^^^^^^^^^^^^
-Zayd Ben Osmane, Roger Edindali Emone
 
 Droits d'utilisation
 ********************

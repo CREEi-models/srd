@@ -13,6 +13,9 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/contentui.css" type="text/css" />
 
   
   
@@ -29,11 +32,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
         <script src="_static/translations.js"></script>
+        <script src="_static/contentui.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -87,22 +91,109 @@
               
             
             
-              <p class="caption"><span class="caption-text">Menu:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Menu:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Premiers pas avec le SRD</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Les acteurs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="federal.html">Impôt fédéral</a></li>
-<li class="toctree-l1"><a class="reference internal" href="quebec.html">Impôt du Québec</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ontario.html">Impôt de l’Ontario</a></li>
-<li class="toctree-l1"><a class="reference internal" href="oas.html">Pension de la sécurité de la vieillesse</a></li>
-<li class="toctree-l1"><a class="reference internal" href="payroll.html">Cotisations sociales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="assistance.html">Aide sociale</a></li>
-<li class="toctree-l1"><a class="reference internal" href="covid.html">Prestations liées à la COVID-19</a></li>
-<li class="toctree-l1"><a class="reference internal" href="calculators.html">Calculateur de revenu disponible</a></li>
-<li class="toctree-l1"><a class="reference internal" href="TutorialFed.html">Exemple de calcul de l’impôt fédéral</a></li>
-<li class="toctree-l1"><a class="reference internal" href="TutorialCalculator.html">Exemple de calcul du revenu disponible</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Premiers pas avec le SRD</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#installation-du-srd">Installation du SRD</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#installation-alternative">Installation alternative</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Les acteurs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#personnes">Personnes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dependants-enfant-ou-proche-a-charge">Dépendants (enfant ou proche à charge)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#menages">Ménages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="federal.html">Impôt fédéral</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="federal.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="federal.html#gabarit-de-declaration">Gabarit de déclaration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="federal.html#fonctions-specifiques-ou-modifiees">Fonctions spécifiques ou modifiées</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quebec.html">Impôt du Québec</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quebec.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quebec.html#gabarit-de-declaration">Gabarit de déclaration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quebec.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ontario.html">Impôt de l’Ontario</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ontario.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ontario.html#gabarit-du-rapport">Gabarit du rapport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ontario.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="oas.html">Pension de la sécurité de la vieillesse</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="oas.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oas.html#gabarit-du-programme">Gabarit du programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oas.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="payroll.html">Cotisations sociales</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="payroll.html#assurance-emploi">Assurance emploi</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#survol">Survol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#gabarit-du-programme">Gabarit du programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="payroll.html#regime-quebecois-d-assurance-parentale">Régime québécois d’assurance parentale</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#id1">Survol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#id2">Gabarit du programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#id3">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="assistance.html">Aide sociale</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="assistance.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assistance.html#gabarit-du-programme">Gabarit du programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assistance.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="covid.html">Prestations liées à la COVID-19</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="covid.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="covid.html#gabarit-du-programme">Gabarit du programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="covid.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="calculators.html">Calculateur de revenu disponible</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="calculators.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calculators.html#les-fonctions-du-calculateur">Les fonctions du calculateur</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="comparaison.html">Comparaisons avec le MFQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="comparaison.html#personne-celibataire-sans-enfant">Personne célibataire (sans enfant)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comparaison.html#personne-monoparentale">Personne monoparentale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comparaison.html#couple-sans-enfant">Couple sans enfant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comparaison.html#couple-avec-enfant">Couple avec enfant</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="TutorialFed.html">Exemple de calcul de l’impôt fédéral</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="TutorialFed.html#importation-du-package">Importation du package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TutorialFed.html#initialisation-dun-menage">Initialisation d’un ménage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TutorialFed.html#calcul-de-limpot-federal">Calcul de l’impôt fédéral</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TutorialFed.html#experiences">Expériences</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="TutorialCalculator.html">Exemple de calcul du revenu disponible</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="TutorialCalculator.html#construction-du-menage">Construction du ménage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TutorialCalculator.html#le-calculateur">Le calculateur</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TutorialCalculator.html#calcul-du-revenu-apres-impots-et-du-revenu-disponible">Calcul du revenu après impôts et du revenu disponible</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialChangeParameters.html">Exemple de changement de paramètre</a></li>
-<li class="toctree-l1"><a class="reference internal" href="credits.html">Contacts et droits d’utilisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits.html">Contacts et droits d’utilisation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="credits.html#liste-d-envoi">Liste d’envoi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="credits.html#personne-contact">Personne-contact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="credits.html#contributeurs">Contributeurs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="credits.html#principaux">Principaux</a></li>
+<li class="toctree-l3"><a class="reference internal" href="credits.html#id1">2020</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="credits.html#droits-d-utilisation">Droits d’utilisation</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -174,10 +265,12 @@
             
   <span class="target" id="module-srd"></span><div class="section" id="les-acteurs">
 <h1>Les acteurs<a class="headerlink" href="#les-acteurs" title="Lien permanent vers ce titre">¶</a></h1>
-<p>Les fonctions d’acteurs permettent de déclarer des profils.</p>
+<p>Les fonctions d’acteurs permettent de déclarer les profils.</p>
+<div class="section" id="personnes">
+<h2>Personnes<a class="headerlink" href="#personnes" title="Lien permanent vers ce titre">¶</a></h2>
 <dl class="py class">
-<dt id="srd.Person">
-<em class="property">class </em><code class="sig-prename descclassname">srd.</code><code class="sig-name descname">Person</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">age</span><span class="o">=</span><span class="default_value">50</span></em>, <em class="sig-param"><span class="n">male</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">earn</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">rpp</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">cpp</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">net_cap_gains</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">prev_cap_losses</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">cap_gains_exempt</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">othtax</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">othntax</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">inc_rrsp</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">self_earn</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">div_elig</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">div_other_can</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">con_rrsp</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">con_non_rrsp</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">con_rpp</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">union_dues</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">donation</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">gift</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">years_can</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">disabled</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">widow</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">med_exp</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">ndays_chcare_k1</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">ndays_chcare_k2</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">asset</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">oas_years_post</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">months_cerb_cesb</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">student</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">essential_worker</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">hours_month</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">prev_inc_work</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">dep_senior</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">home_support_cost</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Person" title="Lien permanent vers cette définition">¶</a></dt>
+<dt class="sig sig-object py" id="srd.Person">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.</span></span><span class="sig-name descname"><span class="pre">Person</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">age</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">male</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">earn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rpp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cpp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">net_cap_gains</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prev_cap_losses</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cap_gains_exempt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">othtax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">othntax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inc_rrsp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">self_earn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">div_elig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">div_other_can</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">con_rrsp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">con_non_rrsp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">con_rpp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">union_dues</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">donation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gift</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">years_can</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">disabled</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">widow</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">med_exp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ndays_chcare_k1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ndays_chcare_k2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">asset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oas_years_post</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">months_cerb_cesb</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">student</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">essential_worker</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">emp_temp_constraints</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hours_month</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prev_inc_work</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dep_senior</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">home_support_cost</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">months_ei</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">months_crb</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pub_drug_insurance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tax_shield</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Person" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Classe pour définir une personne.</p>
 <p>Ceci définit une personne et son profil en termes de revenus et d’actifs.</p>
 <dl class="field-list simple">
@@ -203,27 +296,41 @@
 <li><p><strong>union_dues</strong> (<em>float</em>) – cotisations syndicales, professionnelles ou autres</p></li>
 <li><p><strong>donation</strong> (<em>float</em>) – don de bienfaisance et autres dons</p></li>
 <li><p><strong>gift</strong> (<em>float</em>) – dons de biens culturels et écosensibles</p></li>
-<li><p><strong>years_can</strong> (<em>int</em>) – nombre d’années vécues au Canada lorsque la Pension de la sécurité de la vieillesse (PSV) est demandée</p></li>
-<li><p><strong>disabled</strong> (<em>boolean</em>) – statut d’invalidité</p></li>
-<li><p><strong>widow</strong> (<em>boolean</em>) – statut de veuf/veuve</p></li>
-<li><p><strong>med_exp</strong> (<em>float</em>) – montant des dépenses en santé admissibles</p></li>
+<li><p><strong>years_can</strong> (<em>int</em>) – nombre d’années vécues au Canada depuis l’âge de 18 ans lorsque la Pension de la sécurité de la vieillesse (PSV) est demandée</p></li>
+<li><p><strong>disabled</strong> (<em>boolean</em>) – statut d’invalidité selon les règles fiscales (le même statut est utilisé pour l’ensemble des mesures fiscales modélisées)</p></li>
+<li><p><strong>widow</strong> (<em>boolean</em>) – statut de veuf/veuve selon le Programme de la sécurité de la vieillesse</p></li>
+<li><p><strong>med_exp</strong> (<em>float</em>) – montant des dépenses en santé admissibles selon les règles fiscales (le même montant est utilisé pour tous les paliers de gouvernement)</p></li>
 <li><p><strong>ndays_chcare_k1</strong> (<em>float</em>) – nombre de jours de garde du premier enfant</p></li>
 <li><p><strong>ndays_chcare_k2</strong> (<em>float</em>) – nombre de jours de garde du second enfant</p></li>
-<li><p><strong>asset</strong> (<em>float</em>) – valeur marchande des actifs (illiquides)</p></li>
+<li><p><strong>asset</strong> (<em>float</em>) – valeur marchande des actifs (avoirs liquides) comptabilisés aux fins d’admissibilité à l’aide sociale (vérifier la définition selon la province)</p></li>
 <li><p><strong>oas_years_post</strong> (<em>int</em>) – nombre d’années de report pour la PSV (après 65 ans)</p></li>
 <li><p><strong>months_cerb_cesb</strong> (<em>int</em>) – nombre de mois pour lesquels la PCU ou la PCUE est demandée</p></li>
-<li><p><strong>student</strong> (<em>boolean</em>) – statut d’étudiant ou fin des études après décembre 2019 (pour PCUE)</p></li>
+<li><p><strong>student</strong> (<em>boolean</em>) – statut d’étudiant aux fins d’admissibilité à la PCUE</p></li>
 <li><p><strong>essential_worker</strong> (<em>boolean</em>) – True si travailleur essentiel (au Québec seulement)</p></li>
 <li><p><strong>hours_month</strong> (<em>float</em>) – nombre d’heures travaillées par mois</p></li>
 <li><p><strong>prev_inc_work</strong> (<em>float</em>) – revenu du travail de l’année précédente</p></li>
-<li><p><strong>dep_senior</strong> (<em>boolean</em>) – True si la personne aînée n’est pas autonome</p></li>
-<li><p><strong>home_support_cost</strong> (<em>float</em>) – coût du maintien à domicile</p></li>
+<li><p><strong>dep_senior</strong> (<em>boolean</em>) – True si la personne aînée n’est pas autonome aux du crédit d’impôt pour maintien à domicile des aînés</p></li>
+<li><p><strong>home_support_cost</strong> (<em>float</em>) – dépenses engagées pour des services de maintien à domicile rendus ou à être rendus à partir du jour du 70e anniversaire</p></li>
+<li><p><strong>months_ei</strong> (<em>int</em>) – nombre de mois pour lesquels l’Assurance-Emploi sont demandée</p></li>
+<li><p><strong>months_crb</strong> (<em>int</em>) – nombre de mois pour lesquels la PCRE est demandée</p></li>
+<li><p><strong>pub_drug_insurance</strong> (<em>boolean</em>) – True si la personne doit cotiser à l’Assurance médicaments du Québec (pas d’assurance médicaments privée)</p></li>
+<li><p><strong>tax_shield</strong> (<em>boolean</em>) – True si la personne demande le crédit d’impôt bouclier ficscal au Québec</p></li>
 </ul>
 </dd>
 </dl>
-<dl class="py method">
-<dt id="srd.Person.attach_prev_work_inc">
-<code class="sig-name descname">attach_prev_work_inc</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">prev_work_inc</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Person.attach_prev_work_inc" title="Lien permanent vers cette définition">¶</a></dt>
+</dd></dl>
+
+<div class="line-block">
+<div class="line">Fonctions incluses dans cette classe:</div>
+<div class="line">(Cliquez pour afficher les détails)</div>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- attach_prev_work_inc()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.Person.attach_prev_work_inc">
+<span class="sig-prename descclassname"><span class="pre">srd.Person.</span></span><span class="sig-name descname"><span class="pre">attach_prev_work_inc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prev_work_inc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Person.attach_prev_work_inc" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui ajoute le revenu du travail de l’an passé s’il est disponible,
 ou l’approxime avec le revenu du travail de l’année courante sinon.</p>
 <dl class="field-list simple">
@@ -233,9 +340,14 @@ ou l’approxime avec le revenu du travail de l’année courante sinon.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.Person.attach_inc_work_month">
-<code class="sig-name descname">attach_inc_work_month</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">earn</span></em>, <em class="sig-param"><span class="n">self_earn</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Person.attach_inc_work_month" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- attach_inc_work_month()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.Person.attach_inc_work_month">
+<span class="sig-prename descclassname"><span class="pre">srd.Person.</span></span><span class="sig-name descname"><span class="pre">attach_inc_work_month</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">earn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">self_earn</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Person.attach_inc_work_month" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui convertit le revenu de travail annuel en revenu mensuel et vice versa.</p>
 <p>On entre le revenu de travail annuel ou mensuel (liste avec 12 éléments)
 et le revenu de travail annuel et mensuel deviennent des attributs de la personne.</p>
@@ -249,9 +361,14 @@ et le revenu de travail annuel et mensuel deviennent des attributs de la personn
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.Person.inc_work">
-<em class="property">property </em><code class="sig-name descname">inc_work</code><a class="headerlink" href="#srd.Person.inc_work" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- inc_work()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.Person.inc_work">
+<span class="sig-prename descclassname"><span class="pre">srd.Person.</span></span><span class="sig-name descname"><span class="pre">inc_work</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.Person.inc_work" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui retourne le revenu de travail.</p>
 <p>Inclut le revenu de travail autonome.</p>
 <dl class="field-list simple">
@@ -264,9 +381,14 @@ et le revenu de travail annuel et mensuel deviennent des attributs de la personn
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.Person.inc_non_work">
-<em class="property">property </em><code class="sig-name descname">inc_non_work</code><a class="headerlink" href="#srd.Person.inc_non_work" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- inc_non_work()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.Person.inc_non_work">
+<span class="sig-prename descclassname"><span class="pre">srd.Person.</span></span><span class="sig-name descname"><span class="pre">inc_non_work</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.Person.inc_non_work" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui retourne le total des revenus autres que les revenus du travail.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Renvoie</dt>
@@ -278,9 +400,14 @@ et le revenu de travail annuel et mensuel deviennent des attributs de la personn
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.Person.inc_tot">
-<em class="property">property </em><code class="sig-name descname">inc_tot</code><a class="headerlink" href="#srd.Person.inc_tot" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- inc_tot()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.Person.inc_tot">
+<span class="sig-prename descclassname"><span class="pre">srd.Person.</span></span><span class="sig-name descname"><span class="pre">inc_tot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.Person.inc_tot" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui retourne le revenu total.</p>
 <p>Ce revenu total contient les montants réels des dividendes de sociétés
 canadiennes (et non les montants imposables).</p>
@@ -294,9 +421,14 @@ canadiennes (et non les montants imposables).</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.Person.compute_months_cerb_cesb">
-<code class="sig-name descname">compute_months_cerb_cesb</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">months_cerb_cesb</span></em>, <em class="sig-param"><span class="n">student</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Person.compute_months_cerb_cesb" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- compute_months_cerb_cesb()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.Person.compute_months_cerb_cesb">
+<span class="sig-prename descclassname"><span class="pre">srd.Person.</span></span><span class="sig-name descname"><span class="pre">compute_months_cerb_cesb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">months_cerb_cesb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">student</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Person.compute_months_cerb_cesb" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui établit le nombre de mois de PCU ou de PCUE selon le nombre de mois
 pour lesquels la personne demande la prestation et selon son statut d’étudiant.</p>
 <dl class="field-list simple">
@@ -309,24 +441,39 @@ pour lesquels la personne demande la prestation et selon son statut d’étudian
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.Person.copy">
-<code class="sig-name descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.Person.copy" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- copy()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.Person.copy">
+<span class="sig-prename descclassname"><span class="pre">srd.Person.</span></span><span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Person.copy" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui produit une copie des attributs de la personne.</p>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.Person.reset">
-<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.Person.reset" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- reset()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.Person.reset">
+<span class="sig-prename descclassname"><span class="pre">srd.Person.</span></span><span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Person.reset" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui utilise la copie des attributs de la personne
 pour réinitialiser l’instance de la personne.</p>
 </dd></dl>
 
-</dd></dl>
-
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="dependants-enfant-ou-proche-a-charge">
+<h2>Dépendants (enfant ou proche à charge)<a class="headerlink" href="#dependants-enfant-ou-proche-a-charge" title="Lien permanent vers ce titre">¶</a></h2>
 <dl class="py class">
-<dt id="srd.Dependent">
-<em class="property">class </em><code class="sig-prename descclassname">srd.</code><code class="sig-name descname">Dependent</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">age</span></em>, <em class="sig-param"><span class="n">disa</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">child_care</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">school</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">home_care</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">med_exp</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Dependent" title="Lien permanent vers cette définition">¶</a></dt>
+<dt class="sig sig-object py" id="srd.Dependent">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.</span></span><span class="sig-name descname"><span class="pre">Dependent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">age</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">disa</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">child_care</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">school</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">home_care</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">med_exp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Dependent" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Classe pour définir un dépendant.</p>
 <p>Ceci définit un dépendant et son profil.</p>
 <dl class="field-list simple">
@@ -334,18 +481,24 @@ pour réinitialiser l’instance de la personne.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>age</strong> (<em>int</em>) – âge de l’individu</p></li>
 <li><p><strong>disa</strong> (<em>boolean</em>) – statut d’invalidité</p></li>
-<li><p><strong>child_care</strong> (<em>float</em>) – montant des dépenses réelles de frais de garde</p></li>
-<li><p><strong>school</strong> (<em>float</em>) – montant des dépenses de scolarité</p></li>
-<li><p><strong>home_care</strong> (<em>float</em>) – montant de l’aide à domicile</p></li>
-<li><p><strong>med_exp</strong> (<em>float</em>) – montant des dépenses en santé admissibles</p></li>
+<li><p><strong>child_care</strong> (<em>float</em>) – dépenses réelles de frais de garde</p></li>
+<li><p><strong>school</strong> (<em>float</em>) – dépenses de scolarité</p></li>
+<li><p><strong>home_care</strong> (<em>float</em>) – dépenses engagées pour des services de maintien à domicile rendus ou à être rendus à partir du jour du 70e anniversaire</p></li>
+<li><p><strong>med_exp</strong> (<em>float</em>) – dépenses en santé admissibles</p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="menages">
+<h2>Ménages<a class="headerlink" href="#menages" title="Lien permanent vers ce titre">¶</a></h2>
 <dl class="py class">
-<dt id="srd.Hhold">
-<em class="property">class </em><code class="sig-prename descclassname">srd.</code><code class="sig-name descname">Hhold</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">first</span></em>, <em class="sig-param"><span class="n">second</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">prov</span><span class="o">=</span><span class="default_value">'qc'</span></em>, <em class="sig-param"><span class="n">n_adults_in_hh</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold" title="Lien permanent vers cette définition">¶</a></dt>
+<dt class="sig sig-object py" id="srd.Hhold">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.</span></span><span class="sig-name descname"><span class="pre">Hhold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">first</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">second</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'qc'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_adults_in_hh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prev_fam_net_inc_prov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Classe pour définir un ménage.</p>
 <p>Ceci définit un ménage et son profil.</p>
 <dl class="field-list simple">
@@ -358,9 +511,19 @@ pour réinitialiser l’instance de la personne.</p>
 </ul>
 </dd>
 </dl>
-<dl class="py method">
-<dt id="srd.Hhold.adjust_n_adults">
-<code class="sig-name descname">adjust_n_adults</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_adults_in_hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.adjust_n_adults" title="Lien permanent vers cette définition">¶</a></dt>
+</dd></dl>
+
+<div class="line-block">
+<div class="line">Fonctions incluses dans cette classe - les fonctions relatives au revenu utilisent des quantités déjà calculées au niveau individuel par la classe principale du calculateur (<em>tax</em>), soit le calculateur de revenu disponible:</div>
+<div class="line">(Cliquez pour afficher les détails)</div>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- adjust_n_adults()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.Hhold.adjust_n_adults">
+<span class="sig-prename descclassname"><span class="pre">srd.Hhold.</span></span><span class="sig-name descname"><span class="pre">adjust_n_adults</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_adults_in_hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.adjust_n_adults" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le nombre d’adultes dans le ménage si celui-ci
 n’est pas fourni.</p>
 <dl class="field-list simple">
@@ -376,9 +539,14 @@ n’est pas fourni.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.Hhold.fam_inc_work">
-<em class="property">property </em><code class="sig-name descname">fam_inc_work</code><a class="headerlink" href="#srd.Hhold.fam_inc_work" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- fam_inc_work()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.Hhold.fam_inc_work">
+<span class="sig-prename descclassname"><span class="pre">srd.Hhold.</span></span><span class="sig-name descname"><span class="pre">fam_inc_work</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.fam_inc_work" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le revenu de travail du ménage.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Renvoie</dt>
@@ -390,9 +558,14 @@ n’est pas fourni.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.Hhold.fam_inc_non_work">
-<code class="sig-name descname">fam_inc_non_work</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.fam_inc_non_work" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- fam_inc_non_work()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.Hhold.fam_inc_non_work">
+<span class="sig-prename descclassname"><span class="pre">srd.Hhold.</span></span><span class="sig-name descname"><span class="pre">fam_inc_non_work</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.fam_inc_non_work" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le revenu familial de sources autres que le travail.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Renvoie</dt>
@@ -404,37 +577,14 @@ n’est pas fourni.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.Hhold.fam_net_inc_prov">
-<em class="property">property </em><code class="sig-name descname">fam_net_inc_prov</code><a class="headerlink" href="#srd.Hhold.fam_net_inc_prov" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui calcule le revenu familial net pour l’impôt et les programmes provinciaux.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Renvoie</dt>
-<dd class="field-odd"><p>Revenu familial net provincial.</p>
-</dd>
-<dt class="field-even">Type renvoyé</dt>
-<dd class="field-even"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="srd.Hhold.fam_net_inc_fed">
-<em class="property">property </em><code class="sig-name descname">fam_net_inc_fed</code><a class="headerlink" href="#srd.Hhold.fam_net_inc_fed" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui calcule le revenu familial net pour l’impôt et les programmes fédéraux.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Renvoie</dt>
-<dd class="field-odd"><p>Revenu familial net fédéral.</p>
-</dd>
-<dt class="field-even">Type renvoyé</dt>
-<dd class="field-even"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="srd.Hhold.fam_inc_tot">
-<em class="property">property </em><code class="sig-name descname">fam_inc_tot</code><a class="headerlink" href="#srd.Hhold.fam_inc_tot" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- fam_inc_tot()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.Hhold.fam_inc_tot">
+<span class="sig-prename descclassname"><span class="pre">srd.Hhold.</span></span><span class="sig-name descname"><span class="pre">fam_inc_tot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.fam_inc_tot" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le revenu familial total.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Renvoie</dt>
@@ -446,9 +596,14 @@ n’est pas fourni.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.Hhold.fam_after_tax_inc">
-<em class="property">property </em><code class="sig-name descname">fam_after_tax_inc</code><a class="headerlink" href="#srd.Hhold.fam_after_tax_inc" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- fam_after_tax_inc()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.Hhold.fam_after_tax_inc">
+<span class="sig-prename descclassname"><span class="pre">srd.Hhold.</span></span><span class="sig-name descname"><span class="pre">fam_after_tax_inc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.fam_after_tax_inc" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le revenu familial après impôts.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Renvoie</dt>
@@ -460,9 +615,14 @@ n’est pas fourni.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.Hhold.fam_disp_inc">
-<em class="property">property </em><code class="sig-name descname">fam_disp_inc</code><a class="headerlink" href="#srd.Hhold.fam_disp_inc" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- fam_disp_inc()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.Hhold.fam_disp_inc">
+<span class="sig-prename descclassname"><span class="pre">srd.Hhold.</span></span><span class="sig-name descname"><span class="pre">fam_disp_inc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.fam_disp_inc" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui additionne les revenus disponibles du conjoint pour obtenir le revenu disponible familial.</p>
 <p>Il s’agit du revenu disponible après impôts, cotisations sociales, épargne (positive ou négative) et prestations.</p>
 <dl class="field-list simple">
@@ -475,9 +635,14 @@ n’est pas fourni.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.Hhold.child_care_exp">
-<em class="property">property </em><code class="sig-name descname">child_care_exp</code><a class="headerlink" href="#srd.Hhold.child_care_exp" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- child_care_exp()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.Hhold.child_care_exp">
+<span class="sig-prename descclassname"><span class="pre">srd.Hhold.</span></span><span class="sig-name descname"><span class="pre">child_care_exp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.child_care_exp" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule la dépense en frais de garde pour le ménage.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Renvoie</dt>
@@ -489,9 +654,52 @@ n’est pas fourni.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.Hhold.add_dependent">
-<code class="sig-name descname">add_dependent</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">dependents</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.add_dependent" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- fam_net_inc_prov()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.Hhold.fam_net_inc_prov">
+<span class="sig-prename descclassname"><span class="pre">srd.Hhold.</span></span><span class="sig-name descname"><span class="pre">fam_net_inc_prov</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.fam_net_inc_prov" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule le revenu familial net pour l’impôt et les programmes provinciaux.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Renvoie</dt>
+<dd class="field-odd"><p>Revenu familial net provincial.</p>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- fam_net_inc_fed()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.Hhold.fam_net_inc_fed">
+<span class="sig-prename descclassname"><span class="pre">srd.Hhold.</span></span><span class="sig-name descname"><span class="pre">fam_net_inc_fed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.fam_net_inc_fed" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule le revenu familial net pour l’impôt et les programmes fédéraux.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Renvoie</dt>
+<dd class="field-odd"><p>Revenu familial net fédéral.</p>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- add_dependent()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.Hhold.add_dependent">
+<span class="sig-prename descclassname"><span class="pre">srd.Hhold.</span></span><span class="sig-name descname"><span class="pre">add_dependent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">dependents</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.add_dependent" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction pour ajouter un ou plusieurs dépendant(s).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -500,41 +708,69 @@ n’est pas fourni.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.Hhold.count">
-<code class="sig-name descname">count</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.count" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- count()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.Hhold.count">
+<span class="sig-prename descclassname"><span class="pre">srd.Hhold.</span></span><span class="sig-name descname"><span class="pre">count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.count" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction pour calculer le nombre d’enfants dans différentes catégories d’âge.</p>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.Hhold.compute_max_split">
-<code class="sig-name descname">compute_max_split</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.compute_max_split" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- compute_max_split()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.Hhold.compute_max_split">
+<span class="sig-prename descclassname"><span class="pre">srd.Hhold.</span></span><span class="sig-name descname"><span class="pre">compute_max_split</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.compute_max_split" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule le montant maximal de revenu de pension pouvant être fractionné, et qui l’attache à chaque conjoint du ménage dans l’attribut <em>max_split</em>.</p>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.Hhold.assess_elig_split">
-<code class="sig-name descname">assess_elig_split</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.assess_elig_split" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- assess_elig_split()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.Hhold.assess_elig_split">
+<span class="sig-prename descclassname"><span class="pre">srd.Hhold.</span></span><span class="sig-name descname"><span class="pre">assess_elig_split</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.assess_elig_split" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui établit si le ménage est admissible pour le fractionnement du revenu
 de pension, et qui l’attache au ménage dans l’attribut <em>elig_split</em>.</p>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.Hhold.copy">
-<code class="sig-name descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.copy" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- copy()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.Hhold.copy">
+<span class="sig-prename descclassname"><span class="pre">srd.Hhold.</span></span><span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.copy" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui produit une copie des attributs du ménage
 et des personnes dans le ménage.</p>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.Hhold.reset">
-<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.reset" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- reset()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.Hhold.reset">
+<span class="sig-prename descclassname"><span class="pre">srd.Hhold.</span></span><span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.Hhold.reset" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui utilise la copie des attributs du ménage et des personnes
 pour réinitialiser l’instance du ménage.</p>
 </dd></dl>
 
-</dd></dl>
-
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
 </div>
 
 
@@ -551,7 +787,7 @@ pour réinitialiser l’instance du ménage.</p>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2020, Équipe CREEi.
+        &#169; Copyright 2022, Équipe CREEi.
 
     </p>
   </div>

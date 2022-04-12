@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Premiers pas avec le SRD &mdash; Documentation SRD </title>
+  <title>Comparaisons avec le MFQ &mdash; Documentation SRD </title>
   
 
   
@@ -44,8 +44,8 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Recherche" href="search.html" />
-    <link rel="next" title="Les acteurs" href="actors.html" />
-    <link rel="prev" title="Simulateur de revenu disponible" href="index.html" /> 
+    <link rel="next" title="Exemple de calcul de l’impôt fédéral" href="TutorialFed.html" />
+    <link rel="prev" title="Calculateur de revenu disponible" href="calculators.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -93,9 +93,9 @@
             
               <p class="caption" role="heading"><span class="caption-text">Menu:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Premiers pas avec le SRD</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#installation-du-srd">Installation du SRD</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#installation-alternative">Installation alternative</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Premiers pas avec le SRD</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#installation-du-srd">Installation du SRD</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#installation-alternative">Installation alternative</a></li>
 </ul>
 </li>
 </ul>
@@ -162,11 +162,11 @@
 <li class="toctree-l2"><a class="reference internal" href="calculators.html#les-fonctions-du-calculateur">Les fonctions du calculateur</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="comparaison.html">Comparaisons avec le MFQ</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="comparaison.html#personne-celibataire-sans-enfant">Personne célibataire (sans enfant)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="comparaison.html#personne-monoparentale">Personne monoparentale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="comparaison.html#couple-sans-enfant">Couple sans enfant</a></li>
-<li class="toctree-l2"><a class="reference internal" href="comparaison.html#couple-avec-enfant">Couple avec enfant</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Comparaisons avec le MFQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#personne-celibataire-sans-enfant">Personne célibataire (sans enfant)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#personne-monoparentale">Personne monoparentale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#couple-sans-enfant">Couple sans enfant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#couple-avec-enfant">Couple avec enfant</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialFed.html">Exemple de calcul de l’impôt fédéral</a><ul>
@@ -244,13 +244,13 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Premiers pas avec le SRD</li>
+      <li>Comparaisons avec le MFQ</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/overview.rst.txt" rel="nofollow"> Afficher la source de la page</a>
+            <a href="_sources/comparaison.rst.txt" rel="nofollow"> Afficher la source de la page</a>
           
         
       </li>
@@ -263,29 +263,53 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="premiers-pas-avec-le-srd">
-<span id="overview"></span><h1>Premiers pas avec le SRD<a class="headerlink" href="#premiers-pas-avec-le-srd" title="Lien permanent vers ce titre">¶</a></h1>
-<div class="section" id="installation-du-srd">
-<span id="installing-docdir"></span><h2>Installation du SRD<a class="headerlink" href="#installation-du-srd" title="Lien permanent vers ce titre">¶</a></h2>
-<p>On peut installer facilement le SRD en utilisant pip:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">srd</span>
-</pre></div>
+  <div class="section" id="comparaisons-avec-le-mfq">
+<h1>Comparaisons avec le MFQ<a class="headerlink" href="#comparaisons-avec-le-mfq" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Cette section compare brièvement les résultats du SRD avec ceux du <a class="reference external" href="http://www.budget.finances.gouv.qc.ca/budget/outils/revenu-disponible-fr.asp">simulateur de revenu disponible du ministère des Finances du Québec (MFQ)</a> . L’objectif poursuivi est de démontrer que le SRD est en mesure de produire des résultats comparables à ceux du MFQ.</p>
+<p>Deux indicateurs sont utilisés pour cette comparaison. Le premier est le revenu disponible, qui est défini comme le revenu total (incluant les transferts directs gouvernementaux) après soustraction des cotisations salariales et de l’impôt sur le revenu,  et ajout des transferts sociaux. Le deuxième indicateur est le taux effectif marginal d’imposition (TEMI), qui est une mesure du taux de charge fiscale sur un revenu supplémentaire, soit le taux qui s’applique à la dernière tranche de revenu imposable obtenu par un particulier (nous procedons par tranche de 1 000 $).</p>
+<p>De manière générale, les résultats obtenus par le SRD sont très similaires à ceux du MFQ. Notons que lors de la modélisation, nous avons choisi d’intégrer
+le crédit d’impôt attribuant un montant ponctuel (de 500$) pour pallier à la hausse du coût de la vie en 2021, à la différence du MFQ qui l’a intégré en 2022.
+Ce choix donne lieu à une différence de 500$ à 1000$ dépendant de la situation du ménage (célibataire ou couple).
+En outre, d’autres légères différences sont observables. Celles-ci sont principalement dues aux éléments suivants:</p>
+<ul class="simple">
+<li><p>les résultats du MFQ tiennent compte du changement d’année de base en juillet pour le calcul du crédit d’impôt de la TPS, alors que le SRD ne considère qu’une seule année de base pour une même année fiscale;</p></li>
+<li><p>l’aide sociale n’est pas incluse dans le revenu familial lors du calcul de la prime au travail, puisque le montant de l’aide sociale est calculé après la prime au travail;</p></li>
+<li><p>on observe une légère différence (positive) pour la contribution au régime public d’assurance médicaments pour les 65 ans et plus.</p></li>
+</ul>
+<p>Dix cas-types sont présentés ci-dessous afin de dresser un portrait général de la situation.
+Les différences correspondent aux résultats du SRD moins ceux du MFQ.
+L’année fiscale 2021 a été choisie aux fins de comparaison et l’allocation logement est exclue du revenu disponible, car celle-ci n’est pas modélisée par le SRD.</p>
+<div class="section" id="personne-celibataire-sans-enfant">
+<h2>Personne célibataire (sans enfant)<a class="headerlink" href="#personne-celibataire-sans-enfant" title="Lien permanent vers ce titre">¶</a></h2>
+<p><strong>De 35 ans</strong></p>
+<img alt="_images/output_100.png" src="_images/output_100.png" />
+<p><strong>De 63 ans</strong></p>
+<img alt="_images/output_10061.png" src="_images/output_10061.png" />
+<p><strong>De 73 ans</strong></p>
+<img alt="_images/output_30070.png" src="_images/output_30070.png" />
 </div>
-<p>Le SRD dépend d’un autre package, <a class="reference external" href="https://creei-models.github.io/srpp/">le SRPP</a>, qui permet de simuler les revenus de pensions publiques (RPC et RRQ) et les cotisations à ces régimes. Ce package est installé automatiquement en installant le SRD.</p>
-<p>Dans un notebook ou un projet, on invoque le SRD en ajoutant la commande suivante:</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">srd</span>
-</pre></div>
+<div class="section" id="personne-monoparentale">
+<h2>Personne monoparentale<a class="headerlink" href="#personne-monoparentale" title="Lien permanent vers ce titre">¶</a></h2>
+<p><strong>De 35 ans avec un enfant de 4 ans et des frais de garde non-subventionnés de 6825$</strong></p>
+<img alt="_images/output_121.png" src="_images/output_121.png" />
+<p><strong>De 35 ans avec un enfant de 10 ans, aucun frais de garde</strong></p>
+<img alt="_images/output_151.png" src="_images/output_151.png" />
 </div>
-<p>Pour désinstaller le SRD et le SRPP, il suffit d’utiliser pip:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">uninstall</span> <span class="n">srd</span> <span class="n">srpp</span>
-</pre></div>
+<div class="section" id="couple-sans-enfant">
+<h2>Couple sans enfant<a class="headerlink" href="#couple-sans-enfant" title="Lien permanent vers ce titre">¶</a></h2>
+<p><strong>Conjoints de 35 ans et répartition du revenu familial de 0-100% entre les conjoints</strong></p>
+<img alt="_images/output_200.png" src="_images/output_200.png" />
+<p><strong>Conjoints de 35 ans et répartition du revenu familial de 40-60% entre les conjoints</strong></p>
+<img alt="_images/output_220.png" src="_images/output_220.png" />
+<p><strong>Conjoints de 73 ans et répartition du revenu 0-100% entre les conjoints</strong></p>
+<img alt="_images/output_31070.png" src="_images/output_31070.png" />
+<p><strong>Conjoints de 73 ans et répartition du revenu familial de 40-60% entre les conjoints</strong></p>
+<img alt="_images/output_32070.png" src="_images/output_32070.png" />
 </div>
-<div class="section" id="installation-alternative">
-<h3>Installation alternative<a class="headerlink" href="#installation-alternative" title="Lien permanent vers ce titre">¶</a></h3>
-<p>Si l’utilisation de pip n’est pas possible, un fichier .zip avec le SRD et sa dépendance, le SRPP, peut être téléchargé de <a class="reference external" href="https://github.com/CREEi-models/srd/releases">Github</a> (choisissez le fichier <em>srd_with_dep.zip</em> dans le dernier « release »). Pour utiliser le SRD, il suffit d’extraire les fichiers du .zip dans le répertoire de son choix et de travailler de ce dernier ou d’ajouter ce répertoire au chemin d’accès (par exemple en utilisant le module <em>sys</em>). Un tutoriel a également été inclus dans le fichier .zip. Si l’on ne veut plus le SRD, il suffit d’effacer les répertoires <em>srd</em> et <em>srpp</em>.</p>
-<p>Le SRD est fourni « tel quel », sous une <a class="reference external" href="https://rsi-models.github.io/CPR/credits.html#licence">licence MIT</a>.</p>
-<p>En cas de questions, commentaires ou suggestions, n’hésitez pas à nous contacter (<a class="reference internal" href="credits.html#nous-contacter"><span class="std std-ref">Personne-contact</span></a>).</p>
-</div>
+<div class="section" id="couple-avec-enfant">
+<h2>Couple avec enfant<a class="headerlink" href="#couple-avec-enfant" title="Lien permanent vers ce titre">¶</a></h2>
+<p><strong>Conjoints de 35 ans avec un enfant de 4 ans et des frais de garde non-subventionnés de 6825$ et répartition du revenu familial de 40-60% entre les conjoints</strong></p>
+<img alt="_images/output_241.png" src="_images/output_241.png" />
 </div>
 </div>
 
@@ -295,8 +319,8 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="actors.html" class="btn btn-neutral float-right" title="Les acteurs" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="index.html" class="btn btn-neutral float-left" title="Simulateur de revenu disponible" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+        <a href="TutorialFed.html" class="btn btn-neutral float-right" title="Exemple de calcul de l’impôt fédéral" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="calculators.html" class="btn btn-neutral float-left" title="Calculateur de revenu disponible" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
     </div>
 
   <hr/>

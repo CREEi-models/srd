@@ -28,7 +28,7 @@ Pour désinstaller le SRD et le SRPP, il suffit d'utiliser pip::
 Installation alternative
 ------------------------
 
-Si l'utilisation de pip n'est pas possible, un fichier zip avec le SRD et sa dépendence, SRPP, peut être téléchargé de `Github <https://github.com/CREEi-models/srd/releases>`_ (choisissez le fichier srd_with_dep.zip dans le dernier "release"). Pour utiliser le SRD, il suffit d'extraire les fichiers du zip dans le répertoire de son choix et de travailler de ce dernier ou d'ajouter ce répertoire au chemin d'accès (par exemple en utilisant le module *sys*). Un tutoriel a également été inclus dans le fichier zip. Si l'on ne veut plus le SRD, il suffit d'effacer les répertoires *srd* et *srpp*. 
+Si l'utilisation de pip n'est pas possible, un fichier .zip avec le SRD et sa dépendance, le SRPP, peut être téléchargé de `Github <https://github.com/CREEi-models/srd/releases>`_ (choisissez le fichier *srd_with_dep.zip* dans le dernier "release"). Pour utiliser le SRD, il suffit d'extraire les fichiers du .zip dans le répertoire de son choix et de travailler de ce dernier ou d'ajouter ce répertoire au chemin d'accès (par exemple en utilisant le module *sys*). Un tutoriel a également été inclus dans le fichier .zip. Si l'on ne veut plus le SRD, il suffit d'effacer les répertoires *srd* et *srpp*. 
 
 Le SRD est fourni "tel quel", sous une `licence MIT <https://rsi-models.github.io/CPR/credits.html#licence>`_.
 

@@ -13,6 +13,9 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/contentui.css" type="text/css" />
 
   
   
@@ -29,11 +32,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
         <script src="_static/translations.js"></script>
+        <script src="_static/contentui.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -85,22 +89,109 @@
               
             
             
-              <p class="caption"><span class="caption-text">Menu:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Menu:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Premiers pas avec le SRD</a></li>
-<li class="toctree-l1"><a class="reference internal" href="actors.html">Les acteurs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="federal.html">Impôt fédéral</a></li>
-<li class="toctree-l1"><a class="reference internal" href="quebec.html">Impôt du Québec</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ontario.html">Impôt de l’Ontario</a></li>
-<li class="toctree-l1"><a class="reference internal" href="oas.html">Pension de la sécurité de la vieillesse</a></li>
-<li class="toctree-l1"><a class="reference internal" href="payroll.html">Cotisations sociales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="assistance.html">Aide sociale</a></li>
-<li class="toctree-l1"><a class="reference internal" href="covid.html">Prestations liées à la COVID-19</a></li>
-<li class="toctree-l1"><a class="reference internal" href="calculators.html">Calculateur de revenu disponible</a></li>
-<li class="toctree-l1"><a class="reference internal" href="TutorialFed.html">Exemple de calcul de l’impôt fédéral</a></li>
-<li class="toctree-l1"><a class="reference internal" href="TutorialCalculator.html">Exemple de calcul du revenu disponible</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Premiers pas avec le SRD</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#installation-du-srd">Installation du SRD</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#installation-alternative">Installation alternative</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="actors.html">Les acteurs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="actors.html#personnes">Personnes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actors.html#dependants-enfant-ou-proche-a-charge">Dépendants (enfant ou proche à charge)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actors.html#menages">Ménages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="federal.html">Impôt fédéral</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="federal.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="federal.html#gabarit-de-declaration">Gabarit de déclaration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="federal.html#fonctions-specifiques-ou-modifiees">Fonctions spécifiques ou modifiées</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quebec.html">Impôt du Québec</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quebec.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quebec.html#gabarit-de-declaration">Gabarit de déclaration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quebec.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ontario.html">Impôt de l’Ontario</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ontario.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ontario.html#gabarit-du-rapport">Gabarit du rapport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ontario.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="oas.html">Pension de la sécurité de la vieillesse</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="oas.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oas.html#gabarit-du-programme">Gabarit du programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oas.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="payroll.html">Cotisations sociales</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="payroll.html#assurance-emploi">Assurance emploi</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#survol">Survol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#gabarit-du-programme">Gabarit du programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="payroll.html#regime-quebecois-d-assurance-parentale">Régime québécois d’assurance parentale</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#id1">Survol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#id2">Gabarit du programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#id3">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="assistance.html">Aide sociale</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="assistance.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assistance.html#gabarit-du-programme">Gabarit du programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assistance.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="covid.html">Prestations liées à la COVID-19</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="covid.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="covid.html#gabarit-du-programme">Gabarit du programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="covid.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="calculators.html">Calculateur de revenu disponible</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="calculators.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calculators.html#les-fonctions-du-calculateur">Les fonctions du calculateur</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="comparaison.html">Comparaisons avec le MFQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="comparaison.html#personne-celibataire-sans-enfant">Personne célibataire (sans enfant)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comparaison.html#personne-monoparentale">Personne monoparentale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comparaison.html#couple-sans-enfant">Couple sans enfant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comparaison.html#couple-avec-enfant">Couple avec enfant</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="TutorialFed.html">Exemple de calcul de l’impôt fédéral</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="TutorialFed.html#importation-du-package">Importation du package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TutorialFed.html#initialisation-dun-menage">Initialisation d’un ménage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TutorialFed.html#calcul-de-limpot-federal">Calcul de l’impôt fédéral</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TutorialFed.html#experiences">Expériences</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="TutorialCalculator.html">Exemple de calcul du revenu disponible</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="TutorialCalculator.html#construction-du-menage">Construction du ménage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TutorialCalculator.html#le-calculateur">Le calculateur</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TutorialCalculator.html#calcul-du-revenu-apres-impots-et-du-revenu-disponible">Calcul du revenu après impôts et du revenu disponible</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialChangeParameters.html">Exemple de changement de paramètre</a></li>
-<li class="toctree-l1"><a class="reference internal" href="credits.html">Contacts et droits d’utilisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits.html">Contacts et droits d’utilisation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="credits.html#liste-d-envoi">Liste d’envoi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="credits.html#personne-contact">Personne-contact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="credits.html#contributeurs">Contributeurs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="credits.html#principaux">Principaux</a></li>
+<li class="toctree-l3"><a class="reference internal" href="credits.html#id1">2020</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="credits.html#droits-d-utilisation">Droits d’utilisation</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -173,7 +264,6 @@
 
 <div class="genindex-jumpbox">
  <a href="#A"><strong>A</strong></a>
- | <a href="#B"><strong>B</strong></a>
  | <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
  | <a href="#E"><strong>E</strong></a>
@@ -195,35 +285,21 @@
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="federal.html#srd.federal.template.abatment">abatment() (méthode srd.federal.template)</a>
+      <li><a href="federal.html#srd.federal.form_2016.abatment">abatment() (dans le module srd.federal.form_2016)</a>
 </li>
-      <li><a href="quebec.html#srd.quebec.template.add_contrib_subsid_chcare">add_contrib_subsid_chcare() (méthode srd.quebec.template)</a>
+      <li><a href="quebec.html#srd.quebec.form_2020.add_contrib_subsid_chcare">add_contrib_subsid_chcare() (dans le module srd.quebec.form_2020)</a>
 </li>
-      <li><a href="actors.html#srd.Hhold.add_dependent">add_dependent() (méthode srd.Hhold)</a>
-</li>
-      <li><a href="actors.html#srd.Hhold.adjust_n_adults">adjust_n_adults() (méthode srd.Hhold)</a>
+      <li><a href="actors.html#srd.Hhold.add_dependent">add_dependent() (dans le module srd.Hhold)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="assistance.html#srd.assistance.template.apply">apply() (méthode srd.assistance.template)</a>
+      <li><a href="actors.html#srd.Hhold.adjust_n_adults">adjust_n_adults() (dans le module srd.Hhold)</a>
 </li>
-      <li><a href="actors.html#srd.Hhold.assess_elig_split">assess_elig_split() (méthode srd.Hhold)</a>
+      <li><a href="actors.html#srd.Hhold.assess_elig_split">assess_elig_split() (dans le module srd.Hhold)</a>
 </li>
-      <li><a href="actors.html#srd.Person.attach_inc_work_month">attach_inc_work_month() (méthode srd.Person)</a>
+      <li><a href="actors.html#srd.Person.attach_inc_work_month">attach_inc_work_month() (dans le module srd.Person)</a>
 </li>
-      <li><a href="actors.html#srd.Person.attach_prev_work_inc">attach_prev_work_inc() (méthode srd.Person)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="B">B</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="assistance.html#srd.assistance.template.basic_on">basic_on() (méthode srd.assistance.template)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="assistance.html#srd.assistance.template.basic_qc">basic_qc() (méthode srd.assistance.template)</a>
+      <li><a href="actors.html#srd.Person.attach_prev_work_inc">attach_prev_work_inc() (dans le module srd.Person)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -231,139 +307,183 @@
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="ontario.html#srd.ontario.template.calc_contributions">calc_contributions() (méthode srd.ontario.template)</a>
+      <li><a href="ontario.html#srd.ontario.form_2016.calc_contributions">calc_contributions() (dans le module srd.ontario.form_2016)</a>
 
       <ul>
-        <li><a href="quebec.html#srd.quebec.form_2017.calc_contributions">(méthode srd.quebec.form_2017)</a>
+        <li><a href="quebec.html#srd.quebec.form_2017.calc_contributions">(dans le module srd.quebec.form_2017)</a>
 </li>
-        <li><a href="quebec.html#srd.quebec.form_2019.calc_contributions">(méthode srd.quebec.form_2019)</a>
+        <li><a href="quebec.html#srd.quebec.form_2019.calc_contributions">(dans le module srd.quebec.form_2019)</a>
 </li>
-        <li><a href="quebec.html#srd.quebec.template.calc_contributions">(méthode srd.quebec.template)</a>
+        <li><a href="quebec.html#srd.quebec.form_2020.calc_contributions">(dans le module srd.quebec.form_2020)</a>
 </li>
       </ul></li>
-      <li><a href="federal.html#srd.federal.template.calc_deduc_gross_income">calc_deduc_gross_income() (méthode srd.federal.template)</a>
+      <li><a href="federal.html#srd.federal.form_2016.calc_deduc_gross_income">calc_deduc_gross_income() (dans le module srd.federal.form_2016)</a>
 
       <ul>
-        <li><a href="quebec.html#srd.quebec.template.calc_deduc_gross_income">(méthode srd.quebec.template)</a>
+        <li><a href="quebec.html#id0">(dans le module srd.quebec.form_2020)</a>, <a href="quebec.html#srd.quebec.form_2020.calc_deduc_gross_income">[1]</a>
+</li>
+        <li><a href="quebec.html#srd.quebec.form_2021.calc_deduc_gross_income">(dans le module srd.quebec.form_2021)</a>
 </li>
       </ul></li>
-      <li><a href="federal.html#srd.federal.template.calc_deduc_net_income">calc_deduc_net_income() (méthode srd.federal.template)</a>
+      <li><a href="federal.html#srd.federal.form_2016.calc_deduc_net_income">calc_deduc_net_income() (dans le module srd.federal.form_2016)</a>
 
       <ul>
-        <li><a href="quebec.html#srd.quebec.template.calc_deduc_net_income">(méthode srd.quebec.template)</a>
+        <li><a href="quebec.html#srd.quebec.form_2020.calc_deduc_net_income">(dans le module srd.quebec.form_2020)</a>
 </li>
       </ul></li>
-      <li><a href="federal.html#srd.federal.template.calc_gross_income">calc_gross_income() (méthode srd.federal.template)</a>
+      <li><a href="federal.html#srd.federal.form_2016.calc_gross_income">calc_gross_income() (dans le module srd.federal.form_2016)</a>
 
       <ul>
-        <li><a href="quebec.html#srd.quebec.template.calc_gross_income">(méthode srd.quebec.template)</a>
+        <li><a href="quebec.html#srd.quebec.form_2020.calc_gross_income">(dans le module srd.quebec.form_2020)</a>
 </li>
       </ul></li>
-      <li><a href="federal.html#srd.federal.form_2020.calc_net_income">calc_net_income() (méthode srd.federal.form_2020)</a>
+      <li><a href="federal.html#srd.federal.form_2016.calc_net_income">calc_net_income() (dans le module srd.federal.form_2016)</a>
 
       <ul>
-        <li><a href="federal.html#srd.federal.template.calc_net_income">(méthode srd.federal.template)</a>
+        <li><a href="federal.html#srd.federal.form_2020.calc_net_income">(dans le module srd.federal.form_2020)</a>
 </li>
-        <li><a href="quebec.html#srd.quebec.template.calc_net_income">(méthode srd.quebec.template)</a>
+        <li><a href="quebec.html#srd.quebec.form_2020.calc_net_income">(dans le module srd.quebec.form_2020)</a>
 </li>
       </ul></li>
-      <li><a href="federal.html#srd.federal.template.calc_non_refundable_tax_credits">calc_non_refundable_tax_credits() (méthode srd.federal.template)</a>
+      <li><a href="federal.html#srd.federal.form_2016.calc_non_refundable_tax_credits">calc_non_refundable_tax_credits() (dans le module srd.federal.form_2016)</a>
 
       <ul>
-        <li><a href="ontario.html#srd.ontario.template.calc_non_refundable_tax_credits">(méthode srd.ontario.template)</a>
+        <li><a href="ontario.html#srd.ontario.form_2016.calc_non_refundable_tax_credits">(dans le module srd.ontario.form_2016)</a>
 </li>
-        <li><a href="quebec.html#srd.quebec.template.calc_non_refundable_tax_credits">(méthode srd.quebec.template)</a>
+        <li><a href="quebec.html#srd.quebec.form_2020.calc_non_refundable_tax_credits">(dans le module srd.quebec.form_2020)</a>
 </li>
       </ul></li>
-      <li><a href="federal.html#srd.federal.template.calc_refundable_tax_credits">calc_refundable_tax_credits() (méthode srd.federal.template)</a>
+      <li><a href="federal.html#srd.federal.form_2016.calc_refundable_tax_credits">calc_refundable_tax_credits() (dans le module srd.federal.form_2016)</a>
 
       <ul>
-        <li><a href="ontario.html#srd.ontario.template.calc_refundable_tax_credits">(méthode srd.ontario.template)</a>
+        <li><a href="federal.html#srd.federal.form_2020.calc_refundable_tax_credits">(dans le module srd.federal.form_2020)</a>
 </li>
-        <li><a href="quebec.html#srd.quebec.template.calc_refundable_tax_credits">(méthode srd.quebec.template)</a>
+        <li><a href="federal.html#srd.federal.form_2021.calc_refundable_tax_credits">(dans le module srd.federal.form_2021)</a>
+</li>
+        <li><a href="ontario.html#srd.ontario.form_2016.calc_refundable_tax_credits">(dans le module srd.ontario.form_2016)</a>
+</li>
+        <li><a href="quebec.html#srd.quebec.form_2020.calc_refundable_tax_credits">(dans le module srd.quebec.form_2020)</a>
 </li>
       </ul></li>
-      <li><a href="federal.html#srd.federal.template.calc_tax">calc_tax() (méthode srd.federal.template)</a>
+      <li><a href="assistance.html#srd.assistance.program_2016.calc_sa_on">calc_sa_on() (dans le module srd.assistance.program_2016)</a>
+</li>
+      <li><a href="assistance.html#srd.assistance.program_2016.calc_sa_qc">calc_sa_qc() (dans le module srd.assistance.program_2016)</a>
+</li>
+      <li><a href="federal.html#srd.federal.form_2016.calc_tax">calc_tax() (dans le module srd.federal.form_2016)</a>
 
       <ul>
-        <li><a href="ontario.html#srd.ontario.template.calc_tax">(méthode srd.ontario.template)</a>
+        <li><a href="ontario.html#srd.ontario.form_2016.calc_tax">(dans le module srd.ontario.form_2016)</a>
 </li>
-        <li><a href="quebec.html#srd.quebec.template.calc_tax">(méthode srd.quebec.template)</a>
+        <li><a href="quebec.html#srd.quebec.form_2020.calc_tax">(dans le module srd.quebec.form_2020)</a>
 </li>
       </ul></li>
-      <li><a href="federal.html#srd.federal.template.calc_taxable_income">calc_taxable_income() (méthode srd.federal.template)</a>
+      <li><a href="federal.html#srd.federal.form_2016.calc_taxable_income">calc_taxable_income() (dans le module srd.federal.form_2016)</a>
 
       <ul>
-        <li><a href="quebec.html#srd.quebec.template.calc_taxable_income">(méthode srd.quebec.template)</a>
+        <li><a href="quebec.html#srd.quebec.form_2020.calc_taxable_income">(dans le module srd.quebec.form_2020)</a>
 </li>
       </ul></li>
-      <li><a href="quebec.html#srd.quebec.template.ccap">ccap() (méthode srd.quebec.template)</a>
-</li>
-      <li><a href="federal.html#srd.federal.template.ccb">ccb() (méthode srd.federal.template)</a>
-</li>
-      <li><a href="federal.html#srd.federal.template.chcare">chcare() (méthode srd.federal.template)</a>
+      <li><a href="quebec.html#srd.quebec.form_2017.ccap">ccap() (dans le module srd.quebec.form_2017)</a>
 
       <ul>
-        <li><a href="quebec.html#srd.quebec.template.chcare">(méthode srd.quebec.template)</a>
+        <li><a href="quebec.html#srd.quebec.form_2020.ccap">(dans le module srd.quebec.form_2020)</a>
 </li>
       </ul></li>
-      <li><a href="actors.html#srd.Hhold.child_care_exp">child_care_exp() (srd.Hhold property)</a>
-</li>
-      <li><a href="covid.html#srd.covid.programs.compute">compute() (méthode srd.covid.programs)</a>
+      <li><a href="federal.html#srd.federal.form_2016.ccb">ccb() (dans le module srd.federal.form_2016)</a>
 
       <ul>
+        <li><a href="federal.html#srd.federal.form_2021.ccb">(dans le module srd.federal.form_2021)</a>
+</li>
+      </ul></li>
+      <li><a href="federal.html#srd.federal.form_2016.chcare">chcare() (dans le module srd.federal.form_2016)</a>
+
+      <ul>
+        <li><a href="quebec.html#srd.quebec.form_2020.chcare">(dans le module srd.quebec.form_2020)</a>
+</li>
+      </ul></li>
+      <li><a href="assistance.html#srd.assistance.program_2016.child_ajustments">child_ajustments() (dans le module srd.assistance.program_2016)</a>
+</li>
+      <li><a href="actors.html#srd.Hhold.child_care_exp">child_care_exp() (dans le module srd.Hhold)</a>
+</li>
+      <li><a href="covid.html#srd.covid.program_2020.compute">compute() (dans le module srd.covid.program_2020)</a>
+
+      <ul>
+        <li><a href="calculators.html#srd.tax.compute">(dans le module srd.tax)</a>
+</li>
         <li><a href="payroll.html#srd.payroll.compute">(méthode srd.payroll)</a>
 </li>
-        <li><a href="calculators.html#srd.tax.compute">(méthode srd.tax)</a>
-</li>
       </ul></li>
-      <li><a href="calculators.html#srd.tax.compute_after_tax_inc">compute_after_tax_inc() (méthode srd.tax)</a>
+      <li><a href="calculators.html#srd.tax.compute_after_tax_inc">compute_after_tax_inc() (dans le module srd.tax)</a>
+</li>
+      <li><a href="calculators.html#srd.tax.compute_all">compute_all() (dans le module srd.tax)</a>
+</li>
+      <li><a href="oas.html#srd.oas.template.template.compute_allowance">compute_allowance() (dans le module srd.oas.template.template)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="calculators.html#srd.tax.compute_all">compute_all() (méthode srd.tax)</a>
+      <li><a href="federal.html#srd.federal.form_2020.compute_basic_amount">compute_basic_amount() (dans le module srd.federal.form_2020)</a>
 </li>
-      <li><a href="oas.html#srd.oas.template.compute_allowance">compute_allowance() (méthode srd.oas.template)</a>
+      <li><a href="payroll.html#srd.ei.programs.program_2021.compute_benefits_covid">compute_benefits_covid() (dans le module srd.ei.programs.program_2021)</a>
 </li>
-      <li><a href="calculators.html#srd.tax.compute_ass">compute_ass() (méthode srd.tax)</a>
-</li>
-      <li><a href="federal.html#srd.federal.form_2020.compute_basic_amount">compute_basic_amount() (méthode srd.federal.form_2020)</a>
-</li>
-      <li><a href="covid.html#srd.covid.programs.compute_cerb">compute_cerb() (méthode srd.covid.programs)</a>
-</li>
-      <li><a href="covid.html#srd.covid.programs.compute_cesb">compute_cesb() (méthode srd.covid.programs)</a>
-</li>
-      <li><a href="calculators.html#srd.tax.compute_covid">compute_covid() (méthode srd.tax)</a>
-</li>
-      <li><a href="calculators.html#srd.tax.compute_federal">compute_federal() (méthode srd.tax)</a>
-</li>
-      <li><a href="covid.html#srd.covid.programs.compute_iprew">compute_iprew() (méthode srd.covid.programs)</a>
-</li>
-      <li><a href="actors.html#srd.Hhold.compute_max_split">compute_max_split() (méthode srd.Hhold)</a>
-</li>
-      <li><a href="covid.html#srd.covid.programs.compute_monthly_cesb">compute_monthly_cesb() (méthode srd.covid.programs)</a>
-</li>
-      <li><a href="actors.html#srd.Person.compute_months_cerb_cesb">compute_months_cerb_cesb() (méthode srd.Person)</a>
-</li>
-      <li><a href="oas.html#srd.oas.programs.program_2020.compute_net_inc_exemption">compute_net_inc_exemption() (méthode srd.oas.programs.program_2020)</a>
+      <li><a href="covid.html#srd.covid.program_2020.compute_cerb">compute_cerb() (dans le module srd.covid.program_2020)</a>
 
       <ul>
-        <li><a href="oas.html#srd.oas.template.compute_net_inc_exemption">(méthode srd.oas.template)</a>
+        <li><a href="covid.html#srd.covid.programs.program_2020.compute_cerb">(dans le module srd.covid.programs.program_2020)</a>
 </li>
       </ul></li>
-      <li><a href="oas.html#srd.oas.template.compute_net_income">compute_net_income() (méthode srd.oas.template)</a>
+      <li><a href="covid.html#srd.covid.program_2020.compute_cesb">compute_cesb() (dans le module srd.covid.program_2020)</a>
+
+      <ul>
+        <li><a href="covid.html#srd.covid.programs.program_2020.compute_cesb">(dans le module srd.covid.programs.program_2020)</a>
 </li>
-      <li><a href="calculators.html#srd.tax.compute_oas">compute_oas() (méthode srd.tax)</a>
+      </ul></li>
+      <li><a href="calculators.html#srd.tax.compute_covid">compute_covid() (dans le module srd.tax)</a>
 </li>
-      <li><a href="calculators.html#srd.tax.compute_payroll">compute_payroll() (méthode srd.tax)</a>
+      <li><a href="covid.html#srd.covid.program_2020.compute_crb">compute_crb() (dans le module srd.covid.program_2020)</a>
 </li>
-      <li><a href="oas.html#srd.oas.template.compute_pension">compute_pension() (méthode srd.oas.template)</a>
+      <li><a href="calculators.html#srd.tax.compute_fed">compute_fed() (dans le module srd.tax)</a>
 </li>
-      <li><a href="calculators.html#srd.tax.compute_prov">compute_prov() (méthode srd.tax)</a>
+      <li><a href="covid.html#srd.covid.program_2020.compute_iprew">compute_iprew() (dans le module srd.covid.program_2020)</a>
+
+      <ul>
+        <li><a href="covid.html#srd.covid.programs.program_2020.compute_iprew">(dans le module srd.covid.programs.program_2020)</a>
 </li>
-      <li><a href="federal.html#srd.federal.template.compute_witb_witbds">compute_witb_witbds() (méthode srd.federal.template)</a>
+      </ul></li>
+      <li><a href="actors.html#srd.Hhold.compute_max_split">compute_max_split() (dans le module srd.Hhold)</a>
 </li>
-      <li><a href="calculators.html#srd.tax.compute_with_transfer">compute_with_transfer() (méthode srd.tax)</a>
+      <li><a href="covid.html#srd.covid.program_2020.compute_monthly_cesb">compute_monthly_cesb() (dans le module srd.covid.program_2020)</a>
+
+      <ul>
+        <li><a href="covid.html#srd.covid.programs.program_2020.compute_monthly_cesb">(dans le module srd.covid.programs.program_2020)</a>
+</li>
+      </ul></li>
+      <li><a href="actors.html#srd.Person.compute_months_cerb_cesb">compute_months_cerb_cesb() (dans le module srd.Person)</a>
+</li>
+      <li><a href="oas.html#srd.oas.programs.program_2020.compute_net_inc_exemption">compute_net_inc_exemption() (dans le module srd.oas.programs.program_2020)</a>
+
+      <ul>
+        <li><a href="oas.html#srd.oas.template.template.compute_net_inc_exemption">(dans le module srd.oas.template.template)</a>
+</li>
+      </ul></li>
+      <li><a href="oas.html#srd.oas.template.template.compute_net_income">compute_net_income() (dans le module srd.oas.template.template)</a>
+</li>
+      <li><a href="calculators.html#srd.tax.compute_oas">compute_oas() (dans le module srd.tax)</a>
+</li>
+      <li><a href="calculators.html#srd.tax.compute_payroll">compute_payroll() (dans le module srd.tax)</a>
+</li>
+      <li><a href="oas.html#srd.oas.programs.program_2021.compute_pension">compute_pension() (dans le module srd.oas.programs.program_2021)</a>
+
+      <ul>
+        <li><a href="oas.html#srd.oas.template.template.compute_pension">(dans le module srd.oas.template.template)</a>
+</li>
+      </ul></li>
+      <li><a href="calculators.html#srd.tax.compute_prov">compute_prov() (dans le module srd.tax)</a>
+</li>
+      <li><a href="calculators.html#srd.tax.compute_sa">compute_sa() (dans le module srd.tax)</a>
+</li>
+      <li><a href="federal.html#srd.federal.form_2016.compute_witb_witbds">compute_witb_witbds() (dans le module srd.federal.form_2016)</a>
+</li>
+      <li><a href="calculators.html#srd.tax.compute_with_transfer">compute_with_transfer() (dans le module srd.tax)</a>
 </li>
       <li><a href="payroll.html#srd.ei.template.contrib">contrib() (méthode srd.ei.template)</a>
 
@@ -371,22 +491,38 @@
         <li><a href="payroll.html#srd.qpip.template.contrib">(méthode srd.qpip.template)</a>
 </li>
       </ul></li>
-      <li><a href="actors.html#srd.Hhold.copy">copy() (méthode srd.Hhold)</a>
+      <li><a href="quebec.html#srd.quebec.form_2020.contrib_hsf">contrib_hsf() (dans le module srd.quebec.form_2020)</a>
+</li>
+      <li><a href="actors.html#srd.Hhold.copy">copy() (dans le module srd.Hhold)</a>
 
       <ul>
-        <li><a href="actors.html#srd.Person.copy">(méthode srd.Person)</a>
+        <li><a href="actors.html#srd.Person.copy">(dans le module srd.Person)</a>
 </li>
       </ul></li>
-      <li><a href="ontario.html#srd.ontario.template.copy_fed_return">copy_fed_return() (méthode srd.ontario.template)</a>
+      <li><a href="ontario.html#srd.ontario.form_2016.copy_fed_return">copy_fed_return() (dans le module srd.ontario.form_2016)</a>
 </li>
-      <li><a href="actors.html#srd.Hhold.count">count() (méthode srd.Hhold)</a>
+      <li><a href="quebec.html#srd.quebec.form_2020.cost_of_living">cost_of_living() (dans le module srd.quebec.form_2020)</a>
+
+      <ul>
+        <li><a href="quebec.html#srd.quebec.form_2021.cost_of_living">(dans le module srd.quebec.form_2021)</a>
 </li>
-      <li><a href="oas.html#srd.oas.template.couple_allowance">couple_allowance() (méthode srd.oas.template)</a>
+      </ul></li>
+      <li><a href="actors.html#srd.Hhold.count">count() (dans le module srd.Hhold)</a>
 </li>
-      <li><a href="federal.html#srd.federal.template.cpp_deduction">cpp_deduction() (méthode srd.federal.template)</a>
+      <li><a href="oas.html#srd.oas.template.template.couple_allowance">couple_allowance() (dans le module srd.oas.template.template)</a>
 </li>
-      <li><a href="quebec.html#srd.quebec.template.cpp_qpip_deduction">cpp_qpip_deduction() (méthode srd.quebec.template)</a>
+      <li><a href="federal.html#srd.federal.form_2016.cpp_deduction">cpp_deduction() (dans le module srd.federal.form_2016)</a>
+
+      <ul>
+        <li><a href="federal.html#srd.federal.form_2019.cpp_deduction">(dans le module srd.federal.form_2019)</a>
 </li>
+      </ul></li>
+      <li><a href="quebec.html#srd.quebec.form_2019.cpp_qpip_deduction">cpp_qpip_deduction() (dans le module srd.quebec.form_2019)</a>
+
+      <ul>
+        <li><a href="quebec.html#srd.quebec.form_2020.cpp_qpip_deduction">(dans le module srd.quebec.form_2020)</a>
+</li>
+      </ul></li>
       <li><a href="federal.html#srd.federal.create_return">create_return() (dans le module srd.federal)</a>
 
       <ul>
@@ -403,25 +539,31 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="actors.html#srd.Dependent">Dependent (classe dans srd)</a>
 </li>
-      <li><a href="calculators.html#srd.tax.disp_inc">disp_inc() (méthode srd.tax)</a>
+      <li><a href="calculators.html#srd.tax.disp_inc">disp_inc() (dans le module srd.tax)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="federal.html#srd.federal.template.div_tax_credit">div_tax_credit() (méthode srd.federal.template)</a>
+      <li><a href="federal.html#srd.federal.form_2016.div_tax_credit">div_tax_credit() (dans le module srd.federal.form_2016)</a>
 
       <ul>
-        <li><a href="ontario.html#srd.ontario.template.div_tax_credit">(méthode srd.ontario.template)</a>
+        <li><a href="ontario.html#srd.ontario.form_2016.div_tax_credit">(dans le module srd.ontario.form_2016)</a>
 </li>
-        <li><a href="quebec.html#srd.quebec.template.div_tax_credit">(méthode srd.quebec.template)</a>
+        <li><a href="quebec.html#srd.quebec.form_2020.div_tax_credit">(dans le module srd.quebec.form_2020)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="quebec.html#srd.quebec.form_2020.drug_insurance_contrib">drug_insurance_contrib() (dans le module srd.quebec.form_2020)</a>
+</li>
   </ul></td>
 </tr></table>
 
 <h2 id="E">E</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="oas.html#srd.oas.template.eligibility">eligibility() (méthode srd.oas.template)</a>
+      <li><a href="oas.html#srd.oas.template.template.eligibility">eligibility() (dans le module srd.oas.template.template)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="assistance.html#srd.assistance.program_2016.eligibility_qc">eligibility_qc() (dans le module srd.assistance.program_2016)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -429,28 +571,30 @@
 <h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="actors.html#srd.Hhold.fam_after_tax_inc">fam_after_tax_inc() (srd.Hhold property)</a>
+      <li><a href="actors.html#srd.Hhold.fam_after_tax_inc">fam_after_tax_inc() (dans le module srd.Hhold)</a>
 </li>
-      <li><a href="actors.html#srd.Hhold.fam_disp_inc">fam_disp_inc() (srd.Hhold property)</a>
+      <li><a href="actors.html#srd.Hhold.fam_disp_inc">fam_disp_inc() (dans le module srd.Hhold)</a>
 </li>
-      <li><a href="actors.html#srd.Hhold.fam_inc_non_work">fam_inc_non_work() (méthode srd.Hhold)</a>
+      <li><a href="actors.html#srd.Hhold.fam_inc_non_work">fam_inc_non_work() (dans le module srd.Hhold)</a>
 </li>
-      <li><a href="actors.html#srd.Hhold.fam_inc_tot">fam_inc_tot() (srd.Hhold property)</a>
+      <li><a href="actors.html#srd.Hhold.fam_inc_tot">fam_inc_tot() (dans le module srd.Hhold)</a>
 </li>
-      <li><a href="actors.html#srd.Hhold.fam_inc_work">fam_inc_work() (srd.Hhold property)</a>
+      <li><a href="actors.html#srd.Hhold.fam_inc_work">fam_inc_work() (dans le module srd.Hhold)</a>
 </li>
-      <li><a href="actors.html#srd.Hhold.fam_net_inc_fed">fam_net_inc_fed() (srd.Hhold property)</a>
+      <li><a href="actors.html#srd.Hhold.fam_net_inc_fed">fam_net_inc_fed() (dans le module srd.Hhold)</a>
 </li>
-      <li><a href="actors.html#srd.Hhold.fam_net_inc_prov">fam_net_inc_prov() (srd.Hhold property)</a>
+      <li><a href="actors.html#srd.Hhold.fam_net_inc_prov">fam_net_inc_prov() (dans le module srd.Hhold)</a>
 </li>
-      <li><a href="federal.html#srd.federal.template.file">file() (méthode srd.federal.template)</a>
+      <li><a href="assistance.html#srd.assistance.program_2016.file">file() (dans le module srd.assistance.program_2016)</a>
 
       <ul>
-        <li><a href="oas.html#srd.oas.template.file">(méthode srd.oas.template)</a>
+        <li><a href="federal.html#srd.federal.form_2016.file">(dans le module srd.federal.form_2016)</a>
 </li>
-        <li><a href="ontario.html#srd.ontario.template.file">(méthode srd.ontario.template)</a>
+        <li><a href="oas.html#srd.oas.template.template.file">(dans le module srd.oas.template.template)</a>
 </li>
-        <li><a href="quebec.html#srd.quebec.template.file">(méthode srd.quebec.template)</a>
+        <li><a href="ontario.html#srd.ontario.form_2016.file">(dans le module srd.ontario.form_2016)</a>
+</li>
+        <li><a href="quebec.html#srd.quebec.form_2020.file">(dans le module srd.quebec.form_2020)</a>
 </li>
       </ul></li>
       <li><a href="federal.html#srd.federal.form">form() (dans le module srd.federal)</a>
@@ -461,8 +605,6 @@
         <li><a href="quebec.html#srd.quebec.form">(dans le module srd.quebec)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="federal.html#srd.federal.form_2016">form_2016 (classe dans srd.federal)</a>
 
       <ul>
@@ -471,6 +613,8 @@
         <li><a href="quebec.html#srd.quebec.form_2016">(classe dans srd.quebec)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="federal.html#srd.federal.form_2017">form_2017 (classe dans srd.federal)</a>
 
       <ul>
@@ -503,87 +647,111 @@
         <li><a href="quebec.html#srd.quebec.form_2020">(classe dans srd.quebec)</a>
 </li>
       </ul></li>
+      <li><a href="federal.html#srd.federal.form_2021">form_2021 (classe dans srd.federal)</a>
+
+      <ul>
+        <li><a href="ontario.html#srd.ontario.form_2021">(classe dans srd.ontario)</a>
+</li>
+        <li><a href="quebec.html#srd.quebec.form_2021">(classe dans srd.quebec)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="federal.html#srd.federal.template.get_age_cred">get_age_cred() (méthode srd.federal.template)</a>
+      <li><a href="federal.html#srd.federal.form_2016.get_age_cred">get_age_cred() (dans le module srd.federal.form_2016)</a>
 
       <ul>
-        <li><a href="ontario.html#srd.ontario.template.get_age_cred">(méthode srd.ontario.template)</a>
+        <li><a href="ontario.html#srd.ontario.form_2016.get_age_cred">(dans le module srd.ontario.form_2016)</a>
 </li>
-        <li><a href="quebec.html#srd.quebec.template.get_age_cred">(méthode srd.quebec.template)</a>
+        <li><a href="quebec.html#srd.quebec.form_2020.get_age_cred">(dans le module srd.quebec.form_2020)</a>
 </li>
       </ul></li>
       <li><a href="payroll.html#srd.payroll.get_cpp_contrib">get_cpp_contrib() (méthode srd.payroll)</a>
 </li>
-      <li><a href="federal.html#srd.federal.template.get_cpp_contrib_cred">get_cpp_contrib_cred() (méthode srd.federal.template)</a>
+      <li><a href="federal.html#srd.federal.form_2016.get_cpp_contrib_cred">get_cpp_contrib_cred() (dans le module srd.federal.form_2016)</a>
 
       <ul>
-        <li><a href="ontario.html#srd.ontario.template.get_cpp_contrib_cred">(méthode srd.ontario.template)</a>
+        <li><a href="ontario.html#srd.ontario.form_2016.get_cpp_contrib_cred">(dans le module srd.ontario.form_2016)</a>
 </li>
       </ul></li>
-      <li><a href="federal.html#srd.federal.template.get_disabled_cred">get_disabled_cred() (méthode srd.federal.template)</a>
+      <li><a href="federal.html#srd.federal.form_2016.get_dep_cred">get_dep_cred() (dans le module srd.federal.form_2016)</a>
+</li>
+      <li><a href="federal.html#srd.federal.form_2016.get_disabled_cred">get_disabled_cred() (dans le module srd.federal.form_2016)</a>
 
       <ul>
-        <li><a href="ontario.html#srd.ontario.template.get_disabled_cred">(méthode srd.ontario.template)</a>
+        <li><a href="ontario.html#srd.ontario.form_2016.get_disabled_cred">(dans le module srd.ontario.form_2016)</a>
 </li>
-        <li><a href="quebec.html#srd.quebec.template.get_disabled_cred">(méthode srd.quebec.template)</a>
+        <li><a href="quebec.html#srd.quebec.form_2020.get_disabled_cred">(dans le module srd.quebec.form_2020)</a>
 </li>
       </ul></li>
-      <li><a href="federal.html#srd.federal.template.get_donations_cred">get_donations_cred() (méthode srd.federal.template)</a>
+      <li><a href="federal.html#srd.federal.form_2016.get_donations_cred">get_donations_cred() (dans le module srd.federal.form_2016)</a>
 
       <ul>
-        <li><a href="ontario.html#srd.ontario.template.get_donations_cred">(méthode srd.ontario.template)</a>
+        <li><a href="ontario.html#srd.ontario.form_2016.get_donations_cred">(dans le module srd.ontario.form_2016)</a>
 </li>
-        <li><a href="quebec.html#srd.quebec.form_2017.get_donations_cred">(méthode srd.quebec.form_2017)</a>
+        <li><a href="quebec.html#srd.quebec.form_2017.get_donations_cred">(dans le module srd.quebec.form_2017)</a>
 </li>
-        <li><a href="quebec.html#srd.quebec.template.get_donations_cred">(méthode srd.quebec.template)</a>
+        <li><a href="quebec.html#srd.quebec.form_2020.get_donations_cred">(dans le module srd.quebec.form_2020)</a>
 </li>
       </ul></li>
-      <li><a href="federal.html#srd.federal.template.get_empl_cred">get_empl_cred() (méthode srd.federal.template)</a>
+      <li><a href="federal.html#srd.federal.form_2016.get_ei_contrib_cred">get_ei_contrib_cred() (dans le module srd.federal.form_2016)</a>
 </li>
-      <li><a href="quebec.html#srd.quebec.template.get_exp_worker_cred">get_exp_worker_cred() (méthode srd.quebec.template)</a>
+      <li><a href="federal.html#srd.federal.form_2016.get_empl_cred">get_empl_cred() (dans le module srd.federal.form_2016)</a>
+</li>
+      <li><a href="quebec.html#srd.quebec.form_2020.get_exp_worker_cred">get_exp_worker_cred() (dans le module srd.quebec.form_2020)</a>
+</li>
+      <li><a href="quebec.html#srd.quebec.form_2020.get_living_alone_cred">get_living_alone_cred() (dans le module srd.quebec.form_2020)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="quebec.html#srd.quebec.template.get_living_alone_cred">get_living_alone_cred() (méthode srd.quebec.template)</a>
-</li>
-      <li><a href="ontario.html#srd.ontario.template.get_med_exp_cred">get_med_exp_cred() (méthode srd.ontario.template)</a>
+      <li><a href="ontario.html#srd.ontario.form_2016.get_med_exp_cred">get_med_exp_cred() (dans le module srd.ontario.form_2016)</a>
 
       <ul>
-        <li><a href="quebec.html#srd.quebec.template.get_med_exp_cred">(méthode srd.quebec.template)</a>
+        <li><a href="quebec.html#srd.quebec.form_2020.get_med_exp_cred">(dans le module srd.quebec.form_2020)</a>
 </li>
       </ul></li>
-      <li><a href="federal.html#srd.federal.template.get_med_exp_nr_cred">get_med_exp_nr_cred() (méthode srd.federal.template)</a>
+      <li><a href="federal.html#srd.federal.form_2016.get_med_exp_nr_cred">get_med_exp_nr_cred() (dans le module srd.federal.form_2016)</a>
 </li>
-      <li><a href="quebec.html#srd.quebec.template.get_nrtcred_clawback">get_nrtcred_clawback() (méthode srd.quebec.template)</a>
+      <li><a href="quebec.html#srd.quebec.form_2020.get_nrtcred_clawback">get_nrtcred_clawback() (dans le module srd.quebec.form_2020)</a>
 </li>
-      <li><a href="federal.html#srd.federal.template.get_pension_cred">get_pension_cred() (méthode srd.federal.template)</a>
+      <li><a href="federal.html#srd.federal.form_2016.get_pension_cred">get_pension_cred() (dans le module srd.federal.form_2016)</a>
 
       <ul>
-        <li><a href="ontario.html#srd.ontario.template.get_pension_cred">(méthode srd.ontario.template)</a>
+        <li><a href="ontario.html#srd.ontario.form_2016.get_pension_cred">(dans le module srd.ontario.form_2016)</a>
 </li>
-        <li><a href="quebec.html#srd.quebec.template.get_pension_cred">(méthode srd.quebec.template)</a>
+        <li><a href="quebec.html#srd.quebec.form_2020.get_pension_cred">(dans le module srd.quebec.form_2020)</a>
 </li>
       </ul></li>
-      <li><a href="federal.html#srd.federal.template.get_qpip_cred">get_qpip_cred() (méthode srd.federal.template)</a>
+      <li><a href="federal.html#srd.federal.form_2016.get_qpip_cred">get_qpip_cred() (dans le module srd.federal.form_2016)</a>
 </li>
-      <li><a href="federal.html#srd.federal.template.get_qpip_self_cred">get_qpip_self_cred() (méthode srd.federal.template)</a>
+      <li><a href="federal.html#srd.federal.form_2016.get_qpip_self_cred">get_qpip_self_cred() (dans le module srd.federal.form_2016)</a>
 </li>
-      <li><a href="ontario.html#srd.ontario.template.get_spouse_cred">get_spouse_cred() (méthode srd.ontario.template)</a>
+      <li><a href="ontario.html#srd.ontario.form_2016.get_spouse_cred">get_spouse_cred() (dans le module srd.ontario.form_2016)</a>
 </li>
-      <li><a href="quebec.html#srd.quebec.template.get_union_dues_cred">get_union_dues_cred() (méthode srd.quebec.template)</a>
+      <li><a href="federal.html#srd.federal.form_2016.get_spouse_transfer">get_spouse_transfer() (dans le module srd.federal.form_2016)</a>
+
+      <ul>
+        <li><a href="quebec.html#srd.quebec.form_2020.get_spouse_transfer">(dans le module srd.quebec.form_2020)</a>
 </li>
-      <li><a href="federal.html#srd.federal.template.get_witb">get_witb() (méthode srd.federal.template)</a>
+      </ul></li>
+      <li><a href="federal.html#srd.federal.form_2016.get_spouses_cred">get_spouses_cred() (dans le module srd.federal.form_2016)</a>
 </li>
-      <li><a href="federal.html#srd.federal.template.get_witbds">get_witbds() (méthode srd.federal.template)</a>
+      <li><a href="quebec.html#srd.quebec.form_2020.get_union_dues_cred">get_union_dues_cred() (dans le module srd.quebec.form_2020)</a>
 </li>
-      <li><a href="oas.html#srd.oas.template.gis">gis() (méthode srd.oas.template)</a>
+      <li><a href="federal.html#srd.federal.form_2016.get_witb">get_witb() (dans le module srd.federal.form_2016)</a>
 </li>
-      <li><a href="federal.html#srd.federal.template.gst_hst_credit">gst_hst_credit() (méthode srd.federal.template)</a>
+      <li><a href="federal.html#srd.federal.form_2016.get_witbds">get_witbds() (dans le module srd.federal.form_2016)</a>
+</li>
+      <li><a href="oas.html#srd.oas.programs.program_2021.gis">gis() (dans le module srd.oas.programs.program_2021)</a>
+
+      <ul>
+        <li><a href="oas.html#srd.oas.template.template.gis">(dans le module srd.oas.template.template)</a>
+</li>
+      </ul></li>
+      <li><a href="federal.html#srd.federal.form_2016.gst_hst_credit">gst_hst_credit() (dans le module srd.federal.form_2016)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -591,17 +759,17 @@
 <h2 id="H">H</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="ontario.html#srd.ontario.template.health_contrib">health_contrib() (méthode srd.ontario.template)</a>
+      <li><a href="ontario.html#srd.ontario.form_2016.health_contrib">health_contrib() (dans le module srd.ontario.form_2016)</a>
 
       <ul>
-        <li><a href="quebec.html#srd.quebec.template.health_contrib">(méthode srd.quebec.template)</a>
+        <li><a href="quebec.html#srd.quebec.form_2020.health_contrib">(dans le module srd.quebec.form_2020)</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="actors.html#srd.Hhold">Hhold (classe dans srd)</a>
 </li>
-      <li><a href="quebec.html#srd.quebec.template.home_support">home_support() (méthode srd.quebec.template)</a>
+      <li><a href="quebec.html#srd.quebec.form_2020.home_support">home_support() (dans le module srd.quebec.form_2020)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -609,13 +777,13 @@
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="actors.html#srd.Person.inc_non_work">inc_non_work() (srd.Person property)</a>
+      <li><a href="actors.html#srd.Person.inc_non_work">inc_non_work() (dans le module srd.Person)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="actors.html#srd.Person.inc_tot">inc_tot() (srd.Person property)</a>
+      <li><a href="actors.html#srd.Person.inc_tot">inc_tot() (dans le module srd.Person)</a>
 </li>
-      <li><a href="actors.html#srd.Person.inc_work">inc_work() (srd.Person property)</a>
+      <li><a href="actors.html#srd.Person.inc_work">inc_work() (dans le module srd.Person)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -623,7 +791,7 @@
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="ontario.html#srd.ontario.form_2019.lift_credit">lift_credit() (méthode srd.ontario.form_2019)</a>
+      <li><a href="ontario.html#srd.ontario.form_2020.lift_credit">lift_credit() (dans le module srd.ontario.form_2020)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -631,10 +799,10 @@
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="federal.html#srd.federal.template.med_exp">med_exp() (méthode srd.federal.template)</a>
+      <li><a href="federal.html#srd.federal.form_2016.med_exp">med_exp() (dans le module srd.federal.form_2016)</a>
 
       <ul>
-        <li><a href="quebec.html#srd.quebec.template.med_exp">(méthode srd.quebec.template)</a>
+        <li><a href="quebec.html#srd.quebec.form_2020.med_exp">(dans le module srd.quebec.form_2020)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -652,11 +820,13 @@
 <h2 id="O">O</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="ontario.html#srd.ontario.template.ocb">ocb() (méthode srd.ontario.template)</a>
+      <li><a href="federal.html#srd.federal.form_2020.oas_gis_covid_bonus">oas_gis_covid_bonus() (dans le module srd.federal.form_2020)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="ontario.html#srd.ontario.template.ostc">ostc() (méthode srd.ontario.template)</a>
+      <li><a href="ontario.html#srd.ontario.form_2016.ocb">ocb() (dans le module srd.ontario.form_2016)</a>
+</li>
+      <li><a href="ontario.html#srd.ontario.form_2016.ostc">ostc() (dans le module srd.ontario.form_2016)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -666,11 +836,9 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="payroll.html#srd.payroll">payroll (classe dans srd)</a>
 </li>
-      <li><a href="oas.html#srd.oas.template.pension_clawback">pension_clawback() (méthode srd.oas.template)</a>
+      <li><a href="oas.html#srd.oas.template.template.pension_clawback">pension_clawback() (dans le module srd.oas.template.template)</a>
 </li>
       <li><a href="actors.html#srd.Person">Person (classe dans srd)</a>
-</li>
-      <li><a href="covid.html#srd.covid.policy">policy (classe dans srd.covid)</a>
 </li>
       <li><a href="assistance.html#srd.assistance.program">program() (dans le module srd.assistance)</a>
 
@@ -702,8 +870,6 @@
         <li><a href="payroll.html#srd.qpip.programs.program_2017">(classe dans srd.qpip.programs)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="assistance.html#srd.assistance.programs.program_2018">program_2018 (classe dans srd.assistance.programs)</a>
 
       <ul>
@@ -714,6 +880,8 @@
         <li><a href="payroll.html#srd.qpip.programs.program_2018">(classe dans srd.qpip.programs)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="assistance.html#srd.assistance.programs.program_2019">program_2019 (classe dans srd.assistance.programs)</a>
 
       <ul>
@@ -727,6 +895,8 @@
       <li><a href="assistance.html#srd.assistance.programs.program_2020">program_2020 (classe dans srd.assistance.programs)</a>
 
       <ul>
+        <li><a href="covid.html#srd.covid.programs.program_2020">(classe dans srd.covid.programs)</a>
+</li>
         <li><a href="payroll.html#srd.ei.programs.program_2020">(classe dans srd.ei.programs)</a>
 </li>
         <li><a href="oas.html#srd.oas.programs.program_2020">(classe dans srd.oas.programs)</a>
@@ -734,15 +904,25 @@
         <li><a href="payroll.html#srd.qpip.programs.program_2020">(classe dans srd.qpip.programs)</a>
 </li>
       </ul></li>
-      <li><a href="covid.html#srd.covid.programs">programs (classe dans srd.covid)</a>
+      <li><a href="assistance.html#srd.assistance.programs.program_2021">program_2021 (classe dans srd.assistance.programs)</a>
+
+      <ul>
+        <li><a href="covid.html#srd.covid.programs.program_2021">(classe dans srd.covid.programs)</a>
 </li>
+        <li><a href="payroll.html#srd.ei.programs.program_2021">(classe dans srd.ei.programs)</a>
+</li>
+        <li><a href="oas.html#srd.oas.programs.program_2021">(classe dans srd.oas.programs)</a>
+</li>
+        <li><a href="payroll.html#srd.qpip.programs.program_2021">(classe dans srd.qpip.programs)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
 <h2 id="Q">Q</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="federal.html#srd.federal.template.qpip_deduction">qpip_deduction() (méthode srd.federal.template)</a>
+      <li><a href="federal.html#srd.federal.form_2016.qpip_deduction">qpip_deduction() (dans le module srd.federal.form_2016)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -750,14 +930,14 @@
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="federal.html#srd.federal.form_2020.repayments_ei">repayments_ei() (méthode srd.federal.form_2020)</a>
+      <li><a href="federal.html#srd.federal.form_2020.repayments_ei">repayments_ei() (dans le module srd.federal.form_2020)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="actors.html#srd.Hhold.reset">reset() (méthode srd.Hhold)</a>
+      <li><a href="actors.html#srd.Hhold.reset">reset() (dans le module srd.Hhold)</a>
 
       <ul>
-        <li><a href="actors.html#srd.Person.reset">(méthode srd.Person)</a>
+        <li><a href="actors.html#srd.Person.reset">(dans le module srd.Person)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -766,18 +946,14 @@
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="quebec.html#srd.quebec.form_2018.senior_assist">senior_assist() (méthode srd.quebec.form_2018)</a>
+      <li><a href="quebec.html#srd.quebec.form_2018.senior_assist">senior_assist() (dans le module srd.quebec.form_2018)</a>
 </li>
-      <li><a href="assistance.html#srd.assistance.template.shelter">shelter() (méthode srd.assistance.template)</a>
+      <li><a href="assistance.html#srd.assistance.program_2016.shelter">shelter() (dans le module srd.assistance.program_2016)</a>
 </li>
-      <li><a href="covid.html#srd.covid.policy.shut_all_measures">shut_all_measures() (méthode srd.covid.policy)</a>
-</li>
-      <li><a href="quebec.html#srd.quebec.template.solidarity">solidarity() (méthode srd.quebec.template)</a>
+      <li><a href="quebec.html#srd.quebec.form_2020.solidarity">solidarity() (dans le module srd.quebec.form_2020)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="covid.html#srd.covid.policy.some_measures">some_measures() (srd.covid.policy property)</a>
-</li>
       <li>
     srd
 
@@ -785,9 +961,9 @@
         <li><a href="actors.html#module-srd">module</a>
 </li>
       </ul></li>
-      <li><a href="ontario.html#srd.ontario.template.surtax">surtax() (méthode srd.ontario.template)</a>
+      <li><a href="ontario.html#srd.ontario.form_2016.surtax">surtax() (dans le module srd.ontario.form_2016)</a>
 </li>
-      <li><a href="oas.html#srd.oas.template.survivor_allowance">survivor_allowance() (méthode srd.oas.template)</a>
+      <li><a href="oas.html#srd.oas.template.template.survivor_allowance">survivor_allowance() (dans le module srd.oas.template.template)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -797,22 +973,30 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="calculators.html#srd.tax">tax (classe dans srd)</a>
 </li>
-      <li><a href="ontario.html#srd.ontario.template.tax_reduction">tax_reduction() (méthode srd.ontario.template)</a>
+      <li><a href="ontario.html#srd.ontario.form_2016.tax_reduction">tax_reduction() (dans le module srd.ontario.form_2016)</a>
 </li>
-      <li><a href="assistance.html#srd.assistance.template">template (classe dans srd.assistance)</a>
+      <li><a href="quebec.html#srd.quebec.form_2020.tax_shield">tax_shield() (dans le module srd.quebec.form_2020)</a>
+</li>
+      <li><a href="payroll.html#srd.ei.template">template (classe dans srd.ei)</a>
 
       <ul>
-        <li><a href="payroll.html#srd.ei.template">(classe dans srd.ei)</a>
-</li>
-        <li><a href="federal.html#srd.federal.template">(classe dans srd.federal)</a>
-</li>
-        <li><a href="oas.html#srd.oas.template">(classe dans srd.oas)</a>
-</li>
-        <li><a href="ontario.html#srd.ontario.template">(classe dans srd.ontario)</a>
-</li>
         <li><a href="payroll.html#srd.qpip.template">(classe dans srd.qpip)</a>
 </li>
-        <li><a href="quebec.html#srd.quebec.template">(classe dans srd.quebec)</a>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="assistance.html#srd.assistance.template">template() (dans le module srd.assistance)</a>
+
+      <ul>
+        <li><a href="covid.html#srd.covid.template">(dans le module srd.covid)</a>
+</li>
+        <li><a href="federal.html#srd.federal.template">(dans le module srd.federal)</a>
+</li>
+        <li><a href="oas.html#srd.oas.template">(dans le module srd.oas)</a>
+</li>
+        <li><a href="ontario.html#srd.ontario.template">(dans le module srd.ontario)</a>
+</li>
+        <li><a href="quebec.html#srd.quebec.template">(dans le module srd.quebec)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -821,11 +1005,11 @@
 <h2 id="W">W</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="quebec.html#srd.quebec.template.witb">witb() (méthode srd.quebec.template)</a>
+      <li><a href="quebec.html#srd.quebec.form_2020.witb">witb() (dans le module srd.quebec.form_2020)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="quebec.html#srd.quebec.template.work_deduc">work_deduc() (méthode srd.quebec.template)</a>
+      <li><a href="quebec.html#srd.quebec.form_2020.work_deduc">work_deduc() (dans le module srd.quebec.form_2020)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -841,7 +1025,7 @@
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2020, Équipe CREEi.
+        &#169; Copyright 2022, Équipe CREEi.
 
     </p>
   </div>

@@ -13,6 +13,9 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/contentui.css" type="text/css" />
 
   
   
@@ -29,11 +32,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
         <script src="_static/translations.js"></script>
+        <script src="_static/contentui.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -87,26 +91,109 @@
               
             
             
-              <p class="caption"><span class="caption-text">Menu:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Menu:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Premiers pas avec le SRD</a></li>
-<li class="toctree-l1"><a class="reference internal" href="actors.html">Les acteurs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="federal.html">Impôt fédéral</a></li>
-<li class="toctree-l1"><a class="reference internal" href="quebec.html">Impôt du Québec</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ontario.html">Impôt de l’Ontario</a></li>
-<li class="toctree-l1"><a class="reference internal" href="oas.html">Pension de la sécurité de la vieillesse</a></li>
-<li class="toctree-l1"><a class="reference internal" href="payroll.html">Cotisations sociales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="assistance.html">Aide sociale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Premiers pas avec le SRD</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#installation-du-srd">Installation du SRD</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#installation-alternative">Installation alternative</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="actors.html">Les acteurs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="actors.html#personnes">Personnes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actors.html#dependants-enfant-ou-proche-a-charge">Dépendants (enfant ou proche à charge)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actors.html#menages">Ménages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="federal.html">Impôt fédéral</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="federal.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="federal.html#gabarit-de-declaration">Gabarit de déclaration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="federal.html#fonctions-specifiques-ou-modifiees">Fonctions spécifiques ou modifiées</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quebec.html">Impôt du Québec</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quebec.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quebec.html#gabarit-de-declaration">Gabarit de déclaration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quebec.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ontario.html">Impôt de l’Ontario</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ontario.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ontario.html#gabarit-du-rapport">Gabarit du rapport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ontario.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="oas.html">Pension de la sécurité de la vieillesse</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="oas.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oas.html#gabarit-du-programme">Gabarit du programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oas.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="payroll.html">Cotisations sociales</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="payroll.html#assurance-emploi">Assurance emploi</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#survol">Survol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#gabarit-du-programme">Gabarit du programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="payroll.html#regime-quebecois-d-assurance-parentale">Régime québécois d’assurance parentale</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#id1">Survol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#id2">Gabarit du programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#id3">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="assistance.html">Aide sociale</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="assistance.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assistance.html#gabarit-du-programme">Gabarit du programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assistance.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+</ul>
+</li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Prestations liées à la COVID-19</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#survol">Survol</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gabarit-du-programme">Gabarit du programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="calculators.html">Calculateur de revenu disponible</a></li>
-<li class="toctree-l1"><a class="reference internal" href="TutorialFed.html">Exemple de calcul de l’impôt fédéral</a></li>
-<li class="toctree-l1"><a class="reference internal" href="TutorialCalculator.html">Exemple de calcul du revenu disponible</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calculators.html">Calculateur de revenu disponible</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="calculators.html#survol">Survol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calculators.html#les-fonctions-du-calculateur">Les fonctions du calculateur</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="comparaison.html">Comparaisons avec le MFQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="comparaison.html#personne-celibataire-sans-enfant">Personne célibataire (sans enfant)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comparaison.html#personne-monoparentale">Personne monoparentale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comparaison.html#couple-sans-enfant">Couple sans enfant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comparaison.html#couple-avec-enfant">Couple avec enfant</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="TutorialFed.html">Exemple de calcul de l’impôt fédéral</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="TutorialFed.html#importation-du-package">Importation du package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TutorialFed.html#initialisation-dun-menage">Initialisation d’un ménage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TutorialFed.html#calcul-de-limpot-federal">Calcul de l’impôt fédéral</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TutorialFed.html#experiences">Expériences</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="TutorialCalculator.html">Exemple de calcul du revenu disponible</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="TutorialCalculator.html#construction-du-menage">Construction du ménage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TutorialCalculator.html#le-calculateur">Le calculateur</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TutorialCalculator.html#calcul-du-revenu-apres-impots-et-du-revenu-disponible">Calcul du revenu après impôts et du revenu disponible</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="TutorialChangeParameters.html">Exemple de changement de paramètre</a></li>
-<li class="toctree-l1"><a class="reference internal" href="credits.html">Contacts et droits d’utilisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits.html">Contacts et droits d’utilisation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="credits.html#liste-d-envoi">Liste d’envoi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="credits.html#personne-contact">Personne-contact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="credits.html#contributeurs">Contributeurs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="credits.html#principaux">Principaux</a></li>
+<li class="toctree-l3"><a class="reference internal" href="credits.html#id1">2020</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="credits.html#droits-d-utilisation">Droits d’utilisation</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -180,74 +267,55 @@
 <h1>Prestations liées à la COVID-19<a class="headerlink" href="#prestations-liees-a-la-covid-19" title="Lien permanent vers ce titre">¶</a></h1>
 <div class="section" id="survol">
 <h2>Survol<a class="headerlink" href="#survol" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Les mesures d’urgence pour soutenir la population canadienne durant la pandémie de COVID-19 sont prises en charge par le module <em>covid</em>. Au niveau fédéral, ce module permet l’inclusion de la Prestation canadienne d’urgence (PCU) et de la Prestation canadienne d’urgence pour étudiants (PCUE), et d’inclure dans le calcul de l’impôt fédéral 2020 les majorations au crédit pour la TPS/TVH et à l’Allocation canadienne pour enfants. Pour le Québec, ce module permet le calcul du Programme incitatif pour la rétention des travailleurs essentiels (PIRTE). Les prestations de PCU, de PCUE et de PIRTE sont considérées comme des revenus du travail, mais n’affectent pas les cotisations à l’assurance emploi, au Régime québécois d’assurance parentale ou au RPC/RRQ.</p>
-<p>La classe <em>policy</em> permet de définir quels programmes on désire inclure dans les calculs du simulateur: les majorations de crédit pour TPS/TVH et de l’Allocation canadienne pour enfants sont des paramètres de la classe <em>federal</em> dont l’utilisation est déclenchée par la classe <em>policy</em>, le cas échéant (en activant les variables correspondantes), tandis que les prestations de PCU, PCUE et PIRTE – si applicables – sont obtenues grâce à la fonction <em>compute</em> de la classe <em>programs</em> (voir le gabarit ci-dessous).</p>
-<dl class="py class">
-<dt id="srd.covid.policy">
-<em class="property">class </em><code class="sig-prename descclassname">srd.covid.</code><code class="sig-name descname">policy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">icerb</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">icesb</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">iiprew</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">icovid_gst</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">icovid_ccb</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">iei</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.covid.policy" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Mesures liées à la COVID-19.</p>
-<p>Permet de choisir quelles mesures sont appliquées dans le simulateur. Par défaut, les 5 premières mesures ci-dessous sont appliquées (PCU, PCUE, PIRTE, majorations au crédit de TPS/TVH et à l’ACE).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>icerb</strong> (<em>boolean</em>) – la PCU est appliquée</p></li>
-<li><p><strong>icesb</strong> (<em>boolean</em>) – la PCUE est appliquée</p></li>
-<li><p><strong>iiprew</strong> (<em>boolean</em>) – le PIRTE est appliqué au Québec</p></li>
-<li><p><strong>icovid_gst</strong> (<em>boolean</em>) – La majoration du crédit pour la TPS/TVH est appliquée</p></li>
-<li><p><strong>icovid_ccb</strong> (<em>boolean</em>) – La majoration de l’Allocation canadienne pour enfants (ACE) est appliquée</p></li>
-<li><p><strong>iei</strong> (<em>boolean</em>) – Assurance emploi d’urgence: scénario d’AE alternative à la PCU utilisé dans certaines analyses de la CREEi</p></li>
+<p>Les mesures d’urgence pour soutenir la population canadienne durant la pandémie de COVID-19 ainsi que les mesures de relance économique sont prises en charge par le module <em>covid</em>.</p>
+<p>Les mesures prises en compte dans ce module sont:</p>
+<ul class="simple">
+<li><p>La prestation canadienne d’urgence (PCU);</p></li>
+<li><p>La prestation canadienne d’urgence pour étudiants (PCUE);</p></li>
+<li><p>La prestation canadienne de la relance économique (PCRE);</p></li>
+<li><p>Pour le Québec seulement, le programme incitatif pour la rétention des travailleurs essentiels (PIRTE).</p></li>
 </ul>
-</dd>
-</dl>
-<dl class="py method">
-<dt id="srd.covid.policy.shut_all_measures">
-<code class="sig-name descname">shut_all_measures</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.covid.policy.shut_all_measures" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Ne tient pas compte des mesures spéciales COVID-19 dans la simulation.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="srd.covid.policy.some_measures">
-<em class="property">property </em><code class="sig-name descname">some_measures</code><a class="headerlink" href="#srd.covid.policy.some_measures" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Indique qu’au moins une mesure spéciale COVID-19 est incluse.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Renvoie</dt>
-<dd class="field-odd"><p>True s’il y a au moins une mesure d’incluse, False sinon.</p>
-</dd>
-<dt class="field-even">Type renvoyé</dt>
-<dd class="field-even"><p>boolean</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="gabarit-du-programme">
 <h2>Gabarit du programme<a class="headerlink" href="#gabarit-du-programme" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Une instance de la classe <em>policy</em> est ensuite entrée dans la classe <em>programs</em> et seuls les programmes qui ont été sélectionnés sont appliqués.</p>
-<dl class="py class">
-<dt id="srd.covid.programs">
-<em class="property">class </em><code class="sig-prename descclassname">srd.covid.</code><code class="sig-name descname">programs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">policy</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.covid.programs" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Calcul des prestations d’urgence liées à la COVID-19: la Prestation canadienne d’urgence (PCU), la Prestation canadienne d’urgence pour les étudiants (PCUE) et le Programme incitatif pour la rétention des travailleurs essentiels (PIRTE).</p>
+<p>Nous utilisons un gabarit afin de créer les programmes chaque année. Si des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou à en ajouter de nouvelles).</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.covid.template">
+<span class="sig-prename descclassname"><span class="pre">srd.covid.</span></span><span class="sig-name descname"><span class="pre">template</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.covid.template" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Programmes COVID-19.</p>
+<p>Ce gabarit sert à calculer les programmes associés à la COVID-19.</p>
+</dd></dl>
+
+<div class="line-block">
+<div class="line">Nous présentons ici la liste des fonctions incluses dans le gabarit:</div>
+<div class="line">(Cliquez sur le nom pour afficher les détails)</div>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- compute()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.covid.program_2020.compute">
+<span class="sig-prename descclassname"><span class="pre">srd.covid.program_2020.</span></span><span class="sig-name descname"><span class="pre">compute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.covid.program_2020.compute" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui fait le calcul de chaque programme COVID-19.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>policy</strong> (<a class="reference internal" href="#srd.covid.policy" title="srd.covid.policy"><em>policy</em></a>) – instance de la classe policy</p>
-</dd>
-</dl>
-<dl class="py method">
-<dt id="srd.covid.programs.compute">
-<code class="sig-name descname">compute</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.covid.programs.compute" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fonction qui fait le calcul et crée le rapport de cotisations.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.covid.programs.compute_cerb">
-<code class="sig-name descname">compute_cerb</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.covid.programs.compute_cerb" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- compute_cerb()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.covid.program_2020.compute_cerb">
+<span class="sig-prename descclassname"><span class="pre">srd.covid.program_2020.</span></span><span class="sig-name descname"><span class="pre">compute_cerb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.covid.program_2020.compute_cerb" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction pour le calcul de la PCU.</p>
 <p>Calcule la PCU en fonction du nombre de blocs de 4 semaines (mois) pour lesquels la prestation est demandée.</p>
 <dl class="field-list simple">
@@ -263,9 +331,14 @@
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.covid.programs.compute_cesb">
-<code class="sig-name descname">compute_cesb</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.covid.programs.compute_cesb" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- compute_cesb()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.covid.program_2020.compute_cesb">
+<span class="sig-prename descclassname"><span class="pre">srd.covid.program_2020.</span></span><span class="sig-name descname"><span class="pre">compute_cesb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.covid.program_2020.compute_cesb" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction pour le calcul de la PCUE.</p>
 <p>Calcule la PCUE en fonction de la prestation mensuelle à laquelle l’individu a droit et du nombre de blocs de 4 semaines (mois) pour lesquels la prestation est demandée.</p>
 <dl class="field-list simple">
@@ -284,9 +357,14 @@
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.covid.programs.compute_monthly_cesb">
-<code class="sig-name descname">compute_monthly_cesb</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">hh</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.covid.programs.compute_monthly_cesb" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- compute_monthly_cesb()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.covid.program_2020.compute_monthly_cesb">
+<span class="sig-prename descclassname"><span class="pre">srd.covid.program_2020.</span></span><span class="sig-name descname"><span class="pre">compute_monthly_cesb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.covid.program_2020.compute_monthly_cesb" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Calcule le montant mensuel de la PCUE en fonction du statut (invalidité, dépendants).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Renvoie</dt>
@@ -298,11 +376,16 @@
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="srd.covid.programs.compute_iprew">
-<code class="sig-name descname">compute_iprew</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.covid.programs.compute_iprew" title="Lien permanent vers cette définition">¶</a></dt>
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- compute_iprew()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.covid.program_2020.compute_iprew">
+<span class="sig-prename descclassname"><span class="pre">srd.covid.program_2020.</span></span><span class="sig-name descname"><span class="pre">compute_iprew</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.covid.program_2020.compute_iprew" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction pour le calcul du PIRTE.</p>
-<p>Calcule la PIRTE pour la période de 16 semaines (4 mois) si le travailleur est admissible.</p>
+<p>Calcule la prestation de PIRTE pour la période de 16 semaines (4 mois) si le travailleur est admissible.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
@@ -316,6 +399,144 @@
 </dl>
 </dd></dl>
 
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- compute_crb()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.covid.program_2020.compute_crb">
+<span class="sig-prename descclassname"><span class="pre">srd.covid.program_2020.</span></span><span class="sig-name descname"><span class="pre">compute_crb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.covid.program_2020.compute_crb" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule la Prestation canadienne de la relance économique (PCRE).</p>
+<p>Calcule la PCRE pour la période de 54 semaines si le travailleur est admissible.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant de la PCRE.</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="fonctions-specifiques-ou-modifiees-par-annee">
+<h2>Fonctions spécifiques ou modifiées par année<a class="headerlink" href="#fonctions-specifiques-ou-modifiees-par-annee" title="Lien permanent vers ce titre">¶</a></h2>
+<p><strong>2020</strong></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="srd.covid.programs.program_2020">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.covid.programs.</span></span><span class="sig-name descname"><span class="pre">program_2020</span></span><a class="headerlink" href="#srd.covid.programs.program_2020" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Version du programme de 2020.</p>
+<p>Calcul des prestations liées à la COVID-19: la Prestation canadienne d’urgence (PCU), la Prestation canadienne d’urgence pour les étudiants (PCUE), le Programme incitatif pour la rétention des travailleurs essentiels (PIRTE) au Québec et la Prestation canadienne de la relance économique (PCRE).</p>
+</dd></dl>
+
+<div class="toggle-header docutils container">
+<p><strong>- compute_cerb()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.covid.programs.program_2020.compute_cerb">
+<span class="sig-prename descclassname"><span class="pre">srd.covid.programs.program_2020.</span></span><span class="sig-name descname"><span class="pre">compute_cerb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.covid.programs.program_2020.compute_cerb" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction pour le calcul de la PCU.</p>
+<p>Calcule la PCU en fonction du nombre de blocs de 4 semaines (mois) pour lesquels la prestation est demandée.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant de la PCU.</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- compute_cesb()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.covid.programs.program_2020.compute_cesb">
+<span class="sig-prename descclassname"><span class="pre">srd.covid.programs.program_2020.</span></span><span class="sig-name descname"><span class="pre">compute_cesb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.covid.programs.program_2020.compute_cesb" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction pour le calcul de la PCUE.</p>
+<p>Calcule la PCUE en fonction de la prestation mensuelle à laquelle l’individu a droit et du nombre de blocs de 4 semaines (mois) pour lesquels la prestation est demandée.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant de la PCUE.</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- compute_monthly_cesb()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.covid.programs.program_2020.compute_monthly_cesb">
+<span class="sig-prename descclassname"><span class="pre">srd.covid.programs.program_2020.</span></span><span class="sig-name descname"><span class="pre">compute_monthly_cesb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.covid.programs.program_2020.compute_monthly_cesb" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Calcule le montant mensuel de la PCUE en fonction du statut (invalidité, dépendants).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Renvoie</dt>
+<dd class="field-odd"><p>Prestation mensuelle de PCUE.</p>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- compute_iprew()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.covid.programs.program_2020.compute_iprew">
+<span class="sig-prename descclassname"><span class="pre">srd.covid.programs.program_2020.</span></span><span class="sig-name descname"><span class="pre">compute_iprew</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.covid.programs.program_2020.compute_iprew" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction pour le calcul du PIRTE.</p>
+<p>Calcule la prestation de PIRTE pour la période de 16 semaines (4 mois) si le travailleur est admissible.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant de PIRTE pour les 16 semaines.</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>2021</strong></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="srd.covid.programs.program_2021">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.covid.programs.</span></span><span class="sig-name descname"><span class="pre">program_2021</span></span><a class="headerlink" href="#srd.covid.programs.program_2021" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Version du programme de 2021.</p>
+<p>Calcule principalement la Prestation canadienne de la relance économique (PCRE).</p>
 </dd></dl>
 
 </div>
@@ -335,7 +556,7 @@
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2020, Équipe CREEi.
+        &#169; Copyright 2022, Équipe CREEi.
 
     </p>
   </div>

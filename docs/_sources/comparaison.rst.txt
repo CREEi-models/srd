@@ -1,0 +1,74 @@
+
+Comparaisons avec le MFQ
+--------------------------
+Cette section compare brièvement les résultats du SRD avec ceux du `simulateur de revenu disponible du ministère des Finances du Québec (MFQ)  <http://www.budget.finances.gouv.qc.ca/budget/outils/revenu-disponible-fr.asp>`_ . L'objectif poursuivi est de démontrer que le SRD est en mesure de produire des résultats comparables à ceux du MFQ.
+
+Deux indicateurs sont utilisés pour cette comparaison. Le premier est le revenu disponible, qui est défini comme le revenu total (incluant les transferts directs gouvernementaux) après soustraction des cotisations salariales et de l’impôt sur le revenu,  et ajout des transferts sociaux. Le deuxième indicateur est le taux effectif marginal d’imposition (TEMI), qui est une mesure du taux de charge fiscale sur un revenu supplémentaire, soit le taux qui s’applique à la dernière tranche de revenu imposable obtenu par un particulier (nous procedons par tranche de 1 000 $).
+
+De manière générale, les résultats obtenus par le SRD sont très similaires à ceux du MFQ. Notons que lors de la modélisation, nous avons choisi d'intégrer 
+le crédit d'impôt attribuant un montant ponctuel (de 500$) pour pallier à la hausse du coût de la vie en 2021, à la différence du MFQ qui l'a intégré en 2022. 
+Ce choix donne lieu à une différence de 500$ à 1000$ dépendant de la situation du ménage (célibataire ou couple). 
+En outre, d'autres légères différences sont observables. Celles-ci sont principalement dues aux éléments suivants:
+
+- les résultats du MFQ tiennent compte du changement d'année de base en juillet pour le calcul du crédit d'impôt de la TPS, alors que le SRD ne considère qu’une seule année de base pour une même année fiscale;
+- l'aide sociale n'est pas incluse dans le revenu familial lors du calcul de la prime au travail, puisque le montant de l'aide sociale est calculé après la prime au travail;
+- on observe une légère différence (positive) pour la contribution au régime public d’assurance médicaments pour les 65 ans et plus.
+
+Dix cas-types sont présentés ci-dessous afin de dresser un portrait général de la situation. 
+Les différences correspondent aux résultats du SRD moins ceux du MFQ.
+L'année fiscale 2021 a été choisie aux fins de comparaison et l'allocation logement est exclue du revenu disponible, car celle-ci n'est pas modélisée par le SRD.
+
+Personne célibataire (sans enfant)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**De 35 ans**
+
+.. image:: output_100.png
+
+**De 63 ans**
+
+.. image:: output_10061.png
+
+**De 73 ans**
+
+.. image:: output_30070.png
+
+Personne monoparentale
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**De 35 ans avec un enfant de 4 ans et des frais de garde non-subventionnés de 6825$**
+
+.. image:: output_121.png
+
+**De 35 ans avec un enfant de 10 ans, aucun frais de garde**
+
+.. image:: output_151.png
+
+Couple sans enfant
+^^^^^^^^^^^^^^^^^^^^^
+
+**Conjoints de 35 ans et répartition du revenu familial de 0-100% entre les conjoints**
+
+.. image:: output_200.png
+
+**Conjoints de 35 ans et répartition du revenu familial de 40-60% entre les conjoints**
+
+.. image:: output_220.png
+
+
+**Conjoints de 73 ans et répartition du revenu 0-100% entre les conjoints**
+
+.. image:: output_31070.png
+
+
+**Conjoints de 73 ans et répartition du revenu familial de 40-60% entre les conjoints**
+
+.. image:: output_32070.png
+
+
+Couple avec enfant
+^^^^^^^^^^^^^^^^^^^
+
+**Conjoints de 35 ans avec un enfant de 4 ans et des frais de garde non-subventionnés de 6825$ et répartition du revenu familial de 40-60% entre les conjoints**
+
+.. image:: output_241.png

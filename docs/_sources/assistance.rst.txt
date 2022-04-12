@@ -13,29 +13,82 @@ La fonction *program* permet de choisir l'année du programme et ira tirer une i
 
 .. autofunction:: program
 
-Seules la prestation de base au Québec et en Ontario sont modélisées pour l'instant.
+Outre la prestation de base, sont pris en compte les suppléments pour personnes seules, la prestation pour contrainte temporaire à l’emploi et les ajustements pour enfants à charge au Québec. Pour l'Ontario, seule la prestation de base est modélisée.
 
 Gabarit du programme
 ^^^^^^^^^^^^^^^^^^^^
 
 Nous utilisons un gabarit afin de créer les programmes chaque année. Quand le programme change seulement au niveau des paramètres d'une année à l'autre, nous irons chercher seulement les nouveaux paramètres. Quand des fonctions changent, l'utilisateur n'a qu'à modifier les fonctions touchées (ou à en ajouter de nouvelles). L'avantage des classes dérivées est de ne pas avoir à répéter toutes les fonctions d'une année à l'autre si celles-ci n'ont pas changé.
 
-Nous reproduisons ici la spécification du gabarit. Il est basé sur le programme en vigueur en 2016.
+.. currentmodule:: srd.assistance
+.. autofunction:: template
 
-À noter que seul un test d'actifs simplifié est appliqué, à un volet; les actifs liquides (argent comptant et comptes courants) ne sont pas considérés. Par ailleurs les suppléments pour personnes seules ne sont pas mis en œuvre; la prestation pour contrainte temporaire à l'emploi non plus.
+À noter que seul un test d'actifs simplifié est appliqué, à un volet; les actifs liquides (argent comptant et comptes courants) ne sont pas considérés.
 
-.. autoclass:: template
-    :members: apply, shelter, basic_qc, basic_on
+
+| Nous présentons ici la liste des fonctions incluses dans le gabarit:
+| (Cliquez sur le nom pour afficher les détails)
+
+.. currentmodule:: srd.assistance.program_2016
+
+.. toggle-header::
+    :header: **- file()**
+
+    .. autofunction:: file
+
+.. toggle-header::
+    :header: **- shelter()**
+
+    .. autofunction:: shelter
+
+.. toggle-header::
+    :header: **- calc_sa_qc()**
+
+    .. autofunction:: calc_sa_qc
+
+.. toggle-header::
+    :header: **- eligibility_qc()**
+
+    .. autofunction:: eligibility_qc
+
+.. toggle-header::
+    :header: **- child_ajustments()**
+
+    .. autofunction:: child_ajustments
+
+.. toggle-header::
+    :header: **- calc_sa_on()**
+
+    .. autofunction:: calc_sa_on
+
+
+|
+
+
 
 Fonctions spécifiques ou modifiées par année
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+**2016**
+
 .. autoclass:: srd.assistance.programs.program_2016
+
+**2017**
 
 .. autoclass:: srd.assistance.programs.program_2017
 
+**2018**
+
 .. autoclass:: srd.assistance.programs.program_2018
+
+**2019**
 
 .. autoclass:: srd.assistance.programs.program_2019
 
+**2020**
+
 .. autoclass:: srd.assistance.programs.program_2020
+
+**2021**
+
+.. autoclass:: srd.assistance.programs.program_2021

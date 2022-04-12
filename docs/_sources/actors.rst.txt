@@ -3,21 +3,160 @@
 
 
 Les acteurs
------------
+==============
 
-Les fonctions d'acteurs permettent de déclarer des profils.
+Les fonctions d'acteurs permettent de déclarer les profils.
+
+Personnes
+-----------
 
 .. currentmodule:: srd
 
 .. autoclass:: Person
-    :members: attach_prev_work_inc, attach_inc_work_month, inc_work,
-              inc_non_work, inc_tot, compute_months_cerb_cesb, copy, reset
+
+| Fonctions incluses dans cette classe:
+| (Cliquez pour afficher les détails)
+
+.. currentmodule:: srd.Person
+
+.. toggle-header::
+    :header: **- attach_prev_work_inc()**
+
+    .. autofunction:: attach_prev_work_inc
+
+.. toggle-header::
+    :header: **- attach_inc_work_month()**
+
+    .. autofunction:: attach_inc_work_month
+
+.. toggle-header::
+    :header: **- inc_work()**
+
+    .. autofunction:: inc_work
+
+.. toggle-header::
+    :header: **- inc_non_work()**
+
+    .. autofunction:: inc_non_work
+
+.. toggle-header::
+    :header: **- inc_tot()**
+
+    .. autofunction:: inc_tot
+
+.. toggle-header::
+    :header: **- compute_months_cerb_cesb()**
+
+    .. autofunction:: compute_months_cerb_cesb
+
+.. toggle-header::
+    :header: **- copy()**
+
+    .. autofunction:: copy
+
+.. toggle-header::
+    :header: **- reset()**
+
+    .. autofunction:: reset
+
+
+|
+
+Dépendants (enfant ou proche à charge)
+-----------------------------------------
+.. currentmodule:: srd
 
 .. autoclass:: Dependent
-    :members:
+
+|
+
+Ménages
+-------
+
+.. currentmodule:: srd
 
 .. autoclass:: Hhold
-    :members: adjust_n_adults, fam_inc_work, fam_inc_non_work, fam_inc_tot,
-              fam_after_tax_inc, fam_disp_inc, child_care_exp,
-              fam_net_inc_prov, fam_net_inc_fed, add_dependent, count,
-              compute_max_split, assess_elig_split, copy, reset
+
+
+| Fonctions incluses dans cette classe - les fonctions relatives au revenu utilisent des quantités déjà calculées au niveau individuel par la classe principale du calculateur (*tax*), soit le calculateur de revenu disponible:
+| (Cliquez pour afficher les détails)
+
+.. currentmodule:: srd.Hhold
+
+.. toggle-header::
+    :header: **- adjust_n_adults()**
+
+    .. autofunction:: adjust_n_adults
+
+.. toggle-header::
+    :header: **- fam_inc_work()**
+
+    .. autofunction:: fam_inc_work
+
+
+.. toggle-header::
+    :header: **- fam_inc_non_work()**
+
+    .. autofunction:: fam_inc_non_work
+
+.. toggle-header::
+    :header: **- fam_inc_tot()**
+
+    .. autofunction:: fam_inc_tot
+
+.. toggle-header::
+    :header: **- fam_after_tax_inc()**
+
+    .. autofunction:: fam_after_tax_inc
+
+.. toggle-header::
+    :header: **- fam_disp_inc()**
+
+    .. autofunction:: fam_disp_inc
+
+.. toggle-header::
+    :header: **- child_care_exp()**
+
+    .. autofunction:: child_care_exp
+
+.. toggle-header::
+    :header: **- fam_net_inc_prov()**
+
+    .. autofunction:: fam_net_inc_prov
+
+.. toggle-header::
+    :header: **- fam_net_inc_fed()**
+
+    .. autofunction:: fam_net_inc_fed
+
+.. toggle-header::
+    :header: **- add_dependent()**
+
+    .. autofunction:: add_dependent
+
+.. toggle-header::
+    :header: **- count()**
+
+    .. autofunction:: count
+
+.. toggle-header::
+    :header: **- compute_max_split()**
+
+    .. autofunction:: compute_max_split
+
+.. toggle-header::
+    :header: **- assess_elig_split()**
+
+    .. autofunction:: assess_elig_split
+
+.. toggle-header::
+    :header: **- copy()**
+
+    .. autofunction:: copy
+
+.. toggle-header::
+    :header: **- reset()**
+
+    .. autofunction:: reset
+
+|

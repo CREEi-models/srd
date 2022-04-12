@@ -2,7 +2,7 @@
 Cotisations sociales
 ====================
 
-Les cotisations sociales sont prises en charge par la classe *payroll*. Cette classe prend en charge les cotisations à l'assurance-emploi, au Régime québécois d'assurance parentale (RQAP), au Régime de rentes du Québec (RRQ) et au Régime de pensions du Canada (RPC). Pour ces dernières, le module *srpp* de la chaire est utilisé et une fonction de la classe *payroll* (*get_cpp_contrib*) ira chercher les cotisations à l'intérieur de ce module.
+Les cotisations sociales sont prises en charge par la classe *payroll*. Cette classe prend en charge les cotisations à l'assurance-emploi, au Régime québécois d'assurance parentale (RQAP), au Régime de rentes du Québec (RRQ) et au Régime de pensions du Canada (RPC). Pour les deux dernières, le module *srpp* de la chaire est utilisé et une fonction de la classe *payroll* (*get_cpp_contrib*) ira chercher les cotisations à l'intérieur de ce module.
 
 La classe *payroll* attachera à chaque membre d'un couple un rapport de cotisations qui contiendra toutes les sommes cotisées. Pour le RRQ et le RPC, les cotisations aux régimes de base et celles aux régimes supplémentaires découlant de l'expansion débutée en 2019 sont séparées, car leur traitement fiscal est différent.
 
@@ -52,6 +52,15 @@ Fonctions spécifiques ou modifiées par année
 
 .. autoclass:: srd.ei.programs.program_2020
 
+.. autoclass:: srd.ei.programs.program_2021
+.. currentmodule:: srd.ei.programs.program_2021
+
+.. toggle-header::
+    :header: **- compute_benefits_covid()**
+
+    .. autofunction:: compute_benefits_covid
+
+|
 
 
 Régime québécois d'assurance parentale
@@ -94,4 +103,4 @@ Fonctions spécifiques ou modifiées par année
 
 .. autoclass:: srd.qpip.programs.program_2020
 
-
+.. autoclass:: srd.qpip.programs.program_2021

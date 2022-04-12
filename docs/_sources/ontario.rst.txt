@@ -13,35 +13,174 @@ La fonction *form* permet de choisir l'année de la déclaration de revenus et i
 
 .. autofunction:: form
 
+Les principales mesures fiscales provinciales prises en compte dans ce module sont les suivantes:
+
+- L'impôt des particuliers
+- La surtaxe de l'Ontario
+- La réduction de l’impôt de l’Ontario
+- Le crédit d'impôt non-remboursable provincial en raison de l'âge et pour revenu de retraite
+- Le crédit d'impôt non-remboursable pour cotisations au RRQ/RPC
+- Le crédit d'impôt non-remboursable pour invalidité
+- Le crédit d'impôt non-remboursable pour frais médicaux
+- Le crédit d'impôt non-remboursable pour dons de l'Ontario
+- Le crédit d’impôt non-remboursable pour les personnes et les familles à faible revenu
+- Le crédit d'impôt non-remboursable pour dividendes
+- Le montant pour époux ou conjoint de fait
+- Le crédit d’impôt remboursable de taxe de vente de l'Ontario
+- L'Allocation ontarienne pour enfants
+- La contribution santé de l'Ontario
+
+
+La liste exhaustive des éléments calculés dans le module est présentée dans la section ci-dessous.
+
 Gabarit du rapport
 ^^^^^^^^^^^^^^^^^^^^
 
 Nous utilisons un gabarit afin de créer les rapports chaque année. Quand l'impôt change seulement au niveau des paramètres d'une année à l'autre, le rapport ira seulement chercher les nouveaux paramètres. Quand des fonctions changent, l'utilisateur n'a qu'à modifier les fonctions touchées (ou à en ajouter de nouvelles). Toutes les modifications de fonction survenues après l'année 2016 sont indiquées ci-dessous.
 
-Nous reproduisons ici la spécification du gabarit. Il est basé sur le rapport de 2016.
+.. currentmodule:: srd.ontario
 
-.. autoclass:: template
-    :members: file, copy_fed_return, calc_tax, calc_non_refundable_tax_credits,
-              get_age_cred, get_spouse_cred, get_cpp_contrib_cred,
-              get_pension_cred, get_disabled_cred, get_med_exp_cred,
-              get_donations_cred, surtax, div_tax_credit, tax_reduction,
-              calc_refundable_tax_credits, ocb, ostc, calc_contributions,
-              health_contrib
+.. autofunction:: template
 
-Le gabarit collige les résultats dans un formulaire d'impôt qui sera rattaché à la personne sous la forme d'un dictionnaire Python. Cette procédure permet de différencier les attributs d'une personne qui font partie de son profil des variables générées par l'impôt. C'est la fonction create_return() qui fait ce travail.
+| Nous reproduisons ici la spécification du gabarit. Il est basé sur le rapport de 2016.
+| (Cliquez sur le nom pour afficher les détails)
+
+.. currentmodule:: srd.ontario.form_2016
+
+.. toggle-header::
+    :header: **- file()**
+
+    .. autofunction:: file
+
+.. toggle-header::
+    :header: **- copy_fed_return()**
+
+    .. autofunction:: copy_fed_return
+
+.. toggle-header::
+    :header: **- calc_tax()**
+
+    .. autofunction:: calc_tax
+
+.. toggle-header::
+    :header: **- calc_non_refundable_tax_credits()**
+
+    .. autofunction:: calc_non_refundable_tax_credits
+
+.. toggle-header::
+    :header: **- get_age_cred()**
+
+    .. autofunction:: get_age_cred
+
+.. toggle-header::
+    :header: **- get_spouse_cred()**
+
+    .. autofunction:: get_spouse_cred
+
+.. toggle-header::
+    :header: **- get_cpp_contrib_cred()**
+
+    .. autofunction:: get_cpp_contrib_cred
+
+.. toggle-header::
+    :header: **- get_pension_cred()**
+
+    .. autofunction:: get_pension_cred
+
+.. toggle-header::
+    :header: **- get_disabled_cred()**
+
+    .. autofunction:: get_disabled_cred
+
+.. toggle-header::
+    :header: **- get_med_exp_cred()**
+
+    .. autofunction:: get_med_exp_cred
+
+.. toggle-header::
+    :header: **- get_donations_cred()**
+
+    .. autofunction:: get_donations_cred
+
+.. toggle-header::
+    :header: **- surtax()**
+
+    .. autofunction:: surtax
+
+.. toggle-header::
+    :header: **- div_tax_credit()**
+
+    .. autofunction:: div_tax_credit
+
+.. toggle-header::
+    :header: **- tax_reduction()**
+
+    .. autofunction:: tax_reduction
+
+.. toggle-header::
+    :header: **- calc_refundable_tax_credits()**
+
+    .. autofunction:: calc_refundable_tax_credits
+
+.. toggle-header::
+    :header: **- ocb()**
+
+    .. autofunction:: ocb
+
+.. toggle-header::
+    :header: **- ostc()**
+
+    .. autofunction:: ostc
+
+.. toggle-header::
+    :header: **- calc_contributions()**
+
+    .. autofunction:: calc_contributions
+
+.. toggle-header::
+    :header: **- health_contrib()**
+
+    .. autofunction:: health_contrib
+
+|
+
+Le gabarit collige les résultats dans un formulaire d'impôt qui sera rattaché à la personne sous la forme d'un dictionnaire Python. Cette procédure permet de différencier les attributs d'une personne qui font partie de son profil des variables générées par l'impôt. C'est la fonction *create_return()* qui fait ce travail.
+
+.. currentmodule:: srd.ontario
 
 .. autofunction:: create_return
 
 Fonctions spécifiques ou modifiées par année
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+**2016**
 
 .. autoclass:: srd.ontario.form_2016
 
+**2017**
+
 .. autoclass:: srd.ontario.form_2017
+
+**2018**
 
 .. autoclass:: srd.ontario.form_2018
 
+**2019**
+
 .. autoclass:: srd.ontario.form_2019
-    :members: lift_credit
+.. currentmodule:: srd.ontario.form_2020
+
+.. toggle-header::
+    :header: **- lift_credit()**
+
+    .. autofunction:: lift_credit
+
+|
+
+
+**2020**
 
 .. autoclass:: srd.ontario.form_2020
+
+**2021**
+
+.. autoclass:: srd.ontario.form_2021
