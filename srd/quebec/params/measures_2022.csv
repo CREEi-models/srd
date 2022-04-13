@@ -1,0 +1,103 @@
+variable;value;type;definition;source;comments
+div_elig_factor;1.38;float;;; ---
+div_other_can_factor;1.15;float;;; ---
+div_elig_cred_net_rate;0.16146;float;;; ---
+div_other_can_cred_net_rate;0.046115;float;;; à verifier ---
+cap_gains_rate;0.5;float;;;
+qpip_deduc_rate;0.43736;float;;;
+work_deduc_max;1235;float;;; ---
+work_deduc_rate;0.06;float;;; ---
+nrtc_age_max;3395;float;;; ---
+nrtc_age;65;int;;; assumed constant ---
+nrtc_living_alone;1850;float;;; ---
+nrtc_pension_max;3017;float;;; --- 
+nrtc_pension_factor;1.25;float;;;
+nrtc_claw_rate;0.1875;float;;; ---
+nrtc_claw_cutoff;36590;float;;; --- 
+nrtc_rate;0.15;float;;; ---
+nrtc_base;16143;float;;; ---
+nrtc_disabled;3584;float;;; --- 
+nrtc_med_exp_rate;0.03;float;;; assumed constant ---
+nrtc_donation_low_cut;200;float;;; assumed constant ---
+nrtc_donation_high_cut;112651;float;indexé de 2,64%;; ---
+nrtc_donation_low_rate;0.20;float;;; assumed constant ---
+nrtc_donation_med_rate;0.24;float;;; assumed constant ---
+nrtc_donation_high_rate;0.2575;float;;; assumed constant ---
+nrtc_union_dues_rate;0.10;float;;; assumed constant ---
+hsf_high_inc;54820;int;;; --- 
+hsf_low_inc;15765;int;;; ---
+hsf_low_cutoff;150;int;;; ---
+hsf_high_cutoff;1000;int;;; ---
+hsf_rate;0.01;float;;; ---
+ccap_claw_rate;0.04;float;;; ---
+ccap_claw_cutoff_couple;51893;float;;; ---
+ccap_claw_cutoff_single;37752;float;;; ---  
+ccap_amount_single_min;365;float;;; ---
+ccap_amount_single_max;917;float;;; ---
+ccap_kid1_min;1040;float;;; ---
+ccap_kid1_max;2614;float;;; ---
+ccap_kid23_min;1040;float;;; ---
+ccap_kid23_max;2614;float;;; ---
+ccap_kid4p_min;1040;float;;; ---
+ccap_kid4p_max;2614;float;;; ---
+chcare_young;10675;float;;; --- 
+chcare_old;5375;float;;; --- 
+pdip_couple;27460;float;;;
+pdip_single;16940;float;;;
+pdip_couple_kid1;3575;float;;;
+pdip_single_kid1;10520;float;;;
+pdip_couple_kid2p;6875;float;;;
+pdip_single_kid2p;14095;float;;;
+pdip_cutoff;648;float;;;
+solidarity_tvq_base;309;float;;; ---
+solidarity_housing_kid;128;float;;; ---
+solidarity_tvq_couple;309;float;;; --- 
+solidarity_housing_not_alone;727;float;;; --- 
+solidarity_tvq_single;147;float;;; ---
+solidarity_housing_alone;599;float;;; ---
+solidarity_cutoff;36790;float;;; --- 
+solidarity_rate_total;0.06;float;;; --- 
+solidarity_rate_tvq;0.03;float;;; ---
+witb_rate_couple_dep;0.25;float;;; 
+witb_rate;0.112;float;;; 
+witb_cut_inc_low_couple;3600;float;;; ---
+witb_cut_inc_high_couple;17398;float;;; ---
+witb_rate_single_dep;0.30;float;;; ---
+witb_cut_inc_low_single;2400;float;;; ---
+witb_cut_inc_high_single;11238;float;;; ---
+witb_claw_rate;0.10;float;;; ---
+home_supp_min_age;70;int;;; ---
+home_supp_max_dep;25500;float;;; 
+home_supp_max_non_dep;19500;float;;; 
+home_supp_claw_rate;0.03;float;;; 
+home_supp_cutoff;61725;float;;; indexe pour 2022 --- 
+home_supp_rate;0.36;float;;; ---
+senior_assist_min_age;70;int;;; ---
+senior_assist_amount;411;float;;; ---
+senior_assist_claw_rate;0.05;float;;; 
+senior_assist_cutoff_couple;39350;float;;; ---
+senior_assist_cutoff_single;24195;float;;; ---
+med_exp_rate;0.25;float;;; ---
+med_exp_claw_rate;0.05;float;;; ---
+med_exp_claw_cutoff;24635;float;;; ---
+med_exp_max;1274;float;;; ---
+med_exp_min_work_inc;3260;float;;; ---
+med_exp_max_fam_inc;48220;float;;;
+exp_work_min_age;60;int;;; ---
+exp_work_claw_rate;0.05;float;;; assumed constant ---
+exp_work_cut_inc;35690;float;;; ---
+exp_work_rate;0.15;float;;; assumed constant ---
+exp_work_min_inc;5000;float;;; assumed constant ---
+exp_work_max_work_inc_60;10000;float;;; assumed constant ---
+exp_work_max_work_inc_61;10000;float;;; assumed constant ---
+exp_work_max_work_inc_62;10000;float;;; assumed constant ---
+exp_work_max_work_inc_63;10000;float;;; assumed constant ---
+exp_work_max_work_inc_64;10000;float;;; assumed constant ---
+exp_work_max_work_inc_65;11000;float;;; assumed constant ---
+exp_work_age_born_bef51;70;int;;; assumed constant ---
+exp_work_min_amount_born_51;600;float;;; assumed constant ---
+supp_furnitures;108;int;;; ---
+tax_shield_rate;0.75;float;;; ---
+tax_shield_max_couple;600;int;;; ---
+tax_shield_max_single;300;int;;; ---
+tax_shield_max_inc_variation;4000;int;;; ---

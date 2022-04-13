@@ -1,0 +1,26 @@
+variable;value;type;definition;source;comments;
+max_years_can;40;int;;;; ---
+min_age_oas;65;int;;;; ---
+min_age_oas_older;75;int;;;; ---
+min_years_can;10;int;;;; ---
+min_age_allow;60;int;;;; ---
+work_exempt;5000;float;;;; ---
+max_work_exempt;10000;float;;;; ---
+oas_full;7707;float;;;; ---
+oas_claw_cutoff;81761;int;;;; ---
+oas_claw_rate;0.15;float;;;; ---
+postpone_oas_bonus;0.072;float;;;;
+gis_full_high;11112.34;float;;;;
+gis_full_low;6689.21;float;;;;
+gis_claw_rate;0.5;float;;;;
+bonus_exempt_single;2000;int;;;; ---
+bonus_exempt_couple;4000;int;;;; ---
+bonus_claw_rate;0.25;float;;;; ---
+rate_oas_older;0.1;float;;;; ---
+rate_high_inc;1.33333333;float;;;;
+rate_allow;0.75;float;;;;
+rate_allow_high_inc;0.5;float;;;;
+gis_bonus_high;1731.58;float;;;;
+gis_bonus_low;490.86;float;;;;
+allow_surv_bonus;1731.58;float;;;;
+allow_couple_bonus;490.86;float;;;;

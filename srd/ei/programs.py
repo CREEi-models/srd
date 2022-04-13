@@ -30,6 +30,8 @@ def program(year):
         p = program_2020()
     if year == 2021:
         p = program_2021()
+    if year == 2022:
+        p = program_2022()
     return p
 
 
@@ -138,3 +140,12 @@ class program_2021(template):
             montant de la prestation
         """
         pass
+
+class program_2022(template):
+    """
+    Version du programme de 2022.
+
+    """
+
+    def __init__(self):
+        add_params_as_attr(self, module_dir + "/ei/params/parameters_2022.csv")

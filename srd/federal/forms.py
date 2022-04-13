@@ -26,6 +26,8 @@ def form(year):
         p = form_2020()
     if year == 2021:
         p = form_2021()
+    if year == 2022:
+        p = form_2022()
     return p
 
 class form_2016(template):
@@ -360,3 +362,18 @@ class form_2021(form_2020):
         adj_amount = min(witb_max, amount)
         clawback = claw_rate * max(0, hh.fam_net_inc_fed- cwb_exempt - exemption)
         return max(0, adj_amount - clawback)
+
+class form_2022(form_2021):
+    """
+    Formulaire d'impôt de 2022.
+    """
+
+    def __init__(self):
+        add_params_as_attr(self, module_dir + "/federal/params/federal_2022.csv")
+        add_params_as_attr(self, module_dir + "/federal/params/fed_witb_qc_2022.csv")
+        add_schedule_as_attr(self, module_dir + "/federal/params/schedule_2022.csv")
+        self.witb_params = {}
+        for prov in ["on", "qc"]:
+            self.witb_params[prov] = get_params(
+                module_dir + f"/federal/params/fed_witb_{prov}_2022.csv"
+            )
