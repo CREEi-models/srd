@@ -103,11 +103,13 @@ class template:
         float
             Revenu en sus de l'exemption sur les revenus du travail aux fins du calcul du SRG.
         """
+
+        # Il est à noter que le net_inc_exempt ne déduit pas les paiements d’un régime enregistré d’épargne-invalidité et la prestation universelle pour la garde d’enfants alors qu'ils devraient être déduit.
         net_inc_exempt = 0
         for p in hh.sp:
             exempted_inc = min(p.inc_earn, self.work_exempt)
-            payroll = p.payroll['cpp'] + p.payroll['cpp_supp'] + p.payroll['ei']
-            net_inc_exempt += max(0, p.fed_return['net_income'] - exempted_inc
+            payroll = p.payroll['cpp'] + p.payroll['cpp_supp'] + p.payroll['ei'] + p.payroll['qpip']
+            net_inc_exempt += max(0, p.fed_return['gross_income'] - exempted_inc
                                     - payroll)
         return net_inc_exempt
 

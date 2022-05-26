@@ -144,9 +144,9 @@ class program_2020(program_2019):
                 exempted_inc += 0.5 * (
                     min(p.inc_work, self.max_work_exempt) - self.work_exempt
                 )
-            payroll = p.payroll["cpp"] + p.payroll["cpp_supp"] + p.payroll["ei"]
+            payroll = p.payroll['cpp'] + p.payroll['cpp_supp'] + p.payroll['ei'] + p.payroll['qpip']
             net_inc_exempt += max(
-                0, p.fed_return["net_income"] - exempted_inc - payroll
+                0, p.fed_return["gross_income"] - exempted_inc - payroll
             )
         return net_inc_exempt
 
