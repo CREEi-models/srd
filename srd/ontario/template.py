@@ -343,9 +343,10 @@ class template:
         hh: Hhold
             instance de la classe Hhold
         """
+        p.on_chcare = self.chcare(p, hh)
         p.on_ocb = self.ocb(p, hh)
         p.on_ostc = self.ostc(p, hh)
-        p.prov_return['refund_credits'] = p.on_ocb + p.on_ostc
+        p.prov_return['refund_credits'] = p.on_ocb + p.on_ostc + p.on_chcare
 
     def ocb(self, p, hh):
         """
@@ -404,6 +405,27 @@ class template:
             cutoff = self.ostc_single_cutoff
         clawback = self.ostc_claw_rate * max(0, hh.fam_net_inc_prov - cutoff)
         return max(0, amount - clawback)
+
+    def chcare(self,p, hh):
+        """
+        Fonction qui calcule le Crédit d'impôt de l'Ontario pour l'accès aux services de garde d'enfants et l'allègement des dépenses (ASGE)
+                
+        Ce crédit est remboursable.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+
+        Returns
+        -------
+        float
+            Montant du crédit.
+        """
+        
+        pass
 
     def calc_contributions(self, p):
         """
