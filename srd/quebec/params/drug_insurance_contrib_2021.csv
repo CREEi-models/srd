@@ -1,6 +1,6 @@
 l_pdip_brackets;0;5000
 l_pdip_rates_couple;0.0357;0.0535
 l_pdip_rates_single;0.0711;0.1068
-l_pdip_constant_single;0;332.5
-l_pdip_constant_couple;0;167
-l_pdip_max;686;686
+l_pdip_constant_single;0;355.5
+l_pdip_constant_couple;0;178.5
+l_pdip_max;710;710
