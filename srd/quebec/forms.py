@@ -13,7 +13,7 @@ def form(year):
     Parameters
     ----------
     year: int
-        année (présentement entre 2016 et 2021)
+        année (présentement entre 2016 et 2022)
     Returns
     -------
     class instance
@@ -31,6 +31,8 @@ def form(year):
         p = form_2020()
     if year == 2021:
         p = form_2021()
+    if year == 2022:
+        p = form_2022()
     return p
 
 
@@ -341,4 +343,34 @@ class form_2021(form_2020):
             amount_exceptional = self.cost_of_living_alone
 
         return amount_punctual + (amount_exceptional / (1 + hh.couple))
-    
+
+class form_2022(form_2021):
+    """
+    Formulaire d'impôt de 2022.
+    """
+    def __init__(self):
+        add_params_as_attr(self, module_dir + '/quebec/params/measures_2022.csv')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2022.csv')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2022.csv')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/drug_insurance_contrib_2022.csv')
+
+    def cost_of_living(self, p, hh):
+        """
+        Fonction qui calcule les crédits d'impôt remboursables attribuant une prestation exceptionnelle et un montant ponctuel pour pallier la hausse du coût de la vie.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+
+        """
+
+        # punctual amount
+        if p.prov_return['net_income'] <= self.cost_of_living_cutoff:
+            amount_punctual = self.cost_of_living_punctual
+        else:
+            amount_punctual =  max(0,self.cost_of_living_punctual - (self.cost_of_living_claw_rate * (p.prov_return['net_income'] - self.cost_of_living_cutoff)))
+
+        return amount_punctual
