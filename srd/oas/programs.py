@@ -13,8 +13,8 @@ def program(year, federal):
     Parameters
     ----------
     year: int
-        année (présentement entre 2016 et 2021)
-    federal: {srd.federal.form_2016, ..., srd.federal.form_2021}
+        année (présentement entre 2016 et 2022)
+    federal: {srd.federal.form_2016, ..., srd.federal.form_2022}
         instance de la classe srd.federal.form_xxxx (pour l'année xxxx) du module *federal*
     Returns
     -------
@@ -33,6 +33,8 @@ def program(year, federal):
         p = program_2020(federal)
     if year == 2021:
         p = program_2021(federal)
+    if year == 2022:
+        p = program_2022(federal)
     return p
 
 
@@ -224,3 +226,41 @@ class program_2021(program_2020):
         bonus = gis_bonus * p.sq_factor
         claw_bonus = self.bonus_claw_rate * max(0, hh.net_inc_exempt - bonus_exempt) / (1+hh.couple)
         return max(0, gis - claw_gis) + max(0, bonus - claw_bonus)
+
+class program_2022(program_2021):
+    """
+    Version du programme de 2022.
+
+    Parameters
+    ----------
+    federal: srd.federal.form_2022
+        instance de la classe srd.federal.form_2022 du module Federal
+    """
+
+    def __init__(self, federal):
+        add_params_as_attr(self, module_dir + "/oas/params/old_age_sec_2022.csv")
+        self.federal = federal
+
+    def compute_pension(self, p, hh):
+        """
+        Fonction qui calcule la prestation de PSV.
+
+        Parameters
+        ----------
+
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+
+        Returns
+        -------
+        float
+            Montant de la PSV.
+        """
+        p.oas_65 = min(1, p.years_can / self.max_years_can) * self.oas_full
+        p.oas = p.oas_65 * (1 + self.postpone_oas_bonus * p.oas_years_post)
+
+        if p.age >= self.min_age_oas_increase:
+            p.oas += p.oas * self.rate_oas_increase
+        return self.pension_clawback(p, hh)
