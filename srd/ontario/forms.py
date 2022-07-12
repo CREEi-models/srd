@@ -14,7 +14,7 @@ def form(year):
     Parameters
     ----------
     year: int
-        année (présentement entre 2016 et 2021)
+        année (présentement entre 2016 et 2022)
     Returns
     -------
     class instance
@@ -32,6 +32,8 @@ def form(year):
         p = form_2020()
     if year == 2021:
         p = form_2021()
+    if year == 2022:
+        p = form_2022()
     return p
 
 
@@ -178,3 +180,12 @@ class form_2021(form_2020):
             return  (chcare_deduc * self.chcare_rate[ind]) * (1 + self.chcare_rate_bonus)
         else:
             return  (chcare_deduc * self.chcare_rate[0]) * (1 + self.chcare_rate_bonus)
+
+class form_2022(form_2021):
+    """
+    Formulaire d'impôt de 2022.
+    """
+    def __init__(self):
+        add_params_as_attr(self, module_dir + '/ontario/params/measures_2022.csv')
+        add_schedule_as_attr(self, module_dir + '/ontario/params/schedule_2022.csv')
+        add_schedule_as_attr(self, module_dir + '/ontario/params/health_contrib_2022.csv')
