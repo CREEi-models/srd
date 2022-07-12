@@ -1,0 +1,64 @@
+variable;value;type;definition;source;comments
+div_elig_factor;1.38;float;;;
+div_other_can_factor;1.15;float;;;
+div_elig_cred_rate;0.150198;float;;;
+div_other_can_cred_rate;0.090313;float;;;
+cap_gains_rate;0.5;float;;; ---
+qpip_deduc_rate;0.43786;float;;;
+basic_amount_poor;14398;float;;; ---
+basic_amount_rich;12719;float;;; ---
+age_cred_amount;7898;float;;; ---
+min_age_cred;65;int;;; assume constant ---
+age_cred_exempt;39826;float;;; ---
+age_cred_claw_rate;0.15;float;;; assume constant ---
+empl_cred_max;1287;float;;; ---
+pension_cred_amount;2000;float;;;
+pension_cred_min_age_split;65;int;;; assume constant ---
+disability_cred_amount;8870;float;;; ---
+med_exp_nr_cred_max_age;18;int;;; assume constant ---
+med_exp_nr_cred_max_claw;2479;float;;; ---
+med_exp_nr_cred_rate;0.03;float;;; ---
+donation_frac_net;0.75;float;;;
+donation_low_cut;200;float;;;
+donation_high_cut;216511;float;;https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/foire-questions-particuliers/rajustement-montants-fonction-indexation-impot-particuliers-prestations.html;
+donation_low_rate;0.15;float;;;
+donation_med_rate;0.29;float;;;
+donation_high_rate;0.33;float;;;
+rate_non_ref_tax_cred;0.15;float;;;
+rate_abatment_qc;0.165;float;;;
+ccb_young;6997;float;;; --- 
+ccb_old;5903;float;;; ---
+ccb_max_num_ch;4;int;;; assume constant ---
+ccb_cutoff_1;32797;float;;; ---
+ccb_cutoff_2;71060;float;;; ---
+ccb_rate_1_1ch;0.07;float;;https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit-overview/canada-child-benefit-we-calculate-your-ccb.html;
+ccb_rate_1_2ch;0.135;float;;;
+ccb_rate_1_3ch;0.19;float;;;
+ccb_rate_1_4ch;0.23;float;;;
+ccb_rate_2_1ch;0.032;float;;;
+ccb_rate_2_2ch;0.057;float;;;
+ccb_rate_2_3ch;0.08;float;;;
+ccb_rate_2_4ch;0.095;float;;;
+med_exp_rate;0.25;float;;; assume constant ---
+med_exp_claw_rate;0.05;float;;; assume constant ---
+med_exp_claw_cutoff;29129;float;;; ---
+med_exp_max;1316;float;;; ---
+med_exp_min_work_inc;3841;float;;; ---
+gst_cred_claw_rate;0.05;float;;; assume constant ---
+gst_cred_claw_cutoff;39826;float;;; ---
+gst_cred_base;306;float;;; ---
+gst_cred_other;161;float;;; ---
+gst_cred_rate;0.02;float;;; assume constant ---
+gst_cred_base_amount;9919;float;;; ---
+gst_covid_single;400;float;;; ???
+gst_covid_couple;600;float;;;???
+chcare_young;8000;float;;; assume constant ---
+chcare_old;5000;float;;; assume constant ---
+chcare_rate_inc;0.66666;float;;; assume constant ---
+ei_max_net_inc;70375;float;;https://www.canada.ca/en/employment-social-development/programs/ei/ei-list/reports/repayment.html;
+ei_rate_repay;0.3;float;;;
+ded_qpp_rate;0.052632;float;;;
+ded_qpp_exempt;3500;int;;; ---
+ded_qpp_claw_rate;0.03;float;;;
+nrtc_spouse_dis;2357;int;;; indexe 2.64% ---
+dep_disa_amount;2985;int;;; ---

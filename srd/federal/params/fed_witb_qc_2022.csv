@@ -1,0 +1,26 @@
+variable;value;type;definition;source;comments
+base_single;2400;int;;https://www.taxtips.ca/filing/canada-workers-benefit/cwb-2021-quebec.htm;
+base_couple;3600;int;;;
+rate_single_dep;0.2;float;;;
+rate;0.373;float;;;
+rate_couple_dep;0.239;float;;;
+max_single;3277.92;float;;;
+max_single_dep;1757.59;float;;;
+max_couple;5120.45;float;;;
+max_couple_dep;3280.93;float;;;
+exempt_single;12683.06;float;;;
+exempt_single_dep;12700.5;float;;;
+exempt_couple;19457.77;float;;;
+exempt_couple_dep;19508.32;float;;;
+exempt_second_earner;14000;int;;;
+claw_rate;0.2;float;;;
+dis_base;1200;int;;;
+dis_max;738.31;float;;;
+dis_rate_single;0.4;float;;;
+dis_rate_couple;0.2;float;;;
+dis_exempt_single;29072.64;float;;;
+dis_exempt_single_dep;21488.47;float;;;
+dis_exempt_couple;45060.02;float;;;
+dis_exempt_couple_dep;35912.95;float;;;
+dis_claw_rate;0.2;float;;;
+dis_couple_claw_rate;0.1;float;;;both spouses disabled
