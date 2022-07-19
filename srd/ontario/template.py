@@ -346,7 +346,8 @@ class template:
         p.on_chcare = self.chcare(p, hh)
         p.on_ocb = self.ocb(p, hh)
         p.on_ostc = self.ostc(p, hh)
-        p.prov_return['refund_credits'] = p.on_ocb + p.on_ostc + p.on_chcare
+        p.on_caip = self.caip(p, hh)
+        p.prov_return['refund_credits'] = p.on_ocb + p.on_ostc + p.on_chcare + p.on_caip
 
     def ocb(self, p, hh):
         """
@@ -458,3 +459,23 @@ class template:
                     * max(0, tax_inc - self.l_health_low_brackets[ind]))
         else:
             return self.l_health_base[-1]
+
+    def caip(self,p ,hh):
+        """
+        Fonction qui calcule le crédit de l’incitatif à agir pour le climat (IAC) ou encore le Paiement de l’incitatif à agir pour le climat (PIAC)
+
+        Ce crédit est remboursable.
+        
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+
+        Returns
+        -------
+        float
+            Montant du crédit.
+        """
+        pass

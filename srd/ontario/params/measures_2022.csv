@@ -41,3 +41,7 @@ ostc_amount;316;float;;hhttps://www.ontario.ca/page/ontario-trillium-benefit#sec
 ostc_claw_rate;0.04;float;;; 
 ostc_single_cutoff;24332;float;;; 
 ostc_couple_dep_cutoff;30415;float;;; 
+caip_single;373;int;;;
+caip_couple;186;int;;;
+caip_kid1;186;int;;;
+caip_kid12;93;int;;;

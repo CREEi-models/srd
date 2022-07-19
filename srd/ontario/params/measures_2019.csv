@@ -41,3 +41,7 @@ ostc_amount;308;float;;;
 ostc_claw_rate;0.04;float;;;
 ostc_single_cutoff;23665;float;;;
 ostc_couple_dep_cutoff;29581;float;;;
+caip_single;224;int;;;
+caip_couple;112;int;;;
+caip_kid1;112;int;;;
+caip_kid12;56;int;;;

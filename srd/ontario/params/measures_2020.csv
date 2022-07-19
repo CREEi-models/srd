@@ -41,3 +41,7 @@ ostc_amount;313;float;;https://data.ontario.ca/dataset/personal-income-tax-rates
 ostc_claw_rate;0.04;float;;;
 ostc_single_cutoff;24115;float;;;
 ostc_couple_dep_cutoff;30143;float;;;
+caip_single;300;int;;;
+caip_couple;150;int;;;
+caip_kid1;150;int;;;
+caip_kid12;75;int;;;

@@ -129,6 +129,38 @@ class form_2019(form_2018):
             return chcare_deduc * self.chcare_rate[ind]
         else:
             return chcare_deduc * self.chcare_rate[0]
+    
+    def caip(self,p ,hh):
+        """
+        Fonction qui calcule le crédit de l’incitatif à agir pour le climat (IAC) ou encore le Paiement de l’incitatif à agir pour le climat (PIAC)
+
+        Ce crédit est remboursable.
+        
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+
+        Returns
+        -------
+        float
+            Montant du crédit.
+        """
+        amount = self.caip_single
+
+        if hh.couple:
+            amount += self.caip_couple
+            if hh.nkids_0_17 > 0:
+                amount += hh.nkids_0_17 * self.caip_kid12
+        else :
+            if hh.nkids_0_17 > 0:
+                amount += (self.caip_kid1 + ((hh.nkids_0_17 - 1)*self.caip_kid12))
+
+        return amount / (1+ hh.couple)
+
+
 
 class form_2020(form_2019):
     """
