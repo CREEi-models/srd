@@ -122,3 +122,20 @@ class program_2022(program_2021):
 
     def __init__(self):
         add_params_as_attr(self, module_dir + "/covid/params/measures_2022.csv")
+
+    def compute_crb(self, p):
+        """
+        Fonction qui calcule la Prestation canadienne de la relance économique (PCRE). La PCRE était disponible entre le 27 septembre 2020 et le 23 octobre 2021.
+
+        Calcule la PCRE pour la période de 54 semaines si le travailleur est admissible.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        Returns
+        -------
+        float
+            Montant de la PCRE.
+        """
+        return 0

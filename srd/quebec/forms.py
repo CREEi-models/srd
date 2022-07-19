@@ -367,10 +367,4 @@ class form_2022(form_2021):
 
         """
 
-        # punctual amount
-        if p.prov_return['net_income'] <= self.cost_of_living_cutoff:
-            amount_punctual = self.cost_of_living_punctual
-        else:
-            amount_punctual =  max(0,self.cost_of_living_punctual - (self.cost_of_living_claw_rate * (p.prov_return['net_income'] - self.cost_of_living_cutoff)))
-
-        return amount_punctual
+        pass
