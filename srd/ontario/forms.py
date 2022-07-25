@@ -157,8 +157,10 @@ class form_2019(form_2018):
         else :
             if hh.nkids_0_17 > 0:
                 amount += (self.caip_kid1 + ((hh.nkids_0_17 - 1)*self.caip_kid12))
-
-        return amount / (1+ hh.couple)
+        
+        if hh.couple:
+            hh.sp[1].on_caip = 0
+        return amount
 
 
 
