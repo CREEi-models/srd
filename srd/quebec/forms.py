@@ -1,4 +1,5 @@
 import os
+import numpy as np
 from srd import add_params_as_attr, add_schedule_as_attr
 from srd.quebec import template
 
@@ -71,10 +72,16 @@ class form_2017(form_2016):
         hh: Hhold
             instance de la classe Hhold
         """
-        p.prov_return['contributions'] = self.add_contrib_subsid_chcare(p, hh) + self.contrib_hsf(p)
+        def create_contribution():
+            lines = ['drug_insurance_contrib', 'contrib_hsf','add_contrib_subsid_chcare']
+            return dict(zip(lines, np.zeros(len(lines))))
+            
+        p.prov_contrib = create_contribution()
+        p.prov_contrib['add_contrib_subsid_chcare'] = self.add_contrib_subsid_chcare(p, hh)
+        p.prov_contrib['contrib_hsf'] = self.contrib_hsf(p)
 
         if p.pub_drug_insurance:
-            p.prov_return['contributions'] += self.drug_insurance_contrib(hh)
+            p.prov_contrib['drug_insurance_contrib'] = self.drug_insurance_contrib(hh)
 
     def get_donations_cred(self, p):
         """
@@ -249,10 +256,15 @@ class form_2019(form_2018):
         hh: Hhold
             instance de la classe Hhold
         """
-        p.prov_return['contributions'] = self.contrib_hsf(p)
+        def create_contribution():
+            lines = ['drug_insurance_contrib', 'contrib_hsf']
+            return dict(zip(lines, np.zeros(len(lines))))
+
+        p.prov_contrib = create_contribution()
+        p.prov_contrib['contrib_hsf'] = self.contrib_hsf(p)
 
         if p.pub_drug_insurance:
-            p.prov_return['contributions'] += self.drug_insurance_contrib(hh)
+            p.prov_contrib['drug_insurance_contrib'] = self.drug_insurance_contrib(hh)
 
 
 class form_2020(form_2019):

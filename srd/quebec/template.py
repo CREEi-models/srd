@@ -7,11 +7,9 @@ module_dir = os.path.dirname(os.path.dirname(__file__))
 def create_return():
     lines = ['gross_income', 'deductions_gross_inc', 'net_income',
              'deductions_net_inc', 'taxable_income', 'gross_tax_liability',
-             'contributions', 'non_refund_credits', 'refund_credits',
+             'non_refund_credits', 'refund_credits',
              'net_tax_liability']
     return dict(zip(lines, np.zeros(len(lines))))
-
-
 class template:
     """
     Gabarit pour l'impôt provincial québécois.
@@ -45,7 +43,7 @@ class template:
             self.calc_refundable_tax_credits(p, hh)
             p.prov_return['net_tax_liability'] -= p.prov_return['refund_credits']
             self.calc_contributions(p, hh)
-            p.prov_return['net_tax_liability'] += p.prov_return['contributions']
+            p.prov_return['net_tax_liability'] += sum(list(p.prov_contrib.values()))
 
 
 
@@ -746,12 +744,18 @@ class template:
         hh: Hhold
             instance de la classe Hhold
         """
+                
+        def create_contribution():
+            lines = ['drug_insurance_contrib', 'contrib_hsf','add_contrib_subsid_chcare','health_contrib']
+            return dict(zip(lines, np.zeros(len(lines))))
 
-        p.prov_return['contributions'] = self.add_contrib_subsid_chcare(p, hh) \
-                                         + self.health_contrib(p, hh) + self.contrib_hsf(p)
+        p.prov_contrib = create_contribution()
+        p.prov_contrib['add_contrib_subsid_chcare'] = self.add_contrib_subsid_chcare(p, hh)
+        p.prov_contrib['health_contrib'] = self.health_contrib(p, hh)
+        p.prov_contrib['contrib_hsf'] = self.contrib_hsf(p)
 
         if p.pub_drug_insurance:
-            p.prov_return['contributions'] += self.drug_insurance_contrib(hh)
+            p.prov_contrib['drug_insurance_contrib'] = self.drug_insurance_contrib(hh)
 
 
     def health_contrib(self, p, hh):

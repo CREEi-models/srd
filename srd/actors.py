@@ -158,6 +158,7 @@ class Person:
         self.fed_return = None
         self.prov_return = None
         self.payroll = None
+        self.prov_contrib = None
 
     def attach_prev_work_inc(self, prev_work_inc):
         """
