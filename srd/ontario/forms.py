@@ -223,3 +223,4 @@ class form_2022(form_2021):
         add_params_as_attr(self, module_dir + '/ontario/params/measures_2022.csv')
         add_schedule_as_attr(self, module_dir + '/ontario/params/schedule_2022.csv')
         add_schedule_as_attr(self, module_dir + '/ontario/params/health_contrib_2022.csv')
+        add_schedule_as_attr(self, module_dir + '/ontario/params/chcare_2022.csv')
