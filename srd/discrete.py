@@ -82,9 +82,16 @@ class behavior:
         else:
             data = self.data.copy()
             self.tax = tax(year)
-            for j,h in enumerate(self.gridh_c):
-                f = partial(self.dispinc,hours=h)
-                self.data['cons_'+str(j)] = data.swifter.apply(f,axis=1)
+
+            if self.icouple:
+                for j,h in enumerate(self.gridh_c):
+                    f = partial(self.dispinc,hours=h)
+                    self.data['cons_'+str(j)] = data.swifter.apply(f,axis=1)
+            else :
+                for j,h in enumerate(self.gridh):
+                    f = partial(self.dispinc,hours=h)
+                    self.data['cons_'+str(j)] = data.swifter.apply(f,axis=1)
+            
 
             budget = self.data[['cons_'+str(j) for j in range(self.nh_c)]]
             budget.to_pickle('data/budget.pkl')
