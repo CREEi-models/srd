@@ -87,13 +87,13 @@ class behavior:
                 for j,h in enumerate(self.gridh_c):
                     f = partial(self.dispinc,hours=h)
                     self.data['cons_'+str(j)] = data.swifter.apply(f,axis=1)
+                budget = self.data[['cons_'+str(j) for j in range(self.nh_c)]]
             else :
                 for j,h in enumerate(self.gridh):
                     f = partial(self.dispinc,hours=h)
                     self.data['cons_'+str(j)] = data.swifter.apply(f,axis=1)
+                budget = self.data[['cons_'+str(j) for j in range(self.nh)]]
             
-
-            budget = self.data[['cons_'+str(j) for j in range(self.nh_c)]]
             budget.to_pickle('data/budget.pkl')
         return
     def set_shifters(self,list_of_varnames):
@@ -284,7 +284,7 @@ class behavior:
             #pr = prob_couple(choice,mu_r,mu_s,mu_c,mu_rs,C,Lr,Ls,Lv,eta_r,eta_s,fcosts_r,fcosts_s,N,R,J)
         else :
             mu_r = self.data.loc[:,'mu_r'].astype('float64').values
-            mu_c = self.pars.loc[('C','constant'),'value'].values
+            mu_c = self.pars.loc[('C','constant'),'value']
             C = self.data[['cons_'+str(j) for j in range(self.nh)]].values
             Lmax = self.Lmax
             Lr = [Lmax-h for h in self.gridh]
@@ -293,11 +293,22 @@ class behavior:
             J = self.nh
             choice = self.data.loc[:,'r_choice'].astype('int64').values
             if self.icost:
-                fcosts = self.pars.loc[self.pars.index.get_level_values(0)=='FC','value'].values
+                fcosts = self.pars.loc[self.pars.index.get_level_values(0)=='FC','value']
                 fcosts = np.insert(fcosts,0,0.0)
             else :
                 fcosts = np.zeros(J)
-            pr = prob_single(choice,mu_r,mu_c,C,Lr,sigma,eta_r,fcosts,N,R,J)
+            
+            utils = np.zeros((N,J))
+            pr = np.zeros((N,R))
+            for r in range(R):
+                mur = mu_r + sigma*eta_r[:,r]
+                utils = mur @ np.log(Lr) + mu_c * np.log(C) 
+                utils += np.ones((N,1)) @ fcosts
+                num = np.exp(utils[np.arange(N),choice])
+                den = np.sum(np.exp(utils),axis=1)
+                pr[:,r] = num/den
+            #pr = prob_single(choice,mu_r,mu_c,C,Lr,sigma,eta_r,fcosts,N,R,J)
+
         return np.mean(pr,axis=1)
     def loglike(self,theta):
         """Log-vraisemblance simulées
@@ -443,7 +454,3 @@ def prob_single(choice,mu_r,mu_c,C,Lr,sigma,eta,fcosts,N,R,J):
         for i in range(N):
             pi[i] += np.exp(u[i,choice[i]])/np.sum(np.exp(u[i,:]))
     return pi/R
-
-
-
-
