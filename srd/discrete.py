@@ -79,6 +79,7 @@ class behavior:
         if iload:
             budget = pd.read_pickle('data/budget.pkl')
             self.data = self.data.merge(budget,left_index=True,right_index=True)
+            self.n = len(self.data)
         else:
             data = self.data.copy()
             self.tax = tax(year)
@@ -94,6 +95,7 @@ class behavior:
                     self.data['cons_'+str(j)] = data.swifter.apply(f,axis=1)
                 budget = self.data[['cons_'+str(j) for j in range(self.nh)]]
             
+            self.n = len(self.data)
             budget.to_pickle('data/budget.pkl')
         return
     def set_shifters(self,list_of_varnames):
@@ -297,13 +299,12 @@ class behavior:
                 fcosts = np.insert(fcosts,0,0.0)
             else :
                 fcosts = np.zeros(J)
-            
             utils = np.zeros((N,J))
             pr = np.zeros((N,R))
             for r in range(R):
                 mur = mu_r + sigma*eta_r[:,r]
-                utils = mur @ np.log(Lr) + mu_c * np.log(C) 
-                utils += np.ones((N,1)) @ fcosts
+                for j in range(J):
+                    utils[:,j] = (mur*np.log(Lr[j]) + mu_c*np.log(C[:,j]) + fcosts[j])
                 num = np.exp(utils[np.arange(N),choice])
                 den = np.sum(np.exp(utils),axis=1)
                 pr[:,r] = num/den
