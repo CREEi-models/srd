@@ -79,6 +79,9 @@ class behavior:
         if iload:
             budget = pd.read_pickle('data/budget.pkl')
             self.data = self.data.merge(budget,left_index=True,right_index=True)
+
+            to_drop = (self.data['cons_0'].isnull())
+            self.data = self.data.loc[to_drop==False,:]
             self.n = len(self.data)
         else:
             data = self.data.copy()
@@ -87,15 +90,18 @@ class behavior:
             if self.icouple:
                 for j,h in enumerate(self.gridh_c):
                     f = partial(self.dispinc,hours=h)
-                    self.data['cons_'+str(j)] = data.swifter.apply(f,axis=1)
+                    self.data['cons_'+str(j)] = data.apply(f,axis=1)
                 budget = self.data[['cons_'+str(j) for j in range(self.nh_c)]]
             else :
                 for j,h in enumerate(self.gridh):
                     f = partial(self.dispinc,hours=h)
-                    self.data['cons_'+str(j)] = data.swifter.apply(f,axis=1)
+                    self.data['cons_'+str(j)] = data.apply(f,axis=1)
                 budget = self.data[['cons_'+str(j) for j in range(self.nh)]]
             
+            to_drop = (self.data['cons_0'].isnull())
+            self.data = self.data.loc[to_drop==False,:]
             self.n = len(self.data)
+            
             budget.to_pickle('data/budget.pkl')
         return
     def set_shifters(self,list_of_varnames):
@@ -239,13 +245,16 @@ class behavior:
         # compute shifters
         self.shifters()
         N = self.n
-        R = self.nreps
+        if self.ihetero:
+            R = self.nreps
+        else:
+            R = 1
         if self.icouple:
             J = self.nh_c
-            mu_r = self.data.loc[:,'mu_r'].astype('float64').values.reshape((N,1))
-            mu_s = self.data.loc[:,'mu_s'].astype('float64').values.reshape((N,1))
-            mu_c = self.pars.loc[('C','constant'),'value']
-            mu_rs = self.pars.loc[('L(r,s)','constant'),'value']
+            self.data.mu_r = self.data.loc[:,'mu_r'].astype('float64').values.reshape((N,1))
+            self.data.mu_s = self.data.loc[:,'mu_s'].astype('float64').values.reshape((N,1))
+            self.data.mu_c = self.pars.loc[('C','constant'),'value']
+            self.data.mu_rs = self.pars.loc[('L(r,s)','constant'),'value']
             C = self.data[['cons_'+str(j) for j in range(self.nh_c)]].values.reshape((N,J))
             Lmax = self.Lmax
             Lr = np.array([Lmax-h[0] for h in self.gridh_c]).reshape((1,J))
@@ -270,18 +279,33 @@ class behavior:
             else :
                 fcosts_r = np.zeros(J)
                 fcosts_s = np.zeros(J)
-            utils = np.zeros((N,J))
+            #utils = np.zeros((N,J))
+            #pr = np.zeros((N,R))
             pr = np.zeros((N,R))
+
             for r in range(R):
-                mur = mu_r + Lv[0,0]*eta_r[:,r]
-                mus = mu_s + Lv[1,0]*eta_r[:,r] + Lv[1,1]*eta_s[:,r]
-                utils = mur @ np.log(Lr) + mus @ np.log(Ls) + mu_c * np.log(C) 
-                utils += np.ones((N,1)) @ (mu_rs*(np.log(Lr)*np.log(Ls)) +fcosts_r + fcosts_s)
-                #for j in range(J):
-                #    utils[:,j] = mur*np.log(Lr[j]) + mus*np.log(Ls[j]) + mu_c*np.log(C[:,j]) + mu_rs*np.log(Lr[j])*np.log(Ls[j]) + fcosts_r[j] + fcosts_s[j]
+                mur = self.data.mu_r + Lv[0,0]*eta_r[:,r]
+                mus = self.data.mu_s + Lv[1,0]*eta_r[:,r] + Lv[1,1]*eta_s[:,r]
+                #utils = mur @ np.log(Lr) + mus @ np.log(Ls) + mu_c * np.log(C) 
+                #utils += np.ones((N,1)) @ (mu_rs*(np.log(Lr)*np.log(Ls)) +fcosts_r + fcosts_s)
+                utils = np.zeros((N,J))
+                for j in range(J):
+                    utils[:,j] = mur*np.log(Lr[0,j]) + mus*np.log(Ls[0,j]) + self.data.mu_c*np.log(C[:,j]) + self.data.mu_rs*np.log(Lr[0,j])*np.log(Ls[0,j]) + fcosts_r[j] + fcosts_s[j]
                 num = np.exp(utils[np.arange(N),choice])
                 den = np.sum(np.exp(utils),axis=1)
                 pr[:,r] = num/den
+            
+            #for r in range(R):
+            #    mur = mu_r + Lv[0,0]*eta_r[:,r]
+            #    mus = self.data.mu_s + Lv[1,0]*eta_r[:,r] + Lv[1,1]*eta_s[:,r]
+                #utils = mur @ np.log(Lr) + mus @ np.log(Ls) + mu_c * np.log(C) 
+                #utils += np.ones((N,1)) @ (mu_rs*(np.log(Lr)*np.log(Ls)) +fcosts_r + fcosts_s)
+            #    for j in range(J):
+            #        utils[:,j] = mur*np.log(Lr[0,j]) + mus*np.log(Ls[0,j]) + mu_c*np.log(C[:,j]) + mu_rs*np.log(Lr[0,j])*np.log(Ls[0,j]) + fcosts_r[j] + fcosts_s[j]
+            #    num = np.exp(utils[np.arange(N),choice])
+            #    den = np.sum(np.exp(utils),axis=1)
+            #    pr[:,r] = num/den
+
                 #print(np.min(np.mean(pr,axis=1)),np.max(np.mean(pr,axis=1)))
             #pr = prob_couple(choice,mu_r,mu_s,mu_c,mu_rs,C,Lr,Ls,Lv,eta_r,eta_s,fcosts_r,fcosts_s,N,R,J)
         else :
@@ -290,15 +314,18 @@ class behavior:
             C = self.data[['cons_'+str(j) for j in range(self.nh)]].values
             Lmax = self.Lmax
             Lr = [Lmax-h for h in self.gridh]
-            sigma = np.sqrt(np.exp(self.pars.loc[('L(r)','sigma'),'value']))
-            eta_r = self.draws_r
             J = self.nh
             choice = self.data.loc[:,'r_choice'].astype('int64').values
             if self.icost:
-                fcosts = self.pars.loc[self.pars.index.get_level_values(0)=='FC','value']
-                fcosts = np.insert(fcosts,0,0.0)
+                fcosts = self.pars.loc[self.pars.index.get_level_values(0)=='FC(r)','value'].droplevel(level=0)
+                fcosts = np.concatenate(([0.0],fcosts), axis=0)
             else :
                 fcosts = np.zeros(J)
+            if self.ihetero:
+                sigma = np.sqrt(np.exp(self.pars.loc[('L(r)','sigma'),'value']))
+            else:
+                sigma = np.zeros(1)
+            eta_r = self.draws_r
             utils = np.zeros((N,J))
             pr = np.zeros((N,R))
             for r in range(R):
