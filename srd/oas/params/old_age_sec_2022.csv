@@ -6,12 +6,12 @@ min_years_can;10;int;;;; ---
 min_age_allow;60;int;;;; ---
 work_exempt;5000;float;;;; ---
 max_work_exempt;10000;float;;;; ---
-oas_full;7873.74;float;;;; ---
+oas_full;7929.75;float;;;; ---
 oas_claw_cutoff;81761;int;;;; ---
 oas_claw_rate;0.15;float;;;; ---
 postpone_oas_bonus;0.072;float;;;;
-gis_full_high;9938.63;float;;;;
-gis_full_low;6563.01;float;;;;
+gis_full_high;10009.34;float;;;;
+gis_full_low;6609.68;float;;;;
 gis_claw_rate;0.5;float;;;;
 bonus_exempt_single;2000;int;;;; ---
 bonus_exempt_couple;4000;int;;;; ---
@@ -20,7 +20,7 @@ rate_oas_increase;0.1;float;;;; ---
 rate_high_inc;1.33333333;float;;;;
 rate_allow;0.75;float;;;;
 rate_allow_high_inc;0.5;float;;;;
-gis_bonus_high;1821.67;float;;;; --
-gis_bonus_low;516.06;float;;;; --
-allow_surv_bonus;1821.67;float;;;; --
-allow_couple_bonus;516.06;float;;;; --
+gis_bonus_high;1834.63;float;;;; --
+gis_bonus_low;519.73;float;;;; --
+allow_surv_bonus;1834.63;float;;;; --
+allow_couple_bonus;519.73;float;;;; --
