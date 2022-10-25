@@ -5,7 +5,7 @@ rate_single_dep;0.27;float;;;
 rate;0.27;float;;;
 rate_couple_dep;0.27;float;;;
 max_single;1428.48;float;;
-max_single_dep;2460.67;float;;;
+max_single_dep;1428.48;float;;;
 max_couple;2460.67;float;;;
 max_couple_dep;2460.67;float;;;
 exempt_single;23494.66;float;;;
