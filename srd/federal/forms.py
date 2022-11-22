@@ -378,6 +378,12 @@ class form_2022(form_2021):
                 module_dir + f"/federal/params/fed_witb_{prov}_2022.csv"
             )
 
+        self.gst_cred_base *= 1.5
+        self.gst_cred_other *= 1.5
+
+        # Pour soutenir les personnes les plus touchées par l’inflation, le gouvernement du Canada a émis un versements supplémentaire pour la TPS pour aider les particuliers et les familles. 
+        # Ce versement unique double le montant du crédit pour la TPS que les particuliers et les familles admissibles pour une période de six mois.
+
     def ccb(self, p, hh, iclaw=True):
         """
         Fonction qui calcule l'Allocation canadienne pour enfants (ACE).
