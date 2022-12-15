@@ -45,13 +45,13 @@ chcare_old;5375;float;;; ---
 pdip_gis_rate_exempt;0.94;float;;; ---
 pdip_gis_max_high;11843.97;float;gis_full_high + gis_bonus_high;; --
 pdip_gis_max_low;7129.41;float;gis_full_low + gis_bonus_low;; --
-pdip_couple;27460;float;;;
-pdip_single;16940;float;;;
-pdip_couple_kid1;3575;float;;;
-pdip_single_kid1;10520;float;;;
-pdip_couple_kid2p;6875;float;;;
-pdip_single_kid2p;14095;float;;;
-pdip_cutoff;648;float;;;
+pdip_couple;29080;float;;; --
+pdip_single;17940;float;;; --
+pdip_couple_kid1;3670;float;;; --
+pdip_single_kid1;11140;float;;; --
+pdip_couple_kid2p;7055;float;;; --
+pdip_single_kid2p;14810;float;;; --
+pdip_cutoff;710;float;;; --
 solidarity_tvq_base;309;float;;; ---
 solidarity_housing_kid;128;float;;; ---
 solidarity_tvq_couple;309;float;;; --- 
@@ -76,7 +76,7 @@ home_supp_claw_rate;0.03;float;;;
 home_supp_cutoff;61725;float;;; indexe pour 2022 --- 
 home_supp_rate;0.36;float;;; ---
 senior_assist_min_age;70;int;;; ---
-senior_assist_amount;411;float;;; ---
+senior_assist_amount;2000;float;;; ---
 senior_assist_claw_rate;0.05;float;;; 
 senior_assist_cutoff_couple;39350;float;;; ---
 senior_assist_cutoff_single;24195;float;;; ---
