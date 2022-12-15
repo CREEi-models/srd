@@ -36,3 +36,15 @@ ostc_amount;301;float;;;
 ostc_claw_rate;0.04;float;;;
 ostc_single_cutoff;23156;float;;;
 ostc_couple_dep_cutoff;28944;float;;;
+oeptc_rate;0.02;float;;; --
+oeptc_prop_tax_rate;0.1;float;;; --
+oeptc_rent_rate;0.2;float;;; --
+oeptc_energy_amount;232;int;;; --
+oeptc_prop;752;int;;; --
+oeptc_prop_old;463;int;;;
+oeptc_prop_amount;58;int;;; --
+oeptc_prop_amount_old;492;int;;;
+oeptc_cutoff_couple_old;34733;int;;; --
+oeptc_cutoff_single_old;28944;int;;; --
+oeptc_cutoff_couple;28944;int;;; --
+oeptc_cutoff_single;23156;int;;; --

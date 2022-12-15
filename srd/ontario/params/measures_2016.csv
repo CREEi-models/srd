@@ -36,3 +36,15 @@ ostc_amount;291;float;;https://www.canada.ca/en/revenue-agency/services/forms-pu
 ostc_claw_rate;0.04;float;;;
 ostc_single_cutoff;22388;float;;;
 ostc_couple_dep_cutoff;27985;float;;;
+oeptc_rate;0.02;float;;;
+oeptc_prop_tax_rate;0.1;float;;;
+oeptc_rent_rate;0.2;float;;;
+oeptc_energy_amount;224;int;;;
+oeptc_prop;728;int;;;
+oeptc_prop_old;448;int;;;
+oeptc_prop_amount;56;int;;;
+oeptc_prop_amount_old;476;int;;;
+oeptc_cutoff_couple_old;33582;int;;;
+oeptc_cutoff_single_old;27985;int;;;
+oeptc_cutoff_couple;27985;int;;;
+oeptc_cutoff_single;22388;int;;;

@@ -88,6 +88,10 @@ class Person:
         True si la personne doit cotiser à l'Assurance médicaments du Québec (pas d'assurance médicaments privée)
     tax_shield: boolean
         True si la personne demande le crédit d'impôt bouclier ficscal au Québec
+    rent: float
+        dépense de logement
+    prop_tax: float
+        dépense sur taxe foncière
     """
     def __init__(self, age=50, male=True, earn=0, rpp=0, cpp=0,
                  net_cap_gains=0, prev_cap_losses=0, cap_gains_exempt=0,
@@ -98,7 +102,7 @@ class Person:
                  ndays_chcare_k2=0, asset=0, oas_years_post=0,
                  months_cerb_cesb=0, student=False, essential_worker=False,
                  emp_temp_constraints=False, hours_month=None, prev_inc_work=None,
-                 dep_senior=False, home_support_cost=0,months_ei=0, months_crb =0, pub_drug_insurance=False, tax_shield=False):
+                 dep_senior=False, home_support_cost=0,months_ei=0, months_crb =0, pub_drug_insurance=False, tax_shield=False,rent=0,prop_tax=0):
         self.age = age
         self.male = male
         self.attach_inc_work_month(earn, self_earn)
@@ -144,6 +148,8 @@ class Person:
         self.pension_deduction_qc = 0
         self.inc_oas = 0
         self.inc_gis = 0
+        self.rent = 0
+        self.prop_tax = 0
         self.inc_ei = 0
         self.inc_sa = 0
         self.allow_couple = 0

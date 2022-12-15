@@ -4,7 +4,7 @@ module_dir = os.path.dirname(os.path.dirname(__file__))
 
 class template:
     """
-    Classe qui contient un gabarit du programme d'aide sociale (tel qu'il existait en 2016).
+    Classe qui contient un gabarit du programme d'aide sociale.
 
     """
 
