@@ -36,3 +36,15 @@ ostc_amount;296;float;;;
 ostc_claw_rate;0.04;float;;;
 ostc_single_cutoff;22746;float;;;
 ostc_couple_dep_cutoff;28433;float;;;
+oeptc_rate;0.02;float;;; --
+oeptc_prop_tax_rate;0.1;float;;; --
+oeptc_rent_rate;0.2;float;;; --
+oeptc_energy_amount;227;int;;; --
+oeptc_prop;739;int;;https://www7.mississauga.ca/documents/committees/budget/2017/2017_11_20_Budget_Committee_Agenda.pdf; --
+oeptc_prop_old;455;int;;; --
+oeptc_prop_amount;57;int;;; --
+oeptc_prop_amount_old;483;int;;; --
+oeptc_cutoff_couple_old;34119;int;;; --
+oeptc_cutoff_single_old;28433;int;;; --
+oeptc_cutoff_couple;28433;int;;; --
+oeptc_cutoff_single;22746;int;;; --

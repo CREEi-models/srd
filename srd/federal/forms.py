@@ -26,6 +26,8 @@ def form(year):
         p = form_2020()
     if year == 2021:
         p = form_2021()
+    if year == 2022:
+        p = form_2022()
     return p
 
 class form_2016(template):
@@ -360,3 +362,72 @@ class form_2021(form_2020):
         adj_amount = min(witb_max, amount)
         clawback = claw_rate * max(0, hh.fam_net_inc_fed- cwb_exempt - exemption)
         return max(0, adj_amount - clawback)
+
+class form_2022(form_2021):
+    """
+    Formulaire d'impôt de 2022.
+    """
+
+    def __init__(self):
+        add_params_as_attr(self, module_dir + "/federal/params/federal_2022.csv")
+        add_params_as_attr(self, module_dir + "/federal/params/fed_witb_qc_2022.csv")
+        add_schedule_as_attr(self, module_dir + "/federal/params/schedule_2022.csv")
+        self.witb_params = {}
+        for prov in ["on", "qc"]:
+            self.witb_params[prov] = get_params(
+                module_dir + f"/federal/params/fed_witb_{prov}_2022.csv"
+            )
+
+        self.gst_cred_base *= 1.5
+        self.gst_cred_other *= 1.5
+
+        # Pour soutenir les personnes les plus touchées par l’inflation, le gouvernement du Canada a émis un versements supplémentaire pour la TPS pour aider les particuliers et les familles. 
+        # Ce versement unique double le montant du crédit pour la TPS que les particuliers et les familles admissibles pour une période de six mois.
+
+    def ccb(self, p, hh, iclaw=True):
+        """
+        Fonction qui calcule l'Allocation canadienne pour enfants (ACE).
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+        iclaw: boolean
+            récupération des prestations si True; pas de récupération si False
+
+        Returns
+        -------
+        float
+            Montant de l'ACE.
+        """
+        if hh.nkids_0_17 == 0:
+            return 0
+        if hh.couple and p.male and hh.sp[0].male != hh.sp[1].male:
+            return 0  # heterosexual couple: mother receives benefit
+        else:
+            amount = hh.nkids_0_5 * self.ccb_young + hh.nkids_6_17 * self.ccb_old
+            claw_num_ch = min(hh.nkids_0_5 + hh.nkids_6_17, self.ccb_max_num_ch)
+            adj_fam_net_inc = sum([p.fed_return['net_income'] for p in hh.sp])
+
+            l_rates_1 = [self.ccb_rate_1_1ch, self.ccb_rate_1_2ch,
+                         self.ccb_rate_1_3ch, self.ccb_rate_1_4ch]
+            d_rates_1 = {k+1: v for k, v in enumerate(l_rates_1)}
+            l_rates_2 = [self.ccb_rate_2_1ch, self.ccb_rate_2_2ch,
+                         self.ccb_rate_2_3ch, self.ccb_rate_2_4ch]
+            d_rates_2 = {k+1: v for k, v in enumerate(l_rates_2)}
+            if iclaw:
+                if adj_fam_net_inc > self.ccb_cutoff_2:
+                    clawback = (d_rates_2[claw_num_ch] * (adj_fam_net_inc - self.ccb_cutoff_2) +
+                                d_rates_1[claw_num_ch] * (self.ccb_cutoff_2 - self.ccb_cutoff_1))
+                elif adj_fam_net_inc > self.ccb_cutoff_1:
+                    clawback = d_rates_1[claw_num_ch] * (adj_fam_net_inc - self.ccb_cutoff_1)
+                else:
+                    clawback = 0
+            else:
+                clawback = 0
+            if hh.couple and hh.sp[0].male == hh.sp[1].male:
+                return max(0, amount - clawback) / 2  # same sex couples get 1/2 each
+            else:
+                return max(0, amount - clawback)

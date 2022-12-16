@@ -2,6 +2,7 @@ from srd import tax
 from srd import covid
 import numpy as np
 import pandas as pd
+import swifter
 from numba import njit, prange
 from itertools import product
 from scipy.linalg import cholesky
@@ -69,26 +70,24 @@ class behavior:
         self.tax.compute(row['hhold'])
         self.tax.disp_inc(row['hhold'])
         return max(row['hhold'].fam_disp_inc,1.0)
-    def budget(self,year=2020,policy=False,iload=False):
+    def budget(self,year=2020,iload=False):
         """Fonction qui calcule tous les revenus disponibles pour la grille d'heures
 
         Keyword Arguments:
             year {int} -- année du système fiscal (default: {2020})
         """
         if iload:
-            budget = pd.read_pickle('budget.pkl')
+            budget = pd.read_pickle('data/budget.pkl')
             self.data = self.data.merge(budget,left_index=True,right_index=True)
         else:
             data = self.data.copy()
-            cov = covid.policy()
-            cov.shut_all_measures()
-            self.tax = tax(year,policy=cov)
+            self.tax = tax(year)
             for j,h in enumerate(self.gridh_c):
                 f = partial(self.dispinc,hours=h)
                 self.data['cons_'+str(j)] = data.swifter.apply(f,axis=1)
 
             budget = self.data[['cons_'+str(j) for j in range(self.nh_c)]]
-            budget.to_pickle('budget.pkl')
+            budget.to_pickle('data/budget.pkl')
         return
     def set_shifters(self,list_of_varnames):
         """Fonction permettant de spécifier les noms de variables qui ajusteront l'utilité marginale du loisir.

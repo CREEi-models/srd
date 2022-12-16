@@ -1,4 +1,5 @@
 import os
+import numpy as np
 from srd import add_params_as_attr, add_schedule_as_attr
 from srd.quebec import template
 
@@ -13,7 +14,7 @@ def form(year):
     Parameters
     ----------
     year: int
-        année (présentement entre 2016 et 2021)
+        année (présentement entre 2016 et 2022)
     Returns
     -------
     class instance
@@ -31,6 +32,8 @@ def form(year):
         p = form_2020()
     if year == 2021:
         p = form_2021()
+    if year == 2022:
+        p = form_2022()
     return p
 
 
@@ -69,10 +72,16 @@ class form_2017(form_2016):
         hh: Hhold
             instance de la classe Hhold
         """
-        p.prov_return['contributions'] = self.add_contrib_subsid_chcare(p, hh) + self.contrib_hsf(p)
+        def create_contribution():
+            lines = ['drug_insurance_contrib', 'contrib_hsf','add_contrib_subsid_chcare']
+            return dict(zip(lines, np.zeros(len(lines))))
+            
+        p.prov_contrib = create_contribution()
+        p.prov_contrib['add_contrib_subsid_chcare'] = self.add_contrib_subsid_chcare(p, hh)
+        p.prov_contrib['contrib_hsf'] = self.contrib_hsf(p)
 
         if p.pub_drug_insurance:
-            p.prov_return['contributions'] += self.drug_insurance_contrib(hh)
+            p.prov_contrib['drug_insurance_contrib'] = self.drug_insurance_contrib(hh)
 
     def get_donations_cred(self, p):
         """
@@ -247,10 +256,15 @@ class form_2019(form_2018):
         hh: Hhold
             instance de la classe Hhold
         """
-        p.prov_return['contributions'] = self.contrib_hsf(p)
+        def create_contribution():
+            lines = ['drug_insurance_contrib', 'contrib_hsf']
+            return dict(zip(lines, np.zeros(len(lines))))
+
+        p.prov_contrib = create_contribution()
+        p.prov_contrib['contrib_hsf'] = self.contrib_hsf(p)
 
         if p.pub_drug_insurance:
-            p.prov_return['contributions'] += self.drug_insurance_contrib(hh)
+            p.prov_contrib['drug_insurance_contrib'] = self.drug_insurance_contrib(hh)
 
 
 class form_2020(form_2019):
@@ -341,4 +355,35 @@ class form_2021(form_2020):
             amount_exceptional = self.cost_of_living_alone
 
         return amount_punctual + (amount_exceptional / (1 + hh.couple))
-    
+
+class form_2022(form_2021):
+    """
+    Formulaire d'impôt de 2022.
+    """
+    def __init__(self):
+        add_params_as_attr(self, module_dir + '/quebec/params/measures_2022.csv')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2022.csv')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2022.csv')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/drug_insurance_contrib_2022.csv')
+
+    def cost_of_living(self, p, hh):
+        """
+        Fonction qui calcule le crédit d'impôt remboursable conférant un nouveau montant ponctuel pour le coût de la vie.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+
+        """
+        if p.prov_return['net_income'] <= self.cost_of_living_cutoff1:
+            amount_punctual = self.cost_of_living_punctual1
+        elif p.prov_return['net_income'] > self.cost_of_living_cutoff1 and p.prov_return['net_income'] <= self.cost_of_living_cutoff2:
+            amount_punctual =  max(0,self.cost_of_living_punctual1 - (self.cost_of_living_claw_rate1 * (p.prov_return['net_income'] - self.cost_of_living_cutoff1)))
+        elif p.prov_return['net_income'] > self.cost_of_living_cutoff2 and p.prov_return['net_income'] <= self.cost_of_living_cutoff3:
+            amount_punctual = self.cost_of_living_punctual2
+        else:
+            amount_punctual =  max(0,self.cost_of_living_punctual2 - (self.cost_of_living_claw_rate2 * (p.prov_return['net_income'] - self.cost_of_living_cutoff3)))
+        return amount_punctual

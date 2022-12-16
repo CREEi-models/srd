@@ -343,10 +343,10 @@ class template:
         hh: Hhold
             instance de la classe Hhold
         """
-        p.on_chcare = self.chcare(p, hh)
         p.on_ocb = self.ocb(p, hh)
         p.on_ostc = self.ostc(p, hh)
-        p.prov_return['refund_credits'] = p.on_ocb + p.on_ostc + p.on_chcare
+        p.on_oeptc = self.oeptc(p,hh)
+        p.prov_return['refund_credits'] = p.on_ocb + p.on_ostc + p.on_oeptc
 
     def ocb(self, p, hh):
         """
@@ -458,3 +458,67 @@ class template:
                     * max(0, tax_inc - self.l_health_low_brackets[ind]))
         else:
             return self.l_health_base[-1]
+
+    def caip(self,p ,hh):
+        """
+        Fonction qui calcule le crédit de l’incitatif à agir pour le climat (IAC) ou encore le Paiement de l’incitatif à agir pour le climat (PIAC)
+
+        Ce crédit est remboursable.
+        
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+
+        Returns
+        -------
+        float
+            Montant du crédit.
+        """
+        pass
+
+    def oeptc(self,p ,hh):
+        """
+        Fonction qui calcule le Crédit d’impôt remboursable de l’Ontario pour les coûts d’énergie et les impôts fonciers (CIOCEIF)
+
+        Ce crédit est remboursable.
+        
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+
+        Returns
+        -------
+        float
+            Montant du crédit.
+        """
+        # energy
+        on_energy = min(self.oeptc_energy_amount, self.oeptc_rent_rate*p.rent + p.prop_tax)
+        # property tax
+        if p.age>=65:
+            on_prop_tax = min(self.oeptc_prop_old,self.oeptc_prop_tax_rate*p.rent) + self.oeptc_prop_amount_old
+        # crédit
+            amount = on_energy + on_prop_tax
+            if hh.couple:
+                amount_oeptc = max(0, amount - self.oeptc_rate*max(0, hh.fam_net_inc_fed - self.oeptc_cutoff_couple_old))
+            elif not hh.couple and hh.nkids_0_17 != 0:
+                amount_oeptc = max(0, amount - self.oeptc_rate*max(0, hh.fam_net_inc_fed - self.oeptc_cutoff_couple_old))
+            else:
+                amount_oeptc = max(0, amount - self.oeptc_rate*max(0, hh.fam_net_inc_fed - self.oeptc_cutoff_single_old))
+        else:
+            on_prop_tax = min(self.oeptc_prop,self.oeptc_prop_tax_rate*p.rent) + self.oeptc_prop_amount
+        # crédit
+            amount = on_energy + on_prop_tax
+            if hh.couple:
+                amount_oeptc = max(0, amount - self.oeptc_rate*max(0, hh.fam_net_inc_fed - self.oeptc_cutoff_couple))
+            elif not hh.couple and hh.nkids_0_17 != 0:
+                amount_oeptc = max(0, amount - self.oeptc_rate*max(0, hh.fam_net_inc_fed - self.oeptc_cutoff_couple))
+            else:
+                amount_oeptc = max(0, amount - self.oeptc_rate*max(0, hh.fam_net_inc_fed - self.oeptc_cutoff_single))
+        
+        return amount_oeptc

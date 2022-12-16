@@ -42,3 +42,19 @@ ostc_claw_rate;0.04;float;;; ok
 ostc_single_cutoff;24332;float;;; ok
 ostc_couple_dep_cutoff;30415;float;;; ok
 chcare_rate_bonus;0.20;float;;;
+caip_single;373;int;;;
+caip_couple;186;int;;;
+caip_kid1;186;int;;;
+caip_kid12;93;int;;;
+oeptc_rate;0.02;float;;;
+oeptc_prop_tax_rate;0.1;float;;;
+oeptc_rent_rate;0.2;float;;;
+oeptc_energy_amount;243;int;;;
+oeptc_prop;791;int;;;
+oeptc_prop_old;487;int;;;
+oeptc_prop_amount;61;int;;;
+oeptc_prop_amount_old;517;int;;;
+oeptc_cutoff_couple_old;36497;int;;;
+oeptc_cutoff_single_old;30415;int;;;
+oeptc_cutoff_couple;30415;int;;;
+oeptc_cutoff_single;24332;int;;;
