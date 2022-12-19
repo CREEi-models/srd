@@ -6,7 +6,7 @@ Cette section compare brièvement les résultats du SRD avec ceux du `simulateur
 Deux indicateurs sont utilisés pour cette comparaison. Le premier est le revenu disponible, qui est défini comme le revenu total (incluant les transferts directs gouvernementaux) après soustraction des cotisations salariales et de l’impôt sur le revenu,  et ajout des transferts sociaux. Le deuxième indicateur est le taux effectif marginal d’imposition (TEMI), qui est une mesure du taux de charge fiscale sur un revenu supplémentaire, soit le taux qui s’applique à la dernière tranche de revenu imposable obtenu par un particulier (nous procedons par tranche de 1 000 $).
 
 De manière générale, les résultats obtenus par le SRD sont très similaires à ceux du MFQ. Notons que lors de la modélisation, nous avons choisi d'intégrer 
-le crédit d'impôt attribuant un montant ponctuel (de 500$) pour pallier à la hausse du coût de la vie en 2021, à la différence du MFQ qui l'a intégré en 2022. 
+le premier crédit d'impôt attribuant un montant ponctuel (de 500$) pour pallier à la hausse du coût de la vie en 2021, à la différence du MFQ qui a intégré les deux crédits relatif à la hausse du cout de vie en 2022. 
 Ce choix donne lieu à une différence de 500$ à 1000$ dépendant de la situation du ménage (célibataire ou couple). 
 En outre, d'autres légères différences sont observables. Celles-ci sont principalement dues aux éléments suivants:
 
@@ -16,7 +16,7 @@ En outre, d'autres légères différences sont observables. Celles-ci sont princ
 
 Dix cas-types sont présentés ci-dessous afin de dresser un portrait général de la situation. 
 Les différences correspondent aux résultats du SRD moins ceux du MFQ.
-L'année fiscale 2021 a été choisie aux fins de comparaison et l'allocation logement est exclue du revenu disponible, car celle-ci n'est pas modélisée par le SRD.
+L'année fiscale 2022 a été choisie aux fins de comparaison et l'allocation logement est exclue du revenu disponible, car celle-ci n'est pas modélisée par le SRD.
 
 Personne célibataire (sans enfant)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

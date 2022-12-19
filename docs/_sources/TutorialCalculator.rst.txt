@@ -36,7 +36,7 @@ On invoque une instance du calculateur en spécifiant l’année. Il existe auss
 
 .. code:: ipython3
 
-    tax_form = srd.tax(2021)
+    tax_form = srd.tax(2022)
 
 La fonction *compute()* calcule tous les impôts et cotisations demandés:
 
@@ -68,7 +68,7 @@ On peut voir que les variables ont été modifiées:
 
 .. parsed-literal::
 
-    (75000.0, 65298.815624999996, 55016.315624999996)
+    (75000.0, 66834.418125, 56381.918125)
 
 
 
@@ -81,7 +81,7 @@ On peut voir que les variables ont été modifiées:
 
 .. parsed-literal::
 
-    (50000.0, 42525.176374999995, 33934.676374999995)
+    (50000.0, 43301.5791875, 34594.8291875)
 
 
 
@@ -94,4 +94,4 @@ On peut voir que les variables ont été modifiées:
 
 .. parsed-literal::
 
-    (25000.0, 22773.63925, 21081.63925)
+    (25000.0, 23532.8389375, 21787.0889375)

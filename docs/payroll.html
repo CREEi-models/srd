@@ -314,14 +314,14 @@
 <div class="section" id="survol">
 <h3>Survol<a class="headerlink" href="#survol" title="Lien permanent vers ce titre">¶</a></h3>
 <p>Le programme d’assurance-emploi est pris en charge par le module <em>ei</em>. Ce module contient un gabarit que nous documentons ci-dessous ainsi que des classes dérivées spécifiques pour chaque année.</p>
-<p>La fonction <em>program</em> permet de choisir l’année du programme et ira tirer une instance du programme pour cette année. L’instance est retournée par la fonction.</p>
+<p>La fonction <em>program</em> permet de choisir l’année du programme et ira tirer une instance du programme pour cette année. L’instance est retournée par la fonction suivante:</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="srd.ei.program">
 <span class="sig-prename descclassname"><span class="pre">srd.ei.</span></span><span class="sig-name descname"><span class="pre">program</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">year</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.ei.program" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui permet de sélectionner le programme par année.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>year</strong> (<em>int</em>) – année (présentement entre 2016 et 2021)</p>
+<dd class="field-odd"><p><strong>year</strong> (<em>int</em>) – année (présentement entre 2016 et 2022)</p>
 </dd>
 <dt class="field-even">Renvoie</dt>
 <dd class="field-even"><p>Une instance de la classe de l’année sélectionnée.</p>
@@ -433,6 +433,12 @@ qui remplaceraient la PCU (contrefactuel).</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
+<dl class="py class">
+<dt class="sig sig-object py" id="srd.ei.programs.program_2022">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.ei.programs.</span></span><span class="sig-name descname"><span class="pre">program_2022</span></span><a class="headerlink" href="#srd.ei.programs.program_2022" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Version du programme de 2022.</p>
+</dd></dl>
+
 </div>
 </div>
 <div class="section" id="regime-quebecois-d-assurance-parentale">
@@ -440,14 +446,14 @@ qui remplaceraient la PCU (contrefactuel).</p>
 <div class="section" id="id1">
 <h3>Survol<a class="headerlink" href="#id1" title="Lien permanent vers ce titre">¶</a></h3>
 <p>Le Régime québécois d’assurance parentale existant au Québec est pris en charge par le module <em>qpip</em>. Ce module contient un gabarit que nous documentons ci-dessous, ainsi que des classes dérivées spécifiques pour chaque année.</p>
-<p>La fonction <em>program</em> permet de choisir l’année du programme et ira tirer une instance du programme pour cette année. L’instance est retournée par la fonction.</p>
+<p>La fonction <em>program</em> permet de choisir l’année du programme et ira tirer une instance du programme pour cette année. L’instance est retournée par la fonction suivante:</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="srd.qpip.program">
 <span class="sig-prename descclassname"><span class="pre">srd.qpip.</span></span><span class="sig-name descname"><span class="pre">program</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">year</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.qpip.program" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui permet de sélectionner le programme par année.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>year</strong> (<em>int</em>) – année (présentement entre 2016 et 2021)</p>
+<dd class="field-odd"><p><strong>year</strong> (<em>int</em>) – année (présentement entre 2016 et 2022)</p>
 </dd>
 <dt class="field-even">Renvoie</dt>
 <dd class="field-even"><p>Une instance de la classe de l’année sélectionnée.</p>
@@ -528,6 +534,12 @@ qui remplaceraient la PCU (contrefactuel).</p>
 <dt class="sig sig-object py" id="srd.qpip.programs.program_2021">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.qpip.programs.</span></span><span class="sig-name descname"><span class="pre">program_2021</span></span><a class="headerlink" href="#srd.qpip.programs.program_2021" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Version du programme de 2021.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="srd.qpip.programs.program_2022">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.qpip.programs.</span></span><span class="sig-name descname"><span class="pre">program_2022</span></span><a class="headerlink" href="#srd.qpip.programs.program_2022" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Version du programme de 2022.</p>
 </dd></dl>
 
 </div>

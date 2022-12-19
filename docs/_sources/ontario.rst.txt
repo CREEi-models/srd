@@ -9,7 +9,7 @@ L'impôt de l'Ontario est pris en charge par le module *ontario*. Ce module cont
 
 .. currentmodule:: srd.ontario
 
-La fonction *form* permet de choisir l'année de la déclaration de revenus et ira tirer une instance du rapport pour cette année. L'instance est retournée par la fonction.
+La fonction *form* permet de choisir l'année de la déclaration de revenus et ira tirer une instance du rapport pour cette année. L'instance est retournée par la fonction suivante:
 
 .. autofunction:: form
 
@@ -27,7 +27,9 @@ Les principales mesures fiscales provinciales prises en compte dans ce module so
 - Le crédit d'impôt non-remboursable pour dividendes
 - Le montant pour époux ou conjoint de fait
 - Le crédit d’impôt remboursable de taxe de vente de l'Ontario
-- L'Allocation ontarienne pour enfants
+- Le crédit d'impôt remboursable de l'Ontario pour l'accès aux services de garde d'enfants et l'allègement des dépenses (ASGE)
+- Le crédit d'impôt remboursable de l’incitatif à agir pour le climat (IAC) ou encore le Paiement de l’incitatif à agir pour le climat (PIAC)
+- L'allocation ontarienne pour enfants
 - La contribution santé de l'Ontario
 
 
@@ -36,7 +38,7 @@ La liste exhaustive des éléments calculés dans le module est présentée dans
 Gabarit du rapport
 ^^^^^^^^^^^^^^^^^^^^
 
-Nous utilisons un gabarit afin de créer les rapports chaque année. Quand l'impôt change seulement au niveau des paramètres d'une année à l'autre, le rapport ira seulement chercher les nouveaux paramètres. Quand des fonctions changent, l'utilisateur n'a qu'à modifier les fonctions touchées (ou à en ajouter de nouvelles). Toutes les modifications de fonction survenues après l'année 2016 sont indiquées ci-dessous.
+Nous utilisons un gabarit afin de créer les rapports chaque année. Quand l'impôt change seulement au niveau des paramètres d'une année à l'autre, le rapport ira seulement chercher les nouveaux paramètres. Quand des fonctions changent, l'utilisateur n'a qu'à modifier les fonctions touchées (ou à en ajouter de nouvelles). Toutes les modifications de fonction survenues après l'année 2016 sont indiquées dans la section suivante (Fonctions spécifiques ou modifiées).
 
 .. currentmodule:: srd.ontario
 
@@ -167,12 +169,22 @@ Fonctions spécifiques ou modifiées par année
 **2019**
 
 .. autoclass:: srd.ontario.form_2019
-.. currentmodule:: srd.ontario.form_2020
+.. currentmodule:: srd.ontario.form_2019
 
 .. toggle-header::
     :header: **- lift_credit()**
 
     .. autofunction:: lift_credit
+
+.. toggle-header::
+    :header: **- chcare()**
+
+    .. autofunction:: chcare
+
+.. toggle-header::
+    :header: **- caip()**
+
+    .. autofunction:: caip
 
 |
 
@@ -184,3 +196,15 @@ Fonctions spécifiques ou modifiées par année
 **2021**
 
 .. autoclass:: srd.ontario.form_2021
+.. currentmodule:: srd.ontario.form_2021
+
+.. toggle-header::
+    :header: **- chcare()**
+
+    .. autofunction:: chcare
+
+|
+
+**2022**
+
+.. autoclass:: srd.ontario.form_2022

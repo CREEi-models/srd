@@ -268,14 +268,14 @@
 <div class="section" id="survol">
 <h2>Survol<a class="headerlink" href="#survol" title="Lien permanent vers ce titre">¶</a></h2>
 <p>L’impôt du Québec est pris en charge par le module <em>quebec</em>. Ce module contient un gabarit que nous documentons ci-dessous ainsi que des classes dérivées spécifiques pour chaque année.</p>
-<p>La fonction <em>form</em> permet de choisir l’année de la déclaration de revenus et ira tirer une instance de la déclaration pour cette année. L’instance est retournée par la fonction.</p>
+<p>La fonction <em>form</em> permet de choisir l’année de la déclaration de revenus et ira tirer une instance de la déclaration pour cette année. L’instance est retournée par la fonction suivante:</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="srd.quebec.form">
 <span class="sig-prename descclassname"><span class="pre">srd.quebec.</span></span><span class="sig-name descname"><span class="pre">form</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">year</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui permet de sélectionner le formulaire d’impôt provincial par année.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>year</strong> (<em>int</em>) – année (présentement entre 2016 et 2021)</p>
+<dd class="field-odd"><p><strong>year</strong> (<em>int</em>) – année (présentement entre 2016 et 2022)</p>
 </dd>
 <dt class="field-even">Renvoie</dt>
 <dd class="field-even"><p>Une instance du formulaire pour l’année sélectionnée.</p>
@@ -286,7 +286,7 @@
 </dl>
 </dd></dl>
 
-<p>Les mesures fiscales provinciales prises en compte dans ce module sont les suivantes:</p>
+<p>Voici les mesures fiscales provinciales prises en compte dans ce module:</p>
 <ul class="simple">
 <li><p>L’impôt des particuliers</p></li>
 <li><p>Les déductions pour les cotisations sociales (RRQ/RPC et RQAP)</p></li>
@@ -306,18 +306,18 @@
 <li><p>Le crédit d’impôt remboursable pour frais de garde d’enfant</p></li>
 <li><p>Le crédit d’impôt remboursable accordant une allocation aux familles</p></li>
 <li><p>Le crédit d’impôt remboursable relatif à la prime au travail</p></li>
+<li><p>Les crédits d’impôt remboursables liés à la hausse du coût de la vie (2021-2022)</p></li>
 <li><p>La cotisation au régime d’assurance médicaments du Québec</p></li>
 <li><p>La cotisation au Fonds des services de santé (FSS)</p></li>
 <li><p>La contribution santé (2016)</p></li>
 <li><p>La contribution additionnelle pour les services de garde éducatifs à l’enfance subventionnés (2016 à 2018)</p></li>
-<li><p>Les crédits d’impôt remboursable attribuant une prestation exceptionnelle et un montant ponctuel pour pallier la hausse du coût de la vie</p></li>
 <li><p>Le crédit d’impôt bouclier fiscal</p></li>
 </ul>
 <p>La liste exhaustive des éléments calculés dans le module est présentée dans la section ci-dessous.</p>
 </div>
 <div class="section" id="gabarit-de-declaration">
 <h2>Gabarit de déclaration<a class="headerlink" href="#gabarit-de-declaration" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Nous utilisons un gabarit afin de créer les déclarations chaque année. Quand l’impôt change seulement au niveau des paramètres d’une année à l’autre, la déclaration ira seulement chercher les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou à en ajouter de nouvelles). Toutes les modifications de fonction survenues après l’année 2016 sont indiquées ci-dessous.</p>
+<p>Nous utilisons un gabarit afin de créer les déclarations chaque année. Quand l’impôt change seulement au niveau des paramètres d’une année à l’autre, la déclaration ira seulement chercher les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou à en ajouter de nouvelles). Toutes les modifications de fonction survenues après l’année 2016 sont indiquées dans la section suivante (Fonctions spécifiques ou modifiées).</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="srd.quebec.template">
 <span class="sig-prename descclassname"><span class="pre">srd.quebec.</span></span><span class="sig-name descname"><span class="pre">template</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.template" title="Lien permanent vers cette définition">¶</a></dt>
@@ -325,7 +325,7 @@
 </dd></dl>
 
 <div class="line-block">
-<div class="line">Nous reproduisons ici la spécification du gabarit. Il est basé sur la déclaration de 2016.</div>
+<div class="line">Nous reproduisons ici la spécification du gabarit. Il est basé sur la déclaration de 2020.</div>
 <div class="line">(Cliquez sur le nom pour afficher les détails)</div>
 </div>
 <div class="toggle-header docutils container">
@@ -1306,6 +1306,35 @@ Pour les couples, la prime est partagée au prorata des revenus de travail.</p>
 <dt class="sig sig-object py" id="srd.quebec.form_2021.cost_of_living">
 <span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2021.</span></span><span class="sig-name descname"><span class="pre">cost_of_living</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2021.cost_of_living" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule les crédits d’impôt remboursables attribuant une prestation exceptionnelle et un montant ponctuel pour pallier la hausse du coût de la vie.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>2022</strong></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="srd.quebec.form_2022">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.quebec.</span></span><span class="sig-name descname"><span class="pre">form_2022</span></span><a class="headerlink" href="#srd.quebec.form_2022" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Formulaire d’impôt de 2022.</p>
+</dd></dl>
+
+<div class="toggle-header docutils container">
+<p><strong>- cost_of_living()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.quebec.form_2022.cost_of_living">
+<span class="sig-prename descclassname"><span class="pre">srd.quebec.form_2022.</span></span><span class="sig-name descname"><span class="pre">cost_of_living</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.quebec.form_2022.cost_of_living" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule le crédit d’impôt remboursable conférant un nouveau montant ponctuel pour le coût de la vie.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">

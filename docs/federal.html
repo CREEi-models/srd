@@ -311,7 +311,7 @@
 <h2>Gabarit de déclaration<a class="headerlink" href="#gabarit-de-declaration" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Nous utilisons un gabarit afin de créer les déclarations chaque année. Quand l’impôt change seulement au niveau des paramètres d’une année à l’autre,
 la déclaration ira seulement chercher les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou à en ajouter de nouvelles).
-Toutes les modifications de fonction survenues après l’année 2016 sont indiquées dans la section suivante.</p>
+Toutes les modifications de fonction survenues après l’année 2016 sont indiquées dans la section suivante (Fonctions spécifiques ou modifiées).</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="srd.federal.template">
 <span class="sig-prename descclassname"><span class="pre">srd.federal.</span></span><span class="sig-name descname"><span class="pre">template</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.template" title="Lien permanent vers cette définition">¶</a></dt>
@@ -1271,6 +1271,75 @@ le montant de la PFRT / l’ACT et de son supplément.</p>
 <dt class="sig sig-object py" id="srd.federal.form_2021.ccb">
 <span class="sig-prename descclassname"><span class="pre">srd.federal.form_2021.</span></span><span class="sig-name descname"><span class="pre">ccb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iclaw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2021.ccb" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui calcule pour 2021 l’Allocation canadienne pour enfants (ACE) avec l’ACE supplément pour jeunes enfants (ACESJE), soit de moins de 6 ans.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+<li><p><strong>iclaw</strong> (<em>boolean</em>) – récupération des prestations si True; pas de récupération si False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant de l’ACE.</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="toggle-header docutils container">
+<p><strong>- compute_witb_witbds()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2021.compute_witb_witbds">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2021.</span></span><span class="sig-name descname"><span class="pre">compute_witb_witbds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">witb_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">claw_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exemption</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2021.compute_witb_witbds" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction appelée par <em>get_witb</em> et <em>get_witbds</em> pour calculer
+le montant de la PFRT / l’ACT et de son supplément.
+:param p: instance de la classe Person
+:type p: Person
+:param hh: instance de la classe Hhold
+:type hh: Hhold
+:param rate: taux appliqué au revenu du travail
+:type rate: float
+:param base: montant de base de la PFRT / l’ACT
+:type base: float
+:param witb_max: montant maximal de la PFRT / l’ACT
+:type witb_max: float
+:param claw_rate: taux de réduction
+:param exemption: exemption
+:type exemption: float</p>
+<dl class="field-list simple">
+<dt class="field-odd">Renvoie</dt>
+<dd class="field-odd"><p>Montant de la PFRT / l’ACT ou du supplément.</p>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>2022</strong></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="srd.federal.form_2022">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.federal.</span></span><span class="sig-name descname"><span class="pre">form_2022</span></span><a class="headerlink" href="#srd.federal.form_2022" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Formulaire d’impôt de 2022.</p>
+</dd></dl>
+
+<div class="toggle-header docutils container">
+<p><strong>- ccb()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.federal.form_2022.ccb">
+<span class="sig-prename descclassname"><span class="pre">srd.federal.form_2022.</span></span><span class="sig-name descname"><span class="pre">ccb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iclaw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.federal.form_2022.ccb" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule l’Allocation canadienne pour enfants (ACE).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">

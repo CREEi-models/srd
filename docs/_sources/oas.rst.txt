@@ -9,7 +9,7 @@ Le programme de la Sécurité à la vieillesse est pris en charge par le module 
 
 .. currentmodule:: srd.oas
 
-La fonction *program* permet de choisir l'année du programme et ira tirer une instance du programme pour cette année. L'instance est retournée par la fonction.
+La fonction *program* permet de choisir l'année du programme et ira tirer une instance du programme pour cette année. L'instance est retournée par la fonction suivante:
 
    .. autofunction:: program
 
@@ -130,3 +130,16 @@ Fonctions spécifiques ou modifiées par année
 
 |
 
+
+**2022**
+
+.. autoclass:: srd.oas.programs.program_2022
+.. currentmodule:: srd.oas.programs.program_2022
+
+.. toggle-header::
+    :header: **- compute_pension()**
+
+    .. autofunction:: compute_pension
+
+
+|

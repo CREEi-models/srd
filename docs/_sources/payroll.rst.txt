@@ -22,7 +22,7 @@ Le programme d'assurance-emploi est pris en charge par le module *ei*. Ce module
 
 .. currentmodule:: srd.ei
 
-La fonction *program* permet de choisir l'année du programme et ira tirer une instance du programme pour cette année. L'instance est retournée par la fonction.
+La fonction *program* permet de choisir l'année du programme et ira tirer une instance du programme pour cette année. L'instance est retournée par la fonction suivante:
 
 .. autofunction:: program
 
@@ -62,6 +62,7 @@ Fonctions spécifiques ou modifiées par année
 
 |
 
+.. autoclass:: srd.ei.programs.program_2022
 
 Régime québécois d'assurance parentale
 --------------------------------------
@@ -73,7 +74,7 @@ Le Régime québécois d'assurance parentale existant au Québec est pris en cha
 
 .. currentmodule:: srd.qpip
 
-La fonction *program* permet de choisir l'année du programme et ira tirer une instance du programme pour cette année. L'instance est retournée par la fonction.
+La fonction *program* permet de choisir l'année du programme et ira tirer une instance du programme pour cette année. L'instance est retournée par la fonction suivante:
 
 .. autofunction:: program
 
@@ -104,3 +105,5 @@ Fonctions spécifiques ou modifiées par année
 .. autoclass:: srd.qpip.programs.program_2020
 
 .. autoclass:: srd.qpip.programs.program_2021
+
+.. autoclass:: srd.qpip.programs.program_2022

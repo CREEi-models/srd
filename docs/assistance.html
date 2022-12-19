@@ -268,14 +268,14 @@
 <div class="section" id="survol">
 <h2>Survol<a class="headerlink" href="#survol" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Le programme de l’aide sociale est pris en charge par le module <em>assistance</em>. Ce module contient un gabarit que nous documentons ci-dessous ainsi que des classes dérivées spécifiques à chaque année.</p>
-<p>La fonction <em>program</em> permet de choisir l’année du programme et ira tirer une instance du programme pour cette année. L’instance est retournée par la fonction.</p>
+<p>La fonction <em>program</em> permet de choisir l’année du programme et ira tirer une instance du programme pour cette année. L’instance est retournée par la fonction suivante:</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="srd.assistance.program">
 <span class="sig-prename descclassname"><span class="pre">srd.assistance.</span></span><span class="sig-name descname"><span class="pre">program</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">year</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.assistance.program" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction qui permet de sélectionner le programme par année.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>year</strong> (<em>int</em>) – année (présentement entre 2016 et 2020)</p>
+<dd class="field-odd"><p><strong>year</strong> (<em>int</em>) – année (présentement entre 2016 et 2022)</p>
 </dd>
 <dt class="field-even">Renvoie</dt>
 <dd class="field-even"><p>Une instance de la classe de l’année sélectionnée.</p>
@@ -294,7 +294,7 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="srd.assistance.template">
 <span class="sig-prename descclassname"><span class="pre">srd.assistance.</span></span><span class="sig-name descname"><span class="pre">template</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.assistance.template" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Classe qui contient un gabarit du programme d’aide sociale (tel qu’il existait en 2016).</p>
+<dd><p>Classe qui contient un gabarit du programme d’aide sociale.</p>
 </dd></dl>
 
 <p>À noter que seul un test d’actifs simplifié est appliqué, à un volet; les actifs liquides (argent comptant et comptes courants) ne sont pas considérés.</p>
@@ -477,6 +477,13 @@
 <dt class="sig sig-object py" id="srd.assistance.programs.program_2021">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.assistance.programs.</span></span><span class="sig-name descname"><span class="pre">program_2021</span></span><a class="headerlink" href="#srd.assistance.programs.program_2021" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Version du programme de 2021.</p>
+</dd></dl>
+
+<p><strong>2022</strong></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="srd.assistance.programs.program_2022">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.assistance.programs.</span></span><span class="sig-name descname"><span class="pre">program_2022</span></span><a class="headerlink" href="#srd.assistance.programs.program_2022" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Version du programme de 2022.</p>
 </dd></dl>
 
 </div>

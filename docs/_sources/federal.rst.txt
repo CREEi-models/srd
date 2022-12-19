@@ -45,7 +45,7 @@ Gabarit de déclaration
 
 Nous utilisons un gabarit afin de créer les déclarations chaque année. Quand l'impôt change seulement au niveau des paramètres d'une année à l'autre, 
 la déclaration ira seulement chercher les nouveaux paramètres. Quand des fonctions changent, l'utilisateur n'a qu'à modifier les fonctions touchées (ou à en ajouter de nouvelles).
-Toutes les modifications de fonction survenues après l'année 2016 sont indiquées dans la section suivante.
+Toutes les modifications de fonction survenues après l'année 2016 sont indiquées dans la section suivante (Fonctions spécifiques ou modifiées).
 
 .. currentmodule:: srd.federal
 
@@ -304,6 +304,24 @@ Fonctions spécifiques ou modifiées
     :header: **- ccb()**
 
     .. autofunction:: ccb
+
+.. toggle-header::
+    :header: **- compute_witb_witbds()**
+
+    .. autofunction:: compute_witb_witbds
+
+|
+
+**2022**
+
+.. autoclass:: srd.federal.form_2022
+.. currentmodule:: srd.federal.form_2022
+
+.. toggle-header::
+    :header: **- ccb()**
+
+    .. autofunction:: ccb
+
 
 |
 

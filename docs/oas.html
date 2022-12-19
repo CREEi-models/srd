@@ -268,7 +268,7 @@
 <div class="section" id="survol">
 <h2>Survol<a class="headerlink" href="#survol" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Le programme de la Sécurité à la vieillesse est pris en charge par le module <em>oas</em> et comprend la Pension de la sécurité à la vieillesse (PSV), le Supplément de revenu garanti (SRG), l’Allocation (au conjoint) et l’Allocation au survivant. Ce module contient un gabarit que nous documentons ci-dessous ainsi que des classes dérivées spécifiques pour chaque année.</p>
-<p>La fonction <em>program</em> permet de choisir l’année du programme et ira tirer une instance du programme pour cette année. L’instance est retournée par la fonction.</p>
+<p>La fonction <em>program</em> permet de choisir l’année du programme et ira tirer une instance du programme pour cette année. L’instance est retournée par la fonction suivante:</p>
 <blockquote>
 <div><dl class="py function">
 <dt class="sig sig-object py" id="srd.oas.program">
@@ -277,8 +277,8 @@
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>year</strong> (<em>int</em>) – année (présentement entre 2016 et 2021)</p></li>
-<li><p><strong>federal</strong> (<em>{srd.federal.form_2016</em><em>, </em><em>...</em><em>, </em><em>srd.federal.form_2021}</em>) – instance de la classe srd.federal.form_xxxx (pour l’année xxxx) du module <em>federal</em></p></li>
+<li><p><strong>year</strong> (<em>int</em>) – année (présentement entre 2016 et 2022)</p></li>
+<li><p><strong>federal</strong> (<em>{srd.federal.form_2016</em><em>, </em><em>...</em><em>, </em><em>srd.federal.form_2022}</em>) – instance de la classe srd.federal.form_xxxx (pour l’année xxxx) du module <em>federal</em></p></li>
 </ul>
 </dd>
 <dt class="field-even">Renvoie</dt>
@@ -683,6 +683,46 @@
 </dd>
 <dt class="field-even">Renvoie</dt>
 <dd class="field-even"><p>Montant du SRG (après récupération).</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>2022</strong></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="srd.oas.programs.program_2022">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.oas.programs.</span></span><span class="sig-name descname"><span class="pre">program_2022</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">federal</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2022" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Version du programme de 2022.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>federal</strong> (<a class="reference internal" href="federal.html#srd.federal.form_2022" title="srd.federal.form_2022"><em>srd.federal.form_2022</em></a>) – instance de la classe srd.federal.form_2022 du module Federal</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="toggle-header docutils container">
+<p><strong>- compute_pension()</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<dl class="py function">
+<dt class="sig sig-object py" id="srd.oas.programs.program_2022.compute_pension">
+<span class="sig-prename descclassname"><span class="pre">srd.oas.programs.program_2022.</span></span><span class="sig-name descname"><span class="pre">compute_pension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2022.compute_pension" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction qui calcule la prestation de PSV.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
+<li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Montant de la PSV.</p>
 </dd>
 <dt class="field-odd">Type renvoyé</dt>
 <dd class="field-odd"><p>float</p>

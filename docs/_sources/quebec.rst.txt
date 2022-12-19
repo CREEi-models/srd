@@ -9,11 +9,11 @@ L'impôt du Québec est pris en charge par le module *quebec*. Ce module contien
 
 .. currentmodule:: srd.quebec
 
-La fonction *form* permet de choisir l'année de la déclaration de revenus et ira tirer une instance de la déclaration pour cette année. L'instance est retournée par la fonction.
+La fonction *form* permet de choisir l'année de la déclaration de revenus et ira tirer une instance de la déclaration pour cette année. L'instance est retournée par la fonction suivante:
 
 .. autofunction:: form
 
-Les mesures fiscales provinciales prises en compte dans ce module sont les suivantes:
+Voici les mesures fiscales provinciales prises en compte dans ce module:
 
 - L'impôt des particuliers
 - Les déductions pour les cotisations sociales (RRQ/RPC et RQAP)
@@ -33,11 +33,11 @@ Les mesures fiscales provinciales prises en compte dans ce module sont les suiva
 - Le crédit d'impôt remboursable pour frais de garde d'enfant
 - Le crédit d’impôt remboursable accordant une allocation aux familles
 - Le crédit d'impôt remboursable relatif à la prime au travail
+- Les crédits d'impôt remboursables liés à la hausse du coût de la vie (2021-2022)
 - La cotisation au régime d’assurance médicaments du Québec
 - La cotisation au Fonds des services de santé (FSS)
 - La contribution santé (2016)
 - La contribution additionnelle pour les services de garde éducatifs à l'enfance subventionnés (2016 à 2018)
-- Les crédits d'impôt remboursable attribuant une prestation exceptionnelle et un montant ponctuel pour pallier la hausse du coût de la vie
 - Le crédit d'impôt bouclier fiscal
 
 
@@ -47,13 +47,13 @@ La liste exhaustive des éléments calculés dans le module est présentée dans
 Gabarit de déclaration
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Nous utilisons un gabarit afin de créer les déclarations chaque année. Quand l'impôt change seulement au niveau des paramètres d'une année à l'autre, la déclaration ira seulement chercher les nouveaux paramètres. Quand des fonctions changent, l'utilisateur n'a qu'à modifier les fonctions touchées (ou à en ajouter de nouvelles). Toutes les modifications de fonction survenues après l'année 2016 sont indiquées ci-dessous.
+Nous utilisons un gabarit afin de créer les déclarations chaque année. Quand l'impôt change seulement au niveau des paramètres d'une année à l'autre, la déclaration ira seulement chercher les nouveaux paramètres. Quand des fonctions changent, l'utilisateur n'a qu'à modifier les fonctions touchées (ou à en ajouter de nouvelles). Toutes les modifications de fonction survenues après l'année 2016 sont indiquées dans la section suivante (Fonctions spécifiques ou modifiées).
 
 .. currentmodule:: srd.quebec
 
 .. autofunction:: template
 
-| Nous reproduisons ici la spécification du gabarit. Il est basé sur la déclaration de 2016.
+| Nous reproduisons ici la spécification du gabarit. Il est basé sur la déclaration de 2020.
 | (Cliquez sur le nom pour afficher les détails)
 
 .. currentmodule:: srd.quebec.form_2020
@@ -327,6 +327,18 @@ Fonctions spécifiques ou modifiées par année
     :header: **- calc_deduc_gross_income()**
 
     .. autofunction:: calc_deduc_gross_income
+
+.. toggle-header::
+    :header: **- cost_of_living()**
+
+    .. autofunction:: cost_of_living
+
+|
+
+**2022**
+
+.. autoclass:: srd.quebec.form_2022
+.. currentmodule:: srd.quebec.form_2022
 
 .. toggle-header::
     :header: **- cost_of_living()**
