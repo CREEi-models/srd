@@ -1,0 +1,60 @@
+variable;value;type;definition;source ;comments
+pension_cred_min_age_split;65;int;;; ---
+nrtc_base;11865;float;;; ok
+nrtc_age_amount;5440;float;;; ---
+nrtc_age;65;int;;; ---
+nrtc_age_claw_cutoff;40495;float;;; ---
+nrtc_age_claw_rate;0.15;float;;; ok
+nrtc_spouse_cutoff;10406;float;;; ---
+nrtc_spouse_max;9460;float;;; ---
+nrtc_pension_cred_min_age_split;65;int;;; ---
+nrtc_pension_cred_amount;1541;float;;; ---
+nrtc_disabled;9001;float;;; ---
+nrtc_med_exp_age;18;int;;; ---
+nrtc_med_exp_claw;2522;float;;; ---
+nrtc_med_exp_rate;0.03;float;;; ---
+nrtc_med_exp_max_dep;13593;float;;; ---
+nrtc_rate;0.0505;float;;; ok
+nrtc_donation_frac_net;0.75;float;;; ---
+nrtc_donation_cutoff;200;float;;; ---
+nrtc_donation_low_rate;0.0505;float;;; ---
+nrtc_donation_high_rate;0.1116;float;;; ---
+surtax_low_rate;0.20;float;;https://www.taxtips.ca/taxrates/on.htm; ok
+surtax_low_cutoff;5315;float;;; ok
+surtax_high_rate;0.36;float;;; ok
+surtax_high_cutoff;6802;float;;; ok
+div_elig_factor;1.38;float;;; ok
+div_other_can_factor;1.15;float;;; ok
+div_other_can_cred_rate;0.029863;float;;; ok
+div_elig_cred_rate;0.10;float;;; ok
+reduction_base;251;float;;; 
+reduction_kid;464;float;;; 
+lift_rate;0.0505;float;;5006-a-19e; ---
+lift_max_amount;875;float;;; ---
+lift_claw_rate;0.05;float;;; ---
+lift_cutoff_single;32500;float;;; ---
+lift_cutoff_couple;65000;float;;; ---
+ocb_amount;1474;float;;https://www.canada.ca/fr/agence-revenu/services/prestations-enfants-familles/programmes-provinciaux-territoriaux/province-ontario.html#cb; 
+ocb_cutoff;22504;float;;; 
+ocb_claw_rate;0.08;float;;; 
+ostc_amount;316;float;;hhttps://www.ontario.ca/page/ontario-trillium-benefit#section-3; 
+ostc_claw_rate;0.04;float;;; 
+ostc_single_cutoff;24332;float;;; 
+ostc_couple_dep_cutoff;30415;float;;;
+chcare_rate_bonus;0.20;float;;;
+caip_single;373;int;;;
+caip_couple;186;int;;;
+caip_kid1;186;int;;;
+caip_kid12;93;int;;;
+oeptc_rate;0.02;float;;;
+oeptc_prop_tax_rate;0.1;float;;;
+oeptc_rent_rate;0.2;float;;;
+oeptc_energy_amount;249;int;;;
+oeptc_prop;810;int;;;
+oeptc_prop_old;499;int;;;
+oeptc_prop_amount;62;int;;;
+oeptc_prop_amount_old;529;int;;;
+oeptc_cutoff_couple_old;37373;int;;;
+oeptc_cutoff_single_old;31144;int;;;
+oeptc_cutoff_couple;31144;int;;;
+oeptc_cutoff_single;24916;int;;;
