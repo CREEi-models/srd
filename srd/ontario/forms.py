@@ -34,6 +34,8 @@ def form(year):
         p = form_2021()
     if year == 2022:
         p = form_2022()
+    if year == 2023:
+        p = form_2023()
     return p
 
 
@@ -253,3 +255,13 @@ class form_2022(form_2021):
         add_schedule_as_attr(self, module_dir + '/ontario/params/schedule_2022.csv')
         add_schedule_as_attr(self, module_dir + '/ontario/params/health_contrib_2022.csv')
         add_schedule_as_attr(self, module_dir + '/ontario/params/chcare_2022.csv')
+
+class form_2023(form_2022):
+    """
+    Formulaire d'impôt de 2023.
+    """
+    def __init__(self):
+        add_params_as_attr(self, module_dir + '/ontario/params/measures_2023.csv')
+        add_schedule_as_attr(self, module_dir + '/ontario/params/schedule_2023.csv')
+        add_schedule_as_attr(self, module_dir + '/ontario/params/health_contrib_2023.csv')
+        add_schedule_as_attr(self, module_dir + '/ontario/params/chcare_2023.csv')

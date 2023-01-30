@@ -28,6 +28,8 @@ def form(year):
         p = form_2021()
     if year == 2022:
         p = form_2022()
+    if year == 2023:
+        p = form_2023()
     return p
 
 class form_2016(template):
@@ -431,3 +433,19 @@ class form_2022(form_2021):
                 return max(0, amount - clawback) / 2  # same sex couples get 1/2 each
             else:
                 return max(0, amount - clawback)
+
+
+class form_2023(form_2022):
+    """
+    Formulaire d'impôt de 2023.
+    """
+
+    def __init__(self):
+        add_params_as_attr(self, module_dir + "/federal/params/federal_2023.csv")
+        add_params_as_attr(self, module_dir + "/federal/params/fed_witb_qc_2023.csv")
+        add_schedule_as_attr(self, module_dir + "/federal/params/schedule_2023.csv")
+        self.witb_params = {}
+        for prov in ["on", "qc"]:
+            self.witb_params[prov] = get_params(
+                module_dir + f"/federal/params/fed_witb_{prov}_2023.csv"
+            )

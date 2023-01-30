@@ -34,6 +34,8 @@ def form(year):
         p = form_2021()
     if year == 2022:
         p = form_2022()
+    if year == 2023:
+        p = form_2023()
     return p
 
 
@@ -387,3 +389,27 @@ class form_2022(form_2021):
         else:
             amount_punctual =  max(0,self.cost_of_living_punctual2 - (self.cost_of_living_claw_rate2 * (p.prov_return['net_income'] - self.cost_of_living_cutoff3)))
         return amount_punctual
+
+class form_2023(form_2022):
+    """
+    Formulaire d'impôt de 2023.
+    """
+    def __init__(self):
+        add_params_as_attr(self, module_dir + '/quebec/params/measures_2023.csv')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2023.csv')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2023.csv')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/drug_insurance_contrib_2023.csv')
+
+    def cost_of_living(self, p, hh):
+        """
+        Fonction qui calcule le crédit d'impôt remboursable conférant un nouveau montant ponctuel pour le coût de la vie.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+
+        """
+        pass
