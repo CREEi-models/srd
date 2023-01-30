@@ -1,0 +1,4 @@
+l_health_low_brackets;20000;36000;48000;72000;200000
+l_health_high_brackets;25000;38500;48600;72600;200600
+l_health_base;0;300;450;600;750;900
+l_health_rates;0.06;0.06;0.25;0.25;0.25
