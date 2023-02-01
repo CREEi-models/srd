@@ -1,22 +1,22 @@
 variable;value;type;definition;source;comments
 socass_qc_assets_couple;2500;float;;http://legisquebec.gouv.qc.ca/fr/pdf/cr/A-13.1.1,%20R.%201.pdf; liquid assets not considered
 socass_qc_assets_single;1500;float;;;
-socass_qc_base_single;8712;float;;; ---
-socass_qc_base_couple;13188;float;;; ---
-socass_qc_temp_single;1728;float;;; ---
-socass_qc_temp_couple;2976;float;;; ---
-socass_qc_temp_child_age;4;float;;; ---
-socass_qc_temp_elder_age;58;float;;; ---
-socass_qc_ajust_single;600;float;;; ---
-socass_qc_ajust_single_kid;1299.96;float;;; ---
-socass_qc_ajust_kid;624.96;float;;; ---
-socass_qc_ajust_kid1;1293;float;;; ---
-socass_qc_ajust_kid2;1086.96;float;;; ---
-socass_qc_ajust_kid3;1008.96;float;;; ---
-socass_qc_ajust_kid12_12yp;102.96;float;;; 12ans et plus ---
+socass_qc_base_single;9240;float;;; ok
+socass_qc_base_couple;14004;float;;; ok
+socass_qc_temp_single;1836;float;;; ok
+socass_qc_temp_couple;3168;float;;; ok
+socass_qc_temp_child_age;4;float;;; ok
+socass_qc_temp_elder_age;58;float;;; ok
+socass_qc_ajust_single;600;float;;; ok
+socass_qc_ajust_single_kid;1299.96;float;;; ok
+socass_qc_ajust_kid;624.96;float;;; ok
+socass_qc_ajust_kid1;1293;float;;; ok
+socass_qc_ajust_kid2;1086.96;float;;; ok
+socass_qc_ajust_kid3;1008.96;float;;; ok
+socass_qc_ajust_kid12_12yp;102.96;float;;; 12ans et plus ok
 socass_qc_reductionrate;1;float;;; 
-socass_qc_exemption_single;2400;float;;; ---
-socass_qc_exemption_couple;3600;float;;; ---
+socass_qc_exemption_single;2400;float;;; ok
+socass_qc_exemption_couple;3600;float;;; ok
 socass_on_assets_couple;10000;float;;https://www.mcss.gov.on.ca/en/mcss/programs/social/directives/index.aspx;#ZBO didn't change since 2017
 socass_on_assets_single;15000;float;;;didn't change since 2017
 socass_on_assets_kid;500;float;;;didn't change since 2017
