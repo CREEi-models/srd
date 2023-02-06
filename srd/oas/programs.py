@@ -13,8 +13,8 @@ def program(year, federal):
     Parameters
     ----------
     year: int
-        année (présentement entre 2016 et 2022)
-    federal: {srd.federal.form_2016, ..., srd.federal.form_2022}
+        année (présentement entre 2016 et 2023)
+    federal: {srd.federal.form_2016, ..., srd.federal.form_2023}
         instance de la classe srd.federal.form_xxxx (pour l'année xxxx) du module *federal*
     Returns
     -------
@@ -35,6 +35,8 @@ def program(year, federal):
         p = program_2021(federal)
     if year == 2022:
         p = program_2022(federal)
+    if year == 2023:
+        p = program_2023(federal)
     return p
 
 
@@ -264,3 +266,18 @@ class program_2022(program_2021):
         if p.age >= self.min_age_oas_increase:
             p.oas += p.oas * self.rate_oas_increase
         return self.pension_clawback(p, hh)
+
+
+class program_2023(program_2022):
+    """
+    Version du programme de 2023.
+
+    Parameters
+    ----------
+    federal: srd.federal.form_2023
+        instance de la classe srd.federal.form_2023 du module Federal
+    """
+
+    def __init__(self, federal):
+        add_params_as_attr(self, module_dir + "/oas/params/old_age_sec_2023.csv")
+        self.federal = federal

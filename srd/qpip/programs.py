@@ -12,7 +12,7 @@ def program(year):
     Parameters
     ----------
     year: int
-        année (présentement entre 2016 et 2022)
+        année (présentement entre 2016 et 2023)
     Returns
     -------
     class instance
@@ -32,6 +32,8 @@ def program(year):
         p = program_2021()
     if year == 2022:
         p = program_2022()
+    if year == 2023:
+        p = program_2023()
     return p
 
 
@@ -101,3 +103,12 @@ class program_2022(template):
 
     def __init__(self):
         add_params_as_attr(self, module_dir + "/qpip/params/parameters_2022.csv")
+
+
+class program_2023(template):
+    """
+    Version du programme de 2023.
+    """
+
+    def __init__(self):
+        add_params_as_attr(self, module_dir + "/qpip/params/parameters_2023.csv")
