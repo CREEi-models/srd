@@ -5,13 +5,13 @@ div_elig_cred_rate;0.150198;float;;;
 div_other_can_cred_rate;0.090313;float;;;
 cap_gains_rate;0.5;float;;; ---
 qpip_deduc_rate;0.43786;float;;;
-basic_amount_poor;14398;float;;; ---
-basic_amount_rich;12719;float;;; ---
+basic_amount_poor;15000;float;;; ok
+basic_amount_rich;13521;float;;; ok
 age_cred_amount;7898;float;;; ---
 min_age_cred;65;int;;; assume constant ---
 age_cred_exempt;39826;float;;; ---
 age_cred_claw_rate;0.15;float;;; assume constant ---
-empl_cred_max;1287;float;;; ---
+empl_cred_max;1368;float;;; ok
 pension_cred_amount;2000;float;;;
 pension_cred_min_age_split;65;int;;; assume constant ---
 disability_cred_amount;8870;float;;; ---
