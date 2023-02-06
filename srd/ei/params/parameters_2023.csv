@@ -1,0 +1,5 @@
+variable;value;type;definition;source;comments
+rate_EI;0.0163;float;;; ok
+rate_EI_qc;0.0127;float;;; ok
+max_earn_EI;61500;float;;; ok https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/employment-insurance-ei/ei-premium-rates-maximums.html
+min_earn_EI;2000;float;;; 
