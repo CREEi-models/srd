@@ -50,7 +50,7 @@ class behavior:
             self.nh = len(self.gridh)
         self.Lmax = Lmax
         return
-    #def map_chunk(self,df):
+    #    def map_chunk(self,df):
     #    return df.apply(self.map_dispinc,axis=1)
     def dispinc(self,row,hours):
         """Fonction permettant le calcul du revenu disponible étant donné un choix d'heures travaillées
@@ -118,10 +118,14 @@ class behavior:
         """
         # respondent
         mu = self.pars.loc[self.pars.index.get_level_values(0)=='L(r)','value']
+        mu2 = self.pars.loc[self.pars.index.get_level_values(0)=='L2(r)','value']
         mu = mu.reset_index().set_index('label')['value']
+        mu2 = mu2.reset_index().set_index('label')['value']
         self.data['mu_r'] = mu['constant']
+        self.data['mu_r1'] = mu2['constant']
         for v in self.shifters_vars:
                 self.data['mu_r'] += self.data['r_'+v]*mu[v]
+                self.data['mu_r1'] += self.data['r_'+v]*mu2[v]
         if self.icouple:
             mu = self.pars.loc[self.pars.index.get_level_values(0)=='L(s)','value']
             mu = mu.reset_index().set_index('label')['value']
@@ -136,10 +140,13 @@ class behavior:
         self.pars.set_index(['group','label'],inplace=True)
         # consumption
         self.pars.loc[('C','constant'),:] = [0.0,0.0,True]
+        self.pars.loc[('C2','constant'),:] = [0.0,0.0,True]
         # respondent leisure
         self.pars.loc[('L(r)','constant'),:] = [0.0,0.0,True]
+        self.pars.loc[('L2(r)','constant'),:] = [0.0,0.0,True]
         for v in self.shifters_vars:
             self.pars.loc[('L(r)',v),:] = [0.0,0.0,True]
+            self.pars.loc[('L2(r)',v),:] = [0.0,0.0,True]
         # if heterogeneity
         if self.ihetero:
             self.pars.loc[('L(r)','sigma'),:] = [-1,0.0,True]
@@ -310,7 +317,9 @@ class behavior:
             #pr = prob_couple(choice,mu_r,mu_s,mu_c,mu_rs,C,Lr,Ls,Lv,eta_r,eta_s,fcosts_r,fcosts_s,N,R,J)
         else :
             mu_r = self.data.loc[:,'mu_r'].astype('float64').values
+            mu_r1 = self.data.loc[:,'mu_r1'].astype('float64').values
             mu_c = self.pars.loc[('C','constant'),'value']
+            mu_c1 = self.pars.loc[('C2','constant'),'value']
             C = self.data[['cons_'+str(j) for j in range(self.nh)]].values
             Lmax = self.Lmax
             Lr = [Lmax-h for h in self.gridh]
@@ -330,11 +339,14 @@ class behavior:
             pr = np.zeros((N,R))
             for r in range(R):
                 mur = mu_r + sigma*eta_r[:,r]
+                #mur1 = mu_r1 + sigma*eta_r[:,r]
                 for j in range(J):
-                    utils[:,j] = (mur*np.log(Lr[j]) + mu_c*np.log(C[:,j]) + fcosts[j])
+                    utils[:,j] = (mur*np.log(Lr[j]) + mu_r1*np.log(Lr[j])*np.log(Lr[j]) + mu_c*np.log(C[:,j]) + mu_c1*np.log(C[:,j])*np.log(C[:,j]) + fcosts[j])
                 num = np.exp(utils[np.arange(N),choice])
                 den = np.sum(np.exp(utils),axis=1)
                 pr[:,r] = num/den
+                pr[np.isnan(pr)] = 0
+                #print(pr)
             #pr = prob_single(choice,mu_r,mu_c,C,Lr,sigma,eta_r,fcosts,N,R,J)
 
         return np.mean(pr,axis=1)
