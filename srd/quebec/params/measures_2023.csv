@@ -14,7 +14,7 @@ nrtc_pension_max;3211;float;;; ok
 nrtc_pension_factor;1.25;float;;;
 nrtc_claw_rate;0.1875;float;;; ok
 nrtc_claw_cutoff;38945;float;;; ok 
-nrtc_rate;0.15;float;;; ok
+nrtc_rate;0.14;float;;; ok
 nrtc_base;17183;float;;; ok
 nrtc_disabled;3815;float;;; ok 
 nrtc_med_exp_rate;0.03;float;;; assumed constant ok
@@ -53,11 +53,11 @@ pdip_couple_kid2p;7055;float;;; --
 pdip_single_kid2p;14810;float;;; --
 pdip_cutoff;710;float;;; ok
 solidarity_tvq_base;329;float;;; ok
-solidarity_housing_kid;136;float;;; ok
+solidarity_housing_kid;144;float;;; ok
 solidarity_tvq_couple;329;float;;; ok 
-solidarity_housing_not_alone;774;float;;; ok 
+solidarity_housing_not_alone;821;float;;; ok 
 solidarity_tvq_single;156;float;;; ok
-solidarity_housing_alone;638;float;;; ok
+solidarity_housing_alone;677;float;;; ok
 solidarity_cutoff;39160;float;;; ok 
 solidarity_rate_total;0.06;float;;;  assumed constant ok
 solidarity_rate_tvq;0.03;float;;; assumed constant ok
@@ -89,7 +89,7 @@ med_exp_max_fam_inc;48220;float;;;
 exp_work_min_age;60;int;;; assumed constant ok
 exp_work_claw_rate;0.05;float;;; assumed constant ok
 exp_work_cut_inc;35690;float;;; ---
-exp_work_rate;0.15;float;;; assumed constant ok
+exp_work_rate;0.14;float;;; assumed constant ok
 exp_work_min_inc;5000;float;;; assumed constant ---
 exp_work_max_work_inc_60;10000;float;;; assumed constant ---
 exp_work_max_work_inc_61;10000;float;;; assumed constant ---
