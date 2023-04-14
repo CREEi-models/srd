@@ -449,3 +449,50 @@ class form_2023(form_2022):
             self.witb_params[prov] = get_params(
                 module_dir + f"/federal/params/fed_witb_{prov}_2023.csv"
             )
+        
+    def gst_hst_credit(self, p, hh):
+        """
+        Fonction qui calcule le crédit pour la taxe sur les produits et services/taxe de vente harmonisée (TPS/TVH).
+
+        Le montant du crédit est reçu par le conjoint au revenu imposable le plus élevé.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+        Returns
+        -------
+        float
+            Montant du crédit.
+        """
+        if p is not max(hh.sp, key=lambda p: p.fed_return['taxable_income']):
+            return 0
+
+        clawback = self.gst_cred_claw_rate * max(0, hh.fam_net_inc_fed - self.gst_cred_claw_cutoff)
+
+        amount = self.gst_cred_base
+        if hh.couple or hh.nkids_0_18 >= 1:
+            amount += self.gst_cred_base + hh.nkids_0_18 * self.gst_cred_other  # single with kids works same as couple
+        else:
+            amount += min(self.gst_cred_other,
+                          self.gst_cred_rate * max(0, hh.fam_net_inc_fed - self.gst_cred_base_amount))
+            
+        gst_amount = max(0, amount - clawback) 
+            
+        ## BONUS
+        # Budget 2023 proposes to introduce an increase to the maximum GSTC
+        # amount for January 2023 that would be known as the Grocery Rebate.
+
+        clawback_bonus = self.gst_cred_claw_rate_rebate * max(0, hh.fam_net_inc_fed - self.gst_cred_claw_cutoff)
+
+        amount_bonus = self.gst_base_grocery_rebate
+        if hh.couple or hh.nkids_0_18 >= 1:
+            amount_bonus += (self.gst_base_grocery_rebate + hh.nkids_0_18 * self.gst_other_grocery_rebate)  # single with kids works same as couple
+        else:
+            amount_bonus += min(self.gst_other_grocery_rebate,
+                          self.gst_cred_rate_rebate * max(0, hh.fam_net_inc_fed - self.gst_cred_base_amount))
+
+        bonus = max(0, amount_bonus - clawback_bonus)
+        return gst_amount + bonus

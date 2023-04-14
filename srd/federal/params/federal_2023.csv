@@ -45,10 +45,14 @@ med_exp_claw_cutoff;29129;float;;; ---
 med_exp_max;1316;float;;; ---
 med_exp_min_work_inc;3841;float;;; ---
 gst_cred_claw_rate;0.05;float;;; assume constant ---
+gst_cred_claw_rate_rebate;0.15;float;;; ok
 gst_cred_claw_cutoff;39826;float;;; ---
 gst_cred_base;306;float;;; ---
 gst_cred_other;161;float;;; ---
+gst_base_grocery_rebate;153;float;;; ok
+gst_other_grocery_rebate;81;float;;; ok
 gst_cred_rate;0.02;float;;; assume constant ---
+gst_cred_rate_rebate;0.05;float;;; ok
 gst_cred_base_amount;9919;float;;; ---
 gst_covid_single;400;float;;; ???
 gst_covid_couple;600;float;;;???
