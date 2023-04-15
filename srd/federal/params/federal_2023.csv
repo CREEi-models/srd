@@ -5,18 +5,18 @@ div_elig_cred_rate;0.150198;float;;;
 div_other_can_cred_rate;0.090313;float;;;
 cap_gains_rate;0.5;float;;; ---
 qpip_deduc_rate;0.43786;float;;;
-basic_amount_poor;15000;float;;; ok
+basic_amount_poor;15000;float;;https://www.taxtips.ca/nrcredits/tax-credits-2023-base.htm; ok
 basic_amount_rich;13521;float;;; ok
-age_cred_amount;7898;float;;; ---
+age_cred_amount;8396;float;;; ok
 min_age_cred;65;int;;; assume constant ---
-age_cred_exempt;39826;float;;; ---
+age_cred_exempt;42335;float;;; ok
 age_cred_claw_rate;0.15;float;;; assume constant ---
 empl_cred_max;1368;float;;; ok
-pension_cred_amount;2000;float;;;
+pension_cred_amount;2000;float;;; ok
 pension_cred_min_age_split;65;int;;; assume constant ---
-disability_cred_amount;8870;float;;; ---
+disability_cred_amount;9428;float;;; ok
 med_exp_nr_cred_max_age;18;int;;; assume constant ---
-med_exp_nr_cred_max_claw;2479;float;;; ---
+med_exp_nr_cred_max_claw;2635;float;;; ok
 med_exp_nr_cred_rate;0.03;float;;; ---
 donation_frac_net;0.75;float;;;
 donation_low_cut;200;float;;;
@@ -59,7 +59,7 @@ gst_covid_couple;600;float;;;???
 chcare_young;8000;float;;; assume constant ---
 chcare_old;5000;float;;; assume constant ---
 chcare_rate_inc;0.66666;float;;; assume constant ---
-ei_max_net_inc;70375;float;;https://www.canada.ca/en/employment-social-development/programs/ei/ei-list/reports/repayment.html;
+ei_max_net_inc;76875;float;;https://www.canada.ca/en/employment-social-development/programs/ei/ei-list/reports/repayment.html; ok
 ei_rate_repay;0.3;float;;;
 ded_qpp_rate;0.052632;float;;;
 ded_qpp_exempt;3500;int;;; ---
