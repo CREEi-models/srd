@@ -1,25 +1,25 @@
 variable;value;type;definition;source;comments
-base_single;3000;int;;https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-workers-benefit/calculation-sheets.html;
-base_couple;3000;int;;;
-rate_single_dep;0.27;float;;;
-rate;0.27;float;;;
-rate_couple_dep;0.27;float;;;
-max_single;1428.48;float;;
-max_single_dep;1428.48;float;;;
-max_couple;2460.67;float;;;
-max_couple_dep;2460.67;float;;;
-exempt_single;23494.66;float;;;
-exempt_single_dep;26805.25;float;;;
-exempt_couple;26805.25;float;;;
-exempt_couple_dep;26805.25;float;;;
-claw_rate;0.12;float;;;
-dis_base;1150;int;;;
-dis_max;737.28;float;;;
-dis_rate_single;0.27;float;;;
-dis_rate_couple;0.27;float;;;
-dis_exempt_single;33017.86;float;;;
-dis_exempt_single_dep;43209.73;float;;;
-dis_exempt_couple;43209.73;float;;;
-dis_exempt_couple_dep;43209.73;float;;;
-dis_claw_rate;0.15;float;;;
-dis_couple_claw_rate;0.075;float;;;
+base_single;3000;int;;https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-workers-benefit/calculation-sheets.html;ok
+base_couple;3000;int;;https://www.taxtips.ca/filing/canada-workers-benefit/cwb-2022.htm;ok
+rate_single_dep;0.27;float;;https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-workers-benefit/calculation-single-nochild-canada.html;ok
+rate;0.27;float;;https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-workers-benefit/calculation-families-canada.html;assumed its ok
+rate_couple_dep;0.27;float;;;ok
+max_single;1428.48;float;;;I have 1428 with no decimals, assumed its ok
+max_single_dep;1428.48;float;;;I have 1428 with no decimals, assumed its ok
+max_couple;2460.67;float;;;I have 2461 with no decimals, assumed its ok
+max_couple_dep;2460.67;float;;;I have 2461 with no decimals, assumed its ok
+exempt_single;23494.66;float;;;I have 23495 with no decimals, assumed its ok
+exempt_single_dep;26805.25;float;;;I have 26805 with no decimals, assumed its ok
+exempt_couple;26805.25;float;;;I have 26805 with no decimals, assumed its ok
+exempt_couple_dep;26805.25;float;;;I have 26805 with no decimals, assumed its ok
+claw_rate;0.15;float;;;changed to 0.15 (before it was 0.12)
+dis_base;1150;int;;;ok
+dis_max;737.28;float;;;I have 737 with no decimals, assumed its ok
+dis_rate_single;0.27;float;;;ok
+dis_rate_couple;0.27;float;;;ok
+dis_exempt_single;33017.86;float;;;I have 33018 with no decimals, assumed its ok
+dis_exempt_single_dep;43209.73;float;;;I have 43210 with no decimals, assumed its ok
+dis_exempt_couple;43209.73;float;;;I have 43210 with no decimals, assumed its ok
+dis_exempt_couple_dep;43209.73;float;;;I have 43210 with no decimals, assumed its ok
+dis_claw_rate;0.15;float;;;ok
+dis_couple_claw_rate;0.075;float;;;ok

@@ -1,26 +1,26 @@
 variable;value;type;definition;source;comments
-base_single;2400;int;;https://www.taxtips.ca/filing/canada-workers-benefit/cwb-2021-quebec.htm;
-base_couple;3600;int;;;
-rate_single_dep;0.2;float;;;
-rate;0.373;float;;;
-rate_couple_dep;0.239;float;;;
-max_single;3277.92;float;;;
-max_single_dep;1757.59;float;;;
-max_couple;5120.45;float;;;
-max_couple_dep;3280.93;float;;;
-exempt_single;12683.06;float;;;
-exempt_single_dep;12700.5;float;;;
-exempt_couple;19457.77;float;;;
-exempt_couple_dep;19508.32;float;;;
-exempt_second_earner;14000;int;;;
-claw_rate;0.2;float;;;
-dis_base;1200;int;;;
-dis_max;738.31;float;;;
-dis_rate_single;0.4;float;;;
-dis_rate_couple;0.2;float;;;
-dis_exempt_single;29072.64;float;;;
-dis_exempt_single_dep;21488.47;float;;;
-dis_exempt_couple;45060.02;float;;;
-dis_exempt_couple_dep;35912.95;float;;;
-dis_claw_rate;0.2;float;;;
-dis_couple_claw_rate;0.1;float;;;both spouses disabled
+base_single;2400;int;;https://www.taxtips.ca/filing/canada-workers-benefit/cwb-2021-quebec.htm;ok
+base_couple;3600;int;;https://www.taxtips.ca/filing/canada-workers-benefit/cwb-2022-quebec.htm;ok
+rate_single_dep;0.2;float;;;ok
+rate;0.373;float;;;ok
+rate_couple_dep;0.239;float;;;ok
+max_single;3296.57;float;;;Changed to 3296.57 (before it was 3277.92)
+max_single_dep;1767.60;float;;;Changed to 1767.60 (before it was 1757.59)
+max_couple;5146.65;float;;;Changed to 5146.65 (before it was 5120.45)
+max_couple_dep;3297.72;float;;;Changed to 3297.72 (before it was 3280.93)
+exempt_single;12589.79;float;;;Changed to 12589.79 (before it was 12683.06)
+exempt_single_dep;12650.47;float;;;Changed to 12,650.47 (before it was 12700.5)
+exempt_couple;19326.77;float;;;Changed to 19,326.77 (before it was 19457.77)
+exempt_couple_dep;19424.35;float;;;Changed to 19,424.35 (before it was 19508.32
+exempt_second_earner;14336;int;;;Changed to 14,336.00 (before it was 14000)
+claw_rate;0.2;float;;;ok
+dis_base;1200;int;;;ok
+dis_max;740.04;float;;;Changed to 740.04 (before it was 738.31)
+dis_rate_single;0.4;float;;;ok
+dis_rate_couple;0.2;float;;;ok
+dis_exempt_single;29072.64;float;;;ok
+dis_exempt_single_dep;21488.47;float;;;ok
+dis_exempt_couple;45060.02;float;;;ok
+dis_exempt_couple_dep;35912.95;float;;;ok
+dis_claw_rate;0.2;float;;;ok
+dis_couple_claw_rate;0.1;float;;;both spouses disabled / ok : was there in 2021
