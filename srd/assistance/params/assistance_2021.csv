@@ -17,8 +17,8 @@ socass_qc_ajust_kid12_12yp;102.96;float;;; 12ans et plus
 socass_qc_reductionrate;1;float;;; 
 socass_qc_exemption_single;2400;float;;;
 socass_qc_exemption_couple;3600;float;;https://cdn-contenu.quebec.ca/cdn-contenu/adm/min/travail-emploi-solidarite-sociale/publications-adm/autres/FI_indexation_aide_sociale_VF.pdf?1576871495;
-socass_on_assets_couple;10000;float;;https://www.mcss.gov.on.ca/en/mcss/programs/social/directives/index.aspx;#ZBO didn't change since 2017
-socass_on_assets_single;15000;float;;;didn't change since 2017
+socass_on_assets_couple;15000;float;;https://www.mcss.gov.on.ca/en/mcss/programs/social/directives/index.aspx;#ZBO didn't change since 2017
+socass_on_assets_single;10000;float;;;didn't change since 2017
 socass_on_assets_kid;500;float;;;didn't change since 2017
 socass_on_exempt;2400;float;;;
 socass_on_exempt_rate;0.5;float;;;
