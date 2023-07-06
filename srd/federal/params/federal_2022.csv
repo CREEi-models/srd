@@ -2,7 +2,7 @@ variable;value;type;definition;source;comments
 div_elig_factor;1.38;float;;;
 div_other_can_factor;1.15;float;;;
 div_elig_cred_rate;0.150198;float;;;
-div_other_can_cred_rate;0.090313;float;;;
+div_other_can_cred_rate;0.090301;float;;;
 cap_gains_rate;0.5;float;;; ---
 qpip_deduc_rate;0.43786;float;;;
 basic_amount_poor;14398;float;;; ---
@@ -20,7 +20,7 @@ med_exp_nr_cred_max_claw;2479;float;;; ---
 med_exp_nr_cred_rate;0.03;float;;; ---
 donation_frac_net;0.75;float;;;
 donation_low_cut;200;float;;;
-donation_high_cut;216511;float;;https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/foire-questions-particuliers/rajustement-montants-fonction-indexation-impot-particuliers-prestations.html;
+donation_high_cut;221708;float;;https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/foire-questions-particuliers/rajustement-montants-fonction-indexation-impot-particuliers-prestations.html;
 donation_low_rate;0.15;float;;;
 donation_med_rate;0.29;float;;;
 donation_high_rate;0.33;float;;;
@@ -60,5 +60,5 @@ ei_rate_repay;0.3;float;;;
 ded_qpp_rate;0.052632;float;;;
 ded_qpp_exempt;3500;int;;; ---
 ded_qpp_claw_rate;0.03;float;;;
-nrtc_spouse_dis;2357;int;;; indexe 2.64% ---
+nrtc_spouse_dis;2350;int;;; indexe 2.64% ---
 dep_disa_amount;2985;int;;; ---
