@@ -1,68 +1,68 @@
-variable;value;type;definition;source;comments
-div_elig_factor;1.38;float;;;
-div_other_can_factor;1.15;float;;;
-div_elig_cred_rate;0.150198;float;;;
-div_other_can_cred_rate;0.090313;float;;;
-cap_gains_rate;0.5;float;;; ---
-qpip_deduc_rate;0.43786;float;;;
-basic_amount_poor;15000;float;;https://www.taxtips.ca/nrcredits/tax-credits-2023-base.htm; ok
-basic_amount_rich;13521;float;;; ok
-age_cred_amount;8396;float;;; ok
-min_age_cred;65;int;;; assume constant ---
-age_cred_exempt;42335;float;;; ok
-age_cred_claw_rate;0.15;float;;; assume constant ---
-empl_cred_max;1368;float;;; ok
-pension_cred_amount;2000;float;;; ok
-pension_cred_min_age_split;65;int;;; assume constant ---
-disability_cred_amount;9428;float;;; ok
-med_exp_nr_cred_max_age;18;int;;; assume constant ---
-med_exp_nr_cred_max_claw;2635;float;;; ok
-med_exp_nr_cred_rate;0.03;float;;; ---
-donation_frac_net;0.75;float;;;
-donation_low_cut;200;float;;;
-donation_high_cut;216511;float;;https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/foire-questions-particuliers/rajustement-montants-fonction-indexation-impot-particuliers-prestations.html;
-donation_low_rate;0.15;float;;;
-donation_med_rate;0.29;float;;;
-donation_high_rate;0.33;float;;;
-rate_non_ref_tax_cred;0.15;float;;;
-rate_abatment_qc;0.165;float;;;
-ccb_young;6997;float;;; --- 
-ccb_old;5903;float;;; ---
-ccb_max_num_ch;4;int;;; assume constant ---
-ccb_cutoff_1;32797;float;;; ---
-ccb_cutoff_2;71060;float;;; ---
-ccb_rate_1_1ch;0.07;float;;https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit-overview/canada-child-benefit-we-calculate-your-ccb.html;
-ccb_rate_1_2ch;0.135;float;;;
-ccb_rate_1_3ch;0.19;float;;;
-ccb_rate_1_4ch;0.23;float;;;
-ccb_rate_2_1ch;0.032;float;;;
-ccb_rate_2_2ch;0.057;float;;;
-ccb_rate_2_3ch;0.08;float;;;
-ccb_rate_2_4ch;0.095;float;;;
-med_exp_rate;0.25;float;;; assume constant ---
-med_exp_claw_rate;0.05;float;;; assume constant ---
-med_exp_claw_cutoff;29129;float;;; ---
-med_exp_max;1316;float;;; ---
-med_exp_min_work_inc;3841;float;;; ---
-gst_cred_claw_rate;0.05;float;;; assume constant ---
-gst_cred_claw_rate_rebate;0.15;float;;; ok
-gst_cred_claw_cutoff;39826;float;;; ---
-gst_cred_base;306;float;;; ---
-gst_cred_other;161;float;;; ---
-gst_base_grocery_rebate;153;float;;; ok
-gst_other_grocery_rebate;81;float;;; ok
-gst_cred_rate;0.02;float;;; assume constant ---
-gst_cred_rate_rebate;0.05;float;;; ok
-gst_cred_base_amount;9919;float;;; ---
-gst_covid_single;400;float;;; ???
-gst_covid_couple;600;float;;;???
-chcare_young;8000;float;;; assume constant ---
-chcare_old;5000;float;;; assume constant ---
-chcare_rate_inc;0.66666;float;;; assume constant ---
-ei_max_net_inc;76875;float;;https://www.canada.ca/en/employment-social-development/programs/ei/ei-list/reports/repayment.html; ok
-ei_rate_repay;0.3;float;;;
-ded_qpp_rate;0.052632;float;;;
-ded_qpp_exempt;3500;int;;; ---
-ded_qpp_claw_rate;0.03;float;;;
-nrtc_spouse_dis;2357;int;;; indexe 2.64% ---
-dep_disa_amount;2985;int;;; ---
+variable;value;type;definition;source;comments;;;;;
+div_elig_factor;1.38;float;;; assume constant ---;;;;;
+div_other_can_factor;1.15;float;;; assume constant ---;;;;;
+div_elig_cred_rate;0.150198;float;;https://turboimpot.intuit.ca/info/le-credit-dimpot-federal-pour-dividendes-au-canada-6449#:~:text=Les%20taux%20courants%20sont%2015%2C0198%20%25%20du%20montant,f%C3%A9d%C3%A9ral%20de%2041%2C45%20%24%20%28276%20%24%20x%2015%2C0198%29.;ok;;;;;
+div_other_can_cred_rate;0.090301;float;;https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/sujets/tout-votre-declaration-revenus/declaration-revenus/remplir-declaration-revenus/deductions-credits-depenses/ligne-40425-credit-impot-federal-dividendes.html;changed to 0,090301, it was 0,090313 before;;;;;
+cap_gains_rate;0.5;float;;;ok;;;;;
+qpip_deduc_rate;0.43786;float;;https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5005-s10/5005-s10-22e.pdf;NOT UPDATED NEED TO SEE 2023 ;;;;;A SUIVRE
+basic_amount_poor;15000;float;;https://www.taxtips.ca/nrcredits/tax-credits-2023-base.htm; ok;;;;;
+basic_amount_rich;13521;float;;; ok;;;;;
+age_cred_amount;8396;float;;; ok;;;;;
+min_age_cred;65;int;;; assume constant ---;;;;;
+age_cred_exempt;42335;float;;; ok;;;;;
+age_cred_claw_rate;0.15;float;;; assume constant ---;;;;;
+empl_cred_max;1368;float;;; ok;;;;;
+pension_cred_amount;2000;float;;; ok;;;;;
+pension_cred_min_age_split;65;int;;; assume constant ---;;;;;
+disability_cred_amount;9428;float;;; ok;;;;;
+med_exp_nr_cred_max_age;18;int;;; assume constant ---;;;;;
+med_exp_nr_cred_max_claw;2635;float;;; ok;;;;;
+med_exp_nr_cred_rate;0.03;float;;;ok;;;;;
+donation_frac_net;0.75;float;;;ok;;;;;
+donation_low_cut;200;float;;;ok;;;;;
+donation_high_cut;235675;float;;https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/foire-questions-particuliers/rajustement-montants-fonction-indexation-impot-particuliers-prestations.html;change to 235675, before it was 221708;;;;;
+donation_low_rate;0.15;float;;https://www.canada.ca/en/revenue-agency/services/charities-giving/giving-charity-information-donors/claiming-charitable-tax-credits/amended-legislation-charitable-donation-tax-credit.html;ok;;;;;
+donation_med_rate;0.29;float;;;ok;;;;;
+donation_high_rate;0.33;float;;;ok;;;;;
+rate_non_ref_tax_cred;0.15;float;;; assume constant ---;;;;;
+rate_abatment_qc;0.165;float;;; assume constant ---;;;;;
+ccb_young;7437;float;;;changed to 7437 (before it was 6997);;;;;
+ccb_old;6275;float;;;changed to 6275 (before it was 5903);;;;;
+ccb_max_num_ch;4;int;;;assume constant ---;;;;;
+ccb_cutoff_1;34863;float;;;changed to 34863 (before it was 32797);;;;;
+ccb_cutoff_2;75537;float;;;changed to 75537 (before it was 71060);;;;;
+ccb_rate_1_1ch;0.07;float;;https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit-overview/canada-child-benefit-we-calculate-your-ccb.html;ok;;;;;
+ccb_rate_1_2ch;0.135;float;;https://www.canada.ca/fr/agence-revenu/services/prestations-enfants-familles/allocation-canadienne-enfants-apercu/allocation-canadienne-enfants-ace-feuille-calcul-prestations-juillet-2023-juin-2024-annee-imposition-2022.html;ok;;;;;
+ccb_rate_1_3ch;0.19;float;;;ok;;;;;
+ccb_rate_1_4ch;0.23;float;;;ok;;;;;
+ccb_rate_2_1ch;0.032;float;;https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/foire-questions-particuliers/rajustement-montants-fonction-indexation-impot-particuliers-prestations.html;ok;;;;;
+ccb_rate_2_2ch;0.057;float;;;ok;;;;;
+ccb_rate_2_3ch;0.08;float;;;ok;;;;;
+ccb_rate_2_4ch;0.095;float;;;ok;;;;;
+med_exp_rate;0.25;float;;; assume constant ---;;;;;
+med_exp_claw_rate;0.05;float;;; assume constant ---;;;;;
+med_exp_claw_cutoff;30964;float;;;changed to 30964 (before it was 29129);;;;;
+med_exp_max;1399;float;;;changed to 1399 (before it was 1316);;;;;
+med_exp_min_work_inc;4083;float;;;changed to 4083 (before it was 3841);;;;;
+gst_cred_claw_rate;0.05;float;;; assume constant ---;;;;;
+gst_cred_claw_rate_rebate;0.15;float;;; ok;;;;;
+gst_cred_claw_cutoff;42335;float;;;changed to 42335 (before it was 39826);;;;;
+gst_cred_base;325;float;;;changed to 325 (before it was 306);;;;;
+gst_cred_other;171;float;;;changed to 171 (before it was 161);;;;;
+gst_base_grocery_rebate;153;float;;; ok;;;;;
+gst_other_grocery_rebate;81;float;;; ok;;;;;
+gst_cred_rate;0.02;float;;; assume constant ---;;;;;
+gst_cred_rate_rebate;0.05;float;;; ok;;;;;
+gst_cred_base_amount;10544;float;;;changed to 10544 (before it was 9919);;;;;
+gst_covid_single;400;float;;; ???;;;;;
+gst_covid_couple;600;float;;;???;;;;;
+chcare_young;8000;float;;; assume constant ---;;;;;
+chcare_old;5000;float;;; assume constant ---;;;;;
+chcare_rate_inc;0.66666;float;;; assume constant ---;;;;;
+ei_max_net_inc;76875;float;;https://www.canada.ca/en/employment-social-development/programs/ei/ei-list/reports/repayment.html; ok;;;;;
+ei_rate_repay;0.3;float;;https://www.canada.ca/en/employment-social-development/programs/ei/ei-list/reports/repayment.html;ok;;;;;
+ded_qpp_rate;0.052632;float;;;;;;;;
+ded_qpp_exempt;3500;int;;; ---;;;;;
+ded_qpp_claw_rate;0.03;float;;;;;;;;
+nrtc_spouse_dis;2350;int;;https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-s5/5000-s5-22f.pdf;NOT UPDATED NEED TO SEE 2023 ;;;;;A SUIVRE
+dep_disa_amount;3173;int;;;changed to 3173 (before it was 2985);;;;;
