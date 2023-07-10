@@ -27,15 +27,15 @@ div_elig_factor;1.38;float;;; ---
 div_other_can_factor;1.15;float;;; ---
 div_other_can_cred_rate;0.029863;float;;; ---
 div_elig_cred_rate;0.10;float;;; ---
-reduction_base;251;float;;; 
-reduction_kid;464;float;;; 
+reduction_base;257;float;;https://budget.ontario.ca/2022/fallstatement/provisions.html; 
+reduction_kid;475;float;;; 
 lift_rate;0.0505;float;;5006-a-19e; ---
 lift_max_amount;875;float;;; ---
 lift_claw_rate;0.05;float;;; ---
 lift_cutoff_single;32500;float;;; ---
 lift_cutoff_couple;65000;float;;; ---
-ocb_amount;1474;float;;https://www.canada.ca/fr/agence-revenu/services/prestations-enfants-familles/programmes-provinciaux-territoriaux/province-ontario.html#cb; 
-ocb_cutoff;22504;float;;; 
+ocb_amount;1509;float;;https://www.canada.ca/fr/agence-revenu/services/prestations-enfants-familles/programmes-provinciaux-territoriaux/province-ontario.html#cb;changed from 1474 to 1509
+ocb_cutoff;23044;float;;; 
 ocb_claw_rate;0.08;float;;; 
 ostc_amount;316;float;;hhttps://www.ontario.ca/page/ontario-trillium-benefit#section-3; 
 ostc_claw_rate;0.04;float;;; 
