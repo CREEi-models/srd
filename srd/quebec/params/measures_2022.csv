@@ -85,10 +85,10 @@ med_exp_claw_rate;0.05;float;;; ---
 med_exp_claw_cutoff;24635;float;;; ---
 med_exp_max;1274;float;;; ---
 med_exp_min_work_inc;3260;float;;; ---
-med_exp_max_fam_inc;48220;float;;;
+med_exp_max_fam_inc;50115;float;;;changed to 50 115, before it was 48220
 exp_work_min_age;60;int;;; ---
 exp_work_claw_rate;0.05;float;;; assumed constant ---
-exp_work_cut_inc;35690;float;;; ---
+exp_work_cut_inc;36590;float;;; ---
 exp_work_rate;0.15;float;;; assumed constant ---
 exp_work_min_inc;5000;float;;; assumed constant ---
 exp_work_max_work_inc_60;10000;float;;; assumed constant ---
