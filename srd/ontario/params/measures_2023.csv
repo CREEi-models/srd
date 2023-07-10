@@ -1,19 +1,19 @@
 variable;value;type;definition;source ;comments
 pension_cred_min_age_split;65;int;;;ok
 nrtc_base;11865;float;;; ok
-nrtc_age_amount;5440;float;;; ---
-nrtc_age;65;int;;; ---
-nrtc_age_claw_cutoff;40495;float;;; ---
-nrtc_age_claw_rate;0.15;float;;; ok
-nrtc_spouse_cutoff;10406;float;;; ---
-nrtc_spouse_max;9460;float;;; ---
-nrtc_pension_cred_min_age_split;65;int;;; ---
-nrtc_pension_cred_amount;1541;float;;; ---
-nrtc_disabled;9001;float;;; ---
-nrtc_med_exp_age;18;int;;; ---
-nrtc_med_exp_claw;2522;float;;; ---
-nrtc_med_exp_rate;0.03;float;;; ---
-nrtc_med_exp_max_dep;13593;float;;; ---
+nrtc_age_amount;5793;float;;;changed to 5793, before it was 5440
+nrtc_age;65;int;;;ok
+nrtc_age_claw_cutoff;43127;float;;;changed to 43 127, before it was 40 495
+nrtc_age_claw_rate;0.15;float;;https://www.canada.ca/en/revenue-agency/services/forms-publications/td1-personal-tax-credits-returns/td1-forms-pay-received-on-january-1-2022-later/td1on-ws.html; ok
+nrtc_spouse_cutoff;11082;float;;;changed to 11082, before it was 10406
+nrtc_spouse_max;10075;float;;;changed to 10075, before it was 9460
+nrtc_pension_cred_min_age_split;65;int;;;ok
+nrtc_pension_cred_amount;1541;float;;;changed to 1641, before it was 1541
+nrtc_disabled;9586;float;;;changed to 9586, before it was 9001
+nrtc_med_exp_age;18;int;;;ok
+nrtc_med_exp_claw;2685;float;;https://www.taxtips.ca/nrcredits/tax-credits-2023-base.htm;changed to 2685, before it was 2522
+nrtc_med_exp_rate;0.03;float;;;ok
+nrtc_med_exp_max_dep;14476;float;;;changed to 14476, before it was 13593
 nrtc_rate;0.0505;float;;; ok
 nrtc_donation_frac_net;0.75;float;;https://www.taxtips.ca/filing/donation-tax-credit.htm;ok
 nrtc_donation_cutoff;200;float;;;ok
