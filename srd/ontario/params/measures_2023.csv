@@ -1,5 +1,5 @@
 variable;value;type;definition;source ;comments
-pension_cred_min_age_split;65;int;;; ---
+pension_cred_min_age_split;65;int;;;ok
 nrtc_base;11865;float;;; ok
 nrtc_age_amount;5440;float;;; ---
 nrtc_age;65;int;;; ---
@@ -15,10 +15,10 @@ nrtc_med_exp_claw;2522;float;;; ---
 nrtc_med_exp_rate;0.03;float;;; ---
 nrtc_med_exp_max_dep;13593;float;;; ---
 nrtc_rate;0.0505;float;;; ok
-nrtc_donation_frac_net;0.75;float;;; ---
-nrtc_donation_cutoff;200;float;;; ---
-nrtc_donation_low_rate;0.0505;float;;; ---
-nrtc_donation_high_rate;0.1116;float;;; ---
+nrtc_donation_frac_net;0.75;float;;https://www.taxtips.ca/filing/donation-tax-credit.htm;ok
+nrtc_donation_cutoff;200;float;;;ok
+nrtc_donation_low_rate;0.0505;float;;https://www.taxtips.ca/filing/donations/tax-credit-rates-2023.htm;ok
+nrtc_donation_high_rate;0.1116;float;;;ok
 surtax_low_rate;0.20;float;;https://www.taxtips.ca/taxrates/on.htm; ok
 surtax_low_cutoff;5315;float;;; ok
 surtax_high_rate;0.36;float;;; ok
@@ -27,34 +27,34 @@ div_elig_factor;1.38;float;;; ok
 div_other_can_factor;1.15;float;;; ok
 div_other_can_cred_rate;0.029863;float;;; ok
 div_elig_cred_rate;0.10;float;;; ok
-reduction_base;251;float;;; 
-reduction_kid;464;float;;; 
-lift_rate;0.0505;float;;5006-a-19e; ---
-lift_max_amount;875;float;;; ---
-lift_claw_rate;0.05;float;;; ---
-lift_cutoff_single;32500;float;;; ---
-lift_cutoff_couple;65000;float;;; ---
-ocb_amount;1474;float;;https://www.canada.ca/fr/agence-revenu/services/prestations-enfants-familles/programmes-provinciaux-territoriaux/province-ontario.html#cb; 
-ocb_cutoff;22504;float;;; 
-ocb_claw_rate;0.08;float;;; 
-ostc_amount;316;float;;hhttps://www.ontario.ca/page/ontario-trillium-benefit#section-3; 
-ostc_claw_rate;0.04;float;;; 
-ostc_single_cutoff;24332;float;;; 
-ostc_couple_dep_cutoff;30415;float;;;
-chcare_rate_bonus;0.20;float;;;
-caip_single;373;int;;;
-caip_couple;186;int;;;
-caip_kid1;186;int;;;
-caip_kid12;93;int;;;
-oeptc_rate;0.02;float;;;
-oeptc_prop_tax_rate;0.1;float;;;
-oeptc_rent_rate;0.2;float;;;
-oeptc_energy_amount;249;int;;;
-oeptc_prop;810;int;;;
-oeptc_prop_old;499;int;;;
-oeptc_prop_amount;62;int;;;
-oeptc_prop_amount_old;529;int;;;
-oeptc_cutoff_couple_old;37373;int;;;
-oeptc_cutoff_single_old;31144;int;;;
-oeptc_cutoff_couple;31144;int;;;
-oeptc_cutoff_single;24916;int;;;
+reduction_base;274;float;;https://www.knotia.ca/Tools/Tax/Calculators/Rates/2023/2023_R2_ON.pdf#:~:text=The%20low-income%20tax%20reduction%20%28%24251%20of%20Ontario%20tax%29,provincial%20tax%20on%20income%20between%20%2415%2C851%20and%20%2420%2C821.;ok
+reduction_kid;475;float;;https://budget.ontario.ca/2022/fallstatement/provisions.html ;Couldn't find 2023
+lift_rate;0.0505;float;;5006-a-19e;ok
+lift_max_amount;875;float;;https://www.ontario.ca/page/low-income-workers-tax-credit;ok
+lift_claw_rate;0.05;float;;;ok
+lift_cutoff_single;32500;float;;;ok
+lift_cutoff_couple;65000;float;;;ok
+ocb_amount;1607;float;;https://www.canada.ca/fr/agence-revenu/services/prestations-enfants-familles/programmes-provinciaux-territoriaux/province-ontario.html#cb;changed to 1607, was 1474 before I changed it
+ocb_cutoff;24542;float;;;changed to 24542, before it was 23044
+ocb_claw_rate;0.08;float;;https://www.canada.ca/fr/agence-revenu/services/prestations-enfants-familles/allocation-canadienne-enfants-apercu/allocation-canadienne-enfants-ace-feuille-calcul-prestations-juillet-2022-juin-2023-annee-imposition-2021.html;assume it's constant, not sure
+ostc_amount;345;float;;hhttps://www.ontario.ca/page/ontario-trillium-benefit#section-3;changed to 345, was 316 before
+ostc_claw_rate;0.04;float;;https://www.canada.ca/en/revenue-agency/services/child-family-benefits/provincial-territorial-programs/province-ontario.html;ok
+ostc_single_cutoff;26535;float;;;changed to 26535, before it was 24332
+ostc_couple_dep_cutoff;33169;float;;;changed to 33169, before it was 30415
+chcare_rate_bonus;0.20;float;;https://www.ontario.ca/fr/page/credit-dimpot-de-lontario-pour-la-garde-denfants;ok
+caip_single;488;int;;https://www.canada.ca/en/revenue-agency/services/child-family-benefits/cai-payment.html#toc5;changed to 488, before it was 373
+caip_couple;244;int;;;changed to 244, before it was 186
+caip_kid1;244;int;;;changed to 244, before it was 186
+caip_kid12;122;int;;;changed to 122, before it was 93
+oeptc_rate;0.02;float;;;ok
+oeptc_prop_tax_rate;0.1;float;;;ok
+oeptc_rent_rate;0.2;float;;;ok
+oeptc_energy_amount;265;int;;;changed to 265, before it was 249
+oeptc_prop;863;int;;;change to 863, beofre it was 810
+oeptc_prop_old;531;int;;https://www.canada.ca/en/revenue-agency/services/child-family-benefits/provincial-territorial-programs/2023-ontario-energy-property-tax-credit-oeptc-calculation-sheet-married-common-law-seniors-who-have-do-not-have-children.html;changed to 531, before it was 499
+oeptc_prop_amount;66;int;;;changed to 66, before it was 62
+oeptc_prop_amount_old;564;int;;;changed to 564, before it was 529
+oeptc_cutoff_couple_old;39803;int;;;changed to 39803, before it was 37373
+oeptc_cutoff_single_old;33169;int;;;changed to 33169, before it was 31144
+oeptc_cutoff_couple;31169;int;;;changed to 31169, before it was 31144
+oeptc_cutoff_single;26535;int;;;changed to 26535, before it was 24916
