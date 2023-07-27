@@ -3,15 +3,15 @@ div_elig_factor;1.38;float;;; ok
 div_other_can_factor;1.15;float;;; ok
 div_elig_cred_net_rate;0.16146;float;;; ok
 div_other_can_cred_net_rate;0.0393;float;;; ok
-cap_gains_rate;0.5;float;;;
-qpip_deduc_rate;0.43736;float;;;
+cap_gains_rate;0.5;float;;;ok
+qpip_deduc_rate;0.43736;float;;https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5005-s10/5005-s10-22f.pdf;to verify
 work_deduc_max;1315;float;;; ok
-work_deduc_rate;0.06;float;;; 
+work_deduc_rate;0.06;float;;;ok
 nrtc_age_max;3614;float;;; ok
 nrtc_age;65;int;;; ok
 nrtc_living_alone;1929;float;;; ok
 nrtc_pension_max;3211;float;;; ok 
-nrtc_pension_factor;1.25;float;;;
+nrtc_pension_factor;1.25;float;;;ok
 nrtc_claw_rate;0.1875;float;;; ok
 nrtc_claw_cutoff;38945;float;;; ok 
 nrtc_rate;0.14;float;;; ok
@@ -29,7 +29,7 @@ hsf_low_inc;16780;int;;; ok
 hsf_low_cutoff;150;int;;; ok
 hsf_high_cutoff;1000;int;;; ok
 hsf_rate;0.01;float;;; ok
-ccap_claw_rate;0.04;float;;; 
+ccap_claw_rate;0.04;float;;https://cffp.recherche.usherbrooke.ca/outils-ressources/guide-mesures-fiscales/allocation-famille-soutien-enfants/;ok
 ccap_claw_cutoff_couple;55183;float;;; ok
 ccap_claw_cutoff_single;40168;float;;; ok  
 ccap_amount_single_min;389;float;;; ok
@@ -42,7 +42,7 @@ ccap_kid4p_min;1107;float;;; ok
 ccap_kid4p_max;2782;float;;; ok
 chcare_young;11360;float;;; ok 
 chcare_old;5720;float;;; ok 
-pdip_gis_rate_exempt;0.94;float;;; 
+pdip_gis_rate_exempt;0.94;float;;;assumed contant ok
 pdip_gis_max_high;11843.97;float;gis_full_high + gis_bonus_high;; --
 pdip_gis_max_low;7129.41;float;gis_full_low + gis_bonus_low;; --
 pdip_couple;29080;float;;; --
@@ -62,7 +62,7 @@ solidarity_cutoff;39160;float;;; ok
 solidarity_rate_total;0.06;float;;;  assumed constant ok
 solidarity_rate_tvq;0.03;float;;; assumed constant ok
 witb_rate_couple_dep;0.25;float;;; assumed constant ok
-witb_rate;0.112;float;;; √† v√©rifi√©
+witb_rate;0.112;float;;https://www.revenuquebec.ca/documents/fr/formulaires/tp/TP-1029.BF%282022-10%29.pdf;‡ suivre
 witb_cut_inc_low_couple;3600;float;;; ok
 witb_cut_inc_high_couple;18338;float;;; ok
 witb_rate_single_dep;0.30;float;;; ok
@@ -85,10 +85,10 @@ med_exp_claw_rate;0.05;float;;; assumed constant ok
 med_exp_claw_cutoff;26220;float;;; ok
 med_exp_max;1356;float;;; ok
 med_exp_min_work_inc;3470;float;;; ok
-med_exp_max_fam_inc;48220;float;;;
+med_exp_max_fam_inc;50115;float;;;‡ suivre
 exp_work_min_age;60;int;;; assumed constant ok
 exp_work_claw_rate;0.05;float;;; assumed constant ok
-exp_work_cut_inc;35690;float;;; ---
+exp_work_cut_inc;38945;float;;;changed to 38 945, before it was 36590
 exp_work_rate;0.14;float;;; assumed constant ok
 exp_work_min_inc;5000;float;;; assumed constant ---
 exp_work_max_work_inc_60;10000;float;;; assumed constant ---
