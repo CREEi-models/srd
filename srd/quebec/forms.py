@@ -163,7 +163,7 @@ class form_2017(form_2016):
 
         kid_eligible = 0
         for d in hh.dep:
-            if (d.age >=4 and d.age<=16) or (d.disa==True and (d.age >=4 and d.age<=17)):
+            if (d.age >=4 and d.age<=16) or (d.disabled==True and (d.age >=4 and d.age<=17)):
                 kid_eligible += 1
 
         amount_furnitures = max(0, kid_eligible*self.supp_furnitures)

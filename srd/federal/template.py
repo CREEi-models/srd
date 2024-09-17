@@ -794,7 +794,7 @@ class template:
         else:
             amount += self.compute_basic_amount(p)
             for d in hh.dep:
-                if d.disa:
+                if d.disabled:
                     nchild_dis +=1
             if nchild_dis >= 1:
                 amount_dis += self.dep_disa_amount

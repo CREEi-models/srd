@@ -32,16 +32,28 @@ class Person:
         autre revenu non-imposable
     inc_rrsp: float
         revenu de REER (retrait de fonds)
+    inc_rdsp: float
+        revenus de REEI (retrait de fonds) provenant des bons, subventions ou revenus de placement de moins de 10 ans.
+    inc_bip: float
+        montant du programme de revenu de base
+    inc_ss: float
+        montant du programme de solidarité sociale
     self_earn: float
         revenu de travail autonome
     div_elig: float
         montant réel des dividendes déterminés (canadiens)
     div_other_can: float
         montant réel des dividendes ordinaires (canadiens)
+    cdsg: float
+        montant cumulatif de la subvention canadienne pour invalidité (SCEI) reçue
+    cdsb: 
+        montant cumulatif du bon canadien pour invalidité reçu
     con_rrsp: float
         cotisation REER
+    con_rdsp: float
+        cotisation REEI.
     con_non_rrsp: float
-        cotisation autre que REER (p.ex. à un CELI ou à des comptes non enregistrés)
+        cotisation autre que REER ou REEI (p.ex. à un CELI ou à des comptes non enregistrés)
     con_rpp: float
         cotisation à un régime de pension agréé (RPA)
     union_dues: float
@@ -80,6 +92,8 @@ class Person:
         True si la personne aînée n'est pas autonome aux du crédit d'impôt pour maintien à domicile des aînés
     home_support_cost: float
         dépenses engagées pour des services de maintien à domicile rendus ou à être rendus à partir du jour du 70e anniversaire
+    home_access_cost: float
+        dépenses engagées pour améliorer l'accessibilité et la fonctionnalité du logement (si personne handicapée ou agée)
     months_ei: int
         nombre de mois pour lesquels l'Assurance-Emploi sont demandée
     months_crb: int
@@ -92,17 +106,21 @@ class Person:
         dépense de logement
     prop_tax: float
         dépense sur taxe foncière
+    long_term_ss : boolean
+        True si la personne a reçu des prestations de solidarité sociale durant au moins 66 mois parmi les 72 derniers mois
     """
     def __init__(self, age=50, male=True, earn=0, rpp=0, cpp=0,
                  net_cap_gains=0, prev_cap_losses=0, cap_gains_exempt=0,
-                 othtax=0, othntax=0, inc_rrsp=0, self_earn=0, div_elig=0,
-                 div_other_can=0, con_rrsp=0, con_non_rrsp=0, con_rpp=0,
+                 othtax=0, othntax=0, inc_rrsp=0,inc_rdsp=0, self_earn=0, div_elig=0,
+                 div_other_can=0,cdsg =0,cdsb=0, con_rrsp=0,con_rdsp=0, con_non_rrsp=0, con_rpp=0,
                  union_dues=0, donation=0, gift=0, years_can=None,
                  disabled=False, widow=False, med_exp=0, ndays_chcare_k1=0,
                  ndays_chcare_k2=0, asset=0, oas_years_post=0,
                  months_cerb_cesb=0, student=False, essential_worker=False,
                  emp_temp_constraints=False, hours_month=None, prev_inc_work=None,
-                 dep_senior=False, home_support_cost=0,months_ei=0, months_crb =0, pub_drug_insurance=False, tax_shield=False,rent=0,prop_tax=0):
+                 dep_senior=False, home_support_cost=0,home_access_cost=0,months_ei=0, 
+                 months_crb =0, pub_drug_insurance=False, tax_shield=False,rent=0,prop_tax=0,
+                 long_term_ss=False):
         self.age = age
         self.male = male
         self.attach_inc_work_month(earn, self_earn)
@@ -117,7 +135,11 @@ class Person:
         self.div_elig = div_elig
         self.div_other_can = div_other_can
         self.inc_rrsp = inc_rrsp
+        self.inc_rdsp = inc_rdsp
+        self.cdsg = cdsg
+        self.cdsb = cdsb
         self.con_rrsp = con_rrsp
+        self.con_rdsp = con_rdsp
         self.con_non_rrsp = con_non_rrsp
         self.con_rpp = con_rpp
         self.union_dues = union_dues
@@ -142,22 +164,27 @@ class Person:
         self.hours_month = hours_month  # could enter list of hours for ei
         self.dep_senior = dep_senior
         self.home_support_cost = home_support_cost
+        home_access_cost = home_access_cost
+        self.rent = rent
+        self.prop_tax = prop_tax
+        self.long_term_ss = long_term_ss
         self.pension_split = 0
         self.pension_split_qc = 0
         self.pension_deduction = 0
         self.pension_deduction_qc = 0
         self.inc_oas = 0
         self.inc_gis = 0
-        self.rent = 0
-        self.prop_tax = 0
         self.inc_ei = 0
-        self.inc_sa = 0
         self.allow_couple = 0
         self.allow_surv = 0
+        self.allow_housing = 0
         self.inc_cerb = 0
         self.inc_cesb = 0
         self.inc_crb = 0
         self.inc_iprew = 0
+        self.inc_sa = None #{'amount':0, 'basic amount': 0, 'temporary amount':0, 'kids_adjustments':0, 'clawback':0}
+        self.inc_ss = None #{'amount':0, 'basic amount':0, 'severe constraints': 0, 'kids adjustments':0, 'clawback':0}
+        self.inc_bip = None #{'amount':0, 'basic amount':0, 'single adjustment':0, 'dep adjustment':0, 'reduce': 0}
         self.covid = None
         self.after_tax_inc = None
         self.disp_inc = None
@@ -165,6 +192,7 @@ class Person:
         self.prov_return = None
         self.payroll = None
         self.prov_contrib = None
+        
 
     def attach_prev_work_inc(self, prev_work_inc):
         """
@@ -304,26 +332,32 @@ class Dependent:
     ----------
     age: int
         âge de l'individu
-    disa: boolean
+    disabled: boolean
         statut d'invalidité
     child_care: float
         dépenses réelles de frais de garde
-    school: float
-        dépenses de scolarité
+    educ_level: float
+        niveau de scolarité de l'établissement d'enseignement fréquenté
+    educ_exp: float
+        frais de scolarité
     home_care: float
         dépenses engagées pour des services de maintien à domicile rendus ou à être rendus à partir du jour du 70e anniversaire
     med_exp: float
         dépenses en santé admissibles
+    alimony: float
+        pension alimentaire mensuelle recue pour chaque enfant (si le dépendant est un enfant)
     """
 
-    def __init__(self, age, disa=False, child_care=0, school=None,
-                 home_care=None, med_exp=0):
+    def __init__(self, age, disabled=False, child_care=0, educ_exp=None, educ_level=None,
+                 home_care=None, med_exp=0, alimony=0):
         self.age = age
-        self.disa = disa
+        self.disabled = disabled
         self.child_care = child_care
-        self.school = school
+        self.educ_exp = educ_exp
+        self.educ_level = educ_level
         self.home_care = home_care
         self.med_exp = med_exp
+        self.alimony = alimony
 
 
 class Hhold:
