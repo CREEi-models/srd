@@ -103,6 +103,44 @@ class form_2019(form_2018):
         except AttributeError as e:
             msg = 'le ménage doit être passé dans payroll pour obtenir les contributions cpp/rrq et rqap'
             raise Exception(msg) from e
+    
+    def get_disabled_cred(self, p, hh):
+        """
+        Fonction qui calcule le crédit d'impôt non-remboursable pour personnes handicapées : 
+          - montant pour le déclarant
+          - montant transféré d'une personne à charge.
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+
+        Returns
+        -------
+        float
+            Montant du crédit.
+        """
+        #Ne tient pas pas compte des frais de garde et des dépenses de préposé aux soins
+        amount=dep_disa=dep_disa_under_18=0
+
+        if p.disabled:
+            amount+= self.disability_cred_amount
+
+        #Supplément pour personne mineure
+        if p.age<18:
+            amount+= self.disability_cred_supp
+
+        #Montant pour personnes handicapées transféré d'une personne à charge
+        if hh.sp.index(p)==0:
+            dep_disa= len([ch for ch in hh.dep if ch.disabled])
+            if dep_disa>0:
+                amount+= dep_disa*self.disability_cred_amount
+
+            dep_disa_under_18= len([ch for ch in hh.dep if ch.disabled and ch.age<18])
+            if dep_disa_under_18>0:
+                amount+= dep_disa_under_18*self.disability_cred_supp
+
+        return amount
 
 class form_2020(form_2019):
     """

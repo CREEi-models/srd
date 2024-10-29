@@ -15,6 +15,7 @@ empl_cred_max;1245.36;float;;;
 pension_cred_amount;2000;float;;;could not find it but hasn't changed since 2016
 pension_cred_min_age_split;65;int;;;
 disability_cred_amount;8576;float;;;
+disability_cred_supp;5003;float;;;
 med_exp_nr_cred_max_age;18;int;;;
 med_exp_nr_cred_max_claw;2397;float;;https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/foire-questions-particuliers/rajustement-montants-fonction-indexation-impot-particuliers-prestations.html;
 med_exp_nr_cred_rate;0.03;float;;;

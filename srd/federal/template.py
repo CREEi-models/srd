@@ -231,7 +231,7 @@ class template:
         p.fed_qpip_self_cred = self.get_qpip_self_cred(p)
         p.fed_empl_cred = self.get_empl_cred(p)
         p.fed_pension_cred = self.get_pension_cred(p, hh)
-        p.fed_disabled_cred = self.get_disabled_cred(p)
+        p.fed_disabled_cred = self.get_disabled_cred(p, hh)
         p.fed_med_exp_nr_cred = self.get_med_exp_nr_cred(p, hh)
         p.donation_cred = self.get_donations_cred(p)
         p.fed_dep_cred = self.get_dep_cred(p, hh)
@@ -392,9 +392,11 @@ class template:
         return min(self.pension_cred_amount,
                    p.inc_rpp - p.pension_deduction + pension_split_cred)
 
-    def get_disabled_cred(self, p):
+    def get_disabled_cred(self, p, hh):
         """
-        Fonction qui calcule le crédit d'impôt non-remboursable pour invalidité.
+        Fonction qui calcule le crédit d'impôt non-remboursable pour personnes handicapées : 
+          - montant pour le déclarant
+          - montant transféré d'une personne à charge.
 
         Parameters
         ----------
@@ -406,8 +408,27 @@ class template:
         float
             Montant du crédit.
         """
-        return self.disability_cred_amount if p.disabled else 0
-        # disabled dependent not taken into account (see lines 316 and 318)
+        #Ne tient pas pas compte des frais de garde et des dépenses de préposé aux soins
+        amount=dep_disa=dep_disa_under_18=0
+
+        if p.disabled:
+            amount+= self.disability_cred_amount
+
+        #Supplément pour personne mineure
+        if p.age<18:
+            amount+= self.disability_cred_supp
+
+        #Montant pour personnes handicapées transféré d'une personne à charge
+        if hh.sp.index(p)==0:
+            dep_disa= len([ch for ch in hh.dep if ch.disabled])
+            if dep_disa>0:
+                amount+= self.disability_cred_amount
+
+            dep_disa_under_18= len([ch for ch in hh.dep if ch.disabled and ch.age<18])
+            if dep_disa_under_18>0:
+                amount+= self.disability_cred_supp
+
+        return amount
 
     def get_med_exp_nr_cred(self, p, hh):
         """

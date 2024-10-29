@@ -14,6 +14,7 @@ empl_cred_max;1222;float;;;
 pension_cred_amount;2000;float;;T1-2019 Federal Worksheet;
 pension_cred_min_age_split;65;int;;;
 disability_cred_amount;8416;float;;;
+disability_cred_supp;4909;float;;;
 med_exp_nr_cred_max_age;18;int;;guide fiscal 2019;
 med_exp_nr_cred_max_claw;2352;float;;guide fiscal 2019;
 med_exp_nr_cred_rate;0.03;float;;guide fiscal 2019;

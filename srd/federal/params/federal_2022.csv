@@ -15,6 +15,7 @@ empl_cred_max;1287;float;;; ---
 pension_cred_amount;2000;float;;;
 pension_cred_min_age_split;65;int;;; assume constant ---
 disability_cred_amount;8870;float;;; ---
+disability_cred_supp;5174;float;;;
 med_exp_nr_cred_max_age;18;int;;; assume constant ---
 med_exp_nr_cred_max_claw;2479;float;;; ---
 med_exp_nr_cred_rate;0.03;float;;; ---
