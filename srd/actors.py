@@ -119,7 +119,7 @@ class Person:
                  months_cerb_cesb=0, student=False, essential_worker=False,
                  emp_temp_constraints=False, hours_month=None, prev_inc_work=None,
                  dep_senior=False, home_support_cost=0,home_access_cost=0,months_ei=0, 
-                 months_crb =0, pub_drug_insurance=False, tax_shield=False,rent=0,prop_tax=0,
+                 months_crb =0, pub_drug_insurance=False, tax_shield=False,prop_tax=0,
                  long_term_ss=False):
         self.age = age
         self.male = male
@@ -165,7 +165,6 @@ class Person:
         self.dep_senior = dep_senior
         self.home_support_cost = home_support_cost
         home_access_cost = home_access_cost
-        self.rent = rent
         self.prop_tax = prop_tax
         self.long_term_ss = long_term_ss
         self.pension_split = 0
@@ -377,7 +376,7 @@ class Hhold:
     n_adults_in_hh: int
         nombre d'adultes (18 ans et plus) dans le ménage
     """
-    def __init__(self, first, second=None, prov='qc', n_adults_in_hh=None, prev_fam_net_inc_prov=None):
+    def __init__(self, first, second=None, prov='qc', n_adults_in_hh=None, prev_fam_net_inc_prov=None,rent=0):
         self.sp = [first]
         self.couple = bool(second)
         if self.couple:
@@ -392,6 +391,7 @@ class Hhold:
         self.n_adults_in_hh = self.adjust_n_adults(n_adults_in_hh)
         self.compute_max_split()
         self.assess_elig_split()
+        self.rent = rent
 
     def adjust_n_adults(self, n_adults_in_hh):
         """

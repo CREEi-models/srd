@@ -498,10 +498,10 @@ class template:
             Montant du crédit.
         """
         # energy
-        on_energy = min(self.oeptc_energy_amount, self.oeptc_rent_rate*p.rent + p.prop_tax)
+        on_energy = min(self.oeptc_energy_amount, self.oeptc_rent_rate*hh.rent + p.prop_tax)
         # property tax
         if p.age>=65:
-            on_prop_tax = min(self.oeptc_prop_old,self.oeptc_prop_tax_rate*p.rent) + self.oeptc_prop_amount_old
+            on_prop_tax = min(self.oeptc_prop_old,self.oeptc_prop_tax_rate*hh.rent) + self.oeptc_prop_amount_old
         # crédit
             amount = on_energy + on_prop_tax
             if hh.couple:
@@ -511,7 +511,7 @@ class template:
             else:
                 amount_oeptc = max(0, amount - self.oeptc_rate*max(0, hh.fam_net_inc_fed - self.oeptc_cutoff_single_old))
         else:
-            on_prop_tax = min(self.oeptc_prop,self.oeptc_prop_tax_rate*p.rent) + self.oeptc_prop_amount
+            on_prop_tax = min(self.oeptc_prop,self.oeptc_prop_tax_rate*hh.rent) + self.oeptc_prop_amount
         # crédit
             amount = on_energy + on_prop_tax
             if hh.couple:
