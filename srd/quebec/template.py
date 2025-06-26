@@ -497,11 +497,12 @@ class template:
         p.qc_solidarity = self.solidarity(p, hh)
         p.qc_cost_of_living = self.cost_of_living(p, hh)
         p.qc_tax_shield = self.tax_shield(p, hh)
+        p.qc_caregivers= self.get_caregivers(p, hh)
 
 
         l_all_creds = [p.qc_chcare, p.qc_tax_shield, p.qc_witb, p.qc_home_support,
                        p.qc_senior_assist, p.qc_med_exp, p.qc_ccap,
-                       p.qc_solidarity, p.qc_cost_of_living]
+                       p.qc_solidarity, p.qc_cost_of_living,p.qc_caregivers]
         l_existing_creds = [cred for cred in l_all_creds if cred]  # removes credits not implemented
 
         p.prov_return['refund_credits'] = sum(l_existing_creds)
@@ -1008,3 +1009,40 @@ class template:
 
         # crédit d'impot bouclier fiscal
         return (witb + chcare)/(1+hh.couple)  # 96
+    
+    def get_caregivers(self, p, hh):
+        """
+        Fonction qui calcule le crédit d’impôt pour aidant naturel.
+        
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+
+        Returns
+        -------
+        float
+            Montant du crédit.
+
+        """
+        amount = 0
+
+        #Crédit d’impôt que peut demander un aidant naturel prenant soin de son conjoint
+        if (hh.couple) & (p.disabled==False):
+            spouse = hh.sp[1 - hh.sp.index(p)]
+            if (spouse.disabled) & (spouse.age>=70):
+                amount = self.caregiver_spouse
+
+        #Crédit d’impôt que peut demander un aidant naturel hébergeant
+        # un proche admissible ou cohabitant avec un proche admissible
+        if p.disabled==False:
+            ndep_dis = min(len([ch for ch in hh.dep if ch.age > 18 and ch.disabled]),2)
+            if ndep_dis >= 1:
+                #Le clawback n'est pas implémenté comme les enfants n'ont pas d'attribut revenu
+                amount += self.caregiver_relative * ndep_dis
+
+        #Le Crédit d’impôt que peut demander un aidant naturel soutenant un proche admissible
+        # n'est pas modélisé comme nous n'avons pas les personnes à l'extérieur du ménage
+        return max(0, amount)

@@ -111,3 +111,6 @@ cost_of_living_claw_rate2;0.10;float;;; ---
 cost_of_living_cutoff1;50000;int;;; ---
 cost_of_living_cutoff2;54000;int;;; ---
 cost_of_living_cutoff3;100000;int;;; ---
+caregiver_base;1299;float;;;
+caregiver_cutoff;23055;float;;;
+caregiver_rate;0.16;float;;;

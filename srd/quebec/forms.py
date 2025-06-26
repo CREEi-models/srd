@@ -299,6 +299,43 @@ class form_2020(form_2019):
         if p.inc_oas>0:
             p.prov_return['deductions_gross_inc'] += self.oas_covid_bonus
 
+    def get_caregivers(self, p, hh):
+        """
+        Fonction qui calcule le crédit d'impôt pour personne aidante.
+
+        Seule la composante pour personne aidante cohabitant avec une personne majeure atteinte d'une déficience est incluse,
+        puisque seules les personnes vivant dans le ménage sont modélisées.
+        
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+
+        Returns
+        -------
+        float
+            Montant du crédit.
+
+        """
+        amount = 0
+        recipient = 0
+
+        if (hh.couple) & (p.disabled==False):
+            spouse = hh.sp[1 - hh.sp.index(p)]
+            if spouse.disabled:
+                amount = 2*self.caregiver_base
+                clawback = min(self.caregiver_base, (spouse.prov_return['net_income']- self.caregiver_cutoff)*self.caregiver_rate)
+                amount = amount - max(0,clawback)
+            recipient +=1
+
+        if p.disabled==False:
+            ndep_dis = min(len([ch for ch in hh.dep if ch.age > 18 and ch.disabled]),2-recipient)
+            if ndep_dis >= 1:
+                amount += 2*self.caregiver_base * ndep_dis
+        return max(0, amount)
+
 class form_2021(form_2020):
     """
     Formulaire d'impôt de 2021.

@@ -104,3 +104,6 @@ tax_shield_rate;0.75;float;;; assumed constant ok
 tax_shield_max_couple;600;int;;; assumed constant ok
 tax_shield_max_single;300;int;;; assumed constant ok
 tax_shield_max_inc_variation;4000;int;;; assumed constant ok
+caregiver_base;1383;float;;;
+caregiver_cutoff;24540;float;;;
+caregiver_rate;0.16;float;;;

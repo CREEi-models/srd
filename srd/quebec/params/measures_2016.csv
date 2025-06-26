@@ -114,3 +114,7 @@ tax_shield_rate;0.75;float;;;
 tax_shield_max_couple;450;int;;;
 tax_shield_max_single;225;int;;;
 tax_shield_max_inc_variation;3000;int;;;
+caregiver_cutoff;23330;float;;;
+caregiver_spouse;1000;float;;;
+caregiver_relative;1167;float;;;
+caregiver_rate;0.16;float;;;
