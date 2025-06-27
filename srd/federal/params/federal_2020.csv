@@ -66,3 +66,5 @@ nrtc_spouse_dis;2273;int;;;
 dep_disa_amount;2273;int;;;
 gis_covid_bonus;200;float;;;
 oas_covid_bonus;300;float;;;
+caregivers_max_inc;24361;float;;;
+caregivers_max;7276;float;;;

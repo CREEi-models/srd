@@ -331,7 +331,7 @@ class form_2020(form_2019):
             recipient +=1
 
         if p.disabled==False:
-            ndep_dis = min(len([ch for ch in hh.dep if ch.age > 18 and ch.disabled]),2-recipient)
+            ndep_dis = min(len([ch for ch in hh.dep if ch.age >= 18 and ch.disabled]),2-recipient)
             if ndep_dis >= 1:
                 amount += 2*self.caregiver_base * ndep_dis
         return max(0, amount)

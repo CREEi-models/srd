@@ -1038,7 +1038,7 @@ class template:
         #Crédit d’impôt que peut demander un aidant naturel hébergeant
         # un proche admissible ou cohabitant avec un proche admissible
         if p.disabled==False:
-            ndep_dis = min(len([ch for ch in hh.dep if ch.age > 18 and ch.disabled]),2)
+            ndep_dis = min(len([ch for ch in hh.dep if ch.age >= 18 and ch.disabled]),2)
             if ndep_dis >= 1:
                 #Le clawback n'est pas implémenté comme les enfants n'ont pas d'attribut revenu
                 amount += self.caregiver_relative * ndep_dis

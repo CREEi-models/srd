@@ -234,8 +234,10 @@ class template:
         p.fed_disabled_cred = self.get_disabled_cred(p, hh)
         p.fed_med_exp_nr_cred = self.get_med_exp_nr_cred(p, hh)
         p.donation_cred = self.get_donations_cred(p)
-        p.fed_dep_cred = self.get_dep_cred(p, hh)
         p.fed_spouse_cred = self.get_spouses_cred(p, hh)
+        p.fed_dep_cred = self.get_dep_cred(p, hh)
+        p.fed_caregivers_minor = self.get_caregivers_minor(p, hh)
+        p.fed_caregivers_adult = self.get_caregivers_adult(p, hh)
 
 
         p.fed_return['non_refund_credits'] = (self.rate_non_ref_tax_cred
@@ -243,7 +245,7 @@ class template:
                + p.fed_cpp_contrib_cred + p.fed_ei_contrib_cred + p.fed_qpip_cred +
                + p.fed_qpip_self_cred + p.fed_empl_cred  + p.fed_pension_cred
                + p.fed_disabled_cred + p.fed_med_exp_nr_cred)
-               + p.donation_cred)
+               + p.donation_cred + p.fed_caregivers_minor + p.fed_caregivers_adult)
 
     def compute_basic_amount(self, p):
         """
@@ -511,7 +513,7 @@ class template:
             taxable_inc = spouse.fed_return['gross_tax_liability']/ self.l_rates[0]
 
         income_deduction = self.compute_basic_amount(spouse) + spouse.contrib_cpp + spouse.contrib_cpp_self + spouse.contrib_qpip \
-        + spouse.contrib_qpip_self + spouse.contrib_ei + spouse.fed_empl_cred
+        + spouse.contrib_qpip_self + spouse.contrib_ei + spouse.fed_empl_cred + spouse.fed_disabled_cred + spouse.fed_caregivers_minor
 
         net_inc = max(0, taxable_inc - income_deduction)
         transfer = max(0, first_cred - net_inc)
@@ -808,17 +810,17 @@ class template:
         if hh.couple:
             return 0
 
-        amount = amount_dis = nchild_dis = nchild = 0
+        amount = amount_dis = nchild = 0
         nchild += len(hh.dep)
         if nchild == 0:
             return 0
         else:
             amount += self.compute_basic_amount(p)
-            for d in hh.dep:
-                if d.disabled:
-                    nchild_dis +=1
-            if nchild_dis >= 1:
-                amount_dis += self.dep_disa_amount
+            
+            nadult_child_dis = len([ch for ch in hh.dep if ch.disabled and ch.age>=18])
+            if nadult_child_dis >= 1:
+                amount_dis = self.dep_disa_amount
+
             return amount + amount_dis
 
     def get_spouses_cred(self, p, hh):
@@ -847,7 +849,7 @@ class template:
                 higher_inc = hh.sp[1].fed_return['net_income']
             else:
                 equal_inc = hh.sp[1].fed_return['net_income']
-        elif not hh.couple or (p.fed_dep_cred != 0):
+        elif not hh.couple:
             return 0
 
         amount = 0
@@ -868,3 +870,92 @@ class template:
             return max(0, amount)
         else:
             return max(0, amount)
+
+    def get_caregivers_minor(self, p, hh):
+        """
+        Fonction qui calcule le montant canadien pour aidants naturels (conjoint et enfants majeurs)
+        
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+
+        Returns
+        -------
+        float
+            Montant du crédit.
+        """
+        nchild = len([ch for ch in hh.dep if ch.disabled and ch.age<18])
+
+        if nchild==0:
+            return 0
+        
+        amount = 0
+        if hh.couple:
+            higher_inc, equal_inc = 0,0
+            if hh.sp[0].fed_return['net_income'] > hh.sp[1].fed_return['net_income']:
+                higher_inc = hh.sp[0].fed_return['net_income']
+            elif hh.sp[1].fed_return['net_income'] > hh.sp[0].fed_return['net_income']:
+                higher_inc = hh.sp[1].fed_return['net_income']
+            else:
+                equal_inc = hh.sp[1].fed_return['net_income']
+
+            if p.fed_return['net_income'] == higher_inc:
+                amount += nchild*self.dep_disa_amount
+            elif (p.fed_return['net_income'] == equal_inc) & (hh.sp.index(p)==0):
+                amount += nchild*self.dep_disa_amount
+        else:
+            amount += nchild*self.dep_disa_amount     
+
+        return amount
+    
+    def get_caregivers_adult(self, p, hh):
+        """
+        Fonction qui calcule le montant canadien pour aidants naturels (conjoint et les enfants majeurs)
+
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+
+        Returns
+        -------
+        float
+            Montant du crédit.
+        """
+        amount = 0
+        
+        if hh.couple:
+            higher_inc, equal_inc = 0,0
+            if hh.sp[0].fed_return['net_income'] > hh.sp[1].fed_return['net_income']:
+                higher_inc = hh.sp[0].fed_return['net_income']
+            elif hh.sp[1].fed_return['net_income'] > hh.sp[0].fed_return['net_income']:
+                higher_inc = hh.sp[1].fed_return['net_income']
+            else:
+                equal_inc = hh.sp[1].fed_return['net_income']
+
+            spouse = hh.sp[1 - hh.sp.index(p)]
+            if spouse.disabled:
+                base = max(0, self.caregivers_max_inc - spouse.fed_return['net_income'])
+                base = min (base, self.caregivers_max)
+                amount += max(0, base - p.fed_spouse_cred)
+
+            nadult_child_dis = len([ch for ch in hh.dep if ch.disabled and ch.age>=18])
+            if nadult_child_dis>0:
+                if p.fed_return['net_income'] == higher_inc:
+                    amount_adult_child = nadult_child_dis*self.caregivers_max
+                    amount += max(0, amount_adult_child - p.fed_dep_cred)
+                elif (p.fed_return['net_income'] == equal_inc) & (hh.sp.index(p)==0):
+                    amount_adult_child = nadult_child_dis*self.caregivers_max
+                    amount += max(0, amount_adult_child - p.fed_dep_cred)
+        else:
+            nadult_child_dis = len([ch for ch in hh.dep if ch.disabled and ch.age>=18])
+            if nadult_child_dis>0:
+                amount_adult_child = nadult_child_dis*self.caregivers_max
+                amount += max(0, amount_adult_child - p.fed_dep_cred)    
+
+        return amount

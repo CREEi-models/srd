@@ -67,3 +67,5 @@ ded_qpp_exempt;3500;int;;; ---;;;;;
 ded_qpp_claw_rate;0.03;float;;;;;;;;
 nrtc_spouse_dis;2350;int;;https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-s5/5000-s5-22f.pdf;NOT UPDATED NEED TO SEE 2023 ;;;;;A SUIVRE
 dep_disa_amount;3173;int;;;changed to 3173 (before it was 2985);;;;;
+caregivers_max_inc;26782;float;;;;;;;;
+caregivers_max;7999;float;;;;;;;;

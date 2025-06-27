@@ -63,3 +63,5 @@ ded_qpp_exempt;3500;int;;; ---
 ded_qpp_claw_rate;0.03;float;;;
 nrtc_spouse_dis;2350;int;;; indexe 2.64% ---
 dep_disa_amount;2985;int;;; ---
+caregivers_max_inc;25195;float;;;
+caregivers_max;7525;float;;;
