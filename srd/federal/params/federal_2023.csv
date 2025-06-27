@@ -69,3 +69,4 @@ nrtc_spouse_dis;2350;int;;https://www.canada.ca/content/dam/cra-arc/formspubs/pb
 dep_disa_amount;3173;int;;;changed to 3173 (before it was 2985);;;;;
 caregivers_max_inc;26782;float;;;;;;;;
 caregivers_max;7999;float;;;;;;;;
+home_access_max;20000;float;;;;;;;;

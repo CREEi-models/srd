@@ -164,7 +164,7 @@ class Person:
         self.hours_month = hours_month  # could enter list of hours for ei
         self.dep_senior = dep_senior
         self.home_support_cost = home_support_cost
-        home_access_cost = home_access_cost
+        self.home_access_cost = home_access_cost
         self.prop_tax = prop_tax
         self.long_term_ss = long_term_ss
         self.pension_split = 0

@@ -238,6 +238,7 @@ class template:
         p.fed_dep_cred = self.get_dep_cred(p, hh)
         p.fed_caregivers_minor = self.get_caregivers_minor(p, hh)
         p.fed_caregivers_adult = self.get_caregivers_adult(p, hh)
+        p.fed_home_access = self.get_home_access(p, hh)
 
 
         p.fed_return['non_refund_credits'] = (self.rate_non_ref_tax_cred
@@ -245,7 +246,7 @@ class template:
                + p.fed_cpp_contrib_cred + p.fed_ei_contrib_cred + p.fed_qpip_cred +
                + p.fed_qpip_self_cred + p.fed_empl_cred  + p.fed_pension_cred
                + p.fed_disabled_cred + p.fed_med_exp_nr_cred)
-               + p.donation_cred + p.fed_caregivers_minor + p.fed_caregivers_adult)
+               + p.donation_cred + p.fed_caregivers_minor + p.fed_caregivers_adult + p.fed_home_access)
 
     def compute_basic_amount(self, p):
         """
@@ -873,7 +874,7 @@ class template:
 
     def get_caregivers_minor(self, p, hh):
         """
-        Fonction qui calcule le montant canadien pour aidants naturels (conjoint et enfants majeurs)
+        Fonction qui calcule le montant canadien pour aidants naturels (enfants mineurs)
         
         Parameters
         ----------
@@ -958,4 +959,35 @@ class template:
                 amount_adult_child = nadult_child_dis*self.caregivers_max
                 amount += max(0, amount_adult_child - p.fed_dep_cred)    
 
+        return amount
+    
+    def get_home_access(self, p, hh):
+        """
+        Fonction qui calcule le crédit d'impôt non-remboursable pour l'accessibilité domiciliaire.
+        Parameters
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+
+        Returns
+        -------
+        float
+            Montant du crédit.
+        """
+        amount = 0
+        nchild_dis = len([ch for ch in hh.dep if ch.disabled])
+
+        if hh.couple:
+            spouse = hh.sp[1 - hh.sp.index(p)]
+            max_reduction = 0 
+            if (hh.sp.index(p)==1):
+                max_reduction += hh.sp[0].fed_home_access
+
+            if p.age> 65 or p.disabled or spouse.disabled or nchild_dis>0:
+                amount = min(p.home_access_cost, (self.home_access_max-max_reduction))
+        else:
+            if  p.age> 65 or p.disabled or nchild_dis>0:
+                amount = min(p.home_access_cost, self.home_access_max)
         return amount

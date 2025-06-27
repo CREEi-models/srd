@@ -68,3 +68,4 @@ gis_covid_bonus;200;float;;;
 oas_covid_bonus;300;float;;;
 caregivers_max_inc;24361;float;;;
 caregivers_max;7276;float;;;
+home_access_max;10000;float;;;
