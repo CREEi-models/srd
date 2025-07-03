@@ -6,7 +6,7 @@ module_dir = os.path.dirname(os.path.dirname(__file__))
 def create_return():
     lines = ['gross_income', 'deductions_gross_inc', 'net_income',
              'deductions_net_inc', 'taxable_income', 'gross_tax_liability',
-             'non_refund_credits', 'refund_credits', 'net_tax_liability']
+             'non_refund_credits', 'refund_credits', 'net_tax_liability','rdsp_benefits']
     return dict(zip(lines, np.zeros(len(lines))))
 
 
@@ -63,7 +63,7 @@ class template:
                                         + p.inc_cpp + p.inc_rpp
                                         + p.pension_split + p.taxable_div
                                         + p.taxable_cap_gains
-                                        + p.inc_othtax + p.inc_rrsp)
+                                        + p.inc_othtax + p.inc_rrsp + p.inc_rdsp)
 
     def calc_net_income(self, p):
         """
@@ -552,10 +552,14 @@ class template:
         p.fed_witbds = self.get_witbds(p, hh)
         p.fed_med_exp = self.med_exp(p, hh)
         p.fed_gst_hst_credit = self.gst_hst_credit(p, hh)
+        p.fed_cdsb = self.get_cdsb(p, hh)
+        p.fed_cdsg = self.get_cdsg(p, hh)  
 
         p.fed_return['refund_credits'] = (
             p.fed_abatment_qc + p.fed_ccb + p.fed_witb + p.fed_witbds
             + p.fed_med_exp + p.fed_gst_hst_credit)
+        
+        p.fed_return['rdsp_benefits'] = (p.fed_cdsb + p.fed_cdsg)
 
     def abatment(self, p, hh):
         """
@@ -991,3 +995,76 @@ class template:
             if  p.age> 65 or p.disabled or nchild_dis>0:
                 amount = min(p.home_access_cost, self.home_access_max)
         return amount
+    
+    def get_cdsg(self, p, hh):
+        """
+        Fonction qui calcule la subvention canadienne pour invalidité
+
+        Le report des cotisations n'est pas permis dans cette version
+
+        Parameters:
+        ----------
+        p: Person
+            instance de la classe Person
+        hh: Hhold
+            instance de la classe Hhold
+        Returns
+        -------
+        float
+            Montant de la subvention
+        """
+        if p.disabled==False or p.age > self.con_rdsp_max_age:
+            return 0
+        if p.con_rdsp==0 or p.cdsg > self.cdsg_max_life:
+            return 0
+        
+        amount = 0
+        if hh.fam_net_inc_fed < self.cdsg_high_inc:
+            p.con_rdsp = min(p.con_rdsp, self.con_rdsp_max_high)
+            amount += self.cdsg_rate_high*min(self.cdsg_cut, p.con_rdsp)
+            amount += self.cdsg_rate_medium*max(0, p.con_rdsp-self.cdsg_cut)
+        else:
+            p.con_rdsp = min(p.con_rdsp, self.con_rdsp_max_low)
+            amount += self.cdsg_rate_low*p.con_rdsp
+        
+        #lifetime maximum
+        amount = min(amount, self.cdsg_max_life-p.cdsg)
+
+        return max(0, amount)
+
+    def get_cdsb(self, p, hh):
+        """
+        Fonction qui calcule le bon canadien pour invalidité
+        Parameters:
+            ----------
+            p: Person
+                instance de la classe Person
+            hh: Hhold
+                instance de la classe Hhold
+            Returns
+            -------
+            float
+                Montant du bon.
+
+        """
+        if p.disabled==False or p.age > self.con_rdsp_max_age:
+            return 0
+        if  p.con_rdsp==0 or p.cdsb > self.cdsb_max_life:
+            return 0
+        if hh.fam_net_inc_fed > self.cdsb_high_inc:
+            return 0
+
+        amount = self.cdsb_base
+
+        if hh.fam_net_inc_fed > self.cdsb_cutoff:
+            clawback = (self.cdsb_base * (hh.fam_net_inc_fed - self.cdsb_cutoff) /
+                                                (self.cdsb_high_inc - self.cdsb_cutoff))
+        else:
+            clawback = 0
+
+        amount = max(0, amount-clawback)
+
+        #lifetime maximum
+        amount = min(amount, self.cdsb_max_life-p.cdsb)
+            
+        return  amount

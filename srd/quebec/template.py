@@ -69,7 +69,7 @@ class template:
                                          + p.allow_surv + p.inc_cpp + p.inc_rpp
                                          + p.pension_split_qc + p.taxable_div
                                          + p.taxable_cap_gains
-                                         + p.inc_othtax + p.inc_rrsp)
+                                         + p.inc_othtax + p.inc_rrsp + p.inc_rdsp)
 
     def calc_net_income(self, p):
         """

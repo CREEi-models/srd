@@ -33,7 +33,7 @@ class Person:
     inc_rrsp: float
         revenu de REER (retrait de fonds)
     inc_rdsp: float
-        revenus de REEI (retrait de fonds) provenant des bons, subventions ou revenus de placement de moins de 10 ans.
+        revenus de REEI (retrait de fonds) provenant des bons, subventions ou revenus de placements
     inc_bip: float
         montant du programme de revenu de base
     inc_ss: float

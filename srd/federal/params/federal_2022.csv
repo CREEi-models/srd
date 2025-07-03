@@ -66,3 +66,16 @@ dep_disa_amount;2985;int;;; ---
 caregivers_max_inc;25195;float;;;
 caregivers_max;7525;float;;;
 home_access_max;20000;float;;;
+con_rdsp_max_age;49;int;;;
+con_rdsp_max_low;1000;float;;;
+con_rdsp_max_high;1500;float;;;
+cdsg_max_life;70000;float;;;
+cdsg_rate_low;1;float;;;
+cdsg_rate_medium;2;float;;;
+cdsg_rate_high;3;float;;;
+cdsg_cut;500;float;;;
+cdsg_high_inc;100392;float;;;
+cdsb_base;1000;float;;;
+cdsb_max_life;20000;float;;;
+cdsb_cutoff;32797;float;;;
+cdsb_high_inc;50197;float;;;

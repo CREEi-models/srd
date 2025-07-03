@@ -266,7 +266,7 @@ class tax:
                 disp_inc -= sum(list(p.payroll.values()))
             if self.iass:
                 disp_inc += p.inc_sa
-            disp_inc -= p.con_rrsp + p.con_non_rrsp
+            disp_inc -= p.con_rrsp + p.con_non_rrsp + p.con_rdsp
             p.disp_inc = disp_inc
 
 

@@ -244,11 +244,15 @@ class form_2020(form_2019):
         p.fed_witbds = self.get_witbds(p, hh)
         p.fed_med_exp = self.med_exp(p, hh)
         p.fed_gst_hst_credit = self.gst_hst_credit(p, hh)
+        p.fed_cdsb = self.get_cdsb(p, hh)
+        p.fed_cdsg = self.get_cdsg(p, hh) 
         self.oas_gis_covid_bonus(p)
 
         p.fed_return['refund_credits'] = (
             p.fed_abatment_qc + p.fed_ccb + p.fed_witb + p.fed_witbds
             + p.fed_med_exp + p.fed_gst_hst_credit)
+        
+        p.fed_return['rdsp_benefits'] = (p.fed_cdsb + p.fed_cdsg)
 
     def oas_gis_covid_bonus(self, p):
         """
@@ -308,10 +312,14 @@ class form_2021(form_2020):
         p.fed_witbds = self.get_witbds(p, hh)
         p.fed_med_exp = self.med_exp(p, hh)
         p.fed_gst_hst_credit = self.gst_hst_credit(p, hh)
+        p.fed_cdsb = self.get_cdsb(p, hh)
+        p.fed_cdsg = self.get_cdsg(p, hh)
 
         p.fed_return['refund_credits'] = (
             p.fed_abatment_qc + p.fed_ccb + p.fed_witb + p.fed_witbds
             + p.fed_med_exp + p.fed_gst_hst_credit)
+        
+        p.fed_return['rdsp_benefits'] = (p.fed_cdsb + p.fed_cdsg)
 
     def ccb(self, p, hh, iclaw=True):
         """
