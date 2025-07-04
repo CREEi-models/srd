@@ -409,7 +409,7 @@ class template:
 
     def get_disabled_cred(self, p):
         """
-        Fonction qui calcule le crédit d'impôt pour invalidité.
+        Fonction qui calcule le montant pour déficience grave et prolongée des fonctions mentales ou physiques.
 
         Parameters
         ----------
@@ -566,7 +566,7 @@ class template:
         float
             Montant de la prime au travail par individu.
         """
-        if hh.fam_inc_work < self.witb_cut_inc_low_single:
+        if hh.fam_inc_work < self.witb_adapted_cut_inc_low_single:
             return 0
 
         def calc_witb(rate, cut_inc_low, cut_inc_high):
@@ -592,15 +592,33 @@ class template:
             clawback = self.witb_claw_rate * max(0, hh.fam_net_inc_prov - cut_inc_high)
             return max(0, amount - clawback)
 
+        #Couple
         if hh.couple:
             rate = self.witb_rate_couple_dep if hh.nkids_0_18 > 0 else self.witb_rate
             fam_witb = calc_witb(rate, self.witb_cut_inc_low_couple,
                              self.witb_cut_inc_high_couple)
+            #Couple avec un invalide
+            spouse = hh.sp[1 - hh.sp.index(p)]
+            if p.disabled or spouse.disabled:
+                rate = self.witb_adapted_rate_couple_dep if hh.nkids_0_18 > 0 else self.witb_adapted_rate
+                fam_witb_adapted = calc_witb(rate, self.witb_adapted_cut_inc_low_couple,
+                             self.witb_adapted_cut_inc_high_couple)
+                fam_witb = max(fam_witb_adapted,fam_witb)
+
             return p.inc_work / hh.fam_inc_work * fam_witb
+        
+        #Célibataire
         else:
             rate = self.witb_rate_single_dep if hh.nkids_0_18 > 0 else self.witb_rate
-            return calc_witb(rate, self.witb_cut_inc_low_single,
+            witb = calc_witb(rate, self.witb_cut_inc_low_single,
                              self.witb_cut_inc_high_single)
+            #Célibataire invalide
+            if p.disabled:
+                rate = self.witb_adapted_rate_single_dep if hh.nkids_0_18 > 0 else self.witb_adapted_rate
+                witb_adapted = calc_witb(rate, self.witb_adapted_cut_inc_low_single,
+                             self.witb_adapted_cut_inc_high_single)
+                witb = max(witb_adapted,witb)
+            return witb
 
     def home_support(self, p, hh):
         """
@@ -976,21 +994,45 @@ class template:
 
         var_fam_net_inc = max(0,hh.fam_net_inc_prov - hh.prev_fam_net_inc_prov) # 60
         if var_fam_net_inc == 0:
-            # VOUS N'AVEZ PAS DROIT AU CREDIT D'IMPOT BOUCLIER FISCAL
             return 0
         modified_fam_inc = hh.fam_net_inc_prov - self.tax_shield_rate * min(sum([(min(max(0,p.inc_work - p.prev_inc_work), self.tax_shield_max_inc_variation)) for p in hh.sp]), var_fam_net_inc) # 70
 
         # prime au travail
         if p.qc_witb > 0:
+            def calc_witb(rate, cut_inc_low, cut_inc_high):
+                amount = rate * max(0, min(cut_inc_high, hh.fam_inc_work) - cut_inc_low)
+                clawback = self.witb_claw_rate * max(0, modified_fam_inc - cut_inc_high)
+                return max(0, amount - clawback)
+
+            #Couple
             if hh.couple:
                 rate = self.witb_rate_couple_dep if hh.nkids_0_18 > 0 else self.witb_rate
-                fam_witb = rate * max(0, min(self.witb_cut_inc_high_couple, hh.fam_inc_work) - self.witb_cut_inc_low_couple)
-                amount_witb = max(0,fam_witb - (self.witb_claw_rate * max(0, modified_fam_inc - self.witb_cut_inc_high_couple))) # 77
+                amount_witb = calc_witb(rate, self.witb_cut_inc_low_couple,
+                             self.witb_cut_inc_high_couple)
+                #Couple avec un invalide
+                spouse = hh.sp[1 - hh.sp.index(p)]
+                if p.disabled or spouse.disabled:
+                    rate = self.witb_adapted_rate_couple_dep if hh.nkids_0_18 > 0 else self.witb_adapted_rate
+                    fam_witb_adapted = calc_witb(rate, self.witb_adapted_cut_inc_low_couple,
+                             self.witb_adapted_cut_inc_high_couple)
+                    amount_witb = max(fam_witb_adapted,amount_witb)
+                
+                amount_witb = max(0,amount_witb)
                 witb = min(self.tax_shield_max_couple, amount_witb - (p.qc_witb*hh.fam_inc_work /p.inc_work ))# 81
+        
+            #Célibataire
             else:
                 rate = self.witb_rate_single_dep if hh.nkids_0_18 > 0 else self.witb_rate
-                fam_witb = rate * max(0, min(self.witb_cut_inc_high_single, hh.fam_inc_work) - self.witb_cut_inc_low_single)
-                amount_witb = max(0,fam_witb - (self.witb_claw_rate * max(0, modified_fam_inc - self.witb_cut_inc_high_single))) # 77
+                amount_witb = calc_witb(rate, self.witb_cut_inc_low_single,
+                             self.witb_cut_inc_high_single)
+                #Célibataire invalide
+                if p.disabled:
+                    rate = self.witb_adapted_rate_single_dep if hh.nkids_0_18 > 0 else self.witb_adapted_rate
+                    witb_adapted = calc_witb(rate, self.witb_adapted_cut_inc_low_single,
+                             self.witb_adapted_cut_inc_high_single)
+                    amount_witb = max(witb_adapted,amount_witb)
+
+                amount_witb = max(0,amount_witb)
                 witb = min(self.tax_shield_max_single, amount_witb - p.qc_witb) # 81
         else:
             witb = 0

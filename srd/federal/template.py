@@ -1030,7 +1030,7 @@ class template:
         #lifetime maximum
         amount = min(amount, self.cdsg_max_life-p.cdsg)
 
-        return max(0, amount)
+        return amount
 
     def get_cdsb(self, p, hh):
         """

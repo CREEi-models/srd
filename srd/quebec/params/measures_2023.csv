@@ -62,12 +62,19 @@ solidarity_cutoff;39160;float;;; ok
 solidarity_rate_total;0.06;float;;;  assumed constant ok
 solidarity_rate_tvq;0.03;float;;; assumed constant ok
 witb_rate_couple_dep;0.25;float;;; assumed constant ok
-witb_rate;0.112;float;;https://www.revenuquebec.ca/documents/fr/formulaires/tp/TP-1029.BF%282022-10%29.pdf;à suivre
+witb_rate;0.116;float;;https://www.revenuquebec.ca/documents/fr/formulaires/tp/TP-1029.BF%282022-10%29.pdf;à suivre
 witb_cut_inc_low_couple;3600;float;;; ok
 witb_cut_inc_high_couple;18338;float;;; ok
 witb_rate_single_dep;0.30;float;;; ok
 witb_cut_inc_low_single;2400;float;;; ok
 witb_cut_inc_high_single;11842;float;;; ok
+witb_adapted_rate_couple_dep;0.20;float;;; ok
+witb_adapted_rate;0.136;float;;; ok
+witb_adapted_cut_inc_low_couple;1200;float;;; ok
+witb_adapted_cut_inc_high_couple;25198;float;;; ok
+witb_adapted_rate_single_dep;0.25;float;;; ok
+witb_adapted_cut_inc_low_single;1200;float;;; ok
+witb_adapted_cut_inc_high_single;16654;float;;; ok
 witb_claw_rate;0.10;float;;; ok
 home_supp_min_age;70;int;;; assumed constant ok
 home_supp_max_dep;25500;float;;; assumed constant ok
