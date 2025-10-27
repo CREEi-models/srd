@@ -436,6 +436,7 @@ class form_2023(form_2022):
         add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2023.csv')
         add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2023.csv')
         add_schedule_as_attr(self, module_dir + '/quebec/params/drug_insurance_contrib_2023.csv')
+        add_schedule_as_attr(self, module_dir + '/quebec/params/shelter_2023.csv')
 
     def cost_of_living(self, p, hh):
         """
@@ -450,3 +451,52 @@ class form_2023(form_2022):
 
         """
         pass
+
+    def allow_shelter(self, hh):
+        """
+        Fonction qui calcule le montant de l'allocation-logement.
+
+        Parameters
+        ----------
+        hh: Hhold
+            instance de la classe Hhold
+        """
+        hh.shelter_elig = True
+        ndep = len(hh.dep)
+
+        if not hh.couple:
+          if ndep == 0 and  hh.sp[0].age< self.min_age_shelter_elig:
+             hh.shelter_elig = False
+          elif ndep == 0 and hh.fam_net_inc_prov > self.max_earn_alone:
+             hh.shelter_elig = False
+          elif 1<= ndep < 3 and hh.fam_inc_work> self.max_earn_mono_1or2kid:
+             hh.shelter_elig = False
+          elif ndep >= 3 and hh.fam_net_inc_prov > self.max_earn_mono_more_3kid:
+             hh.shelter_elig = False
+        else:
+          np_elig_age = len([p for p in hh.sp if p.age < self.min_age_shelter_elig])
+
+          if ndep == np_elig_age== 0 :
+             hh.shelter_elig = False
+          elif ndep == 0 and hh.fam_net_inc_prov > self.max_earn_couple_0kid:
+            hh.shelter_elig = False
+          elif  ndep == 1 and hh.fam_net_inc_prov > self.max_earn_couple_1kid:
+            hh.shelter_elig = False
+          elif ndep > 1 and hh.fam_net_inc_prov > self.max_earn_couple_more_2kid:
+            hh.shelter_elig = False
+
+        prop_rent = 0
+        if hh.fam_net_inc_prov>0:
+         prop_rent = hh.rent/ hh.fam_net_inc_prov
+
+        amount = 0
+        if hh.shelter_elig:
+            if float(self.shelter_percent1) <= prop_rent < float(self.shelter_percent2):
+                amount += self.amount_30_to_49
+            elif float(self.shelter_percent3) <= prop_rent < float(self.shelter_percent4):
+                amount += self.amount_50_79
+            elif prop_rent>= float(self.shelter_percent5):
+                amount += self.amount_more_80
+
+        for p in hh.sp:
+            p.allow_shelter = amount/(1+ hh.couple)

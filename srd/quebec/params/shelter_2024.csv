@@ -1,0 +1,16 @@
+variable;value;type ;definition;source;comments
+amount_30_to_49;1200;int;;;ok
+amount_50_79;1800;int;;;ok
+amount_more_80;2040;int;;;ok
+min_age_house_elig;50;int;;;ok
+house_percent1;0.30;float;;;ok
+house_percent2;0.49;float;;;ok
+house_percent3;0.5;float;;;ok
+house_percent4;0.79;float;;;ok
+house_percent5;0.8;float;;;ok
+max_earn_couple_0kid;32340;int;;;ok
+max_earn_couple_1kid;39240;int;;;ok
+max_earn_mono_1or2kid;39240;int;;;ok
+max_earn_couple_more_2kid;44940;int;;;ok
+max_earn_mono_more_3kid;44940;int;;;ok
+max_earn_alone;21500;int;;;ok
