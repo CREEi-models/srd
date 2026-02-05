@@ -157,20 +157,21 @@ class template:
     def calc_deduc_net_income(self, p):
         """
         Fonction qui calcule les déductions suivantes:
-        1. Pertes en capital nettes d'autres années;
-        2. Déduction pour gain en capital exonéré.
+        1. Déduction pour les revenus de OAS (incluant les allocations de survivant et de conjoint).
+        2. Pertes en capital nettes d'autres années + Déduction pour gain en capital exonéré.
 
-        Permet une déduction maximale égale aux gains en capital taxables nets.
+        Permet une déduction maximale égale aux gains en capital taxables nets pour le point 2.
+
+        Voir commit du 5/02/2026 pour les détails de la correction apportées.
 
         Parameters
         ----------
         p: Person
             instance de la classe Person
         """
-        p.fed_return['deductions_net_inc'] = min(
-            p.taxable_cap_gains,
-            p.inc_gis + p.allow_couple + p.allow_surv
-            + p.prev_cap_losses + self.cap_gains_rate * p.cap_gains_exempt)
+        p.prov_return['deductions_net_inc'] = p.inc_gis + p.allow_couple + p.allow_surv
+        p.prov_return['deductions_net_inc'] += min( p.taxable_cap_gains, 
+                                                  p.prev_cap_losses + self.cap_gains_rate * p.cap_gains_exempt)
 
     def calc_tax(self, p):
         """
