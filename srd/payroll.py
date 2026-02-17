@@ -21,12 +21,14 @@ class payroll:
     year: int
         année pour le calcul
     """
-    def __init__(self, year):
+    def __init__(self, year,simplify_prov=False):
         self.year = year
+        self.simplify_prov = simplify_prov
         self.qpp_rules = srpp.rules(qpp=True)
         self.cpp_rules = srpp.rules(qpp=False)
         self.qpip_prog = qpip.program(self.year)
         self.ei_prog = ei.program(self.year)
+        
 
     def compute(self, hh):
         """
@@ -43,7 +45,8 @@ class payroll:
             base, supp = self.get_cpp_contrib(p, hh)
             p.payroll['cpp'] = base
             p.payroll['cpp_supp'] = supp
-            p.payroll['qpip'] = self.qpip_prog.contrib(p, hh)
+            p.payroll['qpip'] = self.qpip_prog.contrib(p, hh, simplify_prov=self.simplify_prov)
+            
 
     def get_cpp_contrib(self, p, hh):
         """

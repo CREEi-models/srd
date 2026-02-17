@@ -436,7 +436,7 @@ class form_2023(form_2022):
         add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2023.csv')
         add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2023.csv')
         add_schedule_as_attr(self, module_dir + '/quebec/params/drug_insurance_contrib_2023.csv')
-        add_schedule_as_attr(self, module_dir + '/quebec/params/shelter_2023.csv')
+        #add_schedule_as_attr(self, module_dir + '/quebec/params/shelter_2023.csv')
 
     def cost_of_living(self, p, hh):
         """

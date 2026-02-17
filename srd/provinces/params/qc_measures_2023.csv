@@ -1,0 +1,3 @@
+variable;value;type;definition
+nrtc_base;17183;float;montant personnel de base
+nrtc_rate;0.14;float;taux du crédit non-remboursable (taux du premier palier)

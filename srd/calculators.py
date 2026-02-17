@@ -1,8 +1,13 @@
 import numpy as np
 from srd import federal, oas, quebec, ontario, payroll, assistance, covid, ei, Person, Hhold, Dependent
+from srd import provinces
 from itertools import product
 import pandas as pd
 from multiprocessing import cpu_count, Pool
+
+# Provinces avec modèle complet vs barebones
+FULL_MODEL_PROVINCES = ['qc', 'on']
+BAREBONES_PROVINCES = provinces.forms.PROVINCES
 
 
 class tax:
@@ -25,24 +30,32 @@ class tax:
         vrai si le calcul des prestations d'aide sociale est demandé
     """
     def __init__(self, year, ifed=True, ioas=True, iprov=True,
-                 ipayroll=True, iass=True):
+                 ipayroll=True, iass=True,simplify_prov=False):
         self.year = year
         self.ifed = ifed
         self.iprov = iprov
         self.ipayroll = ipayroll
         self.ioas = ioas
         self.iass = iass
-
+        if simplify_prov:
+            self.iass = False  # Pas d'aide sociale dans version simplifiée car seulement QC et ON ont modèle complet
         if ipayroll:
-            self.payroll = payroll(year)
+            self.payroll = payroll(year, simplify_prov=simplify_prov)
         if year == 2020 or year == 2021:
             self.covid = covid.program(year)
             self.ei = ei.program(year)
         if ifed:
             self.federal = federal.form(year)
         if iprov:
+            # Modèles complets pour QC et ON         
             self.prov = {'qc': quebec.form(year),
-                         'on': ontario.form(year)}
+                        'on': ontario.form(year)}
+            # Modèles barebones pour les autres provinces (si année disponible)
+            for prov_code in BAREBONES_PROVINCES:
+                if year in provinces.forms.YEARS_AVAILABLE.get(prov_code, []):
+                    if (prov_code not in FULL_MODEL_PROVINCES) or simplify_prov:
+                        self.prov[prov_code] = provinces.form(prov_code, year)
+            
         if ioas:
             self.oas = oas.program(year, self.federal)
         if iass:

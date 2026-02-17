@@ -9,7 +9,7 @@ class template:
     Ce gabarit sert pour l'instant à calculer les cotisations au RQAP.
 
     """
-    def contrib(self, p, hh):
+    def contrib(self, p, hh, simplify_prov=False):
         """
         Fonction pour calculer les cotisations à l'assurance parentale.
 
@@ -25,7 +25,7 @@ class template:
         float
             Montant de la cotisation à l'assurance parentale (annuelle).
         """
-        if p.inc_work <= self.qualifying_threshold_QPIP or hh.prov != 'qc':
+        if p.inc_work <= self.qualifying_threshold_QPIP or hh.prov != 'qc' or simplify_prov:
             p.contrib_qpip = p.contrib_qpip_self = 0
         elif p.inc_earn <= self.max_QPIP_earn:
             p.contrib_qpip = self.rate_QPIP_earn * p.inc_earn
