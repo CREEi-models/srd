@@ -1,96 +1,51 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="fr" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>Pension de la sécurité de la vieillesse &mdash; Documentation SRD </title>
-  
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/contentui.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/contentui.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/translations.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=d1a510d7"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/translations.js?v=041d0952"></script>
         <script src="_static/contentui.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Recherche" href="search.html" />
     <link rel="next" title="Cotisations sociales" href="payroll.html" />
     <link rel="prev" title="Impôt de l’Ontario" href="ontario.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
 
           
-            <a href="index.html" class="icon icon-home"> SRD
           
-
-          
+          <a href="index.html" class="icon icon-home">
+            SRD
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Rechercher docs" />
+    <input type="text" name="q" placeholder="Rechercher docs" aria-label="Rechercher docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
     
-            
-            
-              
-            
-            
               <p class="caption" role="heading"><span class="caption-text">Menu:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Premiers pas avec le SRD</a><ul>
@@ -101,65 +56,373 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="actors.html">Les acteurs</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="actors.html#personnes">Personnes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="actors.html#dependants-enfant-ou-proche-a-charge">Dépendants (enfant ou proche à charge)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="actors.html#menages">Ménages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actors.html#personnes">Personnes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="actors.html#srd.Person"><code class="docutils literal notranslate"><span class="pre">Person</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="actors.html#srd.Person.attach_prev_work_inc"><code class="docutils literal notranslate"><span class="pre">attach_prev_work_inc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="actors.html#srd.Person.attach_inc_work_month"><code class="docutils literal notranslate"><span class="pre">attach_inc_work_month()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="actors.html#srd.Person.inc_work"><code class="docutils literal notranslate"><span class="pre">inc_work()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="actors.html#srd.Person.inc_non_work"><code class="docutils literal notranslate"><span class="pre">inc_non_work()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="actors.html#srd.Person.inc_tot"><code class="docutils literal notranslate"><span class="pre">inc_tot()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="actors.html#srd.Person.compute_months_cerb_cesb"><code class="docutils literal notranslate"><span class="pre">compute_months_cerb_cesb()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="actors.html#srd.Person.copy"><code class="docutils literal notranslate"><span class="pre">copy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="actors.html#srd.Person.reset"><code class="docutils literal notranslate"><span class="pre">reset()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="actors.html#dependants-enfant-ou-proche-a-charge">Dépendants (enfant ou proche à charge)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="actors.html#srd.Dependent"><code class="docutils literal notranslate"><span class="pre">Dependent</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="actors.html#menages">Ménages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="actors.html#srd.Hhold"><code class="docutils literal notranslate"><span class="pre">Hhold</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="actors.html#srd.Hhold.adjust_n_adults"><code class="docutils literal notranslate"><span class="pre">adjust_n_adults()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="actors.html#srd.Hhold.fam_inc_work"><code class="docutils literal notranslate"><span class="pre">fam_inc_work()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="actors.html#srd.Hhold.fam_inc_non_work"><code class="docutils literal notranslate"><span class="pre">fam_inc_non_work()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="actors.html#srd.Hhold.fam_inc_tot"><code class="docutils literal notranslate"><span class="pre">fam_inc_tot()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="actors.html#srd.Hhold.fam_after_tax_inc"><code class="docutils literal notranslate"><span class="pre">fam_after_tax_inc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="actors.html#srd.Hhold.fam_disp_inc"><code class="docutils literal notranslate"><span class="pre">fam_disp_inc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="actors.html#srd.Hhold.child_care_exp"><code class="docutils literal notranslate"><span class="pre">child_care_exp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="actors.html#srd.Hhold.fam_net_inc_prov"><code class="docutils literal notranslate"><span class="pre">fam_net_inc_prov()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="actors.html#srd.Hhold.fam_net_inc_fed"><code class="docutils literal notranslate"><span class="pre">fam_net_inc_fed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="actors.html#srd.Hhold.add_dependent"><code class="docutils literal notranslate"><span class="pre">add_dependent()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="actors.html#srd.Hhold.count"><code class="docutils literal notranslate"><span class="pre">count()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="actors.html#srd.Hhold.compute_max_split"><code class="docutils literal notranslate"><span class="pre">compute_max_split()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="actors.html#srd.Hhold.assess_elig_split"><code class="docutils literal notranslate"><span class="pre">assess_elig_split()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="actors.html#srd.Hhold.copy"><code class="docutils literal notranslate"><span class="pre">copy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="actors.html#srd.Hhold.reset"><code class="docutils literal notranslate"><span class="pre">reset()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="federal.html">Impôt fédéral</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="federal.html#survol">Survol</a></li>
-<li class="toctree-l2"><a class="reference internal" href="federal.html#gabarit-de-declaration">Gabarit de déclaration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="federal.html#fonctions-specifiques-ou-modifiees">Fonctions spécifiques ou modifiées</a></li>
+<li class="toctree-l2"><a class="reference internal" href="federal.html#survol">Survol</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form"><code class="docutils literal notranslate"><span class="pre">form()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="federal.html#gabarit-de-declaration">Gabarit de déclaration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.template"><code class="docutils literal notranslate"><span class="pre">template()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2016.file"><code class="docutils literal notranslate"><span class="pre">file()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2016.calc_gross_income"><code class="docutils literal notranslate"><span class="pre">calc_gross_income()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2016.calc_net_income"><code class="docutils literal notranslate"><span class="pre">calc_net_income()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2016.calc_taxable_income"><code class="docutils literal notranslate"><span class="pre">calc_taxable_income()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2016.calc_deduc_gross_income"><code class="docutils literal notranslate"><span class="pre">calc_deduc_gross_income()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2016.chcare"><code class="docutils literal notranslate"><span class="pre">chcare()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2016.cpp_deduction"><code class="docutils literal notranslate"><span class="pre">cpp_deduction()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2016.qpip_deduction"><code class="docutils literal notranslate"><span class="pre">qpip_deduction()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2016.calc_deduc_net_income"><code class="docutils literal notranslate"><span class="pre">calc_deduc_net_income()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2016.calc_tax"><code class="docutils literal notranslate"><span class="pre">calc_tax()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2016.calc_non_refundable_tax_credits"><code class="docutils literal notranslate"><span class="pre">calc_non_refundable_tax_credits()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2016.get_age_cred"><code class="docutils literal notranslate"><span class="pre">get_age_cred()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2016.get_cpp_contrib_cred"><code class="docutils literal notranslate"><span class="pre">get_cpp_contrib_cred()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2016.get_qpip_cred"><code class="docutils literal notranslate"><span class="pre">get_qpip_cred()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2016.get_qpip_self_cred"><code class="docutils literal notranslate"><span class="pre">get_qpip_self_cred()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2016.get_empl_cred"><code class="docutils literal notranslate"><span class="pre">get_empl_cred()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2016.get_pension_cred"><code class="docutils literal notranslate"><span class="pre">get_pension_cred()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2016.get_disabled_cred"><code class="docutils literal notranslate"><span class="pre">get_disabled_cred()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2016.get_med_exp_nr_cred"><code class="docutils literal notranslate"><span class="pre">get_med_exp_nr_cred()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2016.get_donations_cred"><code class="docutils literal notranslate"><span class="pre">get_donations_cred()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2016.div_tax_credit"><code class="docutils literal notranslate"><span class="pre">div_tax_credit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2016.calc_refundable_tax_credits"><code class="docutils literal notranslate"><span class="pre">calc_refundable_tax_credits()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2016.abatment"><code class="docutils literal notranslate"><span class="pre">abatment()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2016.ccb"><code class="docutils literal notranslate"><span class="pre">ccb()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2016.get_witb"><code class="docutils literal notranslate"><span class="pre">get_witb()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2016.get_witbds"><code class="docutils literal notranslate"><span class="pre">get_witbds()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2016.compute_witb_witbds"><code class="docutils literal notranslate"><span class="pre">compute_witb_witbds()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2016.med_exp"><code class="docutils literal notranslate"><span class="pre">med_exp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2016.gst_hst_credit"><code class="docutils literal notranslate"><span class="pre">gst_hst_credit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2016.get_spouses_cred"><code class="docutils literal notranslate"><span class="pre">get_spouses_cred()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2016.get_dep_cred"><code class="docutils literal notranslate"><span class="pre">get_dep_cred()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2016.get_spouse_transfer"><code class="docutils literal notranslate"><span class="pre">get_spouse_transfer()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2016.get_ei_contrib_cred"><code class="docutils literal notranslate"><span class="pre">get_ei_contrib_cred()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.create_return"><code class="docutils literal notranslate"><span class="pre">create_return()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="federal.html#fonctions-specifiques-ou-modifiees">Fonctions spécifiques ou modifiées</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2016"><code class="docutils literal notranslate"><span class="pre">form_2016</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2017"><code class="docutils literal notranslate"><span class="pre">form_2017</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2018"><code class="docutils literal notranslate"><span class="pre">form_2018</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2019"><code class="docutils literal notranslate"><span class="pre">form_2019</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2019.cpp_deduction"><code class="docutils literal notranslate"><span class="pre">cpp_deduction()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2020"><code class="docutils literal notranslate"><span class="pre">form_2020</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2020.compute_basic_amount"><code class="docutils literal notranslate"><span class="pre">compute_basic_amount()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2020.calc_net_income"><code class="docutils literal notranslate"><span class="pre">calc_net_income()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2020.repayments_ei"><code class="docutils literal notranslate"><span class="pre">repayments_ei()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2020.calc_refundable_tax_credits"><code class="docutils literal notranslate"><span class="pre">calc_refundable_tax_credits()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2020.oas_gis_covid_bonus"><code class="docutils literal notranslate"><span class="pre">oas_gis_covid_bonus()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2021"><code class="docutils literal notranslate"><span class="pre">form_2021</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2021.calc_refundable_tax_credits"><code class="docutils literal notranslate"><span class="pre">calc_refundable_tax_credits()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2021.ccb"><code class="docutils literal notranslate"><span class="pre">ccb()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2021.compute_witb_witbds"><code class="docutils literal notranslate"><span class="pre">compute_witb_witbds()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2022"><code class="docutils literal notranslate"><span class="pre">form_2022</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federal.html#srd.federal.form_2022.ccb"><code class="docutils literal notranslate"><span class="pre">ccb()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="quebec.html">Impôt du Québec</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="quebec.html#survol">Survol</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quebec.html#gabarit-de-declaration">Gabarit de déclaration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quebec.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quebec.html#survol">Survol</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form"><code class="docutils literal notranslate"><span class="pre">form()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quebec.html#gabarit-de-declaration">Gabarit de déclaration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.template"><code class="docutils literal notranslate"><span class="pre">template()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2020.file"><code class="docutils literal notranslate"><span class="pre">file()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2020.calc_gross_income"><code class="docutils literal notranslate"><span class="pre">calc_gross_income()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2020.calc_net_income"><code class="docutils literal notranslate"><span class="pre">calc_net_income()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2020.calc_taxable_income"><code class="docutils literal notranslate"><span class="pre">calc_taxable_income()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2020.calc_deduc_gross_income"><code class="docutils literal notranslate"><span class="pre">calc_deduc_gross_income()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2020.work_deduc"><code class="docutils literal notranslate"><span class="pre">work_deduc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2020.cpp_qpip_deduction"><code class="docutils literal notranslate"><span class="pre">cpp_qpip_deduction()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2020.calc_deduc_net_income"><code class="docutils literal notranslate"><span class="pre">calc_deduc_net_income()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2020.calc_tax"><code class="docutils literal notranslate"><span class="pre">calc_tax()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2020.calc_non_refundable_tax_credits"><code class="docutils literal notranslate"><span class="pre">calc_non_refundable_tax_credits()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2020.get_age_cred"><code class="docutils literal notranslate"><span class="pre">get_age_cred()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2020.get_living_alone_cred"><code class="docutils literal notranslate"><span class="pre">get_living_alone_cred()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2020.get_pension_cred"><code class="docutils literal notranslate"><span class="pre">get_pension_cred()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2020.get_nrtcred_clawback"><code class="docutils literal notranslate"><span class="pre">get_nrtcred_clawback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2020.get_exp_worker_cred"><code class="docutils literal notranslate"><span class="pre">get_exp_worker_cred()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2020.get_donations_cred"><code class="docutils literal notranslate"><span class="pre">get_donations_cred()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2020.get_union_dues_cred"><code class="docutils literal notranslate"><span class="pre">get_union_dues_cred()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2020.get_disabled_cred"><code class="docutils literal notranslate"><span class="pre">get_disabled_cred()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2020.get_med_exp_cred"><code class="docutils literal notranslate"><span class="pre">get_med_exp_cred()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2020.div_tax_credit"><code class="docutils literal notranslate"><span class="pre">div_tax_credit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2020.calc_refundable_tax_credits"><code class="docutils literal notranslate"><span class="pre">calc_refundable_tax_credits()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2020.chcare"><code class="docutils literal notranslate"><span class="pre">chcare()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2020.witb"><code class="docutils literal notranslate"><span class="pre">witb()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2020.home_support"><code class="docutils literal notranslate"><span class="pre">home_support()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2020.med_exp"><code class="docutils literal notranslate"><span class="pre">med_exp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2020.ccap"><code class="docutils literal notranslate"><span class="pre">ccap()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2020.calc_contributions"><code class="docutils literal notranslate"><span class="pre">calc_contributions()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2020.health_contrib"><code class="docutils literal notranslate"><span class="pre">health_contrib()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2020.add_contrib_subsid_chcare"><code class="docutils literal notranslate"><span class="pre">add_contrib_subsid_chcare()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2020.solidarity"><code class="docutils literal notranslate"><span class="pre">solidarity()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2020.drug_insurance_contrib"><code class="docutils literal notranslate"><span class="pre">drug_insurance_contrib()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2020.contrib_hsf"><code class="docutils literal notranslate"><span class="pre">contrib_hsf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2020.get_spouse_transfer"><code class="docutils literal notranslate"><span class="pre">get_spouse_transfer()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2020.cost_of_living"><code class="docutils literal notranslate"><span class="pre">cost_of_living()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2020.tax_shield"><code class="docutils literal notranslate"><span class="pre">tax_shield()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.create_return"><code class="docutils literal notranslate"><span class="pre">create_return()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quebec.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2016"><code class="docutils literal notranslate"><span class="pre">form_2016</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2017"><code class="docutils literal notranslate"><span class="pre">form_2017</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2017.calc_contributions"><code class="docutils literal notranslate"><span class="pre">calc_contributions()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2017.get_donations_cred"><code class="docutils literal notranslate"><span class="pre">get_donations_cred()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2017.ccap"><code class="docutils literal notranslate"><span class="pre">ccap()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2018"><code class="docutils literal notranslate"><span class="pre">form_2018</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2018.senior_assist"><code class="docutils literal notranslate"><span class="pre">senior_assist()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2019"><code class="docutils literal notranslate"><span class="pre">form_2019</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2019.cpp_qpip_deduction"><code class="docutils literal notranslate"><span class="pre">cpp_qpip_deduction()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2019.calc_contributions"><code class="docutils literal notranslate"><span class="pre">calc_contributions()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2020"><code class="docutils literal notranslate"><span class="pre">form_2020</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#id0"><code class="docutils literal notranslate"><span class="pre">calc_deduc_gross_income()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2021"><code class="docutils literal notranslate"><span class="pre">form_2021</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2021.calc_deduc_gross_income"><code class="docutils literal notranslate"><span class="pre">calc_deduc_gross_income()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2021.cost_of_living"><code class="docutils literal notranslate"><span class="pre">cost_of_living()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2022"><code class="docutils literal notranslate"><span class="pre">form_2022</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="quebec.html#srd.quebec.form_2022.cost_of_living"><code class="docutils literal notranslate"><span class="pre">cost_of_living()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ontario.html">Impôt de l’Ontario</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ontario.html#survol">Survol</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ontario.html#gabarit-du-rapport">Gabarit du rapport</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ontario.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ontario.html#survol">Survol</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ontario.html#srd.ontario.form"><code class="docutils literal notranslate"><span class="pre">form()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ontario.html#gabarit-du-rapport">Gabarit du rapport</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ontario.html#srd.ontario.template"><code class="docutils literal notranslate"><span class="pre">template()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ontario.html#srd.ontario.form_2016.file"><code class="docutils literal notranslate"><span class="pre">file()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ontario.html#srd.ontario.form_2016.copy_fed_return"><code class="docutils literal notranslate"><span class="pre">copy_fed_return()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ontario.html#srd.ontario.form_2016.calc_tax"><code class="docutils literal notranslate"><span class="pre">calc_tax()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ontario.html#srd.ontario.form_2016.calc_non_refundable_tax_credits"><code class="docutils literal notranslate"><span class="pre">calc_non_refundable_tax_credits()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ontario.html#srd.ontario.form_2016.get_age_cred"><code class="docutils literal notranslate"><span class="pre">get_age_cred()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ontario.html#srd.ontario.form_2016.get_spouse_cred"><code class="docutils literal notranslate"><span class="pre">get_spouse_cred()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ontario.html#srd.ontario.form_2016.get_cpp_contrib_cred"><code class="docutils literal notranslate"><span class="pre">get_cpp_contrib_cred()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ontario.html#srd.ontario.form_2016.get_pension_cred"><code class="docutils literal notranslate"><span class="pre">get_pension_cred()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ontario.html#srd.ontario.form_2016.get_disabled_cred"><code class="docutils literal notranslate"><span class="pre">get_disabled_cred()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ontario.html#srd.ontario.form_2016.get_med_exp_cred"><code class="docutils literal notranslate"><span class="pre">get_med_exp_cred()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ontario.html#srd.ontario.form_2016.get_donations_cred"><code class="docutils literal notranslate"><span class="pre">get_donations_cred()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ontario.html#srd.ontario.form_2016.surtax"><code class="docutils literal notranslate"><span class="pre">surtax()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ontario.html#srd.ontario.form_2016.div_tax_credit"><code class="docutils literal notranslate"><span class="pre">div_tax_credit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ontario.html#srd.ontario.form_2016.tax_reduction"><code class="docutils literal notranslate"><span class="pre">tax_reduction()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ontario.html#srd.ontario.form_2016.calc_refundable_tax_credits"><code class="docutils literal notranslate"><span class="pre">calc_refundable_tax_credits()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ontario.html#srd.ontario.form_2016.ocb"><code class="docutils literal notranslate"><span class="pre">ocb()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ontario.html#srd.ontario.form_2016.ostc"><code class="docutils literal notranslate"><span class="pre">ostc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ontario.html#srd.ontario.form_2016.calc_contributions"><code class="docutils literal notranslate"><span class="pre">calc_contributions()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ontario.html#srd.ontario.form_2016.health_contrib"><code class="docutils literal notranslate"><span class="pre">health_contrib()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ontario.html#srd.ontario.create_return"><code class="docutils literal notranslate"><span class="pre">create_return()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ontario.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ontario.html#srd.ontario.form_2016"><code class="docutils literal notranslate"><span class="pre">form_2016</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ontario.html#srd.ontario.form_2017"><code class="docutils literal notranslate"><span class="pre">form_2017</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ontario.html#srd.ontario.form_2018"><code class="docutils literal notranslate"><span class="pre">form_2018</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ontario.html#srd.ontario.form_2019"><code class="docutils literal notranslate"><span class="pre">form_2019</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ontario.html#srd.ontario.form_2019.lift_credit"><code class="docutils literal notranslate"><span class="pre">lift_credit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ontario.html#srd.ontario.form_2019.chcare"><code class="docutils literal notranslate"><span class="pre">chcare()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ontario.html#srd.ontario.form_2019.caip"><code class="docutils literal notranslate"><span class="pre">caip()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ontario.html#srd.ontario.form_2020"><code class="docutils literal notranslate"><span class="pre">form_2020</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ontario.html#srd.ontario.form_2021"><code class="docutils literal notranslate"><span class="pre">form_2021</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ontario.html#srd.ontario.form_2021.chcare"><code class="docutils literal notranslate"><span class="pre">chcare()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ontario.html#srd.ontario.form_2022"><code class="docutils literal notranslate"><span class="pre">form_2022</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Pension de la sécurité de la vieillesse</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#survol">Survol</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#gabarit-du-programme">Gabarit du programme</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#survol">Survol</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#srd.oas.program"><code class="docutils literal notranslate"><span class="pre">program()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#gabarit-du-programme">Gabarit du programme</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#srd.oas.template"><code class="docutils literal notranslate"><span class="pre">template()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#srd.oas.template.template.file"><code class="docutils literal notranslate"><span class="pre">file()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#srd.oas.template.template.eligibility"><code class="docutils literal notranslate"><span class="pre">eligibility()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#srd.oas.template.template.compute_net_income"><code class="docutils literal notranslate"><span class="pre">compute_net_income()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#srd.oas.template.template.compute_net_inc_exemption"><code class="docutils literal notranslate"><span class="pre">compute_net_inc_exemption()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#srd.oas.template.template.compute_pension"><code class="docutils literal notranslate"><span class="pre">compute_pension()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#srd.oas.template.template.pension_clawback"><code class="docutils literal notranslate"><span class="pre">pension_clawback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#srd.oas.template.template.gis"><code class="docutils literal notranslate"><span class="pre">gis()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#srd.oas.template.template.survivor_allowance"><code class="docutils literal notranslate"><span class="pre">survivor_allowance()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#srd.oas.template.template.couple_allowance"><code class="docutils literal notranslate"><span class="pre">couple_allowance()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#srd.oas.template.template.compute_allowance"><code class="docutils literal notranslate"><span class="pre">compute_allowance()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#srd.oas.programs.program_2016"><code class="docutils literal notranslate"><span class="pre">program_2016</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#srd.oas.programs.program_2017"><code class="docutils literal notranslate"><span class="pre">program_2017</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#srd.oas.programs.program_2018"><code class="docutils literal notranslate"><span class="pre">program_2018</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#srd.oas.programs.program_2019"><code class="docutils literal notranslate"><span class="pre">program_2019</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#srd.oas.programs.program_2020"><code class="docutils literal notranslate"><span class="pre">program_2020</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#srd.oas.programs.program_2020.compute_net_inc_exemption"><code class="docutils literal notranslate"><span class="pre">compute_net_inc_exemption()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#srd.oas.programs.program_2021"><code class="docutils literal notranslate"><span class="pre">program_2021</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#srd.oas.programs.program_2021.compute_pension"><code class="docutils literal notranslate"><span class="pre">compute_pension()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#srd.oas.programs.program_2021.gis"><code class="docutils literal notranslate"><span class="pre">gis()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#srd.oas.programs.program_2022"><code class="docutils literal notranslate"><span class="pre">program_2022</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#srd.oas.programs.program_2022.compute_pension"><code class="docutils literal notranslate"><span class="pre">compute_pension()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="payroll.html">Cotisations sociales</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="payroll.html#srd.payroll"><code class="docutils literal notranslate"><span class="pre">payroll</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#srd.payroll.compute"><code class="docutils literal notranslate"><span class="pre">payroll.compute()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#srd.payroll.get_cpp_contrib"><code class="docutils literal notranslate"><span class="pre">payroll.get_cpp_contrib()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="payroll.html#assurance-emploi">Assurance emploi</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="payroll.html#survol">Survol</a></li>
-<li class="toctree-l3"><a class="reference internal" href="payroll.html#gabarit-du-programme">Gabarit du programme</a></li>
-<li class="toctree-l3"><a class="reference internal" href="payroll.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#survol">Survol</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="payroll.html#srd.ei.program"><code class="docutils literal notranslate"><span class="pre">program()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#gabarit-du-programme">Gabarit du programme</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="payroll.html#srd.ei.template"><code class="docutils literal notranslate"><span class="pre">template</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="payroll.html#srd.ei.programs.program_2016"><code class="docutils literal notranslate"><span class="pre">program_2016</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="payroll.html#srd.ei.programs.program_2017"><code class="docutils literal notranslate"><span class="pre">program_2017</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="payroll.html#srd.ei.programs.program_2018"><code class="docutils literal notranslate"><span class="pre">program_2018</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="payroll.html#srd.ei.programs.program_2019"><code class="docutils literal notranslate"><span class="pre">program_2019</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="payroll.html#srd.ei.programs.program_2020"><code class="docutils literal notranslate"><span class="pre">program_2020</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="payroll.html#srd.ei.programs.program_2021"><code class="docutils literal notranslate"><span class="pre">program_2021</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="payroll.html#srd.ei.programs.program_2021.compute_benefits_covid"><code class="docutils literal notranslate"><span class="pre">compute_benefits_covid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="payroll.html#srd.ei.programs.program_2022"><code class="docutils literal notranslate"><span class="pre">program_2022</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="payroll.html#regime-quebecois-d-assurance-parentale">Régime québécois d’assurance parentale</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="payroll.html#id1">Survol</a></li>
-<li class="toctree-l3"><a class="reference internal" href="payroll.html#id2">Gabarit du programme</a></li>
-<li class="toctree-l3"><a class="reference internal" href="payroll.html#id3">Fonctions spécifiques ou modifiées par année</a></li>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#id1">Survol</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="payroll.html#srd.qpip.program"><code class="docutils literal notranslate"><span class="pre">program()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#id2">Gabarit du programme</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="payroll.html#srd.qpip.template"><code class="docutils literal notranslate"><span class="pre">template</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="payroll.html#id3">Fonctions spécifiques ou modifiées par année</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="payroll.html#srd.qpip.programs.program_2016"><code class="docutils literal notranslate"><span class="pre">program_2016</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="payroll.html#srd.qpip.programs.program_2017"><code class="docutils literal notranslate"><span class="pre">program_2017</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="payroll.html#srd.qpip.programs.program_2018"><code class="docutils literal notranslate"><span class="pre">program_2018</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="payroll.html#srd.qpip.programs.program_2019"><code class="docutils literal notranslate"><span class="pre">program_2019</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="payroll.html#srd.qpip.programs.program_2020"><code class="docutils literal notranslate"><span class="pre">program_2020</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="payroll.html#srd.qpip.programs.program_2021"><code class="docutils literal notranslate"><span class="pre">program_2021</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="payroll.html#srd.qpip.programs.program_2022"><code class="docutils literal notranslate"><span class="pre">program_2022</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="assistance.html">Aide sociale</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="assistance.html#survol">Survol</a></li>
-<li class="toctree-l2"><a class="reference internal" href="assistance.html#gabarit-du-programme">Gabarit du programme</a></li>
-<li class="toctree-l2"><a class="reference internal" href="assistance.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assistance.html#survol">Survol</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="assistance.html#srd.assistance.program"><code class="docutils literal notranslate"><span class="pre">program()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="assistance.html#gabarit-du-programme">Gabarit du programme</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="assistance.html#srd.assistance.template"><code class="docutils literal notranslate"><span class="pre">template()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="assistance.html#srd.assistance.program_2016.file"><code class="docutils literal notranslate"><span class="pre">file()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="assistance.html#srd.assistance.program_2016.shelter"><code class="docutils literal notranslate"><span class="pre">shelter()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="assistance.html#srd.assistance.program_2016.calc_sa_qc"><code class="docutils literal notranslate"><span class="pre">calc_sa_qc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="assistance.html#srd.assistance.program_2016.eligibility_qc"><code class="docutils literal notranslate"><span class="pre">eligibility_qc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="assistance.html#srd.assistance.program_2016.child_ajustments"><code class="docutils literal notranslate"><span class="pre">child_ajustments()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="assistance.html#srd.assistance.program_2016.calc_sa_on"><code class="docutils literal notranslate"><span class="pre">calc_sa_on()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="assistance.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="assistance.html#srd.assistance.programs.program_2016"><code class="docutils literal notranslate"><span class="pre">program_2016</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="assistance.html#srd.assistance.programs.program_2017"><code class="docutils literal notranslate"><span class="pre">program_2017</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="assistance.html#srd.assistance.programs.program_2018"><code class="docutils literal notranslate"><span class="pre">program_2018</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="assistance.html#srd.assistance.programs.program_2019"><code class="docutils literal notranslate"><span class="pre">program_2019</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="assistance.html#srd.assistance.programs.program_2020"><code class="docutils literal notranslate"><span class="pre">program_2020</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="assistance.html#srd.assistance.programs.program_2021"><code class="docutils literal notranslate"><span class="pre">program_2021</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="assistance.html#srd.assistance.programs.program_2022"><code class="docutils literal notranslate"><span class="pre">program_2022</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="covid.html">Prestations liées à la COVID-19</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="covid.html#survol">Survol</a></li>
-<li class="toctree-l2"><a class="reference internal" href="covid.html#gabarit-du-programme">Gabarit du programme</a></li>
-<li class="toctree-l2"><a class="reference internal" href="covid.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a></li>
+<li class="toctree-l2"><a class="reference internal" href="covid.html#gabarit-du-programme">Gabarit du programme</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="covid.html#srd.covid.template"><code class="docutils literal notranslate"><span class="pre">template()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="covid.html#srd.covid.program_2020.compute"><code class="docutils literal notranslate"><span class="pre">compute()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="covid.html#srd.covid.program_2020.compute_cerb"><code class="docutils literal notranslate"><span class="pre">compute_cerb()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="covid.html#srd.covid.program_2020.compute_cesb"><code class="docutils literal notranslate"><span class="pre">compute_cesb()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="covid.html#srd.covid.program_2020.compute_monthly_cesb"><code class="docutils literal notranslate"><span class="pre">compute_monthly_cesb()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="covid.html#srd.covid.program_2020.compute_iprew"><code class="docutils literal notranslate"><span class="pre">compute_iprew()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="covid.html#srd.covid.program_2020.compute_crb"><code class="docutils literal notranslate"><span class="pre">compute_crb()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="covid.html#fonctions-specifiques-ou-modifiees-par-annee">Fonctions spécifiques ou modifiées par année</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="covid.html#srd.covid.programs.program_2020"><code class="docutils literal notranslate"><span class="pre">program_2020</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="covid.html#srd.covid.programs.program_2020.compute_cerb"><code class="docutils literal notranslate"><span class="pre">compute_cerb()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="covid.html#srd.covid.programs.program_2020.compute_cesb"><code class="docutils literal notranslate"><span class="pre">compute_cesb()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="covid.html#srd.covid.programs.program_2020.compute_monthly_cesb"><code class="docutils literal notranslate"><span class="pre">compute_monthly_cesb()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="covid.html#srd.covid.programs.program_2020.compute_iprew"><code class="docutils literal notranslate"><span class="pre">compute_iprew()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="covid.html#srd.covid.programs.program_2021"><code class="docutils literal notranslate"><span class="pre">program_2021</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="calculators.html">Calculateur de revenu disponible</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="calculators.html#survol">Survol</a></li>
-<li class="toctree-l2"><a class="reference internal" href="calculators.html#les-fonctions-du-calculateur">Les fonctions du calculateur</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calculators.html#les-fonctions-du-calculateur">Les fonctions du calculateur</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="calculators.html#srd.tax"><code class="docutils literal notranslate"><span class="pre">tax</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="calculators.html#srd.tax.compute"><code class="docutils literal notranslate"><span class="pre">compute()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="calculators.html#srd.tax.compute_with_transfer"><code class="docutils literal notranslate"><span class="pre">compute_with_transfer()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="calculators.html#srd.tax.compute_all"><code class="docutils literal notranslate"><span class="pre">compute_all()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="calculators.html#srd.tax.compute_oas"><code class="docutils literal notranslate"><span class="pre">compute_oas()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="calculators.html#srd.tax.compute_fed"><code class="docutils literal notranslate"><span class="pre">compute_fed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="calculators.html#srd.tax.compute_prov"><code class="docutils literal notranslate"><span class="pre">compute_prov()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="calculators.html#srd.tax.compute_payroll"><code class="docutils literal notranslate"><span class="pre">compute_payroll()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="calculators.html#srd.tax.compute_covid"><code class="docutils literal notranslate"><span class="pre">compute_covid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="calculators.html#srd.tax.compute_sa"><code class="docutils literal notranslate"><span class="pre">compute_sa()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="calculators.html#srd.tax.compute_after_tax_inc"><code class="docutils literal notranslate"><span class="pre">compute_after_tax_inc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="calculators.html#srd.tax.disp_inc"><code class="docutils literal notranslate"><span class="pre">disp_inc()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="comparaison.html">Comparaisons avec le MFQ</a><ul>
@@ -196,108 +459,67 @@
 </li>
 </ul>
 
-            
-          
     <a href="genindex.html">Index</a>
   
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">SRD</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
-      <li>Pension de la sécurité de la vieillesse</li>
-    
-    
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Pension de la sécurité de la vieillesse</li>
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="_sources/oas.rst.txt" rel="nofollow"> Afficher la source de la page</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="pension-de-la-securite-de-la-vieillesse">
-<h1>Pension de la sécurité de la vieillesse<a class="headerlink" href="#pension-de-la-securite-de-la-vieillesse" title="Lien permanent vers ce titre">¶</a></h1>
-<div class="section" id="survol">
-<h2>Survol<a class="headerlink" href="#survol" title="Lien permanent vers ce titre">¶</a></h2>
+             
+  <section id="pension-de-la-securite-de-la-vieillesse">
+<h1>Pension de la sécurité de la vieillesse<a class="headerlink" href="#pension-de-la-securite-de-la-vieillesse" title="Lien vers cette rubrique"></a></h1>
+<section id="survol">
+<h2>Survol<a class="headerlink" href="#survol" title="Lien vers cette rubrique"></a></h2>
 <p>Le programme de la Sécurité à la vieillesse est pris en charge par le module <em>oas</em> et comprend la Pension de la sécurité à la vieillesse (PSV), le Supplément de revenu garanti (SRG), l’Allocation (au conjoint) et l’Allocation au survivant. Ce module contient un gabarit que nous documentons ci-dessous ainsi que des classes dérivées spécifiques pour chaque année.</p>
 <p>La fonction <em>program</em> permet de choisir l’année du programme et ira tirer une instance du programme pour cette année. L’instance est retournée par la fonction suivante:</p>
 <blockquote>
 <div><dl class="py function">
 <dt class="sig sig-object py" id="srd.oas.program">
-<span class="sig-prename descclassname"><span class="pre">srd.oas.</span></span><span class="sig-name descname"><span class="pre">program</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">federal</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.program" title="Lien permanent vers cette définition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">srd.oas.</span></span><span class="sig-name descname"><span class="pre">program</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">federal</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.program" title="Lien vers cette définition"></a></dt>
 <dd><p>Fonction qui permet de sélectionner le programme par année.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>year</strong> (<em>int</em>) – année (présentement entre 2016 et 2022)</p></li>
 <li><p><strong>federal</strong> (<em>{srd.federal.form_2016</em><em>, </em><em>...</em><em>, </em><em>srd.federal.form_2022}</em>) – instance de la classe srd.federal.form_xxxx (pour l’année xxxx) du module <em>federal</em></p></li>
 </ul>
 </dd>
-<dt class="field-even">Renvoie</dt>
+<dt class="field-even">Renvoie<span class="colon">:</span></dt>
 <dd class="field-even"><p>Une instance de la classe de l’année sélectionnée.</p>
 </dd>
-<dt class="field-odd">Type renvoyé</dt>
+<dt class="field-odd">Type renvoyé<span class="colon">:</span></dt>
 <dd class="field-odd"><p>class instance</p>
 </dd>
 </dl>
 </dd></dl>
 
 </div></blockquote>
-</div>
-<div class="section" id="gabarit-du-programme">
-<h2>Gabarit du programme<a class="headerlink" href="#gabarit-du-programme" title="Lien permanent vers ce titre">¶</a></h2>
+</section>
+<section id="gabarit-du-programme">
+<h2>Gabarit du programme<a class="headerlink" href="#gabarit-du-programme" title="Lien vers cette rubrique"></a></h2>
 <p>Nous utilisons un gabarit afin de créer les programmes chaque année. Quand le programme change seulement au niveau des paramètres d’une année à l’autre, nous irons chercher seulement les nouveaux paramètres. Quand des fonctions changent, l’utilisateur n’a qu’à modifier les fonctions touchées (ou à en ajouter de nouvelles). L’avantage des classes dérivées est de ne pas avoir à répéter toutes les fonctions d’une année à l’autre si celles-ci n’ont pas changé.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="srd.oas.template">
-<span class="sig-prename descclassname"><span class="pre">srd.oas.</span></span><span class="sig-name descname"><span class="pre">template</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template" title="Lien permanent vers cette définition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">srd.oas.</span></span><span class="sig-name descname"><span class="pre">template</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template" title="Lien vers cette définition"></a></dt>
 <dd><p>Classe qui contient un gabarit du programme de la Sécurité de la vieillesse (PSV, SRG, Allocation et Allocation au survivant), tel qu’il existait en 2016.</p>
 </dd></dl>
 
@@ -311,11 +533,11 @@
 <div class="toggle-content docutils container">
 <dl class="py function">
 <dt class="sig sig-object py" id="srd.oas.template.template.file">
-<span class="sig-prename descclassname"><span class="pre">srd.oas.template.template.</span></span><span class="sig-name descname"><span class="pre">file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.template.file" title="Lien permanent vers cette définition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">srd.oas.template.template.</span></span><span class="sig-name descname"><span class="pre">file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.template.file" title="Lien vers cette définition"></a></dt>
 <dd><p>Fonction pour faire une demande au programme et recevoir une prestation, en faisant appel à toutes les fonctions qui suivent.</p>
 <p>Ceci calcule les prestations pour la PSV, le SRG, l’Allocation et l’Allocation au survivant.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
 </dd>
 </dl>
@@ -328,10 +550,10 @@
 <div class="toggle-content docutils container">
 <dl class="py function">
 <dt class="sig sig-object py" id="srd.oas.template.template.eligibility">
-<span class="sig-prename descclassname"><span class="pre">srd.oas.template.template.</span></span><span class="sig-name descname"><span class="pre">eligibility</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.template.eligibility" title="Lien permanent vers cette définition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">srd.oas.template.template.</span></span><span class="sig-name descname"><span class="pre">eligibility</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.template.eligibility" title="Lien vers cette définition"></a></dt>
 <dd><p>Fonction qui évalue l’admissibilité de la personne à chacun des 4 volets du programme.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
 <li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
@@ -347,10 +569,10 @@
 <div class="toggle-content docutils container">
 <dl class="py function">
 <dt class="sig sig-object py" id="srd.oas.template.template.compute_net_income">
-<span class="sig-prename descclassname"><span class="pre">srd.oas.template.template.</span></span><span class="sig-name descname"><span class="pre">compute_net_income</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.template.compute_net_income" title="Lien permanent vers cette définition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">srd.oas.template.template.</span></span><span class="sig-name descname"><span class="pre">compute_net_income</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.template.compute_net_income" title="Lien vers cette définition"></a></dt>
 <dd><p>Fonction qui calcule le revenu net (sans la PSV).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
 <li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
@@ -366,16 +588,16 @@
 <div class="toggle-content docutils container">
 <dl class="py function">
 <dt class="sig sig-object py" id="srd.oas.template.template.compute_net_inc_exemption">
-<span class="sig-prename descclassname"><span class="pre">srd.oas.template.template.</span></span><span class="sig-name descname"><span class="pre">compute_net_inc_exemption</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.template.compute_net_inc_exemption" title="Lien permanent vers cette définition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">srd.oas.template.template.</span></span><span class="sig-name descname"><span class="pre">compute_net_inc_exemption</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.template.compute_net_inc_exemption" title="Lien vers cette définition"></a></dt>
 <dd><p>Fonction qui calcule le revenu en sus de l’exemption aux fins du SRG sur les revenus du travail salarié.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
 </dd>
-<dt class="field-even">Renvoie</dt>
+<dt class="field-even">Renvoie<span class="colon">:</span></dt>
 <dd class="field-even"><p>Revenu en sus de l’exemption sur les revenus du travail aux fins du calcul du SRG.</p>
 </dd>
-<dt class="field-odd">Type renvoyé</dt>
+<dt class="field-odd">Type renvoyé<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -388,19 +610,19 @@
 <div class="toggle-content docutils container">
 <dl class="py function">
 <dt class="sig sig-object py" id="srd.oas.template.template.compute_pension">
-<span class="sig-prename descclassname"><span class="pre">srd.oas.template.template.</span></span><span class="sig-name descname"><span class="pre">compute_pension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.template.compute_pension" title="Lien permanent vers cette définition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">srd.oas.template.template.</span></span><span class="sig-name descname"><span class="pre">compute_pension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.template.compute_pension" title="Lien vers cette définition"></a></dt>
 <dd><p>Fonction qui calcule la prestation de PSV.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
 <li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
 </ul>
 </dd>
-<dt class="field-even">Renvoie</dt>
+<dt class="field-even">Renvoie<span class="colon">:</span></dt>
 <dd class="field-even"><p>Montant de la PSV.</p>
 </dd>
-<dt class="field-odd">Type renvoyé</dt>
+<dt class="field-odd">Type renvoyé<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -413,19 +635,19 @@
 <div class="toggle-content docutils container">
 <dl class="py function">
 <dt class="sig sig-object py" id="srd.oas.template.template.pension_clawback">
-<span class="sig-prename descclassname"><span class="pre">srd.oas.template.template.</span></span><span class="sig-name descname"><span class="pre">pension_clawback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.template.pension_clawback" title="Lien permanent vers cette définition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">srd.oas.template.template.</span></span><span class="sig-name descname"><span class="pre">pension_clawback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.template.pension_clawback" title="Lien vers cette définition"></a></dt>
 <dd><p>Fonction qui calcule la récupération de la PSV, basée sur le revenu net qui inclut la PSV.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
 <li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
 </ul>
 </dd>
-<dt class="field-even">Renvoie</dt>
+<dt class="field-even">Renvoie<span class="colon">:</span></dt>
 <dd class="field-even"><p>Montant de la récupération de la PSV.</p>
 </dd>
-<dt class="field-odd">Type renvoyé</dt>
+<dt class="field-odd">Type renvoyé<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -438,10 +660,10 @@
 <div class="toggle-content docutils container">
 <dl class="py function">
 <dt class="sig sig-object py" id="srd.oas.template.template.gis">
-<span class="sig-prename descclassname"><span class="pre">srd.oas.template.template.</span></span><span class="sig-name descname"><span class="pre">gis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">income</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">low_high</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.template.gis" title="Lien permanent vers cette définition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">srd.oas.template.template.</span></span><span class="sig-name descname"><span class="pre">gis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">income</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">low_high</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.template.gis" title="Lien vers cette définition"></a></dt>
 <dd><p>Fonction qui calcule la prestation de Supplément de revenu garanti.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
 <li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
@@ -449,10 +671,10 @@
 <li><p><strong>low_high</strong> (<em>string</em>) – “low”/”high” pour calcul du bonus de SRG pour très faible revenu</p></li>
 </ul>
 </dd>
-<dt class="field-even">Renvoie</dt>
+<dt class="field-even">Renvoie<span class="colon">:</span></dt>
 <dd class="field-even"><p>Montant du SRG (après récupération).</p>
 </dd>
-<dt class="field-odd">Type renvoyé</dt>
+<dt class="field-odd">Type renvoyé<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -465,19 +687,19 @@
 <div class="toggle-content docutils container">
 <dl class="py function">
 <dt class="sig sig-object py" id="srd.oas.template.template.survivor_allowance">
-<span class="sig-prename descclassname"><span class="pre">srd.oas.template.template.</span></span><span class="sig-name descname"><span class="pre">survivor_allowance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.template.survivor_allowance" title="Lien permanent vers cette définition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">srd.oas.template.template.</span></span><span class="sig-name descname"><span class="pre">survivor_allowance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.template.survivor_allowance" title="Lien vers cette définition"></a></dt>
 <dd><p>Fonction qui calcule la prestation effective d’Allocation au survivant, incluant la récupération.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
 <li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
 </ul>
 </dd>
-<dt class="field-even">Renvoie</dt>
+<dt class="field-even">Renvoie<span class="colon">:</span></dt>
 <dd class="field-even"><p>Prestation effective d’Allocation au survivant, incluant bonus et récupération.</p>
 </dd>
-<dt class="field-odd">Type renvoyé</dt>
+<dt class="field-odd">Type renvoyé<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -490,19 +712,19 @@
 <div class="toggle-content docutils container">
 <dl class="py function">
 <dt class="sig sig-object py" id="srd.oas.template.template.couple_allowance">
-<span class="sig-prename descclassname"><span class="pre">srd.oas.template.template.</span></span><span class="sig-name descname"><span class="pre">couple_allowance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.template.couple_allowance" title="Lien permanent vers cette définition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">srd.oas.template.template.</span></span><span class="sig-name descname"><span class="pre">couple_allowance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.template.couple_allowance" title="Lien vers cette définition"></a></dt>
 <dd><p>Fonction qui calcule la prestation effective d’Allocation au conjoint, en tenant compte du revenu.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
 <li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
 </ul>
 </dd>
-<dt class="field-even">Renvoie</dt>
+<dt class="field-even">Renvoie<span class="colon">:</span></dt>
 <dd class="field-even"><p>Prestation effective d’Allocation au conjoint, ajustée en fonction du revenu.</p>
 </dd>
-<dt class="field-odd">Type renvoyé</dt>
+<dt class="field-odd">Type renvoyé<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -515,20 +737,20 @@
 <div class="toggle-content docutils container">
 <dl class="py function">
 <dt class="sig sig-object py" id="srd.oas.template.template.compute_allowance">
-<span class="sig-prename descclassname"><span class="pre">srd.oas.template.template.</span></span><span class="sig-name descname"><span class="pre">compute_allowance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">supp_max</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.template.compute_allowance" title="Lien permanent vers cette définition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">srd.oas.template.template.</span></span><span class="sig-name descname"><span class="pre">compute_allowance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">supp_max</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.template.template.compute_allowance" title="Lien vers cette définition"></a></dt>
 <dd><p>Fonction qui calcule le montant maximal de l’Allocation au survivant ou de l’Allocation au conjoint.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
 <li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
 <li><p><strong>supp_max</strong> (<em>float</em>) – prestation maximale de SRG</p></li>
 </ul>
 </dd>
-<dt class="field-even">Renvoie</dt>
+<dt class="field-even">Renvoie<span class="colon">:</span></dt>
 <dd class="field-even"><p>Montant maximal de l’Allocation.</p>
 </dd>
-<dt class="field-odd">Type renvoyé</dt>
+<dt class="field-odd">Type renvoyé<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -538,16 +760,16 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-<div class="section" id="fonctions-specifiques-ou-modifiees-par-annee">
-<h2>Fonctions spécifiques ou modifiées par année<a class="headerlink" href="#fonctions-specifiques-ou-modifiees-par-annee" title="Lien permanent vers ce titre">¶</a></h2>
+</section>
+<section id="fonctions-specifiques-ou-modifiees-par-annee">
+<h2>Fonctions spécifiques ou modifiées par année<a class="headerlink" href="#fonctions-specifiques-ou-modifiees-par-annee" title="Lien vers cette rubrique"></a></h2>
 <p><strong>2016</strong></p>
 <dl class="py class">
 <dt class="sig sig-object py" id="srd.oas.programs.program_2016">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.oas.programs.</span></span><span class="sig-name descname"><span class="pre">program_2016</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">federal</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2016" title="Lien permanent vers cette définition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.oas.programs.</span></span><span class="sig-name descname"><span class="pre">program_2016</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">federal</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2016" title="Lien vers cette définition"></a></dt>
 <dd><p>Version du programme de 2016.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>federal</strong> (<a class="reference internal" href="federal.html#srd.federal.form_2016" title="srd.federal.form_2016"><em>srd.federal.form_2016</em></a>) – instance de la classe srd.federal.form_2016 du module <em>federal</em></p>
 </dd>
 </dl>
@@ -556,10 +778,10 @@
 <p><strong>2017</strong></p>
 <dl class="py class">
 <dt class="sig sig-object py" id="srd.oas.programs.program_2017">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.oas.programs.</span></span><span class="sig-name descname"><span class="pre">program_2017</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">federal</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2017" title="Lien permanent vers cette définition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.oas.programs.</span></span><span class="sig-name descname"><span class="pre">program_2017</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">federal</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2017" title="Lien vers cette définition"></a></dt>
 <dd><p>Version du programme de 2017.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>federal</strong> (<a class="reference internal" href="federal.html#srd.federal.form_2017" title="srd.federal.form_2017"><em>srd.federal.form_2017</em></a>) – instance de la classe srd.federal.form_2017 du module <em>federal</em></p>
 </dd>
 </dl>
@@ -568,10 +790,10 @@
 <p><strong>2018</strong></p>
 <dl class="py class">
 <dt class="sig sig-object py" id="srd.oas.programs.program_2018">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.oas.programs.</span></span><span class="sig-name descname"><span class="pre">program_2018</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">federal</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2018" title="Lien permanent vers cette définition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.oas.programs.</span></span><span class="sig-name descname"><span class="pre">program_2018</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">federal</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2018" title="Lien vers cette définition"></a></dt>
 <dd><p>Version du programme de 2018.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>federal</strong> (<a class="reference internal" href="federal.html#srd.federal.form_2018" title="srd.federal.form_2018"><em>srd.federal.form_2018</em></a>) – instance de la classe srd.federal.form_2018 du module <em>federal</em></p>
 </dd>
 </dl>
@@ -580,10 +802,10 @@
 <p><strong>2019</strong></p>
 <dl class="py class">
 <dt class="sig sig-object py" id="srd.oas.programs.program_2019">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.oas.programs.</span></span><span class="sig-name descname"><span class="pre">program_2019</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">federal</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2019" title="Lien permanent vers cette définition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.oas.programs.</span></span><span class="sig-name descname"><span class="pre">program_2019</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">federal</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2019" title="Lien vers cette définition"></a></dt>
 <dd><p>Version du programme de 2019.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>federal</strong> (<a class="reference internal" href="federal.html#srd.federal.form_2019" title="srd.federal.form_2019"><em>srd.federal.form_2019</em></a>) – instance de la classe srd.federal.form_2019 du module <em>federal</em></p>
 </dd>
 </dl>
@@ -592,10 +814,10 @@
 <p><strong>2020</strong></p>
 <dl class="py class">
 <dt class="sig sig-object py" id="srd.oas.programs.program_2020">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.oas.programs.</span></span><span class="sig-name descname"><span class="pre">program_2020</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">federal</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2020" title="Lien permanent vers cette définition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.oas.programs.</span></span><span class="sig-name descname"><span class="pre">program_2020</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">federal</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2020" title="Lien vers cette définition"></a></dt>
 <dd><p>Version du programme de 2020.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>federal</strong> (<a class="reference internal" href="federal.html#srd.federal.form_2020" title="srd.federal.form_2020"><em>srd.federal.form_2020</em></a>) – instance de la classe srd.federal.form_2020 du module <em>federal</em></p>
 </dd>
 </dl>
@@ -607,17 +829,17 @@
 <div class="toggle-content docutils container">
 <dl class="py function">
 <dt class="sig sig-object py" id="srd.oas.programs.program_2020.compute_net_inc_exemption">
-<span class="sig-prename descclassname"><span class="pre">srd.oas.programs.program_2020.</span></span><span class="sig-name descname"><span class="pre">compute_net_inc_exemption</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2020.compute_net_inc_exemption" title="Lien permanent vers cette définition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">srd.oas.programs.program_2020.</span></span><span class="sig-name descname"><span class="pre">compute_net_inc_exemption</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2020.compute_net_inc_exemption" title="Lien vers cette définition"></a></dt>
 <dd><p>Fonction qui remplace dans le gabarit (classe <em>srd.oas.template</em>) la fonction du même nom, et calcule le revenu net incluant l’exemption sur les revenus du travail salarié.</p>
 <p>À partir de 2020-2021, les revenus de travail autonome bénéficient également de l’exemption. Les revenus du travail entre 5 000 $ et 10 000 $ bénéficient d’une nouvelle exemption partielle de 50%.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p>
 </dd>
-<dt class="field-even">Renvoie</dt>
+<dt class="field-even">Renvoie<span class="colon">:</span></dt>
 <dd class="field-even"><p>Revenu net de l’exemption sur les revenus du travail.</p>
 </dd>
-<dt class="field-odd">Type renvoyé</dt>
+<dt class="field-odd">Type renvoyé<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -630,10 +852,10 @@
 <p><strong>2021</strong></p>
 <dl class="py class">
 <dt class="sig sig-object py" id="srd.oas.programs.program_2021">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.oas.programs.</span></span><span class="sig-name descname"><span class="pre">program_2021</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">federal</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2021" title="Lien permanent vers cette définition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.oas.programs.</span></span><span class="sig-name descname"><span class="pre">program_2021</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">federal</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2021" title="Lien vers cette définition"></a></dt>
 <dd><p>Version du programme de 2021.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>federal</strong> (<a class="reference internal" href="federal.html#srd.federal.form_2021" title="srd.federal.form_2021"><em>srd.federal.form_2021</em></a>) – instance de la classe srd.federal.form_2021 du module <em>federal</em></p>
 </dd>
 </dl>
@@ -645,19 +867,19 @@
 <div class="toggle-content docutils container">
 <dl class="py function">
 <dt class="sig sig-object py" id="srd.oas.programs.program_2021.compute_pension">
-<span class="sig-prename descclassname"><span class="pre">srd.oas.programs.program_2021.</span></span><span class="sig-name descname"><span class="pre">compute_pension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2021.compute_pension" title="Lien permanent vers cette définition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">srd.oas.programs.program_2021.</span></span><span class="sig-name descname"><span class="pre">compute_pension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2021.compute_pension" title="Lien vers cette définition"></a></dt>
 <dd><p>Fonction qui calcule la prestation de PSV.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
 <li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
 </ul>
 </dd>
-<dt class="field-even">Renvoie</dt>
+<dt class="field-even">Renvoie<span class="colon">:</span></dt>
 <dd class="field-even"><p>Montant de la PSV.</p>
 </dd>
-<dt class="field-odd">Type renvoyé</dt>
+<dt class="field-odd">Type renvoyé<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -670,10 +892,10 @@
 <div class="toggle-content docutils container">
 <dl class="py function">
 <dt class="sig sig-object py" id="srd.oas.programs.program_2021.gis">
-<span class="sig-prename descclassname"><span class="pre">srd.oas.programs.program_2021.</span></span><span class="sig-name descname"><span class="pre">gis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">income</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">low_high</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2021.gis" title="Lien permanent vers cette définition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">srd.oas.programs.program_2021.</span></span><span class="sig-name descname"><span class="pre">gis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">income</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">low_high</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2021.gis" title="Lien vers cette définition"></a></dt>
 <dd><p>Fonction qui calcule la prestation de Supplément de revenu garanti.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
 <li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
@@ -681,10 +903,10 @@
 <li><p><strong>low_high</strong> (<em>string</em>) – “low”/”high” pour calcul du bonus de SRG pour très faible revenu</p></li>
 </ul>
 </dd>
-<dt class="field-even">Renvoie</dt>
+<dt class="field-even">Renvoie<span class="colon">:</span></dt>
 <dd class="field-even"><p>Montant du SRG (après récupération).</p>
 </dd>
-<dt class="field-odd">Type renvoyé</dt>
+<dt class="field-odd">Type renvoyé<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -697,10 +919,10 @@
 <p><strong>2022</strong></p>
 <dl class="py class">
 <dt class="sig sig-object py" id="srd.oas.programs.program_2022">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.oas.programs.</span></span><span class="sig-name descname"><span class="pre">program_2022</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">federal</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2022" title="Lien permanent vers cette définition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">srd.oas.programs.</span></span><span class="sig-name descname"><span class="pre">program_2022</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">federal</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2022" title="Lien vers cette définition"></a></dt>
 <dd><p>Version du programme de 2022.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>federal</strong> (<a class="reference internal" href="federal.html#srd.federal.form_2022" title="srd.federal.form_2022"><em>srd.federal.form_2022</em></a>) – instance de la classe srd.federal.form_2022 du module Federal</p>
 </dd>
 </dl>
@@ -712,19 +934,19 @@
 <div class="toggle-content docutils container">
 <dl class="py function">
 <dt class="sig sig-object py" id="srd.oas.programs.program_2022.compute_pension">
-<span class="sig-prename descclassname"><span class="pre">srd.oas.programs.program_2022.</span></span><span class="sig-name descname"><span class="pre">compute_pension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2022.compute_pension" title="Lien permanent vers cette définition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">srd.oas.programs.program_2022.</span></span><span class="sig-name descname"><span class="pre">compute_pension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#srd.oas.programs.program_2022.compute_pension" title="Lien vers cette définition"></a></dt>
 <dd><p>Fonction qui calcule la prestation de PSV.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>p</strong> (<a class="reference internal" href="actors.html#srd.Person" title="srd.Person"><em>Person</em></a>) – instance de la classe Person</p></li>
 <li><p><strong>hh</strong> (<a class="reference internal" href="actors.html#srd.Hhold" title="srd.Hhold"><em>Hhold</em></a>) – instance de la classe Hhold</p></li>
 </ul>
 </dd>
-<dt class="field-even">Renvoie</dt>
+<dt class="field-even">Renvoie<span class="colon">:</span></dt>
 <dd class="field-even"><p>Montant de la PSV.</p>
 </dd>
-<dt class="field-odd">Type renvoyé</dt>
+<dt class="field-odd">Type renvoyé<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -734,55 +956,38 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="payroll.html" class="btn btn-neutral float-right" title="Cotisations sociales" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
         <a href="ontario.html" class="btn btn-neutral float-left" title="Impôt de l’Ontario" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+        <a href="payroll.html" class="btn btn-neutral float-right" title="Cotisations sociales" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2022, Équipe CREEi.
-
-    </p>
+    <p>&#169; Droits d'auteur 2022, Équipe CREEi.</p>
   </div>
-    
-    
-    
-    Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
-    
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
-    
-    fourni par <a href="https://readthedocs.org">Read the Docs</a>. 
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>
