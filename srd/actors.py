@@ -375,8 +375,10 @@ class Hhold:
         province (qc = Québec)
     n_adults_in_hh: int
         nombre d'adultes (18 ans et plus) dans le ménage
+    rent: float
+        Loyer annuel du ménage
     """
-    def __init__(self, first, second=None, prov='qc', n_adults_in_hh=None, prev_fam_net_inc_prov=None,rent=0):
+    def __init__(self, first, second=None, prov='qc', n_adults_in_hh=None, prev_fam_net_inc_prov=None,rent=None):
         self.sp = [first]
         self.couple = bool(second)
         if self.couple:

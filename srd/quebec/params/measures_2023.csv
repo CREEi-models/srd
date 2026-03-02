@@ -114,3 +114,16 @@ tax_shield_max_inc_variation;4000;int;;; assumed constant ok
 caregiver_base;1383;float;;;
 caregiver_cutoff;24540;float;;;
 caregiver_rate;0.16;float;;;
+shelter_min_age;50;int;;;
+shelter_max_earn_single;20800;int;;;
+shelter_max_earn_single_kid12;36000;int;;;
+shelter_max_earn_single_kid3p;41600;int;;;
+shelter_max_earn_couple;29400;int;;;
+shelter_max_earn_couple_kid1;36000;int;;;
+shelter_max_earn_couple_kid2p;41600;int;;;
+shelter_rate1;0.3;float;;;
+shelter_rate2;0.5;float;;;
+shelter_rate3;0.8;float;;;
+shelter_amount1;1200;int;;;
+shelter_amount2;1800;int;;;
+shelter_amount3;2040;int;;;

@@ -499,11 +499,12 @@ class template:
         p.qc_cost_of_living = self.cost_of_living(p, hh)
         p.qc_tax_shield = self.tax_shield(p, hh)
         p.qc_caregivers= self.get_caregivers(p, hh)
+        p.qc_allow_shelter = self.allow_shelter(p, hh)
 
 
         l_all_creds = [p.qc_chcare, p.qc_tax_shield, p.qc_witb, p.qc_home_support,
                        p.qc_senior_assist, p.qc_med_exp, p.qc_ccap,
-                       p.qc_solidarity, p.qc_cost_of_living,p.qc_caregivers]
+                       p.qc_solidarity, p.qc_cost_of_living,p.qc_caregivers,p.qc_allow_shelter]
         l_existing_creds = [cred for cred in l_all_creds if cred]  # removes credits not implemented
 
         p.prov_return['refund_credits'] = sum(l_existing_creds)
@@ -1089,3 +1090,15 @@ class template:
         #Le Crédit d’impôt que peut demander un aidant naturel soutenant un proche admissible
         # n'est pas modélisé comme nous n'avons pas les personnes à l'extérieur du ménage
         return max(0, amount)
+    
+    def allow_shelter(self,p, hh):
+        """
+        Fonction qui calcule le montant de l'allocation-logement.
+
+        Parameters
+        ----------
+        hh: Hhold
+            instance de la classe Hhold
+        """
+
+        pass

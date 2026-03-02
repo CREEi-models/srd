@@ -490,6 +490,7 @@ class form_2023(form_2022):
         add_params_as_attr(self, module_dir + "/federal/params/federal_2023.csv")
         add_params_as_attr(self, module_dir + "/federal/params/fed_witb_qc_2023.csv")
         add_schedule_as_attr(self, module_dir + "/federal/params/schedule_2023.csv")
+        
         self.witb_params = {}
         for prov in ["on", "qc"]:
             self.witb_params[prov] = get_params(

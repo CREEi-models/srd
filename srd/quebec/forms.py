@@ -436,7 +436,7 @@ class form_2023(form_2022):
         add_schedule_as_attr(self, module_dir + '/quebec/params/schedule_2023.csv')
         add_schedule_as_attr(self, module_dir + '/quebec/params/chcare_2023.csv')
         add_schedule_as_attr(self, module_dir + '/quebec/params/drug_insurance_contrib_2023.csv')
-        #add_schedule_as_attr(self, module_dir + '/quebec/params/shelter_2023.csv')
+        
 
     def cost_of_living(self, p, hh):
         """
@@ -452,7 +452,7 @@ class form_2023(form_2022):
         """
         pass
 
-    def allow_shelter(self, hh):
+    def allow_shelter(self,p, hh):
         """
         Fonction qui calcule le montant de l'allocation-logement.
 
@@ -461,42 +461,43 @@ class form_2023(form_2022):
         hh: Hhold
             instance de la classe Hhold
         """
-        hh.shelter_elig = True
         ndep = len(hh.dep)
 
-        if not hh.couple:
-          if ndep == 0 and  hh.sp[0].age< self.min_age_shelter_elig:
-             hh.shelter_elig = False
-          elif ndep == 0 and hh.fam_net_inc_prov > self.max_earn_alone:
-             hh.shelter_elig = False
-          elif 1<= ndep < 3 and hh.fam_inc_work> self.max_earn_mono_1or2kid:
-             hh.shelter_elig = False
-          elif ndep >= 3 and hh.fam_net_inc_prov > self.max_earn_mono_more_3kid:
-             hh.shelter_elig = False
+        # Determine eligibility
+        if hh.couple:
+            age_ok = any(p.age >= self.shelter_min_age for p in hh.sp)
+            hh.shelter_elig = (ndep > 0) or age_ok
+
+            if ndep == 0:
+                income_limit = self.shelter_max_earn_couple
+            elif ndep == 1:
+                income_limit = self.shelter_max_earn_couple_kid1
+            else:
+                income_limit = self.shelter_max_earn_couple_kid2p
         else:
-          np_elig_age = len([p for p in hh.sp if p.age < self.min_age_shelter_elig])
+            hh.shelter_elig = (ndep > 0) or (hh.sp[0].age >= self.shelter_min_age)
 
-          if ndep == np_elig_age== 0 :
-             hh.shelter_elig = False
-          elif ndep == 0 and hh.fam_net_inc_prov > self.max_earn_couple_0kid:
-            hh.shelter_elig = False
-          elif  ndep == 1 and hh.fam_net_inc_prov > self.max_earn_couple_1kid:
-            hh.shelter_elig = False
-          elif ndep > 1 and hh.fam_net_inc_prov > self.max_earn_couple_more_2kid:
+            if ndep == 0:
+                income_limit = self.shelter_max_earn_single
+            elif ndep < 3:
+                income_limit = self.shelter_max_earn_single_kid12
+            else:
+                income_limit = self.shelter_max_earn_single_kid3p
+
+        if hh.fam_net_inc_prov > income_limit:
             hh.shelter_elig = False
 
-        prop_rent = 0
-        if hh.fam_net_inc_prov>0:
-         prop_rent = hh.rent/ hh.fam_net_inc_prov
-
+        # Calculate shelter amount based on eligibility and rent ratio
         amount = 0
-        if hh.shelter_elig:
-            if float(self.shelter_percent1) <= prop_rent < float(self.shelter_percent2):
-                amount += self.amount_30_to_49
-            elif float(self.shelter_percent3) <= prop_rent < float(self.shelter_percent4):
-                amount += self.amount_50_79
-            elif prop_rent>= float(self.shelter_percent5):
-                amount += self.amount_more_80
+        if hh.shelter_elig and hh.rent is not None:
+            prop_rent = np.round(hh.rent / hh.fam_net_inc_prov, 2) if hh.fam_net_inc_prov > 0 else 1
+            if self.shelter_rate1 <= prop_rent < self.shelter_rate2:
+                amount = self.shelter_amount1
+            elif self.shelter_rate2 <= prop_rent < self.shelter_rate3:
+                amount = self.shelter_amount2
+            elif prop_rent>= self.shelter_rate3:
+                amount = self.shelter_amount3
 
-        for p in hh.sp:
-            p.allow_shelter = amount/(1+ hh.couple)
+        # Assign shelter amount to each spouse
+        amount = amount / (1 + hh.couple)
+        return amount
