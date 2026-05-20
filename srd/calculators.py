@@ -37,6 +37,7 @@ class tax:
         self.ipayroll = ipayroll
         self.ioas = ioas
         self.iass = iass
+
         if simplify_prov:
             self.iass = False  # Pas d'aide sociale dans version simplifiée car seulement QC et ON ont modèle complet
         if ipayroll:
@@ -152,14 +153,14 @@ class tax:
         if self.year == 2020 or self.year == 2021:
             self.compute_covid(hh)
             self.compute_ei(hh)
+        if self.iass:
+            self.compute_sa(hh)
         if self.ioas:
             self.compute_oas(hh)
         if self.ifed:
             self.compute_fed(hh)
         if self.iprov:
             self.compute_prov(hh)
-        if self.iass:
-            self.compute_sa(hh)
         self.disp_inc(hh)
 
     def compute_oas(self, hh):
@@ -278,7 +279,7 @@ class tax:
             if self.ipayroll:
                 disp_inc -= sum(list(p.payroll.values()))
             if self.iass:
-                disp_inc += p.inc_sa
+                disp_inc += sum(p.inc_sa.values())
             disp_inc -= p.con_rrsp + p.con_non_rrsp + p.con_rdsp
             p.disp_inc = disp_inc
 

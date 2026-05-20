@@ -17,11 +17,21 @@ socass_qc_ajust_kid12_12yp;102.96;float;;; 12ans et plus ok
 socass_qc_reductionrate;1;float;;; 
 socass_qc_exemption_single;2400;float;;; ok
 socass_qc_exemption_couple;3600;float;;; ok
-socass_on_assets_couple;15000;float;;https://www.mcss.gov.on.ca/en/mcss/programs/social/directives/index.aspx;ok
-socass_on_assets_single;10000;float;;https://www.ontario.ca/laws/regulation/980134/v118#BK47;ok
-socass_on_assets_kid;500;float;;;ok
-socass_on_exempt;2400;float;;;ok
-socass_on_exempt_rate;0.5;float;;;ok
+socass_qc_mono_adult_kid1;1640.04;float;;legisquebec.gouv.qc.ca;article 74
+socass_qc_mono_adult_kid2;1452;float;;legisquebec.gouv.qc.ca;article 74
+socass_qc_couple_adult_kid1;1452;float;;legisquebec.gouv.qc.ca;article 74
+socass_qc_couple_adult_kid2;1152;float;;legisquebec.gouv.qc.ca;article 74
+socass_qc_ajust_adult_sec_kid1;3177;float;;legisquebec.gouv.qc.ca;article 75
+socass_qc_ajust_adult_sec_kid2;2970.96;float;;legisquebec.gouv.qc.ca;article 75
+socass_qc_ajust_adult_sec_kid3;2973;float;;legisquebec.gouv.qc.ca;article 75
+socass_qc_ajust_adult_dis_kid;2616;float;;legisquebec.gouv.qc.ca;article 75
+socass_qc_ajust_post_sec;1200;float;;legisquebec.gouv.qc.ca;article 78
+socass_qc_alimony;4200;float;;legisquebec.gouv.qc.ca;article 111
+socass_on_assets_couple;15000;float;;https://www.mcss.gov.on.ca/en/mcss/programs/social/directives/index.aspx;
+socass_on_assets_single;10000;float;;https://www.ontario.ca/laws/regulation/980134/v118#BK47;
+socass_on_assets_kid;500;float;;;
+socass_on_exempt;2400;float;;;
+socass_on_exempt_rate;0.5;float;;;
 socass_on_couple_no_dep18;5928;float;;https://www.ontario.ca/laws/regulation/980134/v107;Les montans non pas changer depuis 2019
 socass_on_couple_1dep18;7824;float;;https://www.ontario.ca/laws/regulation/980134;ok
 socass_on_couple_2dep18;9912;float;;;ok
@@ -30,3 +40,11 @@ socass_on_single_no_dep18_kid;4116;float;;;ok
 socass_on_single_no_dep18;4320;float;;;ok
 socass_on_single_1dep18;7476;float;;;ok
 socass_on_single_2dep18;9372;float;;;ok
+socsol_qc_assets_single;2500;float;;legisquebec ;
+socsol_qc_assets_couple;5000;float;;legisquebec Reglement sur aide aux personnes et aux familles;
+socsol_qc_base_single;14460;float;;legisquebec Reglement sur aide aux personnes et aux familles;
+socsol_qc_base_couple;21180;float;;legisquebec Reglement sur aide aux personnes et aux familles;
+socsol_qc_exemption_single;2400;float;;legisquebec Reglement sur aide aux personnes et aux familles;
+socsol_qc_exemption_couple;3600;float;;legisquebec Reglement sur aide aux personnes et aux familles;
+socsol_qc_couple_adult_kid1;1560;float;;legisquebec Reglement sur aide aux personnes et aux familles;
+socsol_qc_couple_adult_kid2;1224;float;;legisquebec Reglement sur aide aux personnes et aux familles;

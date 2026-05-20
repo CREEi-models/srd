@@ -34,10 +34,6 @@ class Person:
         revenu de REER (retrait de fonds)
     inc_rdsp: float
         revenus de REEI (retrait de fonds) provenant des bons, subventions ou revenus de placements
-    inc_bip: float
-        montant du programme de revenu de base
-    inc_ss: float
-        montant du programme de solidarité sociale
     self_earn: float
         revenu de travail autonome
     div_elig: float
@@ -46,7 +42,7 @@ class Person:
         montant réel des dividendes ordinaires (canadiens)
     cdsg: float
         montant cumulatif de la subvention canadienne pour invalidité (SCEI) reçue
-    cdsb: 
+    cdsb: float
         montant cumulatif du bon canadien pour invalidité reçu
     con_rrsp: float
         cotisation REER
@@ -74,7 +70,7 @@ class Person:
         nombre de jours de garde du premier enfant
     ndays_chcare_k2: float
         nombre de jours de garde du second enfant
-    asset: float
+    assets: float
         valeur marchande des actifs (avoirs liquides) comptabilisés aux fins d'admissibilité à l'aide sociale (vérifier la définition selon la province)
     oas_years_post: int
         nombre d'années de report pour la PSV (après 65 ans)
@@ -115,7 +111,7 @@ class Person:
                  div_other_can=0,cdsg =0,cdsb=0, con_rrsp=0,con_rdsp=0, con_non_rrsp=0, con_rpp=0,
                  union_dues=0, donation=0, gift=0, years_can=None,
                  disabled=False, widow=False, med_exp=0, ndays_chcare_k1=0,
-                 ndays_chcare_k2=0, asset=0, oas_years_post=0,
+                 ndays_chcare_k2=0, assets=0, oas_years_post=0,
                  months_cerb_cesb=0, student=False, essential_worker=False,
                  emp_temp_constraints=False, hours_month=None, prev_inc_work=None,
                  dep_senior=False, home_support_cost=0,home_access_cost=0,months_ei=0, 
@@ -151,7 +147,7 @@ class Person:
         self.med_exp = med_exp
         self.ndays_chcare_k1 = ndays_chcare_k1  # should be the kid with the most days,
         self.ndays_chcare_k2 = ndays_chcare_k2  # second kid with most days, in same order for both spouses
-        self.asset = asset
+        self.assets = assets
         self.months_crb = months_crb
         self.months_ei = months_ei
         self.oas_years_post = oas_years_post
@@ -181,9 +177,7 @@ class Person:
         self.inc_cesb = 0
         self.inc_crb = 0
         self.inc_iprew = 0
-        self.inc_sa = None #{'amount':0, 'basic amount': 0, 'temporary amount':0, 'kids_adjustments':0, 'clawback':0}
-        self.inc_ss = None #{'amount':0, 'basic amount':0, 'severe constraints': 0, 'kids adjustments':0, 'clawback':0}
-        self.inc_bip = None #{'amount':0, 'basic amount':0, 'single adjustment':0, 'dep adjustment':0, 'reduce': 0}
+        self.inc_sa = None 
         self.covid = None
         self.after_tax_inc = None
         self.disp_inc = None

@@ -17,6 +17,16 @@ socass_qc_ajust_kid12_12yp;102.96;float;;; 12ans et plus
 socass_qc_reductionrate;1;float;;;
 socass_qc_exemption_single;2400;float;;;
 socass_qc_exemption_couple;3600;float;;;
+socass_qc_mono_adult_kid1;1640.04;float;;legisquebec.gouv.qc.ca;article 74
+socass_qc_mono_adult_kid2;1452;float;;legisquebec.gouv.qc.ca;article 74
+socass_qc_couple_adult_kid1;1452;float;;legisquebec.gouv.qc.ca;article 74
+socass_qc_couple_adult_kid2;1152;float;;legisquebec.gouv.qc.ca;article 74
+socass_qc_ajust_adult_sec_kid1;3177;float;;legisquebec.gouv.qc.ca;article 75
+socass_qc_ajust_adult_sec_kid2;2970.96;float;;legisquebec.gouv.qc.ca;article 75
+socass_qc_ajust_adult_sec_kid3;2973;float;;legisquebec.gouv.qc.ca;article 75
+socass_qc_ajust_adult_dis_kid;2340;float;;legisquebec.gouv.qc.ca;article 75
+socass_qc_ajust_post_sec;1200;float;;legisquebec.gouv.qc.ca;article 78
+socass_qc_alimony;4200;float;;legisquebec.gouv.qc.ca;article 111
 socass_on_assets_couple;15000;float;;https://www.mcss.gov.on.ca/en/mcss/programs/social/directives/index.aspx;
 socass_on_assets_single;10000;float;;;
 socass_on_assets_kid;500;float;;;
@@ -30,3 +40,13 @@ socass_on_single_no_dep18_kid;4158;float;;;
 socass_on_single_no_dep18;4362;float;;;
 socass_on_single_1dep18;7548;float;;;
 socass_on_single_2dep18;9462;float;;;
+socsol_qc_assets_single;2500;float;;legisQuébec Règlement sur l’aide aux personnes et aux familles;article 163
+socsol_qc_assets_couple;5000;float;;legisQuébec Règlement sur l’aide aux personnes et aux familles;article 163
+socsol_qc_base_single;12732;float;;legisQuébec Règlement sur l’aide aux personnes et aux familles;article 156 + article 157.1 alinéa 1
+socsol_qc_base_couple;18732;float;;legisQuébec Règlement sur l’aide aux personnes et aux familles;article 156 + article 157.1 alinéa 1
+socsol_qc_ltss_single;13476;float;;legisQuébec Règlement sur l’aide aux personnes et aux familles;article 156 + article 157.1 alinéa 2
+socsol_qc_ltss_couple;19116;float;;legisQuébec Règlement sur l’aide aux personnes et aux familles;article 156 + article 157.1 alinéa 2
+socsol_qc_exemption_single;1200;float;;legisQuébec Règlement sur l’aide aux personnes et aux familles;article 162
+socsol_qc_exemption_couple;1200;float;;legisQuébec Règlement sur l’aide aux personnes et aux familles;article 162
+socsol_qc_couple_adult_kid1;1560;float;;legisQuébec Règlement sur l’aide aux personnes et aux familles;article 158
+socsol_qc_couple_adult_kid2;1224;float;;legisQuébec Règlement sur l’aide aux personnes et aux familles;article 158

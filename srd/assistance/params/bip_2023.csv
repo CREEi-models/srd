@@ -1,0 +1,11 @@
+variable;value;type ;definition;source ;comment
+bip_qc_assets;20000;float;;;article 177.99
+bip_qc_assets_spouse_nosa;50000;float;;;article 177.100
+bip_qc_adult_single;14532;float;;;article 177.71
+bip_qc_ajust_child;240;float;;;article 177.4
+bip_qc_ajust_adult_postsec;4140;float;;;article 177.4
+bip_qc_ajust_single;4044;float;;;article 177.73
+bip_qc_exclusion_base;14532;float;;;
+bip_qc_claw_rate;0.55;float;;;
+bip_qc_claw_rate_spouse_nobip;0.30;float;;;
+bip_qc_spouse_nobip;27999.96;float;;;

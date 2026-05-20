@@ -63,6 +63,7 @@ class template:
                                         + p.inc_cpp + p.inc_rpp
                                         + p.pension_split + p.taxable_div
                                         + p.taxable_cap_gains
+                                        + sum(p.inc_sa.values())
                                         + p.inc_othtax + p.inc_rrsp + p.inc_rdsp)
 
     def calc_net_income(self, p):
